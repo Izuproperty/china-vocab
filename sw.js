@@ -1,7 +1,7 @@
 // China Vocab · Service Worker
 // Caches app files for offline use
 
-const CACHE = 'china-vocab-v1';
+const CACHE = 'china-vocab-v2';
 const ASSETS = ['./index.html', './vocab.json', './manifest.json'];
 
 self.addEventListener('install', e => {
@@ -21,8 +21,8 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   e.respondWith(
     caches.match(e.request).then(cached => {
-      // Network-first for vocab.json so updates are picked up
-      if (e.request.url.endsWith('vocab.json')) {
+      // Network-first for index.html and vocab.json so updates always come through
+      if (e.request.url.endsWith('vocab.json') || e.request.url.endsWith('index.html') || e.request.url.endsWith('/')) {
         return fetch(e.request)
           .then(res => {
             const clone = res.clone();
