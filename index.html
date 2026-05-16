@@ -163,6 +163,29 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .vocab-list-en{font-size:13px;color:var(--text);font-weight:600}
 .vocab-list-level{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;background:var(--surface2);border:2px solid var(--border);flex-shrink:0}
 
+/* ── Sync indicator ── */
+#sync-dot{width:8px;height:8px;border-radius:50%;background:var(--text-dim);cursor:pointer;flex-shrink:0;transition:background .3s}
+#sync-dot.synced{background:var(--green)}
+#sync-dot.syncing{background:var(--gold);animation:pulse .8s infinite}
+#sync-dot.error{background:var(--red-light)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* ── Settings modal ── */
+#settings-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;align-items:flex-end;justify-content:center}
+#settings-modal.open{display:flex}
+.settings-sheet{background:var(--surface);border-radius:20px 20px 0 0;padding:24px 20px;padding-bottom:max(24px,env(safe-area-inset-bottom));width:100%;max-width:500px;border-top:1px solid var(--border)}
+.settings-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 20px}
+.settings-title{font-size:17px;font-weight:700;color:var(--cream);margin-bottom:4px}
+.settings-subtitle{font-size:13px;color:var(--text-dim);margin-bottom:20px;line-height:1.5}
+.settings-label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.settings-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--text);font-size:14px;font-family:monospace;margin-bottom:16px;outline:none}
+.settings-input:focus{border-color:var(--blue)}
+.settings-btn{width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px;transition:all .2s}
+.settings-btn.primary{background:var(--red);color:#fff}
+.settings-btn.secondary{background:var(--surface2);color:var(--text-dim)}
+.settings-btn:active{transform:scale(.98)}
+.settings-status{font-size:12px;text-align:center;color:var(--text-dim);min-height:18px;margin-bottom:8px}
+
 /* ── XP toast ── */
 #xp-toast{position:fixed;top:80px;right:16px;background:var(--gold);color:#000;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:800;opacity:0;transform:translateY(-10px);transition:all .3s;pointer-events:none;z-index:100}
 #xp-toast.show{opacity:1;transform:translateY(0)}
@@ -181,7 +204,25 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   <div id="topbar">
     <div class="topbar-streak" id="streak-display">🔥 0</div>
     <div class="topbar-title" id="topbar-title">中国词汇</div>
-    <div class="topbar-xp"><span id="xp-display">0</span> XP</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="topbar-xp"><span id="xp-display">0</span> XP</div>
+      <div id="sync-dot" title="Sync status — tap to configure" onclick="openSettings()"></div>
+    </div>
+  </div>
+
+  <!-- Settings / Sync modal -->
+  <div id="settings-modal" onclick="if(event.target===this)closeSettings()">
+    <div class="settings-sheet">
+      <div class="settings-handle"></div>
+      <div class="settings-title">☁️ Cross-Device Sync</div>
+      <div class="settings-subtitle">Enter a GitHub Personal Access Token with <strong>gist</strong> scope to sync your progress across iPhone, iPad, and Mac. Your token is stored only on this device.</div>
+      <div class="settings-label">GitHub Token (ghp_...)</div>
+      <input class="settings-input" id="settings-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off" autocorrect="off" spellcheck="false">
+      <div class="settings-status" id="settings-status"></div>
+      <button class="settings-btn primary" onclick="saveSettings()">Save & Sync Now</button>
+      <button class="settings-btn secondary" onclick="closeSettings()">Cancel</button>
+      <div style="font-size:11px;color:var(--text-dim);text-align:center;margin-top:8px">Create token at github.com/settings/tokens → New token (classic) → check <strong>gist</strong> only</div>
+    </div>
   </div>
 
   <!-- Screens -->
@@ -360,6 +401,156 @@ async function loadVocab() {
 }
 
 // ═══════════════════════════════════════════════════════
+// GITHUB GIST SYNC
+// ═══════════════════════════════════════════════════════
+
+const GIST_FILENAME = 'china-vocab-progress.json';
+let syncDebounceTimer = null;
+
+function getToken() { return localStorage.getItem('cn_gh_token') || ''; }
+function getGistId() { return localStorage.getItem('cn_gist_id') || ''; }
+
+function setSyncDot(state) {
+  const d = document.getElementById('sync-dot');
+  d.className = '';
+  d.id = 'sync-dot';
+  if (state) d.classList.add(state);
+}
+
+async function gistRequest(method, path, body) {
+  const token = getToken();
+  if (!token) return null;
+  const r = await fetch('https://api.github.com' + path, {
+    method,
+    headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'X-GitHub-Api-Version': '2022-11-28' },
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (!r.ok) throw new Error('GitHub API ' + r.status);
+  return r.json();
+}
+
+async function loadFromGist() {
+  const token = getToken();
+  if (!token) { setSyncDot(''); return; }
+  setSyncDot('syncing');
+  try {
+    let gistId = getGistId();
+    if (!gistId) {
+      // Search for existing gist by filename
+      const gists = await gistRequest('GET', '/gists?per_page=100');
+      const found = gists && gists.find(g => g.files && g.files[GIST_FILENAME]);
+      if (found) {
+        gistId = found.id;
+        localStorage.setItem('cn_gist_id', gistId);
+      }
+    }
+    if (gistId) {
+      const gist = await gistRequest('GET', '/gists/' + gistId);
+      const content = gist.files[GIST_FILENAME]?.content;
+      if (content) {
+        const remote = JSON.parse(content);
+        // Merge: take highest XP, longest streak, highest card levels
+        const local = getStore();
+        const merged = mergeProgress(local, remote);
+        saveStore(merged);
+      }
+    }
+    setSyncDot('synced');
+  } catch(e) {
+    console.warn('Gist load failed:', e);
+    setSyncDot('error');
+  }
+}
+
+async function pushToGist() {
+  const token = getToken();
+  if (!token) return;
+  setSyncDot('syncing');
+  try {
+    const data = getStore();
+    const content = JSON.stringify(data, null, 2);
+    let gistId = getGistId();
+    if (gistId) {
+      await gistRequest('PATCH', '/gists/' + gistId, { files: { [GIST_FILENAME]: { content } } });
+    } else {
+      const created = await gistRequest('POST', '/gists', {
+        description: 'China Vocab PWA — progress sync',
+        public: false,
+        files: { [GIST_FILENAME]: { content } }
+      });
+      localStorage.setItem('cn_gist_id', created.id);
+    }
+    setSyncDot('synced');
+  } catch(e) {
+    console.warn('Gist push failed:', e);
+    setSyncDot('error');
+  }
+}
+
+function schedulePush() {
+  clearTimeout(syncDebounceTimer);
+  syncDebounceTimer = setTimeout(pushToGist, 3000); // push 3s after last action
+}
+
+function mergeProgress(local, remote) {
+  const merged = { cards: {}, stats: {} };
+  const allKeys = new Set([...Object.keys(local.cards || {}), ...Object.keys(remote.cards || {})]);
+  allKeys.forEach(zh => {
+    const l = (local.cards || {})[zh] || { level: 0, attempts: 0, correct: 0 };
+    const r = (remote.cards || {})[zh] || { level: 0, attempts: 0, correct: 0 };
+    merged.cards[zh] = {
+      level: Math.max(l.level || 0, r.level || 0),
+      attempts: Math.max(l.attempts || 0, r.attempts || 0),
+      correct: Math.max(l.correct || 0, r.correct || 0),
+      nextReview: [l.nextReview, r.nextReview].filter(Boolean).sort()[0] || today()
+    };
+  });
+  const ls = local.stats || {}, rs = remote.stats || {};
+  merged.stats = {
+    streak: Math.max(ls.streak || 0, rs.streak || 0),
+    lastDate: [ls.lastDate, rs.lastDate].filter(Boolean).sort().pop() || '',
+    totalXP: Math.max(ls.totalXP || 0, rs.totalXP || 0),
+    totalCorrect: Math.max(ls.totalCorrect || 0, rs.totalCorrect || 0),
+    totalAnswered: Math.max(ls.totalAnswered || 0, rs.totalAnswered || 0)
+  };
+  return merged;
+}
+
+// ── Settings modal ──────────────────────────────────────
+
+function openSettings() {
+  document.getElementById('settings-token').value = getToken();
+  document.getElementById('settings-status').textContent = getGistId() ? '✓ Gist linked: ' + getGistId().slice(0,8) + '...' : 'No gist linked yet';
+  document.getElementById('settings-modal').classList.add('open');
+}
+
+function closeSettings() {
+  document.getElementById('settings-modal').classList.remove('open');
+}
+
+async function saveSettings() {
+  const token = document.getElementById('settings-token').value.trim();
+  const status = document.getElementById('settings-status');
+  if (!token) { status.textContent = '⚠️ Please enter a token'; return; }
+  localStorage.setItem('cn_gh_token', token);
+  localStorage.removeItem('cn_gist_id'); // reset so we search/create fresh
+  status.textContent = 'Testing connection…';
+  try {
+    await gistRequest('GET', '/user');
+    status.textContent = '✓ Token valid — syncing…';
+    await loadFromGist();
+    await pushToGist();
+    status.textContent = '✓ Synced! Progress will now sync across all devices.';
+    updateTopbar();
+    renderHome();
+    setTimeout(closeSettings, 1800);
+  } catch(e) {
+    status.textContent = '✗ Token invalid or no gist scope. Check and retry.';
+    setSyncDot('error');
+  }
+}
+
+// ═══════════════════════════════════════════════════════
 // PERSISTENCE
 // ═══════════════════════════════════════════════════════
 
@@ -381,6 +572,7 @@ function setCardState(zh, state) {
   if (!s.cards) s.cards = {};
   s.cards[zh] = state;
   saveStore(s);
+  schedulePush();
 }
 
 function getStats() {
@@ -391,6 +583,7 @@ function saveStats(stats) {
   const s = getStore();
   s.stats = stats;
   saveStore(s);
+  schedulePush();
 }
 
 // ═══════════════════════════════════════════════════════
@@ -892,6 +1085,7 @@ function renderHome() {
 function initApp() {
   updateTopbar();
   renderHome();
+  loadFromGist().then(() => { updateTopbar(); renderHome(); });
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }
