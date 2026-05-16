@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="China Vocab">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="manifest" href="manifest.json">
+<title>中国词汇 · China Vocab</title>
+<style>
+:root {
+  --bg: #0f0f1f;
+  --surface: #1a1a2e;
+  --surface2: #242440;
+  --border: #2e2e52;
+  --red: #c0392b;
+  --red-light: #e74c3c;
+  --cream: #e8d5b0;
+  --blue: #4a7fa5;
+  --green: #27ae60;
+  --green-light: #2ecc71;
+  --text: #dde0f0;
+  --text-dim: #7a8baa;
+  --gold: #f1c40f;
+  --r: 14px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;overflow:hidden;user-select:none}
+#app{display:flex;flex-direction:column;height:100%;max-width:500px;margin:0 auto;position:relative}
+
+/* ── Top bar ── */
+#topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 8px;padding-top:max(12px,env(safe-area-inset-top));background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;z-index:10}
+.topbar-title{font-size:15px;font-weight:700;color:var(--cream);letter-spacing:.5px}
+.topbar-streak{display:flex;align-items:center;gap:5px;font-size:14px;font-weight:700;color:var(--gold)}
+.topbar-xp{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--text-dim);background:var(--surface2);padding:4px 10px;border-radius:20px}
+.topbar-xp span{color:var(--blue)}
+
+/* ── Screens ── */
+#screens{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+.screen{display:none;padding:20px 16px 100px}
+.screen.active{display:block}
+
+/* ── Bottom nav ── */
+#nav{display:flex;background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;padding-bottom:max(8px,env(safe-area-inset-bottom))}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 6px;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:10px;font-weight:600;letter-spacing:.3px;transition:color .2s}
+.nav-btn.active{color:var(--red)}
+.nav-btn svg{width:22px;height:22px}
+
+/* ── Home screen ── */
+.home-hero{background:linear-gradient(135deg,var(--surface) 0%,#1e1e38 100%);border-radius:var(--r);padding:24px 20px;margin-bottom:16px;border:1px solid var(--border);position:relative;overflow:hidden}
+.home-hero::before{content:'中国词汇';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.05;color:var(--cream);font-weight:900;line-height:1}
+.home-hero-date{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:6px}
+.home-hero-greeting{font-size:22px;font-weight:700;color:var(--cream);margin-bottom:16px}
+.home-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.home-stat{background:var(--surface2);border-radius:10px;padding:12px;text-align:center}
+.home-stat-val{font-size:24px;font-weight:800;color:var(--cream)}
+.home-stat-val.red{color:var(--red-light)}
+.home-stat-val.gold{color:var(--gold)}
+.home-stat-val.blue{color:var(--blue)}
+.home-stat-label{font-size:10px;color:var(--text-dim);letter-spacing:.5px;margin-top:2px}
+
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.mode-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.mode-card:active{transform:scale(.97);background:var(--surface2)}
+.mode-card-icon{font-size:32px;margin-bottom:10px}
+.mode-card-title{font-size:15px;font-weight:700;color:var(--cream);margin-bottom:4px}
+.mode-card-desc{font-size:11px;color:var(--text-dim);line-height:1.4}
+.mode-card-badge{position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
+
+.section-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin:20px 0 10px;padding-left:4px}
+
+/* ── Flashcard ── */
+.fc-progress{height:4px;background:var(--border);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.fc-progress-bar{height:100%;background:var(--red);border-radius:2px;transition:width .3s}
+.fc-counter{text-align:center;font-size:12px;color:var(--text-dim);margin-bottom:16px}
+
+.fc-scene{perspective:1200px;margin:0 auto;max-width:380px;height:260px;cursor:pointer}
+.fc-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.fc-card.flipped{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+.fc-front{background:linear-gradient(160deg,var(--surface) 0%,#1e2040 100%)}
+.fc-back{background:var(--surface2);transform:rotateY(180deg)}
+.fc-zh{font-size:64px;color:var(--cream);text-align:center;line-height:1.1;margin-bottom:8px}
+.fc-hint{font-size:12px;color:var(--text-dim);letter-spacing:1px}
+.fc-sheet-badge{position:absolute;top:12px;right:12px;font-size:10px;padding:3px 8px;border-radius:20px;font-weight:600}
+.badge-ai{background:#1a3a6e;color:#6ab0ff}
+.badge-gov{background:#3a2000;color:#f0a030}
+.badge-people{background:#2a0a2e;color:#c070d0}
+.fc-pinyin{font-size:18px;color:var(--text-dim);margin-bottom:6px;font-style:italic}
+.fc-en{font-size:22px;font-weight:700;color:var(--cream);text-align:center;margin-bottom:12px}
+.fc-def{font-size:12px;color:var(--text-dim);text-align:center;line-height:1.5;max-height:70px;overflow:hidden}
+.fc-org{font-size:12px;color:var(--blue);text-align:center;margin-top:4px}
+
+.fc-tap-hint{text-align:center;font-size:12px;color:var(--text-dim);margin:12px 0 20px}
+
+.fc-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:380px;margin:0 auto}
+.fc-btn{padding:14px;border:none;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;letter-spacing:.3px}
+.fc-btn:active{transform:scale(.95)}
+.fc-btn.again{background:#3a1a1a;color:#e74c3c}
+.fc-btn.hard{background:#2a2a1a;color:#e0b040}
+.fc-btn.easy{background:#1a3a1a;color:#2ecc71}
+
+/* ── Quiz (MCQ) ── */
+.quiz-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:32px 24px;text-align:center;margin-bottom:20px;position:relative}
+.quiz-zh{font-size:72px;color:var(--cream);line-height:1;margin-bottom:12px}
+.quiz-pinyin{font-size:16px;color:var(--text-dim);font-style:italic;cursor:pointer;border-bottom:1px dashed var(--border);padding-bottom:4px;display:inline-block}
+.quiz-pinyin.hidden{opacity:0;pointer-events:none}
+.quiz-show-hint{font-size:11px;color:var(--text-dim);margin-top:8px}
+
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.quiz-opt{background:var(--surface2);border:2px solid var(--border);border-radius:12px;padding:14px 10px;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;transition:all .2s;line-height:1.3;text-align:center}
+.quiz-opt:active{transform:scale(.97)}
+.quiz-opt.correct{background:#1a3a1a;border-color:var(--green);color:var(--green-light)}
+.quiz-opt.wrong{background:#3a1a1a;border-color:var(--red);color:#e74c3c}
+.quiz-opt.disabled{pointer-events:none;opacity:.6}
+
+.quiz-feedback{background:var(--surface2);border-radius:12px;padding:14px 16px;font-size:13px;color:var(--text-dim);line-height:1.5;margin-bottom:12px;border-left:3px solid var(--border)}
+.quiz-feedback.correct-fb{border-color:var(--green)}
+.quiz-feedback.wrong-fb{border-color:var(--red)}
+
+.quiz-next{width:100%;padding:16px;background:var(--red);border:none;border-radius:12px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.3px}
+.quiz-next:active{transform:scale(.98);background:var(--red-light)}
+
+/* ── Sentence fill ── */
+.sentence-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;margin-bottom:20px}
+.sentence-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px}
+.sentence-text{font-size:20px;color:var(--cream);line-height:1.6;margin-bottom:8px}
+.sentence-blank{display:inline-block;background:var(--red);color:#fff;padding:2px 12px;border-radius:6px;font-weight:700;margin:0 2px}
+.sentence-source{font-size:11px;color:var(--text-dim);margin-top:8px}
+
+/* ── Progress screen ── */
+.prog-hero{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:20px;margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.prog-stat{text-align:center}
+.prog-stat-val{font-size:32px;font-weight:800}
+.prog-stat-label{font-size:11px;color:var(--text-dim);margin-top:2px}
+
+.prog-section{margin-bottom:20px}
+.prog-section-title{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:12px;padding-left:2px}
+
+.mastery-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.mastery-label{width:90px;font-size:12px;color:var(--text)}
+.mastery-bar{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.mastery-fill{height:100%;border-radius:4px;transition:width .6s}
+.mastery-pct{width:36px;font-size:12px;color:var(--text-dim);text-align:right}
+
+.level-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.level-cell{background:var(--surface2);border-radius:8px;padding:8px 4px;text-align:center;border:1px solid var(--border)}
+.level-cell-num{font-size:20px;font-weight:800;color:var(--cream)}
+.level-cell-label{font-size:9px;color:var(--text-dim);margin-top:2px}
+.level-cell.l0 .level-cell-num{color:#e74c3c}
+.level-cell.l1 .level-cell-num{color:#e67e22}
+.level-cell.l2 .level-cell-num{color:#f1c40f}
+.level-cell.l3 .level-cell-num{color:#2ecc71}
+.level-cell.l4 .level-cell-num{color:#3498db}
+.level-cell.l5 .level-cell-num{color:var(--cream)}
+
+.vocab-list-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.vocab-list-zh{font-size:22px;color:var(--cream);min-width:48px}
+.vocab-list-info{flex:1}
+.vocab-list-pinyin{font-size:11px;color:var(--text-dim);font-style:italic}
+.vocab-list-en{font-size:13px;color:var(--text);font-weight:600}
+.vocab-list-level{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;background:var(--surface2);border:2px solid var(--border);flex-shrink:0}
+
+/* ── XP toast ── */
+#xp-toast{position:fixed;top:80px;right:16px;background:var(--gold);color:#000;padding:8px 14px;border-radius:20px;font-size:13px;font-weight:800;opacity:0;transform:translateY(-10px);transition:all .3s;pointer-events:none;z-index:100}
+#xp-toast.show{opacity:1;transform:translateY(0)}
+
+/* ── Empty state ── */
+.empty-state{text-align:center;padding:60px 20px;color:var(--text-dim)}
+.empty-state-icon{font-size:48px;margin-bottom:16px}
+.empty-state-title{font-size:18px;font-weight:700;color:var(--text);margin-bottom:8px}
+.empty-state-desc{font-size:14px;line-height:1.6}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- Top bar -->
+  <div id="topbar">
+    <div class="topbar-streak" id="streak-display">🔥 0</div>
+    <div class="topbar-title" id="topbar-title">中国词汇</div>
+    <div class="topbar-xp"><span id="xp-display">0</span> XP</div>
+  </div>
+
+  <!-- Screens -->
+  <div id="screens">
+
+    <!-- Home -->
+    <div class="screen active" id="screen-home">
+      <div class="home-hero">
+        <div class="home-hero-date" id="home-date"></div>
+        <div class="home-hero-greeting">学习中国词汇</div>
+        <div class="home-stats">
+          <div class="home-stat"><div class="home-stat-val red" id="home-due">—</div><div class="home-stat-label">DUE</div></div>
+          <div class="home-stat"><div class="home-stat-val gold" id="home-streak">—</div><div class="home-stat-label">STREAK</div></div>
+          <div class="home-stat"><div class="home-stat-val blue" id="home-total">—</div><div class="home-stat-label">WORDS</div></div>
+        </div>
+      </div>
+
+      <div class="section-label">Study Modes</div>
+      <div class="mode-grid">
+        <div class="mode-card" onclick="startMode('cards')">
+          <div class="mode-card-icon">🃏</div>
+          <div class="mode-card-title">Flashcards</div>
+          <div class="mode-card-desc">Flip cards, self-rate your recall</div>
+          <div class="mode-card-badge" id="badge-due"></div>
+        </div>
+        <div class="mode-card" onclick="startMode('quiz')">
+          <div class="mode-card-icon">⚡</div>
+          <div class="mode-card-title">Recognition Quiz</div>
+          <div class="mode-card-desc">See character → pick English from 4</div>
+        </div>
+        <div class="mode-card" onclick="startMode('sentence')">
+          <div class="mode-card-icon">📝</div>
+          <div class="mode-card-title">Context Fill</div>
+          <div class="mode-card-desc">Sentence with blank → pick the word</div>
+        </div>
+        <div class="mode-card" onclick="showScreen('progress')">
+          <div class="mode-card-icon">📊</div>
+          <div class="mode-card-title">Progress</div>
+          <div class="mode-card-desc">Mastery, levels & full vocab list</div>
+        </div>
+      </div>
+
+      <div class="section-label">From Today's Brief</div>
+      <div id="home-recent"></div>
+    </div>
+
+    <!-- Flashcards -->
+    <div class="screen" id="screen-cards">
+      <div class="fc-progress"><div class="fc-progress-bar" id="fc-bar"></div></div>
+      <div class="fc-counter" id="fc-counter"></div>
+      <div class="fc-scene" onclick="flipCard()">
+        <div class="fc-card" id="fc-card">
+          <div class="fc-front" id="fc-front">
+            <div class="fc-sheet-badge" id="fc-badge"></div>
+            <div class="fc-zh" id="fc-zh"></div>
+            <div class="fc-hint">tap to reveal</div>
+          </div>
+          <div class="fc-back" id="fc-back">
+            <div class="fc-sheet-badge" id="fc-badge-back"></div>
+            <div class="fc-pinyin" id="fc-pinyin"></div>
+            <div class="fc-en" id="fc-en"></div>
+            <div class="fc-def" id="fc-def"></div>
+            <div class="fc-org" id="fc-org"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-tap-hint" id="fc-tap-hint">Tap card to flip</div>
+      <div class="fc-actions" id="fc-actions" style="display:none">
+        <button class="fc-btn again" onclick="rateCard(0)">Again<br><small>repeat now</small></button>
+        <button class="fc-btn hard" onclick="rateCard(1)">Hard<br><small>+1 day</small></button>
+        <button class="fc-btn easy" onclick="rateCard(2)">Easy<br><small>advance ✓</small></button>
+      </div>
+    </div>
+
+    <!-- Quiz -->
+    <div class="screen" id="screen-quiz">
+      <div class="fc-progress"><div class="fc-progress-bar" id="quiz-bar"></div></div>
+      <div class="fc-counter" id="quiz-counter"></div>
+      <div class="quiz-card">
+        <div class="fc-sheet-badge" id="quiz-badge" style="position:absolute;top:12px;right:12px"></div>
+        <div class="quiz-zh" id="quiz-zh"></div>
+        <div class="quiz-pinyin hidden" id="quiz-pinyin"></div>
+        <div class="quiz-show-hint" id="quiz-hint" onclick="showPinyin()" style="cursor:pointer">tap for pinyin hint (-5 XP)</div>
+      </div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <div class="quiz-feedback" id="quiz-feedback" style="display:none"></div>
+      <button class="quiz-next" id="quiz-next" style="display:none" onclick="nextQuiz()">Next →</button>
+    </div>
+
+    <!-- Sentence fill -->
+    <div class="screen" id="screen-sentence">
+      <div class="fc-progress"><div class="fc-progress-bar" id="sent-bar"></div></div>
+      <div class="fc-counter" id="sent-counter"></div>
+      <div class="sentence-card">
+        <div class="sentence-label">📖 Context Fill · 填词</div>
+        <div class="sentence-text" id="sent-text"></div>
+        <div class="sentence-source" id="sent-source"></div>
+      </div>
+      <div style="font-size:13px;color:var(--text-dim);text-align:center;margin-bottom:12px">Which English term belongs in the blank?</div>
+      <div class="quiz-options" id="sent-options"></div>
+      <div class="quiz-feedback" id="sent-feedback" style="display:none"></div>
+      <button class="quiz-next" id="sent-next" style="display:none" onclick="nextSentence()">Next →</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="screen" id="screen-progress">
+      <div class="prog-hero">
+        <div class="prog-stat"><div class="prog-stat-val" style="color:var(--gold)" id="prog-streak">0</div><div class="prog-stat-label">🔥 Day Streak</div></div>
+        <div class="prog-stat"><div class="prog-stat-val" style="color:var(--blue)" id="prog-xp">0</div><div class="prog-stat-label">⚡ Total XP</div></div>
+        <div class="prog-stat"><div class="prog-stat-val" style="color:var(--green)" id="prog-correct">0</div><div class="prog-stat-label">✓ Correct</div></div>
+        <div class="prog-stat"><div class="prog-stat-val" style="color:var(--red-light)" id="prog-mastered">0</div><div class="prog-stat-label">★ Mastered</div></div>
+      </div>
+
+      <div class="prog-section">
+        <div class="prog-section-title">Cards by Level</div>
+        <div class="level-grid" id="level-grid"></div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:8px;text-align:center">L0 = new/reset · L5 = mastered (30 day review)</div>
+      </div>
+
+      <div class="prog-section">
+        <div class="prog-section-title">Mastery by Category</div>
+        <div id="mastery-bars"></div>
+      </div>
+
+      <div class="prog-section">
+        <div class="prog-section-title">All Vocabulary</div>
+        <div id="vocab-list"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom nav -->
+  <div id="nav">
+    <button class="nav-btn active" id="nav-home" onclick="showScreen('home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      HOME
+    </button>
+    <button class="nav-btn" id="nav-cards" onclick="startMode('cards')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      CARDS
+    </button>
+    <button class="nav-btn" id="nav-quiz" onclick="startMode('quiz')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      QUIZ
+    </button>
+    <button class="nav-btn" id="nav-sentence" onclick="startMode('sentence')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg>
+      FILL
+    </button>
+    <button class="nav-btn" id="nav-progress" onclick="showScreen('progress')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      PROGRESS
+    </button>
+  </div>
+
+</div>
+
+<div id="xp-toast">+0 XP</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════
+
+let VOCAB = [];
+
+async function loadVocab() {
+  try {
+    const r = await fetch('vocab.json');
+    VOCAB = await r.json();
+  } catch(e) {
+    console.error('Could not load vocab.json:', e);
+  }
+  initApp();
+}
+
+// ═══════════════════════════════════════════════════════
+// PERSISTENCE
+// ═══════════════════════════════════════════════════════
+
+const STORE_KEY = 'cn_vocab_v1';
+
+function getStore() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }
+  catch { return {}; }
+}
+function saveStore(d) { localStorage.setItem(STORE_KEY, JSON.stringify(d)); }
+
+function getCardState(zh) {
+  const s = getStore();
+  return (s.cards || {})[zh] || { level: 0, nextReview: today(), attempts: 0, correct: 0 };
+}
+
+function setCardState(zh, state) {
+  const s = getStore();
+  if (!s.cards) s.cards = {};
+  s.cards[zh] = state;
+  saveStore(s);
+}
+
+function getStats() {
+  return getStore().stats || { streak: 0, lastDate: '', totalXP: 0, totalCorrect: 0, totalAnswered: 0 };
+}
+
+function saveStats(stats) {
+  const s = getStore();
+  s.stats = stats;
+  saveStore(s);
+}
+
+// ═══════════════════════════════════════════════════════
+// SRS + STATS
+// ═══════════════════════════════════════════════════════
+
+const SRS_INTERVALS = [0, 1, 3, 7, 14, 30]; // days per level
+
+function today() { return new Date().toISOString().split('T')[0]; }
+
+function addDays(d, n) {
+  const dt = new Date(d);
+  dt.setDate(dt.getDate() + n);
+  return dt.toISOString().split('T')[0];
+}
+
+function isDue(zh) {
+  return getCardState(zh).nextReview <= today();
+}
+
+function getDueCards() {
+  return VOCAB.filter(v => isDue(v.zh));
+}
+
+function updateCard(zh, correct) {
+  const c = getCardState(zh);
+  c.attempts = (c.attempts || 0) + 1;
+  if (correct) {
+    c.correct = (c.correct || 0) + 1;
+    c.level = Math.min(5, (c.level || 0) + 1);
+  } else {
+    c.level = 0;
+  }
+  c.nextReview = addDays(today(), SRS_INTERVALS[c.level]);
+  setCardState(zh, c);
+  return c;
+}
+
+function earnXP(amount, pinyinUsed) {
+  const final = pinyinUsed ? Math.max(0, amount - 5) : amount;
+  const stats = getStats();
+  stats.totalXP = (stats.totalXP || 0) + final;
+  stats.totalAnswered = (stats.totalAnswered || 0) + 1;
+  const t = today();
+  if (stats.lastDate !== t) {
+    const yesterday = addDays(t, -1);
+    stats.streak = (stats.lastDate === yesterday) ? (stats.streak || 0) + 1 : 1;
+    stats.lastDate = t;
+  }
+  saveStats(stats);
+  showXPToast('+' + final + ' XP');
+  updateTopbar();
+  return final;
+}
+
+function earnCorrect() {
+  const stats = getStats();
+  stats.totalCorrect = (stats.totalCorrect || 0) + 1;
+  saveStats(stats);
+}
+
+// ═══════════════════════════════════════════════════════
+// QUIZ GENERATION
+// ═══════════════════════════════════════════════════════
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getWrongAnswers(card, count = 3) {
+  // Prefer same-sheet distractors for harder questions
+  let pool = VOCAB.filter(v => v.zh !== card.zh && v.en !== card.en);
+  const sameSheet = pool.filter(v => v.sheet === card.sheet);
+  const combined = sameSheet.length >= count
+    ? shuffle(sameSheet).slice(0, count)
+    : [...sameSheet, ...shuffle(pool.filter(v => v.sheet !== card.sheet))].slice(0, count);
+  return combined.map(v => v.en);
+}
+
+function buildMCQOptions(card) {
+  return shuffle([card.en, ...getWrongAnswers(card, 3)]);
+}
+
+function buildSentenceQ(card) {
+  let sentence;
+  if (card.type === 'person') {
+    sentence = `___ 是${card.org || ''}的${card.role || ''}。`;
+  } else if (card.example && card.example.includes(card.zh)) {
+    sentence = card.example.replace(card.zh, '<span class="sentence-blank">___</span>');
+  } else if (card.example) {
+    return null;
+  } else {
+    return null;
+  }
+  const options = shuffle([card.en, ...getWrongAnswers(card, 3)]);
+  return { sentence, answer: card.en, options, card };
+}
+
+// ═══════════════════════════════════════════════════════
+// SESSION STATE
+// ═══════════════════════════════════════════════════════
+
+let fcQueue = [], fcIndex = 0, fcFlipped = false;
+let quizQueue = [], quizIndex = 0, quizAnswered = false, quizPinyinUsed = false;
+let sentQueue = [], sentIndex = 0, sentAnswered = false;
+
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+
+const SCREENS = ['home','cards','quiz','sentence','progress'];
+
+function showScreen(name) {
+  SCREENS.forEach(s => {
+    document.getElementById('screen-' + s).classList.toggle('active', s === name);
+    const nb = document.getElementById('nav-' + s);
+    if (nb) nb.classList.toggle('active', s === name);
+  });
+  document.getElementById('topbar-title').textContent =
+    {home:'中国词汇', cards:'Flashcards 卡片', quiz:'Recognition Quiz', sentence:'Context Fill 填词', progress:'Progress 进度'}[name] || '中国词汇';
+  document.getElementById('screens').scrollTop = 0;
+  if (name === 'progress') renderProgress();
+}
+
+function startMode(mode) {
+  if (mode === 'cards') {
+    const due = getDueCards();
+    fcQueue = shuffle(due.length ? due : VOCAB).slice(0, 20);
+    fcIndex = 0;
+    showScreen('cards');
+    renderFlashcard();
+  } else if (mode === 'quiz') {
+    quizQueue = shuffle(VOCAB).slice(0, 20);
+    quizIndex = 0;
+    showScreen('quiz');
+    renderQuiz();
+  } else if (mode === 'sentence') {
+    const eligible = VOCAB.filter(v => v.example || v.type === 'person');
+    sentQueue = shuffle(eligible).slice(0, 15);
+    sentIndex = 0;
+    showScreen('sentence');
+    renderSentence();
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// BADGE HELPER
+// ═══════════════════════════════════════════════════════
+
+function sheetBadge(card) {
+  const cls = card.sheet === 'AI & Tech' ? 'badge-ai' : card.sheet === 'Gov & Finance' ? 'badge-gov' : 'badge-people';
+  return [cls, card.sheet === 'AI & Tech' ? '🤖 AI & Tech' : card.sheet === 'Gov & Finance' ? '🏛 Finance' : '👤 People'];
+}
+
+// ═══════════════════════════════════════════════════════
+// FLASHCARD MODE
+// ═══════════════════════════════════════════════════════
+
+function renderFlashcard() {
+  if (fcIndex >= fcQueue.length) {
+    showEmptyFC();
+    return;
+  }
+  const card = fcQueue[fcIndex];
+  fcFlipped = false;
+  const el = document.getElementById('fc-card');
+  el.classList.remove('flipped');
+
+  document.getElementById('fc-zh').textContent = card.zh;
+  document.getElementById('fc-pinyin').textContent = card.pinyin;
+  document.getElementById('fc-en').textContent = card.en;
+  document.getElementById('fc-def').textContent = card.definition || '';
+  document.getElementById('fc-org').textContent = card.type === 'person' ? (card.org || '') : '';
+
+  const [cls, label] = sheetBadge(card);
+  ['fc-badge','fc-badge-back'].forEach(id => {
+    const b = document.getElementById(id);
+    b.className = 'fc-sheet-badge ' + cls;
+    b.textContent = label;
+  });
+
+  const pct = Math.round((fcIndex / fcQueue.length) * 100);
+  document.getElementById('fc-bar').style.width = pct + '%';
+  document.getElementById('fc-counter').textContent = (fcIndex + 1) + ' / ' + fcQueue.length;
+  document.getElementById('fc-tap-hint').style.display = 'block';
+  document.getElementById('fc-actions').style.display = 'none';
+}
+
+function flipCard() {
+  if (!fcQueue[fcIndex]) return;
+  const el = document.getElementById('fc-card');
+  if (!fcFlipped) {
+    el.classList.add('flipped');
+    fcFlipped = true;
+    document.getElementById('fc-tap-hint').style.display = 'none';
+    document.getElementById('fc-actions').style.display = 'grid';
+  }
+}
+
+function rateCard(rating) {
+  const card = fcQueue[fcIndex];
+  if (!card) return;
+  const correct = rating >= 1;
+  updateCard(card.zh, correct);
+  if (correct) {
+    earnXP(rating === 2 ? 15 : 10, false);
+    earnCorrect();
+  }
+  fcIndex++;
+  renderFlashcard();
+}
+
+function showEmptyFC() {
+  document.getElementById('fc-bar').style.width = '100%';
+  document.getElementById('fc-counter').textContent = '✓ All done!';
+  document.getElementById('fc-card').innerHTML = `<div class="fc-front" style="flex-direction:column;gap:16px"><div style="font-size:48px">🎉</div><div style="font-size:20px;font-weight:700;color:var(--cream)">Session Complete!</div><div style="font-size:13px;color:var(--text-dim)">All ${fcQueue.length} cards reviewed</div></div><div class="fc-back" style="transform:rotateY(180deg)"></div>`;
+  document.getElementById('fc-tap-hint').style.display = 'none';
+  document.getElementById('fc-actions').style.display = 'none';
+}
+
+// ═══════════════════════════════════════════════════════
+// MCQ QUIZ
+// ═══════════════════════════════════════════════════════
+
+function renderQuiz() {
+  if (quizIndex >= quizQueue.length) {
+    showEmptyQuiz();
+    return;
+  }
+  const card = quizQueue[quizIndex];
+  quizAnswered = false;
+  quizPinyinUsed = false;
+
+  document.getElementById('quiz-zh').textContent = card.zh;
+  const py = document.getElementById('quiz-pinyin');
+  py.textContent = card.pinyin;
+  py.classList.add('hidden');
+  document.getElementById('quiz-hint').style.display = 'block';
+  document.getElementById('quiz-feedback').style.display = 'none';
+  document.getElementById('quiz-next').style.display = 'none';
+
+  const [cls, label] = sheetBadge(card);
+  const badge = document.getElementById('quiz-badge');
+  badge.className = 'fc-sheet-badge ' + cls;
+  badge.textContent = label;
+
+  const options = buildMCQOptions(card);
+  const container = document.getElementById('quiz-options');
+  container.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => answerQuiz(opt, card);
+    container.appendChild(btn);
+  });
+
+  const pct = Math.round((quizIndex / quizQueue.length) * 100);
+  document.getElementById('quiz-bar').style.width = pct + '%';
+  document.getElementById('quiz-counter').textContent = (quizIndex + 1) + ' / ' + quizQueue.length;
+}
+
+function showPinyin() {
+  if (quizAnswered) return;
+  quizPinyinUsed = true;
+  const py = document.getElementById('quiz-pinyin');
+  py.classList.remove('hidden');
+  document.getElementById('quiz-hint').style.display = 'none';
+}
+
+function answerQuiz(selected, card) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const correct = selected === card.en;
+
+  document.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.classList.add('disabled');
+    if (btn.textContent === card.en) btn.classList.add('correct');
+    else if (btn.textContent === selected && !correct) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('quiz-feedback');
+  fb.style.display = 'block';
+  fb.className = 'quiz-feedback ' + (correct ? 'correct-fb' : 'wrong-fb');
+  fb.innerHTML = correct
+    ? `<strong style="color:var(--green-light)">✓ Correct!</strong><br>${card.definition || ''}`
+    : `<strong style="color:var(--red-light)">✗ Incorrect.</strong> The answer was <strong>${card.en}</strong>.<br>${card.definition || ''}`;
+
+  updateCard(card.zh, correct);
+  if (correct) {
+    earnXP(10, quizPinyinUsed);
+    earnCorrect();
+  }
+
+  document.getElementById('quiz-next').style.display = 'block';
+}
+
+function nextQuiz() {
+  quizIndex++;
+  renderQuiz();
+}
+
+function showEmptyQuiz() {
+  document.getElementById('quiz-zh').textContent = '🎉';
+  document.getElementById('quiz-zh').style.fontSize = '64px';
+  document.getElementById('quiz-options').innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--text-dim);padding:20px">Quiz complete! ${quizQueue.length} questions answered.</div>`;
+  document.getElementById('quiz-bar').style.width = '100%';
+  document.getElementById('quiz-next').style.display = 'none';
+  document.getElementById('quiz-feedback').style.display = 'none';
+}
+
+// ═══════════════════════════════════════════════════════
+// SENTENCE FILL
+// ═══════════════════════════════════════════════════════
+
+function renderSentence() {
+  let q = null;
+  while (!q && sentIndex < sentQueue.length) {
+    q = buildSentenceQ(sentQueue[sentIndex]);
+    if (!q) sentIndex++;
+  }
+  if (!q) {
+    showEmptySentence();
+    return;
+  }
+  sentAnswered = false;
+
+  document.getElementById('sent-text').innerHTML = q.sentence;
+  document.getElementById('sent-source').textContent = q.card.source ? '📰 ' + q.card.source : '';
+  document.getElementById('sent-feedback').style.display = 'none';
+  document.getElementById('sent-next').style.display = 'none';
+
+  const container = document.getElementById('sent-options');
+  container.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => answerSentence(opt, q);
+    container.appendChild(btn);
+  });
+
+  const pct = Math.round((sentIndex / sentQueue.length) * 100);
+  document.getElementById('sent-bar').style.width = pct + '%';
+  document.getElementById('sent-counter').textContent = (sentIndex + 1) + ' / ' + sentQueue.length;
+}
+
+function answerSentence(selected, q) {
+  if (sentAnswered) return;
+  sentAnswered = true;
+  const correct = selected === q.answer;
+
+  document.querySelectorAll('#sent-options .quiz-opt').forEach(btn => {
+    btn.classList.add('disabled');
+    if (btn.textContent === q.answer) btn.classList.add('correct');
+    else if (btn.textContent === selected && !correct) btn.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('sent-feedback');
+  fb.style.display = 'block';
+  fb.className = 'quiz-feedback ' + (correct ? 'correct-fb' : 'wrong-fb');
+  fb.innerHTML = correct
+    ? `<strong style="color:var(--green-light)">✓ Correct!</strong> ${q.card.zh} (${q.card.pinyin})`
+    : `<strong style="color:var(--red-light)">✗ Incorrect.</strong> The answer was <strong>${q.answer}</strong> — ${q.card.zh} (${q.card.pinyin})`;
+
+  updateCard(q.card.zh, correct);
+  if (correct) {
+    earnXP(20, false);
+    earnCorrect();
+  }
+  document.getElementById('sent-next').style.display = 'block';
+}
+
+function nextSentence() {
+  sentIndex++;
+  renderSentence();
+}
+
+function showEmptySentence() {
+  document.getElementById('sent-text').innerHTML = '🎉 Session complete!';
+  document.getElementById('sent-options').innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--text-dim);padding:20px">All sentence questions done.</div>`;
+  document.getElementById('sent-bar').style.width = '100%';
+  document.getElementById('sent-next').style.display = 'none';
+}
+
+// ═══════════════════════════════════════════════════════
+// PROGRESS SCREEN
+// ═══════════════════════════════════════════════════════
+
+function renderProgress() {
+  const stats = getStats();
+  document.getElementById('prog-streak').textContent = stats.streak || 0;
+  document.getElementById('prog-xp').textContent = stats.totalXP || 0;
+  document.getElementById('prog-correct').textContent = stats.totalCorrect || 0;
+  const mastered = VOCAB.filter(v => getCardState(v.zh).level >= 5).length;
+  document.getElementById('prog-mastered').textContent = mastered;
+
+  // Level distribution
+  const levels = [0,1,2,3,4,5].map(l => VOCAB.filter(v => getCardState(v.zh).level === l).length);
+  const lgrid = document.getElementById('level-grid');
+  lgrid.innerHTML = levels.map((n,l) =>
+    `<div class="level-cell l${l}"><div class="level-cell-num">${n}</div><div class="level-cell-label">L${l}</div></div>`
+  ).join('');
+
+  // Category mastery bars
+  const cats = [...new Set(VOCAB.map(v => v.sheet))];
+  const mbars = document.getElementById('mastery-bars');
+  mbars.innerHTML = cats.map(cat => {
+    const cards = VOCAB.filter(v => v.sheet === cat);
+    const pct = Math.round(cards.reduce((s,v) => s + getCardState(v.zh).level, 0) / (cards.length * 5) * 100);
+    const colors = {'AI & Tech':'#4a7fa5','Gov & Finance':'#e0a030','Key People':'#c070d0'};
+    return `<div class="mastery-row">
+      <div class="mastery-label">${cat.replace(' & ',' &amp; ')}</div>
+      <div class="mastery-bar"><div class="mastery-fill" style="width:${pct}%;background:${colors[cat]||'var(--blue)'}"></div></div>
+      <div class="mastery-pct">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  // Vocab list
+  const list = document.getElementById('vocab-list');
+  const levelColors = ['#e74c3c','#e67e22','#f1c40f','#2ecc71','#3498db','#e8d5b0'];
+  list.innerHTML = VOCAB.map(card => {
+    const state = getCardState(card.zh);
+    return `<div class="vocab-list-item">
+      <div class="vocab-list-zh">${card.zh}</div>
+      <div class="vocab-list-info">
+        <div class="vocab-list-pinyin">${card.pinyin}</div>
+        <div class="vocab-list-en">${card.en}</div>
+      </div>
+      <div class="vocab-list-level" style="border-color:${levelColors[state.level]};color:${levelColors[state.level]}">L${state.level}</div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// TOP BAR + XP TOAST
+// ═══════════════════════════════════════════════════════
+
+function updateTopbar() {
+  const stats = getStats();
+  document.getElementById('streak-display').textContent = '🔥 ' + (stats.streak || 0);
+  document.getElementById('xp-display').textContent = stats.totalXP || 0;
+}
+
+let toastTimer;
+function showXPToast(msg) {
+  const t = document.getElementById('xp-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+// ═══════════════════════════════════════════════════════
+// HOME SCREEN
+// ═══════════════════════════════════════════════════════
+
+function renderHome() {
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const now = new Date();
+  document.getElementById('home-date').textContent =
+    `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}`;
+
+  const due = getDueCards();
+  document.getElementById('home-due').textContent = due.length;
+  const stats = getStats();
+  document.getElementById('home-streak').textContent = stats.streak || 0;
+  document.getElementById('home-total').textContent = VOCAB.length;
+
+  const badgeEl = document.getElementById('badge-due');
+  if (due.length > 0) { badgeEl.textContent = due.length + ' due'; badgeEl.style.display = 'block'; }
+  else badgeEl.style.display = 'none';
+
+  // Recent vocab (last 5 added)
+  const recent = [...VOCAB].sort((a,b) => (b.date_added||'').localeCompare(a.date_added||'')).slice(0,4);
+  document.getElementById('home-recent').innerHTML = recent.map(card => {
+    const [cls] = sheetBadge(card);
+    return `<div class="vocab-list-item" onclick="startMode('quiz')">
+      <div class="vocab-list-zh">${card.zh}</div>
+      <div class="vocab-list-info">
+        <div class="vocab-list-pinyin">${card.pinyin}</div>
+        <div class="vocab-list-en">${card.en}</div>
+      </div>
+      <div class="fc-sheet-badge ${cls}" style="position:static;font-size:9px">${card.source||''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+
+function initApp() {
+  updateTopbar();
+  renderHome();
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+}
+
+loadVocab();
+</script>
+</body>
+</html>
