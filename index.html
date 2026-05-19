@@ -185,7 +185,10 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <!-- Top bar -->
 <div id="topbar">
 <div class="topbar-streak" id="streak-display">🔥 0</div>
-<div class="topbar-title" id="topbar-title">中国词汇</div>
+<div>
+  <div class="topbar-title" id="topbar-title">中国词汇</div>
+  <div id="topbar-sub" style="font-size:10px;color:var(--text-dim);letter-spacing:1px;margin-top:1px">China Vocab</div>
+</div>
 <div style="display:flex;align-items:center;gap:10px">
 <div class="topbar-xp"><span id="xp-display">0</span> XP</div>
 <div id="sync-dot" title="Sync status — tap to configure" onclick="openSettings()"></div>
@@ -274,7 +277,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 </div>
 </div>
 <div class="fc-tap-hint" id="fc-tap-hint">Tap card to flip</div>
-<div class="fc-actions" id="fc-actions" style="display:none">
+<div class="fc-actions" id="fc-actions" style="display:none" onclick="event.stopPropagation()">
 <button class="fc-btn again" onclick="rateCard(0)">Again<br><small>repeat now</small></button>
 <button class="fc-btn hard" onclick="rateCard(1)">Hard<br><small>+1 day</small></button>
 <button class="fc-btn easy" onclick="rateCard(2)">Easy<br><small>advance ✓</small></button>
@@ -642,6 +645,7 @@ if (nb) nb.classList.toggle('active', s === name);
 });
 document.getElementById('topbar-title').textContent =
 {home:'中国词汇', cards:'Flashcards 卡片', quiz:'Recognition Quiz', sentence:'Context Fill 填词', progress:'Progress 进度'}[name] || '中国词汇';
+document.getElementById('topbar-sub').style.display = name === 'home' ? 'block' : 'none';
 document.getElementById('screens').scrollTop = 0;
 if (name === 'progress') renderProgress();
 }
@@ -997,6 +1001,17 @@ function initApp() {
   loadFromGist();
 }
 
+function updateTopbar() {
+  const stats = getStats();
+  document.getElementById('streak-display').textContent = '🔥 ' + (stats.streak || 0);
+  document.getElementById('xp-display').textContent = stats.totalXP || 0;
+}
+function showXPToast(msg) {
+  const t = document.getElementById('xp-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1500);
+}
 loadVocab();
 </script>
 </body>
