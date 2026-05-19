@@ -57,6 +57,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .home-stat-val.blue{color:var(--blue)}
 .home-stat-label{font-size:10px;color:var(--text-dim);letter-spacing:.5px;margin-top:2px}
 .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.brief-banner{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#1a1a2e 0%,#2a1a2e 100%);border:1px solid var(--red);border-radius:var(--r);padding:14px 18px;margin-bottom:16px;text-decoration:none;transition:all .2s}
+.brief-banner:active{transform:scale(.98);opacity:.9}
+.brief-banner-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:3px}
+.brief-banner-title{font-size:15px;font-weight:700;color:var(--cream)}
+.brief-banner-arrow{font-size:20px;color:var(--red)}
 .mode-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
 .mode-card:active{transform:scale(.97);background:var(--surface2)}
 .mode-card-icon{font-size:32px;margin-bottom:10px}
@@ -84,6 +89,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .fc-en{font-size:22px;font-weight:700;color:var(--cream);text-align:center;margin-bottom:12px}
 .fc-def{font-size:12px;color:var(--text-dim);text-align:center;line-height:1.5;max-height:70px;overflow:hidden}
 .fc-org{font-size:12px;color:var(--blue);text-align:center;margin-top:4px}
+.fc-source{font-size:11px;text-align:center;margin-top:6px}
+.fc-source a{color:var(--red-light);text-decoration:none;border-bottom:1px dashed var(--red)}
 .fc-tap-hint{text-align:center;font-size:12px;color:var(--text-dim);margin:12px 0 20px}
 .fc-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:380px;margin:0 auto}
 .fc-btn{padding:14px;border:none;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s;letter-spacing:.3px}
@@ -235,6 +242,13 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <div class="mode-card-desc">Mastery, levels & full vocab list</div>
 </div>
 </div>
+<a href="brief.html" class="brief-banner">
+<div class="brief-banner-left">
+<div class="brief-banner-label">DAILY BRIEF</div>
+<div class="brief-banner-title">中国简报 · China Brief</div>
+</div>
+<div class="brief-banner-arrow">→</div>
+</a>
 <div class="section-label">From Today's Brief</div>
 <div id="home-recent"></div>
 </div>
@@ -255,6 +269,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <div class="fc-en" id="fc-en"></div>
 <div class="fc-def" id="fc-def"></div>
 <div class="fc-org" id="fc-org"></div>
+<div class="fc-source" id="fc-source"></div>
 </div>
 </div>
 </div>
@@ -674,6 +689,8 @@ document.getElementById('fc-pinyin').textContent = card.pinyin;
 document.getElementById('fc-en').textContent = card.en;
 document.getElementById('fc-def').textContent = card.definition || '';
 document.getElementById('fc-org').textContent = card.type === 'person' ? (card.org || '') : '';
+const fcSrc = document.getElementById('fc-source');
+fcSrc.innerHTML = card.source ? `<a href="${sourceToUrl(card.source)}" onclick="event.stopPropagation()">📰 ${card.source}</a>` : '';
 const [cls, label] = sheetBadge(card);
 ['fc-badge','fc-badge-back'].forEach(id => {
 const b = document.getElementById(id);
