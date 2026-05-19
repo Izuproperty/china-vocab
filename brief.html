@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="China Brief">
+<meta name="theme-color" content="#1a1a2e">
+<link rel="manifest" href="manifest.json">
+<title>🇨🇳 China Brief</title>
+<style>
+:root {
+  --bg: #0f0f1f;
+  --surface: #1a1a2e;
+  --surface2: #242440;
+  --border: #2e2e52;
+  --red: #c0392b;
+  --red-light: #e74c3c;
+  --cream: #e8d5b0;
+  --blue: #4a7fa5;
+  --blue-light: #6ab0ff;
+  --green: #27ae60;
+  --text: #dde0f0;
+  --text-dim: #7a8baa;
+  --gold: #f1c40f;
+  --r: 14px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+}
+
+/* ── Top bar ── */
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px 10px;
+  padding-top: max(12px, env(safe-area-inset-top));
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-left { display:flex; align-items:center; gap:10px; }
+.back-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 13px;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.back-btn:hover { color: var(--cream); }
+.topbar-title { font-size: 15px; font-weight: 700; color: var(--cream); letter-spacing:.5px; }
+.topbar-subtitle { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+
+/* ── Issue selector ── */
+#issue-nav {
+  display: flex;
+  gap: 8px;
+  padding: 14px 16px 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+#issue-nav::-webkit-scrollbar { display:none; }
+.issue-pill {
+  flex-shrink: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.issue-pill.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.issue-pill:active { transform: scale(.96); }
+
+/* ── Main content ── */
+#content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 16px 80px;
+}
+
+/* ── Brief header ── */
+.brief-header {
+  background: linear-gradient(135deg, var(--surface) 0%, #1e1e38 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 24px 20px 20px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.brief-header::before {
+  content: '中国';
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  font-size: 90px;
+  opacity: .04;
+  color: var(--cream);
+  font-weight: 900;
+  line-height: 1;
+}
+.brief-issue-badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.brief-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--cream);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.brief-meta {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.brief-summary {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Sections ── */
+.section-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+.section-icon { font-size: 20px; flex-shrink: 0; }
+.section-title { font-size: 14px; font-weight: 700; color: var(--cream); flex: 1; }
+.section-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: .5px;
+}
+.tag-ai { background: #1a3a6e; color: #6ab0ff; }
+.tag-macro { background: #3a2000; color: #f0a030; }
+.tag-geo { background: #1a3a1a; color: #2ecc71; }
+.tag-market { background: #2a0a2e; color: #c070d0; }
+.tag-policy { background: #1e1a00; color: var(--gold); }
+.section-chevron {
+  font-size: 12px;
+  color: var(--text-dim);
+  transition: transform .2s;
+}
+.section-card.open .section-chevron { transform: rotate(180deg); }
+.section-body {
+  display: none;
+  padding: 0 16px 16px;
+  border-top: 1px solid var(--border);
+}
+.section-card.open .section-body { display: block; }
+.section-text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text);
+  padding-top: 14px;
+}
+.section-text p { margin-bottom: 10px; }
+.section-text p:last-child { margin-bottom: 0; }
+.section-text strong { color: var(--cream); }
+
+/* ── Vocab chips ── */
+.vocab-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.vocab-chips-label {
+  width: 100%;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+.vocab-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 13px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  cursor: default;
+}
+.chip-zh { color: var(--cream); font-size: 16px; }
+.chip-en { color: var(--text-dim); font-size: 11px; }
+
+/* ── Takeaway box ── */
+.takeaway-box {
+  background: var(--surface2);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.takeaway-box strong { color: var(--blue-light); }
+
+/* ── Empty / loading states ── */
+#loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+#empty {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+.empty-icon { font-size: 48px; margin-bottom: 16px; }
+.empty-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
+.empty-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+/* ── Bottom bar ── */
+#bottombar {
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 10px 16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.bottom-btn {
+  flex: 1;
+  max-width: 200px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+  letter-spacing: .3px;
+}
+.bottom-btn:active { transform: scale(.97); }
+.btn-vocab { background: var(--surface2); color: var(--cream); border: 1px solid var(--border); text-decoration: none; display:flex; align-items:center; justify-content:center; }
+.btn-prev { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); }
+.btn-prev:disabled { opacity: .4; cursor: default; }
+.btn-next { background: var(--red); color: #fff; }
+.btn-next:disabled { opacity: .4; cursor: default; background: var(--surface2); }
+
+/* ── XP toast ── */
+#xp-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--gold);
+  color: #000;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 8px 20px;
+  border-radius: 30px;
+  opacity: 0;
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+  z-index: 200;
+}
+#xp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div id="topbar">
+  <div class="topbar-left">
+    <a href="index.html" class="back-btn">← Vocab</a>
+    <div>
+      <div class="topbar-title">🇨🇳 China Brief</div>
+      <div class="topbar-subtitle" id="topbar-subtitle">Daily Intelligence</div>
+    </div>
+  </div>
+</div>
+
+<!-- Issue selector pills -->
+<div id="issue-nav"></div>
+
+<!-- Main content area -->
+<div id="content">
+  <div id="loading">Loading brief…</div>
+  <div id="empty">
+    <div class="empty-icon">📭</div>
+    <div class="empty-title">No brief yet</div>
+    <div class="empty-text">Add a brief to <code>briefs.json</code> in the repo to see it here.</div>
+  </div>
+  <div id="brief-content" style="display:none"></div>
+</div>
+
+<!-- Bottom nav -->
+<div id="bottombar">
+  <a href="index.html" class="bottom-btn btn-vocab">🃏 Study Vocab</a>
+  <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">← Prev</button>
+  <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next →</button>
+</div>
+
+<div id="xp-toast">📰 Brief read!</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════
+let BRIEFS = [];
+let currentIssue = null;
+
+async function loadBriefs() {
+  try {
+    const r = await fetch('briefs.json');
+    BRIEFS = await r.json();
+    // Sort descending by issue number
+    BRIEFS.sort((a, b) => b.issue - a.issue);
+  } catch(e) {
+    console.error('Could not load briefs.json:', e);
+    BRIEFS = [];
+  }
+  initBriefApp();
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+function initBriefApp() {
+  document.getElementById('loading').style.display = 'none';
+
+  if (!BRIEFS.length) {
+    document.getElementById('empty').style.display = 'block';
+    return;
+  }
+
+  buildIssueNav();
+
+  // Check URL for ?issue=N, default to latest
+  const params = new URLSearchParams(window.location.search);
+  const requested = parseInt(params.get('issue'));
+  const target = BRIEFS.find(b => b.issue === requested) || BRIEFS[0];
+  showIssue(target.issue);
+}
+
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+function buildIssueNav() {
+  const nav = document.getElementById('issue-nav');
+  nav.innerHTML = BRIEFS.map(b =>
+    `<button class="issue-pill" id="pill-${b.issue}" onclick="showIssue(${b.issue})">
+      #${b.issue} · ${formatDate(b.date)}
+    </button>`
+  ).join('');
+}
+
+function navigateIssue(dir) {
+  const idx = BRIEFS.findIndex(b => b.issue === currentIssue);
+  const next = BRIEFS[idx - dir]; // array is descending, so -dir moves forward in time
+  if (next) showIssue(next.issue);
+}
+
+function showIssue(issueNum) {
+  const brief = BRIEFS.find(b => b.issue === issueNum);
+  if (!brief) return;
+  currentIssue = issueNum;
+
+  // Update URL without reload
+  history.replaceState({}, '', '?issue=' + issueNum);
+
+  // Update pills
+  document.querySelectorAll('.issue-pill').forEach(p => p.classList.remove('active'));
+  const pill = document.getElementById('pill-' + issueNum);
+  if (pill) {
+    pill.classList.add('active');
+    pill.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  }
+
+  // Update subtitle
+  document.getElementById('topbar-subtitle').textContent =
+    formatDate(brief.date, true) + ' · Issue #' + issueNum;
+
+  // Update prev/next buttons
+  const idx = BRIEFS.findIndex(b => b.issue === issueNum);
+  document.getElementById('btn-prev').disabled = (idx >= BRIEFS.length - 1);
+  document.getElementById('btn-next').disabled = (idx <= 0);
+
+  // Render brief
+  renderBrief(brief);
+
+  // Scroll to top
+  window.scrollTo({top: 0, behavior: 'smooth'});
+
+  // Mark as read (for future use)
+  markRead(issueNum);
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDERING
+// ═══════════════════════════════════════════════════════
+function renderBrief(brief) {
+  const container = document.getElementById('brief-content');
+  container.style.display = 'block';
+
+  const tagMap = {
+    ai: ['tag-ai', '🤖 AI & Tech'],
+    macro: ['tag-macro', '📊 Macro'],
+    geo: ['tag-geo', '🌏 Geopolitics'],
+    market: ['tag-market', '💹 Markets'],
+    policy: ['tag-policy', '🏛 Policy'],
+    robotics: ['tag-ai', '🦾 Robotics'],
+    energy: ['tag-geo', '⚡ Energy'],
+    trade: ['tag-macro', '🚢 Trade'],
+  };
+
+  const sectionsHtml = (brief.sections || []).map((sec, i) => {
+    const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', '📌 ' + (sec.tag || 'Note')];
+    const vocabHtml = sec.vocab && sec.vocab.length
+      ? `<div class="vocab-chips">
+           <div class="vocab-chips-label">Vocab from this story</div>
+           ${sec.vocab.map(v => `
+             <div class="vocab-chip">
+               <span class="chip-zh">${v.zh}</span>
+               <span class="chip-en">${v.en}</span>
+             </div>`).join('')}
+         </div>`
+      : '';
+    const takeawayHtml = sec.takeaway
+      ? `<div class="takeaway-box"><strong>Key takeaway:</strong> ${sec.takeaway}</div>`
+      : '';
+    const bodyHtml = (sec.body || '')
+      .split('\n\n')
+      .map(p => p.trim())
+      .filter(Boolean)
+      .map(p => `<p>${p}</p>`)
+      .join('');
+
+    return `
+      <div class="section-card" id="sec-${i}">
+        <div class="section-header" onclick="toggleSection(${i})">
+          <div class="section-icon">${sec.icon || '📌'}</div>
+          <div class="section-title">${sec.title}</div>
+          <span class="section-tag ${tagCls}">${tagLabel}</span>
+          <span class="section-chevron">▼</span>
+        </div>
+        <div class="section-body">
+          <div class="section-text">${bodyHtml}</div>
+          ${takeawayHtml}
+          ${vocabHtml}
+        </div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="brief-header">
+      <div class="brief-issue-badge">ISSUE #${brief.issue}</div>
+      <div class="brief-title">${brief.title}</div>
+      <div class="brief-meta">${formatDate(brief.date, true)}</div>
+      ${brief.summary ? `<div class="brief-summary">${brief.summary}</div>` : ''}
+    </div>
+    ${sectionsHtml}
+    <div style="text-align:center;font-size:11px;color:var(--text-dim);margin-top:24px;padding:0 20px">
+      Generated by Claude · <a href="index.html" style="color:var(--blue);text-decoration:none">Study the vocab →</a>
+    </div>`;
+
+  // Auto-open the first section
+  setTimeout(() => {
+    const firstSec = document.getElementById('sec-0');
+    if (firstSec) firstSec.classList.add('open');
+  }, 100);
+}
+
+function toggleSection(i) {
+  const card = document.getElementById('sec-' + i);
+  card.classList.toggle('open');
+}
+
+// ═══════════════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════════════
+function formatDate(dateStr, long) {
+  if (!dateStr) return '';
+  try {
+    const d = new Date(dateStr + 'T12:00:00');
+    if (long) return d.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'});
+    return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+  } catch { return dateStr; }
+}
+
+function markRead(issueNum) {
+  try {
+    const read = JSON.parse(localStorage.getItem('cn_briefs_read') || '[]');
+    if (!read.includes(issueNum)) {
+      read.push(issueNum);
+      localStorage.setItem('cn_briefs_read', JSON.stringify(read));
+      // Show a brief toast the first time you read an issue
+      showToast();
+    }
+  } catch {}
+}
+
+function showToast() {
+  const t = document.getElementById('xp-toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ═══════════════════════════════════════════════════════
+// SERVICE WORKER
+// ═══════════════════════════════════════════════════════
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+loadBriefs();
+</script>
+</body>
+</html>
