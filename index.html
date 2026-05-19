@@ -32,6 +32,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 /* ── Top bar ── */
 #topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 8px;padding-top:max(12px,env(safe-area-inset-top));background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;z-index:10}
 .topbar-title{font-size:15px;font-weight:700;color:var(--cream);letter-spacing:.5px}
+.topbar-en{font-size:11px;font-weight:500;color:var(--text-dim);letter-spacing:.3px;margin-left:4px}
+.topbar-pinyin{font-size:10px;color:var(--text-dim);font-style:italic;letter-spacing:.5px;margin-top:1px}
 .topbar-streak{display:flex;align-items:center;gap:5px;font-size:14px;font-weight:700;color:var(--gold)}
 .topbar-xp{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--text-dim);background:var(--surface2);padding:4px 10px;border-radius:20px}
 .topbar-xp span{color:var(--blue)}
@@ -62,9 +64,17 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .brief-banner-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:3px}
 .brief-banner-title{font-size:15px;font-weight:700;color:var(--cream)}
 .brief-banner-arrow{font-size:20px;color:var(--red)}
-.mode-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.mode-card{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:var(--r);padding:18px 14px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
 .mode-card:active{transform:scale(.97);background:var(--surface2)}
-.mode-card-icon{font-size:32px;margin-bottom:10px}
+.mode-card.fc{border-left-color:var(--red)}
+.mode-card.qz{border-left-color:var(--blue)}
+.mode-card.sf{border-left-color:var(--gold)}
+.mode-card.pg{border-left-color:var(--green)}
+.mode-card-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.mode-card.fc .mode-card-label{color:var(--red)}
+.mode-card.qz .mode-card-label{color:var(--blue)}
+.mode-card.sf .mode-card-label{color:var(--gold)}
+.mode-card.pg .mode-card-label{color:var(--green)}
 .mode-card-title{font-size:15px;font-weight:700;color:var(--cream);margin-bottom:4px}
 .mode-card-desc{font-size:11px;color:var(--text-dim);line-height:1.4}
 .mode-card-badge{position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
@@ -186,8 +196,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <div id="topbar">
 <div class="topbar-streak" id="streak-display">🔥 0</div>
 <div>
-  <div class="topbar-title" id="topbar-title">中国词汇</div>
-  <div id="topbar-sub" style="font-size:10px;color:var(--text-dim);letter-spacing:1px;margin-top:1px">China Vocab</div>
+  <div style="display:flex;align-items:baseline">
+    <div class="topbar-title" id="topbar-title">中国词汇</div>
+    <div class="topbar-en" id="topbar-en">· China Vocab</div>
+  </div>
+  <div class="topbar-pinyin" id="topbar-sub">Zhōngguó Cíhuì</div>
 </div>
 <div style="display:flex;align-items:center;gap:10px">
 <div class="topbar-xp"><span id="xp-display">0</span> XP</div>
@@ -214,7 +227,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <div class="screen active" id="screen-home">
 <div class="home-hero">
 <div class="home-hero-date" id="home-date"></div>
-<div class="home-hero-greeting">学习中国词汇</div>
+<div class="home-hero-greeting">China Vocabulary</div>
 <div class="home-stats">
 <div class="home-stat"><div class="home-stat-val red" id="home-due">—</div><div class="home-stat-label">DUE</div></div>
 <div class="home-stat"><div class="home-stat-val gold" id="home-streak">—</div><div class="home-stat-label">STREAK</div></div>
@@ -223,26 +236,26 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 </div>
 <div class="section-label">Study Modes</div>
 <div class="mode-grid">
-<div class="mode-card" onclick="startMode('cards')">
-<div class="mode-card-icon">🃏</div>
-<div class="mode-card-title">Flashcards</div>
+<div class="mode-card fc" onclick="startMode('cards')">
+<div class="mode-card-label">Flashcards</div>
+<div class="mode-card-title">卡片练习</div>
 <div class="mode-card-desc">Flip cards, self-rate your recall</div>
 <div class="mode-card-badge" id="badge-due"></div>
 </div>
-<div class="mode-card" onclick="startMode('quiz')">
-<div class="mode-card-icon">⚡</div>
-<div class="mode-card-title">Recognition Quiz</div>
+<div class="mode-card qz" onclick="startMode('quiz')">
+<div class="mode-card-label">Recognition</div>
+<div class="mode-card-title">认字测验</div>
 <div class="mode-card-desc">See character → pick English from 4</div>
 </div>
-<div class="mode-card" onclick="startMode('sentence')">
-<div class="mode-card-icon">📝</div>
-<div class="mode-card-title">Context Fill</div>
+<div class="mode-card sf" onclick="startMode('sentence')">
+<div class="mode-card-label">Context Fill</div>
+<div class="mode-card-title">填词练习</div>
 <div class="mode-card-desc">Sentence with blank → pick the word</div>
 </div>
-<div class="mode-card" onclick="showScreen('progress')">
-<div class="mode-card-icon">📊</div>
-<div class="mode-card-title">Progress</div>
-<div class="mode-card-desc">Mastery, levels & full vocab list</div>
+<div class="mode-card pg" onclick="showScreen('progress')">
+<div class="mode-card-label">Progress</div>
+<div class="mode-card-title">学习进度</div>
+<div class="mode-card-desc">Mastery levels & full vocab list</div>
 </div>
 </div>
 <a href="brief.html" class="brief-banner">
@@ -644,8 +657,10 @@ const nb = document.getElementById('nav-' + s);
 if (nb) nb.classList.toggle('active', s === name);
 });
 document.getElementById('topbar-title').textContent =
-{home:'中国词汇', cards:'Flashcards 卡片', quiz:'Recognition Quiz', sentence:'Context Fill 填词', progress:'Progress 进度'}[name] || '中国词汇';
-document.getElementById('topbar-sub').style.display = name === 'home' ? 'block' : 'none';
+{home:'中国词汇', cards:'Flashcards', quiz:'Recognition Quiz', sentence:'Context Fill', progress:'Progress'}[name] || '中国词汇';
+const isHome = name === 'home';
+document.getElementById('topbar-en').style.display = isHome ? 'inline' : 'none';
+document.getElementById('topbar-sub').style.display = isHome ? 'block' : 'none';
 document.getElementById('screens').scrollTop = 0;
 if (name === 'progress') renderProgress();
 }

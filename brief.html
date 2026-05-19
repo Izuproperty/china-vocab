@@ -64,7 +64,9 @@ html, body {
 }
 .back-btn:hover { color: var(--cream); }
 .topbar-title { font-size: 15px; font-weight: 700; color: var(--cream); letter-spacing:.5px; }
-.topbar-subtitle { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; }
+.topbar-en { font-size: 11px; font-weight: 500; color: var(--text-dim); letter-spacing: .3px; margin-left: 4px; }
+.topbar-pinyin { font-size: 10px; color: var(--text-dim); font-style: italic; letter-spacing: .5px; margin-top: 1px; }
+.topbar-issue { font-size: 10px; color: var(--text-dim); letter-spacing: .5px; text-align: right; line-height: 1.5; }
 
 /* ── Issue selector ── */
 #issue-nav {
@@ -330,10 +332,14 @@ html, body {
   <div class="topbar-left">
     <a href="index.html" class="back-btn">← Vocab</a>
     <div>
-      <div class="topbar-title">🇨🇳 China Brief <span style="font-size:11px;color:var(--text-dim);font-weight:400;letter-spacing:1px">Zhōngguó Jiǎnbào</span></div>
-      <div class="topbar-subtitle" id="topbar-subtitle">Daily Intelligence</div>
+      <div style="display:flex;align-items:baseline">
+        <div class="topbar-title">中国简报</div>
+        <div class="topbar-en">· China Brief</div>
+      </div>
+      <div class="topbar-pinyin">Zhōngguó Jiǎnbào</div>
     </div>
   </div>
+  <div class="topbar-issue" id="topbar-subtitle"></div>
 </div>
 
 <!-- Issue selector pills -->
