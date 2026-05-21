@@ -19,7 +19,7 @@ try:
 except ImportError:
     print("Installing openpyxl...")
     import subprocess
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "openpyxl", "--break-system-packages", "-q"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "openpyxl", "-q"])
     import openpyxl
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
