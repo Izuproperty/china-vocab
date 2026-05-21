@@ -244,6 +244,17 @@ html, body {
 .chip-zh { color: var(--cream); font-size: 16px; }
 .chip-en { color: var(--text-dim); font-size: 11px; }
 
+/* ── Source line ── */
+.section-source {
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: .3px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  opacity: .7;
+}
+
 /* ── Takeaway box ── */
 .takeaway-box {
   background: var(--surface2);
@@ -488,6 +499,9 @@ function renderBrief(brief) {
              </div>`).join('')}
          </div>`
       : '';
+    const sourceHtml = sec.source
+      ? `<div class="section-source">📰 ${sec.source}</div>`
+      : '';
     const takeawayHtml = sec.takeaway
       ? `<div class="takeaway-box"><strong>Key takeaway:</strong> ${sec.takeaway}</div>`
       : '';
@@ -508,6 +522,7 @@ function renderBrief(brief) {
         </div>
         <div class="section-body">
           <div class="section-text">${bodyHtml}</div>
+          ${sourceHtml}
           ${takeawayHtml}
           ${vocabHtml}
         </div>
