@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #4 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.mhead{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.mmeta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.mback{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}.panel.active{display:block}
+.pk{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.ph{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.pd{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.sigs{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sv{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.cw{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.ct{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.ann{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.a{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.al{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.av{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.as{font-size:11px;color:#5a6a8a;line-height:1.4}
+.src{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){.masthead{padding:16px 20px}.tab-bar{padding:0 16px}.panels{padding:28px 20px 60px}}</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=4" class="mback">← Back to Brief</a>
+  <div class="kicker">AI Visualized · Issue #4</div>
+  <div class="mhead">PBOC Shifts to Precision Tools, Citi Gets China License, State Grid Goes Robot</div>
+  <div class="mmeta">May 17, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">State Grid Robot Order</div>
+  <div class="tab" onclick="showTab(1)">PBOC Rate Shift</div>
+  <div class="tab" onclick="showTab(2)">Citi China License</div></div>
+<div class="panels">
+<div class="panel active">
+  <div class="pk">Story 3 · Robotics</div>
+  <div class="ph">State Grid's 8,500-Robot Order: Physical AI Goes to Scale</div>
+  <div class="pd">China's State Grid Corporation issued a procurement tender for 8,500 inspection and maintenance robots — the largest single government robotics order in Chinese history — signaling that physical AI is transitioning from pilot to infrastructure-grade deployment.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">8,500</div><div class="sl">Robots in single tender</div></div>
+    <div class="sig"><div class="sv">~¥2.5B</div><div class="sl">Estimated contract value</div></div>
+    <div class="sig"><div class="sv">34</div><div class="sl">Provinces/regions covered</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">China Government Robotics Procurement — Scale Comparison (Units)</div>
+    <svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <defs>
+        <linearGradient id="gb" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#c0392b" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#c0392b" stop-opacity=".5"/>
+        </linearGradient>
+        <linearGradient id="gb2" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#4a7fa5" stop-opacity=".7"/>
+          <stop offset="100%" stop-color="#4a7fa5" stop-opacity=".3"/>
+        </linearGradient>
+      </defs>
+      <line x1="230" y1="20" x2="640" y2="20" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="230" y1="80" x2="640" y2="80" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="230" y1="140" x2="640" y2="140" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="230" y1="200" x2="640" y2="200" stroke="#2e2e52" stroke-width="1"/>
+      <line x1="230" y1="20" x2="230" y2="200" stroke="#2e2e52" stroke-width="1"/>
+      <text x="225" y="204" font-size="9" fill="#5a6a8a" text-anchor="end">0</text>
+      <text x="225" y="144" font-size="9" fill="#5a6a8a" text-anchor="end">2,500</text>
+      <text x="225" y="84" font-size="9" fill="#5a6a8a" text-anchor="end">5,000</text>
+      <text x="225" y="24" font-size="9" fill="#5a6a8a" text-anchor="end">8,500</text>
+      <!-- State Grid: 8500 -->
+      <rect x="250" y="20" width="80" height="180" fill="url(#gb)" rx="3"/>
+      <text x="290" y="14" font-size="11" fill="#e74c3c" text-anchor="middle" font-weight="700">8,500</text>
+      <text x="290" y="218" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">State Grid</text>
+      <text x="290" y="230" font-size="9" fill="#5a6a8a" text-anchor="middle">2026 tender</text>
+      <!-- China Railway: ~3,000 -->
+      <rect x="370" y="129" width="80" height="71" fill="url(#gb2)" rx="3"/>
+      <text x="410" y="122" font-size="11" fill="#6ab0ff" text-anchor="middle" font-weight="700">~3,000</text>
+      <text x="410" y="218" font-size="10" fill="#7a8baa" text-anchor="middle">China Railway</text>
+      <text x="410" y="230" font-size="9" fill="#5a6a8a" text-anchor="middle">2024 cumulative</text>
+      <!-- PLA logistics: ~1,200 -->
+      <rect x="490" y="171" width="80" height="29" fill="#4a7fa5" opacity=".4" rx="3"/>
+      <text x="530" y="164" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">~1,200</text>
+      <text x="530" y="218" font-size="10" fill="#7a8baa" text-anchor="middle">PLA Logistics</text>
+      <text x="530" y="230" font-size="9" fill="#5a6a8a" text-anchor="middle">2025 est.</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Robot types</div><div class="av">Inspection + maintenance</div><div class="as">Tower-climbing inspection robots, substation patrol units, and underground cable inspection systems — all mission-critical infrastructure roles</div></div>
+    <div class="a"><div class="al">Key vendors</div><div class="av">Unitree, Leju, Fourier</div><div class="as">Tender expected to be split across 5–7 suppliers; Unitree's B2 quadruped and Leju's wheel-legged systems are lead candidates</div></div>
+    <div class="a"><div class="al">Scale signal</div><div class="av">Infrastructure grade</div><div class="as">Government procuring thousands of units — not dozens — signals physical AI has crossed the pilot-to-infrastructure threshold in China</div></div>
+  </div>
+  <div class="src">Source: State Grid procurement notice, China Brief analysis — May 17, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 1 · Macro</div>
+  <div class="ph">PBOC's New Liquidity Anchor: The Overnight Rate Takes Center Stage</div>
+  <div class="pd">The People's Bank of China announced that the 7-day overnight repo rate (DR007) will replace the 1-year Loan Prime Rate (LPR) as the primary signal rate for monetary policy — a structural shift toward market-based liquidity management.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">DR007</div><div class="sl">New primary policy anchor</div></div>
+    <div class="sig"><div class="sv">LPR</div><div class="sl">Demoted to secondary signal</div></div>
+    <div class="sig"><div class="sv">±20bp</div><div class="sl">DR007 corridor width</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">PBOC Rate Architecture — Before vs After Reform</div>
+    <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- Before -->
+      <rect x="40" y="30" width="260" height="150" rx="6" fill="#0f0f1f" stroke="#2e2e52"/>
+      <text x="170" y="52" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">BEFORE</text>
+      <rect x="70" y="62" width="200" height="32" rx="4" fill="#c0392b" opacity=".7"/>
+      <text x="170" y="83" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">LPR (1-year) — Primary</text>
+      <rect x="90" y="106" width="160" height="28" rx="4" fill="#2e2e52"/>
+      <text x="170" y="124" font-size="10" fill="#5a6a8a" text-anchor="middle">DR007 — Secondary</text>
+      <rect x="90" y="143" width="160" height="24" rx="4" fill="#1e1e38"/>
+      <text x="170" y="160" font-size="10" fill="#3a4a6a" text-anchor="middle">MLF — Quarterly signal</text>
+      <!-- After -->
+      <rect x="380" y="30" width="260" height="150" rx="6" fill="#0f0f1f" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="510" y="52" font-size="11" fill="#2ecc71" text-anchor="middle" font-weight="700">AFTER (Reform)</text>
+      <rect x="410" y="62" width="200" height="32" rx="4" fill="#27ae60" opacity=".8"/>
+      <text x="510" y="83" font-size="11" fill="#fff" text-anchor="middle" font-weight="700">DR007 — Primary Anchor</text>
+      <rect x="430" y="106" width="160" height="28" rx="4" fill="#2e2e52"/>
+      <text x="510" y="124" font-size="10" fill="#5a6a8a" text-anchor="middle">LPR — Derived, secondary</text>
+      <rect x="430" y="143" width="160" height="24" rx="4" fill="#1e1e38"/>
+      <text x="510" y="160" font-size="10" fill="#3a4a6a" text-anchor="middle">MLF — phased out</text>
+      <!-- arrow -->
+      <text x="340" y="113" font-size="24" fill="#5a6a8a" text-anchor="middle">→</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Why this matters</div><div class="av">Precision over blunt cuts</div><div class="as">Short-rate targeting allows PBOC to fine-tune liquidity conditions daily rather than relying on monthly LPR adjustments</div></div>
+    <div class="a"><div class="al">Market implication</div><div class="av">Bond market sensitivity</div><div class="as">DR007 movements now directly transmit to overnight bond yields — bond market traders will watch DR007 corridor more closely than LPR announcements</div></div>
+    <div class="a"><div class="al">Fed parallel</div><div class="av">Fed Funds Rate model</div><div class="as">Reform mirrors the Fed's overnight rate targeting approach — a step toward more market-oriented monetary policy in China</div></div>
+  </div>
+  <div class="src">Source: PBOC, China Brief analysis — May 17, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 2 · Markets</div>
+  <div class="ph">Citigroup Wins Wholly-Owned China Securities License</div>
+  <div class="pd">Citigroup received regulatory approval for a wholly-owned securities subsidiary in China — joining Goldman Sachs and JPMorgan as the third US bank to achieve full ownership of a domestic brokerage operation under post-2020 market opening rules.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">100%</div><div class="sl">Citi ownership (no JV)</div></div>
+    <div class="sig"><div class="sv">3rd</div><div class="sl">US bank with full ownership</div></div>
+    <div class="sig"><div class="sv">2020</div><div class="sl">Year market opening began</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">US Bank China Securities Licensing — Timeline</div>
+    <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="100" x2="620" y2="100" stroke="#2e2e52" stroke-width="2"/>
+      <!-- 2020: market opening -->
+      <circle cx="120" cy="100" r="6" fill="#4a7fa5"/>
+      <line x1="120" y1="94" x2="120" y2="55" stroke="#4a7fa5" stroke-width="1"/>
+      <text x="120" y="48" font-size="9" fill="#6ab0ff" text-anchor="middle" font-weight="700">2020</text>
+      <text x="120" y="38" font-size="9" fill="#5a6a8a" text-anchor="middle">Market opens</text>
+      <!-- 2021: Goldman -->
+      <circle cx="240" cy="100" r="6" fill="#27ae60"/>
+      <line x1="240" y1="106" x2="240" y2="145" stroke="#27ae60" stroke-width="1"/>
+      <text x="240" y="158" font-size="9" fill="#2ecc71" text-anchor="middle" font-weight="700">2021</text>
+      <text x="240" y="170" font-size="9" fill="#5a6a8a" text-anchor="middle">Goldman Sachs</text>
+      <text x="240" y="182" font-size="9" fill="#5a6a8a" text-anchor="middle">100% approved</text>
+      <!-- 2023: JPMorgan -->
+      <circle cx="400" cy="100" r="6" fill="#27ae60"/>
+      <line x1="400" y1="94" x2="400" y2="55" stroke="#27ae60" stroke-width="1"/>
+      <text x="400" y="48" font-size="9" fill="#2ecc71" text-anchor="middle" font-weight="700">2023</text>
+      <text x="400" y="38" font-size="9" fill="#5a6a8a" text-anchor="middle">JPMorgan</text>
+      <text x="400" y="28" font-size="9" fill="#5a6a8a" text-anchor="middle">100% approved</text>
+      <!-- 2026: Citi -->
+      <circle cx="560" cy="100" r="8" fill="#c0392b"/>
+      <line x1="560" y1="106" x2="560" y2="145" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="560" y="158" font-size="9" fill="#e74c3c" text-anchor="middle" font-weight="700">May 2026</text>
+      <text x="560" y="170" font-size="9" fill="#e8d5b0" text-anchor="middle" font-weight="700">Citigroup ←</text>
+      <text x="560" y="182" font-size="9" fill="#5a6a8a" text-anchor="middle">100% approved</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Business scope</div><div class="av">Equity + debt underwriting</div><div class="as">Full securities license covers domestic equity underwriting, fixed income, and M&amp;A advisory — Citi's China investment banking previously relied on joint ventures</div></div>
+    <div class="a"><div class="al">Competitive landscape</div><div class="av">CITIC, Huatai, GS</div><div class="as">Citi enters a market dominated by state banks and Goldman; the competitive advantage is cross-border deal flow and international client relationships</div></div>
+    <div class="a"><div class="al">Policy signal</div><div class="av">Selective opening</div><div class="as">Post-summit financial services opening is targeted at institutional capital flows — signals Beijing wants Western bank presence in onshore capital markets during de-escalation</div></div>
+  </div>
+  <div class="src">Source: CSRC, Bloomberg, China Brief analysis — May 17, 2026</div>
+</div></div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
