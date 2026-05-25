@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #9 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.mhead{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.mmeta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.mback{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}.panel.active{display:block}
+.pk{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.ph{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.pd{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.sigs{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sv{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.cw{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.ct{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.ann{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.a{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.al{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.av{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.as{font-size:11px;color:#5a6a8a;line-height:1.4}
+.src{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){.masthead{padding:16px 20px}.tab-bar{padding:0 16px}.panels{padding:28px 20px 60px}}</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=9" class="mback">← Back to Brief</a>
+  <div class="kicker">AI Visualized · Issue #9</div>
+  <div class="mhead">Xpeng Mass-Produces China's First L4 Robotaxi, Beijing Deploys Three-Agency AI Framework, RMB Breaches 6.80</div>
+  <div class="mmeta">May 22, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">RMB Breakthrough — 6.80</div>
+  <div class="tab" onclick="showTab(1)">Xpeng L4 Robotaxi Race</div>
+  <div class="tab" onclick="showTab(2)">Three-Agency AI Framework</div></div>
+<div class="panels">
+<div class="panel active">
+  <div class="pk">Story 3 · Macro</div>
+  <div class="ph">RMB Breaches 6.80 to Touch Its Strongest Level in Twelve Months</div>
+  <div class="pd">The offshore renminbi (CNH) broke through 6.80 against the dollar for the first time in a year, driven by post-summit dollar weakness, inbound equity flows from Hang Seng Tech index rebalancing, and Beijing's deliberate tolerance of appreciation during the de-escalation window.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">6.80</div><div class="sl">USD/CNH breakthrough level</div></div>
+    <div class="sig"><div class="sv">12-month</div><div class="sl">High for the renminbi</div></div>
+    <div class="sig"><div class="sv">HK$140B</div><div class="sl">Passive inflows from Hang Seng rebalancing</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">USD/CNH Exchange Rate — 12-Month Trend (lower = stronger RMB)</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="20" x2="80" y2="185" stroke="#2e2e52"/>
+      <line x1="80" y1="185" x2="630" y2="185" stroke="#2e2e52"/>
+      <!-- grid -->
+      <line x1="80" y1="70" x2="630" y2="70" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <line x1="80" y1="110" x2="630" y2="110" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <line x1="80" y1="150" x2="630" y2="150" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <text x="75" y="74" font-size="9" fill="#5a6a8a" text-anchor="end">6.70</text>
+      <text x="75" y="114" font-size="9" fill="#5a6a8a" text-anchor="end">6.80</text>
+      <text x="75" y="154" font-size="9" fill="#5a6a8a" text-anchor="end">6.90</text>
+      <text x="75" y="189" font-size="9" fill="#5a6a8a" text-anchor="end">7.00</text>
+      <!-- 6.80 breakthrough line -->
+      <line x1="80" y1="110" x2="630" y2="110" stroke="#27ae60" stroke-width="1.5" opacity=".6"/>
+      <text x="635" y="108" font-size="9" fill="#27ae60" font-weight="700">6.80 ←</text>
+      <!-- rate curve: starts high (7.00+), ends at 6.79 -->
+      <polyline points="90,192 140,188 200,183 250,178 300,170 350,165 400,155 440,145 480,130 520,118 560,112 600,107 625,103"
+        fill="none" stroke="#c0392b" stroke-width="2.5"/>
+      <!-- fill under -->
+      <polygon points="90,192 140,188 200,183 250,178 300,170 350,165 400,155 440,145 480,130 520,118 560,112 600,107 625,103 625,185 90,185"
+        fill="#c0392b" opacity=".06"/>
+      <!-- event markers -->
+      <circle cx="300" cy="170" r="4" fill="#4a7fa5"/>
+      <text x="303" y="162" font-size="8" fill="#6ab0ff">Summit talks</text>
+      <circle cx="480" cy="130" r="4" fill="#4a7fa5"/>
+      <text x="483" y="122" font-size="8" fill="#6ab0ff">H200 approvals</text>
+      <circle cx="625" cy="103" r="5" fill="#27ae60"/>
+      <text x="618" y="95" font-size="9" fill="#2ecc71" text-anchor="end" font-weight="700">Now: 6.79</text>
+      <!-- month labels -->
+      <text x="90" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">May'25</text>
+      <text x="280" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">Sep'25</text>
+      <text x="470" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">Jan'26</text>
+      <text x="625" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">May'26</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Driver 1</div><div class="av">Dollar weakness</div><div class="as">Post-summit risk-on trade weakened the dollar broadly; DXY fell ~2% in the week following the Beijing meeting, providing tailwind for EM currencies</div></div>
+    <div class="a"><div class="al">Driver 2</div><div class="av">Hang Seng equity inflows</div><div class="as">HK$140B in passive fund buying of Zhipu/MiniMax and other Hang Seng Tech constituents generated meaningful HKD demand, supporting CNH via the peg</div></div>
+    <div class="a"><div class="al">PBOC stance</div><div class="av">Tolerating appreciation</div><div class="as">Beijing is allowing RMB to strengthen during the de-escalation window — a stronger currency signals confidence and reduces imported inflation from energy</div></div>
+  </div>
+  <div class="src">Source: Bloomberg, SAFE, China Brief analysis — May 22, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 1 · AI & Tech</div>
+  <div class="ph">Xpeng Rolls China's First Mass-Produced L4 Robotaxi Off the Line in Guangzhou</div>
+  <div class="pd">Xpeng began mass production of its X9-R robotaxi platform in Guangzhou — the first Chinese automaker to achieve volume L4 autonomous vehicle production — as China's AV regulatory framework accelerates ahead of US counterparts.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">L4</div><div class="sl">Autonomy level — no safety driver</div></div>
+    <div class="sig"><div class="sv">Guangzhou</div><div class="sl">First commercial deployment city</div></div>
+    <div class="sig"><div class="sv">2026</div><div class="sl">Full commercial launch target</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">China vs US Autonomous Vehicle Deployment — Regulatory & Commercial Progress</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- timeline axis -->
+      <line x1="80" y1="110" x2="620" y2="110" stroke="#2e2e52" stroke-width="2"/>
+      <!-- China events (above) -->
+      <text x="80" y="30" font-size="10" fill="#e74c3c" font-weight="700">CHINA</text>
+      <circle cx="140" cy="110" r="5" fill="#c0392b"/>
+      <line x1="140" y1="105" x2="140" y2="60" stroke="#c0392b" stroke-width="1"/>
+      <text x="140" y="53" font-size="9" fill="#7a8baa" text-anchor="middle">2022</text>
+      <text x="140" y="43" font-size="8" fill="#5a6a8a" text-anchor="middle">Baidu Apollo</text>
+      <text x="140" y="34" font-size="8" fill="#5a6a8a" text-anchor="middle">L4 pilot (BJ)</text>
+      <circle cx="270" cy="110" r="5" fill="#c0392b"/>
+      <line x1="270" y1="105" x2="270" y2="65" stroke="#c0392b" stroke-width="1"/>
+      <text x="270" y="58" font-size="9" fill="#7a8baa" text-anchor="middle">2024</text>
+      <text x="270" y="48" font-size="8" fill="#5a6a8a" text-anchor="middle">Pony.ai L4</text>
+      <text x="270" y="39" font-size="8" fill="#5a6a8a" text-anchor="middle">commercial</text>
+      <circle cx="420" cy="110" r="7" fill="#c0392b"/>
+      <line x1="420" y1="103" x2="420" y2="52" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="420" y="45" font-size="9" fill="#e74c3c" text-anchor="middle" font-weight="700">May 2026 ←</text>
+      <text x="420" y="35" font-size="8" fill="#e74c3c" text-anchor="middle">Xpeng mass</text>
+      <text x="420" y="26" font-size="8" fill="#e74c3c" text-anchor="middle">production L4</text>
+      <!-- US events (below) -->
+      <text x="80" y="205" font-size="10" fill="#6ab0ff" font-weight="700">USA</text>
+      <circle cx="200" cy="110" r="5" fill="#4a7fa5"/>
+      <line x1="200" y1="115" x2="200" y2="155" stroke="#4a7fa5" stroke-width="1"/>
+      <text x="200" y="165" font-size="9" fill="#7a8baa" text-anchor="middle">2023</text>
+      <text x="200" y="175" font-size="8" fill="#5a6a8a" text-anchor="middle">Waymo limited</text>
+      <text x="200" y="185" font-size="8" fill="#5a6a8a" text-anchor="middle">paid L4 (SF)</text>
+      <circle cx="370" cy="110" r="5" fill="#4a7fa5"/>
+      <line x1="370" y1="115" x2="370" y2="160" stroke="#4a7fa5" stroke-width="1"/>
+      <text x="370" y="170" font-size="9" fill="#7a8baa" text-anchor="middle">2025</text>
+      <text x="370" y="180" font-size="8" fill="#5a6a8a" text-anchor="middle">Waymo Austin</text>
+      <text x="370" y="190" font-size="8" fill="#5a6a8a" text-anchor="middle">+ Tesla FSD</text>
+      <circle cx="550" cy="110" r="5" fill="#4a7fa5" opacity=".5"/>
+      <line x1="550" y1="115" x2="550" y2="155" stroke="#4a7fa5" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="550" y="165" font-size="9" fill="#5a6a8a" text-anchor="middle">2026+</text>
+      <text x="550" y="175" font-size="8" fill="#5a6a8a" text-anchor="middle">Mass production</text>
+      <text x="550" y="185" font-size="8" fill="#5a6a8a" text-anchor="middle">pending</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Regulatory edge</div><div class="av">China moves faster</div><div class="as">Chinese municipal governments can grant L4 commercial licenses in 6-18 months; US city/state approvals have taken 3-5 years — regulatory speed is China's AV advantage</div></div>
+    <div class="a"><div class="al">Technology platform</div><div class="av">X9-R + XNGP</div><div class="as">Xpeng's X9-R is a purpose-built robotaxi with 32 sensor arrays; XNGP (Next-Gen Pilot) software stack handles edge cases without HD map dependency</div></div>
+    <div class="a"><div class="al">Commercial model</div><div class="av">Fleet-as-a-service</div><div class="as">Xpeng operates the fleet and charges per-trip; targeting Guangzhou airport and convention corridors first — highest-density, lowest-complexity routes</div></div>
+  </div>
+  <div class="src">Source: Xpeng, Ministry of Industry and IT, China Brief analysis — May 22, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 2 · Policy</div>
+  <div class="ph">Beijing's Three-Agency AI Agent Framework Enters Enforcement Mode</div>
+  <div class="pd">The CAC, MIIT, and MPS jointly issued enforcement guidance for AI agents — requiring registration, capability disclosures, and incident reporting for any AI agent handling financial, medical, or legal decisions for Chinese users.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">3</div><div class="sl">Agencies co-enforcing</div></div>
+    <div class="sig"><div class="sv">60 days</div><div class="sl">Compliance window for existing agents</div></div>
+    <div class="sig"><div class="sv">¥10M</div><div class="sl">Max penalty per violation</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Three-Agency AI Agent Enforcement — Scope &amp; Responsibilities</div>
+    <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- CAC -->
+      <rect x="30" y="30" width="190" height="150" rx="8" fill="#0f0f1f" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="125" y="55" font-size="12" fill="#e8d5b0" text-anchor="middle" font-weight="800">CAC</text>
+      <text x="125" y="70" font-size="9" fill="#7a8baa" text-anchor="middle">网信办</text>
+      <text x="125" y="95" font-size="9" fill="#5a6a8a" text-anchor="middle">Content &amp; algorithm</text>
+      <text x="125" y="108" font-size="9" fill="#5a6a8a" text-anchor="middle">registration</text>
+      <text x="125" y="128" font-size="9" fill="#5a6a8a" text-anchor="middle">Safety assessment</text>
+      <text x="125" y="141" font-size="9" fill="#5a6a8a" text-anchor="middle">oversight</text>
+      <text x="125" y="163" font-size="9" fill="#c0392b" text-anchor="middle">Lead agency</text>
+      <!-- MIIT -->
+      <rect x="245" y="30" width="190" height="150" rx="8" fill="#0f0f1f" stroke="#4a7fa5" stroke-width="1.5"/>
+      <text x="340" y="55" font-size="12" fill="#e8d5b0" text-anchor="middle" font-weight="800">MIIT</text>
+      <text x="340" y="70" font-size="9" fill="#7a8baa" text-anchor="middle">工信部</text>
+      <text x="340" y="95" font-size="9" fill="#5a6a8a" text-anchor="middle">Technical standards</text>
+      <text x="340" y="108" font-size="9" fill="#5a6a8a" text-anchor="middle">&amp; interoperability</text>
+      <text x="340" y="128" font-size="9" fill="#5a6a8a" text-anchor="middle">Capability disclosure</text>
+      <text x="340" y="141" font-size="9" fill="#5a6a8a" text-anchor="middle">requirements</text>
+      <text x="340" y="163" font-size="9" fill="#4a7fa5" text-anchor="middle">Technical arm</text>
+      <!-- MPS -->
+      <rect x="460" y="30" width="190" height="150" rx="8" fill="#0f0f1f" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="555" y="55" font-size="12" fill="#e8d5b0" text-anchor="middle" font-weight="800">MPS</text>
+      <text x="555" y="70" font-size="9" fill="#7a8baa" text-anchor="middle">公安部</text>
+      <text x="555" y="95" font-size="9" fill="#5a6a8a" text-anchor="middle">Incident response</text>
+      <text x="555" y="108" font-size="9" fill="#5a6a8a" text-anchor="middle">&amp; reporting</text>
+      <text x="555" y="128" font-size="9" fill="#5a6a8a" text-anchor="middle">Criminal liability</text>
+      <text x="555" y="141" font-size="9" fill="#5a6a8a" text-anchor="middle">for AI harm</text>
+      <text x="555" y="163" font-size="9" fill="#27ae60" text-anchor="middle">Enforcement arm</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Covered sectors</div><div class="av">Finance, medical, legal</div><div class="as">Agents that provide investment advice, medical recommendations, or legal analysis must be registered and assessed — covers most high-value AI use cases</div></div>
+    <div class="a"><div class="al">Registration burden</div><div class="av">60-day window</div><div class="as">Existing deployed agents have 60 days to register; new agents require pre-deployment CAC assessment — higher compliance cost for startups than incumbents</div></div>
+    <div class="a"><div class="al">Global parallel</div><div class="av">Ahead of EU AI Act scope</div><div class="as">EU AI Act covers high-risk AI systems but not agents specifically; China's agent framework is the first jurisdiction to explicitly regulate AI agent deployment at scale</div></div>
+  </div>
+  <div class="src">Source: CAC, MIIT, MPS, China Brief analysis — May 22, 2026</div>
+</div></div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
