@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #2 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.masthead-kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.masthead-meta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.masthead-back{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}
+.panel.active{display:block}
+.panel-kicker{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.panel-headline{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.panel-deck{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.signals{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sig-val{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sig-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.chart-wrap{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.chart-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.annots{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.annot{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.annot-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.annot-val{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.annot-sub{font-size:11px;color:#5a6a8a;line-height:1.4}
+.source-line{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){.masthead{padding:16px 20px}.tab-bar{padding:0 16px}.panels{padding:28px 20px 60py}}
+</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=2" class="masthead-back">← Back to Brief</a>
+  <div class="masthead-kicker">AI Visualized · Issue #2</div>
+  <div class="masthead-title">Trump-Xi Summit Special: Strategic Stability Framework, H200 Approvals, and the AI Safety Accord</div>
+  <div class="masthead-meta">May 15, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">H200 Approved Companies</div>
+  <div class="tab" onclick="showTab(1)">AI Safety Framework Timeline</div>
+  <div class="tab" onclick="showTab(2)">Summit Context Map</div>
+</div>
+<div class="panels">
+
+<div class="panel active">
+  <div class="panel-kicker">Story 2 · AI & Tech</div>
+  <div class="panel-headline">Washington Clears H200 Sales to Ten Chinese Firms — With Conditions</div>
+  <div class="panel-deck">The Commerce Department approved H200 GPU exports to a selective list of Chinese entities, a significant reversal from the October 2022 and October 2023 export control frameworks, with end-use verification requirements attached.</div>
+  <div class="signals">
+    <div class="sig"><div class="sig-val">10</div><div class="sig-label">Chinese firms approved</div></div>
+    <div class="sig"><div class="sig-val">H200</div><div class="sig-label">GPU class cleared</div></div>
+    <div class="sig"><div class="sig-val">~2×</div><div class="sig-label">H200 vs H100 memory bandwidth</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">US-China AI Chip Export Control Timeline — Key Milestones</div>
+    <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- timeline spine -->
+      <line x1="80" y1="30" x2="80" y2="250" stroke="#2e2e52" stroke-width="2"/>
+      <!-- 2022-10: Initial controls -->
+      <circle cx="80" cy="60" r="7" fill="#c0392b"/>
+      <line x1="80" y1="60" x2="130" y2="60" stroke="#c0392b" stroke-width="1"/>
+      <text x="138" y="55" font-size="11" fill="#e8d5b0" font-weight="700">Oct 2022</text>
+      <text x="138" y="70" font-size="10" fill="#7a8baa">A100/H100 banned for China — industry shock</text>
+      <!-- 2023-10: Extended controls -->
+      <circle cx="80" cy="110" r="7" fill="#c0392b"/>
+      <line x1="80" y1="110" x2="130" y2="110" stroke="#c0392b" stroke-width="1"/>
+      <text x="138" y="105" font-size="11" fill="#e8d5b0" font-weight="700">Oct 2023</text>
+      <text x="138" y="120" font-size="10" fill="#7a8baa">H800/A800 banned — loophole closed</text>
+      <!-- 2024: Entity list expansions -->
+      <circle cx="80" cy="155" r="6" fill="#4a7fa5"/>
+      <line x1="80" y1="155" x2="130" y2="155" stroke="#4a7fa5" stroke-width="1"/>
+      <text x="138" y="150" font-size="11" fill="#6ab0ff" font-weight="700">2024–25</text>
+      <text x="138" y="165" font-size="10" fill="#7a8baa">Entity list expansions; Huawei Ascend fills gap</text>
+      <!-- May 2026: H200 approvals -->
+      <circle cx="80" cy="210" r="8" fill="#27ae60"/>
+      <line x1="80" y1="210" x2="130" y2="210" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="138" y="205" font-size="11" fill="#2ecc71" font-weight="700">May 2026 ← NOW</text>
+      <text x="138" y="218" font-size="10" fill="#7a8baa">H200 approved for 10 firms post-Trump-Xi summit</text>
+      <text x="138" y="232" font-size="10" fill="#5a6a8a">End-use verification & re-export controls attached</text>
+    </svg>
+  </div>
+  <div class="annots">
+    <div class="annot"><div class="annot-label">H200 capability</div><div class="annot-val">~1.4× H100</div><div class="annot-sub">H200 uses HBM3e memory with significantly higher bandwidth than H100, meaningful for LLM inference throughput</div></div>
+    <div class="annot"><div class="annot-label">Policy condition</div><div class="annot-val">End-use audit</div><div class="annot-sub">Approved firms subject to Commerce Dept verification — any diversion to military end-use triggers license revocation</div></div>
+    <div class="annot"><div class="annot-label">Market signal</div><div class="annot-val">Selective re-engagement</div><div class="annot-sub">Approval list includes cloud providers, not defense-adjacent entities — signals strategic deconfliction, not full reversal</div></div>
+  </div>
+  <div class="source-line">Source: US Commerce Department, China Brief analysis — May 15, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="panel-kicker">Story 3 · Policy</div>
+  <div class="panel-headline">Bessent Announces First US-China Bilateral AI Safety Framework</div>
+  <div class="panel-deck">Treasury Secretary Bessent unveiled a joint AI safety framework — the first bilateral accord on AI governance between the US and China — covering frontier model transparency, incident notification protocols, and prohibited military AI applications.</div>
+  <div class="signals">
+    <div class="sig"><div class="sig-val">First</div><div class="sig-label">Bilateral AI safety accord</div></div>
+    <div class="sig"><div class="sig-val">3</div><div class="sig-label">Core pillars of the framework</div></div>
+    <div class="sig"><div class="sig-val">90 days</div><div class="sig-label">Review cadence agreed</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">AI Safety Framework — Three Pillars</div>
+    <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- Pillar 1 -->
+      <rect x="40" y="40" width="180" height="130" rx="8" fill="#1a1a2e" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="130" y="75" font-size="32" fill="#c0392b" text-anchor="middle" font-weight="800">I</text>
+      <text x="130" y="105" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="700">Transparency</text>
+      <text x="130" y="122" font-size="10" fill="#7a8baa" text-anchor="middle">Frontier model</text>
+      <text x="130" y="137" font-size="10" fill="#7a8baa" text-anchor="middle">capability disclosures</text>
+      <text x="130" y="155" font-size="10" fill="#7a8baa" text-anchor="middle">to joint review body</text>
+      <!-- Pillar 2 -->
+      <rect x="250" y="40" width="180" height="130" rx="8" fill="#1a1a2e" stroke="#4a7fa5" stroke-width="1.5"/>
+      <text x="340" y="75" font-size="32" fill="#4a7fa5" text-anchor="middle" font-weight="800">II</text>
+      <text x="340" y="105" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="700">Incident Protocol</text>
+      <text x="340" y="122" font-size="10" fill="#7a8baa" text-anchor="middle">72-hour notification</text>
+      <text x="340" y="137" font-size="10" fill="#7a8baa" text-anchor="middle">window for AI safety</text>
+      <text x="340" y="155" font-size="10" fill="#7a8baa" text-anchor="middle">incidents of shared risk</text>
+      <!-- Pillar 3 -->
+      <rect x="460" y="40" width="180" height="130" rx="8" fill="#1a1a2e" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="550" y="75" font-size="32" fill="#27ae60" text-anchor="middle" font-weight="800">III</text>
+      <text x="550" y="105" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="700">Military Limits</text>
+      <text x="550" y="122" font-size="10" fill="#7a8baa" text-anchor="middle">Agreed prohibited</text>
+      <text x="550" y="137" font-size="10" fill="#7a8baa" text-anchor="middle">AI applications in</text>
+      <text x="550" y="155" font-size="10" fill="#7a8baa" text-anchor="middle">autonomous weapons</text>
+    </svg>
+  </div>
+  <div class="annots">
+    <div class="annot"><div class="annot-label">Precedent</div><div class="annot-val">No enforcement</div><div class="annot-sub">Framework is declaratory, not binding — no joint enforcement mechanism, verification body, or sanctions trigger exists</div></div>
+    <div class="annot"><div class="annot-label">Strategic read</div><div class="annot-val">Crisis hotline logic</div><div class="annot-sub">Analogous to Cold War nuclear hotlines — reduces risk of AI-triggered misunderstanding without constraining capability development</div></div>
+    <div class="annot"><div class="annot-label">Investor implication</div><div class="annot-val">Stability premium</div><div class="annot-sub">Bilateral AI governance reduces tail risk of sudden tech-sector sanctions escalation — positive for cross-border AI investment sentiment</div></div>
+  </div>
+  <div class="source-line">Source: US Treasury, China Brief analysis — May 15, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="panel-kicker">Story 1 · Geopolitics</div>
+  <div class="panel-headline">The Beijing Summit: Strategic Stability and the CEO Caravan</div>
+  <div class="panel-deck">The Trump-Xi summit produced a joint communiqué on strategic stability, a bilateral trade framework, and the largest US corporate delegation to Beijing since 2019 — signaling a managed de-escalation rather than a reset.</div>
+  <div clas="signals">
+    <div class="sig"><div class="sig-val">90-day</div><div class="sig-label">Trade truce extended</div></div>
+    <div class="sig"><div class="sig-val">30+</div><div class="sig-label">US CEOs in delegation</div></div>
+    <div class="sig"><div class="sig-val">2</div><div class="sig-label">Joint working groups formed</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">US-China Bilateral Relationship — Tension Index (Illustrative)</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="60" y1="180" x2="640" y2="180" stroke="#2e2e52"/>
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#2e2e52"/>
+      <!-- tension curve -->
+      <polyline points="60,140 120,130 180,80 240,55 280,50 340,90 380,70 430,140 480,100 540,80 600,60 640,70"
+        fill="none" stroke="#c0392b" stroke-width="2"/>
+      <!-- events -->
+      <circle cx="180" cy="80" r="4" fill="#c0392b"/>
+      <text x="183" y="72" font-size="9" fill="#7a8baa">Trade War 2018</text>
+      <circle cx="240" cy="55" r="4" fill="#c0392b"/>
+      <text x="243" y="47" font-size="9" fill="#7a8baa">Tech Controls 2022</text>
+      <circle cx="430" cy="140" r="4" fill="#c0392b"/>
+      <text x="433" y="132" font-size="9" fill="#7a8baa">Balloon Crisis 2023</text>
+      <circle cx="600" cy="60" r="5" fill="#27ae60"/>
+      <text x="603" y="52" font-size="9" fill="#2ecc71" font-weight="700">Summit ← Now</text>
+      <!-- baseline -->
+      <line x1="60" y1="100" x2="640" y2="100" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="55" y="104" font-size="9" fill="#5a6a8a" text-anchor="end">Baseline</text>
+      <text x="55" y="184" font-size="9" fill="#5a6a8a" text-anchor="end">Low</text>
+      <text x="55" y="24" font-size="9" fill="#5a6a8a" text-anchor="end">High</text>
+    </svg>
+  </div>
+  <div class="annots">
+    <div class="annot"><div class="annot-label">CEO delegation</div><div class="annot-val">30+ companies</div><div class="annot-sub">Largest US corporate presence in Beijing since pre-COVID — tech, finance, and industrial sectors all represented</div></div>
+    <div class="annot"><div class="annot-label">Trade framing</div><div class="annot-val">Managed competition</div><div class="annot-sub">Neither side claims full re-engagement — "guardrails" language signals both sides want volatility reduction without strategic concession</div></div>
+    <div class="annot"><div class="annot-label">Risk factor</div><div class="annot-val">Taiwan unchanged</div><div class="annot-sub">No Taiwan concessions from either side; structural tension on the core geopolitical fault line remains unresolved</div></div>
+  </div>
+  <div class="source-line">Source: White House, Xinhua, China Brief analysis — May 15, 2026</div>
+</div>
+
+</div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
