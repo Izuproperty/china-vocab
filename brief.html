@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-title" content="China Brief">
 <meta name="theme-color" content="#1a1a2e">
 <link rel="manifest" href="manifest.json">
-<title>🇨🇳 China Brief</title>
+<title>ð¨ð³ China Brief</title>
 <style>
 :root {
   --bg: #0f0f1f;
@@ -35,7 +35,7 @@ html, body {
   font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
 }
 
-/* ── Top bar ── */
+/* ââ Top bar ââ */
 #topbar {
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ html, body {
 .topbar-pinyin { font-size: 10px; color: var(--text-dim); font-style: italic; letter-spacing: .5px; margin-top: 1px; }
 .topbar-issue { font-size: 10px; color: var(--text-dim); letter-spacing: .5px; text-align: right; line-height: 1.5; }
 
-/* ── Issue selector ── */
+/* ââ Issue selector ââ */
 #issue-nav {
   display: flex;
   gap: 8px;
@@ -100,14 +100,14 @@ html, body {
 }
 .issue-pill:active { transform: scale(.96); }
 
-/* ── Main content ── */
+/* ââ Main content ââ */
 #content {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px 16px 80px;
 }
 
-/* ── Brief header ── */
+/* ââ Brief header ââ */
 .brief-header {
   background: linear-gradient(135deg, var(--surface) 0%, #1e1e38 100%);
   border: 1px solid var(--border);
@@ -118,7 +118,7 @@ html, body {
   overflow: hidden;
 }
 .brief-header::before {
-  content: '中国';
+  content: 'ä¸­å½';
   position: absolute;
   right: -10px;
   top: -10px;
@@ -161,7 +161,7 @@ html, body {
   border-top: 1px solid var(--border);
 }
 
-/* ── Sections ── */
+/* ââ Sections ââ */
 .section-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -177,7 +177,17 @@ html, body {
   cursor: pointer;
   user-select: none;
 }
-.section-icon { font-size: 20px; flex-shrink: 0; }
+.section-num {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--red);
+  background: rgba(192,57,43,.12);
+  border: 1px solid rgba(192,57,43,.25);
+  border-radius: 6px;
+  padding: 3px 7px;
+  flex-shrink: 0;
+}
 .section-title { font-size: 14px; font-weight: 700; color: var(--cream); flex: 1; }
 .section-tag {
   font-size: 10px;
@@ -213,7 +223,7 @@ html, body {
 .section-text p:last-child { margin-bottom: 0; }
 .section-text strong { color: var(--cream); }
 
-/* ── Vocab chips ── */
+/* ââ Vocab chips ââ */
 .vocab-chips {
   display: flex;
   flex-wrap: wrap;
@@ -244,7 +254,7 @@ html, body {
 .chip-zh { color: var(--cream); font-size: 16px; }
 .chip-en { color: var(--text-dim); font-size: 11px; }
 
-/* ── Source line ── */
+/* ââ Source line ââ */
 .section-source {
   font-size: 11px;
   color: var(--text-dim);
@@ -255,7 +265,7 @@ html, body {
   opacity: .7;
 }
 
-/* ── Takeaway box ── */
+/* ââ Takeaway box ââ */
 .takeaway-box {
   background: var(--surface2);
   border-left: 3px solid var(--blue);
@@ -268,7 +278,7 @@ html, body {
 }
 .takeaway-box strong { color: var(--blue-light); }
 
-/* ── Empty / loading states ── */
+/* ââ Empty / loading states ââ */
 #loading {
   text-align: center;
   padding: 60px 20px;
@@ -284,7 +294,7 @@ html, body {
 .empty-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
 .empty-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
 
-/* ── Bottom bar ── */
+/* ââ Bottom bar ââ */
 #bottombar {
   position: fixed;
   bottom: 0;
@@ -316,7 +326,7 @@ html, body {
 .btn-next { background: var(--red); color: #fff; }
 .btn-next:disabled { opacity: .4; cursor: default; background: var(--surface2); }
 
-/* ── XP toast ── */
+/* ââ XP toast ââ */
 #xp-toast {
   position: fixed;
   bottom: 80px;
@@ -341,13 +351,13 @@ html, body {
 <!-- Top bar -->
 <div id="topbar">
   <div class="topbar-left">
-    <a href="index.html" class="back-btn">← Vocab</a>
+    <a href="index.html" class="back-btn">â Vocab</a>
     <div>
       <div style="display:flex;align-items:baseline">
-        <div class="topbar-title">中国简报</div>
-        <div class="topbar-en">· China Brief</div>
+        <div class="topbar-title">ä¸­å½ç®æ¥</div>
+        <div class="topbar-en">Â· China Brief</div>
       </div>
-      <div class="topbar-pinyin">Zhōngguó Jiǎnbào</div>
+      <div class="topbar-pinyin">ZhÅngguÃ³ JiÇnbÃ o</div>
     </div>
   </div>
   <div class="topbar-issue" id="topbar-subtitle"></div>
@@ -358,9 +368,9 @@ html, body {
 
 <!-- Main content area -->
 <div id="content">
-  <div id="loading">Loading brief…</div>
+  <div id="loading">Loading briefâ¦</div>
   <div id="empty">
-    <div class="empty-icon">📭</div>
+    <div class="empty-icon">ð­</div>
     <div class="empty-title">No brief yet</div>
     <div class="empty-text">Add a brief to <code>briefs.json</code> in the repo to see it here.</div>
   </div>
@@ -369,17 +379,17 @@ html, body {
 
 <!-- Bottom nav -->
 <div id="bottombar">
-  <a href="index.html" class="bottom-btn btn-vocab">🃏 Study Vocab</a>
-  <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">← Prev</button>
-  <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next →</button>
+  <a href="index.html" class="bottom-btn btn-vocab">ð Study Vocab</a>
+  <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">â Prev</button>
+  <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next â</button>
 </div>
 
-<div id="xp-toast">📰 Brief read!</div>
+<div id="xp-toast">ð° Brief read!</div>
 
 <script>
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // DATA
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 let BRIEFS = [];
 let currentIssue = null;
 
@@ -396,9 +406,9 @@ async function loadBriefs() {
   initBriefApp();
 }
 
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // INIT
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function initBriefApp() {
   document.getElementById('loading').style.display = 'none';
 
@@ -416,14 +426,14 @@ function initBriefApp() {
   showIssue(target.issue);
 }
 
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // NAVIGATION
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function buildIssueNav() {
   const nav = document.getElementById('issue-nav');
   nav.innerHTML = BRIEFS.map(b =>
     `<button class="issue-pill" id="pill-${b.issue}" onclick="showIssue(${b.issue})">
-      #${b.issue} · ${formatDate(b.date)}
+      #${b.issue} Â· ${formatDate(b.date)}
     </button>`
   ).join('');
 }
@@ -452,7 +462,7 @@ function showIssue(issueNum) {
 
   // Update subtitle
   document.getElementById('topbar-subtitle').textContent =
-    formatDate(brief.date, true) + ' · Issue #' + issueNum;
+    formatDate(brief.date, true) + ' Â· Issue #' + issueNum;
 
   // Update prev/next buttons
   const idx = BRIEFS.findIndex(b => b.issue === issueNum);
@@ -469,26 +479,26 @@ function showIssue(issueNum) {
   markRead(issueNum);
 }
 
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // RENDERING
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderBrief(brief) {
   const container = document.getElementById('brief-content');
   container.style.display = 'block';
 
   const tagMap = {
-    ai: ['tag-ai', '🤖 AI & Tech'],
-    macro: ['tag-macro', '📊 Macro'],
-    geo: ['tag-geo', '🌏 Geopolitics'],
-    market: ['tag-market', '💹 Markets'],
-    policy: ['tag-policy', '🏛 Policy'],
-    robotics: ['tag-ai', '🦾 Robotics'],
-    energy: ['tag-geo', '⚡ Energy'],
-    trade: ['tag-macro', '🚢 Trade'],
+    ai: ['tag-ai', 'ð¤ AI & Tech'],
+    macro: ['tag-macro', 'ð Macro'],
+    geo: ['tag-geo', 'ð Geopolitics'],
+    market: ['tag-market', 'ð¹ Markets'],
+    policy: ['tag-policy', 'ð Policy'],
+    robotics: ['tag-ai', 'ð¦¾ Robotics'],
+    energy: ['tag-geo', 'â¡ Energy'],
+    trade: ['tag-macro', 'ð¢ Trade'],
   };
 
   const sectionsHtml = (brief.sections || []).map((sec, i) => {
-    const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', '📌 ' + (sec.tag || 'Note')];
+    const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', 'ð ' + (sec.tag || 'Note')];
     const vocabHtml = sec.vocab && sec.vocab.length
       ? `<div class="vocab-chips">
            <div class="vocab-chips-label">Vocab from this story</div>
@@ -500,7 +510,7 @@ function renderBrief(brief) {
          </div>`
       : '';
     const sourceHtml = sec.source
-      ? `<div class="section-source">📰 ${sec.source}</div>`
+      ? `<div class="section-source">ð° ${sec.source}</div>`
       : '';
     const takeawayHtml = sec.takeaway
       ? `<div class="takeaway-box"><strong>Key takeaway:</strong> ${sec.takeaway}</div>`
@@ -515,10 +525,10 @@ function renderBrief(brief) {
     return `
       <div class="section-card" id="sec-${i}">
         <div class="section-header" onclick="toggleSection(${i})">
-          <div class="section-icon">${sec.icon || '📌'}</div>
+          <div class="section-icon">${sec.icon || 'ð'}</div>
           <div class="section-title">${sec.title}</div>
           <span class="section-tag ${tagCls}">${tagLabel}</span>
-          <span class="section-chevron">▼</span>
+          <span class="section-chevron">â¼</span>
         </div>
         <div class="section-body">
           <div class="section-text">${bodyHtml}</div>
@@ -540,14 +550,14 @@ function renderBrief(brief) {
     ${brief.viz_url ? `
     <a href="${brief.viz_url}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 8px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:var(--r);text-decoration:none;">
       <div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:3px;">AI Visualized · Data in Focus</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:3px;">AI Visualized Â· Data in Focus</div>
         <div style="font-size:13px;font-weight:600;color:var(--cream);">Charts for this issue</div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">EV payment cycles · Humanoid shipments · Capital flows</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">EV payment cycles Â· Humanoid shipments Â· Capital flows</div>
       </div>
-      <div style="font-size:18px;color:var(--red);flex-shrink:0;">→</div>
+      <div style="font-size:18px;color:var(--red);flex-shrink:0;">â</div>
     </a>` : ''}
     <div style="text-align:center;font-size:11px;color:var(--text-dim);margin-top:24px;padding:0 20px">
-      Generated by Claude · <a href="index.html" style="color:var(--blue);text-decoration:none">Study the vocab →</a>
+      Generated by Claude Â· <a href="index.html" style="color:var(--blue);text-decoration:none">Study the vocab â</a>
     </div>`;
 
   // Auto-open the first section
@@ -562,9 +572,9 @@ function toggleSection(i) {
   card.classList.toggle('open');
 }
 
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // UTILITIES
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function formatDate(dateStr, long) {
   if (!dateStr) return '';
   try {
@@ -592,9 +602,9 @@ function showToast() {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 // SERVICE WORKER
-// ═══════════════════════════════════════════════════════
+// âââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
