@@ -1,5 +1,91 @@
 [
   {
+    "issue": 13,
+    "date": "2026-05-26",
+    "title": "Huawei LogicFolding, DeepSeek Engram, China's APEC Digital Trade Push",
+    "summary": "Huawei unveiled a new chip architecture called LogicFolding at an IEEE symposium in Shanghai, targeting 1.4nm-equivalent transistor density by 2031 without advanced lithography. DeepSeek published a technical paper proposing a memory decoupling method that could reduce AI inference dependence on HBM, accelerating domestic hardware substitution. China used its APEC 2026 presidency to advance a regional digital trade framework and announced an AI trade ministerial in Chengdu for July.",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "Huawei Unveils \"LogicFolding\" Architecture and Tau Scaling Law — Targeting 1.4nm-Equivalent Chips by 2031 Without Leading-Edge Lithography",
+        "tag": "chip",
+        "body": "At an IEEE semiconductor symposium in Shanghai on Monday, Huawei (华为, Huáwèi) unveiled two related initiatives designed to improve chip performance without relying on advanced lithography equipment that US export controls have put beyond China's reach. The first is a new theoretical framework called the Tau Scaling Law (τ缩放定律, tāo suōfàng dìnglǜ), which reframes the industry's central design question away from shrinking transistors toward reducing the time it takes signals and data to move within chips and computing systems. The second is LogicFolding (逻辑折叠, lùojí zhédié) — a specific architecture built on this principle that shortens internal wiring to meaningfully improve performance density. Huawei says its Kirin smartphone chips launching later this year will be the first to use LogicFolding, with Ascend (昇腾, Shēngténg) AI chips incorporating the technology by 2030. The company's stated target: transistor density equivalent to 1.4nm processes by 2031, placing it on a rough trajectory with TSMC's planned 1.4nm mass production launch in 2028 — albeit via a very different engineering path. Shares in SMIC (中芯国际, Zhōngxīn Guójì), Huawei's primary chip manufacturing partner, rose 7.6% on the announcement.\n\nWhether the engineering claims will hold is harder to assess than the announcement implies. Huawei released no independent benchmark data, and analysts at Counterpoint Research noted that cost, power, heat, and system integration remain major challenges, especially for Cloud AI servers, adding that a technology gap with the most advanced nodes will persist near-term. The investable signal may be narrower than the headline: Huawei's Ascend series is already the de facto domestic alternative to Nvidia for Chinese AI training, with DeepSeek's V4 now running natively on Ascend. Any credible roadmap for improving Ascend's performance per watt — even if less dramatic than claimed — has direct implications for SMIC and the broader semiconductor equipment ecosystem. The relevant question for institutional investors is whether LogicFolding generates enough performance headroom to reduce the appeal of waiting for smuggled Nvidia chips — which would accelerate Huawei's share consolidation in a market Nvidia CEO Jensen Huang acknowledged last week it has largely conceded.",
+        "takeaway": "Huawei's LogicFolding offers a credible post-Moore's Law pathway for Ascend AI chips; a sustained improvement in Ascend performance per watt would accelerate domestic substitution of Nvidia with direct consequences for SMIC, semiconductor equipment, and China's AI compute independence timeline.",
+        "vocab": [
+          {
+            "zh": "逻辑折叠",
+            "en": "LogicFolding (Huawei chip architecture)"
+          },
+          {
+            "zh": "τ缩放定律",
+            "en": "Tau Scaling Law"
+          },
+          {
+            "zh": "晶体管密度",
+            "en": "transistor density"
+          },
+          {
+            "zh": "昇腾",
+            "en": "Ascend (Huawei AI chip series)"
+          }
+        ],
+        "source": "Reuters / BNN Bloomberg · Semiconductor · May 25, 2026"
+      },
+      {
+        "icon": "🤖",
+        "title": "DeepSeek's \"Engram\" Paper Proposes Decoupling AI Inference from GPU Memory — and Opens a Door for China's Domestic Hardware Ecosystem",
+        "tag": "ai",
+        "body": "DeepSeek (深度求索, Shēndù Qiúsuǒ) published a technical paper today proposing a conditional memory module called Engram that could materially reduce AI models' dependence on high-bandwidth memory (HBM, 高带宽存储, gāo dàikuān cúnchǔ). The core idea is to commit sequences of relatively static knowledge from GPU memory to standard system RAM, freeing GPU cores and HBM for more dynamic computation. DeepSeek claims the approach achieves higher performance on long-context queries while reducing the GPU memory footprint required per inference session. This follows the V4 model series, which had already cut the KV cache requirement by roughly 90% compared to V3, and migrated inference fully from CUDA to Huawei's Ascend-native compute stack — a significant step in reducing dependence on Nvidia's software ecosystem.\n\nThe strategic implication is worth flagging for investors tracking China's semiconductor self-sufficiency theme. HBM is currently dominated by SK Hynix, Samsung, and Micron, and remains a binding constraint for Chinese AI companies building on domestic hardware. If Engram's approach proves out at scale, it would allow capable inference on chips with less HBM per unit — precisely the profile of Huawei Ascend, CXMT's conventional DRAM, and the class of domestically produced processors that China is trying to scale. Domestic substitution (国产替代, guóchǎn tìdài) in AI hardware may depend as much on model architects rethinking memory requirements as on domestic chipmakers closing the HBM gap through manufacturing. Whether Engram delivers in production — or turns out to sacrifice performance on tasks that depend on rich context — will only be clear once third parties reproduce the results.",
+        "takeaway": "If DeepSeek's Engram memory-decoupling approach holds in production, it represents a software-side pathway to reducing China's AI infrastructure dependence on foreign HBM — complementing Huawei's hardware-side LogicFolding announcement and collectively strengthening the domestic AI compute ecosystem's credibility.",
+        "vocab": [
+          {
+            "zh": "高带宽存储",
+            "en": "HBM (high-bandwidth memory)"
+          },
+          {
+            "zh": "国产替代",
+            "en": "domestic substitution"
+          },
+          {
+            "zh": "键值缓存",
+            "en": "KV cache"
+          },
+          {
+            "zh": "推理",
+            "en": "inference"
+          }
+        ],
+        "source": "Tom's Hardware / Techmeme · AI Infrastructure · May 26, 2026"
+      },
+      {
+        "icon": "🌏",
+        "title": "China Uses APEC 2026 Presidency to Cement a Digital Trade Framework — AI Trade Ministerial Planned for Chengdu in July",
+        "tag": "trade",
+        "body": "The APEC (亚太经合组织, Yàtài Jīnghé Zǔzhī) trade ministers meeting concluded in Suzhou on May 22-23, with China's Commerce Minister Wang Wentao (王文涛, Wáng Wéntāo) chairing the session and using it to advance several of Beijing's standing economic priorities. The substantive deliverables were narrower than the headline consensus: a new framework document on regional digital trade (数字贸易, shùzì màoyì) cooperation, mutual recognition of electronic certificates of origin and e-invoices, and an APEC Roadmap for Innovative, Competitive and Resilient Services. A MOC official signaled a commitment to strengthening trade exchanges related to AI and announced a dedicated AI trade ministerial meeting in Chengdu (成都, Chéngdū) in July 2026 — a meeting that will be chaired by China and is being framed internally as a platform to embed Chinese digital standards into Asia-Pacific trade architecture. On the US-China dimension, the joint statement language on tariff reductions differed from what Washington emphasized, and talks on broader economic outcomes from the Trump-Xi summit in April remain ongoing with no specific timeline.\n\nThe APEC presidency is worth tracking as a mechanism, not just a diplomatic backdrop. As 2026 host, China controls the agenda for a series of ministerial meetings across the year, each of which creates opportunities to shape how digital trade norms — covering data flows, AI governance standards, e-commerce certification, and eventually cross-border AI service supply — get defined at a regional level. The Chengdu AI trade ministerial in July is the next focal point. For institutional investors, the relevance cuts two ways. First, whatever digital trade frameworks emerge from this process will define the commercial environment for Chinese tech companies — Alibaba, ByteDance, Tencent — operating cross-border in ASEAN markets. Second, China's push for mutual RMB bond issuance and its digital trade agenda are part of a coordinated effort to create the infrastructure of a parallel financial and commercial architecture in the region.",
+        "takeaway": "China's APEC presidency gives it agenda-setting power across a series of 2026 ministerial meetings; the July Chengdu AI trade ministerial is the next test of whether Beijing can embed Chinese digital standards into Asia-Pacific trade frameworks ahead of a US counter-position.",
+        "vocab": [
+          {
+            "zh": "亚太经合组织",
+            "en": "APEC"
+          },
+          {
+            "zh": "数字贸易",
+            "en": "digital trade"
+          },
+          {
+            "zh": "王文涛",
+            "en": "China's Commerce Minister Wang Wentao"
+          },
+          {
+            "zh": "贸易标准",
+            "en": "trade standards"
+          }
+        ],
+        "source": "China.org.cn / MOC Press Conference · Trade Policy · May 24, 2026"
+      }
+    ]
+  },
+  {
     "issue": 12,
     "date": "2026-05-25",
     "title": "Morgan Stanley: China humanoid robots to drive manufacturing dominance; Zhipu & MiniMax join Hang Seng Tech Index; S&P flags EV consolidation risk",
