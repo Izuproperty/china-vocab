@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #1 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.masthead-kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.masthead-title{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.masthead-meta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.masthead-back{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.masthead-back:hover{color:#6ab0ff}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.tab:hover{color:#dde0f0}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}
+.panel.active{display:block}
+.panel-kicker{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.panel-headline{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.panel-deck{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.signals{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sig-val{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sig-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.chart-wrap{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.chart-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.annots{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.annot{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.annot-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.annot-val{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.annot-sub{font-size:11px;color:#5a6a8a;line-height:1.4}
+.source-line{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){
+  .masthead{padding:16px 20px}
+  .tab-bar{padding:0 16px}
+  .panels{padding:28px 20px 60px}
+  .panel-headline{font-size:20px}
+  .signals{gap:16px}
+  .sig-val{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=1" class="masthead-back">← Back to Brief</a>
+  <div class="masthead-kicker">AI Visualized · Issue #1</div>
+  <div class="masthead-title">DeepSeek's Efficiency Playbook, China's Compute War, and the Robot Renaissance</div>
+  <div class="masthead-meta">May 14, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">DeepSeek Cost Curve</div>
+  <div class="tab" onclick="showTab(1)">Compute: Ascend vs. NVIDIA</div>
+  <div class="tab" onclick="showTab(2)">Robot Market Trajectory</div>
+</div>
+<div class="panels">
+
+<div class="panel active">
+  <div class="panel-kicker">Story 1 · AI & Tech</div>
+  <div class="panel-headline">DeepSeek's Efficiency Leap: Cost per Intelligence</div>
+  <div class="panel-deck">DeepSeek demonstrated that frontier model capability can be achieved at a fraction of the compute cost, compressing the cost-per-intelligence curve and reshaping the capital requirements for AI development.</div>
+  <div class="signals">
+    <div class="sig"><div class="sig-val">~97%</div><div class="sig-label">Cost reduction vs GPT-4-class</div></div>
+    <div class="sig"><div class="sig-val">$6M</div><div class="sig-label">Reported training cost</div></div>
+    <div class="sig"><div class="sig-val">671B</div><div class="sig-label">Total params (MoE)</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">Estimated Training Cost — Frontier Models</div>
+    <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c0392b" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#c0392b" stop-opacity=".4"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a7fa5" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#4a7fa5" stop-opacity=".4"/>
+        </linearGradient>
+        <linearGradient id="g3" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#4a7fa5" stop-opacity=".7"/>
+          <stop offset="100%" stop-color="#4a7fa5" stop-opacity=".2"/>
+        </linearGradient>
+        <linearGradient id="g4" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#27ae60" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#27ae60" stop-opacity=".4"/>
+        </linearGradient>
+      </defs>
+      <!-- grid -->
+      <line x1="80" y1="20" x2="80" y2="220" stroke="#2e2e52" stroke-width="1"/>
+      <line x1="80" y1="220" x2="640" y2="220" stroke="#2e2e52" stroke-width="1"/>
+      <line x1="80" y1="170" x2="640" y2="170" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="120" x2="640" y2="120" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="70" x2="640" y2="70" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- y-axis labels -->
+      <text x="75" y="224" font-size="9" fill="#5a6a8a" text-anchor="end">$0</text>
+      <text x="75" y="174" font-size="9" fill="#5a6a8a" text-anchor="end">$50M</text>
+      <text x="75" y="124" font-size="9" fill="#5a6a8a" text-anchor="end">$100M</text>
+      <text x="75" y="74" font-size="9" fill="#5a6a8a" text-anchor="end">$150M</text>
+      <!-- bars -->
+      <!-- GPT-4: ~$100M -->
+      <rect x="110" y="70" width="80" height="150" fill="url(#g2)" rx="3"/>
+      <text x="150" y="62" font-size="11" fill="#6ab0ff" text-anchor="middle" font-weight="700">~$100M</text>
+      <text x="150" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">GPT-4</text>
+      <!-- Claude 3 Opus: ~$50M -->
+      <rect x="250" y="120" width="80" height="100" fill="url(#g3)" rx="3"/>
+      <text x="290" y="112" font-size="11" fill="#6ab0ff" text-anchor="middle" font-weight="700">~$50M</text>
+      <text x="290" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Claude 3</text>
+      <!-- Gemini Ultra: ~$80M -->
+      <rect x="390" y="90" width="80" height="130" fill="url(#g3)" rx="3"/>
+      <text x="430" y="82" font-size="11" fill="#6ab0ff" text-anchor="middle" font-weight="700">~$80M</text>
+      <text x="430" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Gemini Ultra</text>
+      <!-- DeepSeek R1: ~$6M -->
+      <rect x="530" y="208" width="80" height="12" fill="url(#g4)" rx="3"/>
+      <text x="570" y="200" font-size="11" fill="#2ecc71" text-anchor="middle" font-weight="700">~$6M</text>
+      <text x="570" y="236" font-size="10" fill="#2ecc71" text-anchor="middle" font-weight="700">DeepSeek R1</text>
+      <!-- annotation arrow -->
+      <line x1="570" y1="204" x2="570" y2="216" stroke="#2ecc71" stroke-width="1.5" marker-end="url(#arr)"/>
+    </svg>
+  </div>
+  <div class="annots">
+    <div class="annot"><div class="annot-label">Efficiency mechanism</div><div class="annot-val">MoE + GRPO</div><div class="annot-sub">Mixture-of-Experts architecture activates only a fraction of parameters per token, slashing inference cost</div></div>
+    <div class="annot"><div class="annot-label">Capital implication</div><div class="annot-val">Democratizes frontier AI</div><div class="annot-sub">Sub-$10M training runs mean sovereign AI programs globally can now reach frontier capability without US compute access</div></div>
+    <div class="annot"><div class="annot-label">Investor signal</div><div class="annot-val">Moat compression</div><div class="annot-sub">If training cost is no longer a moat, value accrues to distribution, data, and vertical integration — not raw compute</div></div>
+  </div>
+  <div class="source-line">Source: Reported training disclosures, industry estimates — May 14, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="panel-kicker">Story 2 · Chips & Semis</div>
+  <div class="panel-headline">The Compute War: Huawei Ascend vs. NVIDIA H100</div>
+  <div class="panel-deck">China's compute stack is converging on Huawei Ascend as the primary alternative to NVIDIA, with the Ascend 910C approaching H100-class performance for training workloads while bypassing export controls entirely.</div>
+  <div class="signals">
+    <div class="sig"><div class="sig-val">80%</div><div class="sig-label">910C peak vs H100 (est.)</div></div>
+    <div class="sig"><div class="sig-val">2× faster</div><div class="sig-label">Cluster deployment pace</div></div>
+    <div class="sig"><div class="sig-val">100%</div><div class="sig-label">Domestic supply chain</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">Compute Capability Index — Training Workloads (H100 = 100)</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="20" x2="80" y2="180" stroke="#2e2e52" stroke-width="1"/>
+      <line x1="80" y1="180" x2="640" y2="180" stroke="#2e2e52" stroke-width="1"/>
+      <!-- H100 bar: 100 -->
+      <rect x="100" y="36" width="90" height="144" fill="#4a7fa5" opacity=".7" rx="3"/>
+      <text x="145" y="29" font-size="11" fill="#6ab0ff" text-anchor="middle" font-weight="700">100</text>
+      <text x="145" y="196" font-size="10" fill="#5a6a8a" text-anchor="middle">NVIDIA H100</text>
+      <!-- H800 bar: 67 -->
+      <rect x="220" y="84" width="90" height="96" fill="#4a7fa5" opacity=".4" rx="3"/>
+      <text x="265" y="77" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">~67</text>
+      <text x="265" y="196" font-size="10" fill="#5a6a8a" text-anchor="middle">NVIDIA H800</text>
+      <text x="265" y="208" font-size="9" fill="#5a6a8a" text-anchor="middle">(export-limited)</text>
+      <!-- 910B: 60 -->
+      <rect x="340" y="94" width="90" height="86" fill="#c0392b" opacity=".5" rx="3"/>
+      <text x="385" y="87" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">~60</text>
+      <text x="385" y="196" font-size="10" fill="#5a6a8a" text-anchor="middle">Ascend 910B</text>
+      <!-- 910C: 80 -->
+      <rect x="460" y="60" width="90" height="120" fill="#c0392b" opacity=".85" rx="3"/>
+      <text x="505" y="53" font-size="11" fill="#e74c3c" text-anchor="middle" font-weight="700">~80</text>
+      <text x="505" y="196" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">Ascend 910C</text>
+      <text x="505" y="208" font-size="9" fill="#e74c3c" text-anchor="middle">(China-only)</text>
+      <!-- y-axis -->
+      <text x="75" y="184" font-size="9" fill="#5a6a8a" text-anchor="end">0</text>
+      <text x="75" y="112" font-size="9" fill="#5a6a8a" text-anchor="end">50</text>
+      <text x="75" y="40" font-size="9" fill="#5a6a8a" text-anchor="end">100</text>
+      <line x1="80" y1="108" x2="640" y2="108" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+    </svg>
+  </div>
+  <div class="annots">
+    <div class="annot"><div class="annot-label">Export control gap</div><div class="annot-val">H800 → 910C</div><div class="annot-sub">US controls pushed Chinese buyers from H800 toward Ascend, accelerating Huawei's ecosystem lock-in</div></div>
+    <div class="annot"><div class="annot-label">Software stack</div><div class="annot-val">CANN & MindSpore</div><div class="annot-sub">Huawei's compute stack now supports PyTorch compatibility, reducing migration friction for model teams</div></div>
+    <div class="annot"><div class="annot-label">2026 trajectory</div><div class="annot-val">910D in pipeline</div><div class="annot-sub">Next-gen Ascend 910D targets H100 parity with improved HBM integration, expected H2 2026</div></div>
+  </div>
+  <div class="source-line">Source: China Brief analysis, industry benchmarks — May 14, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="panel-kicker">Story 3 · Robotics</div>
+  <div class="panel-headline">The Robot Renaissance: China's Embodied AI Trajectory</div>
+  <div class="panel-deck">China's physical AI sector is entering a rapid commercialization phase, with humanoid and specialized robots moving from lab demos to factory deployments at a pace that exceeds Western counterparts.</div>
+  <div class="signals">
+    <div class="sig"><div class="sig-val">13–16K</div><div class="sig-label">Humanoid units shipped globally 2025</div></div>
+    <div class="sig"><div class="sig-val">90%</div><div class="sig-label">China's share of shipments</div></div>
+    <div class="sig"><div class="sig-val">2030</div><div class="sig-label">Mass commercial deployment target</div></div>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">China Humanoid Robot Shipment Forecast — Units (000s)</div>
+    <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <defs>
+        <linearGradient id="gr" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c0392b" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#c0392b" stop-opacity=".3"/>
+        </linearGradient>
+      </defs>
+      <line x1="80" y1="20" x2="80" y2="200" stroke="#2e2e52"/>
+      <line x1="80" y1="200" x2="640" y2="200" stroke="#2e2e52"/>
+      <!-- years: 2024, 2025, 2026, 2027, 2028, 2030 -->
+      <!-- scale: 0-500K, height 180px, 1px = 0.36K -->
+      <!-- 2024: 5K actual -->
+      <rect x="100" y="197" width="60" height="3" fill="#c0392b" opacity=".6" rx="2"/>
+      <text x="130" y="192" font-size="10" fill="#7a8baa" text-anchor="middle">~5K</text>
+      <text x="130" y="215" font-size="9" fill="#5a6a8a" text-anchor="middle">2024</text>
+      <!-- 2025: 14K actual -->
+      <rect x="188" y="190" width="60" height="10" fill="#c0392b" opacity=".7" rx="2"/>
+      <text x="218" y="185" font-size="10" fill="#7a8baa" text-anchor="middle">~14K</text>
+      <text x="218" y="215" font-size="9" fill="#5a6a8a" text-anchor="middle">2025</text>
+      <!-- 2026: 28K forecast -->
+      <rect x="276" y="180" width="60" height="20" fill="url(#gr)" rx="2"/>
+      <text x="306" y="175" font-size="10" fill="#e74c3c" text-anchor="middle">28K</text>
+      <text x="306" y="215" font-size="9" fill="#5a6a8a" text-anchor="middle">2026F</text>
+      <!-- 2027: 60K -->
+      <rect x="364" y="157" width="60" height="43" fill="url(#gr)" rx="2"/>
+      <text x="394" y="152" font-size="10" fill="#e74c3c" text-anchor="middle">~60K</text>
+      <text x="394" y="215" font-size="9" fill="#5a6a8a" text-anchor="middle">2027F</text>
+      <!-- 2028: 130K -->
+      <rect x="452" y="107" width="60" height="93" fill="url(#gr)" rx="2"/>
+      <text x="482" y="102" font-size="10" fill="#e74c3c" text-anchor="middle">~130K</text>
+      <text x="482" y="215" font-size="9" fill="#5a6a8a" text-anchor="middle">2028F</text>
+      <!-- 2030: 500K -->
+      <rect x="540" y="20" width="60" height="180" fill="url(#gr)" rx="2"/>
+      <text x="570" y="15" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">500K+</text>
+      <text x="570" y="215" font-size="9" fill="#e74c3c" text-anchor="middle" font-weight="700">2030F</text>
+      <!-- trend line -->
+      <polyline points="130,197 218,190 306,180 394,157 482,107 570,20" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="6,3" opacity=".5"/>
+      <!-- y labels -->
+      <text x="75" y="204" font-size="9" fill="#5a6a8a" text-anchor="end">0</text>
+      <text x="75" y="112" font-size="9" fill="#5a6a8a" text-anchor="end">250K</text>
+      <text x="75" y="24" font-size="9" fill="#5a6a8a" text-anchor="end">500K</text>
+      <line x1="80" y1="110" x2="640" y2="110" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,4"/>
+    </svg>
+  </div>
+  <div class="annots">
+    <div class="annot"><div class="annot-label">Key producers</div><div class="annot-val">Unitree, AgiBot</div><div class="annot-sub">Lead volume in 2025; UBTECH and Fourier Intelligence also scaling rapidly for industrial deployment</div></div>
+    <div class="annot"><div class="annot-label">Use cases</div><div class="annot-val">Factory first</div><div class="annot-sub">Initial deployments concentrated in EV assembly, electronics, and logistics — lower unstructured-environment risk</div></div>
+    <div class="annot"><div class="annot-label">Critical test</div><div class="annot-val">Utilization rate</div><div class="annot-sub">Units shipped ≠ units productively running — high-utilization deployment data is the key 2026 variable to watch</div></div>
+  </div>
+  <div class="source-line">Source: Morgan Stanley Research, industry shipment data — May 14, 2026</div>
+</div>
+</div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
