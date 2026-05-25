@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #3 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.mhead{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.mmeta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.mback{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}.panel.active{display:block}
+.pk{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.ph{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.pd{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.sigs{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sv{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.cw{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.ct{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.ann{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.a{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.al{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.av{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.as{font-size:11px;color:#5a6a8a;line-height:1.4}
+.src{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){.masthead{padding:16px 20px}.tab-bar{padding:0 16px}.panels{padding:28px 20px 60px}}</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=3" class="mback">← Back to Brief</a>
+  <div class="kicker">AI Visualized · Issue #3</div>
+  <div class="mhead">DeepSeek Opens Its Cap Table, Alibaba's T-Head Goes Public, April Price Data Surprises</div>
+  <div class="mmeta">May 16, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">DeepSeek Cap Table</div>
+  <div class="tab" onclick="showTab(1)">T-Head IPO Context</div>
+  <div class="tab" onclick="showTab(2)">April Price Data</div></div>
+<div class="panels">
+<div class="panel active">
+  <div class="pk">Story 1 · AI & Tech</div>
+  <div class="ph">DeepSeek Opens to Outside Money — State Fund Leads First External Round</div>
+  <div class="pd">After operating as a wholly-owned subsidiary of High-Flyer Capital since 2023, DeepSeek accepted its first outside investment — led by a state-backed fund — marking a structural shift in the financing of China's most influential AI lab.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">$1</div><div class="sl">Previously: 100% High-Flyer owned</div></div>
+    <div class="sig"><div class="sv">State-led</div><div class="sl">Lead investor category</div></div>
+    <div class="sig"><div class="sv">2023→26</div><div class="sl">Bootstrapped operation span</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">DeepSeek Ownership Evolution — Before vs After Round</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- BEFORE pie (left) -->
+      <circle cx="170" cy="110" r="80" fill="#c0392b" opacity=".8"/>
+      <text x="170" y="106" font-size="13" fill="#fff" text-anchor="middle" font-weight="700">100%</text>
+      <text x="170" y="122" font-size="10" fill="#fff" text-anchor="middle">High-Flyer</text>
+      <text x="170" y="208" font-size="11" fill="#7a8baa" text-anchor="middle">BEFORE (2023–25)</text>
+      <!-- AFTER pie (right) — donut style -->
+      <!-- High-Flyer majority ~65% -->
+      <path d="M510,110 L510,30 A80,80 0 1,1 447,168 Z" fill="#c0392b" opacity=".8"/>
+      <!-- State fund ~25% -->
+      <path d="M510,110 L447,168 A80,80 0 0,1 430,110 Z" fill="#4a7fa5" opacity=".8"/>
+      <!-- Others ~10% -->
+      <path d="M510,110 L430,110 A80,80 0 0,1 510,30 Z" fill="#27ae60" opacity=".7"/>
+      <text x="510" y="106" font-size="10" fill="#fff" text-anchor="middle" font-weight="700">Est.</text>
+      <text x="510" y="118" font-size="10" fill="#fff" text-anchor="middle" font-weight="700">diluted</text>
+      <text x="510" y="208" font-size="11" fill="#7a8baa" text-anchor="middle">AFTER (2026)</text>
+      <!-- legend -->
+      <rect x="380" y="135" width="10" height="10" fill="#c0392b" rx="2"/>
+      <text x="395" y="145" font-size="9" fill="#7a8baa">High-Flyer (~majority)</text>
+      <rect x="380" y="152" width="10" height="10" fill="#4a7fa5" rx="2"/>
+      <text x="395" y="162" font-size="9" fill="#7a8baa">State fund</text>
+      <rect x="380" y="169" width="10" height="10" fill="#27ae60" rx="2"/>
+      <text x="395" y="179" font-size="9" fill="#7a8baa">Strategic co-investors</text>
+      <!-- arrow -->
+      <text x="330" y="115" font-size="28" fill="#2e2e52" text-anchor="middle">→</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Why state capital</div><div class="av">NDRC alignment</div><div class="as">State fund entry aligns with NDRC's push to reduce DeepSeek's dependence on foreign LP capital in future rounds</div></div>
+    <div class="a"><div class="al">Valuation signal</div><div class="av">Undisclosed but $40B+</div><div class="as">Industry estimates suggest implied valuation comparable to leading US AI labs; High-Flyer retains effective control</div></div>
+    <div class="a"><div class="al">Strategic read</div><div class="av">Domestication</div><div class="as">Opening to state capital while remaining HQ'd in Hangzhou cements DeepSeek's position as a national strategic asset</div></div>
+  </div>
+  <div class="src">Source: Reuters, China Brief analysis — May 16, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 2 · Chips & Semis</div>
+  <div class="ph">Alibaba's T-Head Chip Arm Hits Mass Scale — STAR Market IPO Approved</div>
+  <div class="pd">T-Head (平头哥), Alibaba's in-house chip design subsidiary, received STAR Market IPO approval — the first listing of a major Chinese hyperscaler's chip arm, setting a benchmark for AI hardware valuations in domestic capital markets.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">Yitian 710</div><div class="sl">Flagship server chip (ARM)</div></div>
+    <div class="sig"><div class="sv">STAR</div><div class="sl">Listing venue</div></div>
+    <div class="sig"><div class="sv">2018</div><div class="sl">T-Head founded</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">China AI Chip IPO Pipeline — STAR Market 2026</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- horizontal bar chart: IPO readiness / scale -->
+      <line x1="180" y1="20" x2="180" y2="200" stroke="#2e2e52" stroke-width="1"/>
+      <line x1="180" y1="200" x2="640" y2="200" stroke="#2e2e52" stroke-width="1"/>
+      <!-- T-Head: approved, widest bar -->
+      <rect x="180" y="35" width="390" height="30" fill="#c0392b" opacity=".8" rx="3"/>
+      <text x="174" y="56" font-size="10" fill="#e8d5b0" text-anchor="end" font-weight="700">T-Head (Alibaba)</text>
+      <text x="578" y="56" font-size="10" fill="#e8d5b0" font-weight="700"> APPROVED</text>
+      <!-- Cambricon: listed 2020, growing -->
+      <rect x="180" y="80" width="300" height="30" fill="#4a7fa5" opacity=".7" rx="3"/>
+      <text x="174" y="101" font-size="10" fill="#7a8baa" text-anchor="end">Cambricon</text>
+      <text x="488" y="101" font-size="10" fill="#6ab0ff"> Listed 2020, expanding</text>
+      <!-- Biren: pending -->
+      <rect x="180" y="125" width="160" height="30" fill="#2e2e52" rx="3"/>
+      <text x="174" y="146" font-size="10" fill="#7a8baa" text-anchor="end">Biren Tech</text>
+      <text x="348" y="146" font-size="10" fill="#5a6a8a"> Review pending</text>
+      <!-- CXMT: upcoming -->
+      <rect x="180" y="168" width="220" height="30" fill="#27ae60" opacity=".6" rx="3"/>
+      <text x="174" y="189" font-size="10" fill="#7a8baa" text-anchor="end">CXMT (memory)</text>
+      <text x="408" y="189" font-size="10" fill="#2ecc71"> Review May 27</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">T-Head products</div><div class="av">Yitian 710 + Hanguang 800</div><div class="as">ARM-based server CPU and AI inference chip; both in volume production for Alibaba Cloud and external customers</div></div>
+    <div class="a"><div class="al">Listing significance</div><div class="av">First hyperscaler spin</div><div class="as">T-Head IPO could establish a valuation template for ByteDance's chip unit and Tencent's chip projects if they follow</div></div>
+    <div class="a"><div class="al">Strategic context</div><div class="av">Self-sufficiency signal</div><div class="as">Chinese hyperscalers building in-house silicon mirrors the AWS Graviton / Google TPU playbook — reduces NVIDIA dependency structurally</div></div>
+  </div>
+  <div class="src">Source: STAR Market, Alibaba, China Brief analysis — May 16, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 3 · Macro</div>
+  <div class="ph">China's April Price Data Beats — But the Iran Energy Premium Is Doing the Work</div>
+  <div class="pd">April CPI and PPI data came in above consensus, but analysts flagged that the beat was driven primarily by elevated energy prices tied to Iran supply disruptions — masking underlying demand weakness in the domestic economy.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">+0.8%</div><div class="sl">April CPI YoY (est. +0.5%)</div></div>
+    <div class="sig"><div class="sv">-1.9%</div><div class="sl">April PPI YoY (less negative)</div></div>
+    <div class="sig"><div class="sv">~12%</div><div class="sl">Iran energy premium contribution</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">China CPI YoY — Jan–Apr 2026 (%) with Iran Risk Premium</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="180" x2="640" y2="180" stroke="#2e2e52"/>
+      <line x1="80" y1="20" x2="80" y2="180" stroke="#2e2e52"/>
+      <!-- zero line at y=130 -->
+      <line x1="80" y1="130" x2="640" y2="130" stroke="#2e2e52" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="75" y="134" font-size="9" fill="#5a6a8a" text-anchor="end">0%</text>
+      <text x="75" y="100" font-size="9" fill="#5a6a8a" text-anchor="end">+0.5%</text>
+      <text x="75" y="70" font-size="9" fill="#5a6a8a" text-anchor="end">+1.0%</text>
+      <line x1="80" y1="97" x2="640" y2="97" stroke="#1e2040" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="80" y1="67" x2="640" y2="67" stroke="#1e2040" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- underlying demand (lower) -->
+      <polyline points="160,145 280,140 400,137 520,132" fill="none" stroke="#4a7fa5" stroke-width="2" stroke-dasharray="6,3"/>
+      <!-- total CPI (higher due to energy) -->
+      <polyline points="160,135 280,125 400,115 520,104" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+      <!-- dots -->
+      <circle cx="160" cy="135" r="4" fill="#c0392b"/>
+      <circle cx="280" cy="125" r="4" fill="#c0392b"/>
+      <circle cx="400" cy="115" r="4" fill="#c0392b"/>
+      <circle cx="520" cy="104" r="5" fill="#c0392b"/>
+      <!-- energy premium shading -->
+      <polygon points="160,145 280,140 400,137 520,132 520,104 400,115 280,125 160,135" fill="#c0392b" opacity=".08"/>
+      <!-- labels -->
+      <text x="160" y="195" font-size="10" fill="#5a6a8a" text-anchor="middle">Jan</text>
+      <text x="280" y="195" font-size="10" fill="#5a6a8a" text-anchor="middle">Feb</text>
+      <text x="400" y="195" font-size="10" fill="#5a6a8a" text-anchor="middle">Mar</text>
+      <text x="520" y="195" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">Apr ▲</text>
+      <!-- legend -->
+      <line x1="90" y1="38" x2="120" y2="38" stroke="#c0392b" stroke-width="2"/>
+      <text x="125" y="42" font-size="9" fill="#7a8baa">Reported CPI (with energy premium)</text>
+      <line x1="90" y1="52" x2="120" y2="52" stroke="#4a7fa5" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="125" y="56" font-size="9" fill="#7a8baa">Underlying demand CPI (est.)</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Energy driver</div><div class="av">Iran premium</div><div class="as">China imports ~10% of oil from Iran; sanctions-related disruptions pushed spot prices up, boosting reported CPI artificially</div></div>
+    <div class="a"><div class="al">Underlying signal</div><div class="av">Demand still weak</div><div class="as">Core CPI (ex-food and energy) remains soft — consumer confidence and wage growth have not materially recovered</div></div>
+    <div class="a"><div class="al">Policy implication</div><div class="av">PBOC constrained</div><div class="as">Elevated headline CPI limits PBOC's room to cut rates — stimulus may need to come via fiscal channels rather than monetary</div></div>
+  </div>
+  <div class="src">Source: NBS, China Brief analysis — May 16, 2026</div>
+</div></div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
