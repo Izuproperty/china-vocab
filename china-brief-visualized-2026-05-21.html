@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #8 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.mhead{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.mmeta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.mback{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}.panel.active{display:block}
+.pk{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.ph{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.pd{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.sigs{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sv{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.cw{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.ct{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.ann{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.a{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.al{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.av{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.as{font-size:11px;color:#5a6a8a;line-height:1.4}
+.src{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){.masthead{padding:16px 20px}.tab-bar{padding:0 16px}.panels{padding:28px 20px 60px}}</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=8" class="mback">← Back to Brief</a>
+  <div class="kicker">AI Visualized · Issue #8</div>
+  <div class="mhead">Alibaba's Chip Roadmap, AI Factory Pivot, and PBOC's 12th Consecutive Hold</div>
+  <div class="mmeta">May 21, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">Alibaba Chip Roadmap</div>
+  <div class="tab" onclick="showTab(1)">Qwen AI Factory — 35hr Run</div>
+  <div class="tab" onclick="showTab(2)">PBOC Hold — 12 Months</div></div>
+<div class="panels">
+<div class="panel active">
+  <div class="pk">Story 1 · Chips & Semis</div>
+  <div class="ph">Alibaba Maps a Three-Generation Chip Roadmap — Zhenwu M890 Is China's Most Advanced Server CPU</div>
+  <div class="pd">Alibaba's T-Head disclosed a three-generation chip roadmap at its annual tech conference, with the Zhenwu M890 ARM server CPU now in production representing the highest-performance domestically designed server chip in China.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">M890</div><div class="sl">Current gen — production</div></div>
+    <div class="sig"><div class="sv">M990</div><div class="sl">Next gen — tape-out 2026</div></div>
+    <div class="sig"><div class="sv">M1090</div><div class="sl">Future gen — design phase</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">T-Head Chip Roadmap — Performance Index vs Timeline (M890 = 100)</div>
+    <svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <defs>
+        <linearGradient id="gr1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c0392b" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#c0392b" stop-opacity=".3"/>
+        </linearGradient>
+        <linearGradient id="gr2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c0392b" stop-opacity=".5"/>
+          <stop offset="100%" stop-color="#c0392b" stop-opacity=".1"/>
+        </linearGradient>
+      </defs>
+      <line x1="80" y1="20" x2="80" y2="190" stroke="#2e2e52"/>
+      <line x1="80" y1="190" x2="620" y2="190" stroke="#2e2e52"/>
+      <line x1="80" y1="130" x2="620" y2="130" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <line x1="80" y1="80" x2="620" y2="80" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <text x="75" y="194" font-size="9" fill="#5a6a8a" text-anchor="end">0</text>
+      <text x="75" y="134" font-size="9" fill="#5a6a8a" text-anchor="end">50</text>
+      <text x="75" y="84" font-size="9" fill="#5a6a8a" text-anchor="end">100</text>
+      <text x="75" y="34" font-size="9" fill="#5a6a8a" text-anchor="end">150</text>
+      <!-- Yitian 710 (2022): 60 -->
+      <rect x="100" y="130" width="80" height="60" fill="#2e2e52" rx="3"/>
+      <text x="140" y="123" font-size="10" fill="#5a6a8a" text-anchor="middle">60</text>
+      <text x="140" y="207" font-size="9" fill="#5a6a8a" text-anchor="middle">Yitian 710</text>
+      <text x="140" y="218" font-size="8" fill="#5a6a8a" text-anchor="middle">2022</text>
+      <!-- M890 (2025): 100 -->
+      <rect x="240" y="80" width="80" height="110" fill="url(#gr1)" rx="3"/>
+      <text x="280" y="73" font-size="11" fill="#e74c3c" text-anchor="middle" font-weight="700">100</text>
+      <text x="280" y="207" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">M890</text>
+      <text x="280" y="218" font-size="8" fill="#5a6a8a" text-anchor="middle">2025 (prod.)</text>
+      <!-- M990 (2026-27): ~135 -->
+      <rect x="380" y="50" width="80" height="140" fill="url(#gr2)" rx="3" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="420" y="43" font-size="10" fill="#e74c3c" text-anchor="middle">~135</text>
+      <text x="420" y="207" font-size="10" fill="#7a8baa" text-anchor="middle">M990</text>
+      <text x="420" y="218" font-size="8" fill="#5a6a8a" text-anchor="middle">2027 (projected)</text>
+      <!-- M1090 (2028+): ~180 -->
+      <rect x="510" y="25" width="80" height="165" fill="#1a1a2e" rx="3" stroke="#2e2e52" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="550" y="18" font-size="10" fill="#5a6a8a" text-anchor="middle">~180</text>
+      <text x="550" y="207" font-size="10" fill="#5a6a8a" text-anchor="middle">M1090</text>
+      <text x="550" y="218" font-size="8" fill="#5a6a8a" text-anchor="middle">2028+ (design)</text>
+      <!-- trend line -->
+      <polyline points="140,160 280,80 420,50 550,25" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="8,4" opacity=".5"/>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Architecture</div><div class="av">ARM v9, 5nm TSMC</div><div class="as">M890 is fabbed at TSMC N5 — China's premium server CPU cannot be produced domestically yet; TSMC access is the key dependency in this roadmap</div></div>
+    <div class="a"><div class="al">TSMC risk</div><div class="av">Export control exposure</div><div class="as">If US tightens TSMC access to Chinese cloud companies, T-Head's roadmap shifts to SMIC N+1 — a meaningful performance regression</div></div>
+    <div class="a"><div class="al">Competitive target</div><div class="av">AWS Graviton 4</div><div class="as">M890 benchmarks close to Graviton 3 in memory-bandwidth-intensive workloads; M990 targets Graviton 4 class — 2-generation gap closing</div></div>
+  </div>
+  <div class="src">Source: Alibaba T-Head, China Brief analysis — May 21, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 2 · AI & Tech</div>
+  <div class="ph">Qwen 3.7-Max Runs Autonomously for 35 Hours — Alibaba's 'AI Factory' Pivot</div>
+  <div class="pd">Alibaba Cloud demonstrated Qwen 3.7-Max completing a complex multi-step coding and deployment task autonomously for 35 consecutive hours without human intervention — reframing Alibaba's AI strategy from model provider to autonomous AI factory operator.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">35hr</div><div class="sl">Autonomous run duration</div></div>
+    <div class="sig"><div class="sv">847</div><div class="sl">Tool calls executed</div></div>
+    <div class="sig"><div class="sv">Zero</div><div class="sl">Human interventions required</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">AI Agent Autonomy Benchmark — Task Completion Duration Without Intervention</div>
+    <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="20" x2="80" y2="170" stroke="#2e2e52"/>
+      <line x1="80" y1="170" x2="620" y2="170" stroke="#2e2e52"/>
+      <!-- horizontal bars -->
+      <!-- GPT-4o (typical agent): ~2hr -->
+      <rect x="80" y="30" width="46" height="22" fill="#4a7fa5" opacity=".5" rx="2"/>
+      <text x="130" y="45" font-size="10" fill="#6ab0ff">~2 hr · GPT-4o agents (typical)</text>
+      <!-- Claude 4 agent: ~8hr -->
+      <rect x="80" y="62" width="184" height="22" fill="#4a7fa5" opacity=".6" rx="2"/>
+      <text x="268" y="77" font-size="10" fill="#6ab0ff"> ~8 hr · Claude 4 Opus (extended task)</text>
+      <!-- Gemini agent: ~6hr -->
+      <rect x="80" y="94" width="138" height="22" fill="#4a7fa5" opacity=".5" rx="2"/>
+      <text x="222" y="109" font-size="10" fill="#6ab0ff"> ~6 hr · Gemini 2 Ultra agent</text>
+      <!-- DeepSeek agent: ~12hr -->
+      <rect x="80" y="126" width="276" height="22" fill="#c0392b" opacity=".5" rx="2"/>
+      <text x="360" y="141" font-size="10" fill="#e74c3c"> ~12 hr · DeepSeek agent</text>
+      <!-- Qwen 3.7-Max: 35hr -->
+      <rect x="80" y="158" width="598" height="0" fill="none"/>
+      <rect x="80" y="150" width="530" height="22" fill="#c0392b" opacity=".9" rx="2"/>
+      <text x="614" y="165" font-size="10" fill="#e74c3c" font-weight="700"> 35 hr</text>
+      <text x="85" y="165" font-size="10" fill="#fff" font-weight="700">Qwen 3.7-Max (Alibaba) — 35 hr autonomous ←</text>
+      <!-- scale -->
+      <text x="80" y="187" font-size="9" fill="#5a6a8a">0</text>
+      <text x="310" y="187" font-size="9" fill="#5a6a8a" text-anchor="middle">~17hr</text>
+      <text x="530" y="187" font-size="9" fill="#e74c3c" text-anchor="middle">35hr</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Task type</div><div class="av">Full-stack deployment</div><div class="as">Task involved: specification analysis, code generation across 14 modules, debugging, testing, containerization, and cloud deployment — a complete software lifecycle</div></div>
+    <div class="a"><div class="al">Strategic pivot</div><div class="av">"AI Factory" framing</div><div class="as">Alibaba Cloud CEO used the term "AI factory" to describe the direction — autonomous agents replacing internal development teams on routine engineering tasks</div></div>
+    <div class="a"><div class="al">Reliability caveat</div><div class="av">Single demo ≠ product</div><div class="as">35-hour demos under controlled conditions don't equate to production reliability; success rate across diverse real-world tasks is the metric to watch</div></div>
+  </div>
+  <div class="src">Source: Alibaba Cloud, China Brief analysis — May 21, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 3 · Macro</div>
+  <div class="ph">PBOC Holds for a 12th Straight Month — Threading Between a 5% GDP Ceiling and Deflation</div>
+  <div class="pd">The People's Bank of China kept rates unchanged for the 12th consecutive month, maintaining the 7-day repo rate at 1.5% — balancing elevated headline CPI (limiting cuts) against persistent core deflation risk and a property sector that continues to drag.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">12</div><div class="sl">Consecutive months on hold</div></div>
+    <div class="sig"><div class="sv">1.50%</div><div class="sl">7-day repo rate</div></div>
+    <div class="sig"><div class="sv">5.0%</div><div class="sl">GDP growth target (full year)</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">PBOC 7-Day Repo Rate — vs CPI and Core CPI (Jan 2025 – May 2026)</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="20" x2="80" y2="185" stroke="#2e2e52"/>
+      <line x1="80" y1="185" x2="630" y2="185" stroke="#2e2e52"/>
+      <!-- grid lines -->
+      <line x1="80" y1="105" x2="630" y2="105" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <line x1="80" y1="65" x2="630" y2="65" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <line x1="80" y1="145" x2="630" y2="145" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <text x="75" y="189" font-size="9" fill="#5a6a8a" text-anchor="end">0%</text>
+      <text x="75" y="149" font-size="9" fill="#5a6a8a" text-anchor="end">0.5%</text>
+      <text x="75" y="109" font-size="9" fill="#5a6a8a" text-anchor="end">1.0%</text>
+      <text x="75" y="69" font-size="9" fill="#5a6a8a" text-anchor="end">1.5%</text>
+      <text x="75" y="29" font-size="9" fill="#5a6a8a" text-anchor="end">2.0%</text>
+      <!-- Repo rate: flat at 1.5% = y65 -->
+      <line x1="90" y1="65" x2="620" y2="65" stroke="#c0392b" stroke-width="3"/>
+      <text x="625" y="63" font-size="9" fill="#e74c3c" font-weight="700">Repo 1.5%</text>
+      <!-- CPI: fluctuating around 0.8% = y~120, going to ~130 then 104 -->
+      <polyline points="90,130 140,135 200,140 250,128 310,122 360,118 420,112 480,108 540,104 600,100"
+        fill="none" stroke="#f1c40f" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="605" y="98" font-size="9" fill="#f1c40f">CPI</text>
+      <!-- Core CPI: below zero = y~160, slowly rising -->
+      <polyline points="90,165 140,168 200,163 250,158 310,155 360,152 420,150 480,148 540,145 600,143"
+        fill="none" stroke="#4a7fa5" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <text x="605" y="141" font-size="9" fill="#4a7fa5">Core CPI</text>
+      <!-- month labels -->
+      <text x="90" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">Jan'25</text>
+      <text x="250" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">May'25</text>
+      <text x="420" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">Oct'25</text>
+      <text x="600" y="200" font-size="8" fill="#5a6a8a" text-anchor="middle">May'26</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">The bind</div><div class="av">Energy inflation + demand gap</div><div class="as">Headline CPI elevated by energy costs prevents a cut; core deflation risk from weak consumer demand argues for one — PBOC is paralyzed between two signals</div></div>
+    <div class="a"><div class="al">GDP context</div><div class="av">5% target at risk</div><div class="as">Q1 GDP printed at 4.8%; fiscal stimulus has been front-loaded but property drag and weak consumption make 5% full-year growth a stretch target</div></div>
+    <div class="a"><div class="al">Next move</div><div class="av">Watch energy prices</div><div class="as">A meaningful Iran energy price decline would give PBOC cover to cut — the repo rate path is now more sensitive to Middle East geopolitics than domestic data</div></div>
+  </div>
+  <div class="src">Source: PBOC, NBS, China Brief analysis — May 21, 2026</div>
+</div></div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
