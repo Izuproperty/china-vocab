@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visualized · China Brief · Issue #12 · May 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+
+  /* HEADER */
+  .header { background:#1a1a2e; padding:36px 56px 28px; border-bottom:4px solid #c0392b; }
+  .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:10px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .header-title .sub { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#8a9bb5; display:block; margin-top:6px; letter-spacing:1px; }
+  .header-meta { margin-top:18px; font-size:11px; color:#4a5a7a; display:flex; gap:20px; flex-wrap:wrap; }
+  .header-meta span { display:flex; align-items:center; gap:6px; }
+  .header-meta .dot { width:4px; height:4px; border-radius:50%; background:#c0392b; display:inline-block; }
+  .back-link { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; margin-top:16px; }
+  .back-link:hover { color:#e8d5b0; }
+  .back-link::before { content:'←'; font-size:13px; }
+
+  /* NAV / STORY TABS */
+  .viz-nav { background:#f0ede8; border-bottom:1px solid #e0d8d0; display:flex; gap:0; overflow-x:auto; }
+  .viz-tab { padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; user-select:none; }
+  .viz-tab:hover { color:#1a1a2e; }
+  .viz-tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+
+  /* CONTENT SECTIONS */
+  .viz-section { display:none; padding:48px 56px 64px; }
+  .viz-section.active { display:block; }
+  .story-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:8px; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; line-height:1.3; color:#1a1a2e; margin-bottom:6px; }
+  .story-deck { font-size:14px; color:#5a5a6a; line-height:1.7; margin-bottom:36px; max-width:640px; }
+
+  /* SIGNAL NUMBER */
+  .signal-row { display:flex; gap:32px; margin-bottom:48px; flex-wrap:wrap; }
+  .signal-box { flex:1; min-width:160px; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:56px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-num .unit { font-size:24px; font-weight:400; color:#c0392b; }
+  .signal-label { font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-top:6px; line-height:1.4; }
+  .signal-delta { font-size:12px; color:#c0392b; margin-top:4px; font-weight:600; }
+
+  /* CHART CONTAINER */
+  .chart-container { background:#f8f6f2; border-radius:6px; padding:32px; margin-bottom:40px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a3a4a; margin-bottom:4px; }
+  .chart-subtitle { font-size:12px; color:#7a7a8a; margin-bottom:24px; }
+  canvas { display:block; width:100% !important; }
+
+  /* ANNOTATION / ANNOTATION ROW */
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:36px; }
+  .annotation-card { border-left:3px solid #e0d8d0; padding:12px 16px; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.green { border-left-color:#27ae60; }
+  .annotation-card.amber { border-left-color:#e67e22; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .annotation-card-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .annotation-card-zh { font-size:13px; font-weight:600; color:#c0392b; margin-bottom:2px; }
+
+  /* WATERFALL */
+  #waterfall-svg { width:100%; }
+  .wf-bar-label { font-family:'Inter',sans-serif; font-size:11px; fill:#1a1a2e; font-weight:600; }
+  .wf-bar-value { font-family:'Inter',sans-serif; font-size:13px; fill:#1a1a2e; font-weight:700; }
+  .wf-axis-label { font-family:'Inter',sans-serif; font-size:10px; fill:#9a8a7a; }
+  .wf-title { font-family:'Playfair Display',serif; font-size:16px; fill:#1a1a2e; }
+
+  /* STORY 1 - ROBOTICS CHART */
+  .robot-chart-wrap { position:relative; }
+
+  /* STORY 2 - CAPITAL FLOWS */
+  .flow-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:32px; }
+  .flow-card { background:#f8f6f2; border-radius:6px; padding:24px; }
+  .flow-card-name { font-size:13px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .flow-card-zh { font-size:11px; color:#c0392b; font-weight:600; margin-bottom:12px; }
+  .flow-bar-wrap { height:12px; background:#e8e0d8; border-radius:6px; overflow:hidden; margin-bottom:8px; }
+  .flow-bar { height:100%; border-radius:6px; background:#1a1a2e; transition:width 1.2s cubic-bezier(.4,0,.2,1); }
+  .flow-range { font-size:11px; color:#5a5a6a; }
+
+  /* FOOTER */
+  .viz-footer { background:#1a1a2e; padding:24px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .viz-footer-text { font-size:10px; color:#4a5a7a; }
+  .viz-footer-brand { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8d5b0; }
+
+  @media(max-width:680px) {
+    .header, .viz-section { padding-left:24px; padding-right:24px; }
+    .signal-num { font-size:40px; }
+    .annotation-grid { grid-template-columns:1fr; }
+    .flow-grid { grid-template-columns:1fr; }
+    .viz-footer { padding-left:24px; padding-right:24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="header-eyebrow">China Brief · AI Visualized · Issue #12</div>
+    <div class="header-title">
+      Data in Focus
+      <span class="sub">One visualization per story, where the numbers earn it — May 25, 2026</span>
+    </div>
+    <div class="header-meta">
+      <span><span class="dot"></span> 3 stories visualized</span>
+      <span><span class="dot"></span> Issue #12</span>
+      <span><span class="dot"></span> Monday, May 25, 2026</span>
+    </div>
+    <a class="back-link" href="newsletter_2026-05-25.html">Return to China Brief</a>
+  </div>
+
+  <div class="viz-nav">
+    <div class="viz-tab active" onclick="showViz('ev')">EV Payment Cycles</div>
+    <div class="viz-tab" onclick="showViz('robotics')">China Robotics</div>
+    <div class="viz-tab" onclick="showViz('capital')">Hang Seng Capital Flows</div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- VIZ 1: EV PAYMENT CYCLES       -->
+  <!-- ============================== -->
+  <div class="viz-section active" id="viz-ev">
+    <div class="story-label">Story Three · Finance & Macro · S&P Global Ratings</div>
+    <div class="story-headline">China's EV Sector: When the Float Runs Out</div>
+    <div class="story-deck">Beijing's crackdown on price-war practices compressed supplier payment terms from ~300 days to ~54 days. This chart maps the working-capital consequences across the supply chain — who gains, who's squeezed, and what it means for sector consolidation.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">300<span class="unit">d</span></div>
+        <div class="signal-label">Avg. supplier payment cycle<br>during price-war era (2023–25)</div>
+        <div class="signal-delta">Effective norm across major assemblers</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">54<span class="unit">d</span></div>
+        <div class="signal-label">Avg. payment cycle<br>after reform (2025–26)</div>
+        <div class="signal-delta">−82% compression · 4 assemblers under 50d</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">17</div>
+        <div class="signal-label">Major assemblers that have<br>cut payment terms so far</div>
+        <div class="signal-delta">Including BYD, SAIC, Geely, NIO</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Supplier Payment Cycle Compression — Working Capital Impact</div>
+      <div class="chart-subtitle">Days payable outstanding (DPO) shift by actor type · illustrative for 17-assembler cohort · S&P Global Ratings, May 2026</div>
+      <svg id="waterfall-svg" viewBox="0 0 740 360" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+
+        <!-- Background -->
+        <rect width="740" height="360" fill="#f8f6f2" rx="4"/>
+
+        <!-- Grid lines -->
+        <line x1="140" y1="40" x2="140" y2="290" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="140" y1="290" x2="720" y2="290" stroke="#e0d8d0" stroke-width="1"/>
+
+        <!-- Y axis labels (days) -->
+        <text x="128" y="294" class="wf-axis-label" text-anchor="end">0d</text>
+        <text x="128" y="244" class="wf-axis-label" text-anchor="end">50d</text>
+        <text x="128" y="194" class="wf-axis-label" text-anchor="end">100d</text>
+        <text x="128" y="144" class="wf-axis-label" text-anchor="end">150d</text>
+        <text x="128" y="94" class="wf-axis-label" text-anchor="end">200d</text>
+        <text x="128" y="44" class="wf-axis-label" text-anchor="end">250d</text>
+
+        <!-- Grid horizontals -->
+        <line x1="135" y1="244" x2="720" y2="244" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="135" y1="194" x2="720" y2="194" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="135" y1="144" x2="720" y2="144" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="135" y1="94" x2="720" y2="94" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="135" y1="44" x2="720" y2="44" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- Scale note: 290 = 0d, each 50d = 50px, max 300d = top -->
+        <!-- 300d → y = 290 - 300*(250/300) = 290 - 250 = 40 -->
+        <!-- 54d  → y = 290 - 54*(250/300) = 290 - 45 = 245 -->
+        <!-- But we'll use 0-300 scale across 250px height -->
+        <!-- px_per_day = 250/300 = 0.833 -->
+
+        <!-- BEFORE BAR: Assemblers (300d DPO) -->
+        <rect x="160" y="40" width="80" height="250" fill="#c0392b" rx="3" opacity="0.9"/>
+        <text x="200" y="32" class="wf-bar-label" text-anchor="middle" font-size="10">Assemblers</text>
+        <text x="200" y="22" class="wf-bar-label" text-anchor="middle" font-size="10" fill="#6a4a3a">BEFORE</text>
+        <text x="200" y="58" class="wf-bar-value" text-anchor="middle" fill="white" font-size="14">300d</text>
+        <text x="200" y="75" class="wf-bar-value" text-anchor="middle" fill="white" font-size="10">(DPO)</text>
+
+        <!-- AFTER BAR: Assemblers (54d DPO) -->
+        <rect x="260" y="245" width="80" height="45" fill="#c0392b" rx="3" opacity="0.55"/>
+        <text x="300" y="32" class="wf-bar-label" text-anchor="middle" font-size="10">Assemblers</text>
+        <text x="300" y="22" class="wf-bar-label" text-anchor="middle" font-size="10" fill="#6a4a3a">AFTER</text>
+        <text x="300" y="262" class="wf-bar-value" text-anchor="middle" fill="#1a1a2e" font-size="14">54d</text>
+
+        <!-- Arrow between before/after assembler -->
+        <path d="M245,165 L255,165" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow-red)"/>
+        <defs>
+          <marker id="arrow-red" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#c0392b"/>
+          </marker>
+          <marker id="arrow-green" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#27ae60"/>
+          </marker>
+        </defs>
+
+        <!-- Float released label -->
+        <rect x="158" y="245" width="182" height="44" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3" rx="2"/>
+        <text x="249" y="264" text-anchor="middle" fill="#c0392b" font-size="10" font-weight="600">Float released by assemblers</text>
+        <text x="249" y="278" text-anchor="middle" fill="#c0392b" font-size="10">−82% payment window</text>
+
+        <!-- SUPPLIERS — BEFORE (DPO owed to THEM was ~300d, so DSO was ~300d) -->
+        <!-- Supplier before: DSO ~300d (they had to wait) — drawn as tall burden bar -->
+        <rect x="370" y="40" width="80" height="250" fill="#8a9bb5" rx="3" opacity="0.7"/>
+        <text x="410" y="32" class="wf-bar-label" text-anchor="middle" font-size="10">Suppliers</text>
+        <text x="410" y="22" class="wf-bar-label" text-anchor="middle" font-size="10" fill="#4a5a7a">BEFORE</text>
+        <text x="410" y="58" class="wf-bar-value" text-anchor="middle" fill="white" font-size="13">300d DSO</text>
+        <text x="410" y="74" fill="white" font-size="9" text-anchor="middle">vendor financing</text>
+        <text x="410" y="86" fill="white" font-size="9" text-anchor="middle">burden on supplier</text>
+
+        <!-- SUPPLIERS — AFTER (DSO ~54d, massive improvement) -->
+        <rect x="470" y="245" width="80" height="45" fill="#27ae60" rx="3" opacity="0.85"/>
+        <text x="510" y="32" class="wf-bar-label" text-anchor="middle" font-size="10">Suppliers</text>
+        <text x="510" y="22" class="wf-bar-label" text-anchor="middle" font-size="10" fill="#1a5a3a">AFTER</text>
+        <text x="510" y="262" class="wf-bar-value" text-anchor="middle" fill="#fff" font-size="13">54d DSO</text>
+        <text x="510" y="278" fill="white" font-size="9" text-anchor="middle">cash flow relief</text>
+
+        <!-- MARGINAL PLAYERS — Liquidity squeeze indicator -->
+        <rect x="580" y="40" width="120" height="250" fill="#1a1a2e" rx="3" opacity="0.08"/>
+        <rect x="580" y="195" width="120" height="95" fill="#c0392b" rx="3" opacity="0.75"/>
+        <text x="640" y="32" class="wf-bar-label" text-anchor="middle" font-size="10">Marginal OEMs</text>
+        <text x="640" y="22" class="wf-bar-label" text-anchor="middle" font-size="10" fill="#8a3a2a">STRESS ZONE</text>
+        <text x="640" y="215" class="wf-bar-value" text-anchor="middle" fill="white" font-size="11">Liquidity gap</text>
+        <text x="640" y="230" fill="white" font-size="9" text-anchor="middle">float removal +</text>
+        <text x="640" y="243" fill="white" font-size="9" text-anchor="middle">R&D burn +</text>
+        <text x="640" y="256" fill="white" font-size="9" text-anchor="middle">thin margins</text>
+        <text x="640" y="278" fill="#c0392b" font-size="9" text-anchor="middle" font-weight="700">→ exit or M&A</text>
+
+        <!-- X axis labels -->
+        <text x="200" y="310" class="wf-axis-label" text-anchor="middle">Assembler DPO</text>
+        <text x="300" y="310" class="wf-axis-label" text-anchor="middle">Reform</text>
+        <text x="410" y="310" class="wf-axis-label" text-anchor="middle">Supplier DSO</text>
+        <text x="510" y="310" class="wf-axis-label" text-anchor="middle">Relief</text>
+        <text x="640" y="310" class="wf-axis-label" text-anchor="middle">Weak OEM exposure</text>
+
+        <!-- Y AXIS TITLE -->
+        <text transform="rotate(-90)" x="-165" y="20" class="wf-axis-label" text-anchor="middle">Days (DPO / DSO)</text>
+
+        <!-- Source note -->
+        <text x="740" y="350" class="wf-axis-label" text-anchor="end" font-size="9" fill="#b0a898">Source: S&P Global Ratings, May 2026 · China Brief analysis</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Assembler impact</div>
+        <div class="annotation-card-zh">整车厂商</div>
+        <div class="annotation-card-text">Float removed as a working capital tool. Stronger OEMs (BYD, SAIC) absorb this through scale. Marginal players face direct cash pressure — the implicit subsidy of delayed payables is gone.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Supplier gain</div>
+        <div class="annotation-card-zh">供应链企业</div>
+        <div class="annotation-card-text">Battery, seat, and electronics suppliers see DSO fall from ~300 to ~54 days. Multi-year vendor financing burden structurally relieved. Balance sheets improve without a single new contract signed.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Policy intent</div>
+        <div class="annotation-card-zh">政策导向</div>
+        <div class="annotation-card-text">S&P reads this as deliberate consolidation engineering — Beijing tolerating short-term stress to produce a leaner EV sector. The key unknown: whether local government implicit support delays the inevitable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- VIZ 2: ROBOTICS                -->
+  <!-- ============================== -->
+  <div class="viz-section" id="viz-robotics">
+    <div class="story-label">Story One · AI & Tech · Morgan Stanley Research</div>
+    <div class="story-headline">China's Humanoid Robot Arc: From 90% Market Share to 16.5% of Global Manufacturing</div>
+    <div class="story-deck">Morgan Stanley's research note draws a direct line from China's commanding humanoid robot shipment lead to a structural expansion of its global manufacturing share by 2030 — echoing its earlier EV and battery playbook.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">90<span class="unit">%</span></div>
+        <div class="signal-label">China's share of global<br>humanoid robot shipments (2025)</div>
+        <div class="signal-delta">~13,000–16,000 units globally</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">28K</div>
+        <div class="signal-label">Projected China humanoid<br>shipments in 2026</div>
+        <div class="signal-delta">More than 2× 2025 volume</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">16.5<span class="unit">%</span></div>
+        <div class="signal-label">Projected China share of<br>global manufacturing output (2030)</div>
+        <div class="signal-delta">Up from ~15% today</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Humanoid Robot Shipments — China vs. Rest of World</div>
+      <div class="chart-subtitle">Estimated units shipped · 2025 actuals · 2026 Morgan Stanley forecast · 2030 trajectory implied</div>
+      <svg viewBox="0 0 740 340" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+        <rect width="740" height="340" fill="#f8f6f2" rx="4"/>
+
+        <!-- Axes -->
+        <line x1="100" y1="40" x2="100" y2="270" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="100" y1="270" x2="720" y2="270" stroke="#e0d8d0" stroke-width="1"/>
+
+        <!-- Y labels (units) -->
+        <text x="88" y="274" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">0</text>
+        <text x="88" y="224" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">10K</text>
+        <text x="88" y="174" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">20K</text>
+        <text x="88" y="124" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">30K</text>
+        <text x="88" y="74" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">40K</text>
+
+        <!-- Grid -->
+        <line x1="95" y1="224" x2="720" y2="224" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="95" y1="174" x2="720" y2="174" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="95" y1="124" x2="720" y2="124" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="95" y1="74" x2="720" y2="74" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- YEAR: 2025 -->
+        <!-- Total ~14,500 units. China 90% = ~13,050. RoW = ~1,450 -->
+        <!-- Scale: 40K = 200px height. 1K = 5px. -->
+        <!-- China 2025: 13,050 units = 65.25px → y = 270 - 65.25 = 204.75 -->
+        <!-- RoW 2025: 1,450 units = 7.25px → y = 204.75 - 7.25 = 197.5 -->
+
+        <!-- 2025 grouped bars -->
+        <rect x="145" y="205" width="60" height="65" fill="#1a1a2e" rx="2" opacity="0.85"/>
+        <text x="175" y="218" font-family="Inter" font-size="9" fill="white" text-anchor="middle" font-weight="600">China</text>
+        <text x="175" y="230" font-family="Inter" font-size="9" fill="white" text-anchor="middle">~13K</text>
+
+        <rect x="210" y="262" width="60" height="8" fill="#8a9bb5" rx="2" opacity="0.7"/>
+        <text x="240" y="256" font-family="Inter" font-size="9" fill="#5a5a6a" text-anchor="middle">RoW ~1.5K</text>
+
+        <text x="190" y="295" font-family="Inter" font-size="11" fill="#5a5a6a" text-anchor="middle" font-weight="600">2025</text>
+        <text x="190" y="308" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">Actuals</text>
+
+        <!-- 2026 bars: China 28K, RoW est ~6K (Morgan Stanley implies China grows 2x+) -->
+        <!-- China 28K = 140px → y = 270 - 140 = 130 -->
+        <!-- RoW 6K = 30px → y = 130 - 30 = 100 -->
+
+        <rect x="330" y="130" width="60" height="140" fill="#1a1a2e" rx="2" opacity="0.9"/>
+        <text x="360" y="150" font-family="Inter" font-size="9" fill="white" text-anchor="middle" font-weight="600">China</text>
+        <text x="360" y="165" font-family="Inter" font-size="9" fill="white" text-anchor="middle">~28K</text>
+        <text x="360" y="178" font-family="Inter" font-size="8" fill="#c0a090" text-anchor="middle">forecast</text>
+
+        <rect x="395" y="240" width="60" height="30" fill="#8a9bb5" rx="2" opacity="0.7"/>
+        <text x="425" y="233" font-family="Inter" font-size="9" fill="#5a5a6a" text-anchor="middle">RoW ~6K</text>
+
+        <text x="375" y="295" font-family="Inter" font-size="11" fill="#5a5a6a" text-anchor="middle" font-weight="600">2026</text>
+        <text x="375" y="308" font-family="Inter" font-size="9" fill="#c0392b" text-anchor="middle">Morgan Stanley</text>
+
+        <!-- 2030 PROJECTION: China implied ~150K+ at current trajectory (speculative band) -->
+        <!-- Draw as band/range rather than precise bar -->
+        <rect x="535" y="60" width="60" height="210" fill="#1a1a2e" rx="2" opacity="0.15"/>
+        <rect x="535" y="90" width="60" height="180" fill="#1a1a2e" rx="2" opacity="0.5"/>
+        <text x="565" y="108" font-family="Inter" font-size="9" fill="white" text-anchor="middle" font-weight="600">China</text>
+        <text x="565" y="121" font-family="Inter" font-size="9" fill="white" text-anchor="middle">100K+</text>
+        <text x="565" y="133" font-family="Inter" font-size="8" fill="#c0a090" text-anchor="middle">trajectory</text>
+
+        <rect x="600" y="225" width="60" height="45" fill="#8a9bb5" rx="2" opacity="0.5"/>
+        <text x="630" y="219" font-family="Inter" font-size="9" fill="#5a5a6a" text-anchor="middle">RoW</text>
+
+        <text x="567" y="295" font-family="Inter" font-size="11" fill="#5a5a6a" text-anchor="middle" font-weight="600">2030</text>
+        <text x="567" y="308" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">Implied trajectory</text>
+
+        <!-- LEGEND -->
+        <rect x="108" y="44" width="10" height="10" fill="#1a1a2e" rx="1"/>
+        <text x="122" y="53" font-family="Inter" font-size="10" fill="#3a3a4a">China</text>
+        <rect x="168" y="44" width="10" height="10" fill="#8a9bb5" rx="1" opacity="0.7"/>
+        <text x="182" y="53" font-family="Inter" font-size="10" fill="#3a3a4a">Rest of World</text>
+
+        <!-- 90% annotation -->
+        <line x1="270" y1="210" x2="310" y2="210" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="275" y="205" font-family="Inter" font-size="9" fill="#c0392b" font-weight="600">China = 90% share</text>
+
+        <text x="720" y="330" font-family="Inter" font-size="9" fill="#b0a898" text-anchor="end">Source: Morgan Stanley Research · S. China Morning Post, May 2026 · China Brief analysis</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">The EV analogy</div>
+        <div class="annotation-card-zh">先规模，后出口</div>
+        <div class="annotation-card-text">Morgan Stanley explicitly frames the robotics trajectory as a replay of the EV arc: build domestic scale first, then export. The same playbook produced China's 70%+ global EV share within a decade.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Key assumptions to stress-test</div>
+        <div class="annotation-card-zh">待验证前提</div>
+        <div class="annotation-card-text">The 28K forecast assumes high-utilization factory deployment, not just pilot units. Software reliability in unstructured environments and the share of state procurement vs. commercial orders remain unverified.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Leading companies</div>
+        <div class="annotation-card-zh">头部企业</div>
+        <div class="annotation-card-text">Unitree Robotics (宇树科技) and AgiBot (智元机器人) lead shipment volume. ROBOTERA deploying thousand-unit runs at China Post and SF Group logistics centers in Q2 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- VIZ 3: CAPITAL FLOWS           -->
+  <!-- ============================== -->
+  <div class="viz-section" id="viz-capital">
+    <div class="story-label">Story Two · AI & Capital Markets · SCMP / Bloomberg</div>
+    <div class="story-headline">Zhipu AI & MiniMax: Index Inclusion and the Rerouting of China AI Capital</div>
+    <div class="story-deck">The addition of Zhipu AI and MiniMax to the Hang Seng Tech Index on June 5, 2026 will force passive fund rebalancing — but the more structural signal is the shift from US venture capital to Hong Kong-listed mainland institutional money as the primary growth equity source for China's AI sector.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">+300<span class="unit">%</span></div>
+        <div class="signal-label">Both stocks' performance<br>since January 2026 IPO</div>
+        <div class="signal-delta">Listed on HKEX; now joining HST Index</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">HK$139B</div>
+        <div class="signal-label">Combined upper-bound passive<br>inflow estimate (Zhipu + MiniMax)</div>
+        <div class="signal-delta">HK$92B + HK$47B respectively</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">93</div>
+        <div class="signal-label">Hang Seng Tech Index<br>constituents after inclusion</div>
+        <div class="signal-delta">Up from 90 · effective June 5</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Estimated Passive Inflows via Stock Connect — Zhipu AI & MiniMax</div>
+      <div class="chart-subtitle">HK$ billions · low / high analyst estimates · passive fund rebalancing ahead of June 5, 2026 effective date</div>
+
+      <div class="flow-grid">
+        <div class="flow-card">
+          <div class="flow-card-name">Zhipu AI</div>
+          <div class="flow-card-zh">智谱AI · Zhìpǔ AI</div>
+          <div style="margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#5a5a6a;margin-bottom:6px">
+              <span>Low estimate</span><span style="font-weight:700;color:#1a1a2e">HK$51B</span>
+            </div>
+            <div class="flow-bar-wrap">
+              <div class="flow-bar" style="width:55%;background:#1a1a2e;"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#5a5a6a;margin-top:12px;margin-bottom:6px">
+              <span>High estimate</span><span style="font-weight:700;color:#c0392b">HK$92B</span>
+            </div>
+            <div class="flow-bar-wrap">
+              <div class="flow-bar" style="width:100%;background:#c0392b;"></div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:#7a7a8a;line-height:1.6">Tsinghua spinout · GLM-4 · CogVideo · state + Alibaba/Tencent backed · NDRC: reduce US LP exposure</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card-name">MiniMax</div>
+          <div class="flow-card-zh">MiniMax · multimodal + video AI</div>
+          <div style="margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;font-size:11px;color:#5a5a6a;margin-bottom:6px">
+              <span>Estimate</span><span style="font-weight:700;color:#c0392b">up to HK$47B</span>
+            </div>
+            <div class="flow-bar-wrap">
+              <div class="flow-bar" style="width:51%;background:#c0392b;"></div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:#7a7a8a;line-height:1.6;margin-top:28px">Tencent + HongShan backed · Abab series · Hailuo video generation · NDRC: reduce US LP exposure</div>
+        </div>
+      </div>
+
+      <!-- Capital source shift diagram -->
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid #e0d8d0;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a5a6a;margin-bottom:16px">Structural shift: AI capital formation rerouting</div>
+        <svg viewBox="0 0 680 100" style="display:block;width:100%">
+          <!-- Before -->
+          <rect x="10" y="20" width="180" height="60" fill="#e8f0fe" rx="4"/>
+          <text x="100" y="45" font-family="Inter" font-size="11" fill="#1a56db" text-anchor="middle" font-weight="600">US Venture Capital</text>
+          <text x="100" y="62" font-family="Inter" font-size="9" fill="#5a6a9a" text-anchor="middle">Cross-border LP structures</text>
+          <text x="100" y="74" font-family="Inter" font-size="9" fill="#5a6a9a" text-anchor="middle">International co-investors</text>
+
+          <!-- Arrow -->
+          <path d="M195,50 L245,50" stroke="#c0392b" stroke-width="2" marker-end="url(#arr2)"/>
+          <text x="220" y="42" font-family="Inter" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="600">NDRC order</text>
+          <defs>
+            <marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#c0392b"/>
+            </marker>
+          </defs>
+
+          <!-- After -->
+          <rect x="250" y="20" width="200" height="60" fill="#f0ede8" rx="4"/>
+          <text x="350" y="45" font-family="Inter" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">HK-listed Equity Markets</text>
+          <text x="350" y="62" font-family="Inter" font-size="9" fill="#5a5a6a" text-anchor="middle">Stock Connect / index inclusion</text>
+          <text x="350" y="74" font-family="Inter" font-size="9" fill="#5a5a6a" text-anchor="middle">Passive fund rebalancing</text>
+
+          <!-- Arrow -->
+          <path d="M455,50 L505,50" stroke="#1a1a2e" stroke-width="2" marker-end="url(#arr3)"/>
+          <defs>
+            <marker id="arr3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#1a1a2e"/>
+            </marker>
+          </defs>
+
+          <!-- Result -->
+          <rect x="510" y="20" width="160" height="60" fill="#1a1a2e" rx="4"/>
+          <text x="590" y="42" font-family="Inter" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">Mainland Institutional</text>
+          <text x="590" y="56" font-family="Inter" font-size="9" fill="#8a9bb5" text-anchor="middle">State funds · insurance ·</text>
+          <text x="590" y="68" font-family="Inter" font-size="9" fill="#8a9bb5" text-anchor="middle">domestic asset managers</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">The real signal</div>
+        <div class="annotation-card-zh">结构性转变</div>
+        <div class="annotation-card-text">This isn't just an index rebalancing. It's the completion of a capital formation reroute — US VC out, mainland institutional in — engineered by NDRC policy and executed through Hong Kong's public markets infrastructure.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">The valuation question</div>
+        <div class="annotation-card-zh">估值可持续性</div>
+        <div class="annotation-card-text">Both stocks are up 300%+ from January IPO prices. Whether mainland institutional capital can sustain these multiples — without the global VC discipline of competitive term-setting — is the unresolved question.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">For international investors</div>
+        <div class="annotation-card-zh">外资视角</div>
+        <div class="annotation-card-text">China AI capital formation is progressively rerouting toward domestic channels. This changes both information availability (less cross-border reporting) and governance dynamics around these companies.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-footer">
+    <div class="viz-footer-brand">中国简报 · AI Visualized</div>
+    <div class="viz-footer-text">China Brief Issue #12 · May 25, 2026 · Not investment advice · Data sourced from public reporting and analyst research</div>
+  </div>
+
+</div>
+
+<script>
+function showViz(id) {
+  document.querySelectorAll('.viz-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('viz-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

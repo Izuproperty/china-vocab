@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China AI Landscape · 中国人工智能版图 · Evergreen Reference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+
+  /* ---- HEADER ---- */
+  .header { background:#1a1a2e; padding:40px 56px 32px; border-bottom:4px solid #c0392b; }
+  .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:10px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:#fff; line-height:1.15; }
+  .header-title .zh { font-size:20px; font-weight:400; color:#e8d5b0; letter-spacing:6px; display:block; margin-top:6px; }
+  .header-deck { font-size:13px; color:#8a9bb5; margin-top:12px; max-width:600px; line-height:1.7; }
+  .header-meta { margin-top:20px; display:flex; gap:20px; flex-wrap:wrap; }
+  .header-badge { background:#1a1a2e; border:1px solid #3a3a6e; border-radius:3px; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; }
+  .header-badge.live { border-color:#c0392b; color:#e8a89a; }
+
+  /* ---- STATS BAR ---- */
+  .stats-bar { background:#13132a; padding:16px 56px; display:flex; gap:32px; flex-wrap:wrap; border-bottom:1px solid #2a2a4e; }
+  .stat { text-align:center; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#fff; line-height:1; }
+  .stat-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4a5a7a; margin-top:3px; }
+
+  /* ---- CONTROLS ---- */
+  .controls { background:#fff; padding:16px 56px; border-bottom:1px solid #e8e0d8; display:flex; align-items:center; gap:16px; flex-wrap:wrap; position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+  .search-wrap { position:relative; flex:1; min-width:200px; }
+  .search-input { width:100%; padding:8px 12px 8px 32px; border:1px solid #e0d8d0; border-radius:4px; font-family:'Inter',sans-serif; font-size:13px; color:#1a1a1a; outline:none; background:#f8f6f2; }
+  .search-input:focus { border-color:#c0392b; background:#fff; }
+  .search-icon { position:absolute; left:10px; top:50%; transform:translateY(-50%); width:14px; height:14px; fill:none; stroke:#9a8a7a; stroke-width:2; }
+  .cat-filters { display:flex; gap:6px; flex-wrap:wrap; }
+  .cat-btn { padding:6px 14px; border:1px solid #e0d8d0; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:0.5px; cursor:pointer; background:#f8f6f2; color:#5a5a6a; transition:all 0.15s; white-space:nowrap; }
+  .cat-btn:hover { border-color:#1a1a2e; color:#1a1a2e; }
+  .cat-btn.active { background:#1a1a2e; color:#fff; border-color:#1a1a2e; }
+  .cat-btn.active.cat-foundation { background:#c0392b; border-color:#c0392b; }
+  .cat-btn.active.cat-robotics { background:#27ae60; border-color:#27ae60; }
+  .cat-btn.active.cat-chips { background:#e67e22; border-color:#e67e22; }
+  .cat-btn.active.cat-cloud { background:#1a56db; border-color:#1a56db; }
+  .cat-btn.active.cat-auto { background:#8e44ad; border-color:#8e44ad; }
+  .cat-btn.active.cat-gov { background:#5a6a7a; border-color:#5a6a7a; }
+  .results-count { font-size:11px; color:#9a8a7a; white-space:nowrap; margin-left:auto; }
+
+  /* ---- GRID ---- */
+  .grid-wrap { padding:32px 56px 56px; }
+  .section-header { display:flex; align-items:center; gap:16px; margin:0 0 20px; }
+  .section-tag { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; padding:4px 10px; border-radius:2px; white-space:nowrap; }
+  .section-line { flex:1; height:1px; background:#e8e0d4; }
+  .section-count { font-size:10px; color:#9a8a7a; }
+
+  .company-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-bottom:48px; }
+
+  .company-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.06); overflow:hidden; cursor:default; transition:box-shadow 0.15s, transform 0.15s; display:flex; flex-direction:column; }
+  .company-card:hover { box-shadow:0 4px 24px rgba(0,0,0,0.12); transform:translateY(-2px); }
+  .company-card.hidden { display:none; }
+  .card-stripe { height:3px; }
+  .stripe-foundation { background:#c0392b; }
+  .stripe-robotics { background:#27ae60; }
+  .stripe-chips { background:#e67e22; }
+  .stripe-cloud { background:#1a56db; }
+  .stripe-auto { background:#8e44ad; }
+  .stripe-gov { background:#5a6a7a; }
+  .stripe-security { background:#2c3e50; }
+
+  .card-body { padding:16px 18px; flex:1; }
+  .card-name { font-size:15px; font-weight:700; color:#1a1a2e; line-height:1.2; }
+  .card-zh { font-size:13px; color:#c0392b; font-weight:600; margin-top:2px; letter-spacing:1px; }
+  .card-py { font-size:11px; color:#7a6a5a; font-style:italic; margin-top:1px; }
+  .card-desc { font-size:12px; color:#4a4a5a; line-height:1.6; margin-top:10px; }
+  .card-meta { margin-top:12px; display:flex; flex-wrap:wrap; gap:6px; }
+  .meta-tag { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:2px; background:#f4f1ec; color:#6a6a7a; }
+  .meta-tag.highlight { background:#fff3f0; color:#c0392b; }
+  .meta-tag.green { background:#f0faf4; color:#27ae60; }
+  .meta-tag.blue { background:#f0f4fe; color:#1a56db; }
+  .card-footer { padding:10px 18px; border-top:1px solid #f4f1ec; display:flex; align-items:center; justify-content:space-between; }
+  .card-issue { font-size:10px; color:#9a8a7a; font-weight:600; }
+  .card-status { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+  .status-public { color:#1a56db; }
+  .status-private { color:#7a6a5a; }
+  .status-state { color:#c0392b; }
+
+  /* ---- SECTION HIDDEN STATE ---- */
+  .cat-section { transition:opacity 0.2s; }
+  .cat-section.hidden { display:none; }
+
+  /* ---- NO RESULTS ---- */
+  .no-results { text-align:center; padding:80px 20px; color:#9a8a7a; display:none; }
+  .no-results.show { display:block; }
+  .no-results-zh { font-size:32px; color:#e0d8d0; margin-bottom:12px; }
+  .no-results-text { font-size:14px; }
+
+  /* ---- FOOTER ---- */
+  .footer { background:#1a1a2e; padding:24px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; border-top:1px solid #2a2a4e; }
+  .footer-brand { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8d5b0; }
+  .footer-text { font-size:10px; color:#4a5a7a; }
+
+  @media(max-width:680px) {
+    .header, .stats-bar, .controls, .grid-wrap, .footer { padding-left:20px; padding-right:20px; }
+    .company-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Evergreen Reference · China Brief · Living Document</div>
+  <div class="header-title">
+    China AI Ecosystem Map
+    <span class="zh">中国人工智能版图</span>
+  </div>
+  <div class="header-deck">All companies, chips, government bodies, and terms tracked by the China Brief agent — updated with each issue as new players emerge. Filter by category or search by name, Chinese characters, or keyword.</div>
+  <div class="header-meta">
+    <span class="header-badge live">Updated Issue #12 · May 25, 2026</span>
+    <span class="header-badge">朋友 Agent · Maintained</span>
+    <span class="header-badge">搜索 Searchable</span>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num" id="count-total">44</div><div class="stat-label">Total Entities</div></div>
+  <div class="stat"><div class="stat-num" id="count-foundation">10</div><div class="stat-label">Foundation Model Labs</div></div>
+  <div class="stat"><div class="stat-num" id="count-robotics">8</div><div class="stat-label">Physical AI & Robotics</div></div>
+  <div class="stat"><div class="stat-num" id="count-chips">10</div><div class="stat-label">Chips & Infrastructure</div></div>
+  <div class="stat"><div class="stat-num" id="count-auto">6</div><div class="stat-label">Autonomous Driving</div></div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>
+    <input class="search-input" type="text" id="searchInput" placeholder="Search by name, 中文, pinyin, or keyword…" oninput="filterCards()">
+  </div>
+  <div class="cat-filters">
+    <button class="cat-btn active" onclick="filterCat('all',this)">All</button>
+    <button class="cat-btn cat-foundation" onclick="filterCat('foundation',this)">Foundation Models</button>
+    <button class="cat-btn cat-robotics" onclick="filterCat('robotics',this)">Physical AI</button>
+    <button class="cat-btn cat-chips" onclick="filterCat('chips',this)">Chips</button>
+    <button class="cat-btn cat-cloud" onclick="filterCat('cloud',this)">Cloud</button>
+    <button class="cat-btn cat-auto" onclick="filterCat('auto',this)">Autonomous Driving</button>
+    <button class="cat-btn cat-gov" onclick="filterCat('gov',this)">Government</button>
+  </div>
+  <div class="results-count" id="resultsCount">44 entities</div>
+</div>
+
+<div class="grid-wrap">
+  <div class="no-results" id="noResults">
+    <div class="no-results-zh">搜索</div>
+    <div class="no-results-text">No entities match your search. Try Chinese characters, pinyin, or a keyword from the brief.</div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- FOUNDATION MODEL LABS           -->
+  <!-- =============================== -->
+  <div class="cat-section" data-cat="foundation">
+    <div class="section-header">
+      <span class="section-tag" style="background:#fff0ee;color:#c0392b;">Foundation Model Labs · 大模型公司</span>
+      <div class="section-line"></div>
+      <span class="section-count">10 labs</span>
+    </div>
+    <div class="company-grid">
+
+      <div class="company-card" data-search="deepseek 深度求索 shendù qiusuǒ high-flyer quant national ai fund tencent hillhouse v3 v4 hangzhou ascend">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">DeepSeek</div>
+          <div class="card-zh">深度求索</div>
+          <div class="card-py">Shēndù Qiúsuǒ</div>
+          <div class="card-desc">Hangzhou. Cost-efficient frontier models. Disrupted US cost narrative Jan 2025. DeepSeek-V4 natively optimized for Huawei Ascend. First external funding round at ~$50B valuation closing May 2026 — largest China AI raise on record.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">V3 · V4</span>
+            <span class="meta-tag">High-Flyer Quant</span>
+            <span class="meta-tag green">$50B valuation</span>
+            <span class="meta-tag">National AI Fund</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #3</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="baidu 百度 baidù ernie bot 文心一言 nasdaq hkex autonomous driving">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">Baidu</div>
+          <div class="card-zh">百度</div>
+          <div class="card-py">Bǎidù</div>
+          <div class="card-desc">China's Google. Pivoting hard to AI and autonomous driving. ERNIE Bot (文心一言) is its primary LLM product. Operates China's largest robotaxi network via Apollo.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">ERNIE Bot</span>
+            <span class="meta-tag blue">NASDAQ: BIDU</span>
+            <span class="meta-tag blue">HKEX: 9888</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="bytedance 字节跳动 zijie tiaodong doubao 豆包 tiktok douyin seedance volcengine 火山引擎 cannes ai film hell grind">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">ByteDance</div>
+          <div class="card-zh">字节跳动</div>
+          <div class="card-py">Zìjié Tiàodòng</div>
+          <div class="card-desc">TikTok/Douyin parent. Doubao (豆包) is China's #1 consumer AI app, 600M+ generative AI users. Volcengine / Seedance 2.0 premiered <em>Hell Grind</em> — the world's first full-length AI-generated film — at Cannes (May 22, 2026). Budget: &lt;$500K. 15-person team, 14 days.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Doubao · Seedance 2.0</span>
+            <span class="meta-tag green">600M AI users</span>
+            <span class="meta-tag">Cannes 2026</span>
+            <span class="meta-tag">即梦AI</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #2, #11</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="alibaba 阿里巴巴 alibaba qwen 通义千问 aliyun cloud 百炼 bailian ai factory zhou jingren">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">Alibaba</div>
+          <div class="card-zh">阿里巴巴</div>
+          <div class="card-py">Ālǐbābā</div>
+          <div class="card-desc">Qwen series (通义千问). Qwen 3.7-Max (May 2026): agentic LLM, 35-hour autonomous operation, 1,000+ tool calls. Positions itself as "AI factory" operating full 5-layer stack. RMB 380B ($53B) 3-year AI infra commitment.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Qwen 3.7-Max</span>
+            <span class="meta-tag blue">NYSE: BABA</span>
+            <span class="meta-tag">百炼 Bailian</span>
+            <span class="meta-tag green">$53B commitment</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #8</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="tencent 腾讯 tengxun hunyuan 混元 wechat hkex">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">Tencent</div>
+          <div class="card-zh">腾讯</div>
+          <div class="card-py">Téngxùn</div>
+          <div class="card-desc">Hunyuan (混元) model. WeChat ecosystem provides massive AI product distribution advantage. Backs several major AI startups (MiniMax, Enflame, etc.).</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Hunyuan · 混元</span>
+            <span class="meta-tag blue">HKEX: 700</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="zhipu ai 智谱AI zhipu glm-4 cogvideo tsinghua hang seng index stock connect ndrc hkex ipo">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">Zhipu AI</div>
+          <div class="card-zh">智谱AI</div>
+          <div class="card-py">Zhìpǔ AI</div>
+          <div class="card-desc">Tsinghua University spinout. GLM-4 + CogVideo. Listed HKEX Jan 2026; +300%+ since IPO. Joining Hang Seng Tech Index June 5, 2026 — est. HK$51–92B passive inflows via Stock Connect. NDRC ordered to reduce US LP exposure.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Hang Seng June 5</span>
+            <span class="meta-tag green">+300% since IPO</span>
+            <span class="meta-tag">HK$51–92B inflows</span>
+            <span class="meta-tag blue">HKEX</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #12</span><span class="card-status status-public">Public (HK)</span></div>
+      </div>
+
+      <div class="company-card" data-search="moonshot ai 月之暗面 kimi k2.5 k2.6 beijing bytedance engineers moe open-weight swe-bench ndrc">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">Moonshot AI</div>
+          <div class="card-zh">月之暗面</div>
+          <div class="card-py">Yuè zhī Ànmiàn</div>
+          <div class="card-desc">Beijing. Founded 2023. Kimi K2.6: 1T-param MoE open-weight model; 300-agent swarms, 12-hr autonomous runs; ties GPT-5.5 on SWE-Bench Pro (58.6%). ~80% cheaper per token than US equivalents. $2B raise at $20B valuation (May 2026). NDRC: reject US-origin capital without clearance.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Kimi K2.6 · 1T MoE</span>
+            <span class="meta-tag green">$20B valuation</span>
+            <span class="meta-tag">Alibaba · HongShan</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #5</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="stepfun 阶跃星辰 jieyue xingchen multimodal beijing ipo hong kong ndrc">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">Stepfun</div>
+          <div class="card-zh">阶跃星辰</div>
+          <div class="card-py">Jiēyuè Xīngchén</div>
+          <div class="card-desc">Beijing. Founded 2023. Frontier multimodal AI lab. Eyeing HK$500M Hong Kong IPO. NDRC ordered to reject US-origin capital without government clearance. Restrictions will limit US institutional participation in planned IPO.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">HK IPO planned</span>
+            <span class="meta-tag">Multimodal</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #6</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="minimax MiniMax tencent honshan abab hailuo video hkex ipo hang seng index ndrc">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">MiniMax</div>
+          <div class="card-zh">MiniMax</div>
+          <div class="card-py">MiniMax</div>
+          <div class="card-desc">Tencent + HongShan backed. Abab series + Hailuo video generation. Listed HKEX Jan 2026; +300%+ since IPO. Joining Hang Seng Tech Index June 5, 2026 — est. up to HK$47B passive inflows. NDRC: reduce US LP exposure.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Hang Seng June 5</span>
+            <span class="meta-tag green">+300% since IPO</span>
+            <span class="meta-tag">HK$47B inflows</span>
+            <span class="meta-tag blue">HKEX</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #12</span><span class="card-status status-public">Public (HK)</span></div>
+      </div>
+
+      <div class="company-card" data-search="01.ai 零一万物 kai-fu lee 李开复 yi series open source">
+        <div class="card-stripe stripe-foundation"></div>
+        <div class="card-body">
+          <div class="card-name">01.AI</div>
+          <div class="card-zh">零一万物</div>
+          <div class="card-py">Líng Yī Wànwù</div>
+          <div class="card-desc">Founded by Kai-Fu Lee (李开复), AI pioneer and former Google China president. Yi model series released open-source. Positioned as a bridge between Chinese and global AI research communities.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Yi series · Open source</span>
+            <span class="meta-tag">Kai-Fu Lee</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- PHYSICAL AI & ROBOTICS          -->
+  <!-- =============================== -->
+  <div class="cat-section" data-cat="robotics">
+    <div class="section-header">
+      <span class="section-tag" style="background:#f0faf4;color:#27ae60;">Physical AI & Robotics · 具身智能 / 人形机器人</span>
+      <div class="section-line"></div>
+      <span class="section-count">8 companies</span>
+    </div>
+    <div class="company-grid">
+
+      <div class="company-card" data-search="unitree robotics 宇树科技 yushu keji h1 g1 go2 byd geely series d">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">Unitree Robotics</div>
+          <div class="card-zh">宇树科技</div>
+          <div class="card-py">Yǔshù Kējì</div>
+          <div class="card-desc">Leading China humanoid robot maker. H1, G1, Go2 models. Factory customers include BYD and Geely. Among the top-volume global humanoid shipment leaders. Series D at ~$6B valuation.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">H1 · G1 · Go2</span>
+            <span class="meta-tag green">~$6B valuation</span>
+            <span class="meta-tag">BYD · Geely</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="ubtech 优必选 youbixuan walker s1 hkex automotive oems guangdong jiangsu">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">UBTECH</div>
+          <div class="card-zh">优必选</div>
+          <div class="card-py">Yōubìxuǎn</div>
+          <div class="card-desc">Walker S1 humanoid robot. Deploying at automotive OEM factories in Guangdong and Jiangsu. Listed on HKEX. China's most prominent publicly-listed humanoid robot company.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Walker S1</span>
+            <span class="meta-tag blue">HKEX: 9880</span>
+            <span class="meta-tag">Automotive OEMs</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Public (HK)</span></div>
+      </div>
+
+      <div class="company-card" data-search="fourier intelligence 傅利叶智能 fuliiye zhineng gr-1 factory pilots">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">Fourier Intelligence</div>
+          <div class="card-zh">傅利叶智能</div>
+          <div class="card-py">Fùlìyè Zhìnéng</div>
+          <div class="card-desc">GR-1 humanoid robot. Early factory pilot deployments. Research-grade platform with commercial ambitions. Notable for bipedal mobility design that balances research and industrial use.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">GR-1</span>
+            <span class="meta-tag">Factory pilots</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="agibot 智元机器人 zhiyuan jiqiren a2 well funded early stage">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">AgiBot</div>
+          <div class="card-zh">智元机器人</div>
+          <div class="card-py">Zhìyuán Jīqìrén</div>
+          <div class="card-desc">A2 humanoid robot. Early stage but well-funded. Among the top-volume Chinese humanoid shipment leaders cited in Morgan Stanley research. Strong backing from major Chinese tech and industrial investors.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">A2</span>
+            <span class="meta-tag green">Top shipment volume</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="robotera 星动纪元 xing dong ji yuan star1 l7 m7 tsinghua dexterous hand china post sf group logistics direct-drive">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">ROBOTERA</div>
+          <div class="card-zh">星动纪元</div>
+          <div class="card-py">Xīng Dòng Jì Yuán</div>
+          <div class="card-desc">Tsinghua spinout. Pioneered full direct-drive dexterous hand (灵巧手). $200M+ raised May 2026. STAR1 + L7 (full-size biped) + M7 (upper-body). Deploying thousand-unit runs at China Post and SF Group logistics centers Q2 2026.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">灵巧手 Pioneer</span>
+            <span class="meta-tag green">1,000-unit Q2 deploy</span>
+            <span class="meta-tag">China Post · SF Group</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1 refresh</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="x square robot 自变量机器人 zibianliang jiqiren quanta x1 x2 xiaomi sequoia alibaba bytedance meituan consumer home cleaning 58.com">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">X Square Robot</div>
+          <div class="card-zh">自变量机器人</div>
+          <div class="card-py">Zìbiànliàng Jīqìrén</div>
+          <div class="card-desc">Shenzhen. Founded Dec 2023. $430M+ raised; Series B $276M led by Xiaomi + Sequoia China. Also backed by Alibaba, ByteDance, Meituan. FIRST consumer home deployment: booking-based robot cleaning service live on 58.com (五八到家) from May 2026 — China's first commercial residential embodied AI service.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">First Home Deployment</span>
+            <span class="meta-tag green">$430M+ raised</span>
+            <span class="meta-tag">Xiaomi · ByteDance</span>
+            <span class="meta-tag">WALL-A VLA model</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #7</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="gigaai 时光 seelight s1 wuhan household humanoid cooking laundry 具身智能 general purpose">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">GigaAI</div>
+          <div class="card-zh">GigaAI</div>
+          <div class="card-py">GigaAI</div>
+          <div class="card-desc">Wuhan. SeeLight S1 (时光 S1): two-armed wheeled household humanoid unveiled May 2026. China's FIRST general-purpose household humanoid using embodied AI for autonomous real-time task planning. Capabilities: cooking, laundry, bed-making. 100 units trialling at Wuhan tech housing. Price target: &lt;¥100K by Jun 2027.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">First General Home Robot</span>
+            <span class="meta-tag green">100-unit Wuhan trial</span>
+            <span class="meta-tag">Target &lt;¥100K</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #10</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="leju robotics 乐聚机器人 leju jiqiren kuavo research industrial">
+        <div class="card-stripe stripe-robotics"></div>
+        <div class="card-body">
+          <div class="card-name">Leju Robotics</div>
+          <div class="card-zh">乐聚机器人</div>
+          <div class="card-py">Lèjù Jīqìrén</div>
+          <div class="card-desc">Kuavo humanoid robot platform. Research and industrial focus. Among the broader field of Chinese humanoid robot companies building out the supply chain and software stack.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Kuavo</span>
+            <span class="meta-tag">Research + Industrial</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- CHIPS & AI INFRASTRUCTURE       -->
+  <!-- =============================== -->
+  <div class="cat-section" data-cat="chips">
+    <div class="section-header">
+      <span class="section-tag" style="background:#fff8f0;color:#e67e22;">Chips & AI Infrastructure · 芯片与算力</span>
+      <div class="section-line"></div>
+      <span class="section-count">10 companies</span>
+    </div>
+    <div class="company-grid">
+
+      <div class="company-card" data-search="huawei chips 华为 ascend 910b 910c 950 smic 7nm sanctions nvidia alternative alibaba tencent deepseek hbm">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">Huawei (AI Chips)</div>
+          <div class="card-zh">华为昇腾</div>
+          <div class="card-py">Huáwéi Shēngténg</div>
+          <div class="card-desc">Ascend 910B/910C: primary domestic Nvidia alternative. Mass shipments of 910C began May 2026 — 600K units targeted, manufactured by SMIC on enhanced 7nm. Ascend 950: next-gen chip; DeepSeek V4 natively optimized for it; triggered $5.6B ByteDance order. $12B chip revenue projected 2026. HBM supply remains the binding bottleneck.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Ascend 910C · 950</span>
+            <span class="meta-tag">600K units 2026</span>
+            <span class="meta-tag">$12B revenue projected</span>
+            <span class="meta-tag" style="background:#fff0ee;color:#c0392b;">US Sanctions</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #4</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="cambricon 寒武纪 hanwuji siyuan 590 690 star market xinchuang smic hbm">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">Cambricon</div>
+          <div class="card-zh">寒武纪</div>
+          <div class="card-py">Hánwǔjì</div>
+          <div class="card-desc">Listed on STAR Market. China's leading publicly-listed AI chip designer alongside Huawei on government-approved procurement list (Xinchuang). Siyuan 590/690 series. Targeting 500K chip deliveries in 2026 — 3× 2025 output. Key constraints: SMIC capacity + HBM supply.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Siyuan 590/690</span>
+            <span class="meta-tag blue">STAR: 688256</span>
+            <span class="meta-tag green">500K deliveries 2026</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1, #5</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="t-head semiconductor 平头哥半导体 pingtou ge alibaba zhenwu 810e m890 v900 j900 ipo star market">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">T-Head Semiconductor</div>
+          <div class="card-zh">平头哥半导体</div>
+          <div class="card-py">Píng​tóu Gē Bàndǎotǐ</div>
+          <div class="card-desc">Alibaba's in-house AI chip arm ("Honey Badger"). Zhenwu 810E: 560K+ units shipped to 400+ customers. Zhenwu M890 (May 2026): 3× performance; agent-optimized for long context + multi-model coordination. Roadmap: V900 (Q3 2027), J900 (Q3 2028). Planning STAR Market IPO.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">M890 · May 2026</span>
+            <span class="meta-tag green">RMB 10B+ revenue</span>
+            <span class="meta-tag">IPO planned</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #3, #8</span><span class="card-status status-private">Alibaba subsidiary</span></div>
+      </div>
+
+      <div class="company-card" data-search="cxmt 长鑫存储 changxin cunchu dram lpddr4 lpddr5 hefei star market ipo entity list">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">CXMT</div>
+          <div class="card-zh">长鑫存储</div>
+          <div class="card-py">Chángxīn Cúnchǔ</div>
+          <div class="card-desc">China's ONLY domestically owned integrated DRAM producer. Hefei. Q1 2026: revenue ¥50.8B (+719% YoY), profit ¥24.76B (+1,688% YoY). Seeking ~¥29.5B on STAR Market — listing review May 27, 2026. Would be largest chip IPO in China's capital markets history. On US Entity List.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Largest chip IPO ever</span>
+            <span class="meta-tag green">+719% revenue YoY</span>
+            <span class="meta-tag" style="background:#fff0ee;color:#c0392b;">US Entity List</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #11</span><span class="card-status status-state">State-backed</span></div>
+      </div>
+
+      <div class="company-card" data-search="ymtc 长江存储 changjiang cunchu 3d nand flash xtacking wuhan star market ipo entity list citic">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">YMTC</div>
+          <div class="card-zh">长江存储</div>
+          <div class="card-py">Chángjiāng Cúnchǔ</div>
+          <div class="card-desc">China's sole commercially operational 3D NAND flash memory manufacturer. Wuhan. Xtacking architecture, 200+ layers. On US Entity List since Dec 2022. Filed STAR Market tutoring (CITIC Securities), formal IPO application expected mid-June 2026. With CXMT forms China's "dual memory champion" axis.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">3D NAND · Xtacking</span>
+            <span class="meta-tag">IPO filing mid-June</span>
+            <span class="meta-tag" style="background:#fff0ee;color:#c0392b;">US Entity List</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #11</span><span class="card-status status-state">State-backed</span></div>
+      </div>
+
+      <div class="company-card" data-search="biren technology 壁仞科技 biren keji br100 gpu training">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">Biren Technology</div>
+          <div class="card-zh">壁仞科技</div>
+          <div class="card-py">Bìrèn Kējì</div>
+          <div class="card-desc">BR100 GPU-class chip targeting AI training workloads. Private company with ambitions to compete in the premium AI accelerator segment currently dominated by Nvidia and, domestically, Huawei Ascend.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">BR100</span>
+            <span class="meta-tag">Training GPU</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="enflame 燧原科技 suiyuan keji t30 tencent ai chip training">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">Enflame</div>
+          <div class="card-zh">燧原科技</div>
+          <div class="card-py">Suì​yuán Kējì</div>
+          <div class="card-desc">Tencent-backed AI chip startup. T30 chip targeting AI inference and training workloads. Part of the ecosystem of domestic GPU alternatives to Nvidia chips being accelerated by US export controls.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">T30</span>
+            <span class="meta-tag">Tencent-backed</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="moore threads 摩尔线程 moer xiancheng mtt s80 gpu gaming ai inference">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">Moore Threads</div>
+          <div class="card-zh">摩尔线程</div>
+          <div class="card-py">Mó​ěr Xiànchéng</div>
+          <div class="card-desc">MTT S80 GPU. Strong in gaming plus AI inference market. Named after Moore's Law. Growing importance as Chinese firms seek domestic alternatives for AI inference workloads following US chip export restrictions.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">MTT S80</span>
+            <span class="meta-tag">Gaming + AI Inference</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="hygon 海光信息 haiguang xinxi dhyana dcu amd star market">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">Hygon</div>
+          <div class="card-zh">海光信息</div>
+          <div class="card-py">Hǎiguāng Xìnxī</div>
+          <div class="card-desc">AMD-derived architecture. Dhyana CPUs and DCU (Deep Computing Unit) for AI. Listed on STAR Market. Known for leveraging AMD architecture licensing from a prior joint venture to produce x86-compatible processors for the Chinese market.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">Dhyana · DCU</span>
+            <span class="meta-tag blue">STAR: 688041</span>
+            <span class="meta-tag">AMD-derived</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="xpeng turing ai chip 图灵 autonomous driving iron robot 3000 tops">
+        <div class="card-stripe stripe-chips"></div>
+        <div class="card-body">
+          <div class="card-name">Xpeng Turing AI Chip</div>
+          <div class="card-zh">图灵AI芯片</div>
+          <div class="card-py">Túlíng AI xīnpiàn</div>
+          <div class="card-desc">Xpeng's proprietary AI chip for autonomous driving. 4 chips per robotaxi = 3,000 TOPS onboard compute. Powers both the L4 robotaxi (GX platform) and humanoid robot Iron (铁甲). Named after Alan Turing.</div>
+          <div class="card-meta">
+            <span class="meta-tag highlight">3,000 TOPS</span>
+            <span class="meta-tag">Robotaxi + Iron Robot</span>
+            <span class="meta-tag blue">NYSE: XPEV</span>
+          </div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #9</span><span class="card-status status-public">Public (Xpeng subsidiary)</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- CLOUD PLATFORMS                 -->
+  <!-- =============================== -->
+  <div class="cat-section" data-cat="cloud">
+    <div class="section-header">
+      <span class="section-tag" style="background:#f0f4fe;color:#1a56db;">Cloud & AI Infrastructure · 云计算</span>
+      <div class="section-line"></div>
+      <span class="section-count">4 platforms</span>
+    </div>
+    <div class="company-grid">
+
+      <div class="company-card" data-search="alibaba cloud 阿里云 aliyun qwen china number one">
+        <div class="card-stripe stripe-cloud"></div>
+        <div class="card-body">
+          <div class="card-name">Alibaba Cloud</div>
+          <div class="card-zh">阿里云</div>
+          <div class="card-py">Ālǐ Yún</div>
+          <div class="card-desc">#1 cloud in China. Hosts and trains Qwen models. Enterprise AI platform 百炼 (Bailian). Strong in Southeast Asia as well as China. Alibaba's AI strategy is cloud-first.</div>
+          <div class="card-meta"><span class="meta-tag highlight">#1 China Cloud</span><span class="meta-tag">Qwen Host</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Alibaba subsidiary</span></div>
+      </div>
+
+      <div class="company-card" data-search="huawei cloud 华为云 government telco pangu">
+        <div class="card-stripe stripe-cloud"></div>
+        <div class="card-body">
+          <div class="card-name">Huawei Cloud</div>
+          <div class="card-zh">华为云</div>
+          <div class="card-py">Huáwéi Yún</div>
+          <div class="card-desc">#2 cloud in China. Exceptionally strong in government and telco verticals. Hosts Pangu model family. Tightly integrated with Huawei's hardware (servers, Ascend chips, networking) for end-to-end AI stack.</div>
+          <div class="card-meta"><span class="meta-tag highlight">Pangu Model</span><span class="meta-tag">#2 China Cloud</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Huawei subsidiary</span></div>
+      </div>
+
+      <div class="company-card" data-search="tencent cloud 腾讯云 wechat integration">
+        <div class="card-stripe stripe-cloud"></div>
+        <div class="card-body">
+          <div class="card-name">Tencent Cloud</div>
+          <div class="card-zh">腾讯云</div>
+          <div class="card-py">Téngxùn Yún</div>
+          <div class="card-desc">#3 cloud in China. WeChat ecosystem integration gives unique distribution advantage for AI products deployed in consumer apps. Hosts Hunyuan model and provides inference services to portfolio AI companies.</div>
+          <div class="card-meta"><span class="meta-tag highlight">#3 China Cloud</span><span class="meta-tag">WeChat Integration</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Tencent subsidiary</span></div>
+      </div>
+
+      <div class="company-card" data-search="baidu ai cloud 百度智能云 ernie autonomous driving data">
+        <div class="card-stripe stripe-cloud"></div>
+        <div class="card-body">
+          <div class="card-name">Baidu AI Cloud</div>
+          <div class="card-zh">百度智能云</div>
+          <div class="card-py">Bǎidù Zhìnéng Yún</div>
+          <div class="card-desc">ERNIE-powered cloud platform. Particularly strong in autonomous driving data and AI applications for the transportation and logistics verticals. Tight integration with Apollo robotaxi operations.</div>
+          <div class="card-meta"><span class="meta-tag highlight">ERNIE-powered</span><span class="meta-tag">AV Data</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Baidu subsidiary</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- AUTONOMOUS DRIVING              -->
+  <!-- =============================== -->
+  <div class="cat-section" data-cat="auto">
+    <div class="section-header">
+      <span class="section-tag" style="background:#f8f0fe;color:#8e44ad;">Autonomous Driving · 自动驾驶</span>
+      <div class="section-line"></div>
+      <span class="section-count">6 companies</span>
+    </div>
+    <div class="company-grid">
+
+      <div class="company-card" data-search="baidu apollo 百度 robotaxi 10 cities largest">
+        <div class="card-stripe stripe-auto"></div>
+        <div class="card-body">
+          <div class="card-name">Baidu Apollo</div>
+          <div class="card-zh">百度Apollo</div>
+          <div class="card-py">Bǎidù Apollo</div>
+          <div class="card-desc">China's largest robotaxi operator. Operates fully driverless commercial service in 10+ cities including Beijing, Wuhan, and Shenzhen. Sixth-generation RT6 vehicle at ~¥250K unit cost. Expanding international partnerships.</div>
+          <div class="card-meta"><span class="meta-tag highlight">Largest robotaxi</span><span class="meta-tag">10+ cities</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Baidu subsidiary</span></div>
+      </div>
+
+      <div class="company-card" data-search="xpeng 小鹏汽车 xiaopeng qiche l4 robotaxi turing chip vla 2.0 pure vision lidar-free gx iron robot">
+        <div class="card-stripe stripe-auto"></div>
+        <div class="card-body">
+          <div class="card-name">Xpeng</div>
+          <div class="card-zh">小鹏汽车</div>
+          <div class="card-py">Xiǎopéng Qìchē</div>
+          <div class="card-desc">First Chinese automaker to mass-produce an L4 robotaxi (announced May 18, 2026). Pure-vision, LiDAR-free. Powered by 4× Turing AI chips = 3,000 TOPS. End-to-end VLA 2.0 model; &lt;80ms latency; no HD maps. VLA 2.0 shared with humanoid robot Iron (铁甲). Pilot H2 2026; fully driverless Q1 2027.</div>
+          <div class="card-meta"><span class="meta-tag highlight">First L4 mass production</span><span class="meta-tag blue">NYSE: XPEV</span><span class="meta-tag">Iron Robot (铁甲)</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #9</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="pony.ai 小马智行 xiaoma zhixing nasdaq gac trucking">
+        <div class="card-stripe stripe-auto"></div>
+        <div class="card-body">
+          <div class="card-name">Pony.ai</div>
+          <div class="card-zh">小马智行</div>
+          <div class="card-py">Xiǎomǎ Zhìxíng</div>
+          <div class="card-desc">US-listed. Dual business in robotaxi and autonomous trucking. JV with GAC for robotaxi deployment. One of the first Chinese AV companies to achieve US listing, giving it access to international capital markets.</div>
+          <div class="card-meta"><span class="meta-tag highlight">Robotaxi + Trucking</span><span class="meta-tag blue">NASDAQ: PONY</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="weride 文远知行 wenyuan zhixing nasdaq global autonomous buses">
+        <div class="card-stripe stripe-auto"></div>
+        <div class="card-body">
+          <div class="card-name">WeRide</div>
+          <div class="card-zh">文远知行</div>
+          <div class="card-py">Wén​yuǎn Zhīxíng</div>
+          <div class="card-desc">Global expansion focus. Robotaxi and autonomous bus operations across multiple countries. One of the more internationally diversified Chinese AV companies, with operations in Abu Dhabi and Singapore.</div>
+          <div class="card-meta"><span class="meta-tag highlight">Global Expansion</span><span class="meta-tag blue">NASDAQ: WRD</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-public">Public</span></div>
+      </div>
+
+      <div class="company-card" data-search="momenta 魔门塔 modenta toyota gm data-driven">
+        <div class="card-stripe stripe-auto"></div>
+        <div class="card-body">
+          <div class="card-name">Momenta</div>
+          <div class="card-zh">魔门塔</div>
+          <div class="card-py">Mó​méntǎ</div>
+          <div class="card-desc">Data-driven AV approach. Backed by Toyota and GM — unusual cross-Pacific partnership reflecting Momenta's technology credibility. Focuses on "flywheel" data strategy: more miles → better models → more miles.</div>
+          <div class="card-meta"><span class="meta-tag highlight">Toyota · GM backed</span><span class="meta-tag">Data flywheel</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Private</span></div>
+      </div>
+
+      <div class="company-card" data-search="huawei smart car 华为智选车 ads aito luxeed advanced driving system">
+        <div class="card-stripe stripe-auto"></div>
+        <div class="card-body">
+          <div class="card-name">Huawei Smart Car</div>
+          <div class="card-zh">华为智选车</div>
+          <div class="card-py">Huáwéi Zhìxuǎn Chē</div>
+          <div class="card-desc">Supplies ADS (Advanced Driving System) to OEMs as a Tier-1 supplier. Partner brands include AITO and Luxeed. Huawei's strategy is to be the "Bosch of China AV" — supplying the AI brains without building its own vehicles.</div>
+          <div class="card-meta"><span class="meta-tag highlight">ADS Supplier</span><span class="meta-tag">AITO · Luxeed</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">First seen #1</span><span class="card-status status-private">Huawei division</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =============================== -->
+  <!-- GOVERNMENT BODIES               -->
+  <!-- =============================== -->
+  <div class="cat-section" data-cat="gov">
+    <div class="section-header">
+      <span class="section-tag" style="background:#f4f4f6;color:#5a6a7a;">Government Bodies · 政府机构</span>
+      <div class="section-line"></div>
+      <span class="section-count">4 bodies</span>
+    </div>
+    <div class="company-grid">
+
+      <div class="company-card" data-search="miit 工业和信息化部 gongye xinxihua bu ministry industry information technology telecom semiconductors">
+        <div class="card-stripe stripe-gov"></div>
+        <div class="card-body">
+          <div class="card-name">MIIT</div>
+          <div class="card-zh">工业和信息化部</div>
+          <div class="card-py">Gōngyè hé Xìnxīhuà Bù</div>
+          <div class="card-desc">Ministry of Industry & Information Technology. Regulates AI, telecoms, and semiconductors. Developing national agentic AI security standards in response to OpenClaw vulnerability wave (May 2026).</div>
+          <div class="card-meta"><span class="meta-tag">AI Regulation</span><span class="meta-tag">Semiconductor Policy</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">Government body</span><span class="card-status status-state">State</span></div>
+      </div>
+
+      <div class="company-card" data-search="cac 网络安全审查 cyberspace administration generative ai data online content">
+        <div class="card-stripe stripe-gov"></div>
+        <div class="card-body">
+          <div class="card-name">CAC</div>
+          <div class="card-zh">国家互联网信息办公室</div>
+          <div class="card-py">Guójiā Hùliánwǎng Xìnxī Bàngōngshì</div>
+          <div class="card-desc">Cyberspace Administration of China. Regulates generative AI, data handling, and online content. Issued first AI agent (智能体) regulations jointly with NDRC and MIIT on May 8, 2026.</div>
+          <div class="card-meta"><span class="meta-tag">Generative AI rules</span><span class="meta-tag highlight">Agent Regs May 2026</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">Government body</span><span class="card-status status-state">State</span></div>
+      </div>
+
+      <div class="company-card" data-search="ndrc 国家发展改革委员会 national development reform commission 5-year plans industrial policy us lp capital">
+        <div class="card-stripe stripe-gov"></div>
+        <div class="card-body">
+          <div class="card-name">NDRC</div>
+          <div class="card-zh">国家发展和改革委员会</div>
+          <div class="card-py">Guójiā Fāzhǎn hé Gǎigé Wěiyuánhuì</div>
+          <div class="card-desc">National Development & Reform Commission. Sets 5-year plans and industrial policy. In 2026, ordered leading AI startups (Moonshot, Stepfun, Zhipu, MiniMax) to reduce US LP capital exposure and reject US-origin capital without government clearance.</div>
+          <div class="card-meta"><span class="meta-tag highlight">US LP capital orders</span><span class="meta-tag">5-Year Plans</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">Government body</span><span class="card-status status-state">State</span></div>
+      </div>
+
+      <div class="company-card" data-search="most 科学技术部 kexue jishu bu ministry science technology r&d national ai programs">
+        <div class="card-stripe stripe-gov"></div>
+        <div class="card-body">
+          <div class="card-name">MOST</div>
+          <div class="card-zh">科学技术部</div>
+          <div class="card-py">Kēxué Jìshù Bù</div>
+          <div class="card-desc">Ministry of Science & Technology. Funds basic R&D and national AI programs. Key allocator of state research grants for AI, semiconductor, and quantum computing research programs.</div>
+          <div class="card-meta"><span class="meta-tag">R&D Funding</span><span class="meta-tag">National AI Programs</span></div>
+        </div>
+        <div class="card-footer"><span class="card-issue">Government body</span><span class="card-status status-state">State</span></div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /grid-wrap -->
+
+<div class="footer">
+  <div class="footer-brand">中国人工智能版图 · China AI Landscape</div>
+  <div class="footer-text">Living document · Updated by China Brief agent · Issue #12 · May 25, 2026 · Not investment advice</div>
+</div>
+
+<script>
+let currentCat = 'all';
+
+function filterCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+function filterCards() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  let visible = 0;
+
+  document.querySelectorAll('.cat-section').forEach(section => {
+    const sectionCat = section.dataset.cat;
+    const catMatch = currentCat === 'all' || currentCat === sectionCat;
+
+    let sectionVisible = 0;
+    section.querySelectorAll('.company-card').forEach(card => {
+      const searchText = (card.dataset.search + ' ' + card.innerHTML).toLowerCase();
+      const searchMatch = q === '' || searchText.includes(q);
+      const show = catMatch && searchMatch;
+      card.classList.toggle('hidden', !show);
+      if (show) { sectionVisible++; visible++; }
+    });
+
+    section.classList.toggle('hidden', sectionVisible === 0);
+  });
+
+  document.getElementById('resultsCount').textContent = visible + ' ' + (visible === 1 ? 'entity' : 'entities');
+  document.getElementById('noResults').classList.toggle('show', visible === 0);
+}
+</script>
+</body>
+</html>
