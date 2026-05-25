@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #7 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.mhead{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.mmeta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.mback{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}.panel.active{display:block}
+.pk{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.ph{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.pd{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.sigs{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sv{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.cw{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.ct{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.ann{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.a{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.al{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.av{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.as{font-size:11px;color:#5a6a8a;line-height:1.4}
+.src{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){.masthead{padding:16px 20px}.tab-bar{padding:0 16px}.panels{padding:28px 20px 60px}}</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=7" class="mback">← Back to Brief</a>
+  <div class="kicker">AI Visualized · Issue #7</div>
+  <div class="mhead">AI Law Blueprint, X Square Robot Goes Consumer, 34-Month Property Decline</div>
+  <div class="mmeta">May 20, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">34-Month Property Decline</div>
+  <div class="tab" onclick="showTab(1)">AI Law Framework</div>
+  <div class="tab" onclick="showTab(2)">Consumer Robot Market</div></div>
+<div class="panels">
+<div class="panel active">
+  <div class="pk">Story 3 · Macro</div>
+  <div class="ph">China's Home Prices Fall for the 34th Straight Month — Shanghai Holds</div>
+  <div class="pd">New home prices fell nationally for the 34th consecutive month in April, maintaining the longest unbroken decline in modern Chinese real estate history — with Shanghai the sole major city showing positive momentum.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">34</div><div class="sl">Consecutive months of decline</div></div>
+    <div class="sig"><div class="sv">-4.8%</div><div class="sl">National new home prices YoY</div></div>
+    <div class="sig"><div class="sv">Shanghai</div><div class="sl">Only Tier-1 city with gains</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">China New Home Price Index — Major Cities YoY % (April 2026)</div>
+    <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="200" y1="20" x2="200" y2="200" stroke="#2e2e52" stroke-width="1"/>
+      <line x1="200" y1="200" x2="640" y2="200" stroke="#2e2e52" stroke-width="1"/>
+      <!-- zero line -->
+      <line x1="200" y1="110" x2="640" y2="110" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3" opacity=".5"/>
+      <text x="636" y="107" font-size="9" fill="#c0392b" opacity=".7">0%</text>
+      <!-- cities: positive bar = right of 200, negative = left -->
+      <!-- Shanghai: +1.2% -->
+      <rect x="200" y="30" width="48" height="22" fill="#27ae60" opacity=".8" rx="2"/>
+      <text x="253" y="45" font-size="10" fill="#2ecc71" font-weight="700">+1.2%</text>
+      <text x="196" y="45" font-size="10" fill="#e8d5b0" text-anchor="end">Shanghai</text>
+      <!-- Beijing: -0.8% -->
+      <rect x="168" y="60" width="32" height="22" fill="#c0392b" opacity=".6" rx="2"/>
+      <text x="163" y="75" font-size="10" fill="#e74c3c" text-anchor="end">-0.8%</text>
+      <text x="204" y="75" font-size="10" fill="#7a8baa">Beijing</text>
+      <!-- Shenzhen: -2.1% -->
+      <rect x="116" y="90" width="84" height="22" fill="#c0392b" opacity=".65" rx="2"/>
+      <text x="112" y="105" font-size="10" fill="#e74c3c" text-anchor="end">-2.1%</text>
+      <text x="204" y="105" font-size="10" fill="#7a8baa">Shenzhen</text>
+      <!-- Guangzhou: -3.4% -->
+      <rect x="64" y="120" width="136" height="22" fill="#c0392b" opacity=".7" rx="2"/>
+      <text x="60" y="135" font-size="10" fill="#e74c3c" text-anchor="end">-3.4%</text>
+      <text x="204" y="135" font-size="10" fill="#7a8baa">Guangzhou</text>
+      <!-- Chengdu: -4.1% -->
+      <rect x="36" y="150" width="164" height="22" fill="#c0392b" opacity=".75" rx="2"/>
+      <text x="32" y="165" font-size="10" fill="#e74c3c" text-anchor="end">-4.1%</text>
+      <text x="204" y="165" font-size="10" fill="#7a8baa">Chengdu</text>
+      <!-- Zhengzhou: -7.9% -->
+      <rect x="204" y="177" width="0" height="0" fill="none"/>
+      <rect x="24" y="177" width="176" height="22" fill="#c0392b" opacity=".85" rx="2"/>
+      <text x="20" y="192" font-size="10" fill="#e74c3c" text-anchor="end">-7.9%</text>
+      <text x="204" y="192" font-size="10" fill="#7a8baa">Zhengzhou</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">34-month streak</div><div class="av">Longest on record</div><div class="as">The prior record was 16 consecutive months during the 2014–15 correction; the current cycle is more than twice as long and shows no broad-based reversal</div></div>
+    <div class="a"><div class="al">Shanghai exception</div><div class="av">Luxury + foreigner demand</div><div class="as">Shanghai gains are concentrated in premium districts — driven by returning expats, HK capital, and restricted supply in Tier-1 districts, not broad recovery</div></div>
+    <div class="a"><div class="al">Policy lever</div><div class="av">Local govt backstops</div><div class="as">State-owned enterprises buying unsold inventory have stabilized volumes in some cities but are not restoring price growth — a fiscal cost without a demand cure</div></div>
+  </div>
+  <div class="src">Source: NBS, China Brief analysis — May 20, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 1 · Policy</div>
+  <div class="ph">Beijing's AI Rulebook Goes Comprehensive — State Council Flags Unified Law</div>
+  <div class="pd">The State Council signaled that China's scattered AI regulations — covering algorithms, generative AI, deep synthesis, and autonomous systems — will be consolidated into a single unified AI law, the first of its kind globally.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">1st</div><div class="sl">Unified national AI law globally</div></div>
+    <div class="sig"><div class="sv">4</div><div class="sl">Existing regulations to be merged</div></div>
+    <div class="sig"><div class="sv">2027</div><div class="sl">Target enactment (est.)</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">China AI Regulatory Architecture — From Fragmented to Unified</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- fragmented -->
+      <text x="170" y="22" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">CURRENT (Fragmented)</text>
+      <rect x="30" y="35" width="140" height="34" rx="5" fill="#1a1a2e" stroke="#2e2e52"/>
+      <text x="100" y="56" font-size="9" fill="#7a8baa" text-anchor="middle">Algorithm Recommendation</text>
+      <text x="100" y="67" font-size="8" fill="#5a6a8a" text-anchor="middle">Regulation (2022)</text>
+      <rect x="30" y="80" width="140" height="34" rx="5" fill="#1a1a2e" stroke="#2e2e52"/>
+      <text x="100" y="101" font-size="9" fill="#7a8baa" text-anchor="middle">Deep Synthesis Rules</text>
+      <text x="100" y="112" font-size="8" fill="#5a6a8a" text-anchor="middle">(2023)</text>
+      <rect x="30" y="125" width="140" height="34" rx="5" fill="#1a1a2e" stroke="#2e2e52"/>
+      <text x="100" y="146" font-size="9" fill="#7a8baa" text-anchor="middle">Generative AI Rules</text>
+      <text x="100" y="157" font-size="8" fill="#5a6a8a" text-anchor="middle">(2023)</text>
+      <rect x="30" y="170" width="140" height="34" rx="5" fill="#1a1a2e" stroke="#2e2e52"/>
+      <text x="100" y="191" font-size="9" fill="#7a8baa" text-anchor="middle">AI Safety Assessment</text>
+      <text x="100" y="202" font-size="8" fill="#5a6a8a" text-anchor="middle">Draft (2024)</text>
+      <!-- arrow -->
+      <text x="360" y="120" font-size="28" fill="#c0392b" text-anchor="middle">→</text>
+      <!-- unified -->
+      <text x="550" y="22" font-size="11" fill="#e74c3c" text-anchor="middle" font-weight="700">TARGET (Unified Law)</text>
+      <rect x="440" y="40" width="220" height="160" rx="8" fill="#1a1a2e" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="550" y="80" font-size="13" fill="#e8d5b0" text-anchor="middle" font-weight="800">China AI Law</text>
+      <text x="550" y="100" font-size="10" fill="#7a8baa" text-anchor="middle">人工智能法</text>
+      <text x="550" y="125" font-size="9" fill="#5a6a8a" text-anchor="middle">Consolidated framework</text>
+      <text x="550" y="140" font-size="9" fill="#5a6a8a" text-anchor="middle">covering all AI applications</text>
+      <text x="550" y="158" font-size="9" fill="#c0392b" text-anchor="middle">Target: 2027 enactment</text>
+      <text x="550" y="174" font-size="9" fill="#5a6a8a" text-anchor="middle">State Council → NPC review</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Global first</div><div class="av">Ahead of EU AI Act</div><div class="as">EU AI Act covers prohibited uses but is not a unified national law — China's approach consolidates all AI governance under one statute, a different regulatory philosophy</div></div>
+    <div class="a"><div class="al">Key provisions (draft)</div><div class="av">Mandatory registration</div><div class="as">Frontier models above capability threshold must register with CAC; safety assessments required before public deployment — mirrors existing GenAI rules</div></div>
+    <div class="a"><div class="al">Investor impact</div><div class="av">Compliance clarity</div><div class="as">Consolidation reduces regulatory ambiguity for AI companies operating across multiple product categories — clearer rules, higher compliance cost, predictable enforcement</div></div>
+  </div>
+  <div class="src">Source: State Council, China Brief analysis — May 20, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 2 · Robotics</div>
+  <div class="ph">X Square Robot's Wall-B Goes to Market — Chinese Households Can Now Buy a Home Robot</div>
+  <div class="pd">X Square Robot launched Wall-B, a wheeled home assistant robot priced at ¥29,800 ($4,100) — the first Chinese-made general-purpose household robot at a consumer price point, targeting the domestic market before an international launch.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">¥29,800</div><div class="sl">Launch price ($4,100)</div></div>
+    <div class="sig"><div class="sv">8hr</div><div class="sl">Battery life</div></div>
+    <div class="sig"><div class="sv">Q4 2026</div><div class="sl">First deliveries</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Consumer Home Robot — Price Comparison (USD)</div>
+    <svg viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="20" x2="80" y2="180" stroke="#2e2e52"/>
+      <line x1="80" y1="180" x2="620" y2="180" stroke="#2e2e52"/>
+      <line x1="80" y1="100" x2="620" y2="100" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <text x="75" y="184" font-size="9" fill="#5a6a8a" text-anchor="end">$0</text>
+      <text x="75" y="104" font-size="9" fill="#5a6a8a" text-anchor="end">$50K</text>
+      <text x="75" y="24" font-size="9" fill="#5a6a8a" text-anchor="end">$100K+</text>
+      <!-- Spot: $75K -->
+      <rect x="100" y="47" width="70" height="133" fill="#4a7fa5" opacity=".5" rx="3"/>
+      <text x="135" y="40" font-size="10" fill="#6ab0ff" text-anchor="middle">~$75K</text>
+      <text x="135" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">Boston Dynamics</text>
+      <text x="135" y="207" font-size="8" fill="#5a6a8a" text-anchor="middle">Spot (industrial)</text>
+      <!-- Optimus: ~$20K (est) -->
+      <rect x="210" y="140" width="70" height="40" fill="#4a7fa5" opacity=".4" rx="3"/>
+      <text x="245" y="133" font-size="10" fill="#6ab0ff" text-anchor="middle">~$20K</text>
+      <text x="245" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">Tesla Optimus</text>
+      <text x="245" y="207" font-size="8" fill="#5a6a8a" text-anchor="middle">(est. B2C)</text>
+      <!-- Unitree H1: $16K -->
+      <rect x="320" y="148" width="70" height="32" fill="#c0392b" opacity=".5" rx="3"/>
+      <text x="355" y="141" font-size="10" fill="#e74c3c" text-anchor="middle">$16K</text>
+      <text x="355" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">Unitree H1</text>
+      <text x="355" y="207" font-size="8" fill="#5a6a8a" text-anchor="middle">(developer)</text>
+      <!-- Wall-B: $4.1K -->
+      <rect x="430" y="163" width="70" height="17" fill="#c0392b" opacity=".9" rx="3"/>
+      <text x="465" y="156" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">$4,100</text>
+      <text x="465" y="196" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">Wall-B ←</text>
+      <text x="465" y="207" font-size="8" fill="#e74c3c" text-anchor="middle">(consumer)</text>
+      <!-- Astro: $1.6K (Amazon, limited) -->
+      <rect x="540" y="170" width="60" height="10" fill="#27ae60" opacity=".6" rx="3"/>
+      <text x="570" y="163" font-size="10" fill="#2ecc71" text-anchor="middle">$1.6K</text>
+      <text x="570" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">Amazon Astro</text>
+      <text x="570" y="207" font-size="8" fill="#5a6a8a" text-anchor="middle">(limited US)</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Positioning</div><div class="av">Companion + assistant</div><div class="as">Wall-B is designed for elder care, child supervision, and home security — not industrial use; targets China's aging household demographic</div></div>
+    <div class="a"><div class="al">Cost trajectory</div><div class="av">¥30K → ¥15K (2028 est.)</div><div class="as">X Square projects consumer price below ¥15,000 within 2 years as production scales — a price point that would open mass-market adoption</div></div>
+    <div class="a"><div class="al">Market size</div><div class="av">400M households</div><div class="as">Even 1% penetration of China's household market at ¥20K average would represent a ¥80B+ annual market — why investor interest is intense</div></div>
+  </div>
+  <div class="src">Source: X Square Robot, China Brief analysis — May 20, 2026</div>
+</div></div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
