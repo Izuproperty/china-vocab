@@ -8,23 +8,26 @@
 <meta name="apple-mobile-web-app-title" content="China Brief">
 <meta name="theme-color" content="#1a1a2e">
 <link rel="manifest" href="manifest.json">
-<title>Ã°ÂÂÂ¨Ã°ÂÂÂ³ China Brief</title>
+<title>China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0f0f1f;
+  --bg: #f4f1ec;
   --surface: #1a1a2e;
-  --surface2: #242440;
-  --border: #2e2e52;
+  --card: #ffffff;
+  --card2: #f8f6f2;
+  --border: #e0d8d0;
+  --border-dark: #2e2e52;
   --red: #c0392b;
-  --red-light: #e74c3c;
   --cream: #e8d5b0;
   --blue: #4a7fa5;
-  --blue-light: #6ab0ff;
-  --green: #27ae60;
-  --text: #dde0f0;
-  --text-dim: #7a8baa;
-  --gold: #f1c40f;
-  --r: 14px;
+  --navy: #1a1a2e;
+  --text: #1a1a2e;
+  --text-mid: #5a5a6a;
+  --text-dim: #9a8a7a;
+  --r: 6px;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -32,218 +35,225 @@ html, body {
   min-height: 100%;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Top bar Ã¢ÂÂÃ¢ÂÂ */
+/* ── Top bar ── */
 #topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px 10px;
-  padding-top: max(12px, env(safe-area-inset-top));
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  padding: 14px 24px 12px;
+  padding-top: max(14px, env(safe-area-inset-top));
+  background: var(--navy);
+  border-bottom: 4px solid var(--red);
   position: sticky;
   top: 0;
   z-index: 100;
 }
-.topbar-left { display:flex; align-items:center; gap:10px; }
+.topbar-left { display:flex; align-items:center; gap:12px; }
 .back-btn {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text-dim);
-  font-size: 13px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  color: #8a9bb5;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   padding: 5px 10px;
   cursor: pointer;
   text-decoration: none;
   display: flex;
   align-items: center;
   gap: 4px;
+  transition: color .15s;
 }
 .back-btn:hover { color: var(--cream); }
-.topbar-title { font-size: 15px; font-weight: 700; color: var(--cream); letter-spacing:.5px; }
-.topbar-en { font-size: 11px; font-weight: 500; color: var(--text-dim); letter-spacing: .3px; margin-left: 4px; }
-.topbar-pinyin { font-size: 10px; color: var(--text-dim); font-style: italic; letter-spacing: .5px; margin-top: 1px; }
-.topbar-issue { font-size: 10px; color: var(--text-dim); letter-spacing: .5px; text-align: right; line-height: 1.5; }
+.topbar-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: #fff; }
+.topbar-en { font-size: 11px; font-weight: 400; color: #8a9bb5; letter-spacing: .5px; margin-left: 6px; }
+.topbar-pinyin { font-size: 10px; color: #4a5a7a; font-style: italic; letter-spacing: .5px; margin-top: 2px; }
+.topbar-issue { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: #4a5a7a; text-align: right; line-height: 1.6; text-transform: uppercase; }
 
-/* Ã¢ÂÂÃ¢ÂÂ Issue selector Ã¢ÂÂÃ¢ÂÂ */
+/* ── Issue selector ── */
 #issue-nav {
   display: flex;
-  gap: 8px;
-  padding: 14px 16px 6px;
+  gap: 0;
+  padding: 0 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  background: var(--surface);
+  background: #f0ede8;
   border-bottom: 1px solid var(--border);
 }
 #issue-nav::-webkit-scrollbar { display:none; }
 .issue-pill {
   flex-shrink: 0;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  color: var(--text-dim);
-  font-size: 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: #9a8a7a;
+  font-size: 11px;
   font-weight: 600;
-  padding: 5px 14px;
+  letter-spacing: 1px;
+  padding: 10px 14px 8px;
   cursor: pointer;
   transition: all .15s;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 .issue-pill.active {
-  background: var(--red);
-  border-color: var(--red);
-  color: #fff;
+  border-bottom-color: var(--red);
+  color: var(--red);
 }
-.issue-pill:active { transform: scale(.96); }
+.issue-pill:active { opacity: .7; }
 
-/* Ã¢ÂÂÃ¢ÂÂ Main content Ã¢ÂÂÃ¢ÂÂ */
+/* ── Main content ── */
 #content {
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto;
-  padding: 20px 16px 80px;
+  padding: 24px 16px 90px;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Brief header Ã¢ÂÂÃ¢ÂÂ */
+/* ── Brief header ── */
 .brief-header {
-  background: linear-gradient(135deg, var(--surface) 0%, #1e1e38 100%);
-  border: 1px solid var(--border);
+  background: var(--navy);
   border-radius: var(--r);
-  padding: 24px 20px 20px;
+  padding: 28px 28px 24px;
   margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-.brief-header::before {
-  content: 'Ã¤Â¸Â­Ã¥ÂÂ½';
-  position: absolute;
-  right: -10px;
-  top: -10px;
-  font-size: 90px;
-  opacity: .04;
-  color: var(--cream);
-  font-weight: 900;
-  line-height: 1;
 }
 .brief-issue-badge {
   display: inline-block;
-  background: var(--red);
-  color: #fff;
-  font-size: 10px;
+  background: transparent;
+  color: var(--red);
+  font-size: 9px;
   font-weight: 700;
-  letter-spacing: 1px;
-  padding: 3px 10px;
-  border-radius: 20px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 0;
   margin-bottom: 10px;
 }
 .brief-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--cream);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
   line-height: 1.25;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .brief-meta {
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 1px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #4a5a7a;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 .brief-summary {
   font-size: 14px;
-  color: var(--text);
-  line-height: 1.7;
-  margin-top: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
+  color: #8a9bb5;
+  line-height: 1.75;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #2e2e52;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Sections Ã¢ÂÂÃ¢ÂÂ */
+/* ── Sections ── */
 .section-card {
-  background: var(--surface);
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--r);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 .section-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 16px;
+  gap: 12px;
+  padding: 16px 20px;
   cursor: pointer;
   user-select: none;
 }
 .section-num {
   font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
+  font-weight: 700;
+  font-style: italic;
   color: var(--red);
-  background: rgba(192,57,43,.12);
-  border: 1px solid rgba(192,57,43,.25);
-  border-radius: 6px;
-  padding: 3px 7px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  min-width: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  flex: 1;
+  line-height: 1.3;
+}
+.section-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
   flex-shrink: 0;
 }
-.section-title { font-size: 14px; font-weight: 700; color: var(--cream); flex: 1; }
-.section-tag {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 20px;
-  letter-spacing: .5px;
-}
-.tag-ai { background: #1a3a6e; color: #6ab0ff; }
-.tag-macro { background: #3a2000; color: #f0a030; }
-.tag-geo { background: #1a3a1a; color: #2ecc71; }
-.tag-market { background: #2a0a2e; color: #c070d0; }
-.tag-policy { background: #1e1a00; color: var(--gold); }
+.tag-ai { color: #1a56db; }
+.tag-macro { color: #b45309; }
+.tag-geo { color: #166534; }
+.tag-market { color: #7e22ce; }
+.tag-policy { color: #92400e; }
 .section-chevron {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-dim);
   transition: transform .2s;
+  flex-shrink: 0;
 }
 .section-card.open .section-chevron { transform: rotate(180deg); }
 .section-body {
   display: none;
-  padding: 0 16px 16px;
+  padding: 0 20px 20px;
   border-top: 1px solid var(--border);
 }
 .section-card.open .section-body { display: block; }
 .section-text {
   font-size: 14px;
-  line-height: 1.75;
-  color: var(--text);
-  padding-top: 14px;
+  line-height: 1.8;
+  color: #2c2c3a;
+  padding-top: 16px;
 }
-.section-text p { margin-bottom: 10px; }
+.section-text p { margin-bottom: 12px; }
 .section-text p:last-child { margin-bottom: 0; }
-.section-text strong { color: var(--cream); }
+.section-text strong { color: var(--navy); font-weight: 600; }
 
-/* Ã¢ÂÂÃ¢ÂÂ Vocab chips Ã¢ÂÂÃ¢ÂÂ */
+/* ── Vocab chips ── */
 .vocab-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-top: 14px;
-  padding-top: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
   border-top: 1px solid var(--border);
 }
 .vocab-chips-label {
   width: 100%;
-  font-size: 10px;
-  letter-spacing: 1.5px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-dim);
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 .vocab-chip {
-  background: var(--surface2);
+  background: var(--card2);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 5px 10px;
   font-size: 13px;
   display: flex;
@@ -251,34 +261,35 @@ html, body {
   gap: 6px;
   cursor: default;
 }
-.chip-zh { color: var(--cream); font-size: 16px; }
-.chip-en { color: var(--text-dim); font-size: 11px; }
+.chip-zh { color: var(--red); font-size: 16px; font-weight: 600; }
+.chip-en { color: var(--text-mid); font-size: 11px; }
 
-/* Ã¢ÂÂÃ¢ÂÂ Source line Ã¢ÂÂÃ¢ÂÂ */
+/* ── Source line ── */
 .section-source {
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--text-dim);
-  letter-spacing: .3px;
-  margin-top: 12px;
-  padding-top: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
-  opacity: .7;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Takeaway box Ã¢ÂÂÃ¢ÂÂ */
+/* ── Takeaway box ── */
 .takeaway-box {
-  background: var(--surface2);
+  background: var(--card2);
   border-left: 3px solid var(--blue);
-  border-radius: 0 10px 10px 0;
-  padding: 12px 14px;
-  margin-top: 12px;
+  border-radius: 0 4px 4px 0;
+  padding: 12px 16px;
+  margin-top: 14px;
   font-size: 13px;
-  color: var(--text-dim);
-  line-height: 1.6;
+  color: var(--text-mid);
+  line-height: 1.7;
 }
-.takeaway-box strong { color: var(--blue-light); }
+.takeaway-box strong { color: var(--navy); font-weight: 600; }
 
-/* Ã¢ÂÂÃ¢ÂÂ Empty / loading states Ã¢ÂÂÃ¢ÂÂ */
+/* ── Empty / loading states ── */
 #loading {
   text-align: center;
   padding: 60px 20px;
@@ -291,16 +302,16 @@ html, body {
   padding: 60px 20px;
 }
 .empty-icon { font-size: 48px; margin-bottom: 16px; }
-.empty-title { font-size: 18px; font-weight: 700; color: var(--cream); margin-bottom: 8px; }
+.empty-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
 .empty-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
 
-/* Ã¢ÂÂÃ¢ÂÂ Bottom bar Ã¢ÂÂÃ¢ÂÂ */
+/* ── Bottom bar ── */
 #bottombar {
   position: fixed;
   bottom: 0;
   left: 0; right: 0;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
+  background: var(--navy);
+  border-top: 1px solid #2e2e52;
   padding: 10px 16px;
   padding-bottom: max(10px, env(safe-area-inset-bottom));
   display: flex;
@@ -312,32 +323,37 @@ html, body {
   max-width: 200px;
   padding: 12px;
   border: none;
-  border-radius: 12px;
-  font-size: 13px;
+  border-radius: 6px;
+  font-size: 12px;
   font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all .15s;
-  letter-spacing: .3px;
 }
 .bottom-btn:active { transform: scale(.97); }
-.btn-vocab { background: var(--surface2); color: var(--cream); border: 1px solid var(--border); text-decoration: none; display:flex; align-items:center; justify-content:center; }
-.btn-prev { background: var(--surface2); color: var(--text-dim); border: 1px solid var(--border); }
-.btn-prev:disabled { opacity: .4; cursor: default; }
-.btn-next { background: var(--red); color: #fff; }
-.btn-next:disabled { opacity: .4; cursor: default; background: var(--surface2); }
+.btn-vocab { background: transparent; color: #8a9bb5; border: 1px solid #2e2e52; text-decoration: none; display:flex; align-items:center; justify-content:center; }
+.btn-vocab:hover { color: var(--cream); }
+.btn-prev { background: transparent; color: #8a9bb5; border: 1px solid #2e2e52; }
+.btn-prev:disabled { opacity: .3; cursor: default; }
+.btn-next { background: var(--red); color: #fff; border: none; }
+.btn-next:disabled { opacity: .3; cursor: default; background: #2e2e52; }
 
-/* Ã¢ÂÂÃ¢ÂÂ XP toast Ã¢ÂÂÃ¢ÂÂ */
+/* ── XP toast ── */
 #xp-toast {
   position: fixed;
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background: var(--gold);
-  color: #000;
-  font-size: 13px;
-  font-weight: 800;
+  background: var(--navy);
+  color: var(--cream);
+  border: 1px solid #2e2e52;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   padding: 8px 20px;
-  border-radius: 30px;
+  border-radius: 4px;
   opacity: 0;
   transition: opacity .3s, transform .3s;
   pointer-events: none;
@@ -351,13 +367,13 @@ html, body {
 <!-- Top bar -->
 <div id="topbar">
   <div class="topbar-left">
-    <a href="index.html" class="back-btn">Ã¢ÂÂ Vocab</a>
+    <a href="index.html" class="back-btn">← Vocab</a>
     <div>
       <div style="display:flex;align-items:baseline">
-        <div class="topbar-title">Ã¤Â¸Â­Ã¥ÂÂ½Ã§Â®ÂÃ¦ÂÂ¥</div>
-        <div class="topbar-en">ÃÂ· China Brief</div>
+        <div class="topbar-title">中国简报</div>
+        <div class="topbar-en">· China Brief</div>
       </div>
-      <div class="topbar-pinyin">ZhÃÂngguÃÂ³ JiÃÂnbÃÂ o</div>
+      <div class="topbar-pinyin">Zhōngguó Jiǎnbào</div>
     </div>
   </div>
   <div class="topbar-issue" id="topbar-subtitle"></div>
@@ -368,9 +384,9 @@ html, body {
 
 <!-- Main content area -->
 <div id="content">
-  <div id="loading">Loading briefÃ¢ÂÂ¦</div>
+  <div id="loading">Loading brief…</div>
   <div id="empty">
-    <div class="empty-icon">Ã°ÂÂÂ­</div>
+    <div class="empty-icon" style="font-size:32px;font-weight:800;color:var(--text-dim);letter-spacing:-2px;">—</div>
     <div class="empty-title">No brief yet</div>
     <div class="empty-text">Add a brief to <code>briefs.json</code> in the repo to see it here.</div>
   </div>
@@ -379,17 +395,17 @@ html, body {
 
 <!-- Bottom nav -->
 <div id="bottombar">
-  <a href="index.html" class="bottom-btn btn-vocab">Ã°ÂÂÂ Study Vocab</a>
-  <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">Ã¢ÂÂ Prev</button>
-  <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next Ã¢ÂÂ</button>
+  <a href="index.html" class="bottom-btn btn-vocab">Study Vocab</a>
+  <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">← Prev</button>
+  <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next →</button>
 </div>
 
-<div id="xp-toast">Ã°ÂÂÂ° Brief read!</div>
+<div id="xp-toast">Brief read</div>
 
 <script>
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 // DATA
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 let BRIEFS = [];
 let currentIssue = null;
 
@@ -406,9 +422,9 @@ async function loadBriefs() {
   initBriefApp();
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 // INIT
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 function initBriefApp() {
   document.getElementById('loading').style.display = 'none';
 
@@ -426,14 +442,14 @@ function initBriefApp() {
   showIssue(target.issue);
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 // NAVIGATION
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 function buildIssueNav() {
   const nav = document.getElementById('issue-nav');
   nav.innerHTML = BRIEFS.map(b =>
     `<button class="issue-pill" id="pill-${b.issue}" onclick="showIssue(${b.issue})">
-      #${b.issue} ÃÂ· ${formatDate(b.date)}
+      #${b.issue} · ${formatDate(b.date)}
     </button>`
   ).join('');
 }
@@ -462,7 +478,7 @@ function showIssue(issueNum) {
 
   // Update subtitle
   document.getElementById('topbar-subtitle').textContent =
-    formatDate(brief.date, true) + ' ÃÂ· Issue #' + issueNum;
+    formatDate(brief.date, true) + ' · Issue #' + issueNum;
 
   // Update prev/next buttons
   const idx = BRIEFS.findIndex(b => b.issue === issueNum);
@@ -479,26 +495,28 @@ function showIssue(issueNum) {
   markRead(issueNum);
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 // RENDERING
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 function renderBrief(brief) {
   const container = document.getElementById('brief-content');
   container.style.display = 'block';
 
   const tagMap = {
-    ai: ['tag-ai', 'Ã°ÂÂ¤Â AI & Tech'],
-    macro: ['tag-macro', 'Ã°ÂÂÂ Macro'],
-    geo: ['tag-geo', 'Ã°ÂÂÂ Geopolitics'],
-    market: ['tag-market', 'Ã°ÂÂÂ¹ Markets'],
-    policy: ['tag-policy', 'Ã°ÂÂÂ Policy'],
-    robotics: ['tag-ai', 'Ã°ÂÂ¦Â¾ Robotics'],
-    energy: ['tag-geo', 'Ã¢ÂÂ¡ Energy'],
-    trade: ['tag-macro', 'Ã°ÂÂÂ¢ Trade'],
+    ai:       ['tag-ai',     'AI & Tech'],
+    macro:    ['tag-macro',  'Macro'],
+    geo:      ['tag-geo',    'Geopolitics'],
+    market:   ['tag-market', 'Markets'],
+    policy:   ['tag-policy', 'Policy'],
+    robotics: ['tag-ai',     'Robotics'],
+    energy:   ['tag-geo',    'Energy'],
+    trade:    ['tag-macro',  'Trade'],
+    chip:     ['tag-ai',     'Chips & Semis'],
   };
 
+  const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
   const sectionsHtml = (brief.sections || []).map((sec, i) => {
-    const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', 'Ã°ÂÂÂ ' + (sec.tag || 'Note')];
+    const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', sec.tag || 'Note'];
     const vocabHtml = sec.vocab && sec.vocab.length
       ? `<div class="vocab-chips">
            <div class="vocab-chips-label">Vocab from this story</div>
@@ -510,7 +528,7 @@ function renderBrief(brief) {
          </div>`
       : '';
     const sourceHtml = sec.source
-      ? `<div class="section-source">Ã°ÂÂÂ° ${sec.source}</div>`
+      ? `<div class="section-source">SOURCE · ${sec.source}</div>`
       : '';
     const takeawayHtml = sec.takeaway
       ? `<div class="takeaway-box"><strong>Key takeaway:</strong> ${sec.takeaway}</div>`
@@ -525,10 +543,10 @@ function renderBrief(brief) {
     return `
       <div class="section-card" id="sec-${i}">
         <div class="section-header" onclick="toggleSection(${i})">
-          <div class="section-num">${sec.icon || 'Ã°ÂÂÂ'}</div>
+          <div class="section-num">${roman[i] || (i+1)}</div>
           <div class="section-title">${sec.title}</div>
           <span class="section-tag ${tagCls}">${tagLabel}</span>
-          <span class="section-chevron">Ã¢ÂÂ¼</span>
+          <span class="section-chevron">▼</span>
         </div>
         <div class="section-body">
           <div class="section-text">${bodyHtml}</div>
@@ -548,16 +566,16 @@ function renderBrief(brief) {
     </div>
     ${sectionsHtml}
     ${brief.viz_url ? `
-    <a href="${brief.viz_url}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 8px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--red);border-radius:var(--r);text-decoration:none;">
+    <a href="${brief.viz_url}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 8px;padding:18px 20px;background:#1a1a2e;border-left:4px solid #c0392b;border-radius:6px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,0.12);">
       <div>
-        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:3px;">AI Visualized ÃÂ· Data in Focus</div>
-        <div style="font-size:13px;font-weight:600;color:var(--cream);">Charts for this issue</div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">EV payment cycles ÃÂ· Humanoid shipments ÃÂ· Capital flows</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:6px;">AI Visualized · Data in Focus</div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;line-height:1.3;">Charts &amp; data for this issue</div>
+        <div style="font-size:11px;color:#4a5a7a;margin-top:4px;font-weight:500;">Interactive visualizations →</div>
       </div>
-      <div style="font-size:18px;color:var(--red);flex-shrink:0;">Ã¢ÂÂ</div>
+      <div style="font-size:22px;color:#c0392b;flex-shrink:0;">→</div>
     </a>` : ''}
-    <div style="text-align:center;font-size:11px;color:var(--text-dim);margin-top:24px;padding:0 20px">
-      Generated by Claude ÃÂ· <a href="index.html" style="color:var(--blue);text-decoration:none">Study the vocab Ã¢ÂÂ</a>
+    <div style="text-align:center;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#9a8a7a;margin-top:32px;padding:0 20px">
+      中国简报 · <a href="index.html" style="color:#c0392b;text-decoration:none">Study the vocab →</a>
     </div>`;
 
   // Auto-open the first section
@@ -572,9 +590,9 @@ function toggleSection(i) {
   card.classList.toggle('open');
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 // UTILITIES
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 function formatDate(dateStr, long) {
   if (!dateStr) return '';
   try {
@@ -602,9 +620,9 @@ function showToast() {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 // SERVICE WORKER
-// Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ═══════════════════════════════════════════════════════
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
