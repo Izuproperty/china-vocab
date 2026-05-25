@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Issue #5 · AI Visualized — China Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a1a;color:#dde0f0;font-family:-apple-system,'SF Pro Display','Helvetica Neue',sans-serif;min-height:100vh}
+.masthead{background:#0f0f1f;border-bottom:1px solid #2e2e52;padding:18px 40px 16px}
+.kicker{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px}
+.mhead{font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:800;color:#e8d5b0;line-height:1.2;max-width:680px}
+.mmeta{font-size:10px;color:#5a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:6px}
+.mback{font-size:10px;color:#4a7fa5;text-decoration:none;letter-spacing:1px;text-transform:uppercase;float:right;margin-top:2px}
+.tab-bar{display:flex;gap:0;padding:0 40px;background:#0f0f1f;border-bottom:1px solid #2e2e52;overflow-x:auto;scrollbar-width:none}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a6a8a;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .15s}
+.tab.active{color:#e8d5b0;border-bottom-color:#c0392b}
+.panels{max-width:800px;margin:0 auto;padding:40px 40px 60px}
+.panel{display:none}.panel.active{display:block}
+.pk{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#c0392b;margin-bottom:10px}
+.ph{font-family:'Playfair Display',Georgia,serif;font-size:24px;font-weight:800;color:#e8d5b0;line-height:1.25;margin-bottom:6px}
+.pd{font-size:13px;color:#7a8baa;line-height:1.6;margin-bottom:28px;max-width:600px}
+.sigs{display:flex;gap:24px;margin-bottom:32px;flex-wrap:wrap}
+.sig{border-left:3px solid #c0392b;padding:8px 14px}
+.sv{font-size:26px;font-weight:800;color:#e8d5b0;line-height:1}
+.sl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-top:3px}
+.cw{background:#0f0f1f;border:1px solid #2e2e52;border-radius:8px;padding:24px;margin-bottom:24px}
+.ct{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:18px}
+.ann{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:20px}
+.a{background:#0f0f1f;border:1px solid #2e2e52;border-radius:6px;padding:14px}
+.al{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#5a6a8a;margin-bottom:4px}
+.av{font-size:14px;font-weight:700;color:#e8d5b0;margin-bottom:3px}
+.as{font-size:11px;color:#5a6a8a;line-height:1.4}
+.src{font-size:10px;color:#3a4a6a;letter-spacing:.5px;margin-top:28px;padding-top:16px;border-top:1px solid #1e1e38}
+@media(max-width:600px){.masthead{padding:16px 20px}.tab-bar{padding:0 16px}.panels{padding:28px 20px 60px}}</style>
+</head>
+<body>
+<div class="masthead">
+  <a href="brief.html?issue=5" class="mback">← Back to Brief</a>
+  <div class="kicker">AI Visualized · Issue #5</div>
+  <div class="mhead">Moonshot AI Ties GPT-5.5, Cambricon's Chip Ramp, and the Post-Summit Trade Fog</div>
+  <div class="mmeta">May 18, 2026 · Data in Focus</div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab(0)">Cambricon Chip Ramp</div>
+  <div class="tab" onclick="showTab(1)">Kimi K2.6 Benchmarks</div>
+  <div class="tab" onclick="showTab(2)">Trade Fog — Two Stories</div></div>
+<div class="panels">
+<div class="panel active">
+  <div class="pk">Story 2 · Chips & Semis</div>
+  <div class="ph">Cambricon Targets 500,000 Chips in 2026 — HBM Supply and SMIC Capacity Are the Constraints</div>
+  <div class="pd">Cambricon raised its 2026 AI chip shipment target to 500,000 units — a 5× increase over 2025 actuals — contingent on resolving two supply bottlenecks: High Bandwidth Memory availability from Korean suppliers and wafer capacity at SMIC's N+1 node.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">500K</div><div class="sl">2026 target (units)</div></div>
+    <div class="sig"><div class="sv">~100K</div><div class="sl">2025 actual shipments</div></div>
+    <div class="sig"><div class="sv">5×</div><div class="sl">Year-over-year target growth</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Cambricon AI Chip Shipments — Actual & Target (000s units)</div>
+    <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <defs>
+        <linearGradient id="gc" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c0392b" stop-opacity=".9"/>
+          <stop offset="100%" stop-color="#c0392b" stop-opacity=".3"/>
+        </linearGradient>
+        <linearGradient id="gct" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#27ae60" stop-opacity=".6"/>
+          <stop offset="100%" stop-color="#27ae60" stop-opacity=".2"/>
+        </linearGradient>
+      </defs>
+      <line x1="80" y1="20" x2="80" y2="200" stroke="#2e2e52"/>
+      <line x1="80" y1="200" x2="620" y2="200" stroke="#2e2e52"/>
+      <line x1="80" y1="100" x2="620" y2="100" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="80" y1="60" x2="620" y2="60" stroke="#1e2040" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="75" y="204" font-size="9" fill="#5a6a8a" text-anchor="end">0</text>
+      <text x="75" y="104" font-size="9" fill="#5a6a8a" text-anchor="end">250K</text>
+      <text x="75" y="64" font-size="9" fill="#5a6a8a" text-anchor="end">375K</text>
+      <text x="75" y="24" font-size="9" fill="#5a6a8a" text-anchor="end">500K</text>
+      <!-- 2022: ~10K -->
+      <rect x="100" y="196" width="60" height="4" fill="url(#gc)" rx="2"/>
+      <text x="130" y="192" font-size="9" fill="#7a8baa" text-anchor="middle">~10K</text>
+      <text x="130" y="216" font-size="9" fill="#5a6a8a" text-anchor="middle">2022</text>
+      <!-- 2023: ~30K -->
+      <rect x="190" y="188" width="60" height="12" fill="url(#gc)" rx="2"/>
+      <text x="220" y="183" font-size="9" fill="#7a8baa" text-anchor="middle">~30K</text>
+      <text x="220" y="216" font-size="9" fill="#5a6a8a" text-anchor="middle">2023</text>
+      <!-- 2024: ~60K -->
+      <rect x="280" y="176" width="60" height="24" fill="url(#gc)" rx="2"/>
+      <text x="310" y="170" font-size="9" fill="#7a8baa" text-anchor="middle">~60K</text>
+      <text x="310" y="216" font-size="9" fill="#5a6a8a" text-anchor="middle">2024</text>
+      <!-- 2025: ~100K actual -->
+      <rect x="370" y="160" width="60" height="40" fill="url(#gc)" rx="2"/>
+      <text x="400" y="154" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">100K</text>
+      <text x="400" y="216" font-size="9" fill="#5a6a8a" text-anchor="middle">2025A</text>
+      <!-- 2026: 500K target -->
+      <rect x="460" y="20" width="60" height="180" fill="url(#gct)" rx="2" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="490" y="14" font-size="11" fill="#2ecc71" text-anchor="middle" font-weight="700">500K</text>
+      <text x="490" y="216" font-size="10" fill="#2ecc71" text-anchor="middle" font-weight="700">2026T</text>
+      <!-- constraint annotation -->
+      <text x="490" y="90" font-size="9" fill="#5a6a8a" text-anchor="middle">⚠ HBM</text>
+      <text x="490" y="105" font-size="9" fill="#5a6a8a" text-anchor="middle">constraint</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">HBM bottleneck</div><div class="av">SK Hynix + Samsung</div><div class="as">Chinese AI chips require HBM2e/3 for competitive performance; Korean suppliers face US pressure not to supply Chinese chip designers beyond existing contracts</div></div>
+    <div class="a"><div class="al">SMIC constraint</div><div class="av">N+1 capacity limits</div><div class="as">SMIC's mature 7nm-equivalent N+1 node is the most advanced process available to Cambricon; wafer starts are capacity-constrained through H1 2026</div></div>
+    <div class="a"><div class="al">Product</div><div class="av">MLU 590 series</div><div class="as">Cambricon's MLU 590 targets training and inference workloads; competes with Huawei Ascend 910B for hyperscaler procurement</div></div>
+  </div>
+  <div class="src">Source: Cambricon earnings call, SMIC, China Brief analysis — May 18, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 1 · AI & Tech</div>
+  <div class="ph">Moonshot AI's Kimi K2.6 Ties GPT-5.5 — and Its $2B Raise Says China AI Is Back</div>
+  <div class="pd">Moonshot AI released Kimi K2.6, which matched GPT-5.5 on standard reasoning and coding benchmarks, while simultaneously closing a $2 billion Series C at a $25B valuation — the largest Chinese AI funding round of 2026.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">$25B</div><div class="sl">Kimi K2.6 implied valuation</div></div>
+    <div class="sig"><div class="sv">$2B</div><div class="sl">Series C raise</div></div>
+    <div class="sig"><div class="sv">≈ GPT-5.5</div><div class="sl">MMLU-Pro / HumanEval parity</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">Frontier Model Benchmark Comparison — Kimi K2.6 vs Peers (MMLU-Pro, 0-100 scale)</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="20" x2="80" y2="190" stroke="#2e2e52"/>
+      <line x1="80" y1="190" x2="640" y2="190" stroke="#2e2e52"/>
+      <line x1="80" y1="50" x2="640" y2="50" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <text x="75" y="54" font-size="9" fill="#5a6a8a" text-anchor="end">85</text>
+      <text x="75" y="194" font-size="9" fill="#5a6a8a" text-anchor="end">65</text>
+      <!-- GPT-5.5: 89 -->
+      <rect x="100" y="42" width="70" height="148" fill="#4a7fa5" opacity=".7" rx="3"/>
+      <text x="135" y="35" font-size="11" fill="#6ab0ff" text-anchor="middle" font-weight="700">89.2</text>
+      <text x="135" y="206" font-size="10" fill="#5a6a8a" text-anchor="middle">GPT-5.5</text>
+      <!-- Kimi K2.6: 89 (tied) -->
+      <rect x="200" y="44" width="70" height="146" fill="#c0392b" opacity=".85" rx="3"/>
+      <text x="235" y="37" font-size="11" fill="#e74c3c" text-anchor="middle" font-weight="700">88.9</text>
+      <text x="235" y="206" font-size="10" fill="#e74c3c" text-anchor="middle" font-weight="700">Kimi K2.6</text>
+      <!-- Claude 4 Opus: 91 -->
+      <rect x="300" y="27" width="70" height="163" fill="#4a7fa5" opacity=".5" rx="3"/>
+      <text x="335" y="20" font-size="11" fill="#6ab0ff" text-anchor="middle" font-weight="700">91.0</text>
+      <text x="335" y="206" font-size="10" fill="#5a6a8a" text-anchor="middle">Claude 4</text>
+      <!-- Gemini 2 Ultra: 90 -->
+      <rect x="400" y="35" width="70" height="155" fill="#4a7fa5" opacity=".4" rx="3"/>
+      <text x="435" y="28" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">90.1</text>
+      <text x="435" y="206" font-size="10" fill="#5a6a8a" text-anchor="middle">Gemini 2 Ultra</text>
+      <!-- DeepSeek V4: 87 -->
+      <rect x="500" y="55" width="70" height="135" fill="#c0392b" opacity=".5" rx="3"/>
+      <text x="535" y="48" font-size="11" fill="#e74c3c" text-anchor="middle" font-weight="700">87.3</text>
+      <text x="535" y="206" font-size="10" fill="#5a6a8a" text-anchor="middle">DeepSeek V4</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Parity significance</div><div class="av">Capability convergence</div><div class="as">Two years ago Chinese models lagged frontier US models by 12-18 months on benchmarks; K2.6 suggests the gap has effectively closed</div></div>
+    <div class="a"><div class="al">Funding context</div><div class="av">Domestic capital shift</div><div class="as">$2B raised from Alibaba, Tencent, and state funds — from Alibaba, Tencent, and state funds — no US LP participation, consistent with NDRC guidance post-Manus precedent</div></div>
+    <div class="a"><div class="al">Context limit</div><div class="av">1M tokens</div><div class="as">Kimi K2.6 maintains Moonshot's long-context lead with 1M token window, differentiating from GPT-5.5 in document-heavy workflows</div></div>
+  </div>
+  <div class="src">Source: Moonshot AI, China Brief analysis — May 18, 2026</div>
+</div>
+
+<div class="panel">
+  <div class="pk">Story 3 · Trade</div>
+  <div class="ph">Washington and Beijing Tell Different Stories About Their Tariff Agreement</div>
+  <div class="pd">Post-summit, the US and China issued statements describing their tariff framework that were substantively inconsistent — with the US describing conditional reductions and China describing unconditional rollbacks — raising questions about what was actually agreed.</div>
+  <div class="sigs">
+    <div class="sig"><div class="sv">US reads</div><div class="sl">"Conditional rollback"</div></div>
+    <div class="sig"><div class="sv">China reads</div><div class="sl">"Mutual agreement, binding"</div></div>
+    <div class="sig"><div class="sv">90 days</div><div class="sl">Until next review window</div></div>
+  </div>
+  <div class="cw">
+    <div class="ct">US-China Tariff Rate Trajectory - Key Milestones (%)</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <line x1="80" y1="190" x2="620" y2="190" stroke="#2e2e52"/>
+      <line x1="80" y1="20" x2="80" y2="190" stroke="#2e2e52"/>
+      <text x="75" y="194" font-size="9" fill="#5a6a8a" text-anchor="end">0%</text>
+      <text x="75" y="140" font-size="9" fill="#5a6a8a" text-anchor="end">50%</text>
+      <text x="75" y="90" font-size="9" fill="#5a6a8a" text-anchor="end">100%</text>
+      <text x="75" y="40" font-size="9" fill="#5a6a8a" text-anchor="end">145%</text>
+      <line x1="80" y1="138" x2="620" y2="138" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <line x1="80" y1="88" x2="620" y2="88" stroke="#1e2040" stroke-dasharray="4,3"/>
+      <!-- US tariff on China -->
+      <polyline points="90,170 170,160 250,100 330,50 420,55 540,80 590,75" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+      <!-- China tariff on US -->
+      <polyline points="90,178 170,172 250,120 330,75 420,78 540,100 590,95" fill="none" stroke="#4a7fa5" stroke-width="2" stroke-dasharray="8,3"/>
+      <!-- events -->
+      <circle cx="250" cy="100" r="4" fill="#c0392b"/>
+      <text x="253" y="93" font-size="9" fill="#7a8baa">Trump 2.0</text>
+      <circle cx="330" cy="50" r="4" fill="#c0392b"/>
+      <text x="333" y="43" font-size="9" fill="#7a8baa">145% peak</text>
+      <circle cx="540" cy="80" r="5" fill="#27ae60"/>
+      <text x="543" y="73" font-size="9" fill="#2ecc71">Post-summit</text>
+      <!-- legend -->
+      <line x1="90" y1="28" x2="115" y2="28" stroke="#c0392b" stroke-width="2"/>
+      <text x="120" y="32" font-size="9" fill="#7a8baa">US tariffs on China</text>
+      <line x1="90" y1="42" x2="115" y2="42" stroke="#4a7fa5" stroke-width="2" stroke-dasharray="8,3"/>
+      <text x="120" y="46" font-size="9" fill="#7a8baa">China tariffs on US</text>
+    </svg>
+  </div>
+  <div class="ann">
+    <div class="a"><div class="al">Interpretation gap</div><div class="av">Structural ambiguity</div><div class="as">Both sides face domestic political constraints that incentivize claiming victory — creating an agreement where each party reads their preferred outcome</div></div>
+    <div class="a"><div class="al">Practical effect</div><div class="av">90-day stability</div><div class="as">Whatever the disagreement about terms, both sides have political incentives to avoid escalation during the 90-day window — markets should price near-term stability</div></div>
+    <div class="a"><div class="al">Risk scenario</div><div class="av">Verification failure</div><div class="as">If US demands structural reforms (IP protection, SOE subsidies) and China interprets the accord as tariff-only, the 90-day window becomes a countdown to re-escalation</div></div>
+  </div>
+  <div class="src">Source: USTR, MOFCOM, China Brief analysis — May 18, 2026</div>
+</div></div>
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+}
+</script>
+</body>
+</html>
