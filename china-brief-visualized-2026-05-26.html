@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visualized · China Brief · Issue #13 · May 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+
+  /* HEADER */
+  .header { background:#1a1a2e; padding:36px 56px 28px; border-bottom:4px solid #c0392b; }
+  .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:10px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .header-title .sub { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#8a9bb5; display:block; margin-top:6px; letter-spacing:1px; }
+  .header-meta { margin-top:18px; font-size:11px; color:#4a5a7a; display:flex; gap:20px; flex-wrap:wrap; }
+  .header-meta span { display:flex; align-items:center; gap:6px; }
+  .header-meta .dot { width:4px; height:4px; border-radius:50%; background:#c0392b; display:inline-block; }
+  .back-link { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; margin-top:16px; }
+  .back-link:hover { color:#e8d5b0; }
+  .back-link::before { content:'←'; font-size:13px; }
+
+  /* NAV TABS */
+  .viz-nav { background:#f0ede8; border-bottom:1px solid #e0d8d0; display:flex; gap:0; overflow-x:auto; }
+  .viz-tab { padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; user-select:none; }
+  .viz-tab:hover { color:#1a1a2e; }
+  .viz-tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+
+  /* CONTENT SECTIONS */
+  .viz-section { display:none; padding:48px 56px 64px; }
+  .viz-section.active { display:block; }
+  .story-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:8px; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; line-height:1.3; color:#1a1a2e; margin-bottom:6px; }
+  .story-deck { font-size:14px; color:#5a5a6a; line-height:1.7; margin-bottom:36px; max-width:640px; }
+
+  /* SIGNAL NUMBERS */
+  .signal-row { display:flex; gap:32px; margin-bottom:48px; flex-wrap:wrap; }
+  .signal-box { flex:1; min-width:160px; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:56px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-num .unit { font-size:24px; font-weight:400; color:#c0392b; }
+  .signal-label { font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-top:6px; line-height:1.4; }
+  .signal-delta { font-size:12px; color:#c0392b; margin-top:4px; font-weight:600; }
+
+  /* CHART CONTAINER */
+  .chart-container { background:#f8f6f2; border-radius:6px; padding:32px; margin-bottom:40px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a3a4a; margin-bottom:4px; }
+  .chart-subtitle { font-size:12px; color:#7a7a8a; margin-bottom:24px; }
+
+  /* ANNOTATION GRID */
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:36px; }
+  .annotation-card { border-left:3px solid #e0d8d0; padding:12px 16px; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.green { border-left-color:#27ae60; }
+  .annotation-card.amber { border-left-color:#e67e22; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .annotation-card-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .annotation-card-zh { font-size:13px; font-weight:600; color:#c0392b; margin-bottom:2px; }
+
+  /* FOOTER */
+  .viz-footer { background:#1a1a2e; padding:24px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .viz-footer-text { font-size:10px; color:#4a5a7a; }
+  .viz-footer-brand { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8d5b0; }
+
+  @media(max-width:680px) {
+    .header, .viz-section { padding-left:24px; padding-right:24px; }
+    .signal-num { font-size:40px; }
+    .annotation-grid { grid-template-columns:1fr; }
+    .viz-footer { padding-left:24px; padding-right:24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="header-eyebrow">China Brief · AI Visualized · Issue #13</div>
+    <div class="header-title">
+      Data in Focus
+      <span class="sub">One visualization per story, where the numbers earn it — May 26, 2026</span>
+    </div>
+    <div class="header-meta">
+      <span><span class="dot"></span> 3 stories visualized</span>
+      <span><span class="dot"></span> Issue #13</span>
+      <span><span class="dot"></span> Tuesday, May 26, 2026</span>
+    </div>
+    <a class="back-link" href="newsletter_2026-05-26.html">Return to China Brief</a>
+  </div>
+
+  <div class="viz-nav">
+    <div class="viz-tab active" onclick="showViz('logicfolding', this)">Huawei LogicFolding</div>
+    <div class="viz-tab" onclick="showViz('engram', this)">DeepSeek Engram</div>
+    <div class="viz-tab" onclick="showViz('apec', this)">APEC Digital Trade</div>
+  </div>
+
+  <!-- ================================================ -->
+  <!-- VIZ 1: HUAWEI LOGICFOLDING / TAU SCALING LAW    -->
+  <!-- ================================================ -->
+  <div class="viz-section active" id="viz-logicfolding">
+    <div class="story-label">Story One · Chips · Reuters / BNN Bloomberg · May 25, 2026</div>
+    <div class="story-headline">Huawei's Post-Moore's Law Bet: LogicFolding vs. the Lithography Wall</div>
+    <div class="story-deck">Huawei's LogicFolding architecture reframes chip advancement around signal latency rather than transistor shrinkage — a necessary pivot given US export controls blocking access to advanced lithography. This chart maps the claimed performance trajectory against the industry roadmap it is trying to match.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">1.4<span class="unit">nm</span></div>
+        <div class="signal-label">Equivalent transistor density<br>Huawei target by 2031</div>
+        <div class="signal-delta">Without advanced lithography (EUV)</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">7<span class="unit">nm</span></div>
+        <div class="signal-label">Current SMIC process node<br>for Ascend 910C (enhanced)</div>
+        <div class="signal-delta">LogicFolding aims to close this gap</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">+7.6<span class="unit">%</span></div>
+        <div class="signal-label">SMIC share price move<br>on the announcement</div>
+        <div class="signal-delta">Market read: Ascend ecosystem gains credibility</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Chip Density Roadmap — TSMC vs. Huawei LogicFolding Trajectory</div>
+      <div class="chart-subtitle">Effective transistor density (illustrative, index: 7nm = 100) · TSMC roadmap vs. Huawei claimed trajectory via LogicFolding · Source: company announcements, Counterpoint Research, China Brief analysis</div>
+      <svg viewBox="0 0 740 360" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+        <rect width="740" height="360" fill="#f8f6f2" rx="4"/>
+
+        <!-- Axes -->
+        <line x1="120" y1="30" x2="120" y2="290" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="120" y1="290" x2="720" y2="290" stroke="#e0d8d0" stroke-width="1"/>
+
+        <!-- Y axis: density index (7nm=100, 5nm≈175, 3nm≈250, 2nm≈330, 1.4nm≈400) -->
+        <!-- Scale: 0-420 across 260px. 1 unit = 260/420 = ~0.619px -->
+        <text x="108" y="294" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">7nm</text>
+        <text x="108" y="232" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">5nm</text>
+        <text x="108" y="170" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">3nm</text>
+        <text x="108" y="108" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">2nm</text>
+        <text x="108" y="46" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="end">1.4nm</text>
+
+        <!-- Grid horizontals -->
+        <line x1="115" y1="232" x2="720" y2="232" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="115" y1="170" x2="720" y2="170" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="115" y1="108" x2="720" y2="108" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="115" y1="46" x2="720" y2="46" stroke="#e8e0d8" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- X axis years -->
+        <!-- 2024=150, 2026=270, 2028=390, 2030=510, 2031=570, 2032=630 -->
+        <text x="150" y="310" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="middle">2024</text>
+        <text x="270" y="310" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="middle">2026</text>
+        <text x="390" y="310" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="middle">2028</text>
+        <text x="510" y="310" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="middle">2030</text>
+        <text x="630" y="310" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="middle">2032</text>
+
+        <!-- TSMC LINE (dark blue/navy) -->
+        <!-- 2024: N3 (3nm class) ≈ 170px from bottom → y=290-170=120 -->
+        <!-- 2025: N2 launch ≈ 210px → y=80 -->
+        <!-- 2028: 1.4nm mass prod → y=46 -->
+        <!-- 2030: sub-1nm → y≈30 -->
+        <polyline points="150,120 210,80 270,72 390,46 510,35 630,28"
+          fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- TSMC dots -->
+        <circle cx="150" cy="120" r="4" fill="#1a1a2e"/>
+        <circle cx="270" cy="72" r="4" fill="#1a1a2e"/>
+        <circle cx="390" cy="46" r="5" fill="#1a1a2e"/>
+        <circle cx="510" cy="35" r="4" fill="#1a1a2e"/>
+        <!-- TSMC label -->
+        <text x="635" y="24" font-family="Inter" font-size="10" fill="#1a1a2e" font-weight="700">TSMC roadmap</text>
+        <text x="395" y="38" font-family="Inter" font-size="9" fill="#1a1a2e">1.4nm mass prod.</text>
+        <text x="395" y="50" font-family="Inter" font-size="9" fill="#9a8a7a">(TSMC, 2028)</text>
+
+        <!-- HUAWEI LOGICFOLDING LINE (red, starts from 2024 at 7nm, climbs via architecture) -->
+        <!-- 2024: Kirin at ~7nm ≈ 290 (baseline) -->
+        <!-- 2026: Kirin + LogicFolding (late 2026) modest gain → y=265 -->
+        <!-- 2028: intermediate Ascend → y=200 -->
+        <!-- 2030: Ascend LogicFolding → y=140 -->
+        <!-- 2031: target "1.4nm equivalent" → y=46 (claim) -->
+        <polyline points="150,290 270,265 390,200 510,140 570,46"
+          fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linejoin="round" stroke-dasharray="8,4"/>
+        <!-- Huawei dots -->
+        <circle cx="150" cy="290" r="4" fill="#c0392b"/>
+        <circle cx="270" cy="265" r="4" fill="#c0392b"/>
+        <circle cx="390" cy="200" r="4" fill="#c0392b"/>
+        <circle cx="510" cy="140" r="4" fill="#c0392b"/>
+        <circle cx="570" cy="46" r="5" fill="#c0392b"/>
+
+        <!-- Huawei labels -->
+        <text x="158" y="287" font-family="Inter" font-size="9" fill="#c0392b">Today: 7nm</text>
+        <text x="278" y="262" font-family="Inter" font-size="9" fill="#c0392b">Kirin</text>
+        <text x="278" y="274" font-family="Inter" font-size="9" fill="#c0392b">+LogicFolding</text>
+        <text x="398" y="197" font-family="Inter" font-size="9" fill="#c0392b">Ascend (interim)</text>
+        <text x="518" y="137" font-family="Inter" font-size="9" fill="#c0392b">Ascend</text>
+        <text x="518" y="149" font-family="Inter" font-size="9" fill="#c0392b">LogicFolding</text>
+        <text x="578" y="43" font-family="Inter" font-size="9" fill="#c0392b" font-weight="700">Target:</text>
+        <text x="578" y="55" font-family="Inter" font-size="9" fill="#c0392b" font-weight="700">1.4nm eq.</text>
+        <text x="578" y="67" font-family="Inter" font-size="8" fill="#9a8a7a">(claimed)</text>
+
+        <!-- Gap shaded zone -->
+        <rect x="120" y="30" width="450" height="260" fill="#c0392b" opacity="0.03" rx="2"/>
+
+        <!-- Legend -->
+        <line x1="128" y1="335" x2="158" y2="335" stroke="#1a1a2e" stroke-width="2.5"/>
+        <circle cx="143" cy="335" r="3" fill="#1a1a2e"/>
+        <text x="164" y="339" font-family="Inter" font-size="10" fill="#3a3a4a">TSMC (leading-edge lithography)</text>
+        <line x1="340" y1="335" x2="370" y2="335" stroke="#c0392b" stroke-width="2.5" stroke-dasharray="8,4"/>
+        <circle cx="355" cy="335" r="3" fill="#c0392b"/>
+        <text x="376" y="339" font-family="Inter" font-size="10" fill="#3a3a4a">Huawei LogicFolding (claimed trajectory)</text>
+
+        <text x="720" y="350" font-family="Inter" font-size="9" fill="#b0a898" text-anchor="end">Source: Huawei, Counterpoint Research, company announcements · China Brief analysis · Huawei targets unverified by independent benchmarks</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">The core claim</div>
+        <div class="annotation-card-zh">τ缩放定律</div>
+        <div class="annotation-card-text">The Tau Scaling Law reframes chip advancement from transistor count to signal propagation time. LogicFolding shortens internal wiring paths to improve performance density — without needing ASML EUV machines China can't legally import.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">What's unverified</div>
+        <div class="annotation-card-zh">待独立验证</div>
+        <div class="annotation-card-text">Huawei released no independent benchmark data. Counterpoint Research flagged cost, power, and heat challenges — particularly for cloud AI servers where thermal envelope and rack density matter most. The 1.4nm-equivalent claim is a 2031 target, not a current reality.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">The investable signal</div>
+        <div class="annotation-card-zh">中芯国际 +7.6%</div>
+        <div class="annotation-card-text">Even a partial improvement in Ascend performance per watt reduces the incentive for Chinese firms to wait for smuggled Nvidia chips. The near-term beneficiary is SMIC, which manufactures Ascend. If the roadmap holds, Huawei's market consolidation in China AI training hardware accelerates.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================ -->
+  <!-- VIZ 2: DEEPSEEK ENGRAM / HBM DECOUPLING         -->
+  <!-- ================================================ -->
+  <div class="viz-section" id="viz-engram">
+    <div class="story-label">Story Two · AI Infrastructure · Tom's Hardware / Techmeme · May 26, 2026</div>
+    <div class="story-headline">DeepSeek Engram: Rethinking Where AI Memory Lives</div>
+    <div class="story-deck">DeepSeek's Engram paper proposes offloading relatively static model knowledge from GPU high-bandwidth memory (HBM) to standard system RAM — reducing the HBM footprint per inference session. The strategic implication: domestic Chinese hardware becomes more competitive without closing the HBM manufacturing gap.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">90<span class="unit">%</span></div>
+        <div class="signal-label">KV cache reduction in V4<br>vs. DeepSeek V3</div>
+        <div class="signal-delta">Engram builds on this foundation</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">3</div>
+        <div class="signal-label">HBM producers globally<br>dominating supply</div>
+        <div class="signal-delta">SK Hynix · Samsung · Micron — none Chinese</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">0</div>
+        <div class="signal-label">Chinese HBM producers<br>at commercial scale (today)</div>
+        <div class="signal-delta">CXMT makes DRAM, not HBM yet</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">AI Inference Memory Architecture — Standard vs. Engram Model</div>
+      <div class="chart-subtitle">Schematic comparison of GPU memory allocation per inference session · Engram outcome conditional on third-party validation</div>
+      <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+        <rect width="720" height="300" fill="#f8f6f2" rx="4"/>
+
+        <!-- LEFT: STANDARD INFERENCE -->
+        <text x="180" y="30" font-family="Playfair Display, serif" font-size="15" fill="#1a1a2e" text-anchor="middle" font-weight="700">Standard Inference</text>
+        <text x="180" y="46" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="middle">GPU + HBM carries full model</text>
+
+        <!-- GPU box left -->
+        <rect x="40" y="60" width="280" height="200" rx="6" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <text x="62" y="78" font-family="Inter" font-size="9" fill="#9a8a7a" font-weight="600">GPU CHIP</text>
+
+        <!-- HBM block (large, takes 70% of space) -->
+        <rect x="52" y="84" width="256" height="130" rx="4" fill="#c0392b" opacity="0.85"/>
+        <text x="180" y="142" font-family="Inter" font-size="13" fill="white" text-anchor="middle" font-weight="700">HBM</text>
+        <text x="180" y="158" font-family="Inter" font-size="10" fill="#ffd0c8" text-anchor="middle">Static knowledge</text>
+        <text x="180" y="172" font-family="Inter" font-size="10" fill="#ffd0c8" text-anchor="middle">+ Dynamic KV cache</text>
+        <text x="180" y="184" font-family="Inter" font-size="10" fill="#ffd0c8" text-anchor="middle">+ Active computation</text>
+        <text x="180" y="198" font-family="Inter" font-size="9" fill="#f0a090" text-anchor="middle">All in HBM — expensive, scarce</text>
+
+        <!-- Compute block (small, remaining) -->
+        <rect x="52" y="224" width="256" height="28" rx="4" fill="#1a1a2e" opacity="0.7"/>
+        <text x="180" y="243" font-family="Inter" font-size="10" fill="white" text-anchor="middle">GPU Compute Cores</text>
+
+        <!-- HBM bottleneck label -->
+        <text x="180" y="270" font-family="Inter" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="600">⚠ HBM is the binding bottleneck</text>
+        <text x="180" y="283" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">SK Hynix / Samsung / Micron — not China-sourced</text>
+
+        <!-- DIVIDER ARROW -->
+        <text x="360" y="168" font-family="Inter" font-size="24" fill="#c0392b" text-anchor="middle">→</text>
+        <text x="360" y="184" font-family="Inter" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">Engram</text>
+
+        <!-- RIGHT: ENGRAM INFERENCE -->
+        <text x="540" y="30" font-family="Playfair Display, serif" font-size="15" fill="#1a1a2e" text-anchor="middle" font-weight="700">Engram Architecture</text>
+        <text x="540" y="46" font-family="Inter" font-size="10" fill="#9a8a7a" text-anchor="middle">Static knowledge offloaded to system RAM</text>
+
+        <!-- GPU box right -->
+        <rect x="400" y="60" width="280" height="200" rx="6" fill="none" stroke="#1a1a2e" stroke-width="1.5"/>
+        <text x="422" y="78" font-family="Inter" font-size="9" fill="#9a8a7a" font-weight="600">GPU CHIP</text>
+
+        <!-- System RAM block (static knowledge, offloaded) — shown outside GPU -->
+        <rect x="400" y="84" width="256" height="56" rx="4" fill="#27ae60" opacity="0.75"/>
+        <text x="528" y="107" font-family="Inter" font-size="11" fill="white" text-anchor="middle" font-weight="700">System DRAM</text>
+        <text x="528" y="122" font-family="Inter" font-size="9" fill="#d0ffe8" text-anchor="middle">Static knowledge (offloaded from HBM)</text>
+        <text x="528" y="134" font-family="Inter" font-size="9" fill="#d0ffe8" text-anchor="middle">Standard RAM — CXMT-compatible</text>
+
+        <!-- HBM block right (smaller — just dynamic + active) -->
+        <rect x="400" y="148" width="256" height="72" rx="4" fill="#c0392b" opacity="0.55"/>
+        <text x="528" y="180" font-family="Inter" font-size="11" fill="white" text-anchor="middle" font-weight="700">HBM (reduced)</text>
+        <text x="528" y="196" font-family="Inter" font-size="9" fill="#ffd0c8" text-anchor="middle">Dynamic KV cache only</text>
+        <text x="528" y="210" font-family="Inter" font-size="9" fill="#ffd0c8" text-anchor="middle">Active computation</text>
+
+        <!-- Compute block right -->
+        <rect x="400" y="228" width="256" height="24" rx="4" fill="#1a1a2e" opacity="0.7"/>
+        <text x="528" y="245" font-family="Inter" font-size="10" fill="white" text-anchor="middle">GPU Compute Cores — more available</text>
+
+        <text x="528" y="270" font-family="Inter" font-size="10" fill="#27ae60" text-anchor="middle" font-weight="600">✓ Less HBM needed per inference session</text>
+        <text x="528" y="283" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">Enables Ascend / domestic hardware — if validated</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Why HBM is the constraint</div>
+        <div class="annotation-card-zh">高带宽存储</div>
+        <div class="annotation-card-text">High-bandwidth memory (HBM) is the most scarce input in AI inference. SK Hynix alone supplies roughly half the global market; Samsung and Micron share the rest. No Chinese producer is at commercial scale. Reducing how much HBM each inference session requires is a structural unlock for domestic AI hardware.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">The self-sufficiency angle</div>
+        <div class="annotation-card-zh">国产替代</div>
+        <div class="annotation-card-text">If Engram holds in production, Chinese AI companies could run capable inference on Huawei Ascend (which has less HBM than Nvidia B200) or hardware paired with CXMT's conventional DRAM — reducing dependence on foreign memory supply chains that the US could pressure or restrict.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Key uncertainty</div>
+        <div class="annotation-card-zh">待第三方验证</div>
+        <div class="annotation-card-text">The paper has not yet been independently reproduced. It's unclear whether the approach sacrifices performance on tasks that depend on rich, dynamic context — where keeping more data in HBM matters. DeepSeek's track record (V3, V4) is strong, but this is still a technical paper, not a production system.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================ -->
+  <!-- VIZ 3: APEC DIGITAL TRADE AGENDA                -->
+  <!-- ================================================ -->
+  <div class="viz-section" id="viz-apec">
+    <div class="story-label">Story Three · Trade Policy · China.org.cn / MOC · May 24, 2026</div>
+    <div class="story-headline">China's APEC Presidency: Agenda-Setting as Trade Architecture</div>
+    <div class="story-deck">As 2026 APEC host, China controls the chair across a full calendar of ministerial meetings. The Suzhou trade ministers' session (May 22-23) advanced digital trade frameworks; the next major test is the July Chengdu AI trade ministerial. This map tracks the cadence and what's at stake at each stop.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">21</div>
+        <div class="signal-label">APEC member economies<br>subject to China's 2026 presidency agenda</div>
+        <div class="signal-delta">Covering 60%+ of global GDP</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">July</div>
+        <div class="signal-label">Chengdu AI Trade<br>Ministerial · next focal point</div>
+        <div class="signal-delta">First dedicated AI trade meeting under APEC umbrella</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">3</div>
+        <div class="signal-label">Digital trade deliverables<br>from Suzhou ministerial</div>
+        <div class="signal-delta">Framework · e-certs · services roadmap</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">China's APEC 2026 Ministerial Calendar — Digital Trade Agenda Milestones</div>
+      <div class="chart-subtitle">Key meetings where China chairs and can advance digital standards · Watch dates for institutional investors tracking Asia-Pacific digital trade architecture</div>
+
+      <!-- Timeline SVG -->
+      <svg viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+        <rect width="680" height="280" fill="#f8f6f2" rx="4"/>
+
+        <!-- Timeline spine -->
+        <line x1="60" y1="140" x2="640" y2="140" stroke="#e0d8d0" stroke-width="2"/>
+
+        <!-- ── Event 1: Suzhou (May 22-23) — DONE ── -->
+        <!-- x=100 -->
+        <circle cx="100" cy="140" r="10" fill="#27ae60"/>
+        <text x="100" y="144" font-family="Inter" font-size="8" fill="white" text-anchor="middle" font-weight="700">✓</text>
+        <text x="100" y="120" font-family="Inter" font-size="9" fill="#27ae60" text-anchor="middle" font-weight="700">COMPLETE</text>
+        <text x="100" y="108" font-family="Inter" font-size="10" fill="#1a1a2e" text-anchor="middle" font-weight="700">Suzhou</text>
+        <text x="100" y="95" font-family="Inter" font-size="9" fill="#5a5a6a" text-anchor="middle">Trade Ministers</text>
+        <text x="100" y="83" font-family="Inter" font-size="8" fill="#9a8a7a" text-anchor="middle">May 22-23</text>
+        <!-- Outcomes below -->
+        <text x="100" y="160" font-family="Inter" font-size="8" fill="#27ae60" text-anchor="middle">Digital trade</text>
+        <text x="100" y="172" font-family="Inter" font-size="8" fill="#27ae60" text-anchor="middle">framework ✓</text>
+        <text x="100" y="184" font-family="Inter" font-size="8" fill="#27ae60" text-anchor="middle">e-cert MR ✓</text>
+        <text x="100" y="196" font-family="Inter" font-size="8" fill="#27ae60" text-anchor="middle">Services roadmap ✓</text>
+
+        <!-- ── Event 2: Chengdu (July) — KEY WATCH ── -->
+        <!-- x=260 -->
+        <circle cx="260" cy="140" r="12" fill="#c0392b"/>
+        <text x="260" y="144" font-family="Inter" font-size="9" fill="white" text-anchor="middle" font-weight="700">!</text>
+        <text x="260" y="120" font-family="Inter" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">WATCH</text>
+        <text x="260" y="108" font-family="Inter" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">Chengdu</text>
+        <text x="260" y="95" font-family="Inter" font-size="9" fill="#5a5a6a" text-anchor="middle">AI Trade Ministerial</text>
+        <text x="260" y="83" font-family="Inter" font-size="8" fill="#9a8a7a" text-anchor="middle">July 2026</text>
+        <!-- Stakes below -->
+        <text x="260" y="160" font-family="Inter" font-size="8" fill="#c0392b" text-anchor="middle">AI governance</text>
+        <text x="260" y="172" font-family="Inter" font-size="8" fill="#c0392b" text-anchor="middle">standards push</text>
+        <text x="260" y="184" font-family="Inter" font-size="8" fill="#c0392b" text-anchor="middle">Data flow rules</text>
+        <text x="260" y="196" font-family="Inter" font-size="8" fill="#c0392b" text-anchor="middle">Cross-border AI SVC</text>
+        <!-- Stakes: What China wants to embed -->
+        <rect x="190" y="208" width="140" height="32" rx="3" fill="#c0392b" opacity="0.08"/>
+        <text x="260" y="220" font-family="Inter" font-size="8" fill="#c0392b" text-anchor="middle" font-weight="600">Goal: embed Chinese</text>
+        <text x="260" y="232" font-family="Inter" font-size="8" fill="#c0392b" text-anchor="middle" font-weight="600">digital standards in APAC</text>
+
+        <!-- ── Event 3: Finance Ministers (TBD) ── -->
+        <!-- x=420 -->
+        <circle cx="420" cy="140" r="8" fill="#8a9bb5" opacity="0.6"/>
+        <text x="420" y="120" font-family="Inter" font-size="9" fill="#8a9bb5" text-anchor="middle">UPCOMING</text>
+        <text x="420" y="108" font-family="Inter" font-size="10" fill="#5a5a6a" text-anchor="middle" font-weight="600">Finance</text>
+        <text x="420" y="96" font-family="Inter" font-size="9" fill="#7a7a8a" text-anchor="middle">Ministers</text>
+        <text x="420" y="84" font-family="Inter" font-size="8" fill="#9a8a7a" text-anchor="middle">Late 2026</text>
+        <text x="420" y="158" font-family="Inter" font-size="8" fill="#8a9bb5" text-anchor="middle">RMB bond</text>
+        <text x="420" y="170" font-family="Inter" font-size="8" fill="#8a9bb5" text-anchor="middle">frameworks</text>
+
+        <!-- ── Event 4: APEC Leaders Summit ── -->
+        <!-- x=580 -->
+        <circle cx="580" cy="140" r="8" fill="#8a9bb5" opacity="0.4"/>
+        <text x="580" y="120" font-family="Inter" font-size="9" fill="#8a9bb5" text-anchor="middle">UPCOMING</text>
+        <text x="580" y="108" font-family="Inter" font-size="10" fill="#5a5a6a" text-anchor="middle" font-weight="600">Leaders</text>
+        <text x="580" y="96" font-family="Inter" font-size="9" fill="#7a7a8a" text-anchor="middle">Summit</text>
+        <text x="580" y="84" font-family="Inter" font-size="8" fill="#9a8a7a" text-anchor="middle">Nov 2026</text>
+        <text x="580" y="158" font-family="Inter" font-size="8" fill="#8a9bb5" text-anchor="middle">Ratify digital</text>
+        <text x="580" y="170" font-family="Inter" font-size="8" fill="#8a9bb5" text-anchor="middle">standards (goal)</text>
+
+        <!-- Source note -->
+        <text x="670" y="270" font-family="Inter" font-size="9" fill="#b0a898" text-anchor="end">Source: China.org.cn · MOC Press Conference · China Brief analysis · May 24, 2026</text>
+      </svg>
+
+      <!-- Impacted Chinese Tech Companies -->
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid #e0d8d0;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#5a5a6a;margin-bottom:14px">Companies in play: Cross-border ASEAN digital trade</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div style="background:#f0ede8;border-radius:4px;padding:10px 16px;flex:1;min-width:140px;">
+            <div style="font-size:12px;font-weight:700;color:#1a1a2e;">阿里巴巴</div>
+            <div style="font-size:10px;color:#c0392b;margin-bottom:4px;">Alibaba · BABA</div>
+            <div style="font-size:11px;color:#5a5a6a;">Lazada / AliExpress cross-border e-commerce depends on e-cert frameworks being discussed</div>
+          </div>
+          <div style="background:#f0ede8;border-radius:4px;padding:10px 16px;flex:1;min-width:140px;">
+            <div style="font-size:12px;font-weight:700;color:#1a1a2e;">字节跳动</div>
+            <div style="font-size:10px;color:#c0392b;margin-bottom:4px;">ByteDance · TikTok</div>
+            <div style="font-size:11px;color:#5a5a6a;">Data flow and AI content service rules directly govern TikTok's operating environment in ASEAN markets</div>
+          </div>
+          <div style="background:#f0ede8;border-radius:4px;padding:10px 16px;flex:1;min-width:140px;">
+            <div style="font-size:12px;font-weight:700;color:#1a1a2e;">腾讯</div>
+            <div style="font-size:10px;color:#c0392b;margin-bottom:4px;">Tencent · 0700.HK</div>
+            <div style="font-size:11px;color:#5a5a6a;">WeChat Pay / Tencent Cloud expansion in ASEAN linked to digital payment and AI service frameworks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">The agenda mechanism</div>
+        <div class="annotation-card-zh">议程设置权</div>
+        <div class="annotation-card-text">As 2026 APEC host, China chairs every ministerial session — giving it agenda-setting power (议程设置权) over what gets discussed, sequenced, and framed. This is how standards get embedded: not through diktat but through being the one who drafts the working documents.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">The US counter-position</div>
+        <div class="annotation-card-zh">美方反应</div>
+        <div class="annotation-card-text">The Suzhou joint statement language on tariff reductions differed from what Washington emphasized — signaling that US-China framing divergences persist even within agreed diplomatic structures. A US counter-position on digital trade standards in ASEAN is likely but has no comparable APEC platform in 2026.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Investor read-through</div>
+        <div class="annotation-card-zh">投资视角</div>
+        <div class="annotation-card-text">Any digital trade frameworks that emerge from China's APEC presidency directly define the commercial operating environment for Alibaba, ByteDance, and Tencent in ASEAN. Watch the Chengdu AI ministerial in July as the first binding test of whether China can lock in substantive standards before a US counter-framework materializes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-footer">
+    <div class="viz-footer-brand">中国简报 · AI Visualized</div>
+    <div class="viz-footer-text">China Brief Issue #13 · May 26, 2026 · Not investment advice · Data sourced from public reporting and analyst research</div>
+  </div>
+
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('viz-' + id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
