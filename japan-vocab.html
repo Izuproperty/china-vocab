@@ -79,6 +79,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .mode-card-desc{font-size:11px;color:var(--text-dim);line-height:1.4}
 .mode-card-badge{position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
 .section-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin:20px 0 10px;padding-left:4px}
+/* ── Topbar nav buttons ── */
+.topbar-nav-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#8a9bb5;font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;padding:3px 8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:color .15s;white-space:nowrap}
+.topbar-nav-btn:hover{color:var(--cream)}
 /* ── Flashcard ── */
 .fc-progress{height:4px;background:var(--border);border-radius:2px;margin-bottom:20px;overflow:hidden}
 .fc-progress-bar{height:100%;background:var(--red);border-radius:2px;transition:width .3s}
@@ -200,11 +203,17 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
     <div class="topbar-title" id="topbar-title">日本語単語</div>
     <div class="topbar-en" id="topbar-en">· Japan Vocab</div>
   </div>
-  <div class="topbar-pinyin" id="topbar-sub">Nihongo Tango</div>
+  <div class="topbar-pinyin" id="topbar-sub">Japan Vocabulary</div>
 </div>
-<div style="display:flex;align-items:center;gap:10px">
-<div class="topbar-xp"><span id="xp-display">0</span> XP</div>
-<div id="sync-dot" title="Sync status — tap to configure" onclick="openSettings()"></div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="topbar-xp"><span id="xp-display">0</span> XP</div>
+    <div id="sync-dot" title="Sync status — tap to configure" onclick="openSettings()"></div>
+  </div>
+  <div style="display:flex;gap:4px;">
+    <a href="japan-brief.html" class="topbar-nav-btn">Japan Brief →</a>
+    <a href="brief.html" class="topbar-nav-btn">China Brief →</a>
+  </div>
 </div>
 </div>
 <!-- Settings / Sync modal -->
@@ -238,33 +247,26 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <div class="mode-grid">
 <div class="mode-card fc" onclick="startMode('cards')">
 <div class="mode-card-label">Flashcards</div>
-<div class="mode-card-title">カード練習</div>
+<div class="mode-card-title">Flash Practice</div>
 <div class="mode-card-desc">Flip cards, self-rate your recall</div>
 <div class="mode-card-badge" id="badge-due"></div>
 </div>
 <div class="mode-card qz" onclick="startMode('quiz')">
 <div class="mode-card-label">Recognition</div>
-<div class="mode-card-title">認識テスト</div>
+<div class="mode-card-title">MCQ Quiz</div>
 <div class="mode-card-desc">See character → pick English from 4</div>
 </div>
 <div class="mode-card sf" onclick="startMode('sentence')">
 <div class="mode-card-label">Context Fill</div>
-<div class="mode-card-title">文脈練習</div>
+<div class="mode-card-title">Sentence Fill</div>
 <div class="mode-card-desc">Sentence with blank → pick the word</div>
 </div>
 <div class="mode-card pg" onclick="showScreen('progress')">
 <div class="mode-card-label">Progress</div>
-<div class="mode-card-title">学習進度</div>
+<div class="mode-card-title">Your Progress</div>
 <div class="mode-card-desc">Mastery levels & full vocab list</div>
 </div>
 </div>
-<a href="japan-brief.html" class="brief-banner">
-<div class="brief-banner-left">
-<div class="brief-banner-label">DAILY BRIEF</div>
-<div class="brief-banner-title">日本速報 · Japan Brief</div>
-</div>
-<div class="brief-banner-arrow">→</div>
-</a>
 <div class="section-label">From Today's Brief</div>
 <div id="home-recent"></div>
 </div>
@@ -315,7 +317,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <div class="fc-progress"><div class="fc-progress-bar" id="sent-bar"></div></div>
 <div class="fc-counter" id="sent-counter"></div>
 <div class="sentence-card">
-<div class="sentence-label">📖 Context Fill · 文脈</div>
+<div class="sentence-label">Context Fill</div>
 <div class="sentence-text" id="sent-text"></div>
 <div class="sentence-source" id="sent-source"></div>
 </div>
