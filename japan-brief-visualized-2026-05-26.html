@@ -3,387 +3,334 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Japan Brief · Issue #1 Visualizations · May 26, 2026</title>
+<title>Data in Focus · Japan Brief · Issue #1 · May 26, 2026</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
 
-  .back-nav { background:#1a1a2e; padding:12px 32px; border-bottom:3px solid #3730a3; }
-  .back-nav-link { color:#818cf8; font-size:12px; font-weight:600; letter-spacing:1px; text-decoration:none; text-transform:uppercase; }
-  .back-nav-link:hover { color:#a5b4fc; }
+  .header { background:#1a1a2e; padding:36px 56px 28px; border-bottom:4px solid #3730a3; }
+  .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:10px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .header-title .sub { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#8a9bb5; display:block; margin-top:6px; letter-spacing:1px; }
+  .header-meta { margin-top:18px; font-size:11px; color:#4a5a7a; display:flex; gap:20px; flex-wrap:wrap; }
+  .header-meta span { display:flex; align-items:center; gap:6px; }
+  .header-meta .dot { width:4px; height:4px; border-radius:50%; background:#3730a3; display:inline-block; }
+  .back-link { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; margin-top:16px; }
+  .back-link:hover { color:#c7d2fe; }
+  .back-link::before { content:'←'; font-size:13px; }
 
-  .viz-header { background:#1a1a2e; padding:28px 32px 20px; }
-  .viz-eyebrow { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
-  .viz-title { font-family:'Playfair Display',serif; font-size:24px; color:#fff; font-weight:700; }
-  .viz-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .viz-nav { background:#f0ede8; border-bottom:1px solid #e0d8d0; display:flex; gap:0; overflow-x:auto; }
+  .viz-tab { padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; user-select:none; }
+  .viz-tab:hover { color:#1a1a2e; }
+  .viz-tab.active { color:#3730a3; border-bottom-color:#3730a3; background:#fff; }
 
-  .tab-bar { display:flex; background:#22223a; border-bottom:2px solid #3730a3; overflow-x:auto; }
-  .tab-btn { padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a9bb5; border:none; background:none; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.2s; }
-  .tab-btn.active { color:#a5b4fc; border-bottom-color:#3730a3; background:#1a1a2e; }
-  .tab-btn:hover { color:#d4d8f0; }
+  .viz-section { display:none; padding:48px 56px 64px; }
+  .viz-section.active { display:block; }
+  .story-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:8px; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; line-height:1.3; color:#1a1a2e; margin-bottom:6px; }
+  .story-deck { font-size:14px; color:#5a5a6a; line-height:1.7; margin-bottom:36px; max-width:640px; }
 
-  .tab-panel { display:none; padding:28px 32px; max-width:900px; margin:0 auto; }
-  .tab-panel.active { display:block; }
+  .signal-row { display:flex; gap:32px; margin-bottom:48px; flex-wrap:wrap; }
+  .signal-box { flex:1; min-width:160px; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:56px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-num .unit { font-size:24px; font-weight:400; color:#3730a3; }
+  .signal-label { font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-top:6px; line-height:1.4; }
+  .signal-delta { font-size:12px; color:#3730a3; margin-top:4px; font-weight:600; }
 
-  .signals-row { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:28px; }
-  .signal-card { background:#fff; border-radius:8px; padding:18px; border-left:4px solid #3730a3; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-  .signal-val { font-size:26px; font-weight:700; color:#3730a3; font-family:'Playfair Display',serif; }
-  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#6b7280; margin-top:4px; }
-  .signal-note { font-size:11px; color:#9ca3af; margin-top:2px; }
+  .chart-container { background:#f8f6f2; border-radius:6px; padding:32px; margin-bottom:40px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a3a4a; margin-bottom:4px; }
+  .chart-subtitle { font-size:12px; color:#7a7a8a; margin-bottom:24px; }
 
-  .chart-wrap { background:#fff; border-radius:8px; padding:20px; margin-bottom:24px; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#374151; margin-bottom:16px; }
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:36px; }
+  .annotation-card { border-left:3px solid #e0d8d0; padding:12px 16px; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.green { border-left-color:#27ae60; }
+  .annotation-card.amber { border-left-color:#e67e22; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .annotation-card.red .annotation-card-label { color:#c0392b; }
+  .annotation-card.amber .annotation-card-label { color:#e67e22; }
+  .annotation-card.green .annotation-card-label { color:#27ae60; }
+  .annotation-card-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
 
-  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:20px; }
-  .ann-card { border-radius:6px; padding:14px; font-size:12.5px; line-height:1.6; }
-  .ann-card .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
-  .ann-red { background:#fef2f2; border-left:3px solid #ef4444; }
-  .ann-red .ann-label { color:#ef4444; }
-  .ann-amber { background:#fffbeb; border-left:3px solid #f59e0b; }
-  .ann-amber .ann-label { color:#d97706; }
-  .ann-green { background:#f0fdf4; border-left:3px solid #22c55e; }
-  .ann-green .ann-label { color:#16a34a; }
+  .viz-footer { background:#1a1a2e; padding:24px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .viz-footer-text { font-size:10px; color:#4a5a7a; }
+  .viz-footer-brand { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#818cf8; }
 
-  .story-header { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
-  .story-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:2px; }
-  .st-ai { background:#e0e7ff; color:#3730a3; }
-  .st-semi { background:#fce7f3; color:#be185d; }
-  .st-macro { background:#fef3e2; color:#b45309; }
-  .story-hed { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#1a1a2e; }
-
-  .footer-bar { text-align:center; padding:20px; font-size:11px; color:#9ca3af; background:#f9fafb; border-top:1px solid #e5e7eb; }
+  @media(max-width:680px) {
+    .header, .viz-section { padding-left:24px; padding-right:24px; }
+    .signal-num { font-size:40px; }
+    .annotation-grid { grid-template-columns:1fr; }
+    .viz-footer { padding-left:24px; padding-right:24px; }
+  }
 </style>
 </head>
 <body>
+<div class="wrapper">
 
-<div class="back-nav">
-  <a class="back-nav-link" href="japan-brief.html">← Japan Brief</a>
+  <div class="header">
+    <div class="header-eyebrow">Japan Brief · Data in Focus · Issue #1</div>
+    <div class="header-title">
+      Data in Focus
+      <span class="sub">One visualization per story, where the numbers earn it — May 26, 2026</span>
+    </div>
+    <div class="header-meta">
+      <span><span class="dot"></span> 3 stories visualized</span>
+      <span><span class="dot"></span> Issue #1</span>
+      <span><span class="dot"></span> Tuesday, May 26, 2026</span>
+    </div>
+    <a class="back-link" href="japan-brief.html">Return to Japan Brief</a>
+  </div>
+
+  <div class="viz-nav">
+    <div class="viz-tab active" onclick="showViz('alliance', this)">Japan AI Alliance</div>
+    <div class="viz-tab" onclick="showViz('rapidus', this)">Rapidus 2nm</div>
+    <div class="viz-tab" onclick="showViz('boj', this)">BOJ Policy</div>
+  </div>
+
+  <!-- VIZ 1: JAPAN AI ALLIANCE -->
+  <div class="viz-section active" id="viz-alliance">
+    <div class="story-label">Story One · AI &amp; Technology · Japan Times / Seoul Economic Daily · April 2026</div>
+    <div class="story-headline">Japan AI Alliance: SoftBank, Sony, NEC, Honda Form Domestic Foundation-Model Venture</div>
+    <div class="story-deck">Four of Japan's largest industrial and technology conglomerates have established a joint venture to build domestic foundation models, backed by NEDO's ¥1 trillion AI fund. This chart maps the consortium structure and the capital committed to Japan's first sovereign AI effort at industrial scale.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">¥<span class="unit">1T</span></div>
+        <div class="signal-label">NEDO AI Development Fund</div>
+        <div class="signal-delta">FY2026–FY2031, 5-year programme</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">4<span class="unit">+</span></div>
+        <div class="signal-label">Founding Corporate Partners</div>
+        <div class="signal-delta">SoftBank, Sony, NEC, Honda — each &gt;10%</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">~<span class="unit">100</span></div>
+        <div class="signal-label">Initial AI Engineer Headcount Target</div>
+        <div class="signal-delta">Plus Preferred Networks secondments</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Japan AI Consortium — Capital and Stakeholder Map</div>
+      <div class="chart-subtitle">Founding equity holders, strategic partners, and government funding channel</div>
+      <svg viewBox="0 0 740 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="740" height="280" fill="#f8f6f2" rx="4"/>
+        <ellipse cx="370" cy="140" rx="70" ry="34" fill="#3730a3"/>
+        <text x="370" y="135" text-anchor="middle" fill="#fff" font-size="12" font-weight="700" font-family="Inter">Japan AI</text>
+        <text x="370" y="151" text-anchor="middle" fill="#c7d2fe" font-size="10" font-family="Inter">Foundation Venture</text>
+        <rect x="60" y="30" width="88" height="36" rx="4" fill="#4f46e5"/>
+        <text x="104" y="51" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">SoftBank</text>
+        <line x1="148" y1="48" x2="302" y2="126" stroke="#4f46e5" stroke-width="1.5"/>
+        <rect x="210" y="16" width="72" height="36" rx="4" fill="#4f46e5"/>
+        <text x="246" y="37" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">Sony</text>
+        <line x1="246" y1="52" x2="330" y2="110" stroke="#4f46e5" stroke-width="1.5"/>
+        <rect x="458" y="16" width="72" height="36" rx="4" fill="#4f46e5"/>
+        <text x="494" y="37" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">NEC</text>
+        <line x1="494" y1="52" x2="418" y2="110" stroke="#4f46e5" stroke-width="1.5"/>
+        <rect x="590" y="30" width="88" height="36" rx="4" fill="#4f46e5"/>
+        <text x="634" y="51" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">Honda</text>
+        <line x1="590" y1="48" x2="438" y2="126" stroke="#4f46e5" stroke-width="1.5"/>
+        <rect x="30" y="170" width="100" height="42" rx="4" fill="#1a1a2e"/>
+        <text x="80" y="188" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700" font-family="Inter">NEDO</text>
+        <text x="80" y="203" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter">¥1T · 5yr grant</text>
+        <line x1="130" y1="191" x2="302" y2="152" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <rect x="490" y="200" width="110" height="42" rx="4" fill="#6d28d9" opacity="0.85"/>
+        <text x="545" y="218" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" font-family="Inter">Preferred Networks</text>
+        <text x="545" y="232" text-anchor="middle" fill="#ddd6fe" font-size="9" font-family="Inter">secondment</text>
+        <line x1="490" y1="221" x2="438" y2="165" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <rect x="190" y="210" width="140" height="36" rx="4" fill="#374151"/>
+        <text x="260" y="227" text-anchor="middle" fill="#e5e7eb" font-size="10" font-family="Inter">MUFG · SMBC · Mizuho</text>
+        <text x="260" y="240" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="Inter">+ Nippon Steel, Kobe Steel</text>
+        <line x1="330" y1="210" x2="360" y2="173" stroke="#6b7280" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Risk</div>
+        <div class="annotation-card-text">~100 engineers is a thin team against US hyperscaler AI labs. NEDO funding flows through a competitive grants process — approval is not guaranteed.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Watch</div>
+        <div class="annotation-card-text">Whether the physical-AI mandate generates procurement for Fanuc and Yaskawa, or primarily benefits SoftBank's Arm and data-centre stack.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Signal</div>
+        <div class="annotation-card-text">Industrial and financial capital co-investing in sovereign AI at scale for the first time. Cap-table composition — autos, banks, steel — signals keiretsu-level commitment.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIZ 2: RAPIDUS -->
+  <div class="viz-section" id="viz-rapidus">
+    <div class="story-label">Story Two · Semiconductors · The Register · February 2026</div>
+    <div class="story-headline">Rapidus Lands ¥267.6B Round, Pilot Line Active — 2nm Mass Production Target Holds at 2027</div>
+    <div class="story-deck">Japan's state-backed foundry has closed its largest financing round to date, shifted IIM-1 in Chitose from construction to an active 2nm pilot line, and is in discussions with 60+ potential customers. This chart maps the programme timeline against the leading-edge foundry competitive landscape.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">¥267<span class="unit">B</span></div>
+        <div class="signal-label">Feb 2026 Financing Round</div>
+        <div class="signal-delta">~$1.7B · IPA + 32 private co-investors</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">60<span class="unit">+</span></div>
+        <div class="signal-label">Potential Customers in Discussions</div>
+        <div class="signal-delta">AI, robotics, edge computing segments</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">2027</div>
+        <div class="signal-label">Mass Production Target</div>
+        <div class="signal-delta">2nm GAA node · Chitose, Hokkaido</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Rapidus Programme Timeline — Pilot to Mass Production</div>
+      <div class="chart-subtitle">Key milestones from founding to 2027 mass-production target</div>
+      <svg viewBox="0 0 740 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="740" height="200" fill="#f8f6f2" rx="4"/>
+        <line x1="60" y1="110" x2="700" y2="110" stroke="#d1d5db" stroke-width="2"/>
+        <text x="60"  y="135" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2022</text>
+        <text x="188" y="135" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2023</text>
+        <text x="316" y="135" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2024</text>
+        <text x="444" y="135" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2025</text>
+        <text x="572" y="135" text-anchor="middle" fill="#3730a3" font-size="10" font-weight="700" font-family="Inter">2026 — Now</text>
+        <text x="700" y="135" text-anchor="middle" fill="#4f46e5" font-size="10" font-weight="700" font-family="Inter">2027</text>
+        <circle cx="60"  cy="110" r="7" fill="#9ca3af"/>
+        <text x="60"  y="96" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">Founded</text>
+        <text x="60"  y="85" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">IBM + imec pact</text>
+        <circle cx="188" cy="110" r="7" fill="#6b7280"/>
+        <text x="188" y="96" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">IIM-1 Breaks Ground</text>
+        <text x="188" y="85" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Chitose, Hokkaido</text>
+        <circle cx="316" cy="110" r="7" fill="#6b7280"/>
+        <text x="316" y="96" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">EUV Installed</text>
+        <text x="316" y="85" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Cleanroom active</text>
+        <circle cx="444" cy="110" r="7" fill="#4f46e5"/>
+        <text x="444" y="96" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">2nm GAA Prototypes</text>
+        <text x="444" y="85" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">On-spec electrical results</text>
+        <circle cx="572" cy="110" r="11" fill="#3730a3"/>
+        <text x="572" y="96" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">¥267.6B Round</text>
+        <text x="572" y="85" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Pilot line · 60+ customers</text>
+        <circle cx="700" cy="110" r="9" fill="#818cf8" stroke="#3730a3" stroke-width="2"/>
+        <text x="700" y="96" text-anchor="middle" fill="#3730a3" font-size="9" font-weight="700" font-family="Inter">Mass Production</text>
+        <text x="700" y="85" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Target — 2nm node</text>
+        <rect x="444" y="148" width="256" height="7" rx="3" fill="#3730a3" opacity="0.7"/>
+        <text x="572" y="168" text-anchor="middle" fill="#3730a3" font-size="8" font-weight="600" font-family="Inter">¥267.6B round closes (Feb 2026)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Risk</div>
+        <div class="annotation-card-text">TSMC and Samsung began 2nm volume in Q4 2025. Rapidus enters mass production at least two years behind. Yield at scale — not prototype performance — remains unproven.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Watch</div>
+        <div class="annotation-card-text">Whether 60+ customer discussions convert to binding design-start commitments. Tape-out announcements, not MoUs, are the leading indicator of real demand.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Signal</div>
+        <div class="annotation-card-text">Fujifilm's co-development role is commercial, not symbolic: its photoresist and CMP slurry business gains a domestic anchor customer, signalling confidence in the process roadmap.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIZ 3: BOJ -->
+  <div class="viz-section" id="viz-boj">
+    <div class="story-label">Story Three · Monetary Policy · BOJ Statement · OECD · April–May 2026</div>
+    <div class="story-headline">BOJ Holds at 0.75%, Raises Inflation Forecast to 2.8% — OECD Projects 2% by End-2027</div>
+    <div class="story-deck">The Bank of Japan held its short-term policy rate at 0.75% at its April 28 meeting in a 6–3 vote, while sharply raising its FY2026 core inflation forecast and trimming growth. This chart maps the actual rate path against the OECD's 2027 projection.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">0.75<span class="unit">%</span></div>
+        <div class="signal-label">BOJ Policy Rate — April 28 Hold</div>
+        <div class="signal-delta">Vote: 6–3 · three hawks pushed for 1.0%</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">2.8<span class="unit">%</span></div>
+        <div class="signal-label">FY2026 Core CPI Forecast</div>
+        <div class="signal-delta">Up from 1.9% — energy shock driven</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">0.5<span class="unit">%</span></div>
+        <div class="signal-label">FY2026 GDP Growth Forecast</div>
+        <div class="signal-delta">Down from 1.0% — softening demand</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">BOJ Policy Rate — Actual Path vs. OECD Projection</div>
+      <div class="chart-subtitle">Short-term policy rate (%), 2023 to end-2027 OECD projection</div>
+      <svg viewBox="0 0 740 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="740" height="220" fill="#f8f6f2" rx="4"/>
+        <line x1="70" y1="20" x2="70" y2="180" stroke="#d1d5db" stroke-width="1.5"/>
+        <line x1="70" y1="180" x2="710" y2="180" stroke="#d1d5db" stroke-width="1.5"/>
+        <text x="62" y="184" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">0%</text>
+        <line x1="68" y1="180" x2="710" y2="180" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="62" y="152" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">0.5%</text>
+        <line x1="68" y1="148" x2="710" y2="148" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="62" y="120" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">1.0%</text>
+        <line x1="68" y1="116" x2="710" y2="116" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="62" y="88" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">1.5%</text>
+        <line x1="68" y1="84" x2="710" y2="84" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="62" y="56" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">2.0%</text>
+        <line x1="68" y1="52" x2="710" y2="52" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="110" y="198" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2023</text>
+        <text x="238" y="198" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2024</text>
+        <text x="366" y="198" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2025</text>
+        <text x="494" y="198" text-anchor="middle" fill="#3730a3" font-size="10" font-weight="700" font-family="Inter">2026 Now</text>
+        <text x="622" y="198" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2027</text>
+        <polyline points="110,182 160,180 238,172 300,164 366,156 420,148 470,140 494,132" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="494" cy="132" r="5" fill="#3730a3"/>
+        <text x="494" y="122" text-anchor="middle" fill="#3730a3" font-size="9" font-weight="700" font-family="Inter">0.75%</text>
+        <polyline points="494,132 556,116 622,84 680,68 710,52" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,4"/>
+        <circle cx="710" cy="52" r="5" fill="#818cf8" stroke="#3730a3" stroke-width="1.5"/>
+        <text x="716" y="50" text-anchor="start" fill="#4f46e5" font-size="9" font-weight="700" font-family="Inter">2.0%</text>
+        <text x="716" y="40" text-anchor="start" fill="#818cf8" font-size="8" font-family="Inter">OECD proj.</text>
+        <rect x="370" y="28" width="118" height="34" rx="3" fill="#fef3e2"/>
+        <text x="429" y="43" text-anchor="middle" fill="#b45309" font-size="9" font-weight="700" font-family="Inter">6–3 April vote</text>
+        <text x="429" y="56" text-anchor="middle" fill="#92400e" font-size="8" font-family="Inter">3 hawks: push to 1%</text>
+        <line x1="388" y1="62" x2="494" y2="132" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="80" y1="22" x2="106" y2="22" stroke="#3730a3" stroke-width="2.5"/>
+        <text x="110" y="26" fill="#374151" font-size="9" font-family="Inter">Actual / current</text>
+        <line x1="200" y1="22" x2="226" y2="22" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,4"/>
+        <text x="230" y="26" fill="#374151" font-size="9" font-family="Inter">OECD projection</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Risk</div>
+        <div class="annotation-card-text">Core CPI at 2.8% alongside 0.5% GDP growth is a stagflation configuration. Energy pass-through from the Iran shock could force a hike into weakening domestic demand.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Watch</div>
+        <div class="annotation-card-text">June 16–17 BOJ meeting and May CPI data (released June 20). If energy pass-through lifts May CPI above 2.8%, the June hike probability rises materially.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Signal</div>
+        <div class="annotation-card-text">Export-oriented names with USD revenues — Tokyo Electron, Shin-Etsu Chemical — have natural yen hedges. A prolonged hold with a weaker yen is structurally favourable on a reported-earnings basis.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-footer">
+    <div class="viz-footer-text">Japan Brief Issue #1 · May 26, 2026 · Stories sourced from public reporting · Not investment advice</div>
+    <div class="viz-footer-brand">Tomodachi · Japan Brief</div>
+  </div>
+
 </div>
-
-<div class="viz-header">
-  <div class="viz-eyebrow">友達 Tomodachi · Data Visualizations</div>
-  <div class="viz-title">Japan Brief · Issue #1</div>
-  <div class="viz-sub">📅 May 26, 2026 &nbsp;·&nbsp; 3 stories · AI Alliance · Rapidus 2nm · BOJ Hold</div>
-</div>
-
-<div class="tab-bar">
-  <button class="tab-btn active" onclick="showViz('tab1', this)">🤖 AI Alliance</button>
-  <button class="tab-btn" onclick="showViz('tab2', this)">💻 Rapidus 2nm</button>
-  <button class="tab-btn" onclick="showViz('tab3', this)">💹 BOJ & Rates</button>
-</div>
-
-<!-- TAB 1: Japan AI Alliance -->
-<div id="tab1" class="tab-panel active">
-  <div class="story-header">
-    <span class="story-tag st-ai">AI & Tech</span>
-    <span class="story-hed">Japan AI Alliance: SoftBank-Sony-NEC-Honda Consortium</span>
-  </div>
-
-  <div class="signals-row">
-    <div class="signal-card">
-      <div class="signal-val">¥1T</div>
-      <div class="signal-label">NEDO AI Fund</div>
-      <div class="signal-note">FY2026–FY2031, 5 years</div>
-    </div>
-    <div class="signal-card">
-      <div class="signal-val">~100</div>
-      <div class="signal-label">Engineers Hiring</div>
-      <div class="signal-note">Initial headcount target</div>
-    </div>
-    <div class="signal-card">
-      <div class="signal-val">4+</div>
-      <div class="signal-label">Founding Partners</div>
-      <div class="signal-note">SoftBank, Sony, NEC, Honda + banks</div>
-    </div>
-  </div>
-
-  <div class="chart-wrap">
-    <div class="chart-title">Japan AI Alliance — Consortium Structure</div>
-    <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
-      <!-- Background -->
-      <rect width="820" height="300" fill="#f8f9fc" rx="6"/>
-
-      <!-- Central node: NewCo -->
-      <ellipse cx="410" cy="150" rx="72" ry="36" fill="#3730a3" opacity="0.9"/>
-      <text x="410" y="145" text-anchor="middle" fill="#fff" font-size="13" font-weight="700" font-family="Inter">Japan AI</text>
-      <text x="410" y="162" text-anchor="middle" fill="#c7d2fe" font-size="10" font-family="Inter">Foundation Venture</text>
-
-      <!-- NEDO government fund arc -->
-      <rect x="30" y="60" width="110" height="44" rx="6" fill="#1a1a2e"/>
-      <text x="85" y="79" text-anchor="middle" fill="#818cf8" font-size="11" font-weight="700" font-family="Inter">NEDO</text>
-      <text x="85" y="95" text-anchor="middle" fill="#8a9bb5" font-size="9" font-family="Inter">¥1T over 5yr</text>
-      <line x1="140" y1="82" x2="338" y2="138" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="5,3"/>
-
-      <!-- Founders row top -->
-      <rect x="190" y="28" width="90" height="38" rx="5" fill="#4f46e5"/>
-      <text x="235" y="50" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">SoftBank</text>
-      <text x="235" y="63" text-anchor="middle" fill="#c7d2fe" font-size="9" font-family="Inter">ソフトバンク</text>
-      <line x1="235" y1="66" x2="360" y2="120" stroke="#4f46e5" stroke-width="1.5"/>
-
-      <rect x="340" y="18" width="80" height="38" rx="5" fill="#4f46e5"/>
-      <text x="380" y="40" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">Sony</text>
-      <text x="380" y="53" text-anchor="middle" fill="#c7d2fe" font-size="9" font-family="Inter">ソニー</text>
-      <line x1="380" y1="56" x2="400" y2="114" stroke="#4f46e5" stroke-width="1.5"/>
-
-      <rect x="490" y="18" width="80" height="38" rx="5" fill="#4f46e5"/>
-      <text x="530" y="40" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">NEC</text>
-      <text x="530" y="53" text-anchor="middle" fill="#c7d2fe" font-size="9" font-family="Inter">日本電気</text>
-      <line x1="530" y1="56" x2="460" y2="120" stroke="#4f46e5" stroke-width="1.5"/>
-
-      <rect x="650" y="28" width="90" height="38" rx="5" fill="#4f46e5"/>
-      <text x="695" y="50" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Inter">Honda</text>
-      <text x="695" y="63" text-anchor="middle" fill="#c7d2fe" font-size="9" font-family="Inter">本田技研</text>
-      <line x1="695" y1="66" x2="476" y2="132" stroke="#4f46e5" stroke-width="1.5"/>
-
-      <!-- Secondment node: PFN -->
-      <rect x="555" y="188" width="110" height="44" rx="5" fill="#6d28d9" opacity="0.8"/>
-      <text x="610" y="206" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" font-family="Inter">Preferred</text>
-      <text x="610" y="220" text-anchor="middle" fill="#ddd6fe" font-size="9" font-family="Inter">Networks (PFN)</text>
-      <line x1="555" y1="210" x2="476" y2="170" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
-      <text x="510" y="194" text-anchor="middle" fill="#7c3aed" font-size="9" font-family="Inter" font-style="italic">secondment</text>
-
-      <!-- Banks node -->
-      <rect x="170" y="200" width="130" height="44" rx="5" fill="#374151"/>
-      <text x="235" y="218" text-anchor="middle" fill="#e5e7eb" font-size="10" font-weight="600" font-family="Inter">MUFG · SMBC · Mizuho</text>
-      <text x="235" y="232" text-anchor="middle" fill="#9ca3af" font-size="9" font-family="Inter">+ Nippon Steel, Kobe Steel</text>
-      <line x1="300" y1="210" x2="380" y2="183" stroke="#6b7280" stroke-width="1.5"/>
-
-      <!-- Physical AI target -->
-      <rect x="640" y="220" width="130" height="38" rx="5" fill="#0f172a"/>
-      <text x="705" y="237" text-anchor="middle" fill="#a5b4fc" font-size="10" font-weight="600" font-family="Inter">Target: Physical AI</text>
-      <text x="705" y="251" text-anchor="middle" fill="#64748b" font-size="9" font-family="Inter">Factory · Robotics · Edge</text>
-      <line x1="640" y1="238" x2="482" y2="180" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,3"/>
-    </svg>
-  </div>
-
-  <div class="annotations">
-    <div class="ann-card ann-red">
-      <div class="ann-label">⚠ Risk</div>
-      Execution risk is high: 100 engineers is a small team to compete against US hyperscaler AI labs; NEDO funding is contingent on applications being approved through a competitive grants process.
-    </div>
-    <div class="ann-card ann-amber">
-      <div class="ann-label">~ Watch</div>
-      Whether the "physical AI" mandate translates to procurement for Fanuc and Yaskawa — Japan's dominant robot makers — or primarily benefits SoftBank's AI data center/Arm stack.
-    </div>
-    <div class="ann-card ann-green">
-      <div class="ann-label">✓ Signal</div>
-      Industrial + financial capital co-investing in sovereign AI for the first time at scale. Cap table composition (autos, banks, steel) signals a keiretsu-style commitment, not just headline announcements.
-    </div>
-  </div>
-</div>
-
-<!-- TAB 2: Rapidus 2nm -->
-<div id="tab2" class="tab-panel">
-  <div class="story-header">
-    <span class="story-tag st-semi">Semiconductors</span>
-    <span class="story-hed">Rapidus — ¥267.6B Round, Pilot Line Active, 2nm Target 2027</span>
-  </div>
-
-  <div class="signals-row">
-    <div class="signal-card">
-      <div class="signal-val">¥267.6B</div>
-      <div class="signal-label">Funding Raised</div>
-      <div class="signal-note">~$1.7B · Feb 2026</div>
-    </div>
-    <div class="signal-card">
-      <div class="signal-val">60+</div>
-      <div class="signal-label">Potential Customers</div>
-      <div class="signal-note">In active discussions</div>
-    </div>
-    <div class="signal-card">
-      <div class="signal-val">2027</div>
-      <div class="signal-label">Mass Production Target</div>
-      <div class="signal-note">2nm GAA node · Chitose</div>
-    </div>
-  </div>
-
-  <div class="chart-wrap">
-    <div class="chart-title">Rapidus Road to 2nm — Programme Timeline</div>
-    <svg viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
-      <rect width="820" height="220" fill="#f8f9fc" rx="6"/>
-
-      <!-- Axis -->
-      <line x1="60" y1="130" x2="760" y2="130" stroke="#d1d5db" stroke-width="2"/>
-
-      <!-- Year labels -->
-      <text x="60" y="155" text-anchor="middle" fill="#6b7280" font-size="11" font-family="Inter">2022</text>
-      <text x="200" y="155" text-anchor="middle" fill="#6b7280" font-size="11" font-family="Inter">2023</text>
-      <text x="340" y="155" text-anchor="middle" fill="#6b7280" font-size="11" font-family="Inter">2024</text>
-      <text x="480" y="155" text-anchor="middle" fill="#6b7280" font-size="11" font-family="Inter">2025</text>
-      <text x="620" y="155" text-anchor="middle" fill="#3730a3" font-size="11" font-weight="700" font-family="Inter">2026</text>
-      <text x="760" y="155" text-anchor="middle" fill="#4f46e5" font-size="11" font-weight="700" font-family="Inter">2027</text>
-
-      <!-- Milestone dots -->
-      <!-- 2022: Founded -->
-      <circle cx="60" cy="130" r="8" fill="#9ca3af"/>
-      <text x="60" y="115" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">Founded</text>
-      <text x="60" y="104" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">IBM/imec pact</text>
-
-      <!-- 2023: IIM-1 construction -->
-      <circle cx="200" cy="130" r="8" fill="#6b7280"/>
-      <text x="200" y="115" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">IIM-1 Breaks</text>
-      <text x="200" y="104" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Ground, Chitose</text>
-
-      <!-- 2024: EUV tools -->
-      <circle cx="340" cy="130" r="8" fill="#6b7280"/>
-      <text x="340" y="115" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">EUV Installed</text>
-      <text x="340" y="104" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Cleanroom active</text>
-
-      <!-- 2025: GAA prototypes -->
-      <circle cx="480" cy="130" r="8" fill="#4f46e5"/>
-      <text x="480" y="115" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">GAA Prototypes</text>
-      <text x="480" y="104" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">2nm test wafers</text>
-
-      <!-- 2026: ¥267.6B + pilot line (NOW) -->
-      <circle cx="620" cy="130" r="12" fill="#3730a3"/>
-      <text x="620" y="112" text-anchor="middle" fill="#1a1a2e" font-size="9" font-weight="700" font-family="Inter">NOW</text>
-      <text x="620" y="100" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">¥267.6B raised</text>
-      <text x="620" y="88" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">Pilot line, 60+ customers</text>
-
-      <!-- 2027: Mass production -->
-      <circle cx="760" cy="130" r="10" fill="#818cf8" stroke="#3730a3" stroke-width="2"/>
-      <text x="760" y="113" text-anchor="middle" fill="#3730a3" font-size="9" font-weight="700" font-family="Inter">Target</text>
-      <text x="760" y="101" text-anchor="middle" fill="#374151" font-size="9" font-weight="600" font-family="Inter">Mass Production</text>
-      <text x="760" y="89" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">2nm node</text>
-
-      <!-- Funding bars under axis -->
-      <rect x="90" y="165" width="220" height="8" rx="3" fill="#e5e7eb"/>
-      <text x="200" y="186" text-anchor="middle" fill="#9ca3af" font-size="8" font-family="Inter">Phase 1 gov't grants</text>
-      <rect x="310" y="165" width="200" height="8" rx="3" fill="#818cf8" opacity="0.6"/>
-      <text x="410" y="186" text-anchor="middle" fill="#6b7280" font-size="8" font-family="Inter">IPA + private investment</text>
-      <rect x="510" y="165" width="250" height="8" rx="3" fill="#3730a3" opacity="0.8"/>
-      <text x="635" y="186" text-anchor="middle" fill="#3730a3" font-size="8" font-weight="700" font-family="Inter">¥267.6B round (Feb 2026) + future raises</text>
-    </svg>
-  </div>
-
-  <div class="annotations">
-    <div class="ann-card ann-red">
-      <div class="ann-label">⚠ Risk</div>
-      Achieving mass production by 2027 puts Rapidus 2+ years behind TSMC and Samsung, who started 2nm volume in Q4 2025. Process yield at scale, not prototype performance, is the critical unknown.
-    </div>
-    <div class="ann-card ann-amber">
-      <div class="ann-label">~ Watch</div>
-      Whether the 60+ potential customers convert to binding design starts. Tape-out commitments, not MoUs, are the leading indicator. Watch for customer announcements at Japan Semiconductor Summit.
-    </div>
-    <div class="ann-card ann-green">
-      <div class="ann-label">✓ Signal</div>
-      Fujifilm's active co-development role is a commercial, not symbolic, signal: its photoresist and CMP slurry business gains a domestic anchor customer. Fujifilm shares are a liquid proxy on Rapidus success.
-    </div>
-  </div>
-</div>
-
-<!-- TAB 3: BOJ -->
-<div id="tab3" class="tab-panel">
-  <div class="story-header">
-    <span class="story-tag st-macro">BOJ & Macro</span>
-    <span class="story-hed">BOJ Holds 0.75% · Inflation Up · Growth Down · OECD Eyes 2% by 2027</span>
-  </div>
-
-  <div class="signals-row">
-    <div class="signal-card">
-      <div class="signal-val">0.75%</div>
-      <div class="signal-label">BOJ Policy Rate</div>
-      <div class="signal-note">Apr 28 hold · 6–3 vote</div>
-    </div>
-    <div class="signal-card">
-      <div class="signal-val">2.8%</div>
-      <div class="signal-label">FY2026 Core CPI Fcst</div>
-      <div class="signal-note">Up from 1.9% prior</div>
-    </div>
-    <div class="signal-card">
-      <div class="signal-val">0.5%</div>
-      <div class="signal-label">FY2026 GDP Fcst</div>
-      <div class="signal-note">Down from 1.0% prior</div>
-    </div>
-  </div>
-
-  <div class="chart-wrap">
-    <div class="chart-title">BOJ Policy Rate Path — Actual vs. OECD Projection</div>
-    <svg viewBox="0 0 820 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
-      <rect width="820" height="240" fill="#f8f9fc" rx="6"/>
-
-      <!-- Axes -->
-      <line x1="80" y1="30" x2="80" y2="190" stroke="#d1d5db" stroke-width="1.5"/>
-      <line x1="80" y1="190" x2="760" y2="190" stroke="#d1d5db" stroke-width="1.5"/>
-
-      <!-- Y labels (rate) -->
-      <text x="72" y="194" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">0%</text>
-      <line x1="78" y1="190" x2="760" y2="190" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-
-      <text x="72" y="158" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">0.5%</text>
-      <line x1="78" y1="158" x2="760" y2="158" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-
-      <text x="72" y="126" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">1.0%</text>
-      <line x1="78" y1="126" x2="760" y2="126" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-
-      <text x="72" y="94" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">1.5%</text>
-      <line x1="78" y1="94" x2="760" y2="94" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-
-      <text x="72" y="62" text-anchor="end" fill="#6b7280" font-size="10" font-family="Inter">2.0%</text>
-      <line x1="78" y1="62" x2="760" y2="62" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-
-      <!-- X labels (timeline) -->
-      <text x="130" y="208" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2023</text>
-      <text x="250" y="208" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2024</text>
-      <text x="380" y="208" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2025</text>
-      <text x="510" y="208" text-anchor="middle" fill="#3730a3" font-size="10" font-weight="700" font-family="Inter">2026 NOW</text>
-      <text x="650" y="208" text-anchor="middle" fill="#6b7280" font-size="10" font-family="Inter">2027</text>
-
-      <!-- Historical + current rate line (solid) -->
-      <!-- 2023: -0.1% → near zero → start hiking -->
-      <polyline points="130,194 200,192 250,184 320,174 380,168 430,158 480,150 510,142" fill="none" stroke="#3730a3" stroke-width="2.5"/>
-
-      <!-- Current point (0.75%) -->
-      <circle cx="510" cy="142" r="6" fill="#3730a3"/>
-      <text x="510" y="133" text-anchor="middle" fill="#3730a3" font-size="10" font-weight="700" font-family="Inter">0.75%</text>
-
-      <!-- OECD projection (dashed) -->
-      <polyline points="510,142 580,126 650,94 710,78 760,62" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,4"/>
-      <circle cx="760" cy="62" r="5" fill="#818cf8" stroke="#3730a3" stroke-width="1.5"/>
-      <text x="762" y="56" text-anchor="start" fill="#4f46e5" font-size="10" font-weight="700" font-family="Inter">2.0%</text>
-      <text x="762" y="44" text-anchor="start" fill="#818cf8" font-size="9" font-family="Inter">(OECD proj.)</text>
-
-      <!-- Dissenters annotation -->
-      <rect x="420" y="38" width="130" height="38" rx="4" fill="#fef3e2"/>
-      <text x="485" y="55" text-anchor="middle" fill="#b45309" font-size="9" font-weight="700" font-family="Inter">6–3 April vote</text>
-      <text x="485" y="69" text-anchor="middle" fill="#92400e" font-size="8" font-family="Inter">3 hawks: push to 1%</text>
-      <line x1="420" y1="60" x2="510" y2="142" stroke="#f59e0b" stroke-width="1" stroke-dasharray="3,3"/>
-
-      <!-- Legend -->
-      <line x1="90" y1="26" x2="120" y2="26" stroke="#3730a3" stroke-width="2.5"/>
-      <text x="125" y="30" fill="#374151" font-size="9" font-family="Inter">Actual / current</text>
-      <line x1="210" y1="26" x2="240" y2="26" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,4"/>
-      <text x="245" y="30" fill="#374151" font-size="9" font-family="Inter">OECD projection</text>
-    </svg>
-  </div>
-
-  <div class="annotations">
-    <div class="ann-card ann-red">
-      <div class="ann-label">⚠ Risk</div>
-      Stagflation scenario: core CPI at 2.8% while GDP slows to 0.5% limits BOJ's room to support growth via rate cuts. Energy shock from Iran conflict could force hike even against weak domestic demand.
-    </div>
-    <div class="ann-card ann-amber">
-      <div class="ann-label">~ Watch</div>
-      June 16–17 BOJ meeting. Governor Ueda has explicitly maintained data dependency. If May CPI (released June 20) exceeds 2.8% on energy pass-through, pressure for a summer hike intensifies materially.
-    </div>
-    <div class="ann-card ann-green">
-      <div class="ann-label">✓ Signal</div>
-      Export-oriented names (Tokyo Electron, Shin-Etsu Chemical) have natural yen hedges via USD revenues. A prolonged hold with weaker yen is structurally favorable for these names on a reported earnings basis.
-    </div>
-  </div>
-</div>
-
-<div class="footer-bar">
-  Japan Brief Issue #1 · May 26, 2026 · Not investment advice · 友達 Tomodachi
-</div>
-
 <script>
-function showViz(tabId, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(tabId).classList.add('active');
-  btn.classList.add('active');
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('viz-' + id).classList.add('active');
+  tab.classList.add('active');
 }
 </script>
 </body>
