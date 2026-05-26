@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visualized · China Brief · Issue #14 · May 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+
+  /* HEADER */
+  .header { background:#1a1a2e; padding:36px 56px 28px; border-bottom:4px solid #c0392b; }
+  .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:10px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .header-title .sub { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#8a9bb5; display:block; margin-top:6px; letter-spacing:1px; }
+  .header-meta { margin-top:18px; font-size:11px; color:#4a5a7a; display:flex; gap:20px; flex-wrap:wrap; }
+  .header-meta span { display:flex; align-items:center; gap:6px; }
+  .header-meta .dot { width:4px; height:4px; border-radius:50%; background:#c0392b; display:inline-block; }
+  .back-link { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; margin-top:16px; }
+  .back-link:hover { color:#e8d5b0; }
+  .back-link::before { content:'←'; font-size:13px; }
+
+  /* NAV / STORY TABS */
+  .viz-nav { background:#f0ede8; border-bottom:1px solid #e0d8d0; display:flex; gap:0; overflow-x:auto; }
+  .viz-tab { padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; user-select:none; }
+  .viz-tab:hover { color:#1a1a2e; }
+  .viz-tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+
+  /* CONTENT SECTIONS */
+  .viz-section { display:none; padding:48px 56px 64px; }
+  .viz-section.active { display:block; }
+  .story-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:8px; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; line-height:1.3; color:#1a1a2e; margin-bottom:6px; }
+  .story-deck { font-size:14px; color:#5a5a6a; line-height:1.7; margin-bottom:36px; max-width:640px; }
+
+  /* SIGNAL NUMBER */
+  .signal-row { display:flex; gap:32px; margin-bottom:48px; flex-wrap:wrap; }
+  .signal-box { flex:1; min-width:160px; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:56px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-num .unit { font-size:24px; font-weight:400; color:#c0392b; }
+  .signal-label { font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-top:6px; line-height:1.4; }
+  .signal-delta { font-size:12px; color:#c0392b; margin-top:4px; font-weight:600; }
+
+  /* CHART CONTAINER */
+  .chart-container { background:#f8f6f2; border-radius:6px; padding:32px; margin-bottom:40px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a3a4a; margin-bottom:4px; }
+  .chart-subtitle { font-size:12px; color:#7a7a8a; margin-bottom:24px; }
+
+  /* ANNOTATION */
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:36px; }
+  .annotation-card { border-left:3px solid #e0d8d0; padding:12px 16px; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.green { border-left-color:#27ae60; }
+  .annotation-card.amber { border-left-color:#e67e22; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .annotation-card-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .annotation-card-zh { font-size:13px; font-weight:600; color:#c0392b; margin-bottom:2px; }
+
+  /* SVG shared */
+  text { font-family: 'Inter', sans-serif; }
+
+  /* FOOTER */
+  .viz-footer { background:#1a1a2e; padding:16px 56px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="header-eyebrow">China Brief · Data Visualization</div>
+    <div class="header-title">AI Visualized
+      <span class="sub">Issue #14 · May 27, 2026 · 3 Stories</span>
+    </div>
+    <div class="header-meta">
+      <span><span class="dot"></span>AI Talent Controls</span>
+      <span><span class="dot"></span>Embodied AI Funding</span>
+      <span><span class="dot"></span>China VC LP Shift</span>
+    </div>
+    <a href="brief.html" class="back-link">Return to China Brief</a>
+  </div>
+
+  <div class="viz-nav">
+    <div class="viz-tab active" onclick="showViz('s1', this)">🔒 AI Talent Controls</div>
+    <div class="viz-tab" onclick="showViz('s2', this)">🦾 Embodied AI Funding</div>
+    <div class="viz-tab" onclick="showViz('s3', this)">💹 China VC LP Shift</div>
+  </div>
+
+  <!-- STORY 1: AI Talent Travel Controls -->
+  <div class="viz-section active" id="s1">
+    <div class="story-label">AI & Tech · Story One</div>
+    <div class="story-headline">Beijing's AI Talent Travel Controls: From Notification to Pre-Approval</div>
+    <div class="story-deck">China expanded overseas travel restrictions to AI professionals at private firms including DeepSeek and Alibaba. The shift from notify-only to pre-approval signals a hardening of Beijing's approach to treating AI talent as a strategic national resource.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">2<span class="unit">+</span></div>
+        <div class="signal-label">Major private AI firms confirmed affected (DeepSeek, Alibaba)</div>
+        <div class="signal-delta">↑ Expanded from state-sector only</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">$2<span class="unit">B</span></div>
+        <div class="signal-label">Meta's proposed Manus acquisition — the trigger event</div>
+        <div class="signal-delta">Prompted broader IP-protection policy review</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">Dec<span class="unit">'25</span></div>
+        <div class="signal-label">DeepSeek exec travel restrictions first applied</div>
+        <div class="signal-delta">Now expanded to broader private sector</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">China AI Talent Control — Policy Escalation Timeline</div>
+      <div class="chart-subtitle">From informal guidance to formal pre-approval requirement, 2024–2026</div>
+      <svg viewBox="0 0 740 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <!-- timeline axis -->
+        <line x1="40" y1="130" x2="700" y2="130" stroke="#e0d8d0" stroke-width="2"/>
+        <!-- Milestones -->
+        <!-- 1: Mid-2024 advisory -->
+        <circle cx="100" cy="130" r="8" fill="#e8d5b0" stroke="#c0392b" stroke-width="2"/>
+        <text x="100" y="110" text-anchor="middle" font-size="10" fill="#9a8a7a">Mid-2024</text>
+        <text x="100" y="155" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="600">Informal</text>
+        <text x="100" y="168" text-anchor="middle" font-size="9" fill="#5a5a6a">Advisory to avoid</text>
+        <text x="100" y="180" text-anchor="middle" font-size="9" fill="#5a5a6a">US travel (state)</text>
+
+        <!-- 2: NDRC LP rules Apr 2026 -->
+        <circle cx="260" cy="130" r="8" fill="#e8d5b0" stroke="#c0392b" stroke-width="2"/>
+        <text x="260" y="110" text-anchor="middle" font-size="10" fill="#9a8a7a">Dec 2025</text>
+        <text x="260" y="155" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="600">DeepSeek Execs</text>
+        <text x="260" y="168" text-anchor="middle" font-size="9" fill="#5a5a6a">Travel restrictions</text>
+        <text x="260" y="180" text-anchor="middle" font-size="9" fill="#5a5a6a">first applied</text>
+
+        <!-- 3: Manus co-founders Mar 2026 -->
+        <circle cx="420" cy="130" r="8" fill="#e8d5b0" stroke="#c0392b" stroke-width="2"/>
+        <text x="420" y="110" text-anchor="middle" font-size="10" fill="#9a8a7a">Apr 2026</text>
+        <text x="420" y="155" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="600">Manus Founders</text>
+        <text x="420" y="168" text-anchor="middle" font-size="9" fill="#5a5a6a">Barred during</text>
+        <text x="420" y="180" text-anchor="middle" font-size="9" fill="#5a5a6a">Meta acquisition review</text>
+
+        <!-- 4: May 2026 expansion -->
+        <circle cx="600" cy="130" r="11" fill="#c0392b" stroke="#c0392b" stroke-width="2"/>
+        <text x="600" y="107" text-anchor="middle" font-size="10" fill="#9a8a7a">May 26, 2026</text>
+        <text x="600" y="152" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">Pre-Approval</text>
+        <text x="600" y="165" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">Required</text>
+        <text x="600" y="180" text-anchor="middle" font-size="9" fill="#5a5a6a">Private firms: DeepSeek,</text>
+        <text x="600" y="192" text-anchor="middle" font-size="9" fill="#5a5a6a">Alibaba + others</text>
+
+        <!-- connecting arrows -->
+        <line x1="108" y1="130" x2="252" y2="130" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="268" y1="130" x2="412" y2="130" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <line x1="428" y1="130" x2="589" y2="130" stroke="#c0392b" stroke-width="2"/>
+        <polygon points="589,126 600,130 589,134" fill="#c0392b"/>
+
+        <!-- Policy intensity label -->
+        <text x="40" y="55" font-size="10" fill="#9a8a7a" font-weight="600">POLICY INTENSITY</text>
+        <text x="40" y="70" font-size="9" fill="#c0392b">▲ Escalating</text>
+        <line x1="40" y1="78" x2="40" y2="128" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Core Claim</div>
+        <div class="annotation-card-zh">出境审批</div>
+        <div class="annotation-card-text">Beijing now treats top AI talent at private firms as strategic national assets, requiring pre-travel government clearance — not just notification — for overseas departure.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Unverified / Uncertain</div>
+        <div class="annotation-card-zh">范围不明</div>
+        <div class="annotation-card-text">The seniority threshold, role types covered, and full company scope remain unspecified. DeepSeek and Alibaba did not comment. The breadth of enforcement is unknown.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Investable Signal</div>
+        <div class="annotation-card-zh">政策系统化</div>
+        <div class="annotation-card-text">NDRC US-LP restrictions + Manus review + travel controls form a coherent policy posture. Investors can now treat AI talent mobility as a regulated variable in China AI valuations.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2: Embodied AI Funding -->
+  <div class="viz-section" id="s2">
+    <div class="story-label">AI & Tech · Story Two</div>
+    <div class="story-headline">China Embodied AI: ¥1B Round Marks the Tier-1 Consolidation Phase</div>
+    <div class="story-deck">Guangdong Tianji Intelligent Systems raised ¥1B in Series B/B+ led by Hillhouse and Meituan — adding to a recent cluster of large institutional commitments in Chinese physical AI. The investor roster signals commercial deployment timelines, not just R&amp;D bets.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">¥1<span class="unit">B</span></div>
+        <div class="signal-label">Guangdong Tianji B/B+ rounds — Hillhouse + Meituan</div>
+        <div class="signal-delta">~$138M · May 2026</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">$276<span class="unit">M</span></div>
+        <div class="signal-label">X Square Robot Series B — Xiaomi + Sequoia China</div>
+        <div class="signal-delta">April 2026</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">$200<span class="unit">M+</span></div>
+        <div class="signal-label">ROBOTERA (星动纪元) latest raise</div>
+        <div class="signal-delta">Q2 2026 · 1,000-unit deliveries planned</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Chinese Embodied AI — Selected 2026 Funding Rounds (¥ million)</div>
+      <div class="chart-subtitle">Institutional investors backing physical AI at commercial-deployment stage, Jan–May 2026</div>
+      <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <!-- Y axis -->
+        <line x1="160" y1="20" x2="160" y2="220" stroke="#e0d8d0" stroke-width="1.5"/>
+        <!-- X axis -->
+        <line x1="160" y1="220" x2="680" y2="220" stroke="#e0d8d0" stroke-width="1.5"/>
+
+        <!-- Y axis labels (¥M) -->
+        <text x="150" y="224" text-anchor="end" font-size="9" fill="#9a8a7a">0</text>
+        <text x="150" y="174" text-anchor="end" font-size="9" fill="#9a8a7a">500</text>
+        <text x="150" y="124" text-anchor="end" font-size="9" fill="#9a8a7a">1,000</text>
+        <text x="150" y="74" text-anchor="end" font-size="9" fill="#9a8a7a">1,500</text>
+        <text x="150" y="24" text-anchor="end" font-size="9" fill="#9a8a7a">2,000</text>
+
+        <!-- Grid lines -->
+        <line x1="160" y1="174" x2="680" y2="174" stroke="#f0ede8" stroke-width="1"/>
+        <line x1="160" y1="124" x2="680" y2="124" stroke="#f0ede8" stroke-width="1"/>
+        <line x1="160" y1="74" x2="680" y2="74" stroke="#f0ede8" stroke-width="1"/>
+        <line x1="160" y1="24" x2="680" y2="24" stroke="#f0ede8" stroke-width="1"/>
+
+        <!-- Bars: scale: 200px = 2000 ¥M → 0.1px per ¥M, baseline y=220 -->
+        <!-- X Square Robot: ~2,000 (≈$276M) → bar height 200 -->
+        <rect x="185" y="20" width="80" height="200" fill="#1a1a2e" rx="3"/>
+        <text x="225" y="15" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="700">¥2,000M</text>
+        <text x="225" y="235" text-anchor="middle" font-size="9" fill="#5a5a6a">X Square</text>
+        <text x="225" y="246" text-anchor="middle" font-size="9" fill="#5a5a6a">Robot</text>
+        <text x="225" y="257" text-anchor="middle" font-size="8" fill="#9a8a7a">Apr 2026</text>
+
+        <!-- Guangdong Tianji: 1000 → 100px -->
+        <rect x="300" y="120" width="80" height="100" fill="#c0392b" rx="3"/>
+        <text x="340" y="115" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">¥1,000M</text>
+        <text x="340" y="235" text-anchor="middle" font-size="9" fill="#5a5a6a">Guangdong</text>
+        <text x="340" y="246" text-anchor="middle" font-size="9" fill="#5a5a6a">Tianji</text>
+        <text x="340" y="257" text-anchor="middle" font-size="8" fill="#9a8a7a">May 2026</text>
+
+        <!-- ROBOTERA: ~1,450 ($200M+) → 145px -->
+        <rect x="415" y="75" width="80" height="145" fill="#1a1a2e" rx="3" opacity="0.7"/>
+        <text x="455" y="70" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="700">~¥1,450M</text>
+        <text x="455" y="235" text-anchor="middle" font-size="9" fill="#5a5a6a">ROBOTERA</text>
+        <text x="455" y="246" text-anchor="middle" font-size="9" fill="#5a5a6a">星动纪元</text>
+        <text x="455" y="257" text-anchor="middle" font-size="8" fill="#9a8a7a">Q2 2026</text>
+
+        <!-- GigaAI: ~500 (est) → 50px -->
+        <rect x="530" y="170" width="80" height="50" fill="#e8d5b0" stroke="#c0392b" stroke-width="1" rx="3"/>
+        <text x="570" y="165" text-anchor="middle" font-size="10" fill="#9a8a7a" font-weight="600">est.</text>
+        <text x="570" y="235" text-anchor="middle" font-size="9" fill="#5a5a6a">GigaAI</text>
+        <text x="570" y="246" text-anchor="middle" font-size="9" fill="#5a5a6a">Wuhan HH</text>
+        <text x="570" y="257" text-anchor="middle" font-size="8" fill="#9a8a7a">May 2026</text>
+
+        <!-- Legend -->
+        <rect x="165" y="265" width="10" height="10" fill="#1a1a2e" rx="1"/>
+        <text x="180" y="274" font-size="9" fill="#5a5a6a">Major round (confirmed)</text>
+        <rect x="305" y="265" width="10" height="10" fill="#c0392b" rx="1"/>
+        <text x="320" y="274" font-size="9" fill="#5a5a6a">Today's story</text>
+        <rect x="410" y="265" width="10" height="10" fill="#e8d5b0" stroke="#c0392b" stroke-width="1" rx="1"/>
+        <text x="425" y="274" font-size="9" fill="#5a5a6a">Estimated / undisclosed</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Core Claim</div>
+        <div class="annotation-card-zh">具身智能赛道</div>
+        <div class="annotation-card-text">Hillhouse + Meituan backing at Series B signals institutional conviction that Chinese embodied AI has passed proof-of-concept and is entering commercial-deployment capital stages.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Unverified / Uncertain</div>
+        <div class="annotation-card-zh">商业化路径</div>
+        <div class="annotation-card-text">Whether Guangdong Tianji specifically maps to a Meituan last-mile deployment use case — or is a purely financial investment — has not been confirmed. Deployment timeline is unknown.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Investable Signal</div>
+        <div class="annotation-card-zh">高瓴+美团组合</div>
+        <div class="annotation-card-text">The investor pairing (Hillhouse for growth-stage conviction + Meituan for deployment channel optionality) is a repeatable pattern to track. Watch for further Meituan robotics investments as a logistics integration signal.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3: China VC LP Shift -->
+  <div class="viz-section" id="s3">
+    <div class="story-label">Finance &amp; Macro · Story Three</div>
+    <div class="story-headline">China VC's LP Composition Reset: From US Endowments to Middle East SWFs</div>
+    <div class="story-deck">GSR Ventures is raising $350M anchored by a $50B RedNote stake, part of a broader wave of China-focused dollar VC fundraising. The story isn't the individual fund — it's who the LPs are now, versus who they were in 2018–2021.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">$50<span class="unit">B</span></div>
+        <div class="signal-label">RedNote (Xiaohongshu) implied valuation in GSR fund pitch</div>
+        <div class="signal-delta">↑ from $31B in 2025</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">$3.7<span class="unit">B</span></div>
+        <div class="signal-label">RedNote annual revenue (most recent disclosed year)</div>
+        <div class="signal-delta">$500M net profit</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">5<span class="unit">+</span></div>
+        <div class="signal-label">Major China VC managers currently fundraising (GSR, IDG, Hillhouse, Primavera, BAI, Boyu)</div>
+        <div class="signal-delta">All targeting non-US LP base</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Estimated LP Composition Shift — China-Focused USD VC Funds</div>
+      <div class="chart-subtitle">Approximate share of commitments by LP type: 2018–2021 vintage vs. 2025–2026 fundraising wave</div>
+      <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+
+        <!-- Column headers -->
+        <text x="240" y="20" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">2018–2021 Vintage</text>
+        <text x="530" y="20" text-anchor="middle" font-size="11" fill="#c0392b" font-weight="700">2025–2026 Wave</text>
+
+        <!-- LP Type labels -->
+        <text x="30" y="55" font-size="10" fill="#5a5a6a">US Endowments /</text>
+        <text x="30" y="67" font-size="10" fill="#5a5a6a">Pensions</text>
+
+        <text x="30" y="105" font-size="10" fill="#5a5a6a">Middle East /</text>
+        <text x="30" y="117" font-size="10" fill="#5a5a6a">Asian SWFs</text>
+
+        <text x="30" y="155" font-size="10" fill="#5a5a6a">Family Offices</text>
+
+        <text x="30" y="200" font-size="10" fill="#5a5a6a">Other</text>
+
+        <!-- 2018-21 bars -->
+        <!-- US Endow: ~40% → 160px of 400 max -->
+        <rect x="140" y="42" width="160" height="20" fill="#1a1a2e" rx="2"/>
+        <text x="306" y="56" font-size="10" fill="#1a1a2e" font-weight="600">~40%</text>
+
+        <!-- ME/Asian SWF: ~15% → 60px -->
+        <rect x="140" y="92" width="60" height="20" fill="#1a1a2e" rx="2" opacity="0.6"/>
+        <text x="206" y="106" font-size="10" fill="#1a1a2e">~15%</text>
+
+        <!-- Family Office: ~20% → 80px -->
+        <rect x="140" y="142" width="80" height="20" fill="#1a1a2e" rx="2" opacity="0.5"/>
+        <text x="226" y="156" font-size="10" fill="#1a1a2e">~20%</text>
+
+        <!-- Other: ~25% → 100px -->
+        <rect x="140" y="187" width="100" height="20" fill="#1a1a2e" rx="2" opacity="0.35"/>
+        <text x="246" y="201" font-size="10" fill="#5a5a6a">~25%</text>
+
+        <!-- divider -->
+        <line x1="370" y1="30" x2="370" y2="215" stroke="#e0d8d0" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+        <!-- 2025-26 bars -->
+        <!-- US Endow: ~10% → 40px -->
+        <rect x="390" y="42" width="40" height="20" fill="#c0392b" rx="2" opacity="0.4"/>
+        <text x="436" y="56" font-size="10" fill="#9a8a7a">~10%</text>
+        <text x="480" y="56" font-size="9" fill="#c0392b">↓ Reduced</text>
+
+        <!-- ME/Asian SWF: ~45% → 180px -->
+        <rect x="390" y="92" width="180" height="20" fill="#c0392b" rx="2"/>
+        <text x="576" y="106" font-size="10" fill="#c0392b" font-weight="700">~45%</text>
+        <text x="616" y="106" font-size="9" fill="#27ae60">↑↑ Major gain</text>
+
+        <!-- Family Office: ~30% → 120px -->
+        <rect x="390" y="142" width="120" height="20" fill="#c0392b" rx="2" opacity="0.7"/>
+        <text x="516" y="156" font-size="10" fill="#c0392b">~30%</text>
+        <text x="554" y="156" font-size="9" fill="#27ae60">↑ Growing</text>
+
+        <!-- Other: ~15% → 60px -->
+        <rect x="390" y="187" width="60" height="20" fill="#c0392b" rx="2" opacity="0.35"/>
+        <text x="456" y="201" font-size="10" fill="#9a8a7a">~15%</text>
+
+        <!-- note -->
+        <text x="350" y="228" text-anchor="middle" font-size="9" fill="#9a8a7a" font-style="italic">Estimates based on manager commentary and industry reporting. Not survey data.</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">Core Claim</div>
+        <div class="annotation-card-zh">LP结构重置</div>
+        <div class="annotation-card-text">A $350M GSR raise anchored by RedNote at $50B demonstrates that non-US institutional LP capital has reconstituted a dollar pathway into Chinese private tech — even as US endowments/pensions step back.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">Unverified / Uncertain</div>
+        <div class="annotation-card-zh">跟投能力</div>
+        <div class="annotation-card-text">Whether Middle East / Asian SWFs have the same follow-on capital depth and multi-vintage commitment as US endowments in a downturn remains untested. New LP base has not been through a China tech correction.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">Investable Signal</div>
+        <div class="annotation-card-zh">小红书估值基准</div>
+        <div class="annotation-card-text">If GSR closes at terms, the $50B RedNote valuation gains LP-acceptance credibility as a benchmark — more useful than illiquid secondary levels. Watch for IPO filing activity as the next re-rating catalyst.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-footer">
+    China Brief Issue #14 · May 27, 2026 · Not investment advice · Data sourced from public reporting
+  </div>
+
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
