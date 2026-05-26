@@ -158,6 +158,39 @@ html, body {
   border-top: 1px solid #2e2e52;
 }
 
+/* ── Podcast player ── */
+.podcast-wrap {
+  display: none;
+  background: #0f0f1e;
+  border: 1px solid #2e2e52;
+  border-left: 4px solid var(--accent);
+  border-radius: var(--r);
+  padding: 14px 18px 12px;
+  margin-bottom: 12px;
+}
+.podcast-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.podcast-hed {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #c8d0e0;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.podcast-audio {
+  width: 100%;
+  height: 32px;
+  accent-color: var(--accent);
+  display: block;
+}
+
 /* ── Sections ── */
 .section-card {
   background: var(--card);
@@ -546,6 +579,15 @@ function renderBrief(brief) {
       <div class="brief-title">${brief.title}</div>
       <div class="brief-meta">${formatDate(brief.date, true)}</div>
       ${brief.summary ? `<div class="brief-summary">${brief.summary}</div>` : ''}
+    </div>
+    <div class="podcast-wrap" id="podcast-wrap">
+      <div class="podcast-eyebrow">Daily Podcast · 2-min Audio Overview</div>
+      <div class="podcast-hed">${brief.title}</div>
+      <audio class="podcast-audio" controls preload="metadata"
+        onloadedmetadata="document.getElementById('podcast-wrap').style.display='block'"
+        onerror="document.getElementById('podcast-wrap').style.display='none'">
+        <source src="japan-podcast_${brief.date}.m4a" type="audio/mp4">
+      </audio>
     </div>
     ${sectionsHtml}
     ${brief.viz_url ? `
