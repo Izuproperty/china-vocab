@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan AI &amp; Industrial Landscape · 日本産業地図 · Evergreen Reference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+
+  .header { background:#1a1a2e; padding:40px 56px 32px; border-bottom:4px solid #3730a3; }
+  .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:10px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:#fff; line-height:1.15; }
+  .header-title .ja { font-size:20px; font-weight:400; color:#c7d2fe; letter-spacing:6px; display:block; margin-top:6px; }
+  .header-deck { font-size:13px; color:#8a9bb5; margin-top:12px; max-width:600px; line-height:1.7; }
+  .header-meta { margin-top:20px; display:flex; gap:20px; flex-wrap:wrap; }
+  .header-badge { background:#1a1a2e; border:1px solid #3a3a6e; border-radius:3px; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; }
+  .header-badge.live { border-color:#3730a3; color:#a5b4fc; }
+
+  .back-nav { background:#13132a; padding:10px 56px; display:flex; align-items:center; gap:20px; border-bottom:1px solid #2a2a4e; }
+  .back-nav-link { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; transition:color 0.15s; }
+  .back-nav-link:hover { color:#c7d2fe; }
+  .back-nav-link::before { content:'←'; font-size:13px; margin-right:2px; }
+  .back-nav-sep { color:#2a2a4e; font-size:14px; }
+
+  .stats-bar { background:#13132a; padding:16px 56px; display:flex; gap:32px; flex-wrap:wrap; border-bottom:1px solid #2a2a4e; }
+  .stat { text-align:center; }
+  .stat-num { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#fff; line-height:1; }
+  .stat-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4a5a7a; margin-top:3px; }
+
+  .controls { background:#fff; padding:16px 56px; border-bottom:1px solid #e8e0d8; display:flex; align-items:center; gap:16px; flex-wrap:wrap; position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+  .search-wrap { position:relative; flex:1; min-width:200px; }
+  .search-input { width:100%; padding:8px 12px 8px 32px; border:1px solid #e0d8d0; border-radius:4px; font-family:'Inter',sans-serif; font-size:13px; color:#1a1a1a; outline:none; background:#f8f6f2; }
+  .search-input:focus { border-color:#3730a3; background:#fff; }
+  .search-icon { position:absolute; left:10px; top:50%; transform:translateY(-50%); width:14px; height:14px; fill:none; stroke:#9a8a7a; stroke-width:2; }
+  .cat-filters { display:flex; gap:6px; flex-wrap:wrap; }
+  .cat-btn { padding:6px 14px; border:1px solid #e0d8d0; border-radius:20px; font-size:11px; font-weight:600; letter-spacing:0.5px; cursor:pointer; background:#f8f6f2; color:#5a5a6a; transition:all 0.15s; white-space:nowrap; }
+  .cat-btn:hover { border-color:#1a1a2e; color:#1a1a2e; }
+  .cat-btn.active { background:#1a1a2e; color:#fff; border-color:#1a1a2e; }
+  .cat-btn.active.cat-ai { background:#3730a3; border-color:#3730a3; }
+  .cat-btn.active.cat-semi { background:#be185d; border-color:#be185d; }
+  .cat-btn.active.cat-robotics { background:#0e7490; border-color:#0e7490; }
+  .cat-btn.active.cat-auto { background:#6d28d9; border-color:#6d28d9; }
+  .cat-btn.active.cat-gov { background:#374151; border-color:#374151; }
+  .results-count { font-size:11px; color:#9a8a7a; white-space:nowrap; margin-left:auto; }
+
+  .grid-wrap { padding:32px 56px 56px; }
+  .section-header { display:flex; align-items:center; gap:16px; margin:0 0 20px; }
+  .section-tag { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; padding:4px 10px; border-radius:2px; white-space:nowrap; }
+  .section-line { flex:1; height:1px; background:#e8e0d4; }
+  .section-count { font-size:10px; color:#9a8a7a; }
+
+  .company-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-bottom:48px; }
+  .card { background:#fff; border:1px solid #e8e0d8; border-radius:6px; padding:20px; transition:box-shadow 0.15s; }
+  .card:hover { box-shadow:0 4px 20px rgba(0,0,0,0.08); }
+  .card-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:10px; gap:8px; }
+  .card-name { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:#1a1a2e; line-height:1.2; }
+  .card-ja { font-size:12px; color:#6b7280; margin-top:2px; font-style:italic; }
+  .card-cat { font-size:8px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; white-space:nowrap; flex-shrink:0; }
+  .cat-ai-tag { background:#e0e7ff; color:#3730a3; }
+  .cat-semi-tag { background:#fce7f3; color:#be185d; }
+  .cat-robotics-tag { background:#e0f7fa; color:#0e7490; }
+  .cat-auto-tag { background:#ede9fe; color:#6d28d9; }
+  .cat-gov-tag { background:#f3f4f6; color:#374151; }
+  .card-desc { font-size:12.5px; color:#4a4a5a; line-height:1.6; margin-bottom:12px; }
+  .card-signal { font-size:11px; color:#3730a3; font-weight:600; background:#eef2ff; padding:6px 10px; border-radius:4px; line-height:1.5; }
+  .card-issue { font-size:10px; color:#9a8a7a; margin-top:8px; }
+  .card-hidden { display:none; }
+
+  .empty-state { text-align:center; padding:60px 20px; color:#9a8a7a; font-size:14px; }
+
+  .footer { background:#1a1a2e; padding:24px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .footer-text { font-size:10px; color:#4a5a7a; }
+  .footer-brand { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#818cf8; }
+
+  @media(max-width:680px) {
+    .header, .back-nav, .stats-bar, .controls, .grid-wrap, .footer { padding-left:20px; padding-right:20px; }
+    .company-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="back-nav">
+  <a class="back-nav-link" href="japan-brief.html">Japan Brief</a>
+</div>
+
+<div class="header">
+  <div class="header-eyebrow">Tomodachi · Evergreen Reference · Updated Issue #1</div>
+  <div class="header-title">
+    Japan AI &amp; Industrial Landscape
+    <span class="ja">日本産業地図</span>
+  </div>
+  <div class="header-deck">A living reference of Japanese AI, semiconductor, robotics, automotive, and government entities tracked by the Japan Brief. Updated as new companies and policy bodies appear in coverage.</div>
+  <div class="header-meta">
+    <span class="header-badge live">Issue #1 · May 26, 2026</span>
+    <span class="header-badge">Tomodachi · Japan Brief</span>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num" id="stat-total">0</div><div class="stat-label">Entities</div></div>
+  <div class="stat"><div class="stat-num" id="stat-ai">0</div><div class="stat-label">AI / Tech</div></div>
+  <div class="stat"><div class="stat-num" id="stat-semi">0</div><div class="stat-label">Semiconductors</div></div>
+  <div class="stat"><div class="stat-num" id="stat-robotics">0</div><div class="stat-label">Robotics</div></div>
+  <div class="stat"><div class="stat-num" id="stat-auto">0</div><div class="stat-label">Automotive</div></div>
+  <div class="stat"><div class="stat-num" id="stat-gov">0</div><div class="stat-label">Government</div></div>
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/></svg>
+    <input class="search-input" id="search" type="text" placeholder="Search entities, keywords, signals…" oninput="filterCards()">
+  </div>
+  <div class="cat-filters">
+    <button class="cat-btn active" data-cat="all" onclick="setFilter('all',this)">All</button>
+    <button class="cat-btn cat-ai" data-cat="ai" onclick="setFilter('ai',this)">AI / Tech</button>
+    <button class="cat-btn cat-semi" data-cat="semi" onclick="setFilter('semi',this)">Semiconductors</button>
+    <button class="cat-btn cat-robotics" data-cat="robotics" onclick="setFilter('robotics',this)">Robotics</button>
+    <button class="cat-btn cat-auto" data-cat="auto" onclick="setFilter('auto',this)">Automotive</button>
+    <button class="cat-btn cat-gov" data-cat="gov" onclick="setFilter('gov',this)">Government</button>
+  </div>
+  <div class="results-count" id="results-count"></div>
+</div>
+
+<div class="grid-wrap" id="grid-wrap"></div>
+
+<div class="footer">
+  <div class="footer-text">Japan AI &amp; Industrial Landscape · Tomodachi Japan Brief · Updated continuously · Not investment advice</div>
+  <div class="footer-brand">Tomodachi · 友達</div>
+</div>
+
+<script>
+const ENTITIES = [
+  // ── AI / TECH ──────────────────────────────────────────────────────
+  {
+    name: "Preferred Networks",
+    ja: "プリファードネットワークス (PFN)",
+    cat: "ai",
+    desc: "Tokyo-based deep learning pioneer; creator of PLaMo LLM and MN-Core custom AI chip. Specialises in robotics perception software for Toyota assembly lines. Japan's highest-profile AI-native startup.",
+    signal: "Seconded engineers to Japan AI Foundation Venture; Issue #1 first coverage",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "SoftBank",
+    ja: "ソフトバンク",
+    cat: "ai",
+    desc: "Telecom and technology conglomerate; majority shareholder of Arm Holdings. Investing heavily in AI data centres across Japan. Led formation of Japan AI Foundation Venture alongside Sony, NEC, and Honda.",
+    signal: "Founding partner Japan AI venture (>10% stake); NEDO ¥1T programme applicant",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Sony AI",
+    ja: "ソニーAI",
+    cat: "ai",
+    desc: "Sony Group's AI research subsidiary, focused on gaming (Gran Turismo Sophy), imaging AI, and creative AI tools. Subsidiary of Sony Group, which also holds equity in the Japan AI Foundation Venture.",
+    signal: "Sony Group is founding partner of Japan AI Foundation Venture",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "NEC",
+    ja: "日本電気 (Nippon Denki)",
+    cat: "ai",
+    desc: "Enterprise IT and telecommunications firm with a long AI research history. Develops cotomi, a Japanese-language LLM. Key government and defence IT contractor.",
+    signal: "Founding partner Japan AI Foundation Venture; cotomi LLM in domestic deployment",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Fujitsu",
+    ja: "富士通",
+    cat: "ai",
+    desc: "Global IT services company; developer of the Kozuchi AI platform and co-builder of the Fugaku supercomputer. Major Japanese government contractor for digital transformation.",
+    signal: "Private investor in Rapidus ¥267.6B round; Kozuchi AI platform in enterprise rollout",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "NTT Research",
+    ja: "NTTリサーチ",
+    cat: "ai",
+    desc: "R&D arm of NTT Group; operates physics, cryptography, and AI labs in the US and Japan. NTT Group is also a private investor in Rapidus. Focused on physics-inspired AI and secure communications.",
+    signal: "NTT Group invested in Rapidus round; NTT Research expanding AI lab scope",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Sakana AI",
+    ja: "サカナAI",
+    cat: "ai",
+    desc: "Tokyo-based AI startup founded by ex-Google Brain researchers David Ha and Llion Jones. Focused on nature-inspired AI, evolutionary model merging, and efficient foundation models. Prominent in 2025–2026 international AI coverage.",
+    signal: "Raised $200M+ Series B in 2025; model-merging approach gaining academic traction",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Hitachi AI",
+    ja: "日立製作所 AI事業",
+    cat: "ai",
+    desc: "Hitachi's AI division embedded within its Social Innovation Business. Focuses on industrial AI for infrastructure (power grids, railways, water), manufacturing optimisation, and Lumada data platform.",
+    signal: "Lumada AI platform deployed across Japanese rail and energy infrastructure",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Ricoh",
+    ja: "リコー",
+    cat: "ai",
+    desc: "Office technology company pivoting to AI-enhanced document intelligence and workplace automation. Developing edge AI cameras and intelligent document processing for enterprise customers.",
+    signal: "Edge AI camera lineup launched; enterprise document AI growing double-digit",
+    issue: "Landscape entry · May 2026"
+  },
+
+  // ── SEMICONDUCTORS ────────────────────────────────────────────────
+  {
+    name: "Rapidus",
+    ja: "ラピダス",
+    cat: "semi",
+    desc: "Japan's state-backed leading-edge foundry; targeting 2nm GAA mass production by 2027. IIM-1 pilot plant in Chitose, Hokkaido, is now active with IBM/imec-co-developed process. Japanese government holds 11.5% voting stake plus golden share.",
+    signal: "¥267.6B round (Feb 2026); 60+ potential customers; pilot line producing on-spec wafers",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Tokyo Electron",
+    ja: "東京エレクトロン (TEL)",
+    cat: "semi",
+    desc: "Japan's largest semiconductor equipment maker; global leader in coater/developer and etch systems. USD-denominated revenues provide natural yen hedge. Critical supplier to TSMC, Samsung, and Intel.",
+    signal: "USD revenue base = natural yen hedge; export control risk from US-Japan policy alignment",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Shin-Etsu Chemical",
+    ja: "信越化学工業",
+    cat: "semi",
+    desc: "World's largest producer of silicon wafers and polyvinyl chloride. Dominant supplier of photoresist base materials to leading-edge fabs. USD revenues provide yen hedge; pricing power through captive supply.",
+    signal: "Photoresist demand rising with AI fab build-out; USD revenue = yen-hold beneficiary",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Renesas Electronics",
+    ja: "ルネサスエレクトロニクス",
+    cat: "semi",
+    desc: "Japan's largest chip designer; dominant in automotive microcontrollers (MCUs) globally. Acquired Intersil, Integrated Device Technology, and Dialog Semiconductor. Major beneficiary of EV proliferation.",
+    signal: "Automotive MCU market share ~30% globally; EV content-per-vehicle trend is core growth driver",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Kioxia",
+    ja: "キオクシア",
+    cat: "semi",
+    desc: "World's second-largest NAND flash memory maker (spun off from Toshiba). Partially owned by Bain Capital consortium. Supplies flash to Apple, Samsung, and hyperscalers. Merger talks with WD ongoing.",
+    signal: "NAND pricing recovery in 2025–2026; WD merger would create a NAND giant",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Fujifilm",
+    ja: "富士フイルム",
+    cat: "semi",
+    desc: "Diversified materials company that is a critical semiconductor materials supplier (photoresists, CMP slurries). Also a major medical imaging and biopharmaceutical CDMO. Co-developer partner with Rapidus.",
+    signal: "Active Rapidus co-development agreement; photoresist = commercial anchor in 2nm ramp",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "TSMC Japan / JASM",
+    ja: "TSMC Japan / JASM",
+    cat: "semi",
+    desc: "Japan Advanced Semiconductor Manufacturing (JASM) — TSMC's joint venture in Kumamoto with Sony and Denso. Fab 1 producing 12/16nm chips; Fab 2 targeting 6nm. METI-backed with ¥920B government subsidy.",
+    signal: "Fab 1 opened Dec 2024; Fab 2 breaking ground 2025 with 6nm target — boosts Japanese supply chain",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "SUMCO",
+    ja: "SUMCO",
+    cat: "semi",
+    desc: "Japan's second-largest silicon wafer producer (after Shin-Etsu). Supplies blank silicon wafers to all major fabs globally. Capacity expansion underway for 300mm wafers to meet AI-driven fab demand.",
+    signal: "300mm wafer capacity expansion tied to AI-fab build cycle; long-term supply agreements with TSMC",
+    issue: "Landscape entry · May 2026"
+  },
+
+  // ── ROBOTICS ──────────────────────────────────────────────────────
+  {
+    name: "Fanuc",
+    ja: "ファナック",
+    cat: "robotics",
+    desc: "World's largest industrial robot maker by units; dominates CNC controllers and factory automation systems. Based in Yamanashi. AI-enhanced vision and collaborative robot (cobot) lines expanding rapidly.",
+    signal: "Key beneficiary if Japan AI Alliance 'physical AI' mandate drives domestic factory automation",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Yaskawa Electric",
+    ja: "安川電機",
+    cat: "robotics",
+    desc: "Japan's leading servo motor and industrial robot manufacturer. Motoman robot line used across automotive, food, and electronics manufacturing globally. Pioneer in collaborative robotics and motion control.",
+    signal: "Motion control platform increasingly AI-integrated; physical AI tailwinds from Japan consortium",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Kawasaki Robotics",
+    ja: "川崎重工業 ロボティクス",
+    cat: "robotics",
+    desc: "Industrial robot division of Kawasaki Heavy Industries. Specialises in payload-heavy robots for automotive welding and pharmaceutical/medical applications. DuAro collaborative robot series for SME markets.",
+    signal: "Pharmaceutical and semiconductor handling robot demand growing with domestic fab investment",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Denso",
+    ja: "デンソー",
+    cat: "robotics",
+    desc: "Toyota Group's largest automotive component supplier; major robotics producer for automotive assembly. Key JASM co-investor alongside Sony and TSMC. Expanding into semiconductor-adjacent robotics for fab automation.",
+    signal: "JASM co-investor; VS1 collaborative robot platform targeting clean-room fab applications",
+    issue: "Landscape entry · May 2026"
+  },
+
+  // ── AUTOMOTIVE / PHYSICAL AI ──────────────────────────────────────
+  {
+    name: "Toyota / Woven City",
+    ja: "トヨタ自動車 / ウーブン・シティ",
+    cat: "auto",
+    desc: "World's largest automaker. Woven City is Toyota's physical AI testbed at the foot of Mt Fuji — a real inhabited city designed to test autonomous vehicles, robotics, and smart infrastructure. Honda is also a founding Japan AI Alliance partner.",
+    signal: "Woven City Phase 1 opening 2024; physical AI testbed central to autonomous and robotics strategy",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Honda",
+    ja: "本田技研工業",
+    cat: "auto",
+    desc: "Major automaker and robotics pioneer (ASIMO lineage). Founding partner of Japan AI Foundation Venture with >10% stake. Developing autonomous EV platforms and physical AI for manufacturing.",
+    signal: "Founding Japan AI Alliance partner; physical AI mandate aligned with robotics and EV strategy",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Mitsubishi Electric",
+    ja: "三菱電機",
+    cat: "auto",
+    desc: "Industrial automation and power systems giant. Makes factory automation equipment, servo drives, and EV power modules. AI-enhanced FA (factory automation) systems growing as Maisart AI brand.",
+    signal: "Maisart edge AI platform expanding in factory automation; EV power module demand rising",
+    issue: "Landscape entry · May 2026"
+  },
+
+  // ── GOVERNMENT / POLICY ───────────────────────────────────────────
+  {
+    name: "METI",
+    ja: "経済産業省 (Keizai Sangyō-shō)",
+    cat: "gov",
+    desc: "Ministry of Economy, Trade and Industry — Japan's industrial and semiconductor policy lead. Controls IPA (IT promotion funding) and oversees NEDO grants. Key architect of semiconductor and AI national strategies.",
+    signal: "IPA contributed ¥100B to Rapidus; METI Minister called Rapidus 'national project that must succeed'",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "NEDO",
+    ja: "新エネルギー・産業技術総合開発機構",
+    cat: "gov",
+    desc: "National R&D agency under METI. Funds energy, industrial technology, and AI programmes. Running ¥1 trillion AI foundation model support programme for FY2026–2031, accepting applications from the Japan AI Alliance.",
+    signal: "¥1T AI programme open for applications FY2026; Japan AI Foundation Venture primary applicant",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "IPA",
+    ja: "情報処理推進機構 (Jōhō Shori Suishin Kikō)",
+    cat: "gov",
+    desc: "Information-technology Promotion Agency under METI. Provides funding and technical standards for Japan's semiconductor and digital industries. Contributed ¥100B to Rapidus's Feb 2026 round.",
+    signal: "¥100B of Rapidus ¥267.6B round; increasing role as METI semiconductor funding arm",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Bank of Japan (BOJ)",
+    ja: "日本銀行 (Nihon Ginkō)",
+    cat: "gov",
+    desc: "Japan's central bank; sets short-term policy rates and oversees financial system stability. April 2026: held at 0.75% (6–3 vote), raised FY2026 core CPI forecast to 2.8%, cut GDP forecast to 0.5%.",
+    signal: "6–3 vote at April 28 meeting signals growing hawk faction; June 16–17 meeting is next decision point",
+    issue: "#1 · May 2026"
+  },
+  {
+    name: "Digital Agency",
+    ja: "デジタル庁 (Dejitaru-chō)",
+    cat: "gov",
+    desc: "Cabinet-level agency established 2021 to drive digital transformation of Japanese government services. Oversees My Number digital ID, cloud-first government policy, and AI governance frameworks.",
+    signal: "AI governance framework under development; My Number integration expanding to healthcare and finance",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "FSA",
+    ja: "金融庁 (Kin'yū-chō)",
+    cat: "gov",
+    desc: "Financial Services Agency — Japan's financial sector regulator. Supervises banks, insurers, and securities firms. Developing AI-in-finance guidelines and monitoring stablecoin / crypto regulation.",
+    signal: "AI-in-finance regulatory guidance expected 2026; stablecoin framework expanding to yen-backed tokens",
+    issue: "Landscape entry · May 2026"
+  },
+  {
+    name: "Cabinet Office AI Strategy",
+    ja: "内閣府 AI戦略",
+    cat: "gov",
+    desc: "Cross-ministerial body coordinating Japan's national AI strategy. Coordinates between METI, the Digital Agency, MIC, and MOE on AI governance, data sharing, and international AI standards engagement.",
+    signal: "National AI plan revisions ongoing; Japan engaging G7 AI governance frameworks as chair in 2023",
+    issue: "Landscape entry · May 2026"
+  }
+];
+
+let currentCat = 'all';
+
+function catTagClass(cat) {
+  return { ai:'cat-ai-tag', semi:'cat-semi-tag', robotics:'cat-robotics-tag', auto:'cat-auto-tag', gov:'cat-gov-tag' }[cat] || 'cat-ai-tag';
+}
+function catLabel(cat) {
+  return { ai:'AI / Tech', semi:'Semiconductors', robotics:'Robotics', auto:'Automotive', gov:'Government' }[cat] || cat;
+}
+
+function renderGrid() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  const sections = { ai:[], semi:[], robotics:[], auto:[], gov:[] };
+
+  ENTITIES.forEach(e => {
+    const match = (currentCat === 'all' || e.cat === currentCat) &&
+      (!q || [e.name, e.ja, e.desc, e.signal].join(' ').toLowerCase().includes(q));
+    if (match) sections[e.cat].push(e);
+  });
+
+  const total = Object.values(sections).reduce((s,a) => s+a.length, 0);
+  document.getElementById('results-count').textContent = total + ' entities shown';
+  document.getElementById('stat-total').textContent = ENTITIES.length;
+  ['ai','semi','robotics','auto','gov'].forEach(c => {
+    document.getElementById('stat-'+c).textContent = ENTITIES.filter(e=>e.cat===c).length;
+  });
+
+  const wrap = document.getElementById('grid-wrap');
+  if (total === 0) { wrap.innerHTML = '<div class="empty-state">No entities match — try a different search or filter.</div>'; return; }
+
+  const catOrder = ['ai','semi','robotics','auto','gov'];
+  const catTitles = { ai:'AI & Technology', semi:'Semiconductors & Materials', robotics:'Robotics & Industrial', auto:'Automotive & Physical AI', gov:'Government & Policy' };
+
+  wrap.innerHTML = catOrder.map(cat => {
+    if (!sections[cat].length) return '';
+    const cards = sections[cat].map(e => `
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-name">${e.name}</div>
+            <div class="card-ja">${e.ja}</div>
+          </div>
+          <span class="card-cat ${catTagClass(cat)}">${catLabel(cat)}</span>
+        </div>
+        <div class="card-desc">${e.desc}</div>
+        <div class="card-signal">${e.signal}</div>
+        <div class="card-issue">First coverage: ${e.issue}</div>
+      </div>`).join('');
+    return `
+      <div class="section-header">
+        <span class="section-tag ${catTagClass(cat)}">${catTitles[cat]}</span>
+        <div class="section-line"></div>
+        <span class="section-count">${sections[cat].length} entities</span>
+      </div>
+      <div class="company-grid">${cards}</div>`;
+  }).join('');
+}
+
+function filterCards() { renderGrid(); }
+function setFilter(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+renderGrid();
+</script>
+</body>
+</html>
