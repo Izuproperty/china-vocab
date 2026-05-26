@@ -1,5 +1,6 @@
 // China Vocab · Service Worker
 // Caches app files for offline use
+// Updated: 2026-05-26
 
 const CACHE = 'china-vocab-v3';
 const ASSETS = ['./manifest.json'];
