@@ -1,8 +1,8 @@
 // China Vocab · Service Worker
 // Caches app files for offline use
 
-const CACHE = 'china-vocab-v2';
-const ASSETS = ['./index.html', './vocab.json', './manifest.json'];
+const CACHE = 'china-vocab-v3';
+const ASSETS = ['./manifest.json'];
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -19,19 +19,18 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  const url = e.request.url;
+  // Network-first for all HTML and JSON — always fetch fresh content
+  const isNetworkFirst = url.endsWith('.html') || url.endsWith('.json') || url.endsWith('/');
   e.respondWith(
-    caches.match(e.request).then(cached => {
-      // Network-first for index.html and vocab.json so updates always come through
-      if (e.request.url.endsWith('vocab.json') || e.request.url.endsWith('index.html') || e.request.url.endsWith('/')) {
-        return fetch(e.request)
+    isNetworkFirst
+      ? fetch(e.request)
           .then(res => {
             const clone = res.clone();
             caches.open(CACHE).then(c => c.put(e.request, clone));
             return res;
           })
-          .catch(() => cached);
-      }
-      return cached || fetch(e.request);
-    })
+          .catch(() => caches.match(e.request))
+      : caches.match(e.request).then(cached => cached || fetch(e.request))
   );
 });
