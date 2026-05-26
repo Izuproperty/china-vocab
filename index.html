@@ -79,6 +79,9 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .mode-card-desc{font-size:11px;color:var(--text-dim);line-height:1.4}
 .mode-card-badge{position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px}
 .section-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim);margin:20px 0 10px;padding-left:4px}
+/* ── Topbar nav buttons ── */
+.topbar-nav-btn{background:transparent;border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#8a9bb5;font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;padding:3px 8px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:color .15s;white-space:nowrap}
+.topbar-nav-btn:hover{color:var(--cream)}
 /* ── Flashcard ── */
 .fc-progress{height:4px;background:var(--border);border-radius:2px;margin-bottom:20px;overflow:hidden}
 .fc-progress-bar{height:100%;background:var(--red);border-radius:2px;transition:width .3s}
@@ -202,9 +205,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
   </div>
   <div class="topbar-pinyin" id="topbar-sub">Zhōngguó Cíhuì</div>
 </div>
-<div style="display:flex;align-items:center;gap:10px">
-<div class="topbar-xp"><span id="xp-display">0</span> XP</div>
-<div id="sync-dot" title="Sync status — tap to configure" onclick="openSettings()"></div>
+<div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="topbar-xp"><span id="xp-display">0</span> XP</div>
+    <div id="sync-dot" title="Sync status — tap to configure" onclick="openSettings()"></div>
+  </div>
+  <div style="display:flex;gap:4px;">
+    <a href="brief.html" class="topbar-nav-btn">China Brief →</a>
+    <a href="japan-brief.html" class="topbar-nav-btn">Japan Brief →</a>
+  </div>
 </div>
 </div>
 <!-- Settings / Sync modal -->
@@ -258,13 +267,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 <div class="mode-card-desc">Mastery levels & full vocab list</div>
 </div>
 </div>
-<a href="brief.html" class="brief-banner">
-<div class="brief-banner-left">
-<div class="brief-banner-label">DAILY BRIEF</div>
-<div class="brief-banner-title">中国简报 · China Brief</div>
-</div>
-<div class="brief-banner-arrow">→</div>
-</a>
 <div class="section-label">From Today's Brief</div>
 <div id="home-recent"></div>
 </div>
