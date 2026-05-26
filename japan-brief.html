@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Japan Brief">
+<meta name="theme-color" content="#1a1a2e">
+<title>Japan Brief · 日本速報</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f2f4f7;
+  --surface: #1a1a2e;
+  --card: #ffffff;
+  --card2: #f5f6fa;
+  --border: #dde0e8;
+  --border-dark: #2e2e52;
+  --accent: #3730a3;
+  --accent-light: #818cf8;
+  --cream: #d4d8f0;
+  --blue: #4a7fa5;
+  --navy: #1a1a2e;
+  --text: #1a1a2e;
+  --text-mid: #5a5a6a;
+  --text-dim: #8a8aa0;
+  --r: 6px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, 'Helvetica Neue', sans-serif;
+}
+
+/* ── Top bar ── */
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px 12px;
+  padding-top: max(14px, env(safe-area-inset-top));
+  background: var(--navy);
+  border-bottom: 4px solid var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-left { display:flex; align-items:center; gap:12px; }
+.back-btn {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  color: #8a9bb5;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color .15s;
+}
+.back-btn:hover { color: var(--cream); }
+.topbar-title { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: #fff; }
+.topbar-en { font-size: 11px; font-weight: 400; color: #8a9bb5; letter-spacing: .5px; margin-left: 6px; }
+.topbar-reading { font-size: 10px; color: #4a5a7a; font-style: italic; letter-spacing: .5px; margin-top: 2px; }
+.topbar-issue { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: #4a5a7a; text-align: right; line-height: 1.6; text-transform: uppercase; }
+
+/* ── Issue selector ── */
+#issue-nav {
+  display: flex;
+  gap: 0;
+  padding: 0 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  background: #eef0f5;
+  border-bottom: 1px solid var(--border);
+}
+#issue-nav::-webkit-scrollbar { display:none; }
+.issue-pill {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  color: #8a8aa0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 10px 14px 8px;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.issue-pill.active {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+.issue-pill:active { opacity: .7; }
+
+/* ── Main content ── */
+#content {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 24px 90px;
+}
+
+/* ── Brief header ── */
+.brief-header {
+  background: var(--navy);
+  border-radius: var(--r);
+  padding: 28px 28px 24px;
+  margin-bottom: 20px;
+}
+.brief-issue-badge {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent-light);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 0;
+  margin-bottom: 10px;
+}
+.brief-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.brief-meta {
+  font-size: 10px;
+  font-weight: 600;
+  color: #4a5a7a;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.brief-summary {
+  font-size: 14px;
+  color: #8a9bb5;
+  line-height: 1.75;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #2e2e52;
+}
+
+/* ── Sections ── */
+.section-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.section-num {
+  font-size: 10px;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--accent);
+  background: transparent;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+  min-width: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  flex: 1;
+  line-height: 1.3;
+}
+.section-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+.tag-ai { color: #1a56db; }
+.tag-macro { color: #b45309; }
+.tag-geo { color: #166534; }
+.tag-market { color: #7e22ce; }
+.tag-policy { color: #92400e; }
+.tag-robotics { color: #0e7490; }
+.tag-semi { color: #be185d; }
+.section-chevron {
+  font-size: 11px;
+  color: var(--text-dim);
+  transition: transform .2s;
+  flex-shrink: 0;
+}
+.section-card.open .section-chevron { transform: rotate(180deg); }
+.section-body {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid var(--border);
+}
+.section-card.open .section-body { display: block; }
+.section-text {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #2c2c3a;
+  padding-top: 16px;
+}
+.section-text p { margin-bottom: 12px; }
+.section-text p:last-child { margin-bottom: 0; }
+.section-text strong { color: var(--navy); font-weight: 600; }
+
+/* ── Vocab chips ── */
+.vocab-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.vocab-chips-label {
+  width: 100%;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.vocab-chip {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 13px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  cursor: default;
+}
+.chip-ja { color: var(--accent); font-size: 16px; font-weight: 600; }
+.chip-en { color: var(--text-mid); font-size: 11px; }
+
+/* ── Source line ── */
+.section-source {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Takeaway box ── */
+.takeaway-box {
+  background: var(--card2);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+.takeaway-box strong { color: var(--navy); font-weight: 600; }
+
+/* ── Empty / loading ── */
+#loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-dim);
+  font-size: 14px;
+}
+#empty {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+.empty-icon { font-size: 48px; margin-bottom: 16px; }
+.empty-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.empty-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+/* ── Bottom bar ── */
+#bottombar {
+  position: fixed;
+  bottom: 0;
+  left: 0; right: 0;
+  background: var(--navy);
+  border-top: 1px solid #2e2e52;
+  padding: 10px 16px;
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.bottom-btn {
+  flex: 1;
+  max-width: 200px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .15s;
+}
+.bottom-btn:active { transform: scale(.97); }
+.btn-vocab { background: transparent; color: #8a9bb5; border: 1px solid #2e2e52; text-decoration: none; display:flex; align-items:center; justify-content:center; }
+.btn-vocab:hover { color: var(--cream); }
+.btn-prev { background: transparent; color: #8a9bb5; border: 1px solid #2e2e52; }
+.btn-prev:disabled { opacity: .3; cursor: default; }
+.btn-next { background: var(--accent); color: #fff; border: none; }
+.btn-next:disabled { opacity: .3; cursor: default; background: #2e2e52; }
+
+/* ── Toast ── */
+#xp-toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--navy);
+  color: var(--cream);
+  border: 1px solid #2e2e52;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+  z-index: 200;
+}
+#xp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div id="topbar">
+  <div class="topbar-left">
+    <a href="japan-vocab.html" class="back-btn">← 単語</a>
+    <div>
+      <div style="display:flex;align-items:baseline">
+        <div class="topbar-title">日本速報</div>
+        <div class="topbar-en">· Japan Brief</div>
+      </div>
+      <div class="topbar-reading">Nihon Sokuhō · 友達 Tomodachi</div>
+    </div>
+  </div>
+  <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+    <div class="topbar-issue" id="topbar-subtitle"></div>
+    <a href="japan-ai-landscape-viz.html" class="back-btn" style="font-size:10px;padding:4px 8px;letter-spacing:0.5px;">AI Map →</a>
+  </div>
+</div>
+
+<!-- Issue selector pills -->
+<div id="issue-nav"></div>
+
+<!-- Main content area -->
+<div id="content">
+  <div id="loading">Loading brief…</div>
+  <div id="empty">
+    <div class="empty-icon" style="font-size:32px;font-weight:800;color:var(--text-dim);letter-spacing:-2px;">—</div>
+    <div class="empty-title">No brief yet</div>
+    <div class="empty-text">Add a brief to <code>japan-briefs.json</code> in the repo to see it here.</div>
+  </div>
+  <div id="brief-content" style="display:none"></div>
+</div>
+
+<!-- Bottom nav -->
+<div id="bottombar">
+  <a href="japan-vocab.html" class="bottom-btn btn-vocab">Study 単語</a>
+  <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">← Prev</button>
+  <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next →</button>
+</div>
+
+<div id="xp-toast">Brief read ✓</div>
+
+<script>
+let BRIEFS = [];
+let currentIssue = null;
+
+async function loadBriefs() {
+  try {
+    const r = await fetch('japan-briefs.json');
+    BRIEFS = await r.json();
+    BRIEFS.sort((a, b) => b.issue - a.issue);
+  } catch(e) {
+    console.error('Could not load japan-briefs.json:', e);
+    BRIEFS = [];
+  }
+  initBriefApp();
+}
+
+function initBriefApp() {
+  document.getElementById('loading').style.display = 'none';
+  if (!BRIEFS.length) {
+    document.getElementById('empty').style.display = 'block';
+    return;
+  }
+  buildIssueNav();
+  const params = new URLSearchParams(window.location.search);
+  const requested = parseInt(params.get('issue'));
+  const target = BRIEFS.find(b => b.issue === requested) || BRIEFS[0];
+  showIssue(target.issue);
+}
+
+function buildIssueNav() {
+  const nav = document.getElementById('issue-nav');
+  nav.innerHTML = BRIEFS.map(b =>
+    `<button class="issue-pill" id="pill-${b.issue}" onclick="showIssue(${b.issue})">
+      #${b.issue} · ${formatDate(b.date)}
+    </button>`
+  ).join('');
+}
+
+function navigateIssue(dir) {
+  const idx = BRIEFS.findIndex(b => b.issue === currentIssue);
+  const next = BRIEFS[idx - dir];
+  if (next) showIssue(next.issue);
+}
+
+function showIssue(issueNum) {
+  const brief = BRIEFS.find(b => b.issue === issueNum);
+  if (!brief) return;
+  currentIssue = issueNum;
+  history.replaceState({}, '', '?issue=' + issueNum);
+
+  document.querySelectorAll('.issue-pill').forEach(p => p.classList.remove('active'));
+  const pill = document.getElementById('pill-' + issueNum);
+  if (pill) {
+    pill.classList.add('active');
+    pill.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+  }
+
+  document.getElementById('topbar-subtitle').textContent =
+    formatDate(brief.date, true) + ' · Issue #' + issueNum;
+
+  const idx = BRIEFS.findIndex(b => b.issue === issueNum);
+  document.getElementById('btn-prev').disabled = (idx >= BRIEFS.length - 1);
+  document.getElementById('btn-next').disabled = (idx <= 0);
+
+  renderBrief(brief);
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  markRead(issueNum);
+}
+
+function renderBrief(brief) {
+  const container = document.getElementById('brief-content');
+  container.style.display = 'block';
+
+  const tagMap = {
+    ai:       ['tag-ai',      'AI & Tech'],
+    macro:    ['tag-macro',   'Macro'],
+    geo:      ['tag-geo',     'Geopolitics'],
+    market:   ['tag-market',  'Markets'],
+    policy:   ['tag-policy',  'Policy'],
+    robotics: ['tag-robotics','Robotics'],
+    semi:     ['tag-semi',    'Semiconductors'],
+    energy:   ['tag-geo',     'Energy'],
+    trade:    ['tag-macro',   'Trade'],
+    chip:     ['tag-semi',    'Chips & Semis'],
+    boj:      ['tag-macro',   'BOJ / Finance'],
+  };
+
+  const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+  const sectionsHtml = (brief.sections || []).map((sec, i) => {
+    const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', sec.tag || 'Note'];
+    const vocabHtml = sec.vocab && sec.vocab.length
+      ? `<div class="vocab-chips">
+           <div class="vocab-chips-label">単語 from this story</div>
+           ${sec.vocab.map(v => `
+             <div class="vocab-chip">
+               <span class="chip-ja">${v.zh}</span>
+               <span class="chip-en">${v.en}</span>
+             </div>`).join('')}
+         </div>`
+      : '';
+    const sourceHtml = sec.source
+      ? `<div class="section-source">SOURCE · ${sec.source}</div>`
+      : '';
+    const takeawayHtml = sec.takeaway
+      ? `<div class="takeaway-box"><strong>Key takeaway:</strong> ${sec.takeaway}</div>`
+      : '';
+    const bodyHtml = (sec.body || '')
+      .split('\n\n')
+      .map(p => p.trim())
+      .filter(Boolean)
+      .map(p => `<p>${p}</p>`)
+      .join('');
+
+    return `
+      <div class="section-card" id="sec-${i}">
+        <div class="section-header" onclick="toggleSection(${i})">
+          <div class="section-num">${roman[i] || (i+1)}</div>
+          <div class="section-title">${sec.title}</div>
+          <span class="section-tag ${tagCls}">${tagLabel}</span>
+          <span class="section-chevron">▼</span>
+        </div>
+        <div class="section-body">
+          <div class="section-text">${bodyHtml}</div>
+          ${sourceHtml}
+          ${takeawayHtml}
+          ${vocabHtml}
+        </div>
+      </div>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="brief-header">
+      <div class="brief-issue-badge">ISSUE #${brief.issue} · 日本速報</div>
+      <div class="brief-title">${brief.title}</div>
+      <div class="brief-meta">${formatDate(brief.date, true)}</div>
+      ${brief.summary ? `<div class="brief-summary">${brief.summary}</div>` : ''}
+    </div>
+    ${sectionsHtml}
+    ${brief.viz_url ? `
+    <a href="${brief.viz_url}" style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 8px;padding:18px 20px;background:#1a1a2e;border-left:4px solid #3730a3;border-radius:6px;text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,0.12);">
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#818cf8;margin-bottom:6px;">AI Visualized · データ分析</div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#fff;line-height:1.3;">Charts &amp; data for this issue</div>
+        <div style="font-size:11px;color:#4a5a7a;margin-top:4px;font-weight:500;">Interactive visualizations →</div>
+      </div>
+      <div style="font-size:22px;color:#818cf8;flex-shrink:0;">→</div>
+    </a>` : ''}
+    <div style="text-align:center;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#8a8aa0;margin-top:32px;padding:0 20px">
+      日本速報 · <a href="japan-vocab.html" style="color:#3730a3;text-decoration:none">Study 単語 →</a>
+    </div>`;
+
+  setTimeout(() => {
+    const firstSec = document.getElementById('sec-0');
+    if (firstSec) firstSec.classList.add('open');
+  }, 100);
+}
+
+function toggleSection(i) {
+  document.getElementById('sec-' + i).classList.toggle('open');
+}
+
+function formatDate(dateStr, long) {
+  if (!dateStr) return '';
+  try {
+    const d = new Date(dateStr + 'T12:00:00');
+    if (long) return d.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'});
+    return d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+  } catch { return dateStr; }
+}
+
+function markRead(issueNum) {
+  try {
+    const read = JSON.parse(localStorage.getItem('jp_briefs_read') || '[]');
+    if (!read.includes(issueNum)) {
+      read.push(issueNum);
+      localStorage.setItem('jp_briefs_read', JSON.stringify(read));
+      showToast();
+    }
+  } catch {}
+}
+
+function showToast() {
+  const t = document.getElementById('xp-toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+loadBriefs();
+</script>
+</body>
+</html>
