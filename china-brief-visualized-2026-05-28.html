@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Visualized · China Brief · Issue #15 · May 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+
+  /* HEADER */
+  .header { background:#1a1a2e; padding:36px 56px 28px; border-bottom:4px solid #c0392b; }
+  .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:10px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .header-title .sub { font-family:'Inter',sans-serif; font-size:14px; font-weight:300; color:#8a9bb5; display:block; margin-top:6px; letter-spacing:1px; }
+  .header-meta { margin-top:18px; font-size:11px; color:#4a5a7a; display:flex; gap:20px; flex-wrap:wrap; }
+  .header-meta span { display:flex; align-items:center; gap:6px; }
+  .header-meta .dot { width:4px; height:4px; border-radius:50%; background:#c0392b; display:inline-block; }
+  .back-link { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; margin-top:16px; }
+  .back-link:hover { color:#e8d5b0; }
+  .back-link::before { content:'←'; font-size:13px; }
+
+  /* NAV / STORY TABS */
+  .viz-nav { background:#f0ede8; border-bottom:1px solid #e0d8d0; display:flex; gap:0; overflow-x:auto; }
+  .viz-tab { padding:12px 24px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.15s; user-select:none; }
+  .viz-tab:hover { color:#1a1a2e; }
+  .viz-tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+
+  /* CONTENT SECTIONS */
+  .viz-section { display:none; padding:48px 56px 64px; }
+  .viz-section.active { display:block; }
+  .story-label { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:8px; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; line-height:1.3; color:#1a1a2e; margin-bottom:6px; }
+  .story-deck { font-size:14px; color:#5a5a6a; line-height:1.7; margin-bottom:36px; max-width:640px; }
+
+  /* SIGNAL NUMBER */
+  .signal-row { display:flex; gap:32px; margin-bottom:48px; flex-wrap:wrap; }
+  .signal-box { flex:1; min-width:160px; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:56px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-num .unit { font-size:24px; font-weight:400; color:#c0392b; }
+  .signal-label { font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-top:6px; line-height:1.4; }
+  .signal-delta { font-size:12px; color:#c0392b; margin-top:4px; font-weight:600; }
+
+  /* CHART CONTAINER */
+  .chart-container { background:#f8f6f2; border-radius:6px; padding:32px; margin-bottom:40px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3a3a4a; margin-bottom:4px; }
+  .chart-subtitle { font-size:12px; color:#7a7a8a; margin-bottom:24px; }
+
+  /* ANNOTATION GRID */
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom:36px; }
+  .annotation-card { border-left:3px solid #e0d8d0; padding:12px 16px; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.green { border-left-color:#27ae60; }
+  .annotation-card.amber { border-left-color:#e67e22; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .annotation-card-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .annotation-card-zh { font-size:13px; font-weight:600; color:#c0392b; margin-bottom:2px; }
+
+  /* FOOTER */
+  .viz-footer { background:#1a1a2e; padding:24px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .viz-footer-text { font-size:10px; color:#4a5a7a; }
+  .viz-footer-brand { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8d5b0; }
+
+  @media(max-width:680px) {
+    .header, .viz-section { padding-left:24px; padding-right:24px; }
+    .signal-num { font-size:40px; }
+    .annotation-grid { grid-template-columns:1fr; }
+    .viz-footer { padding-left:24px; padding-right:24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="header-eyebrow">China Brief · AI Visualized · Issue #15</div>
+    <div class="header-title">
+      Data in Focus
+      <span class="sub">One visualization per story — Thursday, May 28, 2026</span>
+    </div>
+    <div class="header-meta">
+      <span><span class="dot"></span> 3 stories visualized</span>
+      <span><span class="dot"></span> Issue #15</span>
+      <span><span class="dot"></span> Thursday, May 28, 2026</span>
+    </div>
+    <a class="back-link" href="brief.html">Return to China Brief</a>
+  </div>
+
+  <div class="viz-nav">
+    <div class="viz-tab active" onclick="showViz('robot', this)">GigaAI Household Robot</div>
+    <div class="viz-tab" onclick="showViz('robotos', this)">OpenHarmony Robot OS</div>
+    <div class="viz-tab" onclick="showViz('fdi', this)">China FDI Divergence</div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- VIZ 1: GIGAAI SEELIGHT S1      -->
+  <!-- ============================== -->
+  <div class="viz-section active" id="viz-robot">
+    <div class="story-label">Story One · AI &amp; Tech · Physical AI / Robotics</div>
+    <div class="story-headline">China Household Robot: The Price Cliff to Commercialization</div>
+    <div class="story-deck">GigaAI is targeting a sub-¥100,000 retail price by June 2027 for its SeeLight S1. This chart maps where that sits relative to the current estimated cost range, the 100-unit Wuhan pilot, and what price thresholds unlock different buyer segments in China.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">¥<span class="unit">100k</span></div>
+        <div class="signal-label">Target retail hardware<br>price by June 2027</div>
+        <div class="signal-delta">~$14,700 at current rates</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">100</div>
+        <div class="signal-label">Pilot units deploying<br>Wuhan, late May 2026</div>
+        <div class="signal-delta">Employee housing trials — free trials in H1 2027</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">¥<span class="unit">200k</span></div>
+        <div class="signal-label">Estimated current build<br>cost (developer-stated target halving)</div>
+        <div class="signal-delta">~50% reduction implied by June 2027</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Household Robot Price vs. Addressable Buyer Threshold — China 2026–2027</div>
+      <div class="chart-subtitle">Indicative price segments · ¥ thousands · GigaAI target vs. market context · Sources: SCMP, Interesting Engineering, May 2026</div>
+
+      <svg viewBox="0 0 740 380" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+        <rect width="740" height="380" fill="#f8f6f2" rx="4"/>
+
+        <!-- Y axis line -->
+        <line x1="160" y1="30" x2="160" y2="300" stroke="#e0d8d0" stroke-width="1"/>
+        <!-- X axis line -->
+        <line x1="160" y1="300" x2="720" y2="300" stroke="#e0d8d0" stroke-width="1"/>
+
+        <!-- Y axis labels -->
+        <text x="148" y="304" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="end">¥0</text>
+        <text x="148" y="254" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="end">¥50k</text>
+        <text x="148" y="204" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="end">¥100k</text>
+        <text x="148" y="154" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="end">¥150k</text>
+        <text x="148" y="104" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="end">¥200k</text>
+        <text x="148" y="54" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="end">¥250k</text>
+
+        <!-- Grid lines -->
+        <line x1="160" y1="254" x2="720" y2="254" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="160" y1="204" x2="720" y2="204" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="160" y1="154" x2="720" y2="154" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="160" y1="104" x2="720" y2="104" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="160" y1="54" x2="720" y2="54" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="4,4"/>
+
+        <!-- THRESHOLD ZONES (horizontal bands) -->
+        <!-- Consumer territory: below ¥50k -->
+        <rect x="160" y="254" width="560" height="46" fill="#27ae60" opacity="0.06" rx="2"/>
+        <text x="176" y="282" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" font-weight="600">Consumer threshold zone (sub-¥50k)</text>
+
+        <!-- Institutional / Elder care: ¥50k–¥120k -->
+        <rect x="160" y="194" width="560" height="60" fill="#e67e22" opacity="0.07" rx="2"/>
+        <text x="176" y="218" font-family="Inter,sans-serif" font-size="10" fill="#e67e22" font-weight="600">Eldercare / institutional target zone (¥50k–¥120k)</text>
+
+        <!-- BARS: Current cost and target -->
+        <!-- Current estimated build cost bar (¥200k) = y from 104 to 300 = 196px height -->
+        <rect x="260" y="104" width="80" height="196" fill="#1a1a2e" opacity="0.85" rx="3"/>
+        <text x="300" y="95" font-family="Inter,sans-serif" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">~¥200k</text>
+        <text x="300" y="324" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a" text-anchor="middle">Current est.</text>
+        <text x="300" y="337" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a" text-anchor="middle">build cost</text>
+
+        <!-- Target price bar (¥100k) = y from 204 to 300 = 96px height -->
+        <rect x="400" y="204" width="80" height="96" fill="#c0392b" opacity="0.85" rx="3"/>
+        <text x="440" y="195" font-family="Inter,sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">&lt;¥100k</text>
+        <text x="440" y="324" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a" text-anchor="middle">GigaAI target</text>
+        <text x="440" y="337" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a" text-anchor="middle">Jun 2027</text>
+
+        <!-- Drop arrow between bars -->
+        <line x1="340" y1="200" x2="400" y2="200" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <text x="370" y="195" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="600">−50%</text>
+
+        <!-- Unitree G1 reference bar (¥99k, 2025 listed) -->
+        <rect x="540" y="206" width="80" height="94" fill="#4a4a6a" opacity="0.70" rx="3"/>
+        <text x="580" y="197" font-family="Inter,sans-serif" font-size="11" fill="#4a4a6a" text-anchor="middle" font-weight="700">¥99k</text>
+        <text x="580" y="324" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a" text-anchor="middle">Unitree G1</text>
+        <text x="580" y="337" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a" text-anchor="middle">2025 list price</text>
+
+        <!-- Title -->
+        <text x="440" y="370" font-family="Playfair Display,serif" font-size="11" fill="#9a8a7a" text-anchor="middle">Price ¥ (thousand) — lower = broader addressable market</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">🔴 Core Claim</div>
+        <div class="annotation-card-zh">合规控制机制</div>
+        <div class="annotation-card-text">The ¥100k price target is developer-stated and depends on production scale and component cost curves that are not yet public. The robot remains in a 100-unit employee pilot phase — not yet commercially validated in unscripted home environments.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">🟡 Uncertain</div>
+        <div class="annotation-card-zh">具身智能</div>
+        <div class="annotation-card-text">Demo reliability in controlled settings does not predict real-home performance. Failure rates, remote supervision requirements, and after-sales cost structure across the 2027 Wuhan pilot are unknown and not yet disclosed.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">🟢 Actionable Signal</div>
+        <div class="annotation-card-zh">人形机器人</div>
+        <div class="annotation-card-text">Hubei government's institutional framing (two named partner bodies) raises the probability of sustained funding through early setbacks. H1 2027 household trials are the next real data checkpoint — watch for task success rates and safety incident reporting.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- VIZ 2: OPENHARMONY ROBOT OS    -->
+  <!-- ============================== -->
+  <div class="viz-section" id="viz-robotos">
+    <div class="story-label">Story Two · AI &amp; Tech · Robotics Infrastructure</div>
+    <div class="story-headline">China's Robot OS Fragmentation Problem — and the OpenHarmony Play</div>
+    <div class="story-deck">China has over 140 humanoid robot manufacturers and 330+ models launched in the past year, yet runs on a fragmented mix of ROS2 (US-origin) and proprietary stacks. M-Robots OS 2.0 targets this gap with an OpenHarmony-native architecture and D-Robotics hardware integration.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">140<span class="unit">+</span></div>
+        <div class="signal-label">Active humanoid robot<br>manufacturers in China (2026)</div>
+        <div class="signal-delta">Most running ROS2 or proprietary firmware</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">330<span class="unit">+</span></div>
+        <div class="signal-label">Distinct humanoid models<br>launched in past 12 months</div>
+        <div class="signal-delta">Scale without standardization = fragmentation risk</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">9660<span class="unit">.HK</span></div>
+        <div class="signal-label">D-Robotics (地平线)<br>stock code — key hardware partner</div>
+        <div class="signal-delta">Revenue-generating AI chip + software supplier</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">China Robot Software Stack — Dependency Map</div>
+      <div class="chart-subtitle">Illustrative architecture showing US-origin vs. domestic layer exposure · M-Robots OS 2.0 targets the OS layer · May 2026</div>
+
+      <svg viewBox="0 0 740 360" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+        <rect width="740" height="360" fill="#f8f6f2" rx="4"/>
+
+        <!-- Title -->
+        <text x="370" y="28" font-family="Inter,sans-serif" font-size="11" fill="#5a5a6a" text-anchor="middle">Stack Layer Comparison: ROS2-Based Stack vs. OpenHarmony Stack</text>
+
+        <!-- Column headers -->
+        <rect x="40" y="40" width="300" height="28" fill="#e0d8d4" rx="3"/>
+        <text x="190" y="59" font-family="Inter,sans-serif" font-size="11" fill="#3a3a4a" text-anchor="middle" font-weight="700">CURRENT BASELINE (ROS2-anchored)</text>
+
+        <rect x="400" y="40" width="300" height="28" fill="#1a1a2e" rx="3"/>
+        <text x="550" y="59" font-family="Inter,sans-serif" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="700">OPENHARMONY STACK (M-Robots OS)</text>
+
+        <!-- ROW 1: Application Layer -->
+        <rect x="40" y="80" width="300" height="44" fill="#fff" stroke="#e0d8d0" stroke-width="1" rx="2"/>
+        <text x="190" y="96" font-family="Inter,sans-serif" font-size="10" fill="#5a5a6a" text-anchor="middle" font-weight="600">APPLICATION LAYER</text>
+        <text x="190" y="112" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">Proprietary robot apps (Chinese)</text>
+
+        <rect x="400" y="80" width="300" height="44" fill="#e8f0fe" stroke="#1a56db" stroke-width="1" rx="2"/>
+        <text x="550" y="96" font-family="Inter,sans-serif" font-size="10" fill="#1a56db" text-anchor="middle" font-weight="600">APPLICATION LAYER</text>
+        <text x="550" y="112" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">Proprietary robot apps (Chinese) ✓</text>
+
+        <!-- ROW 2: OS Layer -->
+        <rect x="40" y="136" width="300" height="44" fill="#fef0ee" stroke="#c0392b" stroke-width="1.5" rx="2"/>
+        <text x="190" y="152" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="600">OS LAYER ⚠️ EXPOSURE</text>
+        <text x="190" y="168" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">ROS2 (US-origin, OSS) / proprietary mix</text>
+
+        <rect x="400" y="136" width="300" height="44" fill="#e8f8f0" stroke="#27ae60" stroke-width="1.5" rx="2"/>
+        <text x="550" y="152" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" font-weight="600">OS LAYER ✓ DOMESTIC</text>
+        <text x="550" y="168" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">M-Robots OS 2.0 (开源鸿蒙-based)</text>
+
+        <!-- ROW 3: Chip Layer -->
+        <rect x="40" y="192" width="300" height="44" fill="#fef0ee" stroke="#c0392b" stroke-width="1.5" rx="2"/>
+        <text x="190" y="208" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="600">COMPUTE LAYER ⚠️ EXPOSURE</text>
+        <text x="190" y="224" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">NVIDIA Orin (US-origin, dominant in China robots)</text>
+
+        <rect x="400" y="192" width="300" height="44" fill="#e8f8f0" stroke="#27ae60" stroke-width="1.5" rx="2"/>
+        <text x="550" y="208" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" font-weight="600">COMPUTE LAYER ✓ DOMESTIC PATH</text>
+        <text x="550" y="224" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">D-Robotics RDK S100 (地平线, 9660.HK)</text>
+
+        <!-- ROW 4: Silicon -->
+        <rect x="40" y="248" width="300" height="44" fill="#fef0ee" stroke="#c0392b" stroke-width="1.5" rx="2"/>
+        <text x="190" y="264" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="600">SILICON LAYER ⚠️ EXPOSURE</text>
+        <text x="190" y="280" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">TSMC/Samsung fabbed (advanced node dependency)</text>
+
+        <rect x="400" y="248" width="300" height="44" fill="#fef3e2" stroke="#e67e22" stroke-width="1.5" rx="2"/>
+        <text x="550" y="264" font-family="Inter,sans-serif" font-size="10" fill="#e67e22" text-anchor="middle" font-weight="600">SILICON LAYER 🟡 PARTIAL PROGRESS</text>
+        <text x="550" y="280" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle">SMIC 7nm / Huawei Ascend (improving, gap remains)</text>
+
+        <!-- Connector arrow -->
+        <text x="370" y="165" font-family="Inter,sans-serif" font-size="18" fill="#c0392b" text-anchor="middle">→</text>
+
+        <text x="370" y="345" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="middle">M-Robots OS 2.0 addresses the OS layer; D-Robotics addresses compute — silicon gap remains</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">🔴 Core Risk</div>
+        <div class="annotation-card-zh">开源鸿蒙</div>
+        <div class="annotation-card-text">Most Chinese robot manufacturers currently use NVIDIA Orin chips and ROS2 — both US-origin. An export control escalation targeting robotics toolchains is a tail risk that M-Robots OS and the OpenHarmony ecosystem are structurally designed to hedge. But adoption is unproven at scale.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">🟡 Uncertain</div>
+        <div class="annotation-card-zh">地平线</div>
+        <div class="annotation-card-text">Whether M-Robots OS 2.0 achieves the developer adoption necessary to displace ROS2 as the default is an open question. Ecosystem plays require network effects — Kaihong's partner list (Saite, Creality, DeyeeMed) is nascent, not yet representing the core humanoid players.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">🟢 Actionable Signal</div>
+        <div class="annotation-card-zh">鸿蒙系统</div>
+        <div class="annotation-card-text">D-Robotics (9660.HK) is a revenue-generating AI chip supplier — not a research entity. Its integration with M-Robots OS gives the platform a credible hardware anchor at launch. Watch D-Robotics's robotics segment revenue disclosures as a proxy for domestic stack adoption velocity.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================== -->
+  <!-- VIZ 3: CHINA FDI DIVERGENCE    -->
+  <!-- ============================== -->
+  <div class="viz-section" id="viz-fdi">
+    <div class="story-label">Story Three · Finance &amp; Macro · Trade &amp; Investment</div>
+    <div class="story-headline">China FDI: The Headline Number Obscures a Structural Shift</div>
+    <div class="story-deck">Aggregate inbound FDI in China fell 10.3% in January–April 2026 — but high-technology FDI rose 20.3%, R&D services surged 108.4%, and new foreign-invested enterprise formations are up 6.8%. The chart below shows what is actually happening beneath the headline.</div>
+
+    <div class="signal-row">
+      <div class="signal-box">
+        <div class="signal-num">−10<span class="unit">%</span></div>
+        <div class="signal-label">Overall inbound FDI<br>Jan–Apr 2026 (YoY)</div>
+        <div class="signal-delta">287.69bn yuan total · MOFCOM / Xinhua, May 26</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">+20<span class="unit">%</span></div>
+        <div class="signal-label">High-tech industry FDI<br>Jan–Apr 2026 (YoY)</div>
+        <div class="signal-delta">Now 40.4% of total FDI — up from ~33% a year ago</div>
+      </div>
+      <div class="signal-box">
+        <div class="signal-num">+108<span class="unit">%</span></div>
+        <div class="signal-label">R&D &amp; design services FDI<br>Jan–Apr 2026 (YoY)</div>
+        <div class="signal-delta">Sharpest growth segment within high-tech</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">FDI Growth Rates by Sector — China, January–April 2026 (YoY %)</div>
+      <div class="chart-subtitle">MOFCOM data via Xinhua, May 26, 2026 · Bars to the right = growth; bars to the left = contraction</div>
+
+      <svg viewBox="0 0 740 380" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%">
+        <rect width="740" height="380" fill="#f8f6f2" rx="4"/>
+
+        <!-- Center axis (0%) -->
+        <line x1="350" y1="20" x2="350" y2="330" stroke="#9a8a7a" stroke-width="1.5"/>
+
+        <!-- X axis labels -->
+        <text x="350" y="350" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="middle">0%</text>
+        <text x="490" y="350" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="middle">+40%</text>
+        <text x="630" y="350" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="middle">+80% / +108%</text>
+        <text x="210" y="350" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">−40%</text>
+        <text x="70" y="350" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle">−80%</text>
+
+        <!-- Vertical grid lines -->
+        <line x1="490" y1="20" x2="490" y2="330" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="4,4"/>
+        <line x1="210" y1="20" x2="210" y2="330" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="4,4"/>
+
+        <!-- ROW 1: Overall FDI (-10.3%) -->
+        <!-- -10.3% → bar from 350 toward left: 10.3/100 * 280 ≈ 29px -->
+        <rect x="321" y="36" width="29" height="30" fill="#c0392b" opacity="0.75" rx="2"/>
+        <text x="315" y="57" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="end" font-weight="700">−10.3%</text>
+        <text x="710" y="57" font-family="Inter,sans-serif" font-size="10" fill="#3a3a4a" text-anchor="end">Total FDI (all sectors)</text>
+
+        <!-- ROW 2: Real estate / property (large negative, ~-40%) -->
+        <rect x="238" y="82" width="112" height="30" fill="#c0392b" opacity="0.85" rx="2"/>
+        <text x="232" y="103" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="end" font-weight="700">−40%</text>
+        <text x="710" y="103" font-family="Inter,sans-serif" font-size="10" fill="#3a3a4a" text-anchor="end">Real estate / property-linked FDI (est.)</text>
+
+        <!-- ROW 3: Low-tech manufacturing (est. -20%) -->
+        <rect x="294" y="128" width="56" height="30" fill="#e67e22" opacity="0.75" rx="2"/>
+        <text x="288" y="149" font-family="Inter,sans-serif" font-size="10" fill="#e67e22" text-anchor="end" font-weight="700">−20%</text>
+        <text x="710" y="149" font-family="Inter,sans-serif" font-size="10" fill="#3a3a4a" text-anchor="end">Low-tech manufacturing FDI (est.)</text>
+
+        <!-- ROW 4: High-tech FDI total (+20.3%) -->
+        <!-- +20.3% → 20.3/100 * 280 ≈ 57px right from 350 -->
+        <rect x="350" y="174" width="57" height="30" fill="#27ae60" opacity="0.80" rx="2"/>
+        <text x="412" y="195" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="start" font-weight="700">+20.3%</text>
+        <text x="710" y="195" font-family="Inter,sans-serif" font-size="10" fill="#3a3a4a" text-anchor="end">High-tech industries FDI (total)</text>
+
+        <!-- ROW 5: Electronics / comms (+20.2%) -->
+        <rect x="350" y="220" width="57" height="30" fill="#27ae60" opacity="0.65" rx="2"/>
+        <text x="412" y="241" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="start" font-weight="700">+20.2%</text>
+        <text x="710" y="241" font-family="Inter,sans-serif" font-size="10" fill="#3a3a4a" text-anchor="end">Electronics &amp; comm equipment mfg</text>
+
+        <!-- ROW 6: R&D and design services (+108.4%) -->
+        <!-- +108.4% → capped at chart edge, use color fill, label -->
+        <rect x="350" y="266" width="280" height="30" fill="#1a1a2e" opacity="0.85" rx="2"/>
+        <text x="636" y="287" font-family="Inter,sans-serif" font-size="10" fill="#e8d5b0" text-anchor="start" font-weight="700">+108.4%</text>
+        <text x="710" y="287" font-family="Inter,sans-serif" font-size="10" fill="#3a3a4a" text-anchor="end">R&amp;D &amp; design services FDI</text>
+
+        <!-- ROW 7: New enterprises formed (+6.8%) -->
+        <rect x="350" y="312" width="19" height="16" fill="#27ae60" opacity="0.55" rx="2"/>
+        <text x="374" y="325" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="start" font-weight="700">+6.8%</text>
+        <text x="710" y="325" font-family="Inter,sans-serif" font-size="10" fill="#3a3a4a" text-anchor="end">New foreign-invested enterprises formed (count)</text>
+
+        <!-- Label -->
+        <text x="370" y="370" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" text-anchor="middle">YoY % change · Jan–Apr 2026 · MOFCOM data via Xinhua May 26, 2026</text>
+      </svg>
+    </div>
+
+    <div class="annotation-grid">
+      <div class="annotation-card red">
+        <div class="annotation-card-label">🔴 Core Claim</div>
+        <div class="annotation-card-zh">外商直接投资</div>
+        <div class="annotation-card-text">The −10.3% headline FDI decline has driven "China exit" narratives, but the contraction is concentrated in real estate and low-tech manufacturing — sectors already in structural decline. Using total FDI as a proxy for corporate conviction in China is methodologically misleading.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-label">🟡 Uncertain</div>
+        <div class="annotation-card-zh">去风险</div>
+        <div class="annotation-card-text">Whether the high-tech FDI growth is durable through a potential trade escalation is unclear. European companies expanding China supply chains in early 2026 may revise posture if US secondary sanctions on China suppliers tighten. The Stellantis-Dongfeng JV is announced but not yet operational.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-label">🟢 Actionable Signal</div>
+        <div class="annotation-card-zh">脱钩</div>
+        <div class="annotation-card-text">High-tech FDI at 40.4% of total — up from ~33% — suggests companies with genuine R&D and advanced manufacturing rationale are not leaving. The EU Chamber survey improvement (68%, −5pp saying China harder) adds corroborating sentiment. Sector-disaggregated China exposure analysis outperforms headline FDI readings.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-footer">
+    <div class="viz-footer-text">China Brief Issue #15 · May 28, 2026 · Not investment advice · Data sourced from public reporting</div>
+    <div class="viz-footer-brand">中国简报</div>
+  </div>
+
+</div>
+
+<script>
+  function showViz(id, tab) {
+    document.querySelectorAll('.viz-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+    var section = document.getElementById('viz-' + id);
+    if (section) section.classList.add('active');
+    if (tab) tab.classList.add('active');
+  }
+</script>
+</body>
+</html>
