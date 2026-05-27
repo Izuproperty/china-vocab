@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #2 · May 27, 2026 · Data Visualizations</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  :root {
+    --indigo: #3730a3;
+    --indigo-light: #818cf8;
+    --indigo-bg: #e0e7ff;
+    --dark: #1a1a2e;
+    --card-bg: #f8f9fc;
+    --border: #e2e5ee;
+    --red: #dc2626;
+    --amber: #d97706;
+    --green: #16a34a;
+    --text: #1e1e2e;
+    --muted: #6b7280;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:var(--text); }
+  .page { max-width:760px; margin:0 auto; padding:24px 16px 48px; }
+
+  /* HEADER */
+  .viz-header { background:var(--dark); border-bottom:4px solid var(--indigo); border-radius:12px 12px 0 0; padding:28px 36px 22px; display:flex; justify-content:space-between; align-items:flex-start; }
+  .viz-header-left h1 { font-family:'Playfair Display',serif; color:#fff; font-size:24px; }
+  .viz-header-left .sub { color:var(--indigo-light); font-size:11px; letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+  .back-link { color:var(--indigo-light); font-size:12px; text-decoration:none; border:1px solid #3a3a6e; border-radius:4px; padding:6px 12px; white-space:nowrap; }
+  .back-link:hover { background:#2a2a4e; }
+
+  /* TABS */
+  .tabs { display:flex; gap:0; background:var(--dark); border-top:1px solid #2a2a4e; }
+  .tab { flex:1; padding:12px 8px; text-align:center; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; color:#6a7a9a; border-bottom:3px solid transparent; transition:all 0.2s; }
+  .tab.active { color:var(--indigo-light); border-bottom-color:var(--indigo); background:#0d0d1e; }
+  .tab:hover:not(.active) { color:#9aa5bf; background:#1a1a28; }
+
+  /* VIZ PANELS */
+  .viz-panel { display:none; background:#fff; border:1px solid var(--border); border-top:none; border-radius:0 0 12px 12px; padding:32px; }
+  .viz-panel.active { display:block; }
+
+  /* PANEL HEADER */
+  .panel-header { display:flex; align-items:flex-start; gap:16px; margin-bottom:28px; }
+  .panel-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:3px; white-space:nowrap; margin-top:4px; }
+  .tag-ai { background:var(--indigo-bg); color:var(--indigo); }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:18px; color:var(--dark); line-height:1.3; }
+  .panel-source { font-size:11px; color:var(--muted); margin-top:4px; }
+
+  /* SIGNAL NUMBERS */
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal { background:var(--card-bg); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:var(--indigo); line-height:1; }
+  .signal-label { font-size:11px; color:var(--muted); margin-top:6px; line-height:1.4; }
+  .signal-sub { font-size:10px; color:#9ca3af; margin-top:2px; }
+
+  /* CHART AREA */
+  .chart-area { margin-bottom:28px; }
+  .chart-title { font-size:12px; font-weight:600; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; }
+  svg { width:100%; overflow:visible; }
+
+  /* ANNOTATION CARDS */
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .ann-card { border-radius:8px; padding:14px; }
+  .ann-card.red { background:#fef2f2; border-left:3px solid var(--red); }
+  .ann-card.amber { background:#fffbeb; border-left:3px solid var(--amber); }
+  .ann-card.green { background:#f0fdf4; border-left:3px solid var(--green); }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-card.red .ann-label { color:var(--red); }
+  .ann-card.amber .ann-label { color:var(--amber); }
+  .ann-card.green .ann-label { color:var(--green); }
+  .ann-text { font-size:12px; color:#374151; line-height:1.5; }
+
+  /* FOOTER */
+  .viz-footer { text-align:center; padding:20px; font-size:11px; color:var(--muted); margin-top:8px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="viz-header">
+    <div class="viz-header-left">
+      <div class="sub">日本速報 · Japan Brief · Issue #2</div>
+      <h1>Data Visualizations · May 27, 2026</h1>
+    </div>
+    <a href="japan-brief.html" class="back-link">← Japan Brief</a>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showViz('v1','t1')" id="t1">🤖 NEC × Anthropic</div>
+    <div class="tab" onclick="showViz('v2','t2')" id="t2">💾 JASM 3nm</div>
+    <div class="tab" onclick="showViz('v3','t3')" id="t3">📊 BOJ & CPI</div>
+  </div>
+
+  <!-- PANEL 1: NEC × Anthropic -->
+  <div class="viz-panel active" id="v1">
+    <div class="panel-header">
+      <span class="panel-tag tag-ai">AI & Enterprise</span>
+      <div>
+        <div class="panel-title">NEC–Anthropic Partnership: Scale & Scope</div>
+        <div class="panel-source">NEC Press Release · April 23, 2026</div>
+      </div>
+    </div>
+
+    <div class="signals">
+      <div class="signal">
+        <div class="signal-num">30K</div>
+        <div class="signal-label">NEC Group employees deploying Claude globally</div>
+        <div class="signal-sub">One of Japan's largest AI-native deployments</div>
+      </div>
+      <div class="signal">
+        <div class="signal-num">3</div>
+        <div class="signal-label">Initial sectors targeted: Finance, Manufacturing, Local Gov</div>
+        <div class="signal-sub">Compliance-heavy verticals</div>
+      </div>
+      <div class="signal">
+        <div class="signal-num">#1</div>
+        <div class="signal-label">NEC is Anthropic's first Japan-based global partner</div>
+        <div class="signal-sub">Claude Opus 4.7 + Claude Code</div>
+      </div>
+    </div>
+
+    <div class="chart-area">
+      <div class="chart-title">NEC BluStellar Deployment Architecture</div>
+      <!-- Architecture schematic SVG -->
+      <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+        <!-- Background boxes -->
+        <!-- Anthropic box -->
+        <rect x="20" y="30" width="160" height="70" rx="8" fill="#e0e7ff" stroke="#3730a3" stroke-width="1.5"/>
+        <text x="100" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#3730a3">Anthropic</text>
+        <text x="100" y="76" text-anchor="middle" font-size="10" fill="#6366f1">Claude Opus 4.7</text>
+        <text x="100" y="90" text-anchor="middle" font-size="10" fill="#6366f1">Claude Code · Cowork</text>
+
+        <!-- Arrow right -->
+        <line x1="182" y1="65" x2="248" y2="65" stroke="#3730a3" stroke-width="2" marker-end="url(#arr)"/>
+        <text x="215" y="58" text-anchor="middle" font-size="9" fill="#6b7280">Global Partner</text>
+
+        <!-- NEC Core box -->
+        <rect x="250" y="20" width="180" height="90" rx="8" fill="#1a1a2e" stroke="#3730a3" stroke-width="1.5"/>
+        <text x="340" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">NEC Corporation</text>
+        <text x="340" y="65" text-anchor="middle" font-size="10" fill="#818cf8">BluStellar Scenario</text>
+        <text x="340" y="80" text-anchor="middle" font-size="10" fill="#818cf8">30,000 Employees</text>
+        <text x="340" y="95" text-anchor="middle" font-size="10" fill="#818cf8">CoE · SOC Services</text>
+
+        <!-- Arrows down from NEC -->
+        <line x1="295" y1="112" x2="200" y2="160" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="340" y1="112" x2="340" y2="158" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+        <line x1="385" y1="112" x2="480" y2="160" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+
+        <!-- Three sector boxes -->
+        <rect x="120" y="162" width="140" height="50" rx="6" fill="#fce7f3" stroke="#be185d" stroke-width="1"/>
+        <text x="190" y="184" text-anchor="middle" font-size="11" font-weight="600" fill="#be185d">Finance</text>
+        <text x="190" y="200" text-anchor="middle" font-size="10" fill="#9d174d">Banks · FSA compliance</text>
+
+        <rect x="270" y="162" width="140" height="50" rx="6" fill="#fef3e2" stroke="#b45309" stroke-width="1"/>
+        <text x="340" y="184" text-anchor="middle" font-size="11" font-weight="600" fill="#b45309">Manufacturing</text>
+        <text x="340" y="200" text-anchor="middle" font-size="10" fill="#92400e">Factory DX · QA automation</text>
+
+        <rect x="420" y="162" width="140" height="50" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1"/>
+        <text x="490" y="184" text-anchor="middle" font-size="11" font-weight="600" fill="#16a34a">Local Government</text>
+        <text x="490" y="200" text-anchor="middle" font-size="10" fill="#15803d">Digital admin · e-Gov</text>
+
+        <!-- Defs -->
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#3730a3"/>
+          </marker>
+          <marker id="arr2" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+            <polygon points="0 0, 8 3, 0 6" fill="#6b7280"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="annotations">
+      <div class="ann-card red">
+        <div class="ann-label">⚠ Watch</div>
+        <div class="ann-text">NEC's installed base in Japan's central ministries means Claude could become a de facto government AI rail — regulatory visibility risk if political winds shift.</div>
+      </div>
+      <div class="ann-card amber">
+        <div class="ann-label">◆ Monitor</div>
+        <div class="ann-text">SOC integration gives Anthropic a foothold in Japan's cybersecurity market. NEC competes with Fujitsu and Hitachi in this segment — watch for counter-moves.</div>
+      </div>
+      <div class="ann-card green">
+        <div class="ann-label">✓ Positive</div>
+        <div class="ann-text">Client Zero discipline means NEC is stress-testing Claude internally before client rollout. Reduces delivery risk; 30K real-use cases generate training signal for Japan-specific fine-tuning.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 2: JASM 3nm -->
+  <div class="viz-panel" id="v2">
+    <div class="panel-header">
+      <span class="panel-tag tag-semi">Semiconductors</span>
+      <div>
+        <div class="panel-title">TSMC JASM Kumamoto: From Legacy Backup to 3nm Cluster</div>
+        <div class="panel-source">Yomiuri / TrendForce / Taipei Times · February–May 2026</div>
+      </div>
+    </div>
+
+    <div class="signals">
+      <div class="signal">
+        <div class="signal-num">$17B</div>
+        <div class="signal-label">Total JASM-2 investment commitment</div>
+        <div class="signal-sub">Up from $13.9B originally disclosed</div>
+      </div>
+      <div class="signal">
+        <div class="signal-num">3nm</div>
+        <div class="signal-label">Upgraded process node (was 6–12nm)</div>
+        <div class="signal-sub">Taiwan MOEA approved Apr 1, 2026</div>
+      </div>
+      <div class="signal">
+        <div class="signal-num">15K</div>
+        <div class="signal-label">Designed wafer capacity (12-inch/month)</div>
+        <div class="signal-sub">Production start target: 2028</div>
+      </div>
+    </div>
+
+    <div class="chart-area">
+      <div class="chart-title">JASM Investment & Node Timeline (Kumamoto, Kyushu)</div>
+      <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+        <!-- Timeline spine -->
+        <line x1="80" y1="110" x2="620" y2="110" stroke="#e2e5ee" stroke-width="2"/>
+
+        <!-- Time markers -->
+        <text x="80" y="190" text-anchor="middle" font-size="10" fill="#9ca3af">2022</text>
+        <text x="200" y="190" text-anchor="middle" font-size="10" fill="#9ca3af">2023–24</text>
+        <text x="320" y="190" text-anchor="middle" font-size="10" fill="#9ca3af">Oct 2025</text>
+        <text x="440" y="190" text-anchor="middle" font-size="10" fill="#9ca3af">Apr 2026</text>
+        <text x="560" y="190" text-anchor="middle" font-size="10" fill="#9ca3af">2027–28</text>
+
+        <!-- Tick marks -->
+        <line x1="80" y1="105" x2="80" y2="115" stroke="#9ca3af" stroke-width="1"/>
+        <line x1="200" y1="105" x2="200" y2="115" stroke="#9ca3af" stroke-width="1"/>
+        <line x1="320" y1="105" x2="320" y2="115" stroke="#9ca3af" stroke-width="1"/>
+        <line x1="440" y1="105" x2="440" y2="115" stroke="#9ca3af" stroke-width="1"/>
+        <line x1="560" y1="105" x2="560" y2="115" stroke="#9ca3af" stroke-width="1"/>
+
+        <!-- Events: bubbles above/below the line -->
+        <!-- JASM-1 established -->
+        <circle cx="80" cy="110" r="8" fill="#3730a3"/>
+        <text x="80" y="88" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">JASM-1</text>
+        <text x="80" y="102" text-anchor="middle" font-size="9" fill="#6b7280">Established</text>
+        <text x="80" y="75" text-anchor="middle" font-size="9" fill="#6b7280">~$12B · 12–28nm</text>
+
+        <!-- JASM-1 production -->
+        <circle cx="200" cy="110" r="8" fill="#3730a3"/>
+        <text x="200" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">JASM-1</text>
+        <text x="200" y="153" text-anchor="middle" font-size="9" fill="#6b7280">Production ramp</text>
+        <text x="200" y="166" text-anchor="middle" font-size="9" fill="#6b7280">Sony / auto chips</text>
+
+        <!-- JASM-2 construction start -->
+        <circle cx="320" cy="110" r="8" fill="#be185d"/>
+        <text x="320" y="88" text-anchor="middle" font-size="10" font-weight="600" fill="#be185d">JASM-2</text>
+        <text x="320" y="102" text-anchor="middle" font-size="9" fill="#6b7280">Construction start</text>
+        <text x="320" y="75" text-anchor="middle" font-size="9" fill="#6b7280">$13.9B · 6nm plan</text>
+
+        <!-- Technology upgrade approved -->
+        <circle cx="440" cy="110" r="10" fill="#3730a3" stroke="#818cf8" stroke-width="2"/>
+        <text x="440" y="140" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3">3nm Approved</text>
+        <text x="440" y="153" text-anchor="middle" font-size="9" fill="#6b7280">Taiwan MOEA · $17B</text>
+        <text x="440" y="166" text-anchor="middle" font-size="9" fill="#6b7280">Sony/Toyota/Denso JV</text>
+
+        <!-- Production target -->
+        <circle cx="560" cy="110" r="8" fill="#16a34a"/>
+        <text x="560" y="88" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a">Production</text>
+        <text x="560" y="102" text-anchor="middle" font-size="9" fill="#6b7280">Target: 2028</text>
+        <text x="560" y="75" text-anchor="middle" font-size="9" fill="#6b7280">15K wfr/mo · 3nm</text>
+
+        <!-- Connecting arrows -->
+        <line x1="88" y1="110" x2="192" y2="110" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <line x1="208" y1="110" x2="312" y2="110" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <line x1="328" y1="110" x2="430" y2="110" stroke="#be185d" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <line x1="450" y1="110" x2="552" y2="110" stroke="#16a34a" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="annotations">
+      <div class="ann-card red">
+        <div class="ann-label">⚠ Watch</div>
+        <div class="ann-text">$17B hinges on Japanese government's additional subsidy commitment still pending formal approval. A political reversal or fiscal constraint could delay the node upgrade.</div>
+      </div>
+      <div class="ann-card amber">
+        <div class="ann-label">◆ Monitor</div>
+        <div class="ann-text">TSMC's global 3nm capacity hitting 180K wafers/month by end-2026. Kumamoto's 15K carve-out is modest but geopolitically ring-fenced, relevant for Japan-based chip consumers.</div>
+      </div>
+      <div class="ann-card green">
+        <div class="ann-label">✓ Positive</div>
+        <div class="ann-text">Tokyo Electron and SCREEN Holdings see incremental equipment orders. Rapidus + JASM-2 running in parallel creates a sustained Japanese equipment spending cycle through 2028.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3: BOJ & CPI -->
+  <div class="viz-panel" id="v3">
+    <div class="panel-header">
+      <span class="panel-tag tag-macro">Macro & BOJ</span>
+      <div>
+        <div class="panel-title">Japan CPI Softens to 4-Year Low — BOJ Rate Path Complicated</div>
+        <div class="panel-source">CNBC / Japan Times · May 22, 2026</div>
+      </div>
+    </div>
+
+    <div class="signals">
+      <div class="signal">
+        <div class="signal-num">1.4%</div>
+        <div class="signal-label">April 2026 core CPI (ex. fresh food)</div>
+        <div class="signal-sub">Lowest since March 2022 · vs 1.7% expected</div>
+      </div>
+      <div class="signal">
+        <div class="signal-num">¥159</div>
+        <div class="signal-label">USD/JPY rate (post-intervention)</div>
+        <div class="signal-sub">~¥10T MOF spent on FX defense</div>
+      </div>
+      <div class="signal">
+        <div class="signal-num">0.75%</div>
+        <div class="signal-label">BOJ policy rate · held Apr 27–28</div>
+        <div class="signal-sub">vs 3.50–3.75% US Fed Funds rate</div>
+      </div>
+    </div>
+
+    <div class="chart-area">
+      <div class="chart-title">Japan Core CPI Trend vs. BOJ 2% Target (2025–2026)</div>
+      <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+        <!-- Grid -->
+        <line x1="60" y1="20" x2="60" y2="175" stroke="#e2e5ee" stroke-width="1"/>
+        <line x1="60" y1="175" x2="650" y2="175" stroke="#e2e5ee" stroke-width="1"/>
+        <!-- Horizontal grid lines -->
+        <line x1="60" y1="55" x2="650" y2="55" stroke="#f0f0f0" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="60" y1="95" x2="650" y2="95" stroke="#e74c3c" stroke-width="1" stroke-dasharray="5,3" opacity="0.5"/>
+        <line x1="60" y1="135" x2="650" y2="135" stroke="#f0f0f0" stroke-width="1" stroke-dasharray="3,3"/>
+
+        <!-- Y axis labels -->
+        <text x="50" y="58" text-anchor="end" font-size="10" fill="#9ca3af">3.0%</text>
+        <text x="50" y="98" text-anchor="end" font-size="10" fill="#dc2626">2.0%</text>
+        <text x="50" y="138" text-anchor="end" font-size="10" fill="#9ca3af">1.0%</text>
+        <text x="50" y="178" text-anchor="end" font-size="10" fill="#9ca3af">0%</text>
+
+        <!-- BOJ 2% target label -->
+        <text x="652" y="94" font-size="9" fill="#dc2626" font-weight="600">2% target</text>
+
+        <!-- X axis labels (months) -->
+        <text x="100" y="192" text-anchor="middle" font-size="9" fill="#9ca3af">Sep'25</text>
+        <text x="180" y="192" text-anchor="middle" font-size="9" fill="#9ca3af">Nov'25</text>
+        <text x="260" y="192" text-anchor="middle" font-size="9" fill="#9ca3af">Jan'26</text>
+        <text x="340" y="192" text-anchor="middle" font-size="9" fill="#9ca3af">Feb'26</text>
+        <text x="420" y="192" text-anchor="middle" font-size="9" fill="#9ca3af">Mar'26</text>
+        <text x="500" y="192" text-anchor="middle" font-size="9" fill="#9ca3af">Apr'26</text>
+
+        <!-- Core CPI line (approximate values based on reporting) -->
+        <!-- Sep 2.5% → Nov 2.4% → Jan 2.3% → Feb 2.0% → Mar 1.8% → Apr 1.4% -->
+        <!-- Map: 0% = y175, 3% = y55, so 1% = 40px -->
+        <!-- Sep: 2.5% → y=175-(2.5*40)=75 -->
+        <!-- Nov: 2.4% → y=175-(2.4*40)=79 -->
+        <!-- Jan: 2.3% → y=175-(2.3*40)=83 -->
+        <!-- Feb: 2.0% → y=175-(2.0*40)=95 -->
+        <!-- Mar: 1.8% → y=175-(1.8*40)=103 -->
+        <!-- Apr: 1.4% → y=175-(1.4*40)=119 -->
+
+        <polyline points="100,75 180,79 260,83 340,95 420,103 500,119"
+          fill="none" stroke="#3730a3" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- Data point circles -->
+        <circle cx="100" cy="75" r="4" fill="#3730a3"/>
+        <circle cx="180" cy="79" r="4" fill="#3730a3"/>
+        <circle cx="260" cy="83" r="4" fill="#3730a3"/>
+        <circle cx="340" cy="95" r="4" fill="#3730a3"/>
+        <circle cx="420" cy="103" r="4" fill="#3730a3"/>
+        <circle cx="500" cy="119" r="5" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+
+        <!-- Annotations -->
+        <text x="100" y="65" text-anchor="middle" font-size="9" fill="#6b7280">2.5%</text>
+        <text x="500" y="109" text-anchor="middle" font-size="10" font-weight="700" fill="#dc2626">1.4%</text>
+        <text x="500" y="142" text-anchor="middle" font-size="9" fill="#dc2626">4-yr low</text>
+
+        <!-- Core-core line (dashed) -->
+        <!-- Core-core: Feb 2.6% → Mar 2.4% → Apr 1.9% -->
+        <polyline points="340,71 420,79 500,103"
+          fill="none" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <circle cx="340" cy="71" r="3" fill="#9333ea"/>
+        <circle cx="420" cy="79" r="3" fill="#9333ea"/>
+        <circle cx="500" cy="103" r="4" fill="#9333ea"/>
+        <text x="520" y="101" font-size="9" fill="#9333ea">1.9%</text>
+        <text x="520" y="112" font-size="8" fill="#9333ea">(core-core)</text>
+
+        <!-- Legend -->
+        <line x1="75" y1="210" x2="95" y2="210" stroke="#3730a3" stroke-width="2.5"/>
+        <text x="100" y="213" font-size="9" fill="#6b7280">Core CPI (ex. fresh food)</text>
+        <line x1="220" y1="210" x2="240" y2="210" stroke="#9333ea" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <text x="245" y="213" font-size="9" fill="#6b7280">Core-core (ex. food &amp; energy)</text>
+        <line x1="400" y1="210" x2="420" y2="210" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,2" opacity="0.6"/>
+        <text x="425" y="213" font-size="9" fill="#dc2626">BOJ 2% target</text>
+      </svg>
+    </div>
+
+    <div class="annotations">
+      <div class="ann-card red">
+        <div class="ann-label">⚠ Watch</div>
+        <div class="ann-text">¥10T FX intervention already spent; yen back near ¥159. If it weakens past ¥162–165, a third intervention round becomes likely — eroding Ministry of Finance credibility with each successive operation.</div>
+      </div>
+      <div class="ann-card amber">
+        <div class="ann-label">◆ Monitor</div>
+        <div class="ann-text">Government energy subsidies are artificially suppressing CPI. When subsidies are withdrawn (likely FY2027), underlying inflation could bounce back sharply — forcing BOJ into a late, larger hike cycle.</div>
+      </div>
+      <div class="ann-card green">
+        <div class="ann-label">✓ Positive</div>
+        <div class="ann-text">Q1 2026 GDP at 2.1% annualized beats consensus. Strong growth + subdued inflation gives BOJ cover to stay on hold through June. Export-oriented names (TEL, Shin-Etsu Chemical) retain USD-revenue hedge.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-footer">
+    Japan Brief Issue #2 · May 27, 2026 · Not investment advice.
+  </div>
+
+</div>
+
+<script>
+function showViz(panelId, tabId) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(panelId).classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+</script>
+</body>
+</html>
