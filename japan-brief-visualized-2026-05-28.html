@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #3 · Visualized · May 28, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#f2f4f7;font-family:'Inter',sans-serif;color:#1a1a1a;min-height:100vh}
+  .page-header{background:#1a1a2e;border-bottom:4px solid #3730a3;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .page-header-left{display:flex;flex-direction:column;gap:4px}
+  .page-header-eyebrow{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#818cf8}
+  .page-header-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff}
+  .page-header-meta{font-size:11px;color:#8a9bb5}
+  .back-link{font-size:11px;color:#818cf8;text-decoration:none;border:1px solid #3730a3;padding:6px 14px;border-radius:4px;white-space:nowrap}
+  .back-link:hover{background:#3730a3;color:#fff}
+  .tab-nav{background:#1a1a2e;padding:0 32px;display:flex;gap:2px;border-bottom:1px solid #2a2a4e}
+  .tab-btn{background:none;border:none;color:#818cf8;font-family:'Inter',sans-serif;font-size:12px;font-weight:600;padding:12px 20px;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;letter-spacing:.5px}
+  .tab-btn.active{color:#fff;border-bottom-color:#3730a3}
+  .tab-btn:hover{color:#c7d2fe}
+  .tab-content{display:none;padding:28px 32px}
+  .tab-content.active{display:block}
+  .story-header{margin-bottom:24px}
+  .story-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:10px}
+  .tag-ai{background:#e0e7ff;color:#3730a3}
+  .tag-semi{background:#fce7f3;color:#be185d}
+  .tag-macro{background:#fef3e2;color:#b45309}
+  .story-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;line-height:1.3;color:#1a1a2e;margin-bottom:6px}
+  .story-source{font-size:11px;color:#9a8a7a}
+  .signals-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}
+  .signal-card{background:#fff;border-radius:8px;padding:18px;box-shadow:0 1px 6px rgba(0,0,0,.07);text-align:center;border-top:3px solid #3730a3}
+  .signal-number{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#1a1a2e;line-height:1}
+  .signal-unit{font-size:11px;color:#6b7280;margin-top:2px}
+  .signal-label{font-size:11px;font-weight:600;color:#4b5563;margin-top:6px;line-height:1.3}
+  .chart-container{background:#fff;border-radius:8px;padding:20px;box-shadow:0 1px 6px rgba(0,0,0,.07);margin:16px 0}
+  .chart-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#6b7280;margin-bottom:16px}
+  .annotations-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+  .annotation-card{border-radius:6px;padding:14px 16px;font-size:12.5px;line-height:1.6}
+  .ann-red{background:#fff1f1;border-left:3px solid #dc2626}
+  .ann-amber{background:#fffbeb;border-left:3px solid #d97706}
+  .ann-green{background:#f0fdf4;border-left:3px solid #16a34a}
+  .ann-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+  .ann-red .ann-label{color:#dc2626}
+  .ann-amber .ann-label{color:#d97706}
+  .ann-green .ann-label{color:#16a34a}
+  .ann-text{color:#374151}
+  .page-footer{background:#1a1a2e;padding:16px 32px;text-align:center;font-size:11px;color:#4a5a7a;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="page-header-eyebrow">日本速報 · Visualized Data</div>
+    <div class="page-header-title">Japan Brief #3 — Signal Intelligence</div>
+    <div class="page-header-meta">May 28, 2026 · 3 stories · Data charts &amp; annotations</div>
+  </div>
+  <a href="japan-brief.html" class="back-link">← Japan Brief Home</a>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showViz('ai',this)">🤖 Story 1 · Physical AI JV</button>
+  <button class="tab-btn" onclick="showViz('semi',this)">🔬 Story 2 · Rapidus / 2nm</button>
+  <button class="tab-btn" onclick="showViz('macro',this)">🏦 Story 3 · BOJ Rate Path</button>
+</div>
+
+<!-- TAB 1: AI/TECH -->
+<div class="tab-content active" id="tab-ai">
+  <div class="story-header">
+    <span class="story-tag tag-ai">🤖 AI &amp; Tech</span>
+    <div class="story-title">Japan AI Foundation Model Development — Physical AI Consortium</div>
+    <div class="story-source">SoftBank · NEC · Sony · Honda · NEDO · April 12, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">¥1T</div>
+      <div class="signal-unit">~$6.3 billion</div>
+      <div class="signal-label">NEDO government support over 5 years (FY2026–2030)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">10%+</div>
+      <div class="signal-unit">equity per founder</div>
+      <div class="signal-label">Each of SoftBank, NEC, Sony, Honda holds &gt;10% stake</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">~1T</div>
+      <div class="signal-unit">parameters</div>
+      <div class="signal-label">Target model scale for physical AI foundation model</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Japan Physical AI Market Projection (USD billions)</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- Axes -->
+      <line x1="60" y1="170" x2="540" y2="170" stroke="#d1d5db" stroke-width="1.5"/>
+      <line x1="60" y1="20" x2="60" y2="170" stroke="#d1d5db" stroke-width="1.5"/>
+      <!-- Y axis labels -->
+      <text x="50" y="174" text-anchor="end" font-size="10" fill="#9ca3af">$0</text>
+      <text x="50" y="130" text-anchor="end" font-size="10" fill="#9ca3af">$2B</text>
+      <text x="50" y="87" text-anchor="end" font-size="10" fill="#9ca3af">$4B</text>
+      <text x="50" y="44" text-anchor="end" font-size="10" fill="#9ca3af">$6B</text>
+      <!-- Gridlines -->
+      <line x1="60" y1="130" x2="540" y2="130" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="87" x2="540" y2="87" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="44" x2="540" y2="44" stroke="#f3f4f6" stroke-width="1"/>
+      <!-- Data points: 2025=$0.307B, 2027~$1.5B, 2029~$3.2B, 2031~$5.0B, 2035=$6.76B -->
+      <!-- scale: 0→170, 6.76→20; px per $B = (170-20)/6.76 = 22.19 -->
+      <!-- 2025: y=170-(0.307*22.19)=163.2  x=60+0*(480/10)=60 -->
+      <!-- 2027: y=170-(1.5*22.19)=136.7    x=60+2*48=156 -->
+      <!-- 2029: y=170-(3.2*22.19)=99.0     x=60+4*48=252 -->
+      <!-- 2031: y=170-(5.0*22.19)=59.1     x=60+6*48=348 -->
+      <!-- 2033: y=170-(5.9*22.19)=39.1     x=60+8*48=444 -->
+      <!-- 2035: y=170-(6.76*22.19)=20.0    x=60+10*48=540 -->
+      <polyline points="60,163 156,137 252,99 348,59 444,39 540,20"
+        fill="none" stroke="#3730a3" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Area fill -->
+      <polygon points="60,163 156,137 252,99 348,59 444,39 540,20 540,170 60,170"
+        fill="#3730a3" fill-opacity="0.08"/>
+      <!-- Dots -->
+      <circle cx="60"  cy="163" r="4" fill="#3730a3"/>
+      <circle cx="156" cy="137" r="4" fill="#3730a3"/>
+      <circle cx="252" cy="99"  r="4" fill="#3730a3"/>
+      <circle cx="348" cy="59"  r="4" fill="#3730a3"/>
+      <circle cx="444" cy="39"  r="4" fill="#3730a3"/>
+      <circle cx="540" cy="20"  r="5" fill="#3730a3" stroke="#fff" stroke-width="2"/>
+      <!-- X labels -->
+      <text x="60"  y="185" text-anchor="middle" font-size="10" fill="#6b7280">2025</text>
+      <text x="156" y="185" text-anchor="middle" font-size="10" fill="#6b7280">2027</text>
+      <text x="252" y="185" text-anchor="middle" font-size="10" fill="#6b7280">2029</text>
+      <text x="348" y="185" text-anchor="middle" font-size="10" fill="#6b7280">2031</text>
+      <text x="444" y="185" text-anchor="middle" font-size="10" fill="#6b7280">2033</text>
+      <text x="540" y="185" text-anchor="middle" font-size="10" fill="#6b7280">2035</text>
+      <!-- Callout -->
+      <text x="545" y="18" font-size="10" fill="#3730a3" font-weight="700">$6.76B</text>
+      <text x="65" y="158" font-size="10" fill="#6b7280">$0.31B</text>
+      <!-- Consortium deployment window -->
+      <rect x="204" y="22" width="192" height="145" fill="#818cf8" fill-opacity="0.06" stroke="#818cf8" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="300" y="36" text-anchor="middle" font-size="9" fill="#3730a3" font-weight="600">Consortium 2030 deployment window</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card ann-red">
+      <div class="ann-label">⚠ Risk</div>
+      <div class="ann-text">SoftBank simultaneously holds $34.6B in OpenAI — the dependency this consortium aims to replace. Dual positioning creates governance complexity if models compete for enterprise deals.</div>
+    </div>
+    <div class="annotation-card ann-amber">
+      <div class="ann-label">◈ Watch</div>
+      <div class="ann-text">Preferred Networks (PFN) R&amp;D involvement is the technical credibility signal. PFN's deep robotics expertise differentiates this from past Japanese tech consortia that never shipped product.</div>
+    </div>
+    <div class="annotation-card ann-green">
+      <div class="ann-label">✓ Tailwind</div>
+      <div class="ann-text">Japan controls ~70% of global industrial robot manufacturing. The physical AI deployment network pre-exists the model — an asymmetric structural advantage over US/EU rivals starting from scratch.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: SEMICONDUCTOR -->
+<div class="tab-content" id="tab-semi">
+  <div class="story-header">
+    <span class="story-tag tag-semi">🔬 Semiconductors</span>
+    <div class="story-title">Rapidus IIM-1 — METI Funding &amp; 2nm Roadmap</div>
+    <div class="story-source">METI · Reuters · Tech Funding News · April 11–14, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card" style="border-top-color:#be185d">
+      <div class="signal-number">¥2.35T</div>
+      <div class="signal-unit">~$15.6 billion</div>
+      <div class="signal-label">Total cumulative government R&amp;D support for Rapidus since 2022</div>
+    </div>
+    <div class="signal-card" style="border-top-color:#be185d">
+      <div class="signal-number">2nm</div>
+      <div class="signal-unit">GAA process node</div>
+      <div class="signal-label">Pilot wafers running at IIM-1 Chitose; mass prod. target FY2027</div>
+    </div>
+    <div class="signal-card" style="border-top-color:#be185d">
+      <div class="signal-number">11.5%</div>
+      <div class="signal-unit">+ golden share</div>
+      <div class="signal-label">Japanese government's post-Feb 2026 voting stake with veto right</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Rapidus Cumulative Government Funding Timeline (¥ Trillion)</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- Background -->
+      <rect x="60" y="20" width="480" height="150" fill="#fff"/>
+      <!-- Gridlines -->
+      <line x1="60" y1="20"  x2="540" y2="20"  stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="57"  x2="540" y2="57"  stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="95"  x2="540" y2="95"  stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="132" x2="540" y2="132" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="170" x2="540" y2="170" stroke="#d1d5db" stroke-width="1.5"/>
+      <line x1="60" y1="20"  x2="60"  y2="170" stroke="#d1d5db" stroke-width="1.5"/>
+      <!-- Y labels: 0 to 2.5T, scale: 150px / 2.5T = 60px/T -->
+      <text x="50" y="174" text-anchor="end" font-size="10" fill="#9ca3af">¥0</text>
+      <text x="50" y="134" text-anchor="end" font-size="10" fill="#9ca3af">¥0.5T</text>
+      <text x="50" y="97"  text-anchor="end" font-size="10" fill="#9ca3af">¥1.0T</text>
+      <text x="50" y="59"  text-anchor="end" font-size="10" fill="#9ca3af">¥1.5T</text>
+      <text x="50" y="22"  text-anchor="end" font-size="10" fill="#9ca3af">¥2.0T</text>
+      <!-- Bars: years 2022, 2023, 2024, 2025, 2026 -->
+      <!-- x positions: 100, 195, 290, 385, 480 (width 60, gap 35) -->
+      <!-- Heights: 0.2T→12px, 0.6T→36px, 1.0T→60px, 1.72T→103px, 2.35T→141px -->
+      <rect x="90"  y="158" width="70" height="12"  fill="#be185d" fill-opacity="0.7" rx="2"/>
+      <rect x="185" y="134" width="70" height="36"  fill="#be185d" fill-opacity="0.8" rx="2"/>
+      <rect x="280" y="110" width="70" height="60"  fill="#be185d" fill-opacity="0.85" rx="2"/>
+      <rect x="375" y="67"  width="70" height="103" fill="#be185d" fill-opacity="0.9" rx="2"/>
+      <rect x="470" y="29"  width="70" height="141" fill="#be185d" rx="2"/>
+      <!-- Value labels on bars -->
+      <text x="125" y="153" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">¥0.2T</text>
+      <text x="220" y="126" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">¥0.6T</text>
+      <text x="315" y="102" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">¥1.0T</text>
+      <text x="410" y="59"  text-anchor="middle" font-size="9" fill="#fff" font-weight="700">¥1.72T</text>
+      <text x="505" y="21"  text-anchor="middle" font-size="9" fill="#be185d" font-weight="700">¥2.35T</text>
+      <!-- X labels -->
+      <text x="125" y="185" text-anchor="middle" font-size="10" fill="#6b7280">FY2022</text>
+      <text x="220" y="185" text-anchor="middle" font-size="10" fill="#6b7280">FY2023</text>
+      <text x="315" y="185" text-anchor="middle" font-size="10" fill="#6b7280">FY2024</text>
+      <text x="410" y="185" text-anchor="middle" font-size="10" fill="#6b7280">FY2025</text>
+      <text x="505" y="185" text-anchor="middle" font-size="10" fill="#6b7280">FY2026</text>
+      <!-- New ¥631.5B callout arrow -->
+      <line x1="505" y1="40" x2="505" y2="25" stroke="#be185d" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="415" y="43" font-size="9" fill="#be185d">+¥631.5B new (Apr 2026)</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card ann-red">
+      <div class="ann-label">⚠ Risk</div>
+      <div class="ann-text">Rapidus trails TSMC and Samsung by ~2 years at 2nm. Customer pipeline (confirmed: Fujitsu, Tenstorrent) remains thin. Yield improvements require sustained orders — subsidies cannot substitute for commercial demand.</div>
+    </div>
+    <div class="annotation-card ann-amber">
+      <div class="ann-label">◈ Watch</div>
+      <div class="ann-text">NEDO's Fujitsu + IBM Japan design support program is the demand-creation mechanism to track. If Fujitsu commits to a meaningful wafer volume ahead of 2027, it de-risks the ramp substantially.</div>
+    </div>
+    <div class="annotation-card ann-green">
+      <div class="ann-label">✓ Tailwind</div>
+      <div class="ann-text">Golden-share government veto means strategic decisions (pricing, customer selection, technology licensing) will be shielded from pure market pressure — a feature, not a bug, for geopolitically motivated customers.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3: MACRO/BOJ -->
+<div class="tab-content" id="tab-macro">
+  <div class="story-header">
+    <span class="story-tag tag-macro">🏦 Macro &amp; BOJ</span>
+    <div class="story-title">BOJ Rate Path — Current 0.75%, OECD 2% Terminal by End-2027</div>
+    <div class="story-source">BOJ · CNBC · Bloomberg · OECD · April 28 &amp; May 13, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card" style="border-top-color:#b45309">
+      <div class="signal-number">0.75%</div>
+      <div class="signal-unit">current policy rate</div>
+      <div class="signal-label">BOJ held at Apr 27–28 meeting; split 6-3 vote (hawks wanted 1.0%)</div>
+    </div>
+    <div class="signal-card" style="border-top-color:#b45309">
+      <div class="signal-number">2.8%</div>
+      <div class="signal-unit">revised core CPI forecast</div>
+      <div class="signal-label">Up from 1.9% prior projection; driven by energy &amp; wage pressure</div>
+    </div>
+    <div class="signal-card" style="border-top-color:#b45309">
+      <div class="signal-number">35%</div>
+      <div class="signal-unit">market probability</div>
+      <div class="signal-label">Market-implied odds of June 16–17 hike to 1.0% (pre-May CPI)</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">BOJ Policy Rate — Actual vs OECD Projection (%) · 2024–2027</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+      <!-- Axes -->
+      <line x1="60" y1="170" x2="540" y2="170" stroke="#d1d5db" stroke-width="1.5"/>
+      <line x1="60" y1="20"  x2="60"  y2="170" stroke="#d1d5db" stroke-width="1.5"/>
+      <!-- Y axis: 0% to 2.5%, scale: 150/2.5 = 60px/% -->
+      <text x="50" y="174" text-anchor="end" font-size="10" fill="#9ca3af">0%</text>
+      <text x="50" y="142" text-anchor="end" font-size="10" fill="#9ca3af">0.5%</text>
+      <text x="50" y="110" text-anchor="end" font-size="10" fill="#9ca3af">1.0%</text>
+      <text x="50" y="80"  text-anchor="end" font-size="10" fill="#9ca3af">1.5%</text>
+      <text x="50" y="50"  text-anchor="end" font-size="10" fill="#9ca3af">2.0%</text>
+      <text x="50" y="22"  text-anchor="end" font-size="10" fill="#9ca3af">2.5%</text>
+      <!-- Gridlines -->
+      <line x1="60" y1="140" x2="540" y2="140" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="110" x2="540" y2="110" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="80"  x2="540" y2="80"  stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="50"  x2="540" y2="50"  stroke="#f3f4f6" stroke-width="1"/>
+      <!--
+        Timeline x: Q1'24=60, Q3'24=120, Q1'25=180, Q3'25=240, Q1'26=300, Q3'26=360, Q1'27=420, Q3'27=480, Q4'27=540
+        Rates (actual): Q1'24=0% y=170, Q1'25=0.25% y=155, Q3'25=0.5% y=140, Q1'26=0.75% y=125
+        OECD proj: Q1'26=0.75% y=125, Q3'26=1.0% y=110, Q1'27=1.25% y=95, Q3'27=1.75% y=65, Q4'27=2.0% y=50
+      -->
+      <!-- Actual line (solid) -->
+      <polyline points="60,170 120,170 180,155 240,140 300,125"
+        fill="none" stroke="#b45309" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Projection line (dashed) -->
+      <polyline points="300,125 360,110 420,95 480,65 540,50"
+        fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="6,4" stroke-linejoin="round"/>
+      <!-- Area under actual -->
+      <polygon points="60,170 120,170 180,155 240,140 300,125 300,170 60,170"
+        fill="#b45309" fill-opacity="0.08"/>
+      <!-- Area under projection -->
+      <polygon points="300,125 360,110 420,95 480,65 540,50 540,170 300,170"
+        fill="#b45309" fill-opacity="0.04"/>
+      <!-- Dots (actual) -->
+      <circle cx="60"  cy="170" r="3" fill="#b45309"/>
+      <circle cx="120" cy="170" r="3" fill="#b45309"/>
+      <circle cx="180" cy="155" r="3" fill="#b45309"/>
+      <circle cx="240" cy="140" r="3" fill="#b45309"/>
+      <circle cx="300" cy="125" r="5" fill="#b45309" stroke="#fff" stroke-width="2"/>
+      <!-- Dots (projection) -->
+      <circle cx="360" cy="110" r="3" fill="#b45309" fill-opacity="0.5" stroke="#b45309" stroke-width="1.5"/>
+      <circle cx="420" cy="95"  r="3" fill="#b45309" fill-opacity="0.5" stroke="#b45309" stroke-width="1.5"/>
+      <circle cx="480" cy="65"  r="3" fill="#b45309" fill-opacity="0.5" stroke="#b45309" stroke-width="1.5"/>
+      <circle cx="540" cy="50"  r="5" fill="#b45309" fill-opacity="0.5" stroke="#b45309" stroke-width="2"/>
+      <!-- Divider: now -->
+      <line x1="300" y1="22" x2="300" y2="170" stroke="#6b7280" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="302" y="35" font-size="9" fill="#6b7280">Now →</text>
+      <!-- Legend -->
+      <line x1="360" y1="30" x2="390" y2="30" stroke="#b45309" stroke-width="2.5"/>
+      <text x="394" y="34" font-size="10" fill="#6b7280">Actual</text>
+      <line x1="440" y1="30" x2="470" y2="30" stroke="#b45309" stroke-width="2" stroke-dasharray="5,3"/>
+      <text x="474" y="34" font-size="10" fill="#6b7280">OECD Proj.</text>
+      <!-- X labels -->
+      <text x="60"  y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q1'24</text>
+      <text x="120" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q3'24</text>
+      <text x="180" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q1'25</text>
+      <text x="240" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q3'25</text>
+      <text x="300" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q1'26</text>
+      <text x="360" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q3'26</text>
+      <text x="420" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q1'27</text>
+      <text x="480" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q3'27</text>
+      <text x="540" y="186" text-anchor="middle" font-size="9" fill="#9ca3af">Q4'27</text>
+      <!-- Callout terminal -->
+      <text x="542" y="46" font-size="10" fill="#b45309" font-weight="700">2.0%</text>
+      <!-- Current callout -->
+      <text x="305" y="120" font-size="10" fill="#b45309" font-weight="700">0.75%</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card ann-red">
+      <div class="ann-label">⚠ Risk</div>
+      <div class="ann-text">A faster-than-expected tightening cycle would compress valuations on Japan's export heavyweights (Toyota, Sony, Canon) through yen appreciation, even as bank NIMs benefit. Watch USD/JPY as the real-time signal.</div>
+    </div>
+    <div class="annotation-card ann-amber">
+      <div class="ann-label">◈ Watch</div>
+      <div class="ann-text">May CPI data (due June 20) is the next pivotal input before the June 16–17 BOJ meeting. A print above 2.8% would meaningfully shift the June hike probability above 35% and reprice the short end of the JGB curve.</div>
+    </div>
+    <div class="annotation-card ann-green">
+      <div class="ann-label">✓ Tailwind</div>
+      <div class="ann-text">MUFG, SMFG, and Mizuho all stand to benefit materially from NIM expansion. Each 25bps increment adds approximately ¥100–150B in annual net interest income across the three megabanks at current balance sheet sizes.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  Japan Brief Issue #3 · May 28, 2026 · Not investment advice · Data sourced from BOJ, OECD, METI, Nikkei Asia, Reuters
+</div>
+
+<script>
+function showViz(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
