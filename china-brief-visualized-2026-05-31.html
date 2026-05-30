@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #18 · May 31, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0d1117; font-family:'Inter',sans-serif; color:#e6edf3; min-height:100vh; }
+  .top-bar { background:#161b22; border-bottom:1px solid #30363d; padding:12px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .back-link { color:#c0392b; text-decoration:none; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+  .back-link:hover { color:#e74c3c; }
+  .top-bar-title { font-size:12px; color:#8b949e; }
+  .tabs { display:flex; border-bottom:1px solid #30363d; background:#161b22; padding:0 32px; overflow-x:auto; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; color:#8b949e; border-bottom:2px solid transparent; white-space:nowrap; transition:all 0.2s; }
+  .tab.active { color:#e6edf3; border-bottom-color:#c0392b; }
+  .tab:hover { color:#e6edf3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-header { margin-bottom:28px; }
+  .panel-tag { font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:10px; }
+  .tag-ai { background:#1c3a6e; color:#58a6ff; }
+  .tag-macro { background:#3a2a0a; color:#e3b341; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#e6edf3; line-height:1.3; margin-bottom:8px; }
+  .panel-source { font-size:11px; color:#8b949e; }
+  .signals-row { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin:24px 0; }
+  .signal-card { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:20px; text-align:center; }
+  .signal-number { font-size:32px; font-weight:700; color:#58a6ff; font-family:'Playfair Display',serif; }
+  .signal-number.red { color:#f85149; }
+  .signal-number.gold { color:#e3b341; }
+  .signal-number.green { color:#3fb950; }
+  .signal-label { font-size:11px; color:#8b949e; margin-top:6px; line-height:1.4; }
+  .chart-container { background:#161b22; border:1px solid #30363d; border-radius:8px; padding:24px; margin:24px 0; }
+  .chart-title { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8b949e; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:1fr; gap:12px; margin-top:24px; }
+  .annotation-card { background:#161b22; border-radius:6px; padding:14px 16px; border-left:3px solid; }
+  .annotation-card.red { border-left-color:#f85149; }
+  .annotation-card.amber { border-left-color:#e3b341; }
+  .annotation-card.green { border-left-color:#3fb950; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .annotation-label { color:#f85149; }
+  .annotation-card.amber .annotation-label { color:#e3b341; }
+  .annotation-card.green .annotation-label { color:#3fb950; }
+  .annotation-body { font-size:13px; color:#c9d1d9; line-height:1.6; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#e8d5b0; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#8b949e; margin-left:4px; }
+  .footer-bar { background:#161b22; border-top:1px solid #30363d; padding:14px 32px; text-align:center; font-size:11px; color:#8b949e; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="brief.html" class="back-link">← Return to China Brief</a>
+  <div class="top-bar-title">China Brief Issue #18 · May 31, 2026 · Data Visualized</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('v1', this)">Huawei LogicFolding</div>
+  <div class="tab" onclick="showViz('v2', this)">DeepSeek Code Harness</div>
+  <div class="tab" onclick="showViz('v3', this)">China May PMI</div>
+</div>
+
+<!-- PANEL 1: Huawei LogicFolding -->
+<div id="v1" class="viz-panel active">
+  <div class="panel-header">
+    <span class="panel-tag tag-ai">AI &amp; Chips · Story 1</span>
+    <div class="panel-headline">Huawei LogicFolding: Chip Architecture Roadmap vs. Global Frontier</div>
+    <div class="panel-source">CNBC · Bloomberg · Tom's Hardware · May 25–27, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number red">55%</div>
+      <div class="signal-label">Claimed transistor density gain from LogicFolding vs. Huawei prior-gen process</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number gold">1.4nm</div>
+      <div class="signal-label">Equivalent node performance targeted by 2031, without EUV access</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number green">2nm</div>
+      <div class="signal-label">TSMC's current volume production node (N2), already in commercial ramp</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">China Domestic Chip Roadmap vs. Global Leaders — Node Trajectory (Illustrative)</div>
+    <svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Grid lines -->
+      <line x1="80" y1="40" x2="80" y2="260" stroke="#30363d" stroke-width="1"/>
+      <line x1="80" y1="260" x2="760" y2="260" stroke="#30363d" stroke-width="1"/>
+      <!-- Y axis labels (node size in nm, inverted — smaller = better) -->
+      <text x="70" y="60" text-anchor="end" fill="#8b949e" font-size="10">1nm</text>
+      <text x="70" y="110" text-anchor="end" fill="#8b949e" font-size="10">2nm</text>
+      <text x="70" y="160" text-anchor="end" fill="#8b949e" font-size="10">5nm</text>
+      <text x="70" y="210" text-anchor="end" fill="#8b949e" font-size="10">7nm</text>
+      <text x="70" y="260" text-anchor="end" fill="#8b949e" font-size="10">10nm</text>
+      <!-- Grid horizontals -->
+      <line x1="80" y1="60" x2="760" y2="60" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="110" x2="760" y2="110" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="160" x2="760" y2="160" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="210" x2="760" y2="210" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- X axis labels: years -->
+      <text x="130" y="278" text-anchor="middle" fill="#8b949e" font-size="10">2022</text>
+      <text x="250" y="278" text-anchor="middle" fill="#8b949e" font-size="10">2023</text>
+      <text x="370" y="278" text-anchor="middle" fill="#8b949e" font-size="10">2024</text>
+      <text x="490" y="278" text-anchor="middle" fill="#8b949e" font-size="10">2025</text>
+      <text x="610" y="278" text-anchor="middle" fill="#8b949e" font-size="10">2026</text>
+      <text x="730" y="278" text-anchor="middle" fill="#8b949e" font-size="10">2031*</text>
+      <!-- TSMC line (blue) — N3 in 2022, N2 in 2025, ~1.4nm in 2027 -->
+      <polyline points="130,210 250,160 370,130 490,110 610,95 730,60" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+      <!-- Huawei line (red) — 7nm in 2022, 5nm 2024, 3nm 2026, 1.4nm 2031 claim -->
+      <polyline points="130,210 370,160 610,130 730,95" fill="none" stroke="#f85149" stroke-width="2.5" stroke-dasharray="6,3"/>
+      <!-- Data points TSMC -->
+      <circle cx="130" cy="210" r="4" fill="#58a6ff"/>
+      <circle cx="490" cy="110" r="4" fill="#58a6ff"/>
+      <circle cx="610" cy="95" r="4" fill="#58a6ff"/>
+      <!-- Data points Huawei -->
+      <circle cx="130" cy="210" r="4" fill="#f85149"/>
+      <circle cx="610" cy="130" r="4" fill="#f85149"/>
+      <circle cx="730" cy="95" r="4" fill="#f85149" opacity="0.6"/>
+      <!-- Legend -->
+      <line x1="90" y1="30" x2="130" y2="30" stroke="#58a6ff" stroke-width="2.5"/>
+      <text x="135" y="34" fill="#58a6ff" font-size="11">TSMC (Global Frontier)</text>
+      <line x1="300" y1="30" x2="340" y2="30" stroke="#f85149" stroke-width="2.5" stroke-dasharray="6,3"/>
+      <text x="345" y="34" fill="#f85149" font-size="11">Huawei (Announced / Claimed)</text>
+      <text x="580" y="34" fill="#8b949e" font-size="9">* Projected / unverified</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Claim / Primary Risk</div>
+      <div class="annotation-body">The 55% density gain is Huawei's internal benchmark with no independent audit. The company's track record on self-reported process claims has been mixed; TSMC's N2 is already in volume production, and the gap to Huawei's current best process (~5nm-class via <span class="annotation-card-zh">中芯国际</span><span class="annotation-card-en">Zhōngxīn Guójì · SMIC</span>) remains at least two nodes. The 2031 target requires sustained manufacturing yield improvements across a decade under active export controls.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">Unverified / Watch Points</div>
+      <div class="annotation-body">The "Tau Scaling Law" (<span class="annotation-card-zh">Tau定律</span><span class="annotation-card-en">Tau dìnglǜ · alternative chip scaling metric</span>) has no peer-reviewed basis yet. It is possible LogicFolding delivers meaningful gains in certain efficiency metrics while falling short of the implied transistor count. Production economics at scale — yield rates, process variability, cost per wafer — remain undisclosed. Analyst commentary from SemiAnalysis notes that 3D stacking techniques are also advancing rapidly at TSMC and Samsung, limiting the duration of any density advantage.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable / Actionable Signal</div>
+      <div class="annotation-body">Even a partial realization of the LogicFolding roadmap accelerates the <span class="annotation-card-zh">昇腾</span><span class="annotation-card-en">shēngténg · Huawei Ascend AI chip</span> ecosystem's long-term competitive position. For investors tracking China AI infrastructure, the near-term read-through is already material: Nvidia's concession of the Chinese market is a current-period fact, not a forward projection, and domestic cloud operators are aligning their toolchains with Ascend. Equity implications are most direct for Chinese cloud hyperscalers and domestic AI software vendors building on CANN (Huawei's AI compute framework).</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: DeepSeek Code Harness -->
+<div id="v2" class="viz-panel">
+  <div class="panel-header">
+    <span class="panel-tag tag-ai">AI Product · Story 2</span>
+    <div class="panel-headline">DeepSeek's Agentic Stack Push — Code Harness Team vs. Western Frontier</div>
+    <div class="panel-source">SCMP · Decrypt · May 19–20, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number red">3</div>
+      <div class="signal-label">Named benchmark targets: Claude Code, Cursor, OpenAI Codex</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number gold">21K+</div>
+      <div class="signal-label">GitHub stars added in one week by a DeepSeek V4 Rust terminal agent (mid-May 2026)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number green">9 yrs</div>
+      <div class="signal-label">Jane Street tenure of lead harness hire (equities &amp; fixed income, HK)</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Agentic Coding Stack — Layer Architecture (Schematic)</div>
+    <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Layer boxes -->
+      <!-- Foundation Model -->
+      <rect x="40" y="220" width="680" height="40" rx="4" fill="#1c3a6e" stroke="#58a6ff" stroke-width="1.5"/>
+      <text x="380" y="244" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="600">Foundation Model Layer — DeepSeek V4 / GLM-5.1 / Kimi K2.6</text>
+      <!-- Harness Layer -->
+      <rect x="40" y="160" width="680" height="48" rx="4" fill="#3a1c1c" stroke="#f85149" stroke-width="2"/>
+      <text x="380" y="180" text-anchor="middle" fill="#f85149" font-size="12" font-weight="700">Code Harness Layer (DeepSeek's new focus)</text>
+      <text x="380" y="198" text-anchor="middle" fill="#c9d1d9" font-size="10">Context mgmt · Tool invocation · File I/O · Terminal execution · Test-loop feedback</text>
+      <!-- API/SDK -->
+      <rect x="40" y="100" width="320" height="48" rx="4" fill="#1a2a1a" stroke="#3fb950" stroke-width="1.5"/>
+      <text x="200" y="120" text-anchor="middle" fill="#3fb950" font-size="11" font-weight="600">Enterprise API / SDK</text>
+      <text x="200" y="138" text-anchor="middle" fill="#c9d1d9" font-size="10">DeepSeek API · OpenRouter · AWS Bedrock</text>
+      <!-- IDE / Product -->
+      <rect x="400" y="100" width="320" height="48" rx="4" fill="#2a2a1a" stroke="#e3b341" stroke-width="1.5"/>
+      <text x="560" y="120" text-anchor="middle" fill="#e3b341" font-size="11" font-weight="600">IDE / Product Layer</text>
+      <text x="560" y="138" text-anchor="middle" fill="#c9d1d9" font-size="10">VS Code · Cursor · JetBrains · DeepSeek Code (planned)</text>
+      <!-- End user -->
+      <rect x="40" y="40" width="680" height="40" rx="4" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+      <text x="380" y="64" text-anchor="middle" fill="#8b949e" font-size="11">Developer / Enterprise End User</text>
+      <!-- Arrows -->
+      <line x1="380" y1="160" x2="380" y2="148" stroke="#30363d" stroke-width="1" marker-end="url(#arrow)"/>
+      <line x1="200" y1="100" x2="200" y2="80" stroke="#30363d" stroke-width="1"/>
+      <line x1="560" y1="100" x2="560" y2="80" stroke="#30363d" stroke-width="1"/>
+      <line x1="200" y1="80" x2="380" y2="80" stroke="#30363d" stroke-width="1"/>
+      <line x1="560" y1="80" x2="380" y2="80" stroke="#30363d" stroke-width="1"/>
+      <line x1="380" y1="80" x2="380" y2="40" stroke="#30363d" stroke-width="1" marker-end="url(#arrow)"/>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#30363d"/>
+        </marker>
+      </defs>
+      <!-- Label -->
+      <text x="720" y="184" text-anchor="end" fill="#f85149" font-size="10" font-weight="700">Revenue layer</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Claim / Primary Risk</div>
+      <div class="annotation-body">DeepSeek has so far derived its competitive advantage from model-level efficiency, not product distribution or enterprise go-to-market. The harness layer requires capabilities — UX polish, toolchain integrations, enterprise support — that are orthogonal to inference research. Anthropic's Claude Code has a substantial head start in developer mindshare, and the gap between a well-staffed research lab and a product-led company typically takes years, not months, to close. The Jane Street hire signals serious intent but does not resolve execution risk. <span class="annotation-card-zh">深度求索</span><span class="annotation-card-en">Shēndù Qiúsuǒ · DeepSeek</span> has never shipped a consumer-facing product at scale.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">Unverified / Watch Points</div>
+      <div class="annotation-body">The team size and resourcing behind the <span class="annotation-card-zh">代码框架</span><span class="annotation-card-en">dàimǎ kuàngjià · code harness</span> initiative have not been disclosed. It is possible this is an exploratory internal project rather than a fully resourced product line. Community traction (GitHub stars) is a demand signal, but community-built tooling and a company-built product are different things. The hiring of a quant-background engineer, while notable, does not clarify whether DeepSeek is building a developer tool, an enterprise agent, or both.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable / Actionable Signal</div>
+      <div class="annotation-body">This announcement confirms that at least two of China's leading AI labs — DeepSeek and <span class="annotation-card-zh">字节跳动</span><span class="annotation-card-en">Zìjié Tiàodòng · ByteDance</span> (via Doubao Code) — are now explicitly targeting the agentic coding product layer. For institutional observers tracking China AI commercialization, the harness race is the first credible data point that Chinese labs are moving from open-weight research tools to product revenue. The timetable for competitive parity with Claude Code / Cursor is uncertain, but the directional intent is now unambiguous.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: China May PMI -->
+<div id="v3" class="viz-panel">
+  <div class="panel-header">
+    <span class="panel-tag tag-macro">Macro · Story 3</span>
+    <div class="panel-headline">China May PMI: Manufacturing Beats, Services Still Diverging</div>
+    <div class="panel-source">NBS · S&amp;P Global / Caixin · Bloomberg · May 31, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number green">52.2</div>
+      <div class="signal-label">Caixin Manufacturing PMI, May 2026 — vs. 50.8 prior, 51.0 consensus</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number red">49.4</div>
+      <div class="signal-label">Official Non-Manufacturing PMI, April 2026 — back in contraction (&lt;50)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number gold">50.3</div>
+      <div class="signal-label">Official NBS Manufacturing PMI, April 2026 (May figure released today)</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">China PMI Readings — Manufacturing vs. Non-Manufacturing (Dec 2025 – May 2026)</div>
+    <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Chart area -->
+      <line x1="80" y1="40" x2="80" y2="240" stroke="#30363d" stroke-width="1"/>
+      <line x1="80" y1="240" x2="720" y2="240" stroke="#30363d" stroke-width="1"/>
+      <!-- Y axis: 46–54, center at 50 -->
+      <!-- 50 line (expansion threshold) -->
+      <line x1="80" y1="140" x2="720" y2="140" stroke="#3fb950" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+      <text x="72" y="144" text-anchor="end" fill="#3fb950" font-size="10">50</text>
+      <text x="72" y="64" text-anchor="end" fill="#8b949e" font-size="10">54</text>
+      <text x="72" y="104" text-anchor="end" fill="#8b949e" font-size="10">52</text>
+      <text x="72" y="184" text-anchor="end" fill="#8b949e" font-size="10">48</text>
+      <text x="72" y="224" text-anchor="end" fill="#8b949e" font-size="10">46</text>
+      <line x1="80" y1="64" x2="720" y2="64" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="104" x2="720" y2="104" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="184" x2="720" y2="184" stroke="#21262d" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- X axis: months Dec 25 to May 26 -->
+      <!-- 6 months, x positions: 140, 240, 340, 440, 540, 640 -->
+      <text x="140" y="258" text-anchor="middle" fill="#8b949e" font-size="10">Dec 25</text>
+      <text x="240" y="258" text-anchor="middle" fill="#8b949e" font-size="10">Jan 26</text>
+      <text x="340" y="258" text-anchor="middle" fill="#8b949e" font-size="10">Feb 26</text>
+      <text x="440" y="258" text-anchor="middle" fill="#8b949e" font-size="10">Mar 26</text>
+      <text x="540" y="258" text-anchor="middle" fill="#8b949e" font-size="10">Apr 26</text>
+      <text x="640" y="258" text-anchor="middle" fill="#8b949e" font-size="10">May 26</text>
+      <!-- NBS Manufacturing PMI (blue): 50.1, 49.0, 49.0, 50.4, 50.3, ~50.5 est -->
+      <!-- y = 140 - (val-50)*20 -->
+      <!-- 50.1 → 138, 49.0 → 160, 49.0 → 160, 50.4 → 132, 50.3 → 134, 50.5 → 130 -->
+      <polyline points="140,138 240,160 340,160 440,132 540,134 640,130" fill="none" stroke="#58a6ff" stroke-width="2.5"/>
+      <!-- Caixin Manufacturing (purple dashed): 50.5, 50.1, 50.8, 52.1, 50.8, 52.2 -->
+      <!-- 50.5→130, 50.1→138, 50.8→124, 52.1→98, 50.8→124, 52.2→96 -->
+      <polyline points="140,130 240,138 340,124 440,98 540,124 640,96" fill="none" stroke="#a371f7" stroke-width="2.5" stroke-dasharray="6,3"/>
+      <!-- Non-Mfg PMI (orange): 50.2, 50.3, 50.0, 50.1, 49.4, est 49.8 -->
+      <!-- 50.2→136, 50.3→134, 50.0→140, 50.1→138, 49.4→152, 49.8→144 -->
+      <polyline points="140,136 240,134 340,140 440,138 540,152 640,144" fill="none" stroke="#e3b341" stroke-width="2.5"/>
+      <!-- Data points -->
+      <circle cx="640" cy="130" r="5" fill="#58a6ff"/>
+      <circle cx="640" cy="96" r="5" fill="#a371f7"/>
+      <circle cx="640" cy="144" r="5" fill="#e3b341"/>
+      <!-- May label -->
+      <text x="650" y="88" fill="#a371f7" font-size="10" font-weight="700">52.2</text>
+      <text x="650" y="125" fill="#58a6ff" font-size="10">~50.5</text>
+      <text x="650" y="158" fill="#e3b341" font-size="10">~49.8</text>
+      <!-- Legend -->
+      <line x1="90" y1="28" x2="120" y2="28" stroke="#58a6ff" stroke-width="2.5"/>
+      <text x="125" y="32" fill="#58a6ff" font-size="10">NBS Mfg PMI</text>
+      <line x1="220" y1="28" x2="250" y2="28" stroke="#a371f7" stroke-width="2.5" stroke-dasharray="6,3"/>
+      <text x="255" y="32" fill="#a371f7" font-size="10">Caixin Mfg PMI</text>
+      <line x1="370" y1="28" x2="400" y2="28" stroke="#e3b341" stroke-width="2.5"/>
+      <text x="405" y="32" fill="#e3b341" font-size="10">NBS Non-Mfg PMI</text>
+      <text x="555" y="32" fill="#8b949e" font-size="9">May = est./early data</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Claim / Primary Risk</div>
+      <div class="annotation-body">The Caixin manufacturing beat at 52.2 likely reflects high-tech export manufacturers continuing to front-load orders ahead of tariff uncertainty rather than a genuine broadening of domestic demand. If the <span class="annotation-card-zh">出口新订单</span><span class="annotation-card-en">chūkǒu xīn dìngdān · new export orders</span> sub-component prints weak, it would confirm the headline is overstating structural demand strength. A continued contraction in non-manufacturing PMI would signal that the consumer recovery has stalled at a structurally shallow level — which matters for positioning in domestic consumption equities and RMB-denominated bonds.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">Unverified / Watch Points</div>
+      <div class="annotation-body">The official NBS May reading is released today; only the Caixin print has been confirmed at 52.2. NBS and Caixin surveys sample different firm profiles (NBS skews state-owned and large; Caixin skews private and export-oriented), so divergence between the two is common and expected. The <span class="annotation-card-zh">中国人民银行</span><span class="annotation-card-en">Zhōngguó Rénmín Yínháng · PBOC</span> has limited near-term easing headroom after the May 15 RRR cut; policy reaction to a weak services reading would likely be targeted rather than broad-based.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable / Actionable Signal</div>
+      <div class="annotation-body">A strong Caixin manufacturing print supports the case for continued outperformance in Chinese industrial and high-tech equities relative to domestic consumption names. For fixed-income positioning, the manufacturing-services divergence reduces the probability of a near-term <span class="annotation-card-zh">存款准备金率</span><span class="annotation-card-en">cúnkuǎn zhǔnbèijīnlǜ · required reserve ratio</span> cut in June (the May 15 cut was recently implemented), shifting the marginal policy tool toward targeted structural lending rather than broad liquidity provision. Watch the NBS non-manufacturing sub-release alongside the headline PMI for a fuller picture.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #18 · May 31, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
