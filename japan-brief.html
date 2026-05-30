@@ -402,7 +402,7 @@ html, body {
 <!-- Top bar -->
 <div id="topbar">
   <div class="topbar-left">
-    <a href="japan-vocab.html" class="back-btn">← 単語</a>
+    <a href="japan-vocab.html" class="back-btn">← Vocab</a>
     <div>
       <div style="display:flex;align-items:baseline">
         <div class="topbar-title">日本速報</div>
@@ -436,7 +436,7 @@ html, body {
 
 <!-- Bottom nav -->
 <div id="bottombar">
-  <a href="japan-vocab.html" class="bottom-btn btn-vocab">Study 単語</a>
+  <a href="japan-vocab.html" class="bottom-btn btn-vocab">Study Vocab</a>
   <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">← Prev</button>
   <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next →</button>
 </div>
@@ -535,7 +535,7 @@ function renderBrief(brief) {
     const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', sec.tag || 'Note'];
     const vocabHtml = sec.vocab && sec.vocab.length
       ? `<div class="vocab-chips">
-           <div class="vocab-chips-label">単語 from this story</div>
+           <div class="vocab-chips-label">Vocab from this story</div>
            ${sec.vocab.map(v => `
              <div class="vocab-chip">
                <span class="chip-ja">${v.ja}</span>
@@ -582,7 +582,7 @@ function renderBrief(brief) {
     </div>
     <div class="podcast-wrap" id="podcast-wrap">
       <div class="podcast-eyebrow">Daily Podcast · 2-min Audio Overview</div>
-      <div class="podcast-hed">${brief.audio_label || brief.title}</div>
+      <div class="podcast-hed">${brief.title}</div>
       <audio class="podcast-audio" controls preload="metadata"
         onloadedmetadata="document.getElementById('podcast-wrap').style.display='block'"
         onerror="document.getElementById('podcast-wrap').style.display='none'">
@@ -600,7 +600,7 @@ function renderBrief(brief) {
       <div style="font-size:22px;color:#818cf8;flex-shrink:0;">→</div>
     </a>` : ''}
     <div style="text-align:center;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#8a8aa0;margin-top:32px;padding:0 20px">
-      日本速報 · <a href="japan-vocab.html" style="color:#3730a3;text-decoration:none">Study 単語 →</a>
+      日本速報 · <a href="japan-vocab.html" style="color:#3730a3;text-decoration:none">Study Vocab →</a>
     </div>`;
 
   setTimeout(() => {

@@ -1,5 +1,5 @@
 # Japan AI Landscape
-*Maintained by Tomodachi Agent · Last updated: 2026-05-29 (Issue #4)*
+*Maintained by Tomodachi Agent · Last updated: 2026-05-27 (Issue #2)*
 
 ---
 
@@ -30,15 +30,6 @@
 ### Fujitsu (富士通)
 - **TSE: 6702** | Major IT services and equipment
 - **Issue #1:** Member of Japan AI Alliance JV; private investor in Rapidus ¥267.6B round
-- **Issue #4 (2026-05-29):** Among ~30 prospective investors considering equity in Japan AI Foundation Model Development
-
-### Asahi Kasei (旭化成)
-- **TSE: 3407** | Diversified chemicals, advanced materials, batteries, housing
-- **Issue #4 (2026-05-29):** Among ~30 firms considering investment in Japan AI Foundation Model Development consortium; joining as a materials (素材) data contributor to physical AI training pipeline
-
-### Yaskawa Electric (安川電機)
-- **TSE: 6506** | Industrial robots, servo motors, motion-control systems
-- **Issue #4 (2026-05-29):** Among ~30 firms considering investment in Japan AI Foundation Model Development; robot and servo-motion data expected to strengthen physical AI training corpus
 
 ### NTT Research
 - Research arm of NTT Group (日本電信電話)
@@ -64,30 +55,9 @@
 
 ## Frameworks
 
-### Japan AI Foundation Model Development / Japan AI Alliance (2026)
-- **Founding members (10%+ equity each):** SoftBank, NEC, Sony Group, Honda
-- **Early investors:** Nippon Steel, Kobe Steel, MUFG Bank, SMBC, Mizuho Bank; Preferred Networks engineers on secondment
-- **Issue #4 (2026-05-29):** ~30 additional companies considering investment including Asahi Kasei, Yaskawa Electric, Fujitsu, heavy industry, and transportation groups. ~10 expected to finalize in June. Ultimate target: ~100 companies and organizations.
-- **NEDO public-private conversion:** Application filed April 2026; conversion expected summer 2026 (up to ¥1 trillion / $6.3B over 5 years)
-- **Roadmap:** 1 trillion-parameter model by 2027; multimodal by 2029; physical-world sensor integration (weight, temp, location) in 2030s
-- Focus: Physical AI (物理AI) — foundation models for robotics, factory automation, autonomous vehicles trained on Japan's manufacturing-floor data
+### Japan AI Alliance (2026)
+- Joint venture: SoftBank, Sony, NEC, Honda + Nippon Steel, Kobe Steel, 3 megabanks
+- Preferred Networks contributing engineers on secondment
+- Focus: Japanese-language and physical-AI foundation models on domestic infrastructure
+- NEDO funding application for ¥1 trillion program
 
-
----
-## Issue #5 · May 30, 2026
-
-### Fujitsu — Dual Sovereign AI Partnerships
-- Announced May 27: strategic collaborations with **Anthropic** (Claude on-premise for critical infrastructure) and **OpenAI** (enterprise AI portfolio integration)
-- "Customer Zero" strategy: 100,000 group employees as internal testbed before client rollout
-- Multi-AI stack: Kozuchi platform + Takane LLM (co-developed with Cohere) + external frontier models
-- Target: regulated industries (financial services, utilities, government) requiring sovereign/on-premise deployment
-- Japan AI spend CAGR: 28% through 2028 (above global average)
-
-### Japan AI Foundation Model Development — Physical AI Consortium
-- Founded April 2026: SoftBank (ソフトバンク), NEC, Honda, Sony
-- As of May 28: ~30 firms in due diligence including Yaskawa Electric (安川電機), Fanuc (ファナック), Asahi Kasei, Daikin, Hitachi, KDDI
-- ~10 firms expected to finalize investments in June 2026
-- Target: 1 trillion parameter model trained on factory-floor sensor data (weight, temperature, spatial coordinates, conveyor timing)
-- Roadmap: multimodal upgrade 2029; full real-world sensor integration 2030s
-- NEDO public-private designation decision: June 2026 (critical gate — converts JV to subsidized national project)
-- METI ¥6.7 trillion AI subsidy framework; consortium positioned as prime beneficiary
