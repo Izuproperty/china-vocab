@@ -605,7 +605,7 @@ function renderBrief(brief) {
     </div>
     <div class="podcast-wrap" id="podcast-wrap">
       <div class="podcast-eyebrow">Daily Podcast · 2-min Audio Overview</div>
-      <div class="podcast-hed">${brief.title}</div>
+      <div class="podcast-hed">${brief.audio_label || brief.title}</div>
       <audio class="podcast-audio" controls preload="metadata"
         onloadedmetadata="document.getElementById('podcast-wrap').style.display='block'"
         onerror="document.getElementById('podcast-wrap').style.display='none'">

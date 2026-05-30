@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #4 · Visualized · May 29, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:20px 32px; display:flex; align-items:center; gap:20px; }
+  .page-header a { color:#818cf8; font-size:12px; text-decoration:none; letter-spacing:1px; }
+  .page-header a:hover { color:#a5b4fc; }
+  .page-header h1 { font-family:'Playfair Display',serif; color:#fff; font-size:20px; flex:1; }
+  .page-header .meta { font-size:11px; color:#8a9bb5; }
+  .tabs { background:#fff; border-bottom:2px solid #e5e7eb; display:flex; gap:0; padding:0 24px; }
+  .tab-btn { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:0.5px; cursor:pointer; border:none; background:none; color:#6b7280; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+  .tab-btn.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .tab-btn:hover { color:#3730a3; background:#f5f3ff; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:18px 20px; text-align:center; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#9ca3af; margin-bottom:6px; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#1a1a2e; }
+  .signal-unit { font-size:12px; color:#6b7280; margin-top:4px; }
+  .chart-box { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:24px; margin-bottom:24px; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+  .chart-title { font-size:13px; font-weight:600; color:#374151; margin-bottom:4px; }
+  .chart-subtitle { font-size:11px; color:#9ca3af; margin-bottom:20px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .ann-card { border-radius:6px; padding:14px 16px; }
+  .ann-card.green { background:#f0fdf4; border:1px solid #bbf7d0; }
+  .ann-card.amber { background:#fffbeb; border:1px solid #fde68a; }
+  .ann-card.red { background:#fef2f2; border:1px solid #fecaca; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-card.green .ann-label { color:#16a34a; }
+  .ann-card.amber .ann-label { color:#d97706; }
+  .ann-card.red .ann-label { color:#dc2626; }
+  .ann-text { font-size:12px; line-height:1.6; color:#374151; }
+  svg text { font-family:'Inter',sans-serif; }
+  .story-tag { display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; border-radius:3px; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:20px; color:#1a1a2e; margin-bottom:6px; line-height:1.3; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:20px; }
+  .footer-bar { background:#1a1a2e; padding:14px 32px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a href="japan-brief.html">← Japan Brief</a>
+    <h1 style="margin-top:4px;">日本速報 · Issue #4 · Signal View</h1>
+    <div class="meta">May 29, 2026 · AI Alliance · Rapidus FY2026 · BOJ Inflation Gauge</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showViz('ai', 0)">🤖 AI Alliance Expansion</button>
+  <button class="tab-btn" onclick="showViz('semi', 1)">⚙️ Rapidus Customer Phase</button>
+  <button class="tab-btn" onclick="showViz('macro', 2)">📊 BOJ Inflation Divergence</button>
+</div>
+
+<!-- PANEL 1: AI ALLIANCE -->
+<div class="viz-panel active" id="panel-ai">
+  <span class="story-tag tag-ai">🤖 AI & Tech · Story 01</span>
+  <div class="panel-headline">Japan's Physical AI Coalition Swells to 30 Firms — Materials &amp; Logistics Reshape the Consortium</div>
+  <div class="panel-source">Seoul Economic Daily (citing Nikkei) · May 28, 2026</div>
+
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Prospective Investors</div>
+      <div class="signal-value">~30</div>
+      <div class="signal-unit">companies considering equity</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">NEDO Funding (5yr)</div>
+      <div class="signal-value">¥1T</div>
+      <div class="signal-unit">~$6.3B if approved</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Target Model Size</div>
+      <div class="signal-value">1T</div>
+      <div class="signal-unit">parameters by 2027</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Japan AI Foundation Model Development — Consortium Growth Stages</div>
+    <div class="chart-subtitle">Founding members → current prospective investors → ultimate participation target</div>
+    <svg viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="780" height="220" fill="#fafafa" rx="6"/>
+      <!-- Grid lines -->
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#e5e7eb" stroke-width="1"/>
+      <line x1="60" y1="180" x2="740" y2="180" stroke="#e5e7eb" stroke-width="1"/>
+      <!-- Y axis labels -->
+      <text x="50" y="184" text-anchor="end" font-size="11" fill="#9ca3af">0</text>
+      <text x="50" y="134" text-anchor="end" font-size="11" fill="#9ca3af">25</text>
+      <text x="50" y="84" text-anchor="end" font-size="11" fill="#9ca3af">50</text>
+      <text x="50" y="34" text-anchor="end" font-size="11" fill="#9ca3af">100</text>
+      <!-- Y gridlines -->
+      <line x1="60" y1="180" x2="740" y2="180" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="130" x2="740" y2="130" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="80" x2="740" y2="80" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="30" x2="740" y2="30" stroke="#f3f4f6" stroke-width="1"/>
+
+      <!-- Bar: Founding Members (4) -->
+      <rect x="100" y="172.8" width="120" height="7.2" fill="#3730a3" rx="2"/>
+      <text x="160" y="200" text-anchor="middle" font-size="11" fill="#374151">Apr 2026 Launch</text>
+      <text x="160" y="213" text-anchor="middle" font-size="10" fill="#9ca3af">4 founders</text>
+      <text x="160" y="168" text-anchor="middle" font-size="12" font-weight="600" fill="#3730a3">4</text>
+
+      <!-- Bar: Early investors (Megabanks, Nippon Steel etc ~7) -->
+      <rect x="270" y="167.4" width="120" height="12.6" fill="#6366f1" rx="2"/>
+      <text x="330" y="200" text-anchor="middle" font-size="11" fill="#374151">Early Investors</text>
+      <text x="330" y="213" text-anchor="middle" font-size="10" fill="#9ca3af">banks + steel</text>
+      <text x="330" y="163" text-anchor="middle" font-size="12" font-weight="600" fill="#6366f1">~7</text>
+
+      <!-- Bar: Prospective new (30) -->
+      <rect x="440" y="126" width="120" height="54" fill="#818cf8" rx="2"/>
+      <text x="500" y="200" text-anchor="middle" font-size="11" fill="#374151">May 2026</text>
+      <text x="500" y="213" text-anchor="middle" font-size="10" fill="#9ca3af">~30 prospective</text>
+      <text x="500" y="121" text-anchor="middle" font-size="12" font-weight="600" fill="#4338ca">~30</text>
+
+      <!-- Bar: Target (100) dashed/projected -->
+      <rect x="610" y="30" width="120" height="150" fill="#c7d2fe" rx="2" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="670" y="200" text-anchor="middle" font-size="11" fill="#374151">Target</text>
+      <text x="670" y="213" text-anchor="middle" font-size="10" fill="#9ca3af">~100 companies</text>
+      <text x="670" y="25" text-anchor="middle" font-size="12" font-weight="600" fill="#4338ca">~100</text>
+
+      <!-- Legend: projected -->
+      <rect x="600" y="8" width="14" height="8" fill="#c7d2fe" stroke="#818cf8" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="618" y="16" font-size="10" fill="#6b7280">Projected / target</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card green">
+      <div class="ann-label">✅ Differentiated Thesis</div>
+      <div class="ann-text">Materials (Asahi Kasei), robotics (Yaskawa), and logistics data gives Japan's model a manufacturing-floor training corpus US/China models cannot easily replicate.</div>
+    </div>
+    <div class="ann-card amber">
+      <div class="ann-label">⚠️ NEDO Timing Risk</div>
+      <div class="ann-text">Public-private conversion expected "around summer 2026" — a hold on NEDO approval could delay sovereign capital flow and dampen June investment finalizations.</div>
+    </div>
+    <div class="ann-card red">
+      <div class="ann-label">🔴 Execution Gap</div>
+      <div class="ann-text">Consortium breadth is compelling on paper; physical AI models require closed-loop hardware integration. SoftBank's ability to coordinate 100 disparate industrial data contributors remains unproven at scale.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: RAPIDUS -->
+<div class="viz-panel" id="panel-semi">
+  <span class="story-tag tag-semi">⚙️ Semiconductors · Story 02</span>
+  <div class="panel-headline">Rapidus Enters Customer Phase: PDK General Release and Chiplet Pilot Operations Greenlit for FY2026</div>
+  <div class="panel-source">Rapidus Corporation / NEDO Press Release · April 11, 2026</div>
+
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Process Node</div>
+      <div class="signal-value">2nm</div>
+      <div class="signal-unit">GAA · IBM-developed process</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Mass Production Target</div>
+      <div class="signal-value">2027</div>
+      <div class="signal-unit">IIM-1 Chitose, Hokkaido</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Cumulative Govt. Support</div>
+      <div class="signal-value">¥2.35T</div>
+      <div class="signal-unit">METI + NEDO combined</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Rapidus Milestone Roadmap — 2022 to 2027</div>
+    <div class="chart-subtitle">Key technical and commercial gates from founding to mass production</div>
+    <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="780" height="200" fill="#fafafa" rx="6"/>
+      <!-- Timeline axis -->
+      <line x1="40" y1="100" x2="740" y2="100" stroke="#e5e7eb" stroke-width="2"/>
+
+      <!-- Points: 2022, 2023, 2024, 2025, 2026, 2027 -->
+      <!-- Milestones at roughly evenly spaced positions -->
+      <!-- 2022: Aug - Founded -->
+      <circle cx="80" cy="100" r="8" fill="#3730a3"/>
+      <text x="80" y="130" text-anchor="middle" font-size="10" fill="#6b7280">Aug 2022</text>
+      <text x="80" y="145" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">Founded</text>
+      <text x="80" y="82" text-anchor="middle" font-size="10" fill="#3730a3">IBM collab</text>
+      <text x="80" y="70" text-anchor="middle" font-size="10" fill="#3730a3">announced</text>
+
+      <!-- 2023: METI ¥700B allocation -->
+      <circle cx="200" cy="100" r="8" fill="#3730a3"/>
+      <text x="200" y="130" text-anchor="middle" font-size="10" fill="#6b7280">2023</text>
+      <text x="200" y="145" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">METI ¥700B</text>
+      <text x="200" y="82" text-anchor="middle" font-size="10" fill="#3730a3">IIM-1</text>
+      <text x="200" y="70" text-anchor="middle" font-size="10" fill="#3730a3">groundbreak</text>
+
+      <!-- 2024: EUV installed, RCS launched -->
+      <circle cx="340" cy="100" r="8" fill="#3730a3"/>
+      <text x="340" y="130" text-anchor="middle" font-size="10" fill="#6b7280">Apr 2025</text>
+      <text x="340" y="145" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">Pilot Line Active</text>
+      <text x="340" y="82" text-anchor="middle" font-size="10" fill="#3730a3">EUV tools</text>
+      <text x="340" y="70" text-anchor="middle" font-size="10" fill="#3730a3">installed</text>
+
+      <!-- 2025: 2nm GAA verified, pre-release PDK -->
+      <circle cx="490" cy="100" r="8" fill="#6366f1"/>
+      <text x="490" y="130" text-anchor="middle" font-size="10" fill="#6b7280">FY2025</text>
+      <text x="490" y="145" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">2nm GAA Verified</text>
+      <text x="490" y="82" text-anchor="middle" font-size="10" fill="#6366f1">Pre-release</text>
+      <text x="490" y="70" text-anchor="middle" font-size="10" fill="#6366f1">PDK shipped</text>
+
+      <!-- 2026: General PDK release, RCS full ops -->
+      <circle cx="620" cy="100" r="10" fill="#be185d"/>
+      <text x="620" y="130" text-anchor="middle" font-size="10" fill="#6b7280">FY2026 ← NOW</text>
+      <text x="620" y="145" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">PDK General Release</text>
+      <text x="620" y="80" text-anchor="middle" font-size="10" fill="#be185d">Chiplet pilot</text>
+      <text x="620" y="68" text-anchor="middle" font-size="10" fill="#be185d">full ops (RCS)</text>
+
+      <!-- 2027: Mass production -->
+      <circle cx="720" cy="100" r="8" fill="#9ca3af" stroke="#3730a3" stroke-width="2" stroke-dasharray="3,2"/>
+      <text x="720" y="130" text-anchor="middle" font-size="10" fill="#6b7280">2027 target</text>
+      <text x="720" y="145" text-anchor="middle" font-size="10" fill="#374151" font-weight="600">Mass Production</text>
+
+      <!-- Connecting line segments (colored) -->
+      <line x1="88" y1="100" x2="192" y2="100" stroke="#3730a3" stroke-width="2.5"/>
+      <line x1="208" y1="100" x2="332" y2="100" stroke="#3730a3" stroke-width="2.5"/>
+      <line x1="348" y1="100" x2="482" y2="100" stroke="#6366f1" stroke-width="2.5"/>
+      <line x1="498" y1="100" x2="612" y2="100" stroke="#be185d" stroke-width="2.5"/>
+      <line x1="630" y1="100" x2="712" y2="100" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,3"/>
+
+      <!-- "NOW" indicator -->
+      <line x1="620" y1="60" x2="620" y2="88" stroke="#be185d" stroke-width="1.5" stroke-dasharray="3,2"/>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card green">
+      <div class="ann-label">✅ Commercial Activation</div>
+      <div class="ann-text">General PDK release is the key gate for customer chip design commitments. Delivering this in FY2026 on schedule puts mass production 2027 within reach and validates the foundry thesis.</div>
+    </div>
+    <div class="ann-card amber">
+      <div class="ann-label">⚠️ Yield Ramp Uncertainty</div>
+      <div class="ann-text">Koike explicitly flagged yield improvement as an FY2026 priority. Moving from first-wafer electrical verification to consistent production-grade yields is typically where new foundries face the steepest learning curve.</div>
+    </div>
+    <div class="ann-card red">
+      <div class="ann-label">🔴 Customer Ecosystem Thin</div>
+      <div class="ann-text">Few fabless designers have publicly committed to tape-outs. The PDK release must now attract design wins — without anchor customers, mass production ramp economics remain challenging even if process targets are met.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: BOJ -->
+<div class="viz-panel" id="panel-macro">
+  <span class="story-tag tag-macro">📊 Macro / BOJ · Story 03</span>
+  <div class="panel-headline">BOJ's New Underlying Gauge Hits 2.8% — 140bp Divergence From Headline Keeps June 16–17 Meeting Live</div>
+  <div class="panel-source">Bank of Japan / Japan Times / Bloomberg · May 26, 2026</div>
+
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">BOJ Policy Rate</div>
+      <div class="signal-value">0.75%</div>
+      <div class="signal-unit">unchanged since April 28</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">BOJ Underlying CPI</div>
+      <div class="signal-value">2.8%</div>
+      <div class="signal-unit">new gauge · April data</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD / JPY</div>
+      <div class="signal-value">¥159</div>
+      <div class="signal-unit">near intervention watch level</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">BOJ Policy Rate vs. Inflation Measures — 2024 to 2026 (Actual &amp; OECD Projected)</div>
+    <div class="chart-subtitle">Policy rate (dark), official core CPI ex-fresh food (blue), new underlying gauge (red). OECD 2% terminal by end-2027.</div>
+    <svg viewBox="0 0 780 230" xmlns="http://www.w3.org/2000/svg">
+      <rect width="780" height="230" fill="#fafafa" rx="6"/>
+
+      <!-- Grid -->
+      <line x1="70" y1="20" x2="70" y2="190" stroke="#e5e7eb" stroke-width="1"/>
+      <line x1="70" y1="190" x2="750" y2="190" stroke="#e5e7eb" stroke-width="1"/>
+      <!-- Horizontal gridlines at 0%, 0.5%, 1%, 1.5%, 2%, 2.5%, 3% -->
+      <!-- Y range: 0 to 3.5%. Map: y=190 → 0%, y=20 → 3.5%. Scale: 170px / 3.5% = 48.57px per % -->
+      <!-- 0.5% → y=190-24=166; 1% → 142; 1.5% → 118; 2% → 94; 2.5% → 70; 3% → 46 -->
+      <line x1="70" y1="166" x2="750" y2="166" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="70" y1="142" x2="750" y2="142" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="70" y1="118" x2="750" y2="118" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,2"/><!-- 1.5% -->
+      <line x1="70" y1="94" x2="750" y2="94" stroke="#e5e7eb" stroke-width="1.5"/><!-- 2% target -->
+      <line x1="70" y1="70" x2="750" y2="70" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="70" y1="46" x2="750" y2="46" stroke="#f3f4f6" stroke-width="1"/>
+
+      <!-- Y axis labels -->
+      <text x="60" y="194" text-anchor="end" font-size="10" fill="#9ca3af">0%</text>
+      <text x="60" y="170" text-anchor="end" font-size="10" fill="#9ca3af">0.5</text>
+      <text x="60" y="146" text-anchor="end" font-size="10" fill="#9ca3af">1.0</text>
+      <text x="60" y="122" text-anchor="end" font-size="10" fill="#9ca3af">1.5</text>
+      <text x="60" y="98" text-anchor="end" font-size="10" fill="#3730a3" font-weight="600">2.0%</text>
+      <text x="60" y="74" text-anchor="end" font-size="10" fill="#9ca3af">2.5</text>
+      <text x="60" y="50" text-anchor="end" font-size="10" fill="#9ca3af">3.0</text>
+
+      <!-- 2% target label -->
+      <text x="752" y="92" font-size="9" fill="#6366f1">2% target</text>
+
+      <!-- X axis labels — months: Jan'24, Jul'24, Jan'25, Jul'25, Jan'26, May'26, Dec'27(proj) -->
+      <!-- x range: 70 to 730. Months from Jan 2024 to Dec 2027 = 48 months. Each month ≈ 13.75px -->
+      <!-- Jan24=70, Jul24=70+6*13.75=152.5, Jan25=235, Jul25=317.5, Jan26=400, May26=455, Dec27=730 -->
+      <text x="70" y="210" text-anchor="middle" font-size="10" fill="#9ca3af">Jan'24</text>
+      <text x="152" y="210" text-anchor="middle" font-size="10" fill="#9ca3af">Jul'24</text>
+      <text x="235" y="210" text-anchor="middle" font-size="10" fill="#9ca3af">Jan'25</text>
+      <text x="318" y="210" text-anchor="middle" font-size="10" fill="#9ca3af">Jul'25</text>
+      <text x="400" y="210" text-anchor="middle" font-size="10" fill="#9ca3af">Jan'26</text>
+      <text x="456" y="210" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">May'26</text>
+      <text x="662" y="210" text-anchor="middle" font-size="10" fill="#9ca3af">end'27↗</text>
+
+      <!-- BOJ Policy Rate line (dark indigo) -->
+      <!-- -0.1% until Mar24, +0.1% Mar24, +0.25% Jul24, hold, +0.5% Jan25, hold, +0.75% Mar25, hold thru May26 -->
+      <!-- -0.1% → y = 190+4.85=194.85 (below axis, show as 0); 0.1% → 185.1; 0.25% → 177.9; 0.5% → 166; 0.75% → 153.6 -->
+      <polyline points="70,194 152,190 165,185 235,178 318,166 330,154 456,154" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Projected hike path to 2% by end-2027 (dashed) -->
+      <polyline points="456,154 662,94" fill="none" stroke="#1a1a2e" stroke-width="2" stroke-dasharray="6,3"/>
+      <!-- Label -->
+      <text x="340" y="148" font-size="10" fill="#1a1a2e" font-weight="600">BOJ rate 0.75%</text>
+
+      <!-- Official Core CPI line (blue) -->
+      <!-- Rough trajectory: Jan24~2.5%, Jul24~2.7%, Jan25~3.2%, Jul25~2.8%, Jan26~1.8%, May26~1.4% -->
+      <!-- 2.5%→y=70; 2.7%→60.3; 3.2%→34.3; 2.8%→56.6; 1.8%→104.3; 1.4%→122 -->
+      <polyline points="70,70 152,61 235,34 318,57 400,104 456,122" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linejoin="round"/>
+      <text x="458" y="118" font-size="10" fill="#3b82f6">Core CPI 1.4%</text>
+
+      <!-- New underlying BOJ gauge (red) -->
+      <!-- Only available from ~Apr 2026. Show: Jan26~2.3%, May26~2.8% -->
+      <circle cx="400" cy="79" r="4" fill="#dc2626"/>
+      <polyline points="400,79 456,46" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="456" cy="46" r="5" fill="#dc2626"/>
+      <text x="458" y="40" font-size="10" fill="#dc2626" font-weight="600">New gauge 2.8%</text>
+
+      <!-- Now marker -->
+      <line x1="456" y1="20" x2="456" y2="190" stroke="#b45309" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="456" y="18" text-anchor="middle" font-size="9" fill="#b45309">TODAY</text>
+
+      <!-- Legend -->
+      <line x1="80" y1="224" x2="100" y2="224" stroke="#1a1a2e" stroke-width="2.5"/>
+      <text x="104" y="228" font-size="10" fill="#374151">Policy rate</text>
+      <line x1="185" y1="224" x2="205" y2="224" stroke="#3b82f6" stroke-width="2"/>
+      <text x="209" y="228" font-size="10" fill="#374151">Official core CPI</text>
+      <line x1="320" y1="224" x2="340" y2="224" stroke="#dc2626" stroke-width="2.5"/>
+      <text x="344" y="228" font-size="10" fill="#374151">BOJ underlying gauge</text>
+      <line x1="490" y1="224" x2="510" y2="224" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="514" y="228" font-size="10" fill="#374151">OECD projected path</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card green">
+      <div class="ann-label">✅ Deflation Era Ending</div>
+      <div class="ann-text">The 2.8% underlying gauge confirms genuine inflationary momentum. Japan exiting its 30-year low-inflation regime is the macro story of the decade — and validates BOJ's normalization mandate.</div>
+    </div>
+    <div class="ann-card amber">
+      <div class="ann-label">⚠️ Subsidy Distortion</div>
+      <div class="ann-text">Official core CPI at 1.4% will likely rise sharply when energy and education subsidies phase out. The gauge gap (140bp) is a time bomb for headline-watching bond investors holding short duration.</div>
+    </div>
+    <div class="ann-card red">
+      <div class="ann-label">🔴 Yen / Oil Bind</div>
+      <div class="ann-text">USD/JPY near ¥159 compresses the BOJ's room to hold without triggering FX criticism; but Iran oil shock dampens growth and complicates hiking. June 16–17 meeting is a genuine binary for yen longs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #4 · May 29, 2026 · Not investment advice · 日本速報 Tomodachi
+</div>
+
+<script>
+  function showViz(id, idx) {
+    document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  }
+</script>
+</body>
+</html>
