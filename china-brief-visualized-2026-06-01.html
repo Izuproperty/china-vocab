@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #19 · June 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .header { background:#1a1a2e; padding:20px 32px 16px; border-bottom:3px solid #c0392b; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  .header-left { }
+  .header-eyebrow { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:4px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; font-weight:700; }
+  .header-meta { font-size:11px; color:#8a9bb5; margin-top:4px; }
+  .back-link { font-size:12px; color:#e8d5b0; text-decoration:none; border:1px solid #3a3a6e; padding:6px 14px; border-radius:3px; white-space:nowrap; }
+  .back-link:hover { background:#2a2a4e; }
+  .tabs { background:#1a1a2e; padding:0 32px; display:flex; gap:0; border-bottom:1px solid #2a2a4e; overflow-x:auto; }
+  .tab { font-size:11px; font-weight:600; letter-spacing:0.5px; padding:12px 20px; color:#6a7a9a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab:hover { color:#a0b0c8; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+  .viz-panel { display:none; padding:28px 32px 40px; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#1a1a2e; border-radius:6px; padding:16px 20px; border-top:3px solid #c0392b; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#e8d5b0; line-height:1.1; }
+  .signal-label { font-size:11px; color:#6a7a9a; margin-top:4px; line-height:1.4; }
+  .chart-container { background:#fff; border:1px solid #e8e0d4; border-radius:6px; padding:20px; margin-bottom:24px; overflow:hidden; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotation-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; font-size:13px; line-height:1.6; color:#2c2c2c; }
+  .annotation-card.red { border-left:4px solid #c0392b; }
+  .annotation-card.amber { border-left:4px solid #e67e22; }
+  .annotation-card.green { border-left:4px solid #27ae60; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .annotation-card-tag { color:#c0392b; }
+  .annotation-card.amber .annotation-card-tag { color:#e67e22; }
+  .annotation-card.green .annotation-card-tag { color:#27ae60; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-top:6px; }
+  .annotation-card-en { font-size:11px; color:#7a6a5a; font-style:italic; display:block; margin-top:2px; }
+  .footer { background:#1a1a2e; padding:14px 32px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-eyebrow">朋友 Pengyou · Data Visualization</div>
+    <div class="header-title">China Brief · Issue #19</div>
+    <div class="header-meta">June 1, 2026 · 3 stories visualized</div>
+  </div>
+  <a class="back-link" href="brief.html">← Return to China Brief</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1', this)">AI Energy Infrastructure</div>
+  <div class="tab" onclick="showViz('s2', this)">Embodied AI Funding</div>
+  <div class="tab" onclick="showViz('s3', this)">Manufacturing PMI</div>
+</div>
+
+<!-- STORY 1: AI Energy Infrastructure -->
+<div id="s1" class="viz-panel active">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">2×</div>
+      <div class="signal-label">China generates 2x more electricity than the US — structural AI compute advantage</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">6×</div>
+      <div class="signal-label">BloombergNEF: China will add 6x more electricity capacity than the US over the next 5 years</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">20–30%</div>
+      <div class="signal-label">China data center utilization rate (Beijing's own estimate) vs. NDRC target of 60% by end-2026</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">East Data West Computing — Infrastructure Timeline &amp; Key Milestones</div>
+    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Timeline axis -->
+      <line x1="40" y1="100" x2="580" y2="100" stroke="#e0d8d0" stroke-width="2"/>
+      <!-- Year labels -->
+      <text x="40" y="125" font-size="10" fill="#9a8a7a" text-anchor="middle">2022</text>
+      <text x="175" y="125" font-size="10" fill="#9a8a7a" text-anchor="middle">2023</text>
+      <text x="310" y="125" font-size="10" fill="#9a8a7a" text-anchor="middle">2024</text>
+      <text x="445" y="125" font-size="10" fill="#9a8a7a" text-anchor="middle">2025</text>
+      <text x="580" y="125" font-size="10" fill="#9a8a7a" text-anchor="middle">2026</text>
+      <!-- Milestone dots -->
+      <!-- 2022: EDWC launch -->
+      <circle cx="40" cy="100" r="7" fill="#c0392b"/>
+      <line x1="40" y1="93" x2="40" y2="55" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="40" y="50" font-size="9" fill="#1a1a2e" text-anchor="middle" font-weight="600">EDWC Launch</text>
+      <text x="40" y="40" font-size="8" fill="#7a6a5a" text-anchor="middle">Policy enacted</text>
+      <!-- 2023: 8 national hubs designated -->
+      <circle cx="175" cy="100" r="6" fill="#e67e22"/>
+      <line x1="175" y1="107" x2="175" y2="150" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="175" y="163" font-size="9" fill="#1a1a2e" text-anchor="middle" font-weight="600">8 National Hubs</text>
+      <text x="175" y="173" font-size="8" fill="#7a6a5a" text-anchor="middle">Designated</text>
+      <!-- 2024: 246 EFLOP/s capacity -->
+      <circle cx="310" cy="100" r="6" fill="#1a56db"/>
+      <line x1="310" y1="93" x2="310" y2="55" stroke="#1a56db" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="310" y="50" font-size="9" fill="#1a1a2e" text-anchor="middle" font-weight="600">246 EFLOP/s</text>
+      <text x="310" y="40" font-size="8" fill="#7a6a5a" text-anchor="middle">Capacity June 2024</text>
+      <!-- 2025: 300 EFLOP/s target -->
+      <circle cx="445" cy="100" r="6" fill="#27ae60"/>
+      <line x1="445" y1="107" x2="445" y2="150" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="445" y="163" font-size="9" fill="#1a1a2e" text-anchor="middle" font-weight="600">300 EFLOP/s</text>
+      <text x="445" y="173" font-size="8" fill="#7a6a5a" text-anchor="middle">Target 2025</text>
+      <!-- 2026: Ningxia 500MW -->
+      <circle cx="560" cy="100" r="9" fill="#c0392b" stroke="#e8d5b0" stroke-width="2"/>
+      <line x1="560" y1="93" x2="560" y2="45" stroke="#c0392b" stroke-width="2"/>
+      <text x="560" y="40" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">Ningxia 500MW</text>
+      <text x="560" y="30" font-size="8" fill="#7a6a5a" text-anchor="middle">Solar → Datacenter LIVE</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Risk</div>
+      China's infrastructure lead is real in volume but constrained by low utilization (20–30%). The gap between built capacity and revenue-generating capacity is the key investment risk.
+      <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      The NDRC's 60% utilization target by end-2026 has no published enforcement mechanism. Whether provincial governments realign data center incentives around utilization (vs. construction) remains an open question.
+      <div class="annotation-card-zh">东数西算<span class="annotation-card-en">dōng shù xī suàn · East Data West Computing</span></div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Actionable Signal</div>
+      Inference demand growth (latency-sensitive, near-user) could drive a second build cycle in eastern China — different from the overbuilt western training infrastructure. Monitor eastern-cluster utilization separately from national averages.
+      <div class="annotation-card-zh">推理<span class="annotation-card-en">tuīlǐ · inference</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: Embodied AI Funding -->
+<div id="s2" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">$5.6B</div>
+      <div class="signal-label">China robotics venture funding YTD (mid-May 2026) across 176 deals — matching 2021 full-year peak</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">+80%</div>
+      <div class="signal-label">Robotphoenix (若贝特) Day 1 HKEX trading gain on May 18, 2026 — first major robotics IPO exit</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">$435M</div>
+      <div class="signal-label">Spirit AI (灵犀AI) Series A total — largest single embodied AI round among Tier 2 firms so far in 2026</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">China Embodied AI — Selected 2026 Funding Rounds (USD millions)</div>
+    <svg viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Y axis -->
+      <line x1="160" y1="20" x2="160" y2="175" stroke="#e0d8d0" stroke-width="1"/>
+      <!-- X axis -->
+      <line x1="160" y1="175" x2="590" y2="175" stroke="#e0d8d0" stroke-width="1"/>
+      <!-- Grid lines -->
+      <line x1="160" y1="140" x2="590" y2="140" stroke="#f0ece8" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="160" y1="105" x2="590" y2="105" stroke="#f0ece8" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="160" y1="70" x2="590" y2="70" stroke="#f0ece8" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="160" y1="35" x2="590" y2="35" stroke="#f0ece8" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- Y axis labels -->
+      <text x="150" y="178" font-size="9" fill="#9a8a7a" text-anchor="end">$0M</text>
+      <text x="150" y="143" font-size="9" fill="#9a8a7a" text-anchor="end">$100M</text>
+      <text x="150" y="108" font-size="9" fill="#9a8a7a" text-anchor="end">$200M</text>
+      <text x="150" y="73" font-size="9" fill="#9a8a7a" text-anchor="end">$300M</text>
+      <text x="150" y="38" font-size="9" fill="#9a8a7a" text-anchor="end">$435M+</text>
+      <!-- Bars: scale 175-20=155px for 435M, so 1M = 155/435 = 0.356px -->
+      <!-- Spirit AI 435M -->
+      <rect x="175" y="20" width="50" height="155" fill="#c0392b" rx="2"/>
+      <text x="200" y="16" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">$435M</text>
+      <text x="200" y="190" font-size="9" fill="#1a1a2e" text-anchor="middle">Spirit AI</text>
+      <text x="200" y="200" font-size="8" fill="#7a6a5a" text-anchor="middle">灵犀AI</text>
+      <!-- Galaxea AI 435M -->
+      <rect x="245" y="20" width="50" height="155" fill="#c0392b" rx="2" opacity="0.85"/>
+      <text x="270" y="16" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">$435M</text>
+      <text x="270" y="190" font-size="9" fill="#1a1a2e" text-anchor="middle">Galaxea AI</text>
+      <text x="270" y="200" font-size="8" fill="#7a6a5a" text-anchor="middle">星海图</text>
+      <!-- TARS 455M (slightly taller) scale: 455/435*155 = 162 -->
+      <rect x="315" y="13" width="50" height="162" fill="#1a56db" rx="2"/>
+      <text x="340" y="9" font-size="9" fill="#1a56db" text-anchor="middle" font-weight="700">$455M</text>
+      <text x="340" y="190" font-size="9" fill="#1a1a2e" text-anchor="middle">TARS Robotics</text>
+      <text x="340" y="200" font-size="8" fill="#7a6a5a" text-anchor="middle">探索机器人</text>
+      <!-- EngineAI 200M: 200/435*155 = 71.3 -->
+      <rect x="385" y="104" width="50" height="71" fill="#e67e22" rx="2"/>
+      <text x="410" y="100" font-size="9" fill="#e67e22" text-anchor="middle" font-weight="700">$200M</text>
+      <text x="410" y="190" font-size="9" fill="#1a1a2e" text-anchor="middle">EngineAI</text>
+      <text x="410" y="200" font-size="8" fill="#7a6a5a" text-anchor="middle">智元机器人</text>
+      <!-- Robot Era 200M -->
+      <rect x="455" y="104" width="50" height="71" fill="#27ae60" rx="2"/>
+      <text x="480" y="100" font-size="9" fill="#27ae60" text-anchor="middle" font-weight="700">$200M</text>
+      <text x="480" y="190" font-size="9" fill="#1a1a2e" text-anchor="middle">Robot Era</text>
+      <text x="480" y="200" font-size="8" fill="#7a6a5a" text-anchor="middle">机器时代</text>
+      <!-- Robotphoenix IPO 86M: 86/435*155=30.7 -->
+      <rect x="525" y="144" width="50" height="31" fill="#8a9bb5" rx="2"/>
+      <text x="550" y="140" font-size="9" fill="#8a9bb5" text-anchor="middle">$86M IPO</text>
+      <text x="550" y="190" font-size="9" fill="#1a1a2e" text-anchor="middle">Robotphoenix</text>
+      <text x="550" y="200" font-size="8" fill="#7a6a5a" text-anchor="middle">若贝特 HKEX</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Risk</div>
+      Valuation multiples for early-stage embodied AI companies are built on long commercialization timelines. The gap between lab demos and factory-floor economics at scale has not yet been closed — watch unit economics in Year 2 deployments.
+      <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI / physical AI</span></div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      Robotphoenix's 80% Day 1 gain may reflect scarcity of listed robotics names rather than fundamental value. Unitree Robotics' pending Shanghai IPO — targeting $3–7B valuation — will be a more liquid and closely watched pricing event.
+      <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Actionable Signal</div>
+      The shift from pre-programmed hardware to VLA (Vision-Language-Action) models signals that AI software layer is becoming the key differentiation — and that the China robotics value chain is expanding beyond hardware OEMs into AI model developers.
+      <div class="annotation-card-zh">视觉语言动作<span class="annotation-card-en">shìjué yǔyán dòngzuò · Vision-Language-Action</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: Manufacturing PMI -->
+<div id="s3" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">50.0</div>
+      <div class="signal-label">NBS Manufacturing PMI — May 2026. Exactly at the expansion/contraction line, down 0.3 from April</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">49.9</div>
+      <div class="signal-label">New Orders sub-index — first sub-50 reading in several months, signaling demand softening</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">52.9</div>
+      <div class="signal-label">High-tech manufacturing PMI — 16 consecutive months of expansion, up 0.7 from April</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">May 2026 NBS Manufacturing PMI — Sub-Index Breakdown</div>
+    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Background -->
+      <!-- Expansion zone (above 50) -->
+      <rect x="40" y="20" width="560" height="80" fill="#f0fdf4" rx="2"/>
+      <!-- Contraction zone (below 50) -->
+      <rect x="40" y="100" width="560" height="80" fill="#fff5f5" rx="2"/>
+      <!-- 50-line -->
+      <line x1="40" y1="100" x2="600" y2="100" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="608" y="103" font-size="9" fill="#c0392b" font-weight="700">50</text>
+      <!-- Zone labels -->
+      <text x="50" y="35" font-size="9" fill="#27ae60" font-weight="600">EXPANSION</text>
+      <text x="50" y="190" font-size="9" fill="#c0392b" font-weight="600">CONTRACTION</text>
+      <!-- Bars: scale 20–180 = 160px for 46–55 range, center at 50 = 100px -->
+      <!-- Each unit = 16px. 50 = 100px. 55 = 100 - 5*16 = 20px top -->
+      <!-- Headline PMI 50.0 -->
+      <rect x="65" y="100" width="55" height="0" fill="#9a8a7a" rx="2"/>
+      <line x1="65" y1="100" x2="120" y2="100" stroke="#9a8a7a" stroke-width="3"/>
+      <text x="92" y="116" font-size="9" fill="#9a8a7a" text-anchor="middle">50.0</text>
+      <text x="92" y="155" font-size="9" fill="#1a1a2e" text-anchor="middle">Headline</text>
+      <text x="92" y="166" font-size="8" fill="#7a6a5a" text-anchor="middle">制造业PMI</text>
+      <!-- Production 51.2 -->
+      <rect x="145" y="81" width="55" height="19" fill="#27ae60" rx="2" opacity="0.8"/>
+      <text x="172" y="77" font-size="9" fill="#27ae60" text-anchor="middle" font-weight="700">51.2</text>
+      <text x="172" y="155" font-size="9" fill="#1a1a2e" text-anchor="middle">Production</text>
+      <text x="172" y="166" font-size="8" fill="#7a6a5a" text-anchor="middle">生产指数</text>
+      <!-- New Orders 49.9 -->
+      <rect x="225" y="100" width="55" height="2" fill="#c0392b" rx="2"/>
+      <text x="252" y="118" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">49.9</text>
+      <text x="252" y="155" font-size="9" fill="#1a1a2e" text-anchor="middle">New Orders</text>
+      <text x="252" y="166" font-size="8" fill="#7a6a5a" text-anchor="middle">新订单</text>
+      <!-- Large Enterprise PMI 51.1 -->
+      <rect x="305" y="82" width="55" height="18" fill="#1a56db" rx="2" opacity="0.8"/>
+      <text x="332" y="78" font-size="9" fill="#1a56db" text-anchor="middle" font-weight="700">51.1</text>
+      <text x="332" y="155" font-size="9" fill="#1a1a2e" text-anchor="middle">Large Ent.</text>
+      <text x="332" y="166" font-size="8" fill="#7a6a5a" text-anchor="middle">大型企业</text>
+      <!-- High-tech Mfg 52.9 -->
+      <rect x="385" y="54" width="55" height="46" fill="#c0392b" rx="2" opacity="0.9"/>
+      <text x="412" y="50" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">52.9</text>
+      <text x="412" y="155" font-size="9" fill="#1a1a2e" text-anchor="middle">Hi-Tech Mfg</text>
+      <text x="412" y="166" font-size="8" fill="#7a6a5a" text-anchor="middle">高技术制造</text>
+      <!-- Equipment Mfg 52.1 -->
+      <rect x="465" y="67" width="55" height="33" fill="#e67e22" rx="2" opacity="0.85"/>
+      <text x="492" y="63" font-size="9" fill="#e67e22" text-anchor="middle" font-weight="700">52.1</text>
+      <text x="492" y="155" font-size="9" fill="#1a1a2e" text-anchor="middle">Equipment</text>
+      <text x="492" y="166" font-size="8" fill="#7a6a5a" text-anchor="middle">装备制造</text>
+      <!-- Caixin 52.2 -->
+      <rect x="545" y="65" width="45" height="35" fill="#8a9bb5" rx="2" opacity="0.7"/>
+      <text x="568" y="61" font-size="9" fill="#8a9bb5" text-anchor="middle" font-weight="700">52.2</text>
+      <text x="568" y="155" font-size="9" fill="#1a1a2e" text-anchor="middle">Caixin</text>
+      <text x="568" y="166" font-size="8" fill="#7a6a5a" text-anchor="middle">财新PMI</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Risk</div>
+      New orders at 49.9 is the leading indicator that matters. If June production follows orders into contraction, the official PMI will likely print below 50 for the first time in 2026 — a headline risk for China industrial names.
+      <div class="annotation-card-zh">新订单<span class="annotation-card-en">xīn dìngdān · new orders</span></div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      The NBS/Caixin divergence (50.0 vs. 52.2) is unusually wide. The gap may reflect SOE vs. private-sector dynamics or seasonal distortion. The Caixin series covers smaller firms more likely to benefit from domestic stimulus — cross-checking with June data will be important.
+      <div class="annotation-card-zh">财新PMI<span class="annotation-card-en">Cáixīn PMI · Caixin Purchasing Managers Index</span></div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Actionable Signal</div>
+      High-tech manufacturing at 52.9 for 16 consecutive months continues to validate the structural upgrade thesis. Equipment manufacturing outperformance supports the government's capex-led investment cycle in AI hardware and semiconductor tooling.
+      <div class="annotation-card-zh">高技术制造业<span class="annotation-card-en">gāo jìshù zhìzàoyè · high-tech manufacturing</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  China Brief Issue #19 · June 1, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
