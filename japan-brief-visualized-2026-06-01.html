@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #4 · Visualized · June 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .top-bar { background:#1a1a2e; padding:14px 40px; border-bottom:3px solid #3730a3; display:flex; align-items:center; justify-content:space-between; }
+  .top-bar a { color:#818cf8; font-size:11px; font-weight:600; letter-spacing:2px; text-transform:uppercase; text-decoration:none; }
+  .top-bar a:hover { color:#fff; }
+  .top-bar-title { color:#d4d8f0; font-size:13px; font-weight:600; }
+  .wrapper { max-width:860px; margin:0 auto; padding:32px 24px 60px; }
+  h1 { font-family:'Playfair Display',serif; font-size:28px; color:#1a1a2e; margin-bottom:6px; }
+  .subtitle { font-size:12px; color:#7a7a8a; margin-bottom:28px; letter-spacing:1px; }
+  .tabs { display:flex; gap:4px; margin-bottom:0; border-bottom:2px solid #3730a3; }
+  .tab-btn { padding:10px 20px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; border:none; background:#e8eaf5; color:#3730a3; cursor:pointer; border-radius:4px 4px 0 0; transition:background 0.15s; }
+  .tab-btn.active { background:#3730a3; color:#fff; }
+  .tab-pane { display:none; background:#fff; border:1px solid #dde0e8; border-top:none; border-radius:0 0 6px 6px; padding:32px; }
+  .tab-pane.active { display:block; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#f5f6fa; border:1px solid #dde0e8; border-radius:6px; padding:16px 18px; }
+  .signal-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#7a6a8a; margin-bottom:6px; }
+  .signal-value { font-size:22px; font-weight:700; color:#1a1a2e; margin-bottom:2px; }
+  .signal-sub { font-size:11px; color:#9a9aaa; }
+  .chart-area { margin-bottom:28px; }
+  .chart-title { font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#3730a3; margin-bottom:12px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .ann-card { background:#f0f2ff; border-left:3px solid #3730a3; padding:12px 14px; border-radius:0 4px 4px 0; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:5px; }
+  .ann-text { font-size:12.5px; color:#2c2c2c; line-height:1.5; }
+  .viz-footer { margin-top:40px; font-size:11px; color:#9a9aaa; text-align:center; border-top:1px solid #e8e0d0; padding-top:16px; }
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <a href="japan-brief.html">← Japan Brief Home</a>
+  <div class="top-bar-title">Japan Brief Issue #4 · Visualized · June 1, 2026</div>
+  <span style="color:#4a5a7a;font-size:11px;">Not investment advice</span>
+</div>
+<div class="wrapper">
+  <h1>Japan Brief · Issue #4 Data View</h1>
+  <div class="subtitle">JUNE 1, 2026 · 3 STORIES · WEEKEND + WEEK AHEAD EDITION</div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showViz('story1','s1')">AI &amp; Tech</button>
+    <button class="tab-btn" onclick="showViz('story2','s2')">Semiconductors</button>
+    <button class="tab-btn" onclick="showViz('story3','s3')">Macro · BOJ</button>
+  </div>
+
+  <!-- STORY 1: AI/TECH -->
+  <div id="story1" class="tab-pane active">
+    <div class="signals">
+      <div class="signal-card">
+        <div class="signal-label">AI Partners Added</div>
+        <div class="signal-value">2</div>
+        <div class="signal-sub">OpenAI + Anthropic (Fujitsu)</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">SoftBank AI Alliance Firms</div>
+        <div class="signal-value">~30</div>
+        <div class="signal-sub">Considering investment in June</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">NEDO 5-yr AI Funding</div>
+        <div class="signal-value">1T</div>
+        <div class="signal-sub">JPY allocated to physical AI model</div>
+      </div>
+    </div>
+    <div class="chart-area">
+      <div class="chart-title">Japan Enterprise AI Partnership Timeline — 2026</div>
+      <svg viewBox="0 0 760 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <line x1="40" y1="90" x2="720" y2="90" stroke="#c7d2fe" stroke-width="2"/>
+        <!-- April -->
+        <circle cx="160" cy="90" r="8" fill="#3730a3"/>
+        <text x="160" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#3730a3" font-weight="600">Apr 13</text>
+        <text x="160" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">SoftBank AI Foundation</text>
+        <text x="160" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">Model Dev. launched</text>
+        <!-- May 27 -->
+        <circle cx="390" cy="90" r="8" fill="#3730a3"/>
+        <text x="390" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#3730a3" font-weight="600">May 27</text>
+        <text x="390" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">Fujitsu + OpenAI</text>
+        <text x="390" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#555">+ Anthropic announced</text>
+        <!-- June (upcoming) -->
+        <circle cx="580" cy="90" r="8" fill="#818cf8" stroke="#3730a3" stroke-width="2" stroke-dasharray="3,2"/>
+        <text x="580" y="74" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#818cf8" font-weight="600">June (ahead)</text>
+        <text x="580" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#888">~10 firms finalize</text>
+        <text x="580" y="128" text-anchor="middle" font-family="Inter,sans-serif" font-size="10" fill="#888">SoftBank AI stakes</text>
+        <!-- axis labels -->
+        <text x="40" y="155" font-family="Inter,sans-serif" font-size="9" fill="#aaa">Mar 2026</text>
+        <text x="700" y="155" font-family="Inter,sans-serif" font-size="9" fill="#aaa" text-anchor="end">Jul 2026</text>
+      </svg>
+    </div>
+    <div class="annotations">
+      <div class="ann-card">
+        <div class="ann-label">Sovereign Angle</div>
+        <div class="ann-text">Fujitsu's dual-provider structure is designed to satisfy METI's push for domestically accountable AI under the AI Promotion Act.</div>
+      </div>
+      <div class="ann-card">
+        <div class="ann-label">Revenue Model</div>
+        <div class="ann-text">Both partnerships are resale + integration arrangements — Fujitsu captures consulting and implementation margin rather than passing through raw API access.</div>
+      </div>
+      <div class="ann-card">
+        <div class="ann-label">Watch This Week</div>
+        <div class="ann-text">~10 firms expected to formally commit investment to Japan AI Foundation Model Development. First capital milestone for the SoftBank physical AI JV.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2: SEMI -->
+  <div id="story2" class="tab-pane">
+    <div class="signals">
+      <div class="signal-card">
+        <div class="signal-label">Kioxia Cost / Wafer (UBS est.)</div>
+        <div class="signal-value">$2,000</div>
+        <div class="signal-sub">vs $4,000 Samsung; $6,000 Micron/SK Hynix</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">Kioxia 2026 Output</div>
+        <div class="signal-value">Sold Out</div>
+        <div class="signal-sub">Entire 2026 NAND volume committed</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">Q2 Operating Profit Est.</div>
+        <div class="signal-value">1.3T JPY</div>
+        <div class="signal-sub">Above full-year FY2025 record</div>
+      </div>
+    </div>
+    <div class="chart-area">
+      <div class="chart-title">NAND Wafer Cost Per Wafer — Peer Comparison (UBS, May 29 2026)</div>
+      <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <!-- bars -->
+        <!-- Kioxia -->
+        <rect x="60" y="120" width="80" height="50" fill="#3730a3"/>
+        <text x="100" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#3730a3" font-weight="700">$2,000</text>
+        <text x="100" y="187" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">Kioxia</text>
+        <!-- Samsung -->
+        <rect x="200" y="70" width="80" height="100" fill="#a5b4fc"/>
+        <text x="240" y="65" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">$4,000</text>
+        <text x="240" y="187" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">Samsung</text>
+        <!-- Micron -->
+        <rect x="340" y="20" width="80" height="150" fill="#c7d2fe"/>
+        <text x="380" y="15" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">$6,000</text>
+        <text x="380" y="187" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#555">Micron / SK Hynix</text>
+        <!-- baseline -->
+        <line x1="40" y1="170" x2="520" y2="170" stroke="#ccc" stroke-width="1"/>
+        <text x="30" y="174" font-family="Inter,sans-serif" font-size="9" fill="#aaa" text-anchor="end">$0</text>
+        <text x="530" y="115" font-family="Inter,sans-serif" font-size="9" fill="#818cf8">UBS est.</text>
+      </svg>
+    </div>
+    <div class="annotations">
+      <div class="ann-card">
+        <div class="ann-label">Edge Duration</div>
+        <div class="ann-text">UBS underwrites the cost advantage through 2026–2027. At BiCS10 (332-layer) and beyond, the stacking math equalizes with peers.</div>
+      </div>
+      <div class="ann-card">
+        <div class="ann-label">VLSI Symposium Jun 14</div>
+        <div class="ann-text">Kioxia and SanDisk present MSA-CBA architecture targeting 1,000-layer 3D NAND — a roadmap credibility test against Samsung's rival concept.</div>
+      </div>
+      <div class="ann-card">
+        <div class="ann-label">Rapidus Watch</div>
+        <div class="ann-text">NEDO FY2026 budget allocation for Rapidus 2nm front-end processing expected; April's ¥631.5B supplement brought cumulative support to ¥2.35T.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3: MACRO/BOJ -->
+  <div id="story3" class="tab-pane">
+    <div class="signals">
+      <div class="signal-card">
+        <div class="signal-label">USD/JPY (May 30 close)</div>
+        <div class="signal-value">159.3</div>
+        <div class="signal-sub">Near 160 intervention threshold</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">BOJ Policy Rate</div>
+        <div class="signal-value">0.75%</div>
+        <div class="signal-sub">vs Fed 3.50–3.75% (gap ~300bp)</div>
+      </div>
+      <div class="signal-card">
+        <div class="signal-label">BOJ Core CPI Forecast</div>
+        <div class="signal-value">2.8%</div>
+        <div class="signal-sub">FY2026 (raised from 1.9% in April)</div>
+      </div>
+    </div>
+    <div class="chart-area">
+      <div class="chart-title">BOJ Rate Hike Path Since Exit — and June 15-16 MPM Scenario</div>
+      <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <!-- y-axis -->
+        <line x1="60" y1="20" x2="60" y2="170" stroke="#ccc" stroke-width="1"/>
+        <text x="50" y="170" text-anchor="end" font-family="Inter,sans-serif" font-size="9" fill="#aaa">0%</text>
+        <text x="50" y="130" text-anchor="end" font-family="Inter,sans-serif" font-size="9" fill="#aaa">0.5%</text>
+        <text x="50" y="90" text-anchor="end" font-family="Inter,sans-serif" font-size="9" fill="#aaa">1.0%</text>
+        <text x="50" y="50" text-anchor="end" font-family="Inter,sans-serif" font-size="9" fill="#aaa">1.5%</text>
+        <!-- x-axis -->
+        <line x1="60" y1="170" x2="660" y2="170" stroke="#ccc" stroke-width="1"/>
+        <!-- rate steps: Mar24 exit (0%), Jul24 (0.25%), Jan25 (0.5%), Apr25 (0.75%), Jun26 projected (1.0%) -->
+        <!-- Points: x=100,y=170 | x=200,y=150 | x=320,y=130 | x=440,y=110 | x=580,y=90(dashed) -->
+        <polyline points="100,170 200,150 320,130 440,110" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <!-- dashed segment to June 26 projected -->
+        <line x1="440" y1="110" x2="580" y2="90" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,4"/>
+        <!-- dots -->
+        <circle cx="100" cy="170" r="5" fill="#3730a3"/>
+        <circle cx="200" cy="150" r="5" fill="#3730a3"/>
+        <circle cx="320" cy="130" r="5" fill="#3730a3"/>
+        <circle cx="440" cy="110" r="5" fill="#3730a3"/>
+        <circle cx="580" cy="90" r="6" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="3,2"/>
+        <!-- labels -->
+        <text x="100" y="185" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#777">Mar 2024</text>
+        <text x="200" y="185" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#777">Jul 2024</text>
+        <text x="320" y="185" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#777">Jan 2025</text>
+        <text x="440" y="185" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#777">Apr 2025</text>
+        <text x="580" y="185" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#818cf8">Jun 2026 (projected)</text>
+        <!-- 0.75 label on current -->
+        <text x="455" y="106" font-family="Inter,sans-serif" font-size="10" fill="#3730a3" font-weight="600">0.75%</text>
+        <!-- projected -->
+        <text x="590" y="86" font-family="Inter,sans-serif" font-size="10" fill="#818cf8">1.00%?</text>
+      </svg>
+    </div>
+    <div class="annotations">
+      <div class="ann-card">
+        <div class="ann-label">Key Date: Jun 15-16</div>
+        <div class="ann-text">BOJ MPM. Former board member Sakurai called a June hike "probable." A 25bp move would bring the rate to 1.00% — the fourth hike since March 2024 exit.</div>
+      </div>
+      <div class="ann-card">
+        <div class="ann-label">FX Flashpoint</div>
+        <div class="ann-text">Finance Minister Katayama warned Friday of "decisive action" with yen at 159.3. First intervention since July 2024 was triggered at 160 in late April.</div>
+      </div>
+      <div class="ann-card">
+        <div class="ann-label">The Nuanced Risk</div>
+        <div class="ann-text">If the BOJ hikes but signals extended JGB purchases, the market reads "hawkish rates / dovish duration" — yen may not strengthen meaningfully even after a hike.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /wrapper -->
+
+<div class="viz-footer">Japan Brief Issue #4 · June 1, 2026 · Not investment advice</div>
+
+<script>
+function showViz(paneId, tabId) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(paneId).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
