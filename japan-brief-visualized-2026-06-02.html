@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #5 · June 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0f0f1a; font-family:'Inter',sans-serif; color:#e2e8f0; min-height:100vh; }
+  .page-header { background:#1a1a2e; border-bottom:3px solid #3730a3; padding:20px 32px; display:flex; align-items:center; gap:16px; }
+  .page-header a { color:#818cf8; font-size:12px; text-decoration:none; font-weight:600; letter-spacing:1px; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-header-meta { font-size:11px; color:#8a9bb5; margin-left:auto; }
+  .tab-bar { background:#1a1a2e; padding:0 32px; display:flex; gap:0; border-bottom:1px solid #2a2a4e; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:#8a9bb5; cursor:pointer; border-bottom:3px solid transparent; transition:all 0.2s; }
+  .tab.active { color:#818cf8; border-bottom-color:#3730a3; background:#0f0f1a; }
+  .tab:hover { color:#c7d2fe; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:24px; color:#fff; margin-bottom:6px; line-height:1.3; }
+  .panel-source { font-size:11px; color:#6b7fa3; margin-bottom:28px; }
+  .signals-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
+  .signal-card { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:8px; padding:20px; text-align:center; }
+  .signal-value { font-size:28px; font-weight:700; color:#818cf8; font-family:'Playfair Display',serif; }
+  .signal-label { font-size:10px; color:#8a9bb5; margin-top:4px; text-transform:uppercase; letter-spacing:1px; }
+  .signal-delta { font-size:12px; margin-top:8px; }
+  .delta-up { color:#34d399; }
+  .delta-down { color:#f87171; }
+  .chart-area { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:8px; padding:24px; margin-bottom:24px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6b7fa3; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .annotation-card { background:#1a1a2e; border:1px solid #2a2a4e; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6b7fa3; margin-bottom:6px; }
+  .annotation-text { font-size:13px; color:#c7d2fe; line-height:1.5; }
+  .footer-bar { text-align:center; padding:24px; font-size:11px; color:#4a5a7a; border-top:1px solid #1a1a2e; margin-top:16px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="japan-brief.html">Back to Japan Brief</a>
+  <div class="page-header-title">Japan Brief · Data Visualized</div>
+  <div class="page-header-meta">Issue #5 · June 2, 2026</div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">AI &amp; Equity</div>
+  <div class="tab" onclick="showViz('s2',this)">Physical AI Consortium</div>
+  <div class="tab" onclick="showViz('s3',this)">BOJ &amp; FX</div>
+</div>
+
+<!-- PANEL 1: SoftBank / AI Equity -->
+<div class="viz-panel active" id="s1">
+  <div class="panel-headline">SoftBank Surpasses Toyota: Japan's AI Equity Rerate</div>
+  <div class="panel-source">Financial Times / BanklessTimes · June 1, 2026</div>
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-value">47.2T</div>
+      <div class="signal-label">SoftBank Mkt Cap (yen)</div>
+      <div class="signal-delta delta-up">vs Toyota 45.7T</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">+73%</div>
+      <div class="signal-label">SoftBank YTD Return</div>
+      <div class="signal-delta delta-up">Nikkei 225 record 67,000+</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">~$65B</div>
+      <div class="signal-label">OpenAI Stake Est. Value</div>
+      <div class="signal-delta delta-up">$25B gains booked FY2026</div>
+    </div>
+  </div>
+  <div class="chart-area">
+    <div class="chart-title">SoftBank vs Toyota Market Cap Trend — Illustrative (Yen Trillion)</div>
+    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="sbGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#818cf8" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="toyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f87171" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#f87171" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Grid lines -->
+      <line x1="60" y1="20" x2="660" y2="20" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="70" x2="660" y2="70" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="120" x2="660" y2="120" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="170" x2="660" y2="170" stroke="#2a2a4e" stroke-width="1"/>
+      <!-- Y labels -->
+      <text x="50" y="24" fill="#6b7fa3" font-size="10" text-anchor="end">60T</text>
+      <text x="50" y="74" fill="#6b7fa3" font-size="10" text-anchor="end">50T</text>
+      <text x="50" y="124" fill="#6b7fa3" font-size="10" text-anchor="end">40T</text>
+      <text x="50" y="174" fill="#6b7fa3" font-size="10" text-anchor="end">30T</text>
+      <!-- X labels -->
+      <text x="100" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Jan</text>
+      <text x="220" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Feb</text>
+      <text x="340" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Mar</text>
+      <text x="460" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Apr</text>
+      <text x="580" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">May</text>
+      <text x="650" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Jun</text>
+      <!-- SoftBank area fill -->
+      <polygon points="100,170 220,155 340,130 460,100 580,70 650,30 650,210 100,210" fill="url(#sbGrad)"/>
+      <!-- Toyota area fill -->
+      <polygon points="100,110 220,108 340,112 460,115 580,118 650,120 650,210 100,210" fill="url(#toyGrad)"/>
+      <!-- SoftBank line -->
+      <polyline points="100,170 220,155 340,130 460,100 580,70 650,30" fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Toyota line -->
+      <polyline points="100,110 220,108 340,112 460,115 580,118 650,120" fill="none" stroke="#f87171" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5,3"/>
+      <!-- Crossover marker -->
+      <circle cx="625" cy="50" r="5" fill="#818cf8"/>
+      <text x="630" y="42" fill="#818cf8" font-size="10" font-weight="600">Crossover</text>
+      <!-- Legend -->
+      <rect x="70" y="185" width="12" height="3" fill="#818cf8" rx="1"/>
+      <text x="87" y="189" fill="#c7d2fe" font-size="10">SoftBank (9984.T)</text>
+      <rect x="200" y="185" width="12" height="3" fill="#f87171" rx="1"/>
+      <text x="217" y="189" fill="#c7d2fe" font-size="10">Toyota (7203.T)</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card">
+      <div class="annotation-label">Arm Holdings Effect</div>
+      <div class="annotation-text">SoftBank's majority Arm stake surged on AI server demand, directly transmitting AI capex trends into SoftBank's NAV in real time.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Index Impact</div>
+      <div class="annotation-text">SoftBank added 600+ Nikkei points in a single session. AI sentiment is now a systematic index factor, not a sector bet.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Sovereign AI Cloud</div>
+      <div class="annotation-text">June 1 platform launch targets Japan data residency requirements. Nvidia GB200/Blackwell; commercial launch October 2026.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Physical AI Consortium -->
+<div class="viz-panel" id="s2">
+  <div class="panel-headline">Japan AI Foundation Model: 30-Firm Consortium Capital Closes This Week</div>
+  <div class="panel-source">Seoul Economic Daily / Nikkei Asia · May 28–June 2026</div>
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-value">~30</div>
+      <div class="signal-label">Participating Companies</div>
+      <div class="signal-delta delta-up">First 10 close this week</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">1T yen</div>
+      <div class="signal-label">NEDO Govt Funding (5yr)</div>
+      <div class="signal-delta delta-up">~$6.3B over FY2026-2031</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">2040</div>
+      <div class="signal-label">METI Target Year</div>
+      <div class="signal-delta">30% global Physical AI share</div>
+    </div>
+  </div>
+  <div class="chart-area">
+    <div class="chart-title">Consortium Sector Composition — Participating Companies</div>
+    <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Horizontal bar chart of sectors -->
+      <text x="160" y="30" fill="#6b7fa3" font-size="10" text-anchor="end">Tech / Telecom</text>
+      <rect x="170" y="16" width="240" height="18" fill="#3730a3" rx="2"/>
+      <text x="418" y="29" fill="#c7d2fe" font-size="10" font-weight="600">SoftBank, NEC, Sony · 3</text>
+
+      <text x="160" y="62" fill="#6b7fa3" font-size="10" text-anchor="end">Automotive</text>
+      <rect x="170" y="48" width="160" height="18" fill="#4f46e5" rx="2"/>
+      <text x="338" y="61" fill="#c7d2fe" font-size="10" font-weight="600">Honda, Denso (TBC) · 2+</text>
+
+      <text x="160" y="94" fill="#6b7fa3" font-size="10" text-anchor="end">Heavy Industry</text>
+      <rect x="170" y="80" width="130" height="18" fill="#6366f1" rx="2"/>
+      <text x="308" y="93" fill="#c7d2fe" font-size="10" font-weight="600">Nippon Steel, Kobe Steel · 2</text>
+
+      <text x="160" y="126" fill="#6b7fa3" font-size="10" text-anchor="end">Financial Services</text>
+      <rect x="170" y="112" width="120" height="18" fill="#818cf8" rx="2"/>
+      <text x="298" y="125" fill="#1a1a2e" font-size="10" font-weight="600">MUFG, Mizuho, SMBC · 3</text>
+
+      <text x="160" y="158" fill="#6b7fa3" font-size="10" text-anchor="end">Other Industries</text>
+      <rect x="170" y="144" width="200" height="18" fill="#a5b4fc" rx="2"/>
+      <text x="378" y="157" fill="#1a1a2e" font-size="10" font-weight="600">Materials, logistics, etc · 20+</text>
+
+      <text x="170" y="185" fill="#6b7fa3" font-size="9">Scale = relative representation. Exact composition disclosed upon capital close.</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card">
+      <div class="annotation-label">Physical vs Generative AI</div>
+      <div class="annotation-text">The consortium targets trillion-parameter models controlling machinery and robots — Japan's industrial strength, not the chatbot market where US/China lead.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Watch This Week</div>
+      <div class="annotation-text">First batch of ~10 investors completes capital contributions. Supplier depth (Denso, Aisin) is the key signal of SME adoption potential.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Compute Backbone</div>
+      <div class="annotation-text">SoftBank contributing 1 trillion yen GPU data center. NEDO funding covers model development; compute sovereignty is the structural bet.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: BOJ / FX -->
+<div class="viz-panel" id="s3">
+  <div class="panel-headline">BOJ June 16: 77% Hike Probability, Yen at 160 Threshold</div>
+  <div class="panel-source">Japan Times / ING / CNBC · June 1, 2026</div>
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-value">77%</div>
+      <div class="signal-label">Implied Hike Probability</div>
+      <div class="signal-delta">OIS pricing, June 16 meeting</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">0.75%</div>
+      <div class="signal-label">Current Policy Rate</div>
+      <div class="signal-delta delta-up">Expected 1.0% post-June 16</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">6-3</div>
+      <div class="signal-label">April MPM Vote Split</div>
+      <div class="signal-delta">Unusually divided; hold risk elevated</div>
+    </div>
+  </div>
+  <div class="chart-area">
+    <div class="chart-title">BOJ Policy Rate Path — Actual vs Market Expectation (2024–2026)</div>
+    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="rateGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#818cf8" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- Grid -->
+      <line x1="60" y1="30" x2="660" y2="30" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="75" x2="660" y2="75" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="120" x2="660" y2="120" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="165" x2="660" y2="165" stroke="#2a2a4e" stroke-width="1"/>
+      <!-- Y labels -->
+      <text x="55" y="34" fill="#6b7fa3" font-size="10" text-anchor="end">1.25%</text>
+      <text x="55" y="79" fill="#6b7fa3" font-size="10" text-anchor="end">1.00%</text>
+      <text x="55" y="124" fill="#6b7fa3" font-size="10" text-anchor="end">0.75%</text>
+      <text x="55" y="169" fill="#6b7fa3" font-size="10" text-anchor="end">0.50%</text>
+      <!-- X labels -->
+      <text x="100" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Jan 25</text>
+      <text x="220" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Jul 25</text>
+      <text x="340" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Jan 26</text>
+      <text x="490" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Jun 16</text>
+      <text x="600" y="200" fill="#6b7fa3" font-size="9" text-anchor="middle">Q4 26E</text>
+      <!-- Actual rate line -->
+      <polygon points="100,165 200,165 260,120 340,120 490,120 490,165 100,165" fill="url(#rateGrad)"/>
+      <polyline points="100,165 200,165 260,120 340,120 490,120" fill="none" stroke="#818cf8" stroke-width="2.5"/>
+      <!-- Projected dashed -->
+      <polyline points="490,120 490,75 600,75" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="6,3"/>
+      <circle cx="490" cy="75" r="5" fill="none" stroke="#818cf8" stroke-width="2"/>
+      <text x="495" y="68" fill="#818cf8" font-size="10" font-weight="600">Jun 16 decision</text>
+      <circle cx="600" cy="75" r="4" fill="none" stroke="#a5b4fc" stroke-width="1.5"/>
+      <text x="605" y="68" fill="#a5b4fc" font-size="9">Q4 hike (mkt priced)</text>
+      <!-- FX danger zone -->
+      <line x1="60" y1="185" x2="660" y2="185" stroke="#f87171" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="65" y="183" fill="#f87171" font-size="9">USD/JPY 160 intervention threshold</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card">
+      <div class="annotation-label">Inflation vs Growth</div>
+      <div class="annotation-text">Core CPI raised to 2.8% while GDP cut to 0.5%. Stagflation-adjacent dynamics complicate the rate path but don't deter June action.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Hold Scenario Risk</div>
+      <div class="annotation-text">A 6-3 split vote to hold could trigger a larger yen move than the hike itself — the market is now positioned for action.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Export Sector Headwind</div>
+      <div class="annotation-text">A hike to 1.0% would support the yen and create headwinds for exporters. Watch currency-sensitive overweights in Japan long books.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">Japan Brief Issue #5 · June 2, 2026 · Not investment advice</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
