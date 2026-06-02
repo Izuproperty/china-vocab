@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #20 · Data Visualized · June 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#f4f1ec;font-family:'Inter',sans-serif;color:#1a1a1a;line-height:1.6;}
+  .back-link{background:#1a1a2e;padding:10px 24px;font-size:11px;color:#8a9bb5;letter-spacing:1px;}
+  .back-link a{color:#c0392b;text-decoration:none;font-weight:600;}
+  .viz-header{background:#1a1a2e;padding:28px 32px 20px;border-bottom:3px solid #c0392b;}
+  .viz-eyebrow{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;margin-bottom:6px;}
+  .viz-title{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:4px;}
+  .viz-meta{font-size:11px;color:#8a9bb5;}
+  .tabs{display:flex;background:#232340;border-bottom:2px solid #c0392b;}
+  .tab{padding:12px 20px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#6a7a9a;cursor:pointer;border-right:1px solid #1a1a2e;transition:all 0.2s;}
+  .tab:hover{color:#e8d5b0;background:#2a2a50;}
+  .tab.active{color:#fff;background:#1a1a2e;border-bottom:2px solid #c0392b;margin-bottom:-2px;}
+  .viz-panel{display:none;padding:28px 32px;}
+  .viz-panel.active{display:block;}
+  .signals-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
+  .signal-card{background:#fff;border:1px solid #e0d8d0;border-top:3px solid #c0392b;padding:16px;border-radius:2px;}
+  .signal-number{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#1a1a2e;line-height:1;}
+  .signal-label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#9a8a7a;margin-top:6px;}
+  .signal-context{font-size:11px;color:#6a6a6a;margin-top:4px;line-height:1.4;}
+  .chart-section{background:#fff;border:1px solid #e0d8d0;padding:20px;margin-bottom:20px;border-radius:2px;}
+  .chart-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9a8a7a;margin-bottom:16px;}
+  .annotations{display:grid;gap:10px;}
+  .annotation-card{background:#fff;border:1px solid #e0d8d0;padding:14px 16px;border-radius:2px;font-size:13px;line-height:1.5;}
+  .annotation-card.red{border-left:4px solid #c0392b;}
+  .annotation-card.amber{border-left:4px solid #d97706;}
+  .annotation-card.green{border-left:4px solid #059669;}
+  .annotation-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+  .annotation-card.red .annotation-label{color:#c0392b;}
+  .annotation-card.amber .annotation-label{color:#d97706;}
+  .annotation-card.green .annotation-label{color:#059669;}
+  .annotation-card-zh{font-size:15px;font-weight:700;color:#c0392b;margin-right:4px;}
+  .annotation-card-en{font-size:11px;color:#7a6a5a;font-style:italic;margin-left:4px;}
+  .footer-bar{background:#1a1a2e;padding:12px 32px;font-size:10px;color:#4a5a7a;text-align:center;margin-top:0;}
+</style>
+</head>
+<body>
+
+<div class="back-link"><a href="brief.html">← Return to China Brief</a></div>
+
+<div class="viz-header">
+  <div class="viz-eyebrow">China Brief · Data Visualized · Issue #20</div>
+  <div class="viz-title">3D AI Unicorns, Outbound Investment Walls, and the Qiushi Platform Signal</div>
+  <div class="viz-meta">June 2, 2026 · 3 stories · Not investment advice</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1',this)">Vast AI 3D Unicorn</div>
+  <div class="tab" onclick="showViz('s2',this)">NDRC Outbound Rules</div>
+  <div class="tab" onclick="showViz('s3',this)">Qiushi Platform Signal</div>
+</div>
+
+<!-- STORY 1: Vast AI -->
+<div id="s1" class="viz-panel active">
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">$200M</div>
+      <div class="signal-label">Funding Raised</div>
+      <div class="signal-context">Vast · June 1, 2026 · led by Ince Capital + China Life Insurance venture fund</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">$1B+</div>
+      <div class="signal-label">Valuation (Unicorn)</div>
+      <div class="signal-context">10M users · 90K enterprise/studio clients · ARR trajectory ~$200M</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">~4</div>
+      <div class="signal-label">China AI 3D Unicorns in 2026</div>
+      <div class="signal-context">Vast joins MiniMax, Moonshot, Zhipu in the generative application tier</div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-title">China Generative AI Application Layer — Funding Tier Map (Illustrative, 2025–2026)</div>
+    <svg viewBox="0 0 580 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <style>
+          .axis-label{font-family:Inter,sans-serif;font-size:10px;fill:#9a8a7a;}
+          .bar-label{font-family:Inter,sans-serif;font-size:10px;fill:#1a1a2e;font-weight:600;}
+          .bar-sublabel{font-family:Inter,sans-serif;font-size:9px;fill:#7a7a7a;}
+          .highlight-bar{fill:#c0392b;}
+          .normal-bar{fill:#3a5a8a;}
+          .faint-bar{fill:#d0ccc8;}
+        </style>
+      </defs>
+      <!-- Y-axis -->
+      <line x1="80" y1="20" x2="80" y2="210" stroke="#e0d8d0" stroke-width="1"/>
+      <line x1="80" y1="210" x2="560" y2="210" stroke="#e0d8d0" stroke-width="1"/>
+      <!-- Y grid lines -->
+      <line x1="80" y1="60" x2="560" y2="60" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="80" y1="110" x2="560" y2="110" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="80" y1="160" x2="560" y2="160" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Y labels -->
+      <text x="74" y="63" text-anchor="end" class="axis-label">$2B+</text>
+      <text x="74" y="113" text-anchor="end" class="axis-label">$1B</text>
+      <text x="74" y="163" text-anchor="end" class="axis-label">$500M</text>
+      <text x="74" y="213" text-anchor="end" class="axis-label">$0</text>
+      <!-- Bars -->
+      <!-- Moonshot AI $2B (rounds to ~$2.5B equiv) -->
+      <rect x="100" y="35" width="60" height="175" class="normal-bar" rx="2"/>
+      <text x="130" y="30" text-anchor="middle" class="bar-label">月之暗面</text>
+      <text x="130" y="220" text-anchor="middle" class="bar-sublabel">Moonshot AI</text>
+      <text x="130" y="55" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:9px;fill:#fff;">$2B+</text>
+      <!-- MiniMax $600M -->
+      <rect x="180" y="90" width="60" height="120" class="normal-bar" rx="2"/>
+      <text x="210" y="85" text-anchor="middle" class="bar-label">海螺AI</text>
+      <text x="210" y="220" text-anchor="middle" class="bar-sublabel">MiniMax</text>
+      <text x="210" y="107" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:9px;fill:#fff;">$600M</text>
+      <!-- Zhipu AI $400M -->
+      <rect x="260" y="113" width="60" height="97" class="faint-bar" rx="2"/>
+      <text x="290" y="108" text-anchor="middle" class="bar-label">智谱AI</text>
+      <text x="290" y="220" text-anchor="middle" class="bar-sublabel">Zhipu AI</text>
+      <text x="290" y="130" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:9px;fill:#6a6a6a;">~$400M</text>
+      <!-- Vast $200M — HIGHLIGHTED -->
+      <rect x="340" y="143" width="60" height="67" class="highlight-bar" rx="2"/>
+      <text x="370" y="138" text-anchor="middle" class="bar-label" style="fill:#c0392b;">Vast</text>
+      <text x="370" y="220" text-anchor="middle" class="bar-sublabel" style="fill:#c0392b;">3D / World Model</text>
+      <text x="370" y="162" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:9px;fill:#fff;">$200M</text>
+      <!-- Infinigence AI $103M -->
+      <rect x="420" y="175" width="60" height="35" class="faint-bar" rx="2"/>
+      <text x="450" y="170" text-anchor="middle" class="bar-label">无穷AI</text>
+      <text x="450" y="220" text-anchor="middle" class="bar-sublabel">Infinigence AI</text>
+      <text x="450" y="194" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:9px;fill:#6a6a6a;">$103M</text>
+      <!-- Category label -->
+      <text x="560" y="140" text-anchor="end" class="axis-label" style="font-style:italic;">Total 2026 raise</text>
+      <text x="370" y="246" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:10px;fill:#c0392b;font-weight:700;">Today's story</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Claim / Primary Risk</div>
+      <div><span class="annotation-card-zh">世界模型</span><span class="annotation-card-en">shìjiè móxíng · world model</span> capability for real-time 3D traversal remains undemonstrated at production scale. Project Eden is announced but unreleased. Vast's valuation is underwritten by Tripo Studio traction (gaming/creative), not the world-model thesis — the gap between current revenue and the frontier claim is the principal risk.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">Unverified / Watch</div>
+      China Life Insurance's venture arm anchoring the round is notable but the strategic rationale (insurance + 3D AI) is unclear. The $200M ARR trajectory figure has not been independently audited. NetEase partnership depth — whether it is exclusive or merely a co-marketing arrangement — is unconfirmed.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable Signal</div>
+      China Life Insurance's participation signals that institutional capital is now comfortable anchoring late-stage AI application rounds — a meaningful shift from 2024 when institutions were largely confining AI exposure to infrastructure. This supports the thesis that the Chinese AI investment cycle is maturing from infrastructure bets toward revenue-generating application companies.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: NDRC Outbound Investment -->
+<div id="s2" class="viz-panel">
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">$2B</div>
+      <div class="signal-label">Meta-Manus Deal Blocked</div>
+      <div class="signal-context">April 2026 — first confirmed use of foreign-investment security review to unwind a cross-border AI acquisition</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">~0%</div>
+      <div class="signal-label">Prob. of Major Chinese AI Lab Sold to US Buyer (18-mo)</div>
+      <div class="signal-context">New framework makes technology-origin test the default; Singapore/Cayman restructuring no longer sufficient</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">2+</div>
+      <div class="signal-label">Top AI Labs Considering Mainland Reincorporation</div>
+      <div class="signal-context">Moonshot AI (月之暗面) and StepFun (阶跃星辰) cited; others watching</div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-title">China AI Exit Route Availability — Before and After NDRC Technology-Tracing Framework</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <style>
+          .tl-label{font-family:Inter,sans-serif;font-size:10px;fill:#1a1a2e;font-weight:600;}
+          .tl-sub{font-family:Inter,sans-serif;font-size:9px;fill:#7a7a7a;}
+          .tl-year{font-family:Inter,sans-serif;font-size:10px;fill:#c0392b;font-weight:700;}
+          .open-bar{fill:#d1fae5;}
+          .restricted-bar{fill:#fee2e2;}
+          .blocked-bar{fill:#c0392b;}
+          .open-text{fill:#059669;font-family:Inter,sans-serif;font-size:9px;font-weight:700;}
+          .rest-text{fill:#d97706;font-family:Inter,sans-serif;font-size:9px;font-weight:700;}
+          .block-text{fill:#fff;font-family:Inter,sans-serif;font-size:9px;font-weight:700;}
+        </style>
+      </defs>
+      <!-- Timeline axis -->
+      <line x1="60" y1="110" x2="540" y2="110" stroke="#c0392b" stroke-width="2"/>
+      <!-- Milestone markers -->
+      <!-- 2021 -->
+      <circle cx="100" cy="110" r="5" fill="#c0392b"/>
+      <text x="100" y="96" text-anchor="middle" class="tl-year">2021</text>
+      <text x="100" y="130" text-anchor="middle" class="tl-sub">Crackdown begins</text>
+      <text x="100" y="142" text-anchor="middle" class="tl-sub">Alibaba fine $2.8B</text>
+      <!-- 2022-23 -->
+      <circle cx="200" cy="110" r="5" fill="#c0392b"/>
+      <text x="200" y="96" text-anchor="middle" class="tl-year">2022-23</text>
+      <text x="200" y="130" text-anchor="middle" class="tl-sub">Offshore redomicile</text>
+      <text x="200" y="142" text-anchor="middle" class="tl-sub">playbook peaks</text>
+      <!-- Apr 2026 -->
+      <circle cx="350" cy="110" r="6" fill="#c0392b"/>
+      <text x="350" y="96" text-anchor="middle" class="tl-year">Apr 2026</text>
+      <text x="350" y="130" text-anchor="middle" class="tl-sub">Meta-Manus blocked</text>
+      <text x="350" y="142" text-anchor="middle" class="tl-sub">First AI M&amp;A unwind</text>
+      <!-- Jun 2026 TODAY -->
+      <circle cx="470" cy="110" r="8" fill="#c0392b"/>
+      <text x="470" y="92" text-anchor="middle" class="tl-year">Jun 1, 2026</text>
+      <text x="470" y="106" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:9px;fill:#fff;font-weight:700;">TODAY</text>
+      <text x="470" y="130" text-anchor="middle" class="tl-sub">Tech-tracing rules</text>
+      <text x="470" y="142" text-anchor="middle" class="tl-sub">formally codified</text>
+      <!-- Exit route availability bar -->
+      <text x="60" y="170" class="tl-sub" style="font-weight:600;fill:#9a8a7a;">US M&amp;A exit route:</text>
+      <rect x="90" y="175" width="110" height="16" rx="2" class="open-bar"/>
+      <text x="145" y="187" text-anchor="middle" class="open-text">OPEN</text>
+      <rect x="200" y="175" width="150" height="16" rx="2" class="restricted-bar"/>
+      <text x="275" y="187" text-anchor="middle" class="rest-text">RESTRICTED</text>
+      <rect x="350" y="175" width="160" height="16" rx="2" class="blocked-bar"/>
+      <text x="430" y="187" text-anchor="middle" class="block-text">EFFECTIVELY CLOSED</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Claim / Primary Risk</div>
+      The NDRC's <span class="annotation-card-zh">技术溯源</span><span class="annotation-card-en">jìshù sùyuán · technology tracing</span> approach represents a structural shift in cross-border M&amp;A risk for Chinese AI assets. Any company whose core technology was developed in China is now subject to Chinese jurisdiction regardless of corporate domicile — closing the standard exit route for approximately a decade's worth of offshore-restructured Chinese AI startups.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">Unverified / Watch</div>
+      The scope of "technology origin" is undefined in the new rules — it is unclear where the line sits for companies that developed early versions of their technology in China and subsequently rebuilt or substantially redeveloped it outside China. Enforcement is also untested: the Manus case was the first. The extraterritoriality of the claim (jurisdiction over non-Chinese legal entities based on IP origin) may face pushback in non-Chinese jurisdictions.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable Signal</div>
+      <span class="annotation-card-zh">月之暗面</span><span class="annotation-card-en">Yuèzhī'ànmiàn · Moonshot AI</span> and <span class="annotation-card-zh">阶跃星辰</span><span class="annotation-card-en">Jiēyuè Xīngchén · StepFun</span> moving toward mainland reincorporation and Hong Kong IPO pathways creates a near-term opportunity to monitor for pre-IPO secondary activity. Hong Kong exchange liquidity for Chinese AI names may deepen materially over the next 12–18 months as the US M&amp;A route closes.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: Qiushi Platform Signal -->
+<div id="s3" class="viz-panel">
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">3</div>
+      <div class="signal-label">Named Platform Giants</div>
+      <div class="signal-context">Alibaba (阿里巴巴), Meituan (美团), PDD (拼多多) — told to end price wars and invest in AI/cloud</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">−75%</div>
+      <div class="signal-label">DeepSeek V4 Pro Price Cut (Same Week)</div>
+      <div class="signal-context">Inference-layer price competition continues even as platform-layer price wars are being suppressed</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">5yr</div>
+      <div class="signal-label">Crackdown Duration Ending</div>
+      <div class="signal-context">Alibaba $2.8B fine (2021) → crackdown to calibration pivot, confirmed by Qiushi signal (2026)</div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-title">China Platform Economy Regulatory Cycle — Crackdown to Calibration</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <style>
+          .phase-label{font-family:Inter,sans-serif;font-size:10px;font-weight:700;}
+          .event-text{font-family:Inter,sans-serif;font-size:9px;fill:#6a6a6a;}
+          .arrow-text{font-family:Inter,sans-serif;font-size:9px;font-weight:600;}
+        </style>
+      </defs>
+      <!-- Phase 1: Growth (2015-2020) -->
+      <rect x="30" y="60" width="110" height="50" rx="3" fill="#d1fae5" stroke="#059669" stroke-width="1"/>
+      <text x="85" y="80" text-anchor="middle" class="phase-label" style="fill:#059669;">GROWTH</text>
+      <text x="85" y="94" text-anchor="middle" class="event-text">2015–2020</text>
+      <text x="85" y="107" text-anchor="middle" class="event-text">Platforms scale freely</text>
+      <!-- Arrow -->
+      <line x1="140" y1="85" x2="160" y2="85" stroke="#9a8a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Phase 2: Crackdown (2021-2023) -->
+      <rect x="160" y="40" width="120" height="70" rx="3" fill="#fee2e2" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="220" y="62" text-anchor="middle" class="phase-label" style="fill:#c0392b;">CRACKDOWN</text>
+      <text x="220" y="76" text-anchor="middle" class="event-text">2021–2023</text>
+      <text x="220" y="89" text-anchor="middle" class="event-text">BABA fine $2.8B</text>
+      <text x="220" y="102" text-anchor="middle" class="event-text">Didi delisted; market -$800B</text>
+      <!-- Arrow -->
+      <line x1="280" y1="85" x2="300" y2="85" stroke="#9a8a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Phase 3: Recovery (2024-2025) -->
+      <rect x="300" y="55" width="110" height="55" rx="3" fill="#fef3e2" stroke="#d97706" stroke-width="1"/>
+      <text x="355" y="75" text-anchor="middle" class="phase-label" style="fill:#d97706;">RECOVERY</text>
+      <text x="355" y="89" text-anchor="middle" class="event-text">2024–2025</text>
+      <text x="355" y="102" text-anchor="middle" class="event-text">BABA recovers; uncertain</text>
+      <!-- Arrow -->
+      <line x1="410" y1="85" x2="430" y2="85" stroke="#9a8a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Phase 4: Calibration (2026-) -->
+      <rect x="430" y="48" width="120" height="68" rx="3" fill="#e8f0fe" stroke="#1a56db" stroke-width="2"/>
+      <text x="490" y="70" text-anchor="middle" class="phase-label" style="fill:#1a56db;">CALIBRATION</text>
+      <text x="490" y="84" text-anchor="middle" class="event-text">2026 (NOW)</text>
+      <text x="490" y="97" text-anchor="middle" class="event-text">Qiushi: invest in AI</text>
+      <text x="490" y="110" text-anchor="middle" class="event-text">Platforms get permission</text>
+      <!-- Star marker for today -->
+      <text x="490" y="130" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:9px;fill:#c0392b;font-weight:700;">TODAY</text>
+      <!-- Arrow marker def -->
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#9a8a7a"/>
+        </marker>
+      </defs>
+      <!-- Bottom caption -->
+      <text x="290" y="175" text-anchor="middle" style="font-family:Inter,sans-serif;font-size:10px;fill:#9a8a7a;font-style:italic;">Source: TNW, China Money Network · May 31, 2026</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Claim / Primary Risk</div>
+      <span class="annotation-card-zh">求是</span><span class="annotation-card-en">Qiúshì · CPC theoretical journal</span> is not an opinion outlet — this represents settled policy direction. The risk for platform equities is that the "calibration" framing includes rising compliance costs (algorithm transparency, data audits, pricing oversight) that could compress margins even as top-line regulatory pressure eases. Compliance theatre risk: platforms may redirect subsidy spend to visible AI capex without generating genuine innovation.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">Unverified / Watch</div>
+      The Qiushi article is a draft commentary reported ahead of formal publication — confirm final publication and check for material changes. Enforcement mechanisms for "ending price wars" are unspecified. It is also unverified whether DeepSeek's V4 Pro 75% price cut triggered any regulatory pushback — it suggests the AI inference layer operates under different rules than the consumer platform layer.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable Signal</div>
+      <span class="annotation-card-zh">阿里巴巴</span><span class="annotation-card-en">Ālǐbābā · Alibaba</span> Cloud capex reacceleration is directly validated by the Qiushi signal. Alibaba's Cloud segment, already growing at double-digit rates in recent quarters, now has explicit Party-level endorsement for further AI and cloud spending. This supports a constructive view on BABA Cloud multiples relative to the 2022–2023 trough. The Qiushi signal is the clearest confirmation yet that the crackdown overhang on Chinese internet equities is structurally — not just cyclically — easing.
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #20 · June 2, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
