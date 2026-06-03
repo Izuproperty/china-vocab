@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #1 · June 3, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0f0f1e; font-family:'Inter',sans-serif; color:#e0e4f0; min-height:100vh; }
+  .page-header { background:#1a1a2e; border-bottom:3px solid #3730a3; padding:20px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-header-sub { font-size:11px; color:#818cf8; letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+  .back-link { font-size:12px; color:#818cf8; text-decoration:none; border:1px solid #3730a3; padding:6px 14px; border-radius:3px; }
+  .back-link:hover { background:#3730a3; color:#fff; }
+  .tabs { display:flex; background:#1a1a2e; border-bottom:1px solid #2a2a4e; padding:0 32px; }
+  .tab { padding:14px 24px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; color:#818cf8; border-bottom:3px solid transparent; transition:all .2s; }
+  .tab.active { color:#fff; border-bottom-color:#3730a3; }
+  .tab:hover { color:#c4c8f0; }
+  .tab-content { display:none; padding:32px; }
+  .tab-content.active { display:block; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:6px; padding:20px; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .signal-value { font-size:28px; font-weight:600; color:#fff; }
+  .signal-delta { font-size:12px; margin-top:4px; }
+  .delta-pos { color:#4ade80; }
+  .delta-neg { color:#f87171; }
+  .delta-neu { color:#94a3b8; }
+  .chart-box { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:6px; padding:24px; margin-bottom:24px; }
+  .chart-title { font-size:13px; font-weight:600; color:#c4c8f0; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { background:#1a1a2e; border-left:3px solid #3730a3; padding:14px 16px; border-radius:0 4px 4px 0; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .ann-text { font-size:12.5px; color:#c4c8f0; line-height:1.6; }
+  .footer-bar { background:#1a1a2e; border-top:1px solid #2a2a4e; padding:14px 32px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-title">Japan Brief — Data Signals</div>
+    <div class="page-header-sub">Issue #1 · June 3, 2026 · 3 stories</div>
+  </div>
+  <a href="japan-brief.html" class="back-link">Back to Japan Brief</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('tab1',this)">SoftBank / Nikkei</div>
+  <div class="tab" onclick="showViz('tab2',this)">Genesis Mission</div>
+  <div class="tab" onclick="showViz('tab3',this)">BOJ / Yen</div>
+</div>
+
+<!-- TAB 1: SoftBank / Nikkei AI Rally -->
+<div id="tab1" class="tab-content active">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Nikkei 225 Close</div>
+      <div class="signal-value">66,934</div>
+      <div class="signal-delta delta-pos">+605 pts · +0.9% · New Record</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">SoftBank Market Cap</div>
+      <div class="signal-value">¥48.8T</div>
+      <div class="signal-delta delta-pos">+14% session · ~$306B</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">TOPIX</div>
+      <div class="signal-value">-0.4%</div>
+      <div class="signal-delta delta-neg">Broad market fell as Nikkei rallied</div>
+    </div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">Nikkei 225 Milestone Track — 2025 to June 2026</div>
+    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes -->
+      <line x1="60" y1="20" x2="60" y2="165" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="165" x2="600" y2="165" stroke="#2a2a4e" stroke-width="1"/>
+      <!-- y labels -->
+      <text x="52" y="170" fill="#818cf8" font-size="9" text-anchor="end">55,000</text>
+      <text x="52" y="130" fill="#818cf8" font-size="9" text-anchor="end">60,000</text>
+      <text x="52" y="90" fill="#818cf8" font-size="9" text-anchor="end">64,000</text>
+      <text x="52" y="50" fill="#818cf8" font-size="9" text-anchor="end">67,000</text>
+      <!-- grid lines -->
+      <line x1="60" y1="170" x2="600" y2="170" stroke="#1e1e3e" stroke-width="1"/>
+      <line x1="60" y1="130" x2="600" y2="130" stroke="#1e1e3e" stroke-width="1" stroke-dasharray="3,4"/>
+      <line x1="60" y1="90" x2="600" y2="90" stroke="#1e1e3e" stroke-width="1" stroke-dasharray="3,4"/>
+      <line x1="60" y1="50" x2="600" y2="50" stroke="#1e1e3e" stroke-width="1" stroke-dasharray="3,4"/>
+      <!-- data line: approximate Nikkei trajectory Jan 2025 to Jun 2026 -->
+      <polyline points="60,158 120,145 180,152 240,138 300,135 360,118 420,105 480,88 540,72 580,50"
+        fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- record marker -->
+      <circle cx="580" cy="50" r="5" fill="#3730a3"/>
+      <text x="584" y="44" fill="#fff" font-size="9">67,231 record</text>
+      <!-- x labels -->
+      <text x="60" y="180" fill="#818cf8" font-size="9" text-anchor="middle">Jan 25</text>
+      <text x="180" y="180" fill="#818cf8" font-size="9" text-anchor="middle">Apr 25</text>
+      <text x="300" y="180" fill="#818cf8" font-size="9" text-anchor="middle">Jul 25</text>
+      <text x="420" y="180" fill="#818cf8" font-size="9" text-anchor="middle">Nov 25</text>
+      <text x="540" y="180" fill="#818cf8" font-size="9" text-anchor="middle">Apr 26</text>
+      <text x="580" y="180" fill="#818cf8" font-size="9" text-anchor="middle">Jun 26</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="ann-card">
+      <div class="ann-label">Market Structure</div>
+      <div class="ann-text">Nikkei gain entirely driven by SoftBank (+845 pts) vs net index gain of 605 pts. TOPIX fell 0.4%. Classic narrow-rally pattern.</div>
+    </div>
+    <div class="ann-card">
+      <div class="ann-label">Valuation Shift</div>
+      <div class="ann-text">SoftBank (¥48.8T) surpassed Toyota (¥45.9T). First time an AI-infrastructure name — not an automaker — tops Japan's market cap ranking.</div>
+    </div>
+    <div class="ann-card">
+      <div class="ann-label">Catalyst</div>
+      <div class="ann-text">€75B AI infrastructure pledge in France over 5 years. Direct balance-sheet deployment signals shift from fund-of-funds to operator model.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: Genesis Mission -->
+<div id="tab2" class="tab-content">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Total US-Japan Investment</div>
+      <div class="signal-value">$1B</div>
+      <div class="signal-delta delta-pos">Over 5 years · Japan: $500M</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">US National Labs Linked</div>
+      <div class="signal-value">17</div>
+      <div class="signal-delta delta-neu">DOE Genesis Mission network</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Japan Partner Rank</div>
+      <div class="signal-value">#1</div>
+      <div class="signal-delta delta-pos">First international partner in Genesis Mission</div>
+    </div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">Genesis Mission Partnership Timeline</div>
+    <svg viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg">
+      <!-- timeline axis -->
+      <line x1="40" y1="80" x2="580" y2="80" stroke="#2a2a4e" stroke-width="2"/>
+      <!-- events -->
+      <!-- Jan 2026 -->
+      <circle cx="120" cy="80" r="7" fill="#3730a3"/>
+      <line x1="120" y1="73" x2="120" y2="30" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="120" y="24" fill="#818cf8" font-size="9" text-anchor="middle">Jan 27, 2026</text>
+      <text x="120" y="14" fill="#c4c8f0" font-size="9" text-anchor="middle">Argonne MOU signed</text>
+      <!-- Jun 2026 -->
+      <circle cx="340" cy="80" r="7" fill="#6366f1"/>
+      <line x1="340" y1="87" x2="340" y2="130" stroke="#6366f1" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="340" y="142" fill="#818cf8" font-size="9" text-anchor="middle">Jun 1–5, 2026</text>
+      <text x="340" y="152" fill="#c4c8f0" font-size="9" text-anchor="middle">MEXT/METI formalize $1B</text>
+      <!-- 2027 target -->
+      <circle cx="540" cy="80" r="7" fill="#818cf8" fill-opacity="0.5"/>
+      <line x1="540" y1="73" x2="540" y2="30" stroke="#818cf8" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="540" y="24" fill="#818cf8" font-size="9" text-anchor="middle">2027+</text>
+      <text x="540" y="14" fill="#c4c8f0" font-size="9" text-anchor="middle">Platform deployment</text>
+      <!-- x axis labels -->
+      <text x="40" y="100" fill="#4a5a7a" font-size="9">2025</text>
+      <text x="580" y="100" fill="#4a5a7a" font-size="9">2028</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="ann-card">
+      <div class="ann-label">Japan's Contribution</div>
+      <div class="ann-text">RIKEN Fugaku supercomputer provides real HPC capability, not just financial stake. Fujitsu and NVIDIA bring industrial and chip integration.</div>
+    </div>
+    <div class="ann-card">
+      <div class="ann-label">Policy Signal</div>
+      <div class="ann-text">MEXT + METI joint delegation unusual — signals attempt to bridge science diplomacy and commercial supply-chain positioning simultaneously.</div>
+    </div>
+    <div class="ann-card">
+      <div class="ann-label">Investment Read-Through</div>
+      <div class="ann-text">Alliance membership strengthens US procurement access for Japanese tech firms (Fujitsu, NEC). Complements METI's ¥1.23T FY2026 AI/chip allocation.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3: BOJ / Yen -->
+<div id="tab3" class="tab-content">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Jun 16 Hike Probability</div>
+      <div class="signal-value">~80%</div>
+      <div class="signal-delta delta-pos">OIS market pricing · 0.75% → 1.00%</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY</div>
+      <div class="signal-value">~159.5</div>
+      <div class="signal-delta delta-neg">Near 160 intervention threshold</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Apr–May Intervention</div>
+      <div class="signal-value">¥11.7T</div>
+      <div class="signal-delta delta-neu">~$73.6B deployed by MOF/BOJ</div>
+    </div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">BOJ Policy Rate Path — Dec 2024 to Year-End 2026 Forecast</div>
+    <svg viewBox="0 0 620 180" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes -->
+      <line x1="60" y1="20" x2="60" y2="150" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="150" x2="590" y2="150" stroke="#2a2a4e" stroke-width="1"/>
+      <!-- y labels: 0% to 1.5% -->
+      <text x="52" y="155" fill="#818cf8" font-size="9" text-anchor="end">0%</text>
+      <text x="52" y="123" fill="#818cf8" font-size="9" text-anchor="end">0.25%</text>
+      <text x="52" y="91" fill="#818cf8" font-size="9" text-anchor="end">0.50%</text>
+      <text x="52" y="59" fill="#818cf8" font-size="9" text-anchor="end">0.75%</text>
+      <text x="52" y="27" fill="#818cf8" font-size="9" text-anchor="end">1.25%</text>
+      <!-- grid -->
+      <line x1="60" y1="123" x2="590" y2="123" stroke="#1e1e3e" stroke-width="1" stroke-dasharray="3,4"/>
+      <line x1="60" y1="91" x2="590" y2="91" stroke="#1e1e3e" stroke-width="1" stroke-dasharray="3,4"/>
+      <line x1="60" y1="59" x2="590" y2="59" stroke="#1e1e3e" stroke-width="1" stroke-dasharray="3,4"/>
+      <line x1="60" y1="27" x2="590" y2="27" stroke="#1e1e3e" stroke-width="1" stroke-dasharray="3,4"/>
+      <!-- actual rate steps (staircase) -->
+      <!-- Dec 2024: 0.25% -->
+      <polyline points="60,123 130,123 130,91 220,91 220,59 400,59"
+        fill="none" stroke="#818cf8" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Jun 16 projected hike: dashed -->
+      <polyline points="400,59 400,37 590,37"
+        fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="6,4" stroke-linejoin="round"/>
+      <!-- markers -->
+      <circle cx="130" cy="91" r="4" fill="#818cf8"/>
+      <text x="134" y="87" fill="#c4c8f0" font-size="8">Dec 24 hike 0.5%</text>
+      <circle cx="220" cy="59" r="4" fill="#818cf8"/>
+      <text x="224" y="55" fill="#c4c8f0" font-size="8">Dec 25 hike 0.75%</text>
+      <circle cx="400" cy="37" r="5" fill="#6366f1"/>
+      <text x="404" y="33" fill="#fff" font-size="8">Jun 16: 1.00% (forecast)</text>
+      <!-- x labels -->
+      <text x="60" y="165" fill="#818cf8" font-size="9" text-anchor="middle">Dec 24</text>
+      <text x="220" y="165" fill="#818cf8" font-size="9" text-anchor="middle">Dec 25</text>
+      <text x="400" y="165" fill="#818cf8" font-size="9" text-anchor="middle">Jun 16, 26</text>
+      <text x="530" y="165" fill="#818cf8" font-size="9" text-anchor="middle">Dec 26</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="ann-card">
+      <div class="ann-label">FX Threshold</div>
+      <div class="ann-text">160 USD/JPY is the psychological intervention level. ¥11.7T was spent in 4 weeks to defend it. A BOJ hold could push through 160 again.</div>
+    </div>
+    <div class="ann-card">
+      <div class="ann-label">Inflation Paradox</div>
+      <div class="ann-text">April core CPI: 1.4%, below 2% target for 3rd month. Yet Sakurai argues stagflation risk demands a hike now — weak yen imports energy inflation.</div>
+    </div>
+    <div class="ann-card">
+      <div class="ann-label">Positioning Note</div>
+      <div class="ann-text">A delivered hike is largely priced. The USD/JPY reaction depends on Ueda's forward guidance tone — which he has historically declined to provide.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #1 · June 3, 2026 · Not investment advice
+</div>
+
+<script>
+function showViz(id, tabEl) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tabEl.classList.add('active');
+}
+</script>
+</body>
+</html>
