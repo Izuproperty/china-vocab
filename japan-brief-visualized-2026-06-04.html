@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #7 · Data Visualizations · June 4, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:24px 40px; }
+  .page-header a { color:#818cf8; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; }
+  .page-header a:hover { color:#a5b4fc; }
+  .page-header h1 { font-family:'Playfair Display',serif; color:#fff; font-size:26px; margin-top:10px; }
+  .page-header .sub { color:#8a9bb5; font-size:12px; margin-top:4px; }
+  .tabs { display:flex; background:#fff; border-bottom:2px solid #e0e0e0; padding:0 40px; overflow-x:auto; }
+  .tab { padding:14px 22px; font-size:13px; font-weight:500; color:#6b7280; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.2s; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; font-weight:600; }
+  .tab:hover { color:#3730a3; }
+  .viz-panel { display:none; padding:32px 40px; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:22px; color:#1a1a2e; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:24px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal { background:#fff; border:1px solid #e5e7eb; border-radius:6px; padding:16px; text-align:center; }
+  .signal-value { font-size:26px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#6b7280; margin-top:4px; text-transform:uppercase; letter-spacing:1px; }
+  .signal-note { font-size:10px; color:#9ca3af; margin-top:3px; }
+  .chart-box { background:#fff; border:1px solid #e5e7eb; border-radius:6px; padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:13px; font-weight:600; color:#374151; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .annotation { background:#f9fafb; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; padding:12px 14px; }
+  .annotation-head { font-size:11px; font-weight:700; color:#3730a3; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:4px; }
+  .annotation-body { font-size:12px; color:#374151; line-height:1.5; }
+  .page-footer { background:#1a1a2e; text-align:center; padding:16px 40px; font-size:11px; color:#4a5a7a; margin-top:32px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="japan-brief.html">Back to Japan Brief</a>
+  <h1>Japan Brief · Issue #7 Data Visualizations</h1>
+  <div class="sub">June 4, 2026 · Three stories · Indigo signals</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1', 0)">Story 1: MHI + PFN Alliance</div>
+  <div class="tab" onclick="showViz('s2', 1)">Story 2: Japan Chip Capex Watch</div>
+  <div class="tab" onclick="showViz('s3', 2)">Story 3: Ueda Pre-Blackout Signal</div>
+</div>
+
+<!-- STORY 1: MHI + PFN -->
+<div class="viz-panel active" id="s1">
+  <div class="panel-title">MHI + Preferred Networks: Physical AI Alliance Signals</div>
+  <div class="panel-source">Source: MHI Press Release, June 2, 2026</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-value">FY2026</div>
+      <div class="signal-label">Capital Alliance Target</div>
+      <div class="signal-note">Formal equity stake by Mar 2027</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">100+</div>
+      <div class="signal-label">Japanese Co's w/ PFN Ties</div>
+      <div class="signal-note">Including SoftBank JV secondment</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">2014</div>
+      <div class="signal-label">PFN Founded</div>
+      <div class="signal-note">12-year physical AI track record</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">PFN AI Stack Depth vs. Peer Japanese AI Companies (Conceptual Benchmark)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .bar-label { font-family: Inter, sans-serif; font-size: 11px; fill: #374151; }
+          .axis-label { font-family: Inter, sans-serif; font-size: 10px; fill: #9ca3af; }
+          .bar-value { font-family: Inter, sans-serif; font-size: 11px; fill: #fff; font-weight: 600; }
+        </style>
+      </defs>
+      <!-- Y axis -->
+      <line x1="120" y1="10" x2="120" y2="185" stroke="#e5e7eb" stroke-width="1"/>
+      <!-- X axis -->
+      <line x1="120" y1="185" x2="560" y2="185" stroke="#e5e7eb" stroke-width="1"/>
+      <!-- Grid lines -->
+      <line x1="120" y1="135" x2="560" y2="135" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="120" y1="85" x2="560" y2="85" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="120" y1="35" x2="560" y2="35" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- Labels -->
+      <text x="115" y="189" class="axis-label" text-anchor="end">0</text>
+      <text x="115" y="139" class="axis-label" text-anchor="end">25</text>
+      <text x="115" y="89" class="axis-label" text-anchor="end">50</text>
+      <text x="115" y="39" class="axis-label" text-anchor="end">75</text>
+      <!-- PFN bar -->
+      <rect x="135" y="25" width="60" height="160" fill="#3730a3" rx="2"/>
+      <text x="165" y="15" class="axis-label" text-anchor="middle">Preferred Networks</text>
+      <text x="165" y="115" class="bar-value" text-anchor="middle">80</text>
+      <!-- Fujitsu bar -->
+      <rect x="225" y="85" width="60" height="100" fill="#818cf8" rx="2"/>
+      <text x="255" y="75" class="axis-label" text-anchor="middle">Fujitsu</text>
+      <text x="255" y="140" class="bar-value" text-anchor="middle">50</text>
+      <!-- NEC bar -->
+      <rect x="315" y="100" width="60" height="85" fill="#818cf8" rx="2"/>
+      <text x="345" y="90" class="axis-label" text-anchor="middle">NEC</text>
+      <text x="345" y="148" class="bar-value" text-anchor="middle">42</text>
+      <!-- SoftBank bar -->
+      <rect x="405" y="65" width="60" height="120" fill="#6366f1" rx="2"/>
+      <text x="435" y="55" class="axis-label" text-anchor="middle">SoftBank</text>
+      <text x="435" y="130" class="bar-value" text-anchor="middle">60</text>
+      <!-- Toyota bar -->
+      <rect x="495" y="120" width="60" height="65" fill="#c7d2fe" rx="2"/>
+      <text x="525" y="110" class="axis-label" text-anchor="middle">Toyota</text>
+      <text x="525" y="163" class="bar-value" text-anchor="middle" fill="#3730a3">32</text>
+      <!-- Y axis label -->
+      <text x="20" y="100" class="axis-label" transform="rotate(-90 20 100)" text-anchor="middle">Stack Depth Score (0-100)</text>
+      <!-- Note -->
+      <text x="340" y="210" class="axis-label" text-anchor="middle">Composite: chip hardware + model + cloud + deployment track record</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-head">Vertical Integration</div>
+      <div class="annotation-body">PFN owns the full stack: MN-Core chip, PFCP cloud, PLaMo model, and end-to-end deployment. Rare among Japan AI players.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-head">Defense Angle</div>
+      <div class="annotation-body">MHI's aerospace and defense exposure gives PFN AI a direct route into Japan's economic security (keizai anzenhoshō) procurement pipeline.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-head">Capital Tie Timeline</div>
+      <div class="annotation-body">Both companies targeting a formal capital alliance within FY2026 (by March 2027). Watch MHI Q2 IR commentary for any disclosure of stake size.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: CHIP CAPEX WEEK AHEAD -->
+<div class="viz-panel" id="s2">
+  <div class="panel-title">Japan Chip Capex Timeline: Three Milestones Before June 16</div>
+  <div class="panel-source">Sources: METI, Micron, Rapidus public disclosures; BOJ OIS market data</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-value">¥2.35T</div>
+      <div class="signal-label">Total Rapidus Gov Funding</div>
+      <div class="signal-note">As of April 2026 top-up</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">¥1.5T</div>
+      <div class="signal-label">Micron Hiroshima HBM</div>
+      <div class="signal-note">Construction began May 2026</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">2027</div>
+      <div class="signal-label">Rapidus 2nm Target</div>
+      <div class="signal-note">Mass prod. readiness, fiscal yr</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Japan Advanced Semiconductor Investment Timeline</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .tl-label { font-family: Inter, sans-serif; font-size: 10.5px; fill: #374151; }
+          .tl-sub { font-family: Inter, sans-serif; font-size: 9.5px; fill: #9ca3af; }
+          .tl-year { font-family: Inter, sans-serif; font-size: 10px; fill: #6b7280; }
+        </style>
+      </defs>
+      <!-- Timeline axis -->
+      <line x1="60" y1="100" x2="540" y2="100" stroke="#d1d5db" stroke-width="2"/>
+      <!-- Years -->
+      <text x="60" y="120" class="tl-year" text-anchor="middle">2022</text>
+      <text x="155" y="120" class="tl-year" text-anchor="middle">2024</text>
+      <text x="255" y="120" class="tl-year" text-anchor="middle">2025</text>
+      <text x="355" y="120" class="tl-year" text-anchor="middle">2026</text>
+      <text x="455" y="120" class="tl-year" text-anchor="middle">2027</text>
+      <text x="540" y="120" class="tl-year" text-anchor="middle">2028</text>
+      <!-- Tick marks -->
+      <line x1="60" y1="95" x2="60" y2="105" stroke="#9ca3af" stroke-width="1.5"/>
+      <line x1="155" y1="95" x2="155" y2="105" stroke="#9ca3af" stroke-width="1.5"/>
+      <line x1="255" y1="95" x2="255" y2="105" stroke="#9ca3af" stroke-width="1.5"/>
+      <line x1="355" y1="95" x2="355" y2="105" stroke="#9ca3af" stroke-width="1.5"/>
+      <line x1="455" y1="95" x2="455" y2="105" stroke="#9ca3af" stroke-width="1.5"/>
+      <line x1="540" y1="95" x2="540" y2="105" stroke="#9ca3af" stroke-width="1.5"/>
+
+      <!-- Rapidus milestones (above line) -->
+      <circle cx="60" cy="100" r="5" fill="#3730a3"/>
+      <line x1="60" y1="95" x2="60" y2="55" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="60" y="48" class="tl-label" text-anchor="middle">Rapidus</text>
+      <text x="60" y="37" class="tl-sub" text-anchor="middle">Founded</text>
+
+      <circle cx="355" cy="100" r="5" fill="#3730a3"/>
+      <line x1="355" y1="95" x2="355" y2="55" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="355" y="48" class="tl-label" text-anchor="middle">IIM-1 Ramp</text>
+      <text x="355" y="37" class="tl-sub" text-anchor="middle">FY2026 front-end</text>
+
+      <circle cx="455" cy="100" r="5" fill="#6366f1"/>
+      <line x1="455" y1="95" x2="455" y2="55" stroke="#6366f1" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="455" y="48" class="tl-label" text-anchor="middle">2nm Mass Prod</text>
+      <text x="455" y="37" class="tl-sub" text-anchor="middle">Target FY2027</text>
+
+      <!-- Micron milestones (below line) -->
+      <circle cx="255" cy="100" r="5" fill="#be185d"/>
+      <line x1="255" y1="105" x2="255" y2="155" stroke="#be185d" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="255" y="165" class="tl-label" text-anchor="middle">Micron Announce</text>
+      <text x="255" y="176" class="tl-sub" text-anchor="middle">Nov 2025</text>
+
+      <circle cx="355" cy="100" r="5" fill="#be185d"/>
+      <line x1="370" y1="105" x2="370" y2="155" stroke="#be185d" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="385" y="165" class="tl-label" text-anchor="middle">Hiroshima Const. Start</text>
+      <text x="385" y="176" class="tl-sub" text-anchor="middle">May 2026</text>
+
+      <circle cx="540" cy="100" r="5" fill="#be185d"/>
+      <line x1="540" y1="105" x2="540" y2="155" stroke="#be185d" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="540" y="165" class="tl-label" text-anchor="middle">HBM Delivery</text>
+      <text x="540" y="176" class="tl-sub" text-anchor="middle">Target 2028</text>
+
+      <!-- Today marker -->
+      <line x1="358" y1="15" x2="358" y2="185" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="358" y="12" font-family="Inter,sans-serif" font-size="9.5" fill="#f59e0b" text-anchor="middle">TODAY</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-head">Rapidus Risk</div>
+      <div class="annotation-body">No yield update since April government top-up. FY2026 front-end ramp is the pivotal technical gate before 2nm production readiness can be claimed.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-head">Micron Signal</div>
+      <div class="annotation-body">Hiroshima HBM groundbreaking week 1. TEL is the primary equipment supplier — TEL order book in Q2 earnings (July) will proxy construction pace.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-head">Yen Variable</div>
+      <div class="annotation-body">BOJ June 16 hike (80% priced) is yen-supportive but not material for multi-year capex budgets. Second hike guidance matters more than the first hike itself.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: BOJ -->
+<div class="viz-panel" id="s3">
+  <div class="panel-title">BOJ Rate Path: Ueda June 3 Signal vs. Prior Guidance</div>
+  <div class="panel-source">Source: Japan Times, BOJ April 2026 Outlook Report, OIS market data</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-value">0.75%</div>
+      <div class="signal-label">Current Policy Rate</div>
+      <div class="signal-note">As of April 28 meeting</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">~80%</div>
+      <div class="signal-label">June 16 Hike Probability</div>
+      <div class="signal-note">OIS market pricing</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">2.8%</div>
+      <div class="signal-label">Core CPI Forecast FY2026</div>
+      <div class="signal-note">BOJ April outlook (up from 1.9%)</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">BOJ Policy Rate Path: Actual vs. Market Implied</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <style>
+          .rate-label { font-family: Inter, sans-serif; font-size: 10px; fill: #6b7280; }
+          .rate-val { font-family: Inter, sans-serif; font-size: 9.5px; fill: #374151; }
+        </style>
+      </defs>
+      <!-- Grid -->
+      <line x1="70" y1="20" x2="70" y2="185" stroke="#e5e7eb" stroke-width="1"/>
+      <line x1="70" y1="185" x2="545" y2="185" stroke="#e5e7eb" stroke-width="1"/>
+      <line x1="70" y1="145" x2="545" y2="145" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="70" y1="105" x2="545" y2="105" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="70" y1="65" x2="545" y2="65" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="70" y1="25" x2="545" y2="25" stroke="#f3f4f6" stroke-width="1" stroke-dasharray="3,3"/>
+      <!-- Y axis labels -->
+      <text x="62" y="189" class="rate-label" text-anchor="end">0%</text>
+      <text x="62" y="149" class="rate-label" text-anchor="end">0.5%</text>
+      <text x="62" y="109" class="rate-label" text-anchor="end">1.0%</text>
+      <text x="62" y="69" class="rate-label" text-anchor="end">1.5%</text>
+      <text x="62" y="29" class="rate-label" text-anchor="end">2.0%</text>
+      <!-- X axis labels -->
+      <text x="90" y="200" class="rate-label" text-anchor="middle">Jan 25</text>
+      <text x="170" y="200" class="rate-label" text-anchor="middle">Apr 25</text>
+      <text x="250" y="200" class="rate-label" text-anchor="middle">Jul 25</text>
+      <text x="330" y="200" class="rate-label" text-anchor="middle">Oct 25</text>
+      <text x="410" y="200" class="rate-label" text-anchor="middle">Jan 26</text>
+      <text x="455" y="200" class="rate-label" text-anchor="middle">Apr 26</text>
+      <text x="510" y="200" class="rate-label" text-anchor="middle">Jun 16</text>
+      <!-- Actual rate line (solid indigo) -->
+      <polyline points="90,185 130,165 170,165 210,165 250,145 290,145 330,145 370,125 410,125 455,105 455,105" fill="none" stroke="#3730a3" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Market implied (dashed) -->
+      <polyline points="455,105 510,85" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,4"/>
+      <!-- Dovish scenario -->
+      <polyline points="510,85 545,85" fill="none" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <!-- Hawkish scenario -->
+      <polyline points="510,85 545,65" fill="none" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+      <!-- Data points -->
+      <circle cx="90" cy="185" r="3.5" fill="#3730a3"/>
+      <circle cx="130" cy="165" r="3.5" fill="#3730a3"/>
+      <circle cx="250" cy="145" r="3.5" fill="#3730a3"/>
+      <circle cx="370" cy="125" r="3.5" fill="#3730a3"/>
+      <circle cx="455" cy="105" r="3.5" fill="#3730a3"/>
+      <circle cx="510" cy="85" r="4" fill="#6366f1" stroke="#fff" stroke-width="1.5"/>
+
+      <!-- Today marker -->
+      <line x1="480" y1="20" x2="480" y2="185" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="480" y="16" font-family="Inter,sans-serif" font-size="9" fill="#f59e0b" text-anchor="middle">TODAY</text>
+
+      <!-- Labels -->
+      <text x="200" y="118" class="rate-val">0.25%</text>
+      <text x="295" y="138" class="rate-val">0.50%</text>
+      <text x="385" y="118" class="rate-val">0.75%</text>
+      <text x="460" y="76" class="rate-val" fill="#6366f1">1.00%?</text>
+      <text x="520" y="62" class="rate-val" fill="#818cf8">Hawkish</text>
+      <text x="520" y="83" class="rate-val" fill="#a5b4fc">Dovish</text>
+      <!-- Legend -->
+      <line x1="80" y1="215" x2="100" y2="215" stroke="#3730a3" stroke-width="2.5"/>
+      <text x="105" y="218" class="rate-label">Actual rate</text>
+      <line x1="160" y1="215" x2="180" y2="215" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,4"/>
+      <text x="185" y="218" class="rate-label">Market implied (June 16)</text>
+      <line x1="320" y1="215" x2="340" y2="215" stroke="#a5b4fc" stroke-width="1.5" stroke-dasharray="3,3"/>
+      <text x="345" y="218" class="rate-label">Post-meeting scenarios</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-head">Ueda Shift</div>
+      <div class="annotation-body">June 3 language — "upside risks greater overall and emerging sooner" — is a harder framing than April's symmetric risk assessment. Not a pre-commitment but a lean.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-head">Watch This</div>
+      <div class="annotation-body">Press conference language: does Ueda retain "in accordance with developments" conditionality (dovish) or weaken it (hawkish)? That phrasing, not the hike itself, moves September expectations.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-head">Yen at 160</div>
+      <div class="annotation-body">A hike alone may not move USDJPY materially from 160. The yen-positive scenario requires hawkish guidance that raises September hike probability to 50%+.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  Japan Brief Issue #7 · June 4, 2026 · Not investment advice
+</div>
+
+<script>
+  function showViz(id, tabIndex) {
+    document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.tab')[tabIndex].classList.add('active');
+  }
+</script>
+</body>
+</html>
