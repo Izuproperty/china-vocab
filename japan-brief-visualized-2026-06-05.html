@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #10 · Data Visualizations · June 5, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 40px; border-bottom:4px solid #3730a3; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-header-sub { font-size:11px; color:#818cf8; letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+  .back-link { font-size:11px; color:#818cf8; text-decoration:none; letter-spacing:1px; }
+  .back-link:hover { color:#a5b4fc; }
+  .tab-bar { background:#fff; border-bottom:1px solid #dde0e8; padding:0 40px; display:flex; gap:0; }
+  .tab-btn { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; background:none; border:none; border-bottom:3px solid transparent; cursor:pointer; color:#9a8a7a; transition:all 0.2s; }
+  .tab-btn.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .tab-btn:hover { color:#3730a3; }
+  .viz-panel { display:none; padding:40px; }
+  .viz-panel.active { display:block; }
+  .viz-panel-title { font-family:'Playfair Display',serif; font-size:22px; color:#1a1a2e; margin-bottom:6px; }
+  .viz-panel-source { font-size:11px; color:#9a8a7a; margin-bottom:28px; }
+  .signal-row { display:flex; gap:20px; margin-bottom:32px; }
+  .signal-card { flex:1; background:#fff; border:1px solid #dde0e8; border-radius:6px; padding:16px 20px; border-top:3px solid #3730a3; }
+  .signal-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .signal-value { font-size:26px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-note { font-size:11px; color:#6a7a8a; margin-top:4px; }
+  .chart-container { background:#fff; border:1px solid #dde0e8; border-radius:6px; padding:24px; margin-bottom:28px; }
+  .chart-title { font-size:13px; font-weight:600; color:#1a1a2e; margin-bottom:16px; }
+  svg text { font-family:'Inter',sans-serif; }
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .annotation-card { background:#fff; border:1px solid #dde0e8; border-radius:6px; padding:16px; }
+  .annotation-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; margin-bottom:8px; display:inline-block; }
+  .tag-watch { background:#e0e7ff; color:#3730a3; }
+  .tag-risk { background:#fce7f3; color:#be185d; }
+  .tag-signal { background:#fef3e2; color:#b45309; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .page-footer { background:#1a1a2e; text-align:center; padding:16px 40px; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-title">Japan Brief Issue #10 · Data Visualizations</div>
+    <div class="page-header-sub">June 5, 2026 · 3 Signal Sets</div>
+  </div>
+  <a class="back-link" href="japan-brief.html">Back to Japan Brief</a>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showViz('viz1', this)">AI Index Launch</button>
+  <button class="tab-btn" onclick="showViz('viz2', this)">Kioxia / Semis</button>
+  <button class="tab-btn" onclick="showViz('viz3', this)">BOJ Rate Path</button>
+</div>
+
+<!-- VIZ 1: Japan AI Index / AI adoption -->
+<div id="viz1" class="viz-panel active">
+  <div class="viz-panel-title">Japan AI Index — Adoption Measurement Framework</div>
+  <div class="viz-panel-source">Source: University of Tokyo Matsuo-Iwasawa Lab / Anthropic / PKSHA Technology · Announced June 4, 2026</div>
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">First Report ETA</div>
+      <div class="signal-value">Q4 2026</div>
+      <div class="signal-note">Oct–Nov 2026 target</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">AI Platform Visits Growth</div>
+      <div class="signal-value">+225%</div>
+      <div class="signal-note">Dec 2024 to Feb 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Japan AI Ranking</div>
+      <div class="signal-value">33rd</div>
+      <div class="signal-note">Global AI utilization index</div>
+    </div>
+  </div>
+  <div class="chart-container">
+    <div class="chart-title">AI Platform Adoption Trajectory — Japan vs. Benchmark (Index: Dec 2024 = 100)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Axes -->
+      <line x1="60" y1="180" x2="540" y2="180" stroke="#dde0e8" stroke-width="1"/>
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#dde0e8" stroke-width="1"/>
+      <!-- Grid lines -->
+      <line x1="60" y1="140" x2="540" y2="140" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="100" x2="540" y2="100" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="60" x2="540" y2="60" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- Y labels -->
+      <text x="50" y="184" text-anchor="end" font-size="10" fill="#9a8a7a">100</text>
+      <text x="50" y="144" text-anchor="end" font-size="10" fill="#9a8a7a">150</text>
+      <text x="50" y="104" text-anchor="end" font-size="10" fill="#9a8a7a">200</text>
+      <text x="50" y="64" text-anchor="end" font-size="10" fill="#9a8a7a">250</text>
+      <!-- X labels -->
+      <text x="60" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Dec'24</text>
+      <text x="155" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Mar'25</text>
+      <text x="250" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jun'25</text>
+      <text x="345" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Sep'25</text>
+      <text x="440" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Dec'25</text>
+      <text x="540" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Feb'26</text>
+      <!-- Japan line (225% growth = final value 325, normalized to chart height) -->
+      <!-- Dec'24=180, Mar=168, Jun=155, Sep=138, Dec=108, Feb'26=55 (inverted: higher = lower y) -->
+      <polyline points="60,180 155,164 250,148 345,126 440,100 540,55" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Global benchmark line (slower growth ~130%) -->
+      <polyline points="60,180 155,172 250,164 345,152 440,140 540,124" fill="none" stroke="#9a8a7a" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <!-- Index launch marker -->
+      <line x1="540" y1="20" x2="540" y2="180" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="538" y="35" text-anchor="end" font-size="9" fill="#3730a3">Index launch</text>
+      <text x="538" y="47" text-anchor="end" font-size="9" fill="#3730a3">Jun 2026</text>
+      <!-- Legend -->
+      <line x1="80" y1="30" x2="104" y2="30" stroke="#3730a3" stroke-width="2.5"/>
+      <text x="108" y="34" font-size="10" fill="#3730a3">Japan AI platform visits</text>
+      <line x1="80" y1="46" x2="104" y2="46" stroke="#9a8a7a" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="108" y="50" font-size="10" fill="#9a8a7a">Global benchmark</text>
+    </svg>
+  </div>
+  <div class="annotation-grid">
+    <div class="annotation-card">
+      <span class="annotation-tag tag-watch">Watch</span>
+      <div class="annotation-text">October 2026 inaugural report — first time Claude usage data will be cross-referenced with Japanese government statistics at national scale. Methodology credibility hinges on whether the Cabinet Office signs off on data sharing protocols.</div>
+    </div>
+    <div class="annotation-card">
+      <span class="annotation-tag tag-signal">Signal</span>
+      <div class="annotation-text">Anthropic's first academic partnership in Japan sets a template other frontier labs will likely follow. NEC/Anthropic enterprise deal (April) plus this index partnership constitute two distinct beachheads in Japan's AI ecosystem.</div>
+    </div>
+    <div class="annotation-card">
+      <span class="annotation-tag tag-risk">Risk</span>
+      <div class="annotation-text">Japan ranks 33rd globally in AI utilization despite rapid platform adoption growth, suggesting structural adoption barriers remain. The index's first test will be whether it surfaces bottlenecks in specific sectors (SME manufacturing, healthcare, local government).</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIZ 2: Kioxia / Semiconductor -->
+<div id="viz2" class="viz-panel">
+  <div class="viz-panel-title">Kioxia First Dividend — NAND Flash Demand Signal</div>
+  <div class="viz-panel-source">Source: Nikkei 225 Session Data / Kioxia Announcement · June 3, 2026</div>
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Kioxia Share Move</div>
+      <div class="signal-value">+7.2%</div>
+      <div class="signal-note">First close above 80,000 yen</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Tokyo Electron Move</div>
+      <div class="signal-value">+13.4%</div>
+      <div class="signal-note">All-time high; 723 Nikkei pts</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Nikkei 225 Close</div>
+      <div class="signal-value">68,402</div>
+      <div class="signal-note">First close above 68,000</div>
+    </div>
+  </div>
+  <div class="chart-container">
+    <div class="chart-title">Key Japan Semiconductor Stocks — Indexed Performance Jan–Jun 2026 (Jan 2 = 100)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="180" x2="540" y2="180" stroke="#dde0e8" stroke-width="1"/>
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#dde0e8" stroke-width="1"/>
+      <line x1="60" y1="140" x2="540" y2="140" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="100" x2="540" y2="100" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="60" x2="540" y2="60" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="50" y="184" text-anchor="end" font-size="10" fill="#9a8a7a">100</text>
+      <text x="50" y="144" text-anchor="end" font-size="10" fill="#9a8a7a">120</text>
+      <text x="50" y="104" text-anchor="end" font-size="10" fill="#9a8a7a">140</text>
+      <text x="50" y="64" text-anchor="end" font-size="10" fill="#9a8a7a">160</text>
+      <text x="60" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jan</text>
+      <text x="156" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Feb</text>
+      <text x="252" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Mar</text>
+      <text x="348" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Apr</text>
+      <text x="444" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">May</text>
+      <text x="540" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jun 3</text>
+      <!-- Kioxia ~+60% gain (value 160 → y=60) -->
+      <polyline points="60,180 156,170 252,158 348,138 444,108 540,60" fill="none" stroke="#be185d" stroke-width="2.5"/>
+      <!-- Tokyo Electron ~+45% gain -->
+      <polyline points="60,180 156,172 252,160 348,142 444,116 540,72" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Advantest ~+35% gain -->
+      <polyline points="60,180 156,174 252,164 348,150 444,130 540,84" fill="none" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <!-- Nikkei benchmark ~+20% -->
+      <polyline points="60,180 156,176 252,172 348,166 444,156 540,144" fill="none" stroke="#9a8a7a" stroke-width="1.5" stroke-dasharray="3,5"/>
+      <!-- Kioxia dividend label -->
+      <circle cx="540" cy="60" r="4" fill="#be185d"/>
+      <text x="530" y="52" text-anchor="end" font-size="9" fill="#be185d">Dividend</text>
+      <text x="530" y="62" text-anchor="end" font-size="9" fill="#be185d">announced</text>
+      <!-- Legend -->
+      <line x1="80" y1="28" x2="104" y2="28" stroke="#be185d" stroke-width="2.5"/>
+      <text x="108" y="32" font-size="10" fill="#be185d">Kioxia</text>
+      <line x1="160" y1="28" x2="184" y2="28" stroke="#3730a3" stroke-width="2.5"/>
+      <text x="188" y="32" font-size="10" fill="#3730a3">Tokyo Electron</text>
+      <line x1="280" y1="28" x2="304" y2="28" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <text x="308" y="32" font-size="10" fill="#0e7490">Advantest</text>
+      <line x1="380" y1="28" x2="404" y2="28" stroke="#9a8a7a" stroke-width="1.5" stroke-dasharray="3,5"/>
+      <text x="408" y="32" font-size="10" fill="#9a8a7a">Nikkei 225</text>
+    </svg>
+  </div>
+  <div class="annotation-grid">
+    <div class="annotation-card">
+      <span class="annotation-tag tag-signal">Signal</span>
+      <div class="annotation-text">Kioxia's dividend announcement signals management confidence in NAND demand durability beyond a single AI capital-expenditure cycle — a balance-sheet posture shift from repair to return, with implications for sector multiple re-rating.</div>
+    </div>
+    <div class="annotation-card">
+      <span class="annotation-tag tag-watch">Watch</span>
+      <div class="annotation-text">Tokyo Electron Q2 FY2026 earnings (July 2026): order intake from Kioxia and Micron Hiroshima HBM will reveal whether AI-driven equipment demand is accelerating into H2 2026 or plateauing after the capex surge.</div>
+    </div>
+    <div class="annotation-card">
+      <span class="annotation-tag tag-risk">Risk</span>
+      <div class="annotation-text">China export control tightening remains the key downside risk for equipment suppliers. TEL's China revenue mix and backlog commentary at Q2 earnings will be the primary read-through for consensus 2027 estimates.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIZ 3: BOJ Rate Path -->
+<div id="viz3" class="viz-panel">
+  <div class="viz-panel-title">BOJ Rate Path — June 2026 and Beyond</div>
+  <div class="viz-panel-source">Source: Bloomberg / Bank of Japan · June 4, 2026</div>
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Current Policy Rate</div>
+      <div class="signal-value">0.75%</div>
+      <div class="signal-note">Unchanged since January 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">June 16 Hike Probability</div>
+      <div class="signal-value">~80%</div>
+      <div class="signal-note">OIS pricing; +25bp to 1.00%</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY</div>
+      <div class="signal-value">~160</div>
+      <div class="signal-note">Near 4-month low; MOF watching</div>
+    </div>
+  </div>
+  <div class="chart-container">
+    <div class="chart-title">BOJ Policy Rate — Historical Path and Market-Implied Outlook (OIS curve, as of June 4, 2026)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="180" x2="540" y2="180" stroke="#dde0e8" stroke-width="1"/>
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#dde0e8" stroke-width="1"/>
+      <line x1="60" y1="155" x2="540" y2="155" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="130" x2="540" y2="130" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="105" x2="540" y2="105" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="80" x2="540" y2="80" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="60" y1="55" x2="540" y2="55" stroke="#eef0f5" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- Y labels (bps → rate) -->
+      <text x="50" y="184" text-anchor="end" font-size="9" fill="#9a8a7a">-0.10%</text>
+      <text x="50" y="159" text-anchor="end" font-size="9" fill="#9a8a7a">0.10%</text>
+      <text x="50" y="134" text-anchor="end" font-size="9" fill="#9a8a7a">0.25%</text>
+      <text x="50" y="109" text-anchor="end" font-size="9" fill="#9a8a7a">0.50%</text>
+      <text x="50" y="84" text-anchor="end" font-size="9" fill="#9a8a7a">0.75%</text>
+      <text x="50" y="59" text-anchor="end" font-size="9" fill="#9a8a7a">1.00%</text>
+      <!-- X labels (time) -->
+      <text x="80" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Mar'24</text>
+      <text x="150" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jul'24</text>
+      <text x="220" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jan'25</text>
+      <text x="290" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jul'25</text>
+      <text x="360" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jan'26</text>
+      <text x="430" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Jun'26</text>
+      <text x="510" y="196" text-anchor="middle" font-size="9" fill="#9a8a7a">Dec'26</text>
+      <!-- Actual rate path (staircase) -->
+      <!-- -0.10% → 0.10% (Mar 2024): x=80,y=180 → x=80,y=155 → 0.10% step -->
+      <polyline points="60,184 80,184 80,155 150,155 150,130 220,130 220,105 290,105 360,105 360,80 430,80" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Dashed projected path (Jun 16 hike + Sep/Oct hike) -->
+      <!-- From Jun 16: 0.75% → 1.00%: x=430→x=435,y=55 then to x=510,y=55, then implied x=540,y=40 -->
+      <polyline points="430,80 435,55 510,55" fill="none" stroke="#3730a3" stroke-width="2" stroke-dasharray="6,4"/>
+      <polyline points="510,55 540,40" fill="none" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.5"/>
+      <!-- Vertical marker for today / Jun 16 -->
+      <line x1="430" y1="20" x2="430" y2="180" stroke="#b45309" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="432" y="32" font-size="9" fill="#b45309">Jun 16</text>
+      <text x="432" y="42" font-size="9" fill="#b45309">MPM</text>
+      <!-- Probability band (soft) -->
+      <rect x="430" y="50" width="5" height="35" fill="#3730a3" opacity="0.2" rx="1"/>
+      <!-- Labels -->
+      <text x="450" y="52" font-size="9" fill="#3730a3">1.00% (expected)</text>
+      <text x="450" y="65" font-size="9" fill="#9a8a7a" font-style="italic">+another in H2 2026?</text>
+      <!-- Legend -->
+      <line x1="80" y1="28" x2="104" y2="28" stroke="#3730a3" stroke-width="2.5"/>
+      <text x="108" y="32" font-size="10" fill="#3730a3">Actual policy rate</text>
+      <line x1="220" y1="28" x2="244" y2="28" stroke="#3730a3" stroke-width="2" stroke-dasharray="6,4"/>
+      <text x="248" y="32" font-size="10" fill="#3730a3">Market-implied path</text>
+    </svg>
+  </div>
+  <div class="annotation-grid">
+    <div class="annotation-card">
+      <span class="annotation-tag tag-watch">Watch</span>
+      <div class="annotation-text">June 16 press conference language: whether Ueda weakens the conditionality clause "in accordance with economic, price, and financial developments" — the signal that would reprice September hike probability from teens toward 40-50%.</div>
+    </div>
+    <div class="annotation-card">
+      <span class="annotation-tag tag-signal">Signal</span>
+      <div class="annotation-text">Megabank sector (MUFG, SMFG, Mizuho) is the primary equity beneficiary of a rate hike cycle — net interest margin expands directly with short-rate increases. J-REITs face the most direct pressure on refinancing cost vs. fixed-income alternatives.</div>
+    </div>
+    <div class="annotation-card">
+      <span class="annotation-tag tag-risk">Risk</span>
+      <div class="annotation-text">USD/JPY near 160 means the yen carry trade remains substantially intact at 1.00%. Yen appreciation requires hawkish forward guidance on pace, not just a single isolated hike. A "dovish hike" with extended JGB purchase commitments leaves the yen under pressure.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  Japan Brief Issue #10 · June 5, 2026 · Not investment advice
+</div>
+
+<script>
+function showViz(id, btn) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
