@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #15 · Data Visualizations · June 13, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .page-header { background:#1a1a2e; padding:20px 40px; border-bottom:4px solid #3730a3; display:flex; align-items:center; justify-content:space-between; }
+  .page-header a { color:#818cf8; font-size:12px; text-decoration:none; letter-spacing:1px; }
+  .page-header a:hover { color:#c7d2fe; }
+  .page-title { font-family:'Playfair Display',serif; color:#fff; font-size:22px; }
+  .page-sub { color:#8a9bb5; font-size:11px; margin-top:4px; }
+  .tabs { display:flex; gap:0; background:#1a1a2e; padding:0 40px; border-bottom:1px solid #2a2a4e; }
+  .tab { padding:12px 22px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#6a7a9a; cursor:pointer; border-bottom:3px solid transparent; transition:all 0.2s; }
+  .tab:hover { color:#c7d2fe; }
+  .tab.active { color:#818cf8; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px 40px 48px; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:22px; color:#1a1a2e; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:24px; }
+  .signals-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border:1px solid #e0ddd8; border-radius:6px; padding:16px 18px; }
+  .signal-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:8px; }
+  .signal-value { font-size:26px; font-weight:700; color:#3730a3; line-height:1.1; }
+  .signal-unit { font-size:12px; color:#6a5a4a; margin-top:4px; }
+  .chart-wrap { background:#fff; border:1px solid #e0ddd8; border-radius:6px; padding:20px 24px; margin-bottom:24px; }
+  .chart-title { font-size:12px; font-weight:600; color:#3a3a5a; margin-bottom:16px; letter-spacing:0.5px; }
+  .annotations-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .annotation-card { background:#fff; border-left:3px solid #3730a3; padding:14px 16px; border-radius:0 4px 4px 0; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .page-footer { background:#1a1a2e; text-align:center; padding:16px 40px; }
+  .page-footer-text { font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <a href="japan-brief.html">&larr; Back to Japan Brief Dashboard</a>
+    <div class="page-title" style="margin-top:8px;">Japan Brief · Issue #15 · Data Visualizations</div>
+    <div class="page-sub">June 13, 2026 · Weekend Edition · 3 Stories</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('story1', 0)">Sony World Cup AI</div>
+  <div class="tab" onclick="showViz('story2', 1)">SAIMEMORY ZAM Memory</div>
+  <div class="tab" onclick="showViz('story3', 2)">BOJ June 16 Preview</div>
+</div>
+
+<!-- STORY 1: SONY AI WORLD CUP -->
+<div class="viz-panel active" id="story1">
+  <div class="panel-title">Sony SkeleTrack AI at FIFA World Cup 2026</div>
+  <div class="panel-source">Nikkei Asia · June 11-12, 2026 · AI officiating technology deployment</div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">Players Scanned</div>
+      <div class="signal-value">736</div>
+      <div class="signal-unit">registered players, all 3D modeled</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Body Points Tracked</div>
+      <div class="signal-value">29</div>
+      <div class="signal-unit">anatomical reference points per player</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Ball Sensor Rate</div>
+      <div class="signal-value">500Hz</div>
+      <div class="signal-unit">Trionda ball inertial measurement unit</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">VAR Review Benchmark: Legacy Manual Process vs. Sony SkeleTrack AI System (Estimated Time, Seconds)</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+      <!-- Y axis -->
+      <line x1="80" y1="20" x2="80" y2="160" stroke="#e0ddd8" stroke-width="1"/>
+      <!-- X axis -->
+      <line x1="80" y1="160" x2="560" y2="160" stroke="#e0ddd8" stroke-width="1"/>
+      <!-- Grid lines -->
+      <line x1="80" y1="60" x2="560" y2="60" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="80" y1="110" x2="560" y2="110" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Y labels -->
+      <text x="74" y="164" fill="#9a8a7a" font-size="10" text-anchor="end">0s</text>
+      <text x="74" y="114" fill="#9a8a7a" font-size="10" text-anchor="end">30s</text>
+      <text x="74" y="64" fill="#9a8a7a" font-size="10" text-anchor="end">60s</text>
+      <text x="74" y="24" fill="#9a8a7a" font-size="10" text-anchor="end">90s</text>
+      <!-- Legacy bar (75s) -->
+      <rect x="150" y="43" width="80" height="117" fill="#c7d2fe" rx="3"/>
+      <text x="190" y="35" fill="#3730a3" font-size="11" font-weight="600" text-anchor="middle">~75s avg</text>
+      <text x="190" y="180" fill="#6a5a4a" font-size="10" text-anchor="middle">Legacy VAR</text>
+      <text x="190" y="192" fill="#9a8a7a" font-size="9" text-anchor="middle">Manual replay review</text>
+      <!-- SkeleTrack bar (~12s) -->
+      <rect x="340" y="141" width="80" height="19" fill="#3730a3" rx="3"/>
+      <text x="380" y="133" fill="#3730a3" font-size="11" font-weight="600" text-anchor="middle">~12s est.</text>
+      <text x="380" y="180" fill="#6a5a4a" font-size="10" text-anchor="middle">SkeleTrack AI</text>
+      <text x="380" y="192" fill="#9a8a7a" font-size="9" text-anchor="middle">3D fusion + auto render</text>
+      <!-- Note -->
+      <text x="560" y="195" fill="#c0b8b0" font-size="8" text-anchor="end">Source: Nikkei Asia; SkeleTrack timing estimated</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">Officiating Moat</div>
+      <div class="annotation-text">Hawk-Eye's high switching costs — multi-year stadium sensor retrofits, proprietary data formats, and certified referee training — make Sony's position durable in football, rugby, cricket, and tennis through the 2030 World Cup cycle.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Data Asset Angle</div>
+      <div class="annotation-text">Biomechanical records on 736 professional athletes in live competitive conditions have licensing value to clubs, recruitment platforms, and sports insurance actuaries. This dataset does not exist elsewhere at scale.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Risk to Watch</div>
+      <div class="annotation-text">If a high-profile officiating error occurs at the World Cup, the reputational damage would fall on Sony's Hawk-Eye brand. The 2026 tournament is both the greatest marketing opportunity and the greatest public exposure risk in the system's history.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: SAIMEMORY ZAM -->
+<div class="viz-panel" id="story2">
+  <div class="panel-title">SoftBank SAIMEMORY ZAM-Based HB3DM vs. HBM4</div>
+  <div class="panel-source">TrendForce / HPCwire · Week Ahead: VLSI Symposium June 14–18, Honolulu</div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">HB3DM Bandwidth (per stack)</div>
+      <div class="signal-value">5.3</div>
+      <div class="signal-unit">TB/s — vs. ~2 TB/s for HBM4</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Power Reduction</div>
+      <div class="signal-value">~40%</div>
+      <div class="signal-unit">vs. conventional HBM architecture</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">DRAM Layers</div>
+      <div class="signal-value">8+1</div>
+      <div class="signal-unit">DRAM layers + logic controller</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Memory Bandwidth Comparison: HBM4 vs. SAIMEMORY HB3DM (TB/s per stack) — Benchmark Bars</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+      <line x1="80" y1="20" x2="80" y2="160" stroke="#e0ddd8" stroke-width="1"/>
+      <line x1="80" y1="160" x2="560" y2="160" stroke="#e0ddd8" stroke-width="1"/>
+      <line x1="80" y1="100" x2="560" y2="100" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="80" y1="60" x2="560" y2="60" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Y labels (0 to 6 TB/s) -->
+      <text x="74" y="164" fill="#9a8a7a" font-size="10" text-anchor="end">0</text>
+      <text x="74" y="114" fill="#9a8a7a" font-size="10" text-anchor="end">2</text>
+      <text x="74" y="74" fill="#9a8a7a" font-size="10" text-anchor="end">4</text>
+      <text x="74" y="34" fill="#9a8a7a" font-size="10" text-anchor="end">6 TB/s</text>
+      <!-- HBM4 bar (~2 TB/s = 67px of 140px range) -->
+      <rect x="140" y="113" width="100" height="47" fill="#c7d2fe" rx="3"/>
+      <text x="190" y="103" fill="#6a5a4a" font-size="11" font-weight="600" text-anchor="middle">~2.0 TB/s</text>
+      <text x="190" y="180" fill="#6a5a4a" font-size="10" text-anchor="middle">HBM4</text>
+      <text x="190" y="192" fill="#9a8a7a" font-size="9" text-anchor="middle">Current standard</text>
+      <!-- HBM4E bar (~2.4 TB/s) -->
+      <rect x="280" y="103" width="100" height="57" fill="#a5b4fc" rx="3"/>
+      <text x="330" y="93" fill="#6a5a4a" font-size="11" font-weight="600" text-anchor="middle">~2.4 TB/s</text>
+      <text x="330" y="180" fill="#6a5a4a" font-size="10" text-anchor="middle">HBM4E (est.)</text>
+      <text x="330" y="192" fill="#9a8a7a" font-size="9" text-anchor="middle">Next-gen HBM</text>
+      <!-- HB3DM bar (5.3 TB/s) -->
+      <rect x="420" y="34" width="100" height="126" fill="#3730a3" rx="3"/>
+      <text x="470" y="26" fill="#3730a3" font-size="11" font-weight="600" text-anchor="middle">5.3 TB/s</text>
+      <text x="470" y="180" fill="#6a5a4a" font-size="10" text-anchor="middle">HB3DM (SAIMEMORY)</text>
+      <text x="470" y="192" fill="#9a8a7a" font-size="9" text-anchor="middle">ZAM architecture</text>
+      <text x="560" y="195" fill="#c0b8b0" font-size="8" text-anchor="end">Source: TrendForce; HBM4E est. extrapolated</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">PSMC Supply Chain Signal</div>
+      <div class="annotation-text">PSMC's co-presentation indicates fabrication involvement — likely interposers or test DRAM. If confirmed, this provides a volume production pathway independent of Japan-only capacity, de-risking the commercialization timeline.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Rapidus Timeline Overlap</div>
+      <div class="annotation-text">HB3DM targets commercialization in fiscal 2029 — two years after Rapidus's 2nm production start. The possibility of pairing Rapidus logic with SAIMEMORY-derived memory in a domestic AI chip is speculative but not beyond the horizon of Japan's METI roadmap.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Conference Risk</div>
+      <div class="annotation-text">VLSI peer review is rigorous. If the via-in-one TSV architecture has manufacturability gaps — substrate yield, thermal management, or via resistance — that will surface in the Q&amp;A sessions. Watch for skepticism from TSMC or Samsung respondents.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: BOJ PREVIEW -->
+<div class="viz-panel" id="story3">
+  <div class="panel-title">BOJ Policy Rate Path: June 16 and Beyond</div>
+  <div class="panel-source">The Japan Times / Bloomberg · June 11, 2026 · BOJ June Meeting Preview</div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">Economist Consensus</div>
+      <div class="signal-value">49/51</div>
+      <div class="signal-unit">expecting +25bp to 1.00% on June 16</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY (Jun 12)</div>
+      <div class="signal-value">160.2</div>
+      <div class="signal-unit">yen per dollar — near Jul 2024 lows</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Japan PPI (May)</div>
+      <div class="signal-value">+6.3%</div>
+      <div class="signal-unit">YoY — three-year high (released Jun 12)</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">BOJ Policy Rate Path: Actual + Consensus Forecast (%) — 2024 to End-2026</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+      <!-- Axes -->
+      <line x1="80" y1="20" x2="80" y2="165" stroke="#e0ddd8" stroke-width="1"/>
+      <line x1="80" y1="165" x2="570" y2="165" stroke="#e0ddd8" stroke-width="1"/>
+      <!-- Grid -->
+      <line x1="80" y1="125" x2="570" y2="125" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="80" y1="85" x2="570" y2="85" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="80" y1="45" x2="570" y2="45" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Y labels: 0%, 0.25%, 0.5%, 0.75%, 1.0%, 1.25% -->
+      <text x="74" y="169" fill="#9a8a7a" font-size="9" text-anchor="end">0%</text>
+      <text x="74" y="145" fill="#9a8a7a" font-size="9" text-anchor="end">0.25</text>
+      <text x="74" y="125" fill="#9a8a7a" font-size="9" text-anchor="end">0.50</text>
+      <text x="74" y="105" fill="#9a8a7a" font-size="9" text-anchor="end">0.75</text>
+      <text x="74" y="85" fill="#9a8a7a" font-size="9" text-anchor="end">1.00</text>
+      <text x="74" y="65" fill="#9a8a7a" font-size="9" text-anchor="end">1.25</text>
+      <!-- X labels (approximate time markers) -->
+      <text x="100" y="180" fill="#9a8a7a" font-size="9" text-anchor="middle">Mar'24</text>
+      <text x="175" y="180" fill="#9a8a7a" font-size="9" text-anchor="middle">Jul'24</text>
+      <text x="255" y="180" fill="#9a8a7a" font-size="9" text-anchor="middle">Jan'25</text>
+      <text x="340" y="180" fill="#9a8a7a" font-size="9" text-anchor="middle">Jul'25</text>
+      <text x="415" y="180" fill="#9a8a7a" font-size="9" text-anchor="middle">Jan'26</text>
+      <text x="490" y="180" fill="#9a8a7a" font-size="9" text-anchor="middle">Jun'26</text>
+      <!-- Rate line (actual) -->
+      <!-- 0% until Mar24 -->
+      <polyline points="80,165 100,165 120,149 175,149 200,133 255,133 300,117 340,117 370,101 415,101 450,93 490,85" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Forecast (dashed) from Jun16 onward -->
+      <polyline points="490,85 530,85 545,65 570,65" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="5,4"/>
+      <!-- Current marker -->
+      <circle cx="490" cy="85" r="5" fill="#3730a3"/>
+      <text x="492" y="79" fill="#3730a3" font-size="9" font-weight="600">Jun 16</text>
+      <!-- Forecast label -->
+      <text x="552" y="60" fill="#818cf8" font-size="9">1.25% (yr-end consensus)</text>
+      <text x="570" y="195" fill="#c0b8b0" font-size="8" text-anchor="end">Source: Bloomberg; BOJ; Japan Times. Forecast = consensus.</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">Ueda Absent — Uchida Chairs</div>
+      <div class="annotation-text">Governor Ueda's hospitalization means Deputy Governor Uchida conducts the press conference. Uchida is historically more guarded than Ueda about projecting policy trajectories. Any non-committal tone on the September-to-December path may temporarily relieve yen pressure.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Real Rate Still Negative</div>
+      <div class="annotation-text">A policy rate of 1.00% against May PPI of +6.3% and core CPI persistently above 2% implies a deeply negative real rate. The June hike is normalization in name only; the more substantive question is the pace of the next 25-50bp from H2 2026 onward.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Yen and Equity Divergence</div>
+      <div class="annotation-text">The Nikkei 225 rose 2.9% on Friday, partly driven by oil price relief. A rate hike should in theory support the yen, but USD/JPY at 160 reflects that the market expects the hike and is pricing further US-Japan rate differential compression very slowly. Watch Monday's post-decision yen move as a signal.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="page-footer-text">Japan Brief Issue #15 · June 13, 2026 · Not investment advice</div>
+</div>
+
+<script>
+function showViz(id, tabIdx) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab')[tabIdx].classList.add('active');
+}
+</script>
+</body>
+</html>
