@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #13 · June 8, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:20px 40px; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-header-sub { font-size:11px; color:#818cf8; letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+  .back-link { font-size:11px; color:#818cf8; text-decoration:none; letter-spacing:1px; }
+  .back-link:hover { color:#a5b4fc; }
+  .tab-bar { background:#fff; border-bottom:1px solid #e0e0e8; padding:0 40px; display:flex; gap:0; }
+  .tab { padding:14px 24px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; border-bottom:3px solid transparent; color:#6a6a7a; transition:all 0.2s; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .tab:hover { color:#3730a3; }
+  .viz-panel { display:none; padding:32px 40px; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .signal-card { background:#fff; border:1px solid #e0e0e8; border-radius:6px; padding:20px; border-top:3px solid #3730a3; }
+  .signal-card.warn { border-top-color:#be185d; }
+  .signal-card.macro { border-top-color:#b45309; }
+  .signal-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal-delta { font-size:12px; margin-top:4px; }
+  .signal-delta.down { color:#be185d; }
+  .signal-delta.up { color:#166534; }
+  .signal-delta.neutral { color:#7a6a5a; }
+  .chart-container { background:#fff; border:1px solid #e0e0e8; border-radius:6px; padding:24px; margin-bottom:24px; }
+  .chart-title { font-size:13px; font-weight:600; color:#1a1a2e; margin-bottom:16px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .annotation-card { background:#fff; border:1px solid #e0e0e8; border-radius:6px; padding:16px; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .ann-body { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .footer-bar { background:#1a1a2e; padding:14px 40px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-title">Japan Brief · Data Visualized</div>
+    <div class="page-header-sub">Issue #13 · June 8, 2026 · 3 signals</div>
+  </div>
+  <a href="japan-brief.html" class="back-link">← Back to Japan Brief</a>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('v1', this)">Story 1 · AI Capex Thesis</div>
+  <div class="tab" onclick="showViz('v2', this)">Story 2 · Semi Selloff</div>
+  <div class="tab" onclick="showViz('v3', this)">Story 3 · Yen &amp; Blackout</div>
+</div>
+
+<!-- PANEL 1: AI Capex Thesis -->
+<div id="v1" class="viz-panel active">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Broadcom AI Chip Revenue Q2</div>
+      <div class="signal-value">$10.8B</div>
+      <div class="signal-delta up">+143% YoY · Record</div>
+    </div>
+    <div class="signal-card warn">
+      <div class="signal-label">Broadcom Software Miss</div>
+      <div class="signal-value">$7.18B</div>
+      <div class="signal-delta down">vs $7.32B est. · -$140M gap</div>
+    </div>
+    <div class="signal-card warn">
+      <div class="signal-label">SoftBank 2-Day Decline</div>
+      <div class="signal-value">-11%</div>
+      <div class="signal-delta down">June 5–6 · Largest weekly drop</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Broadcom AI vs Total Revenue · Q1–Q2 FY2026 (USD Billions)</div>
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Grid lines -->
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#e0e0e8" stroke-width="1"/>
+      <line x1="60" y1="180" x2="560" y2="180" stroke="#e0e0e8" stroke-width="1"/>
+      <line x1="60" y1="140" x2="560" y2="140" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="60" y1="100" x2="560" y2="100" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="60" y1="60" x2="560" y2="60" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <!-- Y axis labels -->
+      <text x="50" y="183" font-size="10" fill="#9a8a7a" text-anchor="end">$0B</text>
+      <text x="50" y="143" font-size="10" fill="#9a8a7a" text-anchor="end">$5B</text>
+      <text x="50" y="103" font-size="10" fill="#9a8a7a" text-anchor="end">$10B</text>
+      <text x="50" y="63" font-size="10" fill="#9a8a7a" text-anchor="end">$15B</text>
+      <!-- Q1 FY2026 bars -->
+      <rect x="120" y="110" width="60" height="70" fill="#a5b4fc" opacity="0.8"/>
+      <text x="150" y="106" font-size="10" fill="#3730a3" text-anchor="middle">$7.2B AI</text>
+      <rect x="195" y="80" width="60" height="100" fill="#e0e7ff" opacity="0.9" stroke="#3730a3" stroke-width="1"/>
+      <text x="225" y="76" font-size="10" fill="#3730a3" text-anchor="middle">$21.0B total</text>
+      <!-- Q2 FY2026 bars -->
+      <rect x="330" y="70" width="60" height="110" fill="#3730a3" opacity="0.9"/>
+      <text x="360" y="66" font-size="10" fill="#3730a3" font-weight="600" text-anchor="middle">$10.8B AI</text>
+      <rect x="405" y="50" width="60" height="130" fill="#c7d2fe" opacity="0.9" stroke="#3730a3" stroke-width="1"/>
+      <text x="435" y="46" font-size="10" fill="#3730a3" text-anchor="middle">$22.2B total</text>
+      <!-- Miss marker -->
+      <line x1="405" y1="38" x2="465" y2="38" stroke="#be185d" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="467" y="42" font-size="9" fill="#be185d">$22.3B est.</text>
+      <!-- Quarter labels -->
+      <text x="195" y="198" font-size="11" fill="#6a6a7a" text-anchor="middle">Q1 FY2026</text>
+      <text x="435" y="198" font-size="11" fill="#1a1a2e" font-weight="600" text-anchor="middle">Q2 FY2026</text>
+      <!-- Legend -->
+      <rect x="60" y="210" width="12" height="8" fill="#3730a3"/>
+      <text x="76" y="218" font-size="10" fill="#6a6a7a">AI chip revenue</text>
+      <rect x="170" y="210" width="12" height="8" fill="#c7d2fe" stroke="#3730a3" stroke-width="1"/>
+      <text x="186" y="218" font-size="10" fill="#6a6a7a">Total revenue</text>
+      <line x1="280" y1="214" x2="292" y2="214" stroke="#be185d" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="296" y="218" font-size="10" fill="#6a6a7a">Consensus estimate</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card">
+      <div class="ann-label">AI Chip Signal</div>
+      <div class="ann-body">AI chip revenue hit a record $10.8B (+143% YoY). Hyperscaler custom ASIC demand — Google, Meta, Apple — remains intact. This is the structural positive for Japan's semiconductor supply chain.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="ann-label">Software Risk</div>
+      <div class="ann-body">Infrastructure software missed by $140M — the first platform miss since Broadcom's VMware integration. Markets interpreted this as early evidence of enterprise AI software ROI uncertainty spreading beyond early adopters.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="ann-label">Japan Exposure</div>
+      <div class="ann-body">Japan's physical AI strategy (robotics, factory automation) should theoretically carry different demand drivers than software AI. But Friday's selloff showed market pricing has not yet separated the two — a potential mispricing opportunity.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Semi Selloff -->
+<div id="v2" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card warn">
+      <div class="signal-label">Tokyo Electron · June 6</div>
+      <div class="signal-value">-6.80%</div>
+      <div class="signal-delta down">Largest 1-day drop since March</div>
+    </div>
+    <div class="signal-card warn">
+      <div class="signal-label">SUMCO · June 6</div>
+      <div class="signal-value">-8.18%</div>
+      <div class="signal-delta down">Silicon wafer supplier · Worst day YTD</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">TEL Buyback Programme</div>
+      <div class="signal-value">¥150B</div>
+      <div class="signal-delta neutral">Up to 7.5M shares · Jun 2026–Mar 2027</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Japan Chip Sector Single-Day Decline · June 6, 2026 (% Change)</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Y axis baseline -->
+      <line x1="160" y1="20" x2="160" y2="170" stroke="#e0e0e8" stroke-width="1"/>
+      <line x1="160" y1="170" x2="560" y2="170" stroke="#e0e0e8" stroke-width="0.5"/>
+      <!-- Zero line -->
+      <line x1="160" y1="170" x2="560" y2="170" stroke="#1a1a2e" stroke-width="1.5"/>
+      <!-- Grid -->
+      <line x1="160" y1="130" x2="560" y2="130" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="160" y1="90" x2="560" y2="90" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="160" y1="50" x2="560" y2="50" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <!-- Y labels -->
+      <text x="155" y="133" font-size="9" fill="#9a8a7a" text-anchor="end">-3%</text>
+      <text x="155" y="93" font-size="9" fill="#9a8a7a" text-anchor="end">-6%</text>
+      <text x="155" y="53" font-size="9" fill="#9a8a7a" text-anchor="end">-9%</text>
+      <!-- Bars (each 1% = 13.3px) -->
+      <!-- SUMCO -8.18% = 109px -->
+      <rect x="175" y="61" width="60" height="109" fill="#be185d" opacity="0.85"/>
+      <text x="205" y="57" font-size="10" fill="#be185d" font-weight="600" text-anchor="middle">-8.18%</text>
+      <text x="205" y="186" font-size="10" fill="#6a6a7a" text-anchor="middle">SUMCO</text>
+      <!-- TEL -6.80% = 90px -->
+      <rect x="260" y="80" width="60" height="90" fill="#be185d" opacity="0.75"/>
+      <text x="290" y="76" font-size="10" fill="#be185d" font-weight="600" text-anchor="middle">-6.80%</text>
+      <text x="290" y="186" font-size="10" fill="#6a6a7a" text-anchor="middle">TEL</text>
+      <!-- Renesas -6.51% = 87px -->
+      <rect x="345" y="83" width="60" height="87" fill="#be185d" opacity="0.65"/>
+      <text x="375" y="79" font-size="10" fill="#be185d" font-weight="600" text-anchor="middle">-6.51%</text>
+      <text x="375" y="186" font-size="10" fill="#6a6a7a" text-anchor="middle">Renesas</text>
+      <!-- Advantest -5.09% = 68px -->
+      <rect x="430" y="102" width="60" height="68" fill="#be185d" opacity="0.55"/>
+      <text x="460" y="98" font-size="10" fill="#be185d" font-weight="600" text-anchor="middle">-5.09%</text>
+      <text x="460" y="186" font-size="10" fill="#6a6a7a" text-anchor="middle">Advantest</text>
+      <!-- Nikkei -1.36% = 18px -->
+      <rect x="515" y="152" width="30" height="18" fill="#7a6a5a" opacity="0.7"/>
+      <text x="530" y="148" font-size="10" fill="#7a6a5a" font-weight="600" text-anchor="middle">-1.36%</text>
+      <text x="530" y="186" font-size="9" fill="#6a6a7a" text-anchor="middle">Nikkei 225</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card">
+      <div class="ann-label">Dual Catalyst</div>
+      <div class="ann-body">Two independent triggers converged: Broadcom's software miss raised AI capex breadth concerns; BOJ June hike pricing (~80%) mechanically raises discount rates for high-multiple equipment stocks trading at 40x+ forward earnings.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="ann-label">Technical Support</div>
+      <div class="ann-body">TEL's ¥150B buyback (executing June 1–March 2027, up to 7.5M shares) provides open-market support on down days. This is structural — the company is a net buyer of its own shares at current prices, setting an implicit floor.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="ann-label">Next Catalyst</div>
+      <div class="ann-body">TEL's Q2 FY2026 earnings (late July) will be the first public readthrough on Rapidus IIM-1, Micron Hiroshima HBM, and TSMC JASM equipment order intake simultaneously. That is the event that prices Japan-specific demand vs. global AI sentiment.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: Yen / Blackout -->
+<div id="v3" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card macro">
+      <div class="signal-label">USD/JPY · June 6</div>
+      <div class="signal-value">~160</div>
+      <div class="signal-delta down">3rd session probing level · Intervention erased</div>
+    </div>
+    <div class="signal-card macro">
+      <div class="signal-label">Apr–May Intervention Cost</div>
+      <div class="signal-value">¥11.73T</div>
+      <div class="signal-delta neutral">$73.6B · Largest single program on record</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">BOJ Blackout Starts</div>
+      <div class="signal-value">Jun 9</div>
+      <div class="signal-delta neutral">No BOJ communication until June 16</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">USD/JPY Timeline · April–June 2026 (Illustrative Path)</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Axes -->
+      <line x1="60" y1="20" x2="60" y2="170" stroke="#e0e0e8" stroke-width="1"/>
+      <line x1="60" y1="170" x2="570" y2="170" stroke="#e0e0e8" stroke-width="1"/>
+      <!-- Y grid lines (each 5 yen = ~30px) -->
+      <line x1="60" y1="50" x2="570" y2="50" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="60" y1="80" x2="570" y2="80" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="60" y1="110" x2="570" y2="110" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="60" y1="140" x2="570" y2="140" stroke="#e0e0e8" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <!-- Y labels -->
+      <text x="55" y="53" font-size="9" fill="#9a8a7a" text-anchor="end">165</text>
+      <text x="55" y="83" font-size="9" fill="#9a8a7a" text-anchor="end">160</text>
+      <text x="55" y="113" font-size="9" fill="#9a8a7a" text-anchor="end">155</text>
+      <text x="55" y="143" font-size="9" fill="#9a8a7a" text-anchor="end">150</text>
+      <text x="55" y="173" font-size="9" fill="#9a8a7a" text-anchor="end">145</text>
+      <!-- 160 danger line -->
+      <line x1="60" y1="80" x2="570" y2="80" stroke="#be185d" stroke-width="1" stroke-dasharray="6,3" opacity="0.6"/>
+      <text x="573" y="83" font-size="9" fill="#be185d">160</text>
+      <!-- USD/JPY path: pre-intervention ~161 → interventions → 155 recovery → gradual drift back to 159-160 -->
+      <polyline points="60,70 100,74 140,80 160,80" fill="none" stroke="#b45309" stroke-width="2"/>
+      <!-- Intervention drop April 28 -->
+      <polyline points="160,80 170,130 190,120" fill="none" stroke="#b45309" stroke-width="2"/>
+      <!-- Arrow marker for intervention -->
+      <text x="165" y="145" font-size="9" fill="#3730a3" text-anchor="middle">Intervention Apr 28</text>
+      <!-- Recovery / drift back -->
+      <polyline points="190,120 230,115 270,105 310,95 350,88 390,82 430,82 470,81 510,80" fill="none" stroke="#b45309" stroke-width="2"/>
+      <!-- Shaded zone: blackout period Jun 9-15 -->
+      <rect x="470" y="20" width="60" height="150" fill="#fef3e2" opacity="0.5"/>
+      <text x="500" y="16" font-size="9" fill="#b45309" text-anchor="middle" font-weight="600">BOJ Blackout</text>
+      <text x="500" y="26" font-size="8" fill="#b45309" text-anchor="middle">Jun 9-15</text>
+      <!-- X axis labels -->
+      <text x="60" y="185" font-size="9" fill="#6a6a7a" text-anchor="middle">Apr 1</text>
+      <text x="160" y="185" font-size="9" fill="#6a6a7a" text-anchor="middle">Apr 28</text>
+      <text x="310" y="185" font-size="9" fill="#6a6a7a" text-anchor="middle">May 27</text>
+      <text x="450" y="185" font-size="9" fill="#6a6a7a" text-anchor="middle">Jun 6</text>
+      <text x="530" y="185" font-size="9" fill="#b45309" font-weight="600" text-anchor="middle">Jun 16</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card">
+      <div class="ann-label">Structural Problem</div>
+      <div class="ann-body">The BOJ-Fed rate gap is ~300bp. At that spread, carry trade demand for dollar over yen is structural. Japan spent ¥11.73T to defend 160 in April-May; the rate gap alone reversed those gains. Intervention is a delay tactic, not a solution.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="ann-label">Blackout Vulnerability</div>
+      <div class="ann-body">During June 9-15, no BOJ communication is available to anchor expectations. This is the window where yen drift is fastest — markets test 160+ without central bank verbal guidance as a friction. MOF can still intervene but with diminishing credibility.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="ann-label">June 16 Variable</div>
+      <div class="ann-body">The 25bp hike itself is priced at ~80%. What matters is Ueda's press conference language on September: if he weakens conditionality, September hike probability could move from 10-15% toward 35-40%, providing the durable yen anchor that interventions cannot.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #13 · June 8, 2026 · Not investment advice
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
