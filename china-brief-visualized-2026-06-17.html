@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #30 · Data Visualization · June 17, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .viz-wrapper { max-width:720px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+
+  /* Header */
+  .viz-header { background:#1a1a2e; padding:24px 40px 20px; border-bottom:4px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .viz-header-left .eyebrow { font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#c0392b; font-weight:700; }
+  .viz-header-left .title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#fff; margin-top:4px; }
+  .viz-header-left .sub { font-size:11px; color:#8a9bb5; margin-top:4px; }
+  .back-link { font-size:11px; color:#8a9bb5; text-decoration:none; border:1px solid #3a3a6e; padding:6px 14px; border-radius:3px; white-space:nowrap; transition:color 0.2s; }
+  .back-link:hover { color:#e8d5b0; }
+
+  /* Tabs */
+  .tab-bar { background:#1a1a2e; display:flex; border-bottom:1px solid #2a2a4e; overflow-x:auto; }
+  .tab-btn { flex:1; min-width:0; padding:12px 16px; font-size:11px; font-weight:600; letter-spacing:0.5px; color:#6a7a9a; background:transparent; border:none; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.2s; text-align:center; }
+  .tab-btn:hover { color:#a0b0c8; }
+  .tab-btn.active { color:#fff; border-bottom-color:#c0392b; }
+
+  /* Tab panels */
+  .tab-panel { display:none; padding:36px 40px; }
+  .tab-panel.active { display:block; }
+
+  /* Signal stats */
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
+  .signal-card { background:#f8f4ee; border-radius:6px; padding:18px 16px; text-align:center; border-top:3px solid #c0392b; }
+  .signal-card .sig-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-card .sig-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#7a6a5a; margin-top:6px; }
+  .signal-card .sig-note { font-size:11px; color:#9a8a7a; margin-top:4px; }
+
+  /* SVG chart area */
+  .chart-container { margin-bottom:28px; background:#faf8f4; border-radius:6px; padding:20px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#7a6a5a; margin-bottom:16px; }
+
+  /* Annotation cards */
+  .annotation-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { border-radius:4px; padding:14px 16px; }
+  .annotation-card.red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .annotation-card.amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .annotation-card.green { background:#f0fdf4; border-left:4px solid #16a34a; }
+  .annotation-card .ac-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .ac-label { color:#c0392b; }
+  .annotation-card.amber .ac-label { color:#d97706; }
+  .annotation-card.green .ac-label { color:#16a34a; }
+  .annotation-card .ac-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#1a1a2e; display:block; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; }
+
+  /* Footer */
+  .viz-footer { background:#1a1a2e; padding:14px 40px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+<div class="viz-wrapper">
+
+  <div class="viz-header">
+    <div class="viz-header-left">
+      <div class="eyebrow">China Brief · Data Visualization</div>
+      <div class="title">Issue #30 · June 17, 2026</div>
+      <div class="sub">Three stories · Three data panels</div>
+    </div>
+    <a href="brief.html" class="back-link">← Return to China Brief</a>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showViz('s1',this)">AI Chip IPO Wave</button>
+    <button class="tab-btn" onclick="showViz('s2',this)">Robot Sector Involution</button>
+    <button class="tab-btn" onclick="showViz('s3',this)">May Macro Divergence</button>
+  </div>
+
+  <!-- PANEL 1: Enflame IPO / Four Little Dragons -->
+  <div id="s1" class="tab-panel active">
+    <div class="signal-row">
+      <div class="signal-card">
+        <div class="sig-value">¥6B</div>
+        <div class="sig-label">Enflame Raise</div>
+        <div class="sig-note">~$888M · STAR board</div>
+      </div>
+      <div class="signal-card">
+        <div class="sig-value">84%</div>
+        <div class="sig-label">Tencent Revenue Share</div>
+        <div class="sig-note">Up from 38% in 2023</div>
+      </div>
+      <div class="signal-card">
+        <div class="sig-value">+425%</div>
+        <div class="sig-label">Moore Threads Since IPO</div>
+        <div class="sig-note">Benchmark for Enflame reception</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">Four Little Dragons — STAR Market IPO Timeline &amp; Market Position</div>
+      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <!-- Background -->
+        <rect width="640" height="260" fill="#faf8f4" rx="4"/>
+        <!-- Timeline axis -->
+        <line x1="60" y1="220" x2="600" y2="220" stroke="#d0c8c0" stroke-width="1.5"/>
+        <!-- Year labels -->
+        <text x="120" y="240" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">Q4 2025</text>
+        <text x="270" y="240" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">Q1 2026</text>
+        <text x="420" y="240" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">Q2 2026</text>
+        <text x="560" y="240" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">Q3 2026</text>
+
+        <!-- Grid lines -->
+        <line x1="120" y1="30" x2="120" y2="220" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="270" y1="30" x2="270" y2="220" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="420" y1="30" x2="420" y2="220" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="560" y1="30" x2="560" y2="220" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+
+        <!-- Moore Threads — listed Dec 2025 -->
+        <circle cx="120" cy="75" r="9" fill="#c0392b"/>
+        <text x="135" y="70" font-size="12" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">摩尔线程</text>
+        <text x="135" y="84" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Moore Threads · Dec 2025 · +425%</text>
+
+        <!-- Biren Technology — listed Q1 2026 -->
+        <circle cx="200" cy="120" r="9" fill="#e67e22"/>
+        <text x="215" y="115" font-size="12" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">壁仞科技</text>
+        <text x="215" y="129" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Biren Technology · Q1 2026</text>
+
+        <!-- MetaX — listed Q1 2026 -->
+        <circle cx="270" cy="160" r="9" fill="#2980b9"/>
+        <text x="285" y="155" font-size="12" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">天数智芯</text>
+        <text x="285" y="169" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">MetaX · Q1 2026</text>
+
+        <!-- Enflame — approved Jun 15, 2026 -->
+        <circle cx="420" cy="195" r="9" fill="#16a34a" stroke="#fff" stroke-width="2"/>
+        <text x="435" y="190" font-size="12" font-weight="700" fill="#c0392b" font-family="Inter,sans-serif">燧原科技 — APPROVED</text>
+        <text x="435" y="204" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Enflame · Jun 15, 2026 · ¥6B raise</text>
+
+        <!-- Connector line showing progression -->
+        <polyline points="120,75 200,120 270,160 420,195" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+
+        <!-- Label: STAR board -->
+        <text x="60" y="30" font-size="10" font-weight="700" fill="#c0392b" font-family="Inter,sans-serif" letter-spacing="1">STAR Market (科创板) Listings</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card red">
+        <div class="ac-label">Core Claim</div>
+        <div class="ac-text">Enflame carries <span class="annotation-card-zh">客户集中度风险<span class="annotation-card-en">kèhù jízhōngdù fēngxiǎn · customer concentration risk</span></span>: 84% of 2025 revenue from Tencent, with ¥4.29B in cumulative losses. If Tencent's priorities shift, the thesis breaks.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="ac-label">What Remains Unverified</div>
+        <div class="ac-text">Enflame claims "Tencent demand has far exceeded supply capacity" — but specific chip performance benchmarks vs. Nvidia H100/H800 have not been independently published. The <span class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · AI compute power</span></span> gap vs. frontier silicon is unquantified.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="ac-label">Investable Signal</div>
+        <div class="ac-text">IPO reception for Enflame will calibrate the China <span class="annotation-card-zh">芯片独立<span class="annotation-card-en">xīnpiàn dúlì · chip independence</span></span> premium. A strong book validates the entire domestic AI hardware infrastructure trade, including Cambricon and the broader Ascend ecosystem.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 2: Humanoid Robot Involution -->
+  <div id="s2" class="tab-panel">
+    <div class="signal-row">
+      <div class="signal-card">
+        <div class="sig-value">140+</div>
+        <div class="sig-label">Humanoid Makers</div>
+        <div class="sig-note">330+ products · China 2025</div>
+      </div>
+      <div class="signal-card">
+        <div class="sig-value">10,000</div>
+        <div class="sig-label">Units Targeted</div>
+        <div class="sig-note">MIIT / SASAC directive · end-2026</div>
+      </div>
+      <div class="signal-card">
+        <div class="sig-value">85%</div>
+        <div class="sig-label">Human Work Efficiency</div>
+        <div class="sig-note">RobotEra at China Post / SF Express</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">China Humanoid Robot Sector — Deployment vs. Manufacturer Count</div>
+      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="640" height="260" fill="#faf8f4" rx="4"/>
+
+        <!-- Axes -->
+        <line x1="80" y1="220" x2="600" y2="220" stroke="#d0c8c0" stroke-width="1.5"/>
+        <line x1="80" y1="30" x2="80" y2="220" stroke="#d0c8c0" stroke-width="1.5"/>
+
+        <!-- Year labels -->
+        <text x="160" y="238" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">2024</text>
+        <text x="280" y="238" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">2025</text>
+        <text x="400" y="238" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">2026E</text>
+        <text x="520" y="238" font-size="11" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">2027E</text>
+
+        <!-- Grid horizontals -->
+        <line x1="80" y1="170" x2="600" y2="170" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="80" y1="120" x2="600" y2="120" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="80" y1="70" x2="600" y2="70" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+
+        <!-- Y axis labels — units shipped (thousands) -->
+        <text x="72" y="173" font-size="10" fill="#9a8a7a" text-anchor="end" font-family="Inter,sans-serif">10k</text>
+        <text x="72" y="123" font-size="10" fill="#9a8a7a" text-anchor="end" font-family="Inter,sans-serif">30k</text>
+        <text x="72" y="73" font-size="10" fill="#9a8a7a" text-anchor="end" font-family="Inter,sans-serif">60k</text>
+
+        <!-- Unit shipment bars (blue) -->
+        <rect x="130" y="210" width="50" height="10" fill="#2980b9" opacity="0.7" rx="2"/>
+        <rect x="250" y="185" width="50" height="35" fill="#2980b9" opacity="0.7" rx="2"/>
+        <rect x="370" y="132" width="50" height="88" fill="#2980b9" opacity="0.8" rx="2"/>
+        <rect x="490" y="80" width="50" height="140" fill="#2980b9" opacity="0.6" rx="2" stroke="#2980b9" stroke-width="1" stroke-dasharray="4,2"/>
+
+        <!-- Manufacturer count line (red) — indexes to right axis -->
+        <!-- 2024: ~50 makers, 2025: ~140, 2026E: ~200+, 2027E: consolidation ~120 -->
+        <polyline points="155,195 275,135 395,105 515,130" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+        <circle cx="155" cy="195" r="5" fill="#c0392b"/>
+        <circle cx="275" cy="135" r="5" fill="#c0392b"/>
+        <circle cx="395" cy="105" r="5" fill="#c0392b"/>
+        <circle cx="515" cy="130" r="5" fill="#c0392b" stroke="#fff" stroke-width="2"/>
+
+        <!-- Maker count annotations -->
+        <text x="155" y="188" font-size="10" fill="#c0392b" text-anchor="middle" font-family="Inter,sans-serif">~50</text>
+        <text x="275" y="128" font-size="10" fill="#c0392b" text-anchor="middle" font-family="Inter,sans-serif">140+</text>
+        <text x="395" y="98" font-size="10" fill="#c0392b" text-anchor="middle" font-family="Inter,sans-serif">200+E</text>
+        <text x="515" y="123" font-size="10" fill="#c0392b" text-anchor="middle" font-family="Inter,sans-serif">~120E</text>
+
+        <!-- Involution zone annotation -->
+        <rect x="350" y="90" width="110" height="30" rx="3" fill="#fff5f5" opacity="0.8"/>
+        <text x="405" y="107" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="700" font-family="Inter,sans-serif">INVOLUTION PEAK</text>
+
+        <!-- Legend -->
+        <rect x="90" y="38" width="12" height="12" fill="#2980b9" opacity="0.7" rx="2"/>
+        <text x="108" y="49" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Shipments (units, left scale)</text>
+        <line x1="240" y1="44" x2="262" y2="44" stroke="#c0392b" stroke-width="2.5"/>
+        <circle cx="251" cy="44" r="4" fill="#c0392b"/>
+        <text x="270" y="49" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Maker count (right scale, est.)</text>
+
+        <!-- Title annotation -->
+        <text x="90" y="25" font-size="9" fill="#c0392b" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1">Units projected to reach 62,500 in 2026 (CMG estimate)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card red">
+        <div class="ac-label">Core Claim</div>
+        <div class="ac-text"><span class="annotation-card-zh">内卷<span class="annotation-card-en">nèijuǎn · involution / destructive competition</span></span> risk in humanoid robots mirrors the EV market — 140+ makers competing in a state-mandated deployment rush will compress margins across the sector, likely for 2–3 years before consolidation.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="ac-label">What Remains Unverified</div>
+        <div class="ac-text">RobotEra's reported 85% human-work-efficiency at logistics sites is a company claim, not third-party audited. <span class="annotation-card-zh">商业化<span class="annotation-card-en">shāngyèhuà · commercialization</span></span> timelines in hardware have historically run 18–24 months behind investor projections in China.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="ac-label">Investable Signal</div>
+        <div class="ac-text">The key screening factor is <span class="annotation-card-zh">全栈<span class="annotation-card-en">quán zhàn · full-stack</span></span> capability: companies with proprietary embodied AI models AND high-volume industrial contracts (not just prototypes) are most likely to survive consolidation. Watch AgiBot and Unitree contract pipeline.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3: China May Macro Data -->
+  <div id="s3" class="tab-panel">
+    <div class="signal-row">
+      <div class="signal-card">
+        <div class="sig-value">-0.6%</div>
+        <div class="sig-label">Retail Sales YoY</div>
+        <div class="sig-note">First fall since Dec 2022</div>
+      </div>
+      <div class="signal-card">
+        <div class="sig-value">+4.5%</div>
+        <div class="sig-label">Industrial Output YoY</div>
+        <div class="sig-note">Beat +4.3% estimate</div>
+      </div>
+      <div class="signal-card">
+        <div class="sig-value">-4.1%</div>
+        <div class="sig-label">Fixed-Asset Investment</div>
+        <div class="sig-note">Jan–May YoY (worsened from -1.6%)</div>
+      </div>
+    </div>
+
+    <div class="chart-container">
+      <div class="chart-title">China Supply vs. Demand Divergence — May 2026 NBS Data</div>
+      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="640" height="260" fill="#faf8f4" rx="4"/>
+
+        <!-- Axes -->
+        <line x1="80" y1="220" x2="600" y2="220" stroke="#d0c8c0" stroke-width="1.5"/>
+        <line x1="80" y1="30" x2="80" y2="220" stroke="#d0c8c0" stroke-width="1.5"/>
+
+        <!-- Zero line (middle) -->
+        <line x1="80" y1="135" x2="600" y2="135" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+        <text x="68" y="138" font-size="10" fill="#c0392b" text-anchor="end" font-family="Inter,sans-serif">0%</text>
+
+        <!-- Y axis labels -->
+        <text x="68" y="85" font-size="10" fill="#9a8a7a" text-anchor="end" font-family="Inter,sans-serif">+5%</text>
+        <text x="68" y="112" font-size="10" fill="#9a8a7a" text-anchor="end" font-family="Inter,sans-serif">+2.5%</text>
+        <text x="68" y="160" font-size="10" fill="#9a8a7a" text-anchor="end" font-family="Inter,sans-serif">-2.5%</text>
+        <text x="68" y="183" font-size="10" fill="#9a8a7a" text-anchor="end" font-family="Inter,sans-serif">-5%</text>
+
+        <!-- Horizontal grid -->
+        <line x1="80" y1="85" x2="600" y2="85" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="80" y1="112" x2="600" y2="112" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="80" y1="160" x2="600" y2="160" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="80" y1="183" x2="600" y2="183" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="3,3"/>
+
+        <!-- Month labels -->
+        <text x="155" y="238" font-size="10" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">Feb</text>
+        <text x="230" y="238" font-size="10" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">Mar</text>
+        <text x="305" y="238" font-size="10" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">Apr</text>
+        <text x="380" y="238" font-size="10" fill="#9a8a7a" text-anchor="middle" font-family="Inter,sans-serif">May</text>
+
+        <!-- Industrial output line (blue, stays positive) -->
+        <!-- Feb ~5.9%, Mar ~4.9%, Apr ~4.1%, May ~4.5% -->
+        <polyline points="155,90 230,106 305,116 380,108" fill="none" stroke="#2980b9" stroke-width="2.5"/>
+        <circle cx="155" cy="90" r="5" fill="#2980b9"/>
+        <circle cx="230" cy="106" r="5" fill="#2980b9"/>
+        <circle cx="305" cy="116" r="5" fill="#2980b9"/>
+        <circle cx="380" cy="108" r="5" fill="#2980b9"/>
+        <text x="395" y="112" font-size="10" fill="#2980b9" font-family="Inter,sans-serif" font-weight="700">+4.5%</text>
+
+        <!-- Retail sales line (red, turns negative in May) -->
+        <!-- Jan ~1.2%, Feb ~3.5%, Mar ~2.8%, Apr ~0.2%, May ~-0.6% -->
+        <polyline points="155,118 230,109 305,128 380,138" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+        <circle cx="155" cy="118" r="5" fill="#c0392b"/>
+        <circle cx="230" cy="109" r="5" fill="#c0392b"/>
+        <circle cx="305" cy="128" r="5" fill="#c0392b"/>
+        <circle cx="380" cy="138" r="5" fill="#c0392b" stroke="#fff" stroke-width="2"/>
+        <text x="395" y="142" font-size="10" fill="#c0392b" font-family="Inter,sans-serif" font-weight="700">-0.6%</text>
+
+        <!-- Annotation: first negative since Dec 2022 -->
+        <rect x="340" y="145" width="165" height="22" rx="3" fill="#fff5f5" opacity="0.9"/>
+        <text x="422" y="160" font-size="9.5" fill="#c0392b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">First fall since Dec 2022</text>
+
+        <!-- Fixed-asset investment bar (orange, Jan-May cumulative, shown differently) -->
+        <!-- Waterfall-style: Jan-Mar -0.8%, Jan-Apr -1.6%, Jan-May -4.1% -->
+        <rect x="130" y="131" width="40" height="9" fill="#d97706" rx="2" opacity="0.8"/>
+        <rect x="205" y="136" width="40" height="14" fill="#d97706" rx="2" opacity="0.8"/>
+        <rect x="280" y="149" width="40" height="27" fill="#d97706" rx="2" opacity="0.8"/>
+        <text x="150" y="186" font-size="9" fill="#d97706" text-anchor="middle" font-family="Inter,sans-serif">-0.8%</text>
+        <text x="225" y="186" font-size="9" fill="#d97706" text-anchor="middle" font-family="Inter,sans-serif">-1.6%</text>
+        <text x="300" y="186" font-size="9" fill="#d97706" text-anchor="middle" font-family="Inter,sans-serif">-4.1%</text>
+
+        <!-- Legend -->
+        <line x1="90" y1="44" x2="112" y2="44" stroke="#2980b9" stroke-width="2.5"/>
+        <circle cx="101" cy="44" r="4" fill="#2980b9"/>
+        <text x="118" y="49" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Industrial output YoY%</text>
+        <line x1="250" y1="44" x2="272" y2="44" stroke="#c0392b" stroke-width="2.5"/>
+        <circle cx="261" cy="44" r="4" fill="#c0392b"/>
+        <text x="278" y="49" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Retail sales YoY%</text>
+        <rect x="410" y="38" width="12" height="12" fill="#d97706" rx="2" opacity="0.8"/>
+        <text x="428" y="49" font-size="10" fill="#7a6a5a" font-family="Inter,sans-serif">Fixed-asset investment (cumulative)</text>
+
+        <!-- Title -->
+        <text x="90" y="25" font-size="9" fill="#9a8a7a" font-family="Inter,sans-serif" font-weight="700" letter-spacing="1">NBS RELEASE: JUNE 16, 2026</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card red">
+        <div class="ac-label">Core Claim</div>
+        <div class="ac-text"><span class="annotation-card-zh">零售额<span class="annotation-card-en">língshòu é · retail sales</span></span> fell 0.6% YoY in May — the first decline since December 2022. The NBS stated the domestic imbalance between "strong supply and weak demand" is acute. Auto sales -16.1%, appliances -15.6%.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="ac-label">What Remains Unverified</div>
+        <div class="ac-text">Whether the <span class="annotation-card-zh">固定资产投资<span class="annotation-card-en">gùdìng zīchǎn tóuzī · fixed-asset investment</span></span> deterioration reflects absorption lags (projects approved but not yet disbursing) or structural private-sector retrenchment is not yet clear from the aggregate data.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="ac-label">Investable Signal</div>
+        <div class="ac-text">The data materially raises probability of an accelerated PBOC rate cut or <span class="annotation-card-zh">降准<span class="annotation-card-en">jiàng zhǔn · RRR cut (reserve ratio reduction)</span></span> in Q3. Watch for PBOC language at next scheduled briefing. Rate-sensitive sectors (property, consumer discretionary) will react first.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="viz-footer">
+    China Brief Issue #30 · June 17, 2026 · Not investment advice · Data sourced from public reporting
+  </div>
+
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
