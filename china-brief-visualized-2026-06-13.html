@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #27 · Data Visualized · June 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .top-bar { background:#1a1a2e; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid #c0392b; }
+  .top-bar-left { display:flex; align-items:center; gap:16px; }
+  .back-link { font-size:11px; color:#c0392b; text-decoration:none; font-weight:700; letter-spacing:1px; text-transform:uppercase; border:1px solid #c0392b; padding:4px 10px; border-radius:2px; }
+  .back-link:hover { background:#c0392b; color:#fff; }
+  .top-bar-title { font-size:13px; color:#e8d5b0; font-weight:600; }
+  .top-bar-issue { font-size:11px; color:#8a9bb5; }
+  .tabs { background:#1a1a2e; padding:0 32px; display:flex; gap:0; border-bottom:1px solid #2a2a4e; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#5a6a8a; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+  .tab:hover { color:#a0b4cc; }
+  .panel { display:none; padding:32px; }
+  .panel.active { display:block; }
+  .story-header { margin-bottom:24px; }
+  .story-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; margin-bottom:8px; }
+  .tag-ai { background:#e8f0fe; color:#1a56db; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .story-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:6px; }
+  .story-source { font-size:11px; color:#9a8a7a; }
+  .signals-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border-radius:6px; padding:18px 16px; text-align:center; box-shadow:0 1px 8px rgba(0,0,0,0.06); border-top:3px solid #c0392b; }
+  .signal-number { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; margin-bottom:6px; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#7a8a9a; line-height:1.4; }
+  .chart-box { background:#fff; border-radius:6px; padding:24px; margin-bottom:24px; box-shadow:0 1px 8px rgba(0,0,0,0.06); }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#3a4a6a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px; box-shadow:0 1px 8px rgba(0,0,0,0.06); }
+  .annotation-card.red { border-left:4px solid #c0392b; }
+  .annotation-card.amber { border-left:4px solid #e67e22; }
+  .annotation-card.green { border-left:4px solid #27ae60; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .annotation-label { color:#c0392b; }
+  .annotation-card.amber .annotation-label { color:#e67e22; }
+  .annotation-card.green .annotation-label { color:#27ae60; }
+  .annotation-text { font-size:12px; color:#2c2c2c; line-height:1.5; }
+  .annotation-card-zh { font-size:13px; font-weight:700; color:#1a1a2e; }
+  .annotation-card-en { font-size:10px; color:#7a6a5a; font-style:italic; margin-left:4px; font-weight:400; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:16px 32px; font-size:11px; color:#4a5a7a; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="brief.html" class="back-link">← Return to China Brief</a>
+    <div>
+      <div class="top-bar-title">China Brief Issue #27 · Data Visualized</div>
+      <div class="top-bar-issue">Saturday, June 13, 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1', this)">NDRC $295B AI Grid</div>
+  <div class="tab" onclick="showViz('s2', this)">Pentagon 1260H List</div>
+  <div class="tab" onclick="showViz('s3', this)">PBOC Week Ahead</div>
+</div>
+
+<!-- PANEL 1: NDRC $295B AI Data Center Plan -->
+<div class="panel active" id="panel-s1">
+  <div class="story-header">
+    <div class="story-tag tag-ai">AI &amp; Tech · Story 01</div>
+    <div class="story-title">NDRC's 2-Trillion-Yuan AI Infrastructure Mandate — Chip Procurement and Compute Capacity</div>
+    <div class="story-source">Bloomberg · June 12, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">¥2T</div>
+      <div class="signal-label">Draft 5-year spend (RMB)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">80%</div>
+      <div class="signal-label">Minimum domestic chip quota</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">~40%</div>
+      <div class="signal-label">Ascend 910C vs H100 throughput</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China AI Chip Procurement Split — Draft vs Likely Outcome</div>
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Background -->
+      <rect width="600" height="220" fill="#fafafa" rx="4"/>
+      <!-- Y axis label -->
+      <text x="8" y="115" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" transform="rotate(-90,8,115)" text-anchor="middle">% of procurement</text>
+      <!-- Gridlines -->
+      <line x1="60" y1="20" x2="580" y2="20" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="60" x2="580" y2="60" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="100" x2="580" y2="100" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="140" x2="580" y2="140" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="180" x2="580" y2="180" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Y axis labels -->
+      <text x="54" y="24" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">100%</text>
+      <text x="54" y="64" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">80%</text>
+      <text x="54" y="104" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">60%</text>
+      <text x="54" y="144" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">40%</text>
+      <text x="54" y="184" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">20%</text>
+      <!-- Scenario A: Draft mandate -->
+      <rect x="100" y="60" width="60" height="120" fill="#c0392b" opacity="0.85" rx="2"/>
+      <rect x="100" y="20" width="60" height="40" fill="#3a4a6a" opacity="0.4" rx="2"/>
+      <text x="130" y="50" font-family="Inter,sans-serif" font-size="8" fill="#1a1a2e" text-anchor="middle" font-weight="600">80% Domestic</text>
+      <text x="130" y="14" font-family="Inter,sans-serif" font-size="8" fill="#3a4a6a" text-anchor="middle">20% Foreign</text>
+      <text x="130" y="200" font-family="Inter,sans-serif" font-size="9" fill="#1a1a2e" text-anchor="middle" font-weight="700">Draft</text>
+      <text x="130" y="212" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Mandate</text>
+      <!-- Scenario B: Historical baseline (2024) -->
+      <rect x="220" y="116" width="60" height="64" fill="#c0392b" opacity="0.5" rx="2"/>
+      <rect x="220" y="20" width="60" height="96" fill="#3a4a6a" opacity="0.4" rx="2"/>
+      <text x="250" y="200" font-family="Inter,sans-serif" font-size="9" fill="#1a1a2e" text-anchor="middle" font-weight="700">2024</text>
+      <text x="250" y="212" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Baseline</text>
+      <text x="250" y="110" font-family="Inter,sans-serif" font-size="8" fill="#1a1a2e" text-anchor="middle">~40% Dom.</text>
+      <!-- Scenario C: Analyst estimate of realistic execution -->
+      <rect x="340" y="84" width="60" height="96" fill="#c0392b" opacity="0.65" rx="2"/>
+      <rect x="340" y="20" width="60" height="64" fill="#3a4a6a" opacity="0.4" rx="2"/>
+      <text x="370" y="200" font-family="Inter,sans-serif" font-size="9" fill="#1a1a2e" text-anchor="middle" font-weight="700">Likely</text>
+      <text x="370" y="212" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Execution Est.</text>
+      <text x="370" y="78" font-family="Inter,sans-serif" font-size="8" fill="#1a1a2e" text-anchor="middle">~60% Dom.</text>
+      <!-- Legend -->
+      <rect x="460" y="30" width="12" height="12" fill="#c0392b" opacity="0.85" rx="1"/>
+      <text x="476" y="40" font-family="Inter,sans-serif" font-size="9" fill="#3a4a6a">Domestic (Huawei Ascend etc.)</text>
+      <rect x="460" y="50" width="12" height="12" fill="#3a4a6a" opacity="0.4" rx="1"/>
+      <text x="476" y="60" font-family="Inter,sans-serif" font-size="9" fill="#3a4a6a">Foreign (NVIDIA, AMD etc.)</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Risk</div>
+      <div class="annotation-text">The 80% domestic chip mandate locks in a ~40% throughput penalty vs NVIDIA H100. If AI model competition accelerates, this performance gap could compound. The plan bets on
+        <span class="annotation-card-zh">国产替代<span class="annotation-card-en">guóchǎn tìdài · domestic substitution</span></span>
+        catching up within the five-year window.
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">What Remains Unverified</div>
+      <div class="annotation-text">The $295B figure is a draft planning target — not committed capex. China has a track record of announcing large national tech programs that are later revised down during local government budget negotiations.
+        <span class="annotation-card-zh">发改委<span class="annotation-card-en">Fāgǎi Wěi · NDRC</span></span>
+        finalization timeline is unknown.
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable Signal</div>
+      <div class="annotation-text">If domestic content rules hold, China Mobile and China Telecom face a sustained infrastructure capex cycle. Listed domestic chip designers — specifically
+        <span class="annotation-card-zh">寒武纪<span class="annotation-card-en">Hán Wǔjì · Cambricon</span></span>
+        and Biren — gain a policy-mandated demand floor.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Pentagon 1260H List -->
+<div class="panel" id="panel-s2">
+  <div class="story-header">
+    <div class="story-tag tag-ai">AI &amp; Tech · Story 02</div>
+    <div class="story-title">Pentagon 1260H List Expansion — Scope, Market Impact, and Enforcement Timeline</div>
+    <div class="story-source">CNBC / TechTimes · June 9–12, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">188</div>
+      <div class="signal-label">Total 1260H-listed firms (up from ~130)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">-2.1%</div>
+      <div class="signal-label">Baidu ADR move post-announcement</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">Jun 30</div>
+      <div class="signal-label">Defense contracting ban effective date</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">1260H List Growth and Enforcement Timeline</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <rect width="600" height="200" fill="#fafafa" rx="4"/>
+      <!-- Timeline line -->
+      <line x1="40" y1="100" x2="570" y2="100" stroke="#e8e0d4" stroke-width="2"/>
+      <!-- Milestones -->
+      <!-- 2020 -->
+      <circle cx="80" cy="100" r="7" fill="#3a4a6a"/>
+      <text x="80" y="125" font-family="Inter,sans-serif" font-size="9" fill="#5a6a8a" text-anchor="middle">2020</text>
+      <text x="80" y="137" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">~50 firms</text>
+      <text x="80" y="82" font-family="Inter,sans-serif" font-size="8" fill="#3a4a6a" text-anchor="middle" font-weight="600">List Created</text>
+      <!-- 2023 -->
+      <circle cx="210" cy="100" r="7" fill="#3a4a6a"/>
+      <text x="210" y="125" font-family="Inter,sans-serif" font-size="9" fill="#5a6a8a" text-anchor="middle">2023</text>
+      <text x="210" y="137" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">~100 firms</text>
+      <!-- 2025 -->
+      <circle cx="360" cy="100" r="7" fill="#3a4a6a"/>
+      <text x="360" y="125" font-family="Inter,sans-serif" font-size="9" fill="#5a6a8a" text-anchor="middle">2025</text>
+      <text x="360" y="137" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">~130 firms</text>
+      <!-- Jun 2026 -->
+      <circle cx="470" cy="100" r="9" fill="#c0392b"/>
+      <text x="470" y="125" font-family="Inter,sans-serif" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">Jun 9, 2026</text>
+      <text x="470" y="137" font-family="Inter,sans-serif" font-size="8" fill="#c0392b" text-anchor="middle" font-weight="700">188 firms</text>
+      <text x="470" y="80" font-family="Inter,sans-serif" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">Alibaba, Baidu,</text>
+      <text x="470" y="68" font-family="Inter,sans-serif" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">BYD, NIO, Unitree</text>
+      <!-- Jun 30 -->
+      <circle cx="545" cy="100" r="7" fill="#e67e22"/>
+      <text x="545" y="125" font-family="Inter,sans-serif" font-size="9" fill="#e67e22" text-anchor="middle" font-weight="700">Jun 30</text>
+      <text x="545" y="137" font-family="Inter,sans-serif" font-size="8" fill="#e67e22" text-anchor="middle">Ban effective</text>
+      <!-- New companies label -->
+      <text x="30" y="180" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5">Note: Jun 2027 — third-party procurement restrictions extend to listed firms' products &amp; services</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Claim / Primary Risk</div>
+      <div class="annotation-text">The 1260H expansion signals Washington's readiness to apply
+        <span class="annotation-card-zh">军民融合<span class="annotation-card-en">jūnmín rónghé · military-civil fusion</span></span>
+        labels to large-cap consumer tech — not just defense-proximate firms. This widens the universe of companies that could face escalating restrictions.
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">What Remains Unverified</div>
+      <div class="annotation-text">All five companies are challenging the designation legally. Past 1260H designations have been reversed — the
+        <span class="annotation-card-zh">阿里巴巴<span class="annotation-card-en">Ālǐbābā · Alibaba</span></span>
+        case is one of the stronger legal challenges given the company's civilian-only business profile.
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Investable / Actionable Signal</div>
+      <div class="annotation-text">For funds with dual-use screens: the full 188-firm list warrants a compliance pass. For VC/PE tracking
+        <span class="annotation-card-zh">宇树<span class="annotation-card-en">Yǔshù · Unitree</span></span>
+        specifically — its designation may complicate US LP participation in the next funding round.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: PBOC Week Ahead -->
+<div class="panel" id="panel-s3">
+  <div class="story-header">
+    <div class="story-tag tag-macro">Finance &amp; Macro · Story 03</div>
+    <div class="story-title">PBOC Week Ahead — LPR Decision Friday, Hong Kong Yuan Bond Monday</div>
+    <div class="story-source">Week-ahead calendar · June 13, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">3.0%</div>
+      <div class="signal-label">1-yr LPR (12 straight holds)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">1.72%</div>
+      <div class="signal-label">China 10-yr govt bond yield</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">¥15B</div>
+      <div class="signal-label">HK yuan bond tranche (Jun 16)</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China LPR Rate Path (1-Year) and 10-Year Bond Yield — 2025 to Present</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <rect width="600" height="200" fill="#fafafa" rx="4"/>
+      <!-- Gridlines -->
+      <line x1="60" y1="30" x2="580" y2="30" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="70" x2="580" y2="70" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="110" x2="580" y2="110" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="150" x2="580" y2="150" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,3"/>
+      <!-- Y axis labels -->
+      <text x="54" y="33" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">3.5%</text>
+      <text x="54" y="73" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">3.0%</text>
+      <text x="54" y="113" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">2.5%</text>
+      <text x="54" y="153" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="end">2.0%</text>
+      <!-- X axis labels -->
+      <text x="80" y="185" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Jan 25</text>
+      <text x="170" y="185" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Apr 25</text>
+      <text x="265" y="185" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Jul 25</text>
+      <text x="355" y="185" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Oct 25</text>
+      <text x="445" y="185" font-family="Inter,sans-serif" font-size="8" fill="#8a9bb5" text-anchor="middle">Jan 26</text>
+      <text x="540" y="185" font-family="Inter,sans-serif" font-size="8" fill="#c0392b" text-anchor="middle" font-weight="700">Jun 26</text>
+      <!-- LPR 1-year line (simplified stepped) -->
+      <!-- Cut at Jan 25: 3.10% -> stepped line -->
+      <polyline points="80,58 140,58 155,70 540,70" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+      <!-- 10yr bond yield line (declining) -->
+      <polyline points="80,110 140,118 200,122 265,130 310,138 355,146 410,148 445,152 490,155 540,157" fill="none" stroke="#3a4a6a" stroke-width="2" stroke-dasharray="6,3"/>
+      <!-- Now marker -->
+      <line x1="540" y1="20" x2="540" y2="170" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="540" y="16" font-family="Inter,sans-serif" font-size="8" fill="#c0392b" text-anchor="middle" font-weight="700">Now</text>
+      <!-- Legend -->
+      <line x1="65" y1="198" x2="90" y2="198" stroke="#c0392b" stroke-width="2.5"/>
+      <text x="95" y="201" font-family="Inter,sans-serif" font-size="9" fill="#3a4a6a">1-yr LPR</text>
+      <line x1="160" y1="198" x2="185" y2="198" stroke="#3a4a6a" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="190" y="201" font-family="Inter,sans-serif" font-size="9" fill="#3a4a6a">10-yr CGB yield (approx)</text>
+      <!-- Dot at current LPR -->
+      <circle cx="540" cy="70" r="5" fill="#c0392b"/>
+      <!-- Dot at current bond yield -->
+      <circle cx="540" cy="157" r="4" fill="#3a4a6a"/>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-label">Core Signal</div>
+      <div class="annotation-text">Twelve consecutive holds on
+        <span class="annotation-card-zh">贷款市场报价利率<span class="annotation-card-en">Dàikuǎn Shìchǎng Bàojià Lìlǜ · Loan Prime Rate</span></span>
+        signal PBOC caution. A 10-yr yield at 1.72% compresses carry appeal and raises duration risk for offshore RMB bond allocators.
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-label">What Remains Unverified</div>
+      <div class="annotation-text">Whether the June 20 LPR announcement will include forward guidance on an
+        <span class="annotation-card-zh">存款准备金率<span class="annotation-card-en">cúnkuǎn zhǔnbèijīn lǜ · RRR</span></span>
+        cut remains open. Governor Pan has signaled room exists, but timing is unconfirmed.
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-label">Actionable Watch</div>
+      <div class="annotation-text">June 16 HK yuan bond tranche: oversubscription would confirm continued offshore demand for
+        <span class="annotation-card-zh">离岸人民币<span class="annotation-card-en">lí'àn rénmínbì · offshore RMB (CNH)</span></span>
+        duration — supportive of the RMB internationalization thesis at current yields.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #27 · June 13, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
