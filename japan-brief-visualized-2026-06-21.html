@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #21 · Data Visualizations · June 21, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f0f2f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:20px 32px 16px; border-bottom:4px solid #3730a3; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-header-meta { font-size:11px; color:#818cf8; letter-spacing:1px; }
+  .back-link { font-size:11px; color:#818cf8; text-decoration:none; letter-spacing:1px; }
+  .back-link:hover { color:#a5b4fc; }
+  .tabs { display:flex; gap:0; background:#1a1a2e; padding:0 32px; border-bottom:1px solid #2a2a4e; }
+  .tab { padding:12px 20px; font-size:12px; font-weight:600; letter-spacing:1px; color:#6b7aa0; cursor:pointer; border-bottom:3px solid transparent; transition:all 0.2s; text-transform:uppercase; }
+  .tab.active { color:#818cf8; border-bottom-color:#3730a3; }
+  .tab:hover { color:#a5b4fc; }
+  .panel { display:none; padding:28px 32px 40px; }
+  .panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:20px; color:#1a1a2e; margin-bottom:6px; }
+  .panel-subtitle { font-size:12px; color:#7a8a9a; margin-bottom:24px; letter-spacing:0.5px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border-radius:8px; padding:16px; box-shadow:0 1px 6px rgba(0,0,0,0.06); border-top:3px solid #3730a3; }
+  .signal-num { font-size:26px; font-weight:700; color:#3730a3; line-height:1.1; }
+  .signal-label { font-size:11px; color:#6b7a8a; margin-top:4px; line-height:1.4; }
+  .signal-delta { font-size:11px; font-weight:600; margin-top:6px; }
+  .up { color:#059669; }
+  .down { color:#dc2626; }
+  .neutral { color:#b45309; }
+  .chart-wrap { background:#fff; border-radius:8px; padding:20px; box-shadow:0 1px 6px rgba(0,0,0,0.06); margin-bottom:24px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6b7a8a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation { background:#fff; border-radius:8px; padding:14px 16px; box-shadow:0 1px 6px rgba(0,0,0,0.06); border-left:3px solid #3730a3; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .footer-bar { background:#1a1a2e; padding:12px 32px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-title">Japan Brief · Issue #21 · Visualizations</div>
+    <div class="page-header-meta">June 21, 2026 · 3 stories · Indigo Series</div>
+  </div>
+  <a href="japan-brief.html" class="back-link">Back to Dashboard</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1',0)">Story 1 · AI Advertising</div>
+  <div class="tab" onclick="showViz('s2',1)">Story 2 · Physical AI Strategy</div>
+  <div class="tab" onclick="showViz('s3',2)">Story 3 · Macro Week Ahead</div>
+</div>
+
+<!-- PANEL 1: OpenAI ChatGPT Ads in Japan -->
+<div class="panel active" id="s1">
+  <div class="panel-title">OpenAI ChatGPT Advertising — Japan Launch</div>
+  <div class="panel-subtitle">June 19, 2026 · Commercial AI Monetization · Dentsu Digital Partnership</div>
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-num">¥5,000</div>
+      <div class="signal-label">CPM (cost per 1,000 impressions) for Japan ChatGPT ads</div>
+      <div class="signal-delta neutral">Launch rate · Dentsu-sourced</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">¥1,400</div>
+      <div class="signal-label">Go-plan monthly price — lowest tier that receives ads</div>
+      <div class="signal-delta neutral">Free tier also ad-supported</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">1st</div>
+      <div class="signal-label">Japan is first APAC market for ChatGPT in-session ads</div>
+      <div class="signal-delta up">Ahead of SE Asia, Korea, ANZ</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">ChatGPT Japan Ad Tier Structure — Who Sees Ads vs. Who Does Not</div>
+    <svg viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:620px;">
+      <!-- Bars: tiers -->
+      <!-- Free -->
+      <rect x="40" y="30" width="120" height="50" rx="4" fill="#e0e7ff"/>
+      <text x="100" y="50" text-anchor="middle" font-size="12" font-weight="600" fill="#3730a3">Free Tier</text>
+      <text x="100" y="66" text-anchor="middle" font-size="10" fill="#5a6a8a">¥0 / mo</text>
+      <text x="100" y="96" text-anchor="middle" font-size="10" fill="#059669" font-weight="700">ADS SHOWN</text>
+
+      <!-- Go -->
+      <rect x="180" y="30" width="120" height="50" rx="4" fill="#e0e7ff"/>
+      <text x="240" y="50" text-anchor="middle" font-size="12" font-weight="600" fill="#3730a3">Go Plan</text>
+      <text x="240" y="66" text-anchor="middle" font-size="10" fill="#5a6a8a">¥1,400 / mo</text>
+      <text x="240" y="96" text-anchor="middle" font-size="10" fill="#059669" font-weight="700">ADS SHOWN</text>
+
+      <!-- Plus -->
+      <rect x="320" y="30" width="120" height="50" rx="4" fill="#f3f4f6"/>
+      <text x="380" y="50" text-anchor="middle" font-size="12" font-weight="600" fill="#6b7280">Plus Plan</text>
+      <text x="380" y="66" text-anchor="middle" font-size="10" fill="#9a9a9a">Higher tier</text>
+      <text x="380" y="96" text-anchor="middle" font-size="10" fill="#6b7280" font-weight="700">No ads</text>
+
+      <!-- Pro / Enterprise -->
+      <rect x="460" y="30" width="120" height="50" rx="4" fill="#f3f4f6"/>
+      <text x="520" y="50" text-anchor="middle" font-size="12" font-weight="600" fill="#6b7280">Pro / Enterprise</text>
+      <text x="520" y="66" text-anchor="middle" font-size="10" fill="#9a9a9a">Premium</text>
+      <text x="520" y="96" text-anchor="middle" font-size="10" fill="#6b7280" font-weight="700">No ads</text>
+
+      <!-- Under-18 exclusion note -->
+      <rect x="40" y="130" width="540" height="36" rx="4" fill="#fef3e2"/>
+      <text x="60" y="153" font-size="11" fill="#b45309" font-weight="600">Excluded from ads: Users under 18 · Political advertising · Health-related targeting · Government-regulated categories</text>
+
+      <!-- CPM chart -->
+      <text x="40" y="195" font-size="11" font-weight="700" fill="#6b7a8a" letter-spacing="1">CPM COMPARISON (JPY)</text>
+      <!-- Scale line -->
+      <line x1="40" y1="225" x2="580" y2="225" stroke="#e0e0e0" stroke-width="1"/>
+      <!-- ChatGPT Japan bar -->
+      <rect x="40" y="205" width="175" height="18" rx="2" fill="#3730a3"/>
+      <text x="222" y="218" font-size="11" fill="#3730a3" font-weight="600">¥5,000 — ChatGPT Japan</text>
+      <!-- Context label -->
+      <text x="40" y="238" font-size="10" fill="#9a9a9a">Benchmark: premium Japanese digital placements typically ¥3,000–¥7,000 CPM</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-label">Monetization Signal</div>
+      <div class="annotation-text">Japan is OpenAI's first APAC ad market. The CPM of ¥5,000 positions ChatGPT as a premium inventory play — above YouTube skippable but below premium publisher direct deals.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Dentsu Partnership</div>
+      <div class="annotation-text">Routing placements through Dentsu Digital — Japan's largest ad-tech intermediary — trades margin for speed to market. Expect competing agencies to negotiate access quickly.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Positioning Risk</div>
+      <div class="annotation-text">Japan's PIPC (Personal Information Protection Commission) has been assertive on data use. Conversation-history targeting will attract regulatory scrutiny if ad relevance feels intrusive to users.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Japan Physical AI Strategy -->
+<div class="panel" id="s2">
+  <div class="panel-title">Japan ¥370 Trillion Investment Strategy — Physical AI Priority</div>
+  <div class="panel-subtitle">June 20, 2026 · PM Takaichi "Building a Strong Japan" · 17 Sectors, 62 Technologies</div>
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-num">¥370T</div>
+      <div class="signal-label">Total public + private investment target across 17 sectors by FY2040</div>
+      <div class="signal-delta neutral">~$2.3 trillion USD</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">¥10.5T</div>
+      <div class="signal-label">Physical AI allocation — robots, industrial machinery, autonomous systems</div>
+      <div class="signal-delta up">Priority sector · 30% global share target</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">¥29T</div>
+      <div class="signal-label">Communications infrastructure: 5G+, optical, undersea cables — AI backbone</div>
+      <div class="signal-delta neutral">Multi-decade build-out</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Allocation Breakdown — Selected Sectors from Japan's ¥370T Strategy (2026-2040)</div>
+    <svg viewBox="0 0 620 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:620px;">
+      <!-- Y axis label -->
+      <text x="16" y="140" font-size="10" fill="#9a9a9a" transform="rotate(-90,16,140)">¥ Trillion</text>
+      <!-- Grid lines -->
+      <line x1="60" y1="30" x2="600" y2="30" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="60" y1="80" x2="600" y2="80" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="60" y1="130" x2="600" y2="130" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="60" y1="180" x2="600" y2="180" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="60" y1="210" x2="600" y2="210" stroke="#e0e0e0" stroke-width="1"/>
+      <!-- Y labels -->
+      <text x="50" y="33" text-anchor="end" font-size="10" fill="#9a9a9a">30</text>
+      <text x="50" y="83" text-anchor="end" font-size="10" fill="#9a9a9a">20</text>
+      <text x="50" y="133" text-anchor="end" font-size="10" fill="#9a9a9a">10</text>
+      <text x="50" y="183" text-anchor="end" font-size="10" fill="#9a9a9a">5</text>
+      <text x="50" y="213" text-anchor="end" font-size="10" fill="#9a9a9a">0</text>
+
+      <!-- Bars — Physical AI ¥10.5T -->
+      <rect x="75" y="105" width="60" height="105" rx="3" fill="#3730a3"/>
+      <text x="105" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">¥10.5T</text>
+      <text x="105" y="228" text-anchor="middle" font-size="10" fill="#4a4a5a">Physical AI</text>
+
+      <!-- Comms infra ¥29T -->
+      <rect x="165" y="40" width="60" height="170" rx="3" fill="#6366f1"/>
+      <text x="195" y="35" text-anchor="middle" font-size="11" font-weight="700" fill="#6366f1">¥29T</text>
+      <text x="195" y="228" text-anchor="middle" font-size="10" fill="#4a4a5a">Comms Infra</text>
+
+      <!-- Semiconductors (part of broader strategy) est ¥8T -->
+      <rect x="255" y="125" width="60" height="85" rx="3" fill="#818cf8"/>
+      <text x="285" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#818cf8">~¥8T</text>
+      <text x="285" y="228" text-anchor="middle" font-size="10" fill="#4a4a5a">Semiconductors</text>
+
+      <!-- Defense ¥5T est -->
+      <rect x="345" y="160" width="60" height="50" rx="3" fill="#a5b4fc"/>
+      <text x="375" y="155" text-anchor="middle" font-size="11" fill="#4a4a9a">~¥5T</text>
+      <text x="375" y="228" text-anchor="middle" font-size="10" fill="#4a4a5a">Defense</text>
+
+      <!-- Content ¥20T/yr target by 2033 -->
+      <rect x="435" y="65" width="60" height="145" rx="3" fill="#c7d2fe"/>
+      <text x="465" y="60" text-anchor="middle" font-size="10" fill="#4a4a9a">¥20T/yr</text>
+      <text x="465" y="228" text-anchor="middle" font-size="10" fill="#4a4a5a">Content (2033)</text>
+
+      <!-- Quantum / Fusion est ¥3T -->
+      <rect x="525" y="175" width="60" height="35" rx="3" fill="#e0e7ff"/>
+      <text x="555" y="170" text-anchor="middle" font-size="10" fill="#6b7280">~¥3T</text>
+      <text x="555" y="228" text-anchor="middle" font-size="10" fill="#4a4a5a">Quantum/Fusion</text>
+
+      <!-- Note -->
+      <text x="60" y="258" font-size="10" fill="#9a9a9a">Note: Sector allocations drawn from official announcement; some figures are estimated targets. Content figure = annual export sales target for 2033, not cumulative.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-label">Physical AI Positioning</div>
+      <div class="annotation-text">Japan is explicitly betting on the hardware-software integration layer — robots and industrial machinery — where Fanuc, Yaskawa, and Kawasaki give it structural advantage over U.S. and Chinese software-first AI players.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Budget Credibility Risk</div>
+      <div class="annotation-text">The ¥370T target mixes government disbursement with aspirational private investment. The separate multi-year fund structure is designed to address this, but political durability across cabinet changes is the real test.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Investor Implication</div>
+      <div class="annotation-text">Near-term beneficiaries are suppliers to the physical AI stack: industrial sensor makers, robot integrators, edge compute, and high-speed comms equipment. The ¥29T comms allocation is underappreciated relative to the AI headline.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: Macro Week Ahead -->
+<div class="panel" id="s3">
+  <div class="panel-title">Macro Week Ahead — June 22–28, 2026</div>
+  <div class="panel-subtitle">Yen at 161 · May Trade Detail (Jun 26) · BOJ Summary of Opinions (Jun 30)</div>
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-num">161.80</div>
+      <div class="signal-label">USD/JPY peak on June 19 — near 40-year low, last seen July 2024</div>
+      <div class="signal-delta down">161.96 = 1986 threshold for intervention</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">1.00%</div>
+      <div class="signal-label">BOJ policy rate after June 16 hike — highest since September 1995</div>
+      <div class="signal-delta neutral">Next meeting: late July 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">+17%</div>
+      <div class="signal-label">Japan May exports YoY — fastest growth since Nov 2022 (detail due Jun 26)</div>
+      <div class="signal-delta up">Semiconductors +61.2% YoY</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">USD/JPY Rate and BOJ Intervention Thresholds — 2024-2026</div>
+    <svg viewBox="0 0 620 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:620px;">
+      <!-- Axes -->
+      <line x1="60" y1="20" x2="60" y2="190" stroke="#d0d0d0" stroke-width="1"/>
+      <line x1="60" y1="190" x2="600" y2="190" stroke="#d0d0d0" stroke-width="1"/>
+      <!-- Y labels: 140 at bottom, 165 at top -->
+      <text x="50" y="193" text-anchor="end" font-size="10" fill="#9a9a9a">140</text>
+      <text x="50" y="143" text-anchor="end" font-size="10" fill="#9a9a9a">150</text>
+      <text x="50" y="93" text-anchor="end" font-size="10" fill="#9a9a9a">160</text>
+      <text x="50" y="43" text-anchor="end" font-size="10" fill="#9a9a9a">165</text>
+      <!-- Grid -->
+      <line x1="60" y1="143" x2="600" y2="143" stroke="#f0f0f0" stroke-width="1"/>
+      <line x1="60" y1="93" x2="600" y2="93" stroke="#f0f0f0" stroke-width="1"/>
+
+      <!-- Intervention threshold 161.96 -->
+      <line x1="60" y1="63" x2="600" y2="63" stroke="#dc2626" stroke-width="1" stroke-dasharray="6,3"/>
+      <text x="602" y="67" font-size="9" fill="#dc2626" font-weight="600">161.96</text>
+      <text x="62" y="58" font-size="9" fill="#dc2626">1986 threshold — beyond this = 40-yr low → high intervention risk</text>
+
+      <!-- BOJ hike line May 2022 ~147 yen area -->
+      <!-- Simplified rate line: Jan 2025 ~155, Jul 2024 ~162 dip, recovered, now ~161 -->
+      <!-- X axis: Jan 2025 = 60, Jul 2024 = 110 (past), now Jun 2026 = 580 -->
+
+      <!-- Rate path (stylized) -->
+      <polyline points="60,123 120,108 180,73 230,78 280,128 320,108 360,93 400,103 450,98 500,88 550,80 580,84"
+                fill="none" stroke="#3730a3" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- Jul 2024 intervention marker -->
+      <circle cx="180" cy="73" r="5" fill="#dc2626"/>
+      <text x="182" y="68" font-size="9" fill="#dc2626">Jul 2024 intervn (161.95)</text>
+
+      <!-- Jun 16 BOJ hike marker -->
+      <circle cx="550" cy="80" r="5" fill="#059669"/>
+      <text x="490" y="75" font-size="9" fill="#059669">Jun 16: BOJ +25bp to 1%</text>
+
+      <!-- Jun 19 current marker -->
+      <circle cx="580" cy="84" r="5" fill="#b45309"/>
+      <text x="510" y="100" font-size="9" fill="#b45309">Jun 19: 161.80</text>
+
+      <!-- X labels -->
+      <text x="60" y="207" text-anchor="middle" font-size="9" fill="#9a9a9a">2024</text>
+      <text x="280" y="207" text-anchor="middle" font-size="9" fill="#9a9a9a">Mid-2025</text>
+      <text x="500" y="207" text-anchor="middle" font-size="9" fill="#9a9a9a">Early 2026</text>
+      <text x="580" y="207" text-anchor="middle" font-size="9" fill="#b45309">Jun 2026</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-label">Intervention Math</div>
+      <div class="annotation-text">At 161.80, the yen is 16 pips from the 1986 threshold. Prior interventions in 2022 and 2024 came at rates the market viewed as clearly excessive. The current level is psychologically significant but may not be the trigger.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Jun 26 Trade Data</div>
+      <div class="annotation-text">Commodity-level May export data will reveal whether the +61% semiconductor surge is concentrated in U.S.-bound shipments (positive for equipment names) or spread across Asia (broader AI buildout signal). Watch Tokyo Electron's geographic split.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Life Insurer Hedge Watch</div>
+      <div class="annotation-text">Japanese life insurers hold large U.S. Treasury positions. FX hedging costs near post-2008 highs change their duration extension calculus. A sustained yen above 161 may trigger mechanical hedge adjustment flows that reinforce yen weakness.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #21 · June 21, 2026 · Not investment advice
+</div>
+
+<script>
+function showViz(id, tabIndex) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab')[tabIndex].classList.add('active');
+}
+</script>
+</body>
+</html>
