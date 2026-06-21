@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #14 · Data Visualizations · June 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:24px 40px; border-bottom:4px solid #3730a3; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-header-sub { font-size:11px; color:#818cf8; letter-spacing:2px; text-transform:uppercase; margin-top:4px; }
+  .back-link { font-size:12px; color:#818cf8; text-decoration:none; border:1px solid #3730a3; padding:6px 14px; border-radius:3px; }
+  .back-link:hover { background:#3730a3; color:#fff; }
+  .tabs { display:flex; background:#fff; border-bottom:2px solid #e0e0e0; padding:0 40px; }
+  .tab { padding:14px 20px; font-size:13px; font-weight:500; color:#6a6a8a; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; font-weight:600; }
+  .tab:hover { color:#3730a3; }
+  .viz-panel { display:none; padding:32px 40px 48px; }
+  .viz-panel.active { display:block; }
+  .viz-title { font-family:'Playfair Display',serif; font-size:22px; color:#1a1a2e; margin-bottom:6px; }
+  .viz-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; margin-bottom:16px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#f8f9fc; border:1px solid #e0e0e8; border-radius:6px; padding:16px; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a8aaa; margin-bottom:6px; }
+  .signal-value { font-size:26px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-unit { font-size:12px; font-weight:400; color:#6a6a8a; margin-left:2px; }
+  .signal-note { font-size:11px; color:#8a8aaa; margin-top:4px; }
+  .chart-box { background:#fff; border:1px solid #e8e0d4; border-radius:6px; padding:24px; margin-bottom:24px; }
+  .chart-title { font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#6a6a8a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:24px; }
+  .annotation { background:#f8f9fc; border-left:3px solid #3730a3; padding:12px; border-radius:0 4px 4px 0; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8a8aaa; margin-bottom:4px; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.5; }
+  .annotation.pink { border-left-color:#be185d; }
+  .annotation.amber { border-left-color:#b45309; }
+  .footer-bar { background:#1a1a2e; padding:14px 40px; text-align:center; font-size:11px; color:#4a5a7a; }
+  svg text { font-family: 'Inter', sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-title">Japan Brief · Issue #14 · Data Visualizations</div>
+    <div class="page-header-sub">June 12, 2026 · 3 Stories</div>
+  </div>
+  <a href="japan-brief.html" class="back-link">Back to Brief</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1',this)">NEC-Anthropic Finance</div>
+  <div class="tab" onclick="showViz('s2',this)">Rapidus Europe</div>
+  <div class="tab" onclick="showViz('s3',this)">Japan PPI Inflation</div>
+</div>
+
+<!-- STORY 1: NEC-Anthropic Finance Coalition -->
+<div id="s1" class="viz-panel active">
+  <div class="viz-tag tag-ai">AI &amp; Tech</div>
+  <div class="viz-title">NEC-Anthropic: Japan Financial Sector AI Coalition</div>
+
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Institutions Joining</div>
+      <div class="signal-value">8<span class="signal-unit">firms</span></div>
+      <div class="signal-note">June 11 announcement</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">NEC Group AI Users</div>
+      <div class="signal-value">30k<span class="signal-unit">employees</span></div>
+      <div class="signal-note">Claude deployment target</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Weeks Since Founding</div>
+      <div class="signal-value">7<span class="signal-unit">wks</span></div>
+      <div class="signal-note">Partnership announced Apr 24</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Financial Institution Coalition — Sector Breakdown</div>
+    <svg viewBox="0 0 580 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="580" height="280" fill="#fafbfe" rx="4"/>
+
+      <!-- Center hub: NEC-Anthropic -->
+      <circle cx="290" cy="140" r="42" fill="#3730a3" opacity="0.92"/>
+      <text x="290" y="133" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">NEC</text>
+      <text x="290" y="148" text-anchor="middle" fill="#c7d2fe" font-size="9">+ Anthropic</text>
+      <text x="290" y="162" text-anchor="middle" fill="#c7d2fe" font-size="9">Platform</text>
+
+      <!-- BANKING -->
+      <circle cx="130" cy="80" r="30" fill="#3730a3" opacity="0.65"/>
+      <text x="130" y="75" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">SMFG</text>
+      <text x="130" y="88" text-anchor="middle" fill="#c7d2fe" font-size="8">Banking</text>
+      <line x1="160" y1="95" x2="252" y2="127" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <circle cx="84" cy="160" r="28" fill="#3730a3" opacity="0.55"/>
+      <text x="84" y="155" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">SMTB</text>
+      <text x="84" y="168" text-anchor="middle" fill="#c7d2fe" font-size="8">Trust Bank</text>
+      <line x1="112" y1="160" x2="248" y2="148" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <circle cx="110" cy="240" r="28" fill="#3730a3" opacity="0.55"/>
+      <text x="110" y="235" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">SMT</text>
+      <text x="110" y="248" text-anchor="middle" fill="#c7d2fe" font-size="8">Trust Grp</text>
+      <line x1="136" y1="230" x2="252" y2="166" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <!-- SECURITIES -->
+      <circle cx="290" cy="34" r="28" fill="#be185d" opacity="0.70"/>
+      <text x="290" y="29" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Daiwa</text>
+      <text x="290" y="42" text-anchor="middle" fill="#fce7f3" font-size="8">Securities</text>
+      <line x1="290" y1="62" x2="290" y2="98" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <!-- INSURANCE -->
+      <circle cx="450" cy="80" r="30" fill="#b45309" opacity="0.65"/>
+      <text x="450" y="75" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">MS&amp;AD</text>
+      <text x="450" y="88" text-anchor="middle" fill="#fef3c7" font-size="8">Insurance</text>
+      <line x1="420" y1="95" x2="328" y2="127" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <circle cx="496" cy="160" r="28" fill="#b45309" opacity="0.55"/>
+      <text x="496" y="155" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Sumitomo</text>
+      <text x="496" y="168" text-anchor="middle" fill="#fef3c7" font-size="8">Life</text>
+      <line x1="468" y1="160" x2="332" y2="148" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <circle cx="470" cy="240" r="28" fill="#b45309" opacity="0.55"/>
+      <text x="470" y="235" text-anchor="middle" fill="#fff" font-size="9" font-weight="600">Meiji</text>
+      <text x="470" y="248" text-anchor="middle" fill="#fef3c7" font-size="8">Yasuda Life</text>
+      <line x1="444" y1="230" x2="328" y2="166" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+      <!-- Legend -->
+      <rect x="190" y="258" width="10" height="10" fill="#3730a3" opacity="0.65" rx="2"/>
+      <text x="204" y="267" fill="#6a6a8a" font-size="10">Banking / Trust</text>
+      <rect x="290" y="258" width="10" height="10" fill="#be185d" opacity="0.70" rx="2"/>
+      <text x="304" y="267" fill="#6a6a8a" font-size="10">Securities</text>
+      <rect x="370" y="258" width="10" height="10" fill="#b45309" opacity="0.65" rx="2"/>
+      <text x="384" y="267" fill="#6a6a8a" font-size="10">Insurance</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-label">Security Driver</div>
+      <div class="annotation-text">Coalition explicitly framed around AI-enabled cyber defense — NEC's SOC integration is the adoption entry point before broader productivity tools.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Sector Coverage</div>
+      <div class="annotation-text">Three of Japan's largest banking / trust groups, the largest insurance group by premiums, and the top domestic securities firm now in one AI framework.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-label">Scale Signal</div>
+      <div class="annotation-text">30,000 NEC employees plus combined workforce of 8 institutions creates one of Japan's largest enterprise AI deployment cohorts.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: Rapidus Europe -->
+<div id="s2" class="viz-panel">
+  <div class="viz-tag tag-semi">Semiconductors</div>
+  <div class="viz-title">Rapidus International Partnership Architecture</div>
+
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">New MoU Partners</div>
+      <div class="signal-value">2<span class="signal-unit">EU</span></div>
+      <div class="signal-note">UK + Italy, signed June 14</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Govt Support Cumulative</div>
+      <div class="signal-value">2.35<span class="signal-unit">T yen</span></div>
+      <div class="signal-note">Through June 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">2nm Target Year</div>
+      <div class="signal-value">2027</div>
+      <div class="signal-note">Mass production, Hokkaido</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Rapidus Global Partnership Timeline</div>
+    <svg viewBox="0 0 560 230" xmlns="http://www.w3.org/2000/svg">
+      <rect width="560" height="230" fill="#fafbfe" rx="4"/>
+
+      <!-- Timeline spine -->
+      <line x1="60" y1="115" x2="520" y2="115" stroke="#e0d8d4" stroke-width="2"/>
+
+      <!-- Year markers -->
+      <text x="60" y="200" text-anchor="middle" fill="#9a8a7a" font-size="10">2021</text>
+      <text x="170" y="200" text-anchor="middle" fill="#9a8a7a" font-size="10">2022–23</text>
+      <text x="280" y="200" text-anchor="middle" fill="#9a8a7a" font-size="10">2024–25</text>
+      <text x="400" y="200" text-anchor="middle" fill="#be185d" font-size="10" font-weight="600">Jun 2026</text>
+      <text x="500" y="200" text-anchor="middle" fill="#3730a3" font-size="10" font-weight="600">2027</text>
+
+      <!-- Event 1: Founded -->
+      <circle cx="60" cy="115" r="7" fill="#3730a3"/>
+      <line x1="60" y1="108" x2="60" y2="60" stroke="#3730a3" stroke-width="1.5"/>
+      <rect x="20" y="40" width="80" height="18" rx="3" fill="#e0e7ff"/>
+      <text x="60" y="52" text-anchor="middle" fill="#3730a3" font-size="9" font-weight="600">Rapidus Founded</text>
+
+      <!-- Event 2: IBM Partnership -->
+      <circle cx="170" cy="115" r="7" fill="#3730a3"/>
+      <line x1="170" y1="122" x2="170" y2="165" stroke="#3730a3" stroke-width="1.5"/>
+      <rect x="116" y="165" width="108" height="28" rx="3" fill="#e0e7ff"/>
+      <text x="170" y="177" text-anchor="middle" fill="#3730a3" font-size="9" font-weight="600">IBM Partnership</text>
+      <text x="170" y="188" text-anchor="middle" fill="#6a6a8a" font-size="8">2nm process R&amp;D</text>
+
+      <!-- Event 3: imec -->
+      <circle cx="280" cy="115" r="7" fill="#3730a3"/>
+      <line x1="280" y1="108" x2="280" y2="60" stroke="#3730a3" stroke-width="1.5"/>
+      <rect x="226" y="40" width="108" height="28" rx="3" fill="#e0e7ff"/>
+      <text x="280" y="52" text-anchor="middle" fill="#3730a3" font-size="9" font-weight="600">imec (Belgium)</text>
+      <text x="280" y="63" text-anchor="middle" fill="#6a6a8a" font-size="8">EUV lithography</text>
+
+      <!-- Event 4: UK + Italy MoUs -->
+      <circle cx="400" cy="115" r="9" fill="#be185d"/>
+      <line x1="400" y1="122" x2="400" y2="165" stroke="#be185d" stroke-width="1.5"/>
+      <rect x="336" y="164" width="128" height="28" rx="3" fill="#fce7f3"/>
+      <text x="400" y="176" text-anchor="middle" fill="#be185d" font-size="9" font-weight="600">UK + Italy MoUs</text>
+      <text x="400" y="187" text-anchor="middle" fill="#6a6a8a" font-size="8">European sales channels</text>
+
+      <!-- Event 5: Production -->
+      <circle cx="500" cy="115" r="9" fill="#3730a3" opacity="0.4" stroke="#3730a3" stroke-width="2" stroke-dasharray="3,2"/>
+      <line x1="500" y1="108" x2="500" y2="60" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <rect x="446" y="40" width="108" height="28" rx="3" fill="#e0e7ff" opacity="0.6"/>
+      <text x="500" y="52" text-anchor="middle" fill="#3730a3" font-size="9" font-weight="600">2nm Production</text>
+      <text x="500" y="63" text-anchor="middle" fill="#6a6a8a" font-size="8">Hokkaido (target)</text>
+
+      <!-- Arrow -->
+      <polygon points="516,115 508,110 508,120" fill="#3730a3" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation pink">
+      <div class="annotation-label">European Logic</div>
+      <div class="annotation-text">UK and Italy MoUs are primarily about building sovereign-aligned research ties and sales channels, not technology transfer. Rapidus needs IBM and imec for process IP.</div>
+    </div>
+    <div class="annotation pink">
+      <div class="annotation-label">Geopolitical Layer</div>
+      <div class="annotation-text">Japan is now partnered with US (IBM), Belgium (imec), UK, and Italy — positioning Rapidus as a multilateral supplier, not solely a US-Japan alliance asset.</div>
+    </div>
+    <div class="annotation pink">
+      <div class="annotation-label">Risk to Watch</div>
+      <div class="annotation-text">2027 mass-production timeline remains the primary milestone risk. Yield targets at 2nm are the gating constraint — European partnerships don't de-risk the fab execution.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: Japan PPI -->
+<div id="s3" class="viz-panel">
+  <div class="viz-tag tag-macro">Macro</div>
+  <div class="viz-title">Japan Corporate Goods Price Index (PPI) — Trend</div>
+
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">May 2026 PPI YoY</div>
+      <div class="signal-value">+6.3<span class="signal-unit">%</span></div>
+      <div class="signal-note">vs 5.5% consensus forecast</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY (Jun 11)</div>
+      <div class="signal-value">160.1</div>
+      <div class="signal-note">Near weakest since Jul 2024</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">BOJ Policy Rate</div>
+      <div class="signal-value">0.75<span class="signal-unit">%</span></div>
+      <div class="signal-note">1.00% expected Jun 16</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Japan PPI Year-over-Year Change (%) · 2025–2026</div>
+    <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg">
+      <rect width="560" height="220" fill="#fafbfe" rx="4"/>
+
+      <!-- Grid lines -->
+      <line x1="60" y1="20" x2="540" y2="20" stroke="#f0eae4" stroke-width="1"/>
+      <line x1="60" y1="60" x2="540" y2="60" stroke="#f0eae4" stroke-width="1"/>
+      <line x1="60" y1="100" x2="540" y2="100" stroke="#f0eae4" stroke-width="1"/>
+      <line x1="60" y1="140" x2="540" y2="140" stroke="#f0eae4" stroke-width="1"/>
+      <line x1="60" y1="180" x2="540" y2="180" stroke="#e0d8d4" stroke-width="1.5"/>
+
+      <!-- Y axis labels: 7%, 5%, 3%, 1%, 0% baseline at 180 -->
+      <text x="52" y="24" text-anchor="end" fill="#9a8a7a" font-size="9">7%</text>
+      <text x="52" y="64" text-anchor="end" fill="#9a8a7a" font-size="9">5%</text>
+      <text x="52" y="104" text-anchor="end" fill="#9a8a7a" font-size="9">3%</text>
+      <text x="52" y="144" text-anchor="end" fill="#9a8a7a" font-size="9">1%</text>
+      <text x="52" y="184" text-anchor="end" fill="#9a8a7a" font-size="9">0%</text>
+
+      <!-- Data: monthly PPI YoY approx values 2025–May 2026 -->
+      <!-- Points: (x, y) where y = 180 - (val/7)*160 -->
+      <!-- Jun25=2.8, Jul25=3.2, Aug25=3.5, Sep25=3.8, Oct25=4.1, Nov25=4.3, Dec25=4.6, Jan26=4.8, Feb26=5.0, Mar26=5.1, Apr26=5.3, May26=6.3 -->
+      <!-- x values: evenly spaced 60 to 540 = 480/11 steps = ~43.6 apart -->
+      <!-- y = 180 - (val/7)*160 -->
+      <!-- Jun25: 180-(2.8/7)*160=180-64=116 -->
+      <!-- Jul25: 180-(3.2/7)*160=180-73=107 -->
+      <!-- Aug25: 180-(3.5/7)*160=180-80=100 -->
+      <!-- Sep25: 180-(3.8/7)*160=180-86.9=93 -->
+      <!-- Oct25: 180-(4.1/7)*160=180-93.7=86 -->
+      <!-- Nov25: 180-(4.3/7)*160=180-98.3=82 -->
+      <!-- Dec25: 180-(4.6/7)*160=180-105.1=75 -->
+      <!-- Jan26: 180-(4.8/7)*160=180-109.7=70 -->
+      <!-- Feb26: 180-(5.0/7)*160=180-114.3=66 -->
+      <!-- Mar26: 180-(5.1/7)*160=180-116.6=63 -->
+      <!-- Apr26: 180-(5.3/7)*160=180-121.1=59 -->
+      <!-- May26: 180-(6.3/7)*160=180-144=36 -->
+
+      <polyline points="60,116 104,107 148,100 192,93 236,86 280,82 324,75 368,70 412,66 456,63 500,59 540,36"
+        fill="none" stroke="#b45309" stroke-width="2.5"/>
+
+      <!-- Fill area under line -->
+      <polygon points="60,180 60,116 104,107 148,100 192,93 236,86 280,82 324,75 368,70 412,66 456,63 500,59 540,36 540,180"
+        fill="#b45309" opacity="0.08"/>
+
+      <!-- Highlight May 2026 point -->
+      <circle cx="540" cy="36" r="6" fill="#b45309"/>
+      <text x="535" y="28" text-anchor="end" fill="#b45309" font-size="10" font-weight="700">6.3%</text>
+
+      <!-- Forecast dotted line at 5.5% consensus -->
+      <line x1="500" y1="64" x2="540" y2="64" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="542" y="68" fill="#3730a3" font-size="9">Consensus 5.5%</text>
+
+      <!-- X axis labels -->
+      <text x="60" y="196" text-anchor="middle" fill="#9a8a7a" font-size="9">Jun '25</text>
+      <text x="192" y="196" text-anchor="middle" fill="#9a8a7a" font-size="9">Sep '25</text>
+      <text x="324" y="196" text-anchor="middle" fill="#9a8a7a" font-size="9">Dec '25</text>
+      <text x="412" y="196" text-anchor="middle" fill="#9a8a7a" font-size="9">Feb '26</text>
+      <text x="500" y="196" text-anchor="middle" fill="#9a8a7a" font-size="9">Apr '26</text>
+      <text x="540" y="196" text-anchor="middle" fill="#b45309" font-size="9" font-weight="600">May '26</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation amber">
+      <div class="annotation-label">Not Just Energy</div>
+      <div class="annotation-text">Nonferrous metals and chemicals also moved higher — Strait of Hormuz disruption is broadening from energy costs into upstream manufacturing inputs.</div>
+    </div>
+    <div class="annotation amber">
+      <div class="annotation-label">Post-June Path</div>
+      <div class="annotation-text">June 16 hike to 1.00% is priced above 90%. The inflation print shifts attention to September and Q4 — real rates remain deeply negative even after the June move.</div>
+    </div>
+    <div class="annotation amber">
+      <div class="annotation-label">Equity Implication</div>
+      <div class="annotation-text">Import-dependent manufacturers face widening cost pressure. Exporters and domestic-pricing-power companies are better positioned — sector rotation factor to monitor.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #14 · June 12, 2026 · Not investment advice
+</div>
+
+<script>
+function showViz(id, tabEl) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tabEl.classList.add('active');
+}
+</script>
+</body>
+</html>
