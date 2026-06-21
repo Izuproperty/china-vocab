@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #28 · Visualized · June 14, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:20px 32px 16px; border-bottom:3px solid #c0392b; display:flex; justify-content:space-between; align-items:center; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:18px; color:#fff; }
+  .page-header-meta { font-size:11px; color:#8a9bb5; margin-top:4px; }
+  .back-link { font-size:11px; color:#c0392b; text-decoration:none; font-weight:600; letter-spacing:1px; }
+  .back-link:hover { color:#e04040; }
+  .tabs { display:flex; background:#fff; border-bottom:2px solid #e8e0d4; padding:0 32px; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; }
+  .tab:hover:not(.active) { color:#1a1a2e; }
+  .viz-panel { display:none; padding:32px; max-width:860px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border:1px solid #e8e0d4; border-radius:6px; padding:18px 16px; text-align:center; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; margin-bottom:6px; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-bottom:4px; }
+  .signal-sub { font-size:11px; color:#b0907a; }
+  .chart-box { background:#fff; border:1px solid #e8e0d4; border-radius:6px; padding:24px; margin-bottom:28px; }
+  .chart-title { font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#6a5a4a; margin-bottom:18px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .annotation-card { border-radius:5px; padding:14px 16px; font-size:12.5px; line-height:1.6; }
+  .annotation-card.red { background:#fef2f2; border-left:4px solid #c0392b; }
+  .annotation-card.amber { background:#fefce8; border-left:4px solid #d97706; }
+  .annotation-card.green { background:#f0fdf4; border-left:4px solid #16a34a; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .annotation-card-label { color:#c0392b; }
+  .annotation-card.amber .annotation-card-label { color:#d97706; }
+  .annotation-card.green .annotation-card-label { color:#16a34a; }
+  .annotation-card-zh { margin-top:8px; font-size:13px; font-weight:700; color:#1a1a2e; }
+  .annotation-card-en { font-size:10px; font-style:italic; color:#6a5a4a; margin-left:4px; font-weight:400; }
+  .page-footer { background:#1a1a2e; text-align:center; padding:16px 32px; font-size:10px; color:#4a5a7a; }
+  svg text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-title">China Brief · Issue #28 · Visualized</div>
+    <div class="page-header-meta">June 14, 2026 · 3 stories · Data sourced from public reporting</div>
+  </div>
+  <a class="back-link" href="brief.html">← Return to China Brief</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1', this)">Humanoid IPO Wave</div>
+  <div class="tab" onclick="showViz('s2', this)">Qwen3.7-Plus GUI Agent</div>
+  <div class="tab" onclick="showViz('s3', this)">China May Trade Data</div>
+</div>
+
+<!-- STORY 1: Humanoid Robot IPO Wave -->
+<div id="s1" class="viz-panel active">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">$7B</div>
+      <div class="signal-label">Unitree Target Valuation</div>
+      <div class="signal-sub">STAR Market listing</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">$1.5B</div>
+      <div class="signal-label">EngineAI Post-B Valuation</div>
+      <div class="signal-sub">April 2026 Series B · 200M yuan raised</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">4</div>
+      <div class="signal-label">Companies Filing / Planning</div>
+      <div class="signal-sub">EngineAI · Unitree · Agibot · Linkerbot</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Humanoid Robot IPO Cohort 2026 — Estimated Valuation vs. Production Claims</div>
+    <svg viewBox="0 0 760 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Axes -->
+      <line x1="110" y1="20" x2="110" y2="230" stroke="#e0d8d0" stroke-width="1.5"/>
+      <line x1="110" y1="230" x2="740" y2="230" stroke="#e0d8d0" stroke-width="1.5"/>
+      <!-- Y-axis label -->
+      <text x="20" y="130" font-size="10" fill="#9a8a7a" text-anchor="middle" transform="rotate(-90,20,130)">Est. Valuation (USD bn)</text>
+      <!-- Y gridlines and labels -->
+      <line x1="108" y1="50" x2="740" y2="50" stroke="#f0ede8" stroke-width="1"/>
+      <text x="100" y="54" font-size="10" fill="#9a8a7a" text-anchor="end">7</text>
+      <line x1="108" y1="95" x2="740" y2="95" stroke="#f0ede8" stroke-width="1"/>
+      <text x="100" y="99" font-size="10" fill="#9a8a7a" text-anchor="end">5</text>
+      <line x1="108" y1="140" x2="740" y2="140" stroke="#f0ede8" stroke-width="1"/>
+      <text x="100" y="144" font-size="10" fill="#9a8a7a" text-anchor="end">3</text>
+      <line x1="108" y1="185" x2="740" y2="185" stroke="#f0ede8" stroke-width="1"/>
+      <text x="100" y="189" font-size="10" fill="#9a8a7a" text-anchor="end">1.5</text>
+
+      <!-- Bar: Unitree $7B -->
+      <rect x="140" y="50" width="110" height="180" fill="#c0392b" rx="3"/>
+      <text x="195" y="44" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">$7.0B</text>
+      <text x="195" y="248" font-size="11" fill="#6a5a4a" text-anchor="middle">宇树科技</text>
+      <text x="195" y="261" font-size="10" fill="#9a8a7a" text-anchor="middle">Unitree</text>
+      <text x="195" y="273" font-size="9" fill="#b0907a" text-anchor="middle">STAR Mkt</text>
+
+      <!-- Bar: Agibot $6B -->
+      <rect x="280" y="73" width="110" height="157" fill="#1a56db" rx="3"/>
+      <text x="335" y="67" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">$6.0B</text>
+      <text x="335" y="248" font-size="11" fill="#6a5a4a" text-anchor="middle">智元机器人</text>
+      <text x="335" y="261" font-size="10" fill="#9a8a7a" text-anchor="middle">Agibot</text>
+      <text x="335" y="273" font-size="9" fill="#b0907a" text-anchor="middle">HK Exchange</text>
+
+      <!-- Bar: Linkerbot $6B -->
+      <rect x="420" y="73" width="110" height="157" fill="#2a6aad" rx="3"/>
+      <text x="475" y="67" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">$6.0B</text>
+      <text x="475" y="248" font-size="11" fill="#6a5a4a" text-anchor="middle">Linkerbot</text>
+      <text x="475" y="261" font-size="10" fill="#9a8a7a" text-anchor="middle">Robot Hands</text>
+      <text x="475" y="273" font-size="9" fill="#b0907a" text-anchor="middle">Pursuing</text>
+
+      <!-- Bar: EngineAI $1.5B -->
+      <rect x="560" y="185" width="110" height="45" fill="#8a3020" rx="3"/>
+      <text x="615" y="179" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">$1.5B</text>
+      <text x="615" y="248" font-size="11" fill="#6a5a4a" text-anchor="middle">EngineAI</text>
+      <text x="615" y="261" font-size="10" fill="#9a8a7a" text-anchor="middle">T800 Robots</text>
+      <text x="615" y="273" font-size="9" fill="#b0907a" text-anchor="middle">HK Exchange</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Claim / Primary Risk</div>
+      A wave of humanoid robot companies are simultaneously seeking public listings. Valuation claims rest heavily on production capacity targets rather than confirmed order books — the key execution risk is whether <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div> platforms achieve repeatable unit economics at the claimed volumes.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">What Remains Unverified</div>
+      EngineAI's "one unit per 15 minutes" claim and 10,000-unit annual capacity figure have not been independently verified. <div class="annotation-card-zh">上市<span class="annotation-card-en">shàngshì · to list / go public</span></div> timelines for Unitree and Agibot remain subject to HKEX/STAR Market review; regulatory approval is not guaranteed.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable / Actionable Signal</div>
+      Multiple differentiated positions in the humanoid stack — bipeds, dexterous hands, AI integration — are simultaneously entering public markets. Investors able to underwrite genuine production differentiation have a structurally richer entry point than the demo-only phase of 2024. Component suppliers (Luxshare, CATL) are already confirmed investors in this cohort.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: Qwen3.7-Plus GUI Agent -->
+<div id="s2" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">79.0</div>
+      <div class="signal-label">ScreenSpot Pro Score</div>
+      <div class="signal-sub">GUI navigation benchmark · peer to Claude Computer Use</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">1/6</div>
+      <div class="signal-label">Price vs. Qwen 3.7 Max</div>
+      <div class="signal-sub">Per-token pricing differential</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">1M</div>
+      <div class="signal-label">Context Window (tokens)</div>
+      <div class="signal-sub">256K chain-of-thought reasoning budget</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Qwen3.7-Plus Architecture — GUI Agent Capability Stack</div>
+    <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Layer boxes -->
+      <!-- Input Layer -->
+      <rect x="20" y="20" width="120" height="50" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="80" y="41" font-size="11" fill="#1a56db" text-anchor="middle" font-weight="600">Text</text>
+      <text x="80" y="56" font-size="10" fill="#4a6ab0" text-anchor="middle">Input</text>
+
+      <rect x="155" y="20" width="120" height="50" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="215" y="41" font-size="11" fill="#1a56db" text-anchor="middle" font-weight="600">Images</text>
+      <text x="215" y="56" font-size="10" fill="#4a6ab0" text-anchor="middle">Vision Input</text>
+
+      <rect x="290" y="20" width="120" height="50" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="350" y="41" font-size="11" fill="#1a56db" text-anchor="middle" font-weight="600">Video</text>
+      <text x="350" y="56" font-size="10" fill="#4a6ab0" text-anchor="middle">Video Input</text>
+
+      <!-- Arrow down -->
+      <line x1="360" y1="70" x2="360" y2="95" stroke="#c0d0e0" stroke-width="1.5" marker-end="url(#arr)"/>
+      <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#c0d0e0"/></marker></defs>
+
+      <!-- Core Model -->
+      <rect x="100" y="95" width="520" height="55" rx="4" fill="#1a1a2e" stroke="#c0392b" stroke-width="2"/>
+      <text x="360" y="118" font-size="13" fill="#e8d5b0" text-anchor="middle" font-weight="700">Qwen3.7-Plus Core (通义 · Tōngyì)</text>
+      <text x="360" y="136" font-size="10" fill="#8a9bb5" text-anchor="middle">Deep Reasoning · 256K CoT Budget · 1M Context · Tool Invocation</text>
+
+      <!-- Arrow down -->
+      <line x1="360" y1="150" x2="360" y2="172" stroke="#c0d0e0" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Output actions -->
+      <rect x="100" y="172" width="120" height="50" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="160" y="193" font-size="10" fill="#16a34a" text-anchor="middle" font-weight="600">Screen Read</text>
+      <text x="160" y="208" font-size="9" fill="#4a8a5a" text-anchor="middle">GUI Navigation</text>
+
+      <rect x="235" y="172" width="120" height="50" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="295" y="193" font-size="10" fill="#16a34a" text-anchor="middle" font-weight="600">Code Write</text>
+      <text x="295" y="208" font-size="9" fill="#4a8a5a" text-anchor="middle">Self-Test Loop</text>
+
+      <rect x="370" y="172" width="120" height="50" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="430" y="193" font-size="10" fill="#16a34a" text-anchor="middle" font-weight="600">API Tool Use</text>
+      <text x="430" y="208" font-size="9" fill="#4a8a5a" text-anchor="middle">External Services</text>
+
+      <rect x="505" y="172" width="120" height="50" rx="4" fill="#fefce8" stroke="#d97706" stroke-width="1.5"/>
+      <text x="565" y="193" font-size="10" fill="#d97706" text-anchor="middle" font-weight="600">百炼 (Bǎiliàn)</text>
+      <text x="565" y="208" font-size="9" fill="#8a6a20" text-anchor="middle">Delivery · API</text>
+
+      <!-- Benchmark badge -->
+      <rect x="480" y="20" width="160" height="60" rx="4" fill="#fef2f2" stroke="#c0392b" stroke-width="1"/>
+      <text x="560" y="40" font-size="10" fill="#9a3a2a" text-anchor="middle" font-weight="600">ScreenSpot Pro</text>
+      <text x="560" y="58" font-size="22" fill="#c0392b" text-anchor="middle" font-weight="700">79.0</text>
+      <text x="560" y="74" font-size="9" fill="#9a3a2a" text-anchor="middle">GUI Benchmark Score</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Claim / Primary Risk</div>
+      Alibaba claims Qwen3.7-Plus is in the same GUI-agent performance tier as Claude Computer Use and OpenAI Operator at one-sixth the price. The thesis depends on whether benchmark performance translates to production-environment reliability — historically a significant gap for GUI automation systems.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">What Remains Unverified</div>
+      ScreenSpot Pro scoring methodology and live-environment failure rates have not been independently audited. The model is available on <div class="annotation-card-zh">百炼<span class="annotation-card-en">Bǎiliàn · Alibaba's AI model platform</span></div> but enterprise adoption data is not yet public. Pricing sustainability as inference costs evolve is unconfirmed.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable / Actionable Signal</div>
+      A capable, low-cost GUI agent from a Chinese cloud provider — accessible via API without export control complications — is a new variable for enterprise automation procurement in Asia-Pacific. Financial services firms evaluating agentic workflow automation should include Qwen3.7-Plus in pilot evaluation given the pricing differential.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: China May Trade Data -->
+<div id="s3" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">$376.8B</div>
+      <div class="signal-label">May Exports (Record)</div>
+      <div class="signal-sub">+19.4% YoY · prev. +14.1%</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">$105.4B</div>
+      <div class="signal-label">Trade Surplus</div>
+      <div class="signal-sub">Largest since Jan 2026 · +2.6% vs May 2025</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">+27.4%</div>
+      <div class="signal-label">Import Growth YoY</div>
+      <div class="signal-sub">$271.4B · fastest in recent months</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Monthly Trade Surplus 2026 — USD Billions (General Administration of Customs)</div>
+    <svg viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Y axis -->
+      <line x1="70" y1="20" x2="70" y2="200" stroke="#e0d8d0" stroke-width="1.5"/>
+      <line x1="70" y1="200" x2="700" y2="200" stroke="#e0d8d0" stroke-width="1.5"/>
+      <!-- Gridlines -->
+      <line x1="68" y1="50" x2="700" y2="50" stroke="#f0ede8" stroke-width="1"/>
+      <text x="60" y="54" font-size="10" fill="#9a8a7a" text-anchor="end">120</text>
+      <line x1="68" y1="100" x2="700" y2="100" stroke="#f0ede8" stroke-width="1"/>
+      <text x="60" y="104" font-size="10" fill="#9a8a7a" text-anchor="end">80</text>
+      <line x1="68" y1="150" x2="700" y2="150" stroke="#f0ede8" stroke-width="1"/>
+      <text x="60" y="154" font-size="10" fill="#9a8a7a" text-anchor="end">40</text>
+      <text x="60" y="204" font-size="10" fill="#9a8a7a" text-anchor="end">0</text>
+
+      <!-- Bars — estimated monthly surpluses (Jan–May 2026) -->
+      <!-- Jan: ~103B -->
+      <rect x="90" y="57" width="70" height="143" fill="#1a56db" rx="2" opacity="0.7"/>
+      <text x="125" y="51" font-size="10" fill="#1a1a2e" text-anchor="middle">$103B</text>
+      <text x="125" y="218" font-size="10" fill="#6a5a4a" text-anchor="middle">Jan</text>
+
+      <!-- Feb: ~95B -->
+      <rect x="200" y="77" width="70" height="123" fill="#1a56db" rx="2" opacity="0.7"/>
+      <text x="235" y="71" font-size="10" fill="#1a1a2e" text-anchor="middle">$95B</text>
+      <text x="235" y="218" font-size="10" fill="#6a5a4a" text-anchor="middle">Feb</text>
+
+      <!-- Mar: ~98B -->
+      <rect x="310" y="72" width="70" height="128" fill="#1a56db" rx="2" opacity="0.7"/>
+      <text x="345" y="66" font-size="10" fill="#1a1a2e" text-anchor="middle">$98B</text>
+      <text x="345" y="218" font-size="10" fill="#6a5a4a" text-anchor="middle">Mar</text>
+
+      <!-- Apr: ~103B -->
+      <rect x="420" y="57" width="70" height="143" fill="#1a56db" rx="2" opacity="0.7"/>
+      <text x="455" y="51" font-size="10" fill="#1a1a2e" text-anchor="middle">~$103B</text>
+      <text x="455" y="218" font-size="10" fill="#6a5a4a" text-anchor="middle">Apr</text>
+
+      <!-- May: $105.4B (RECORD — highlight) -->
+      <rect x="530" y="48" width="70" height="152" fill="#c0392b" rx="2"/>
+      <text x="565" y="42" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="700">$105.4B</text>
+      <text x="565" y="218" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="700">May*</text>
+      <text x="565" y="229" font-size="9" fill="#c0392b" text-anchor="middle">Record</text>
+      <!-- Star annotation -->
+      <text x="620" y="60" font-size="9" fill="#c0392b">* Largest surplus</text>
+      <text x="620" y="73" font-size="9" fill="#c0392b">since Jan 2026</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Claim / Primary Risk</div>
+      May 2026 exports hit a record $376.8B (+19.4% YoY), driven by AI hardware goods and rerouted trade flows amid the Iran war. The <div class="annotation-card-zh">贸易顺差<span class="annotation-card-en">màoyì shùnchā · trade surplus</span></div> of $105.4B may trigger fresh trade-tension commentary from Western trading partners concerned about China's expanding goods surplus.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">What Remains Unverified</div>
+      The contribution of "AI-related exports" has not been broken out by <div class="annotation-card-zh">海关总署<span class="annotation-card-en">Hǎiguān Zǒngshǔ · General Administration of Customs</span></div> in official category data. Import surge of 27.4% may reflect front-loading ahead of tariff changes — durability of import acceleration requires monitoring over June-July data.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable / Actionable Signal</div>
+      Strong trade data reduces the short-term urgency for PBOC monetary easing — LPR announcement (June 19) likely holds at 3.0%. The 27.4% import growth, if it persists, is a constructive signal for domestically-oriented consumer names and capital goods suppliers tied to China's AI infrastructure buildout.
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  China Brief Issue #28 · June 14, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
