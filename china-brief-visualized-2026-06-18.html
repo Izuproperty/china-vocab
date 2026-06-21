@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #31 · Visualized · June 18, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:20px 32px 16px; border-bottom:4px solid #c0392b; display:flex; align-items:center; justify-content:space-between; }
+  .back-link { color:#8a9bb5; font-size:12px; text-decoration:none; letter-spacing:1px; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; color:#fff; font-size:20px; }
+  .page-meta { font-size:11px; color:#4a5a7a; margin-top:4px; text-align:right; }
+  .tabs { display:flex; background:#1a1a2e; border-bottom:1px solid #2a2a4e; padding:0 24px; gap:0; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#4a5a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+  .tab:hover:not(.active) { color:#8a9bb5; }
+  .viz-panel { display:none; padding:28px 32px; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border-radius:6px; padding:18px 16px; text-align:center; box-shadow:0 1px 8px rgba(0,0,0,0.06); border-top:3px solid #c0392b; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; color:#6a6a6a; margin-top:6px; letter-spacing:0.5px; line-height:1.4; }
+  .chart-box { background:#fff; border-radius:6px; padding:24px; margin-bottom:24px; box-shadow:0 1px 8px rgba(0,0,0,0.06); }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotation-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; box-shadow:0 1px 8px rgba(0,0,0,0.06); border-left:4px solid #ccc; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.amber { border-left-color:#e67e22; }
+  .annotation-card.green { border-left-color:#27ae60; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .annotation-card-tag { color:#c0392b; }
+  .annotation-card.amber .annotation-card-tag { color:#e67e22; }
+  .annotation-card.green .annotation-card-tag { color:#27ae60; }
+  .annotation-card-text { font-size:12.5px; color:#3a3a3a; line-height:1.6; }
+  .annotation-card-zh { display:inline-block; font-size:13px; font-weight:700; color:#1a1a2e; margin-top:4px; }
+  .annotation-card-en { font-size:11px; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .page-footer { background:#1a1a2e; padding:14px 32px; text-align:center; }
+  .page-footer-text { font-size:10px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="brief.html" class="back-link">← Return to China Brief</a>
+  <div>
+    <div class="page-title">China Brief #31 · Data Visualized</div>
+    <div class="page-meta">June 18, 2026 · 3 Stories</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('viz1', this)">Alibaba Qwen Robot Suite</div>
+  <div class="tab" onclick="showViz('viz2', this)">AI Models on Domestic Chips</div>
+  <div class="tab" onclick="showViz('viz3', this)">PBOC Rate Framework Shift</div>
+</div>
+
+<!-- VIZ 1: Alibaba Qwen Robot Suite -->
+<div id="viz1" class="viz-panel active">
+
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-num">3</div>
+      <div class="signal-label">Interconnected model layers in the Qwen Robot Suite</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">4B</div>
+      <div class="signal-label">Qwen3.5-4B parameters underlying the RobotManip VLA model</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">3</div>
+      <div class="signal-label">Key Chinese robot peers in the embodied AI race (AgiBot, Galbot, GigaAI)</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Qwen Robot Suite — Three-Layer Architecture</div>
+    <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:320px;">
+      <!-- Background -->
+      <rect width="600" height="320" fill="#faf8f4" rx="4"/>
+
+      <!-- Layer labels on left -->
+      <text x="16" y="82" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" letter-spacing="1" font-weight="700">PERCEPTION</text>
+      <text x="16" y="170" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" letter-spacing="1" font-weight="700">PREDICTION</text>
+      <text x="16" y="258" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" letter-spacing="1" font-weight="700">EXECUTION</text>
+
+      <!-- Box 1: RobotNav -->
+      <rect x="90" y="54" width="430" height="56" rx="6" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="150" y="78" font-family="Playfair Display,serif" font-size="14" fill="#1a1a2e" font-weight="700">Qwen-RobotNav</text>
+      <text x="150" y="95" font-family="Inter,sans-serif" font-size="11" fill="#3a3a3a">Vision-language navigation model · spatial understanding &amp; environment mapping</text>
+      <text x="108" y="78" font-family="Inter,sans-serif" font-size="10" fill="#1a56db" font-weight="700">01</text>
+
+      <!-- Arrow 1→2 -->
+      <line x1="305" y1="110" x2="305" y2="130" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Box 2: RobotWorld -->
+      <rect x="90" y="130" width="430" height="56" rx="6" fill="#fff8e8" stroke="#e67e22" stroke-width="1.5"/>
+      <text x="150" y="154" font-family="Playfair Display,serif" font-size="14" fill="#1a1a2e" font-weight="700">Qwen-RobotWorld</text>
+      <text x="150" y="171" font-family="Inter,sans-serif" font-size="11" fill="#3a3a3a">Video world model · predicts physical scene evolution before action</text>
+      <text x="108" y="154" font-family="Inter,sans-serif" font-size="10" fill="#e67e22" font-weight="700">02</text>
+
+      <!-- Arrow 2→3 -->
+      <line x1="305" y1="186" x2="305" y2="206" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Box 3: RobotManip -->
+      <rect x="90" y="206" width="430" height="56" rx="6" fill="#eafbf0" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="150" y="230" font-family="Playfair Display,serif" font-size="14" fill="#1a1a2e" font-weight="700">Qwen-RobotManip</text>
+      <text x="150" y="247" font-family="Inter,sans-serif" font-size="11" fill="#3a3a3a">VLA model (Qwen3.5-4B) · vision + language + physical manipulation output</text>
+      <text x="108" y="230" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" font-weight="700">03</text>
+
+      <!-- Output label -->
+      <line x1="305" y1="262" x2="305" y2="282" stroke="#c0392b" stroke-width="2" marker-end="url(#arrow)"/>
+      <rect x="230" y="282" width="150" height="24" rx="4" fill="#1a1a2e"/>
+      <text x="305" y="298" font-family="Inter,sans-serif" font-size="10" fill="#e8d5b0" text-anchor="middle" font-weight="600">Robot Physical Action</text>
+
+      <!-- Caption: Tongyi Lab -->
+      <text x="305" y="318" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" text-anchor="middle">Source: Alibaba 通义实验室 (Tōngyì Shíyànshì, Tongyi Lab) · SCMP, June 16, 2026</text>
+
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L0,8 L8,4 z" fill="#c0392b"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Claim</div>
+      <div class="annotation-card-text">Alibaba's <div class="annotation-card-zh">通义实验室<span class="annotation-card-en">Tōngyì Shíyànshì · Tongyi Lab</span></div> launched the first Chinese enterprise-grade three-layer robot AI stack, with the world model layer designed to reduce physical training data requirements.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      <div class="annotation-card-text">No independent benchmarks have been published for any of the three models. Performance claims come from Alibaba's own pilot reports. Enterprise client list and commercial terms are not disclosed.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Investable Signal</div>
+      <div class="annotation-card-text">If the <div class="annotation-card-zh">世界模型<span class="annotation-card-en">shìjiè móxíng · world model</span></div> layer validates at scale, it compresses the data-collection cost curve for robot training — a structural positive for <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div> enterprise adoption timelines.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- VIZ 2: Chinese AI Models on Domestic Chips -->
+<div id="viz2" class="viz-panel">
+
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-num">5</div>
+      <div class="signal-label">Chinese AI models now using domestic chips in pre-training or post-training</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">2</div>
+      <div class="signal-label">Primary domestic chip platforms involved: Huawei Ascend and Moore Threads</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">3</div>
+      <div class="signal-label">AI development stages targeted: pre-training, post-training, inference</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Domestic Chip Adoption by AI Development Stage (China, June 2026)</div>
+    <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:300px;">
+      <rect width="600" height="300" fill="#faf8f4" rx="4"/>
+
+      <!-- Y axis label -->
+      <text x="16" y="150" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" transform="rotate(-90,16,150)" text-anchor="middle" letter-spacing="1">ADOPTION</text>
+
+      <!-- Stages on X -->
+      <text x="155" y="280" font-family="Inter,sans-serif" font-size="11" fill="#3a3a3a" text-anchor="middle" font-weight="600">Pre-Training</text>
+      <text x="155" y="292" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" text-anchor="middle">预训练</text>
+      <text x="310" y="280" font-family="Inter,sans-serif" font-size="11" fill="#3a3a3a" text-anchor="middle" font-weight="600">Post-Training</text>
+      <text x="310" y="292" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" text-anchor="middle">后训练</text>
+      <text x="465" y="280" font-family="Inter,sans-serif" font-size="11" fill="#3a3a3a" text-anchor="middle" font-weight="600">Inference</text>
+      <text x="465" y="292" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" text-anchor="middle">推理</text>
+
+      <!-- Bar grid lines -->
+      <line x1="40" y1="50" x2="560" y2="50" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="40" y1="100" x2="560" y2="100" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="40" y1="150" x2="560" y2="150" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="40" y1="200" x2="560" y2="200" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="40" y1="250" x2="560" y2="250" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+
+      <!-- Y axis labels (models) -->
+      <text x="38" y="53" font-family="Inter,sans-serif" font-size="8" fill="#9a8a7a" text-anchor="end">5 models</text>
+      <text x="38" y="103" font-family="Inter,sans-serif" font-size="8" fill="#9a8a7a" text-anchor="end">4 models</text>
+      <text x="38" y="153" font-family="Inter,sans-serif" font-size="8" fill="#9a8a7a" text-anchor="end">3 models</text>
+      <text x="38" y="203" font-family="Inter,sans-serif" font-size="8" fill="#9a8a7a" text-anchor="end">2 models</text>
+      <text x="38" y="253" font-family="Inter,sans-serif" font-size="8" fill="#9a8a7a" text-anchor="end">1 model</text>
+
+      <!-- Pre-training bar: ~3 models (new as of June 2026) -->
+      <rect x="100" y="150" width="110" height="100" rx="3" fill="#c0392b" opacity="0.75"/>
+      <text x="155" y="145" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="700">~3 models</text>
+      <text x="155" y="157" font-family="Inter,sans-serif" font-size="8" fill="#fff" text-anchor="middle">June 2026</text>
+      <rect x="100" y="230" width="110" height="20" rx="2" fill="#1a1a2e" opacity="0.2"/>
+      <text x="155" y="243" font-family="Inter,sans-serif" font-size="8" fill="#3a3a3a" text-anchor="middle">Previously: 0</text>
+
+      <!-- Post-training bar: ~5 models -->
+      <rect x="255" y="50" width="110" height="200" rx="3" fill="#e67e22" opacity="0.75"/>
+      <text x="310" y="45" font-family="Inter,sans-serif" font-size="10" fill="#e67e22" text-anchor="middle" font-weight="700">~5 models</text>
+
+      <!-- Inference bar: widespread (show as full/nearly full) -->
+      <rect x="410" y="52" width="110" height="198" rx="3" fill="#27ae60" opacity="0.75"/>
+      <text x="465" y="47" font-family="Inter,sans-serif" font-size="10" fill="#27ae60" text-anchor="middle" font-weight="700">Widespread</text>
+
+      <!-- Callout box -->
+      <rect x="70" y="16" width="220" height="22" rx="3" fill="#1a1a2e" opacity="0.85"/>
+      <text x="180" y="31" font-family="Inter,sans-serif" font-size="9" fill="#e8d5b0" text-anchor="middle">Key shift: domestic chips entering pre-training for first time</text>
+
+      <text x="305" y="298" font-family="Inter,sans-serif" font-size="8" fill="#9a8a7a" text-anchor="middle">Source: SCMP, June 17, 2026 · Based on reported model disclosures (not independently audited compute data)</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Claim</div>
+      <div class="annotation-card-text">Five Chinese AI models have disclosed using <div class="annotation-card-zh">华为昇腾<span class="annotation-card-en">Huáwéi Shēngténg · Huawei Ascend</span></div> or <div class="annotation-card-zh">摩尔线程<span class="annotation-card-en">Mó'ěr Xiànchéng · Moore Threads</span></div> for pre-training or post-training — the first credible shift beyond inference-only domestic chip use.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      <div class="annotation-card-text">No disclosure of what fraction of total compute hours was on domestic vs. foreign chips. The shift may still be at pilot scale, not full production <div class="annotation-card-zh">预训练<span class="annotation-card-en">yùxùnliàn · pre-training</span></div> runs.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Investable Signal</div>
+      <div class="annotation-card-text">If verified at production scale, this is a structural positive for Chinese AI chip names. <div class="annotation-card-zh">国产算力<span class="annotation-card-en">guóchǎn suànlì · domestic compute</span></div> adoption moving up the stack compresses the effective hardware gap faster than chip roadmaps alone suggest.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- VIZ 3: PBOC Rate Framework -->
+<div id="viz3" class="viz-panel">
+
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-num">50bp</div>
+      <div class="signal-label">New rate corridor width (narrowed from 70bps, ±25bps around 1.4% 7-day RRP)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">1.4%</div>
+      <div class="signal-label">Current 7-day reverse repo rate (unchanged; cut 10bps to this level in May 2025)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">3</div>
+      <div class="signal-label">FIMA RMB repo loan tenors available to foreign central banks: 7-day, 1-month, 3-month</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">PBOC Rate Corridor — Old vs. New (Basis Points Around 7-Day RRP Rate)</div>
+    <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-height:280px;">
+      <rect width="600" height="280" fill="#faf8f4" rx="4"/>
+
+      <!-- Title labels -->
+      <text x="180" y="30" font-family="Inter,sans-serif" font-size="12" fill="#9a8a7a" text-anchor="middle" font-weight="600">Before (70bp corridor)</text>
+      <text x="420" y="30" font-family="Inter,sans-serif" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="600">After (50bp corridor)</text>
+
+      <!-- OLD corridor (70bp) -->
+      <!-- Upper band: +35bps -->
+      <rect x="90" y="55" width="180" height="50" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="180" y="75" font-family="Inter,sans-serif" font-size="11" fill="#1a56db" text-anchor="middle" font-weight="600">+35bps = 1.75%</text>
+      <text x="180" y="91" font-family="Inter,sans-serif" font-size="9" fill="#6a8adb" text-anchor="middle">Overnight repo ceiling</text>
+
+      <!-- Policy rate -->
+      <line x1="90" y1="140" x2="270" y2="140" stroke="#c0392b" stroke-width="2.5"/>
+      <text x="180" y="133" font-family="Inter,sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">7-day RRP = 1.40%</text>
+
+      <!-- Lower band: -35bps -->
+      <rect x="90" y="155" width="180" height="50" rx="4" fill="#fef3e2" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="6,3"/>
+      <text x="180" y="175" font-family="Inter,sans-serif" font-size="11" fill="#e67e22" text-anchor="middle" font-weight="600">-35bps = 1.05%</text>
+      <text x="180" y="191" font-family="Inter,sans-serif" font-size="9" fill="#d4801a" text-anchor="middle">Overnight repo floor</text>
+
+      <!-- Brace showing 70bps -->
+      <line x1="78" y1="60" x2="78" y2="200" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="68" y="135" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" text-anchor="middle" transform="rotate(-90,68,135)">70bp range</text>
+
+      <!-- NEW corridor (50bp) -->
+      <!-- Upper band: +25bps -->
+      <rect x="330" y="68" width="180" height="44" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="2"/>
+      <text x="420" y="86" font-family="Inter,sans-serif" font-size="11" fill="#1a56db" text-anchor="middle" font-weight="700">+25bps = 1.65%</text>
+      <text x="420" y="101" font-family="Inter,sans-serif" font-size="9" fill="#6a8adb" text-anchor="middle">Overnight repo ceiling</text>
+
+      <!-- Policy rate -->
+      <line x1="330" y1="140" x2="510" y2="140" stroke="#c0392b" stroke-width="2.5"/>
+      <text x="420" y="133" font-family="Inter,sans-serif" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">7-day RRP = 1.40%</text>
+
+      <!-- Lower band: -25bps -->
+      <rect x="330" y="155" width="180" height="38" rx="4" fill="#fef3e2" stroke="#e67e22" stroke-width="2"/>
+      <text x="420" y="171" font-family="Inter,sans-serif" font-size="11" fill="#e67e22" text-anchor="middle" font-weight="700">-25bps = 1.15%</text>
+      <text x="420" y="186" font-family="Inter,sans-serif" font-size="9" fill="#d4801a" text-anchor="middle">Overnight repo floor</text>
+
+      <!-- Brace showing 50bps -->
+      <line x1="518" y1="73" x2="518" y2="190" stroke="#27ae60" stroke-width="1"/>
+      <text x="530" y="135" font-family="Inter,sans-serif" font-size="9" fill="#27ae60" text-anchor="middle" transform="rotate(90,530,135)">50bp range</text>
+
+      <!-- Arrow showing reduction -->
+      <text x="300" y="135" font-family="Inter,sans-serif" font-size="18" fill="#c0392b" text-anchor="middle" font-weight="700">→</text>
+
+      <!-- FIMA label -->
+      <rect x="90" y="222" width="420" height="36" rx="4" fill="#1a1a2e" opacity="0.08" stroke="#1a1a2e" stroke-width="1"/>
+      <text x="300" y="237" font-family="Inter,sans-serif" font-size="10" fill="#1a1a2e" text-anchor="middle" font-weight="700">NEW: FIMA RMB Repo Facility</text>
+      <text x="300" y="251" font-family="Inter,sans-serif" font-size="10" fill="#3a3a3a" text-anchor="middle">Foreign central banks pledge 中国国债 (CGBs) → receive yuan liquidity at 7-day / 1-month / 3-month</text>
+
+      <text x="300" y="272" font-family="Inter,sans-serif" font-size="8" fill="#9a8a7a" text-anchor="middle">Source: Bloomberg / FXStreet · PBOC 陆家嘴论坛 (Lujiazui Forum) · June 17, 2026</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Claim</div>
+      <div class="annotation-card-text"><div class="annotation-card-zh">潘功胜<span class="annotation-card-en">Pān Gōngshèng · Governor Pan</span></div> narrowed the <div class="annotation-card-zh">利率走廊<span class="annotation-card-en">lìlǜ zǒuláng · rate corridor</span></div> to 50bps and launched a FIMA yuan repo facility, signaling a structural step toward an overnight policy-rate framework aligned with the Federal Reserve.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      <div class="annotation-card-text">Bloomberg Economics cautions the shift is "best understood as technical adjustments." The vast majority of <div class="annotation-card-zh">利率对冲<span class="annotation-card-en">lìlǜ duìchōng · rate-hedging</span></div> contracts remain tied to the 7-day RRP rate; a rapid migration to an overnight benchmark is unlikely.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Investable Signal</div>
+      <div class="annotation-card-text">The FIMA facility increases <div class="annotation-card-zh">中国国债<span class="annotation-card-en">Zhōngguó guózhài · Chinese government bonds</span></div> attractiveness for global reserve managers. If utilized at scale, it provides a structural demand driver for CGBs — a multi-year tailwind for the <div class="annotation-card-zh">人民币国际化<span class="annotation-card-en">rénmínbì guójìhuà · yuan internationalization</span></div> thesis.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  <div class="page-footer-text">China Brief Issue #31 · June 18, 2026 · Not investment advice · Data sourced from public reporting</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
