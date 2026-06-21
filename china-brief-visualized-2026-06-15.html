@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · June 15, 2026 · Issue #29</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0e0e1a; font-family:'Inter',sans-serif; color:#e0ddd8; min-height:100vh; }
+  .top-bar { background:#1a1a2e; border-bottom:3px solid #c0392b; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .top-bar-title { font-family:'Playfair Display',serif; font-size:18px; color:#fff; }
+  .top-bar-sub { font-size:11px; color:#8a9bb5; margin-top:3px; }
+  .back-link { font-size:11px; color:#c0392b; text-decoration:none; letter-spacing:1px; font-weight:600; }
+  .back-link:hover { color:#e74c3c; }
+  .tab-bar { background:#1a1a2e; display:flex; gap:0; border-bottom:1px solid #2a2a4e; padding:0 32px; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#5a6a8a; cursor:pointer; border-bottom:3px solid transparent; transition:all 0.2s; white-space:nowrap; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; }
+  .tab:hover { color:#e8d5b0; }
+  .panel { display:none; padding:32px; }
+  .panel.active { display:block; }
+  .panel-header { margin-bottom:28px; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:22px; color:#e8d5b0; line-height:1.3; margin-bottom:8px; }
+  .panel-source { font-size:11px; color:#5a6a8a; }
+  .signals-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:6px; padding:18px 16px; text-align:center; }
+  .signal-number { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#c0392b; line-height:1; }
+  .signal-label { font-size:10px; color:#8a9bb5; margin-top:6px; letter-spacing:0.5px; line-height:1.4; }
+  .chart-box { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:6px; padding:20px; margin-bottom:24px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#5a6a8a; margin-bottom:16px; }
+  .annotation-cards { display:flex; flex-direction:column; gap:12px; }
+  .annotation-card { background:#1a1a2e; border-radius:6px; padding:14px 16px; font-size:13px; line-height:1.6; color:#a0b0c8; }
+  .annotation-card.red { border-left:4px solid #c0392b; }
+  .annotation-card.amber { border-left:4px solid #e67e22; }
+  .annotation-card.green { border-left:4px solid #27ae60; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .annotation-card-label { color:#c0392b; }
+  .annotation-card.amber .annotation-card-label { color:#e67e22; }
+  .annotation-card.green .annotation-card-label { color:#27ae60; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#e8d5b0; margin-bottom:2px; }
+  .annotation-card-en { font-size:11px; color:#8a9bb5; font-style:italic; }
+  .footer { background:#1a1a2e; border-top:1px solid #2a2a4e; padding:14px 32px; text-align:center; font-size:10px; color:#3a4a6a; }
+  /* SVG chart styles */
+  .svg-axis { font-size:10px; fill:#5a6a8a; font-family:'Inter',sans-serif; }
+  .svg-label { font-size:10px; fill:#8a9bb5; font-family:'Inter',sans-serif; }
+  .svg-title { font-size:11px; fill:#e8d5b0; font-family:'Inter',sans-serif; font-weight:600; }
+  .svg-bar-ai { fill:#c0392b; }
+  .svg-bar-data { fill:#1a56db; }
+  .svg-bar-muted { fill:#2a2a4e; }
+  .svg-line { stroke:#c0392b; stroke-width:2; fill:none; }
+  .svg-grid { stroke:#2a2a4e; stroke-width:1; }
+  .svg-dot { fill:#c0392b; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>
+    <div class="top-bar-title">China Brief Visualized · Issue #29</div>
+    <div class="top-bar-sub">Monday, June 15, 2026 &nbsp;·&nbsp; Data Intelligence Edition</div>
+  </div>
+  <a class="back-link" href="brief.html">← Return to China Brief</a>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1', this)">BAAI World Model</div>
+  <div class="tab" onclick="showViz('s2', this)">Embodied AI Training Base</div>
+  <div class="tab" onclick="showViz('s3', this)">Macro Week Ahead</div>
+</div>
+
+<!-- PANEL 1: BAAI World Model -->
+<div id="s1" class="panel active">
+  <div class="panel-header">
+    <div class="panel-headline">BAAI Unveils Physis-v0.1 — China's First General World Foundation Model</div>
+    <div class="panel-source">CGTN · June 14, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">8th</div>
+      <div class="signal-label">Annual BAAI Conference where Physis-v0.1 was unveiled (June 12–14)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">&gt;5</div>
+      <div class="signal-label">Modalities integrated: text, images, video, spatial data, physics priors</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">LLM vs WM</div>
+      <div class="signal-label">Key distinction — LLMs learn language patterns; world models learn physical cause-and-effect</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">AI Architecture Evolution: From Language to Physical World Understanding</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Grid lines -->
+      <line x1="80" y1="30" x2="80" y2="180" class="svg-grid"/>
+      <line x1="80" y1="180" x2="560" y2="180" class="svg-grid"/>
+      <!-- Y axis labels -->
+      <text x="72" y="35" class="svg-axis" text-anchor="end">Physical</text>
+      <text x="72" y="60" class="svg-axis" text-anchor="end">Reasoning</text>
+      <text x="72" y="100" class="svg-axis" text-anchor="end">Spatial</text>
+      <text x="72" y="140" class="svg-axis" text-anchor="end">Language</text>
+      <text x="72" y="180" class="svg-axis" text-anchor="end">Text</text>
+      <!-- Timeline -->
+      <text x="160" y="198" class="svg-axis" text-anchor="middle">GPT-3/4 Era</text>
+      <text x="290" y="198" class="svg-axis" text-anchor="middle">Multimodal Era</text>
+      <text x="420" y="198" class="svg-axis" text-anchor="middle">Agentic Era</text>
+      <text x="520" y="198" class="svg-axis" text-anchor="middle" fill="#c0392b">World Models</text>
+      <!-- Capability bars per era -->
+      <!-- GPT era -->
+      <rect x="130" y="140" width="50" height="40" class="svg-bar-muted" opacity="0.7"/>
+      <!-- Multimodal -->
+      <rect x="262" y="100" width="50" height="80" fill="#1a56db" opacity="0.7"/>
+      <!-- Agentic -->
+      <rect x="392" y="80" width="50" height="100" fill="#8e44ad" opacity="0.7"/>
+      <!-- World Models -->
+      <rect x="492" y="35" width="50" height="145" class="svg-bar-ai" opacity="0.9"/>
+      <!-- Trajectory line -->
+      <polyline points="155,160 287,120 417,90 517,50" stroke="#c0392b" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+      <!-- Physis label -->
+      <text x="517" y="26" class="svg-title" text-anchor="middle">Physis-v0.1</text>
+      <text x="517" y="38" class="svg-label" text-anchor="middle">(BAAI, Jun 2026)</text>
+    </svg>
+  </div>
+
+  <div class="annotation-cards">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Claim</div>
+      <div class="annotation-card-zh">世界模型 <span class="annotation-card-en">shìjiè móxíng · world model</span></div>
+      BAAI claims Physis-v0.1 is the world's first general world foundation model — designed to understand physical laws, spatial relationships, and cause-and-effect. This represents a potential architectural shift beyond language models. "First" claims require peer validation but the institutional backing (state-linked BAAI, Turing Award attendees) lends credibility to the research program.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">What Remains Unverified</div>
+      <div class="annotation-card-zh">因果推理 <span class="annotation-card-en">yīnguǒ tuīlǐ · causal reasoning</span></div>
+      No independent benchmark data or third-party evaluation of Physis-v0.1 has been published. World model research at Meta, Google DeepMind, and OpenAI is also advancing rapidly. Whether BAAI's architecture genuinely leads the field, or whether "general world foundation model" maps to a precise technical definition, cannot be established from current reporting alone.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable Signal</div>
+      <div class="annotation-card-zh">具身智能 <span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+      World model progress, if sustained, directly benefits the physical AI supply chain: sensors, actuators, LIDAR, domestic compute (Huawei Ascend, Cambricon). Investors with existing robotics exposure do not need to buy Physis itself — they benefit indirectly if world model maturity accelerates commercial robot deployment timelines, which Beijing is targeting by end-2026 (10,000 units under the MIIT/SASAC mandate).
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Beijing Embodied AI Training Base -->
+<div id="s2" class="panel">
+  <div class="panel-header">
+    <div class="panel-headline">Beijing Embodied AI Training Base Opens — RoboMIND Dataset at 6M Downloads</div>
+    <div class="panel-source">Xinhua · June 13, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">120+</div>
+      <div class="signal-label">Mainstream humanoid robot models enrolled at Beijing BDA training facility</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">30+</div>
+      <div class="signal-label">Training scenarios across 6 sectors (household, retail, office, industrial, pharma, healthcare)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">6M+</div>
+      <div class="signal-label">Global downloads of the RoboMIND Dataset — positioning it as a global open resource for robot learning</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Robot Training Data Infrastructure: Sector Coverage at Beijing BDA Base</div>
+    <svg viewBox="0 0 580 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Horizontal bar chart of sector coverage -->
+      <text x="10" y="30" class="svg-title">Scenarios by Sector</text>
+      <!-- Bars -->
+      <!-- Household -->
+      <text x="120" y="58" class="svg-axis" text-anchor="end">Household</text>
+      <rect x="130" y="45" width="160" height="18" class="svg-bar-ai" opacity="0.85"/>
+      <text x="296" y="58" class="svg-label">~8 scenarios</text>
+      <!-- Retail -->
+      <text x="120" y="88" class="svg-axis" text-anchor="end">Retail</text>
+      <rect x="130" y="75" width="120" height="18" class="svg-bar-data" opacity="0.85"/>
+      <text x="256" y="88" class="svg-label">~6 scenarios</text>
+      <!-- Office -->
+      <text x="120" y="118" class="svg-axis" text-anchor="end">Office</text>
+      <rect x="130" y="105" width="100" height="18" class="svg-bar-muted" opacity="0.85"/>
+      <text x="236" y="118" class="svg-label">~5 scenarios</text>
+      <!-- Industrial -->
+      <text x="120" y="148" class="svg-axis" text-anchor="end">Industrial</text>
+      <rect x="130" y="135" width="140" height="18" class="svg-bar-ai" opacity="0.65"/>
+      <text x="276" y="148" class="svg-label">~7 scenarios</text>
+      <!-- Pharma -->
+      <text x="120" y="178" class="svg-axis" text-anchor="end">Pharma</text>
+      <rect x="130" y="165" width="80" height="18" fill="#8e44ad" opacity="0.85"/>
+      <text x="216" y="178" class="svg-label">~4 scenarios</text>
+      <!-- Healthcare -->
+      <text x="120" y="208" class="svg-axis" text-anchor="end">Healthcare</text>
+      <rect x="130" y="195" width="100" height="18" fill="#27ae60" opacity="0.85"/>
+      <text x="236" y="208" class="svg-label">~5 scenarios</text>
+      <!-- Note -->
+      <text x="130" y="235" class="svg-label">Scenario counts estimated from "30+ total" across 6 sectors. Exact distribution not disclosed.</text>
+    </svg>
+  </div>
+
+  <div class="annotation-cards">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Claim</div>
+      <div class="annotation-card-zh">机器人智能数据集 <span class="annotation-card-en">jīqìrén zhìnéng shùjùjí · RoboMIND Dataset</span></div>
+      Beijing's BDA facility is operating the largest multi-sector government-backed robot training base in China, with 120+ models enrolled and 30+ standardized scenarios. The 6M RoboMIND download figure indicates international uptake — this dataset is already part of global robotic research workflows, giving China structural influence over robot learning data norms.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">What Remains Unverified</div>
+      <div class="annotation-card-zh">数据护城河 <span class="annotation-card-en">shùjù hùchénghé · data moat</span></div>
+      Whether RoboMIND data quality and coverage is sufficient to become the dominant standard — comparable to ImageNet for computer vision — remains to be established. China's 40+ state-funded training centers risk overcapacity and redundancy (NDRC itself warned of robotics bubble risks in late 2025). The 6M download figure does not specify research vs. production use.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable Signal</div>
+      <div class="annotation-card-zh">北京经济技术开发区 <span class="annotation-card-en">Běijīng Jīngjì Jìshù Kāifāqū · Beijing BDA</span></div>
+      Companies whose robots are enrolled in state training bases gain data advantages that smaller or foreign competitors cannot easily replicate. Watch for announcements that specific robot makers (e.g. Unitree, AgiBot, Leju) are designated as "partner" suppliers to BDA or similar facilities — those designations function as indirect state endorsements and likely precede government procurement orders.
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: Macro Week Ahead -->
+<div id="s3" class="panel">
+  <div class="panel-header">
+    <div class="panel-headline">Week Ahead: NBS May Data Tuesday, PBOC LPR Decision Friday</div>
+    <div class="panel-source">Week-ahead calendar · June 15, 2026</div>
+  </div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">Jun 16</div>
+      <div class="signal-label">NBS May National Economic Performance data release — 10:00 AM Beijing</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">Jun 20</div>
+      <div class="signal-label">PBOC announces June Loan Prime Rate (LPR) — 1-yr currently 3.1%, 5-yr 3.6%</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">+0.2%</div>
+      <div class="signal-label">April YoY retail sales — sharply below 2% consensus; weakest in 40 months</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Monthly Economic Indicators: Recent Trend vs. Consensus (YoY %)</div>
+    <svg viewBox="0 0 580 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Grid -->
+      <line x1="100" y1="20" x2="100" y2="180" class="svg-grid"/>
+      <line x1="100" y1="180" x2="560" y2="180" class="svg-grid"/>
+      <line x1="100" y1="100" x2="560" y2="100" stroke="#2a2a4e" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- Y axis labels -->
+      <text x="94" y="24" class="svg-axis" text-anchor="end">8%</text>
+      <text x="94" y="64" class="svg-axis" text-anchor="end">6%</text>
+      <text x="94" y="104" class="svg-axis" text-anchor="end">4%</text>
+      <text x="94" y="144" class="svg-axis" text-anchor="end">2%</text>
+      <text x="94" y="184" class="svg-axis" text-anchor="end">0%</text>
+      <!-- X axis labels -->
+      <text x="175" y="200" class="svg-axis" text-anchor="middle">Jan-Feb</text>
+      <text x="280" y="200" class="svg-axis" text-anchor="middle">Mar</text>
+      <text x="385" y="200" class="svg-axis" text-anchor="middle">Apr</text>
+      <text x="480" y="200" class="svg-axis" text-anchor="middle">May</text>
+      <!-- Industrial output line (red) -->
+      <!-- Jan-Feb: 6.3% → y = 180 - (6.3/8)*160 = 180-126 = 54 -->
+      <!-- Mar: 5.7% → y = 180 - (5.7/8)*160 = 180-114 = 66 -->
+      <!-- Apr: 4.1% → y = 180 - (4.1/8)*160 = 180-82 = 98 -->
+      <polyline points="175,54 280,66 385,98" stroke="#c0392b" stroke-width="2.5" fill="none"/>
+      <circle cx="175" cy="54" r="4" fill="#c0392b"/>
+      <circle cx="280" cy="66" r="4" fill="#c0392b"/>
+      <circle cx="385" cy="98" r="4" fill="#c0392b"/>
+      <!-- May forecast zone (red dashed) -->
+      <line x1="385" y1="98" x2="480" y2="80" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,4"/>
+      <circle cx="480" cy="80" r="4" fill="none" stroke="#c0392b" stroke-width="2"/>
+      <!-- Retail sales line (blue) -->
+      <!-- Jan-Feb: ~6% → y=66 -->
+      <!-- Mar: 1.7% → y = 180 - (1.7/8)*160 = 180-34 = 146 -->
+      <!-- Apr: 0.2% → y = 180 - (0.2/8)*160 = 180-4 = 176 -->
+      <polyline points="175,66 280,146 385,176" stroke="#1a56db" stroke-width="2.5" fill="none"/>
+      <circle cx="175" cy="66" r="4" fill="#1a56db"/>
+      <circle cx="280" cy="146" r="4" fill="#1a56db"/>
+      <circle cx="385" cy="176" r="4" fill="#1a56db"/>
+      <!-- May forecast zone (blue dashed) -->
+      <line x1="385" y1="176" x2="480" y2="156" stroke="#1a56db" stroke-width="2" stroke-dasharray="5,4"/>
+      <circle cx="480" cy="156" r="4" fill="none" stroke="#1a56db" stroke-width="2"/>
+      <!-- Legend -->
+      <rect x="110" y="215" width="12" height="3" fill="#c0392b"/>
+      <text x="128" y="220" class="svg-label">Industrial Output (YoY)</text>
+      <rect x="280" y="215" width="12" height="3" fill="#1a56db"/>
+      <text x="298" y="220" class="svg-label">Retail Sales (YoY)</text>
+      <text x="450" y="220" class="svg-label" fill="#5a6a8a">---- forecast zone</text>
+    </svg>
+  </div>
+
+  <div class="annotation-cards">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Risk</div>
+      <div class="annotation-card-zh">社会消费品零售总额 <span class="annotation-card-en">shèhuì xiāofèipǐn língshòu zǒng'é · total retail sales</span></div>
+      April retail sales at +0.2% YoY were the weakest print in 40 months. If May data shows continuation rather than reversal, it materially weakens the domestic demand recovery narrative that underpins China equity outperformance positioning. The risk scenario is May retail sales again below 1% YoY with no convincing catalyst for a June rebound.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">What Remains Unverified</div>
+      <div class="annotation-card-zh">贷款市场报价利率 <span class="annotation-card-en">dàikuǎn shìchǎng bàojià lìlǜ · Loan Prime Rate (LPR)</span></div>
+      The PBOC's LPR decision on June 20 is not pre-announced and the direction is genuinely uncertain. If May data is soft, a cut is more likely but not assured — the PBOC has consistently balanced stimulus against RMB depreciation pressure. An unchanged LPR with a soft May print would be an incrementally negative signal for rate-sensitive sectors.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Actionable Signal</div>
+      <div class="annotation-card-zh">固定资产投资 <span class="annotation-card-en">gùdìng zīchǎn tóuzī · fixed asset investment</span></div>
+      Fixed asset investment has been the more resilient pillar of China's 2026 growth, driven by infrastructure and manufacturing capex. A FAI print holding above 5% YoY in May would support the view that policy-directed investment is compensating for consumer softness — constructive for infrastructure plays and industrial automation names even if retail sales disappoint.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  China Brief Issue #29 &nbsp;·&nbsp; June 15, 2026 &nbsp;·&nbsp; Not investment advice &nbsp;·&nbsp; Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
