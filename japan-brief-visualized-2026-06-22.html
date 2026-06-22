@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #22 · Data Visualizations · June 22, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:24px 40px; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-left { display:flex; align-items:center; gap:20px; }
+  .back-link { color:#818cf8; font-size:12px; text-decoration:none; font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+  .back-link:hover { color:#a5b4fc; }
+  .page-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-meta { font-size:11px; color:#8a9bb5; margin-top:4px; }
+  .tabs { display:flex; gap:0; background:#fff; border-bottom:2px solid #e8e0d4; padding:0 40px; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .tab:hover { color:#3730a3; }
+  .viz-panel { display:none; padding:40px; }
+  .viz-panel.active { display:block; }
+  .panel-header { margin-bottom:32px; }
+  .panel-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-energy { background:#fff7ed; color:#c2410c; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:24px; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .panel-subtitle { font-size:13px; color:#7a6a5a; }
+  .signals-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .signal-card { background:#fff; border:1px solid #e8e0d4; border-radius:6px; padding:16px 20px; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .signal-value { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; margin-bottom:4px; }
+  .signal-sub { font-size:11px; color:#7a6a5a; }
+  .signal-up { color:#15803d; }
+  .signal-down { color:#b91c1c; }
+  .chart-container { background:#fff; border:1px solid #e8e0d4; border-radius:6px; padding:24px; margin-bottom:24px; }
+  .chart-title { font-size:13px; font-weight:600; color:#1a1a2e; margin-bottom:16px; }
+  .chart-sub { font-size:11px; color:#7a6a5a; margin-top:8px; }
+  .annotations-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-top:24px; }
+  .annotation-card { background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a7a6a; margin-bottom:6px; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .page-footer { background:#1a1a2e; padding:16px 40px; text-align:center; }
+  .page-footer-text { font-size:11px; color:#4a5a7a; }
+
+  /* SVG bar chart helpers */
+  .bar-label { font-family:'Inter',sans-serif; font-size:11px; fill:#4a4a4a; }
+  .bar-value { font-family:'Inter',sans-serif; font-size:11px; font-weight:600; fill:#1a1a2e; }
+  .axis-label { font-family:'Inter',sans-serif; font-size:10px; fill:#9a8a7a; }
+  .chart-text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a href="japan-brief.html" class="back-link">← Japan Brief</a>
+    <div>
+      <div class="page-title">Japan Brief #22 — Data Signals</div>
+      <div class="page-meta">June 22, 2026 · 3 stories · Not investment advice</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('v1', 0)">Story 1 — AI Governance</div>
+  <div class="tab" onclick="showViz('v2', 1)">Story 2 — Semiconductors</div>
+  <div class="tab" onclick="showViz('v3', 2)">Story 3 — Energy and Macro</div>
+</div>
+
+<!-- PANEL 1: AI GOVERNANCE -->
+<div id="v1" class="viz-panel active">
+  <div class="panel-header">
+    <span class="panel-tag tag-ai">AI & Governance</span>
+    <div class="panel-title">Japan AI Basic Plan Revision: Governance Iteration Accelerating</div>
+    <div class="panel-subtitle">Source: Nippon.com / Jiji Press, June 20, 2026 · METI FY2026 budget data</div>
+  </div>
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">Months to Revision</div>
+      <div class="signal-value">6</div>
+      <div class="signal-sub">Dec 2025 adoption to Jun 2026 draft update</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">AI Budget (METI FY26)</div>
+      <div class="signal-value">1.23<span style="font-size:16px;color:#7a6a5a;"> T yen</span></div>
+      <div class="signal-sub class="signal-up">4x prior year allocation</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Countries in Cooperation</div>
+      <div class="signal-value">42</div>
+      <div class="signal-sub">METI general-permission allied nations</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Japan AI Policy Milestones Timeline</div>
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+      <!-- Timeline line -->
+      <line x1="40" y1="100" x2="560" y2="100" stroke="#e8e0d4" stroke-width="2"/>
+      <!-- Milestones -->
+      <!-- May 2025 - AI Promotion Act -->
+      <circle cx="80" cy="100" r="8" fill="#3730a3"/>
+      <text x="80" y="130" text-anchor="middle" class="axis-label">May 2025</text>
+      <text x="80" y="143" text-anchor="middle" class="axis-label">AI Promotion</text>
+      <text x="80" y="156" text-anchor="middle" class="axis-label">Act enacted</text>
+      <text x="80" y="72" text-anchor="middle" class="bar-label" font-size="10">Foundation</text>
+
+      <!-- Jun 2025 - Act takes effect -->
+      <circle cx="140" cy="100" r="6" fill="#818cf8"/>
+      <text x="140" y="130" text-anchor="middle" class="axis-label">Jun 2025</text>
+      <text x="140" y="143" text-anchor="middle" class="axis-label">Provisions</text>
+      <text x="140" y="156" text-anchor="middle" class="axis-label">take effect</text>
+
+      <!-- Dec 2025 - Basic Plan adopted -->
+      <circle cx="270" cy="100" r="8" fill="#3730a3"/>
+      <text x="270" y="130" text-anchor="middle" class="axis-label">Dec 2025</text>
+      <text x="270" y="143" text-anchor="middle" class="axis-label">AI Basic Plan</text>
+      <text x="270" y="156" text-anchor="middle" class="axis-label">adopted</text>
+      <text x="270" y="78" text-anchor="middle" class="bar-label" font-size="10">National</text>
+      <text x="270" y="90" text-anchor="middle" class="bar-label" font-size="10">roadmap</text>
+
+      <!-- Apr 2026 - APPI amendments -->
+      <circle cx="390" cy="100" r="6" fill="#818cf8"/>
+      <text x="390" y="130" text-anchor="middle" class="axis-label">Apr 2026</text>
+      <text x="390" y="143" text-anchor="middle" class="axis-label">APPI data</text>
+      <text x="390" y="156" text-anchor="middle" class="axis-label">AI amendments</text>
+
+      <!-- Jun 2026 - Revision released -->
+      <circle cx="520" cy="100" r="10" fill="#3730a3" stroke="#fff" stroke-width="3"/>
+      <text x="520" y="130" text-anchor="middle" class="axis-label">Jun 20, 2026</text>
+      <text x="520" y="143" text-anchor="middle" class="axis-label">Draft revision</text>
+      <text x="520" y="156" text-anchor="middle" class="axis-label">released</text>
+      <text x="520" y="65" text-anchor="middle" class="bar-value" fill="#3730a3" font-size="11">TODAY</text>
+      <text x="520" y="78" text-anchor="middle" class="bar-label" font-size="10">Cyber + global</text>
+      <text x="520" y="90" text-anchor="middle" class="bar-label" font-size="10">cooperation</text>
+    </svg>
+    <div class="chart-sub">Japan AI governance has moved from no formal law (2024) to an active revision cycle (2026) in approximately 18 months — faster than most G7 peers outside the EU.</div>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">Governance Speed</div>
+      <div class="annotation-text">6-month revision cycle is well ahead of Japan's typical annual budget-aligned policy cadence. Signals AI Policy Office has authority to accelerate outside the fiscal calendar.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Cybersecurity Angle</div>
+      <div class="annotation-text">Explicit mention of frontier AI models enabling sophisticated cyberattacks opens a domestic AI security software investment thesis — market currently small relative to US/EU but growing.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">EU Convergence</div>
+      <div class="annotation-text">International cooperation and misinformation detection provisions mirror EU AI Act priorities. If frameworks converge, regulatory compliance costs for multinationals in both markets may decline.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: SEMICONDUCTORS -->
+<div id="v2" class="viz-panel">
+  <div class="panel-header">
+    <span class="panel-tag tag-semi">Semiconductors</span>
+    <div class="panel-title">Japan Semiconductor Week Ahead: Rapidus Design Wins and Tokyo Electron Revenue Crossover</div>
+    <div class="panel-subtitle">Source: Digitimes, Trendforce, METI, company filings · Week of June 22, 2026</div>
+  </div>
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">Rapidus Gov. Investment</div>
+      <div class="signal-value">250<span style="font-size:16px;color:#7a6a5a;"> B yen</span></div>
+      <div class="signal-sub">Cumulative public capital through June 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">TEL China Revenue Share</div>
+      <div class="signal-value">32<span style="font-size:16px;color:#7a6a5a;">%</span></div>
+      <div class="signal-sub class="signal-down">Down from ~41% peak before export controls</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">JASM-1 Node</div>
+      <div class="signal-value">12<span style="font-size:16px;color:#7a6a5a;">nm</span></div>
+      <div class="signal-sub">In mass production; JASM-2 targets 3nm</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Tokyo Electron Revenue Mix Shift: China vs. AI-Driven Non-China (Illustrative trend, FY2023–FY2026 est.)</div>
+    <svg viewBox="0 0 560 220" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+      <!-- Background grid -->
+      <line x1="80" y1="20" x2="80" y2="180" stroke="#f0ece8" stroke-width="1"/>
+      <line x1="80" y1="180" x2="520" y2="180" stroke="#e8e0d4" stroke-width="1.5"/>
+      <line x1="80" y1="140" x2="520" y2="140" stroke="#f0ece8" stroke-width="1"/>
+      <line x1="80" y1="100" x2="520" y2="100" stroke="#f0ece8" stroke-width="1"/>
+      <line x1="80" y1="60" x2="520" y2="60" stroke="#f0ece8" stroke-width="1"/>
+
+      <!-- Y-axis labels -->
+      <text x="70" y="183" text-anchor="end" class="axis-label">0%</text>
+      <text x="70" y="143" text-anchor="end" class="axis-label">10%</text>
+      <text x="70" y="103" text-anchor="end" class="axis-label">20%</text>
+      <text x="70" y="63" text-anchor="end" class="axis-label">30%</text>
+      <text x="70" y="30" text-anchor="end" class="axis-label">40%</text>
+
+      <!-- X-axis labels (fiscal years) -->
+      <text x="150" y="198" text-anchor="middle" class="axis-label">FY2023</text>
+      <text x="260" y="198" text-anchor="middle" class="axis-label">FY2024</text>
+      <text x="370" y="198" text-anchor="middle" class="axis-label">FY2025</text>
+      <text x="480" y="198" text-anchor="middle" class="axis-label">FY2026E</text>
+
+      <!-- China revenue line (declining) -->
+      <!-- FY2023: ~41% = y=17 relative to 40% baseline, so y=60+(-4)=56; 40%=60, so 41%=60-4=56 -->
+      <!-- Scale: 40%=60, 30%=100, 20%=140, 10%=180, 0%=180
+           1% = (180-60)/40 = 3px per percent
+           41% = 60-3=57
+           38% = 60+6=66 wait no...
+           Let me redo: 40% is at y=30 (top), 0% at y=180 (bottom)
+           So y = 180 - (pct * 3.75)
+           41% = 180 - 153.75 = 26.25 ~ 26
+           38% = 180 - 142.5 = 37.5 ~ 38
+           34% = 180 - 127.5 = 52.5 ~ 53
+           32% = 180 - 120 = 60
+      -->
+      <polyline points="150,26 260,38 370,53 480,60" stroke="#be185d" stroke-width="2.5" fill="none" stroke-dasharray="0"/>
+      <!-- Data points -->
+      <circle cx="150" cy="26" r="5" fill="#be185d"/>
+      <circle cx="260" cy="38" r="5" fill="#be185d"/>
+      <circle cx="370" cy="53" r="5" fill="#be185d"/>
+      <circle cx="480" cy="60" r="5" fill="#be185d"/>
+      <!-- Labels -->
+      <text x="155" y="21" class="bar-value" font-size="10" fill="#be185d">41%</text>
+      <text x="265" y="33" class="bar-value" font-size="10" fill="#be185d">38%</text>
+      <text x="375" y="48" class="bar-value" font-size="10" fill="#be185d">34%</text>
+      <text x="485" y="55" class="bar-value" font-size="10" fill="#be185d">32%</text>
+
+      <!-- AI demand line (rising) -->
+      <!-- 10%=153.75, 15%=123.75, 25%=93.75, 40%=30 -->
+      <!-- FY2023: 10% = 180-37.5=142.5~143
+           FY2024: 15% = 180-56.25=123.75~124
+           FY2025: 25% = 180-93.75=86.25~86
+           FY2026E: 40% = 30 (management guidance)
+      -->
+      <polyline points="150,143 260,124 370,86 480,30" stroke="#3730a3" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/>
+      <circle cx="150" cy="143" r="5" fill="#3730a3"/>
+      <circle cx="260" cy="124" r="5" fill="#3730a3"/>
+      <circle cx="370" cy="86" r="5" fill="#3730a3"/>
+      <circle cx="480" cy="30" r="5" fill="#3730a3"/>
+      <text x="100" y="148" class="bar-value" font-size="10" fill="#3730a3">10%</text>
+      <text x="210" y="120" class="bar-value" font-size="10" fill="#3730a3">15%</text>
+      <text x="325" y="82" class="bar-value" font-size="10" fill="#3730a3">25%</text>
+      <text x="432" y="26" class="bar-value" font-size="10" fill="#3730a3">~40%</text>
+
+      <!-- Crossover annotation -->
+      <line x1="432" y1="40" x2="432" y2="170" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="434" y="170" class="axis-label" fill="#b45309" font-size="10">Crossover</text>
+      <text x="434" y="160" class="axis-label" fill="#b45309" font-size="10">zone</text>
+
+      <!-- Legend -->
+      <line x1="90" y1="215" x2="115" y2="215" stroke="#be185d" stroke-width="2.5"/>
+      <text x="120" y="218" class="axis-label">China revenue share</text>
+      <line x1="250" y1="215" x2="275" y2="215" stroke="#3730a3" stroke-width="2.5" stroke-dasharray="5,3"/>
+      <text x="280" y="218" class="axis-label">AI-driven demand share (est.)</text>
+    </svg>
+    <div class="chart-sub">Illustrative trend based on Tokyo Electron (東京エレクトロン) disclosed revenue data and management guidance. The crossover of AI demand above China revenue is the key valuation event for the stock in 2H FY2026.</div>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">Rapidus Watch</div>
+      <div class="annotation-text">Design review volume from new customers by Sept-Oct 2026 is the key metric for assessing whether 2027 mass production timeline remains credible. Tenstorrent is the only publicly announced customer so far.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">TEL Revenue Model</div>
+      <div class="annotation-text">China revenue share fell from ~41% to ~32%. Management guidance targets AI-driven demand at ~40% of total by FY2026 end. If achieved, the revenue mix transformation is largely complete.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">JASM-2 Watch</div>
+      <div class="annotation-text">Site preparation for 3nm JASM-2 in Kumamoto is underway. Government support decision expected in FY2026 supplementary budget. Materials/wafer suppliers (Shin-Etsu, SUMCO) most sensitive to timeline.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: ENERGY & MACRO -->
+<div id="v3" class="viz-panel">
+  <div class="panel-header">
+    <span class="panel-tag tag-energy">Energy & Macro</span>
+    <div class="panel-title">Hormuz Reopening and Japan's LNG Import Cost Outlook</div>
+    <div class="panel-subtitle">Source: Japan Customs, CNBC, Japan Times, BOJ · Week of June 22, 2026</div>
+  </div>
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">BOJ Policy Rate</div>
+      <div class="signal-value">1.00<span style="font-size:16px;color:#7a6a5a;">%</span></div>
+      <div class="signal-sub">Highest since September 1995 (hiked June 16)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">May Import Growth</div>
+      <div class="signal-value">+12.5<span style="font-size:16px;color:#b91c1c;">%</span></div>
+      <div class="signal-sub">YoY; energy cost pass-through primary driver</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY (Jun 19)</div>
+      <div class="signal-value">161.2</div>
+      <div class="signal-sub">16 pips from 1986 low; verbal intervention active</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Japan LNG Import Cost and BOJ Rate Path: Hormuz Scenario Analysis</div>
+    <svg viewBox="0 0 560 240" xmlns="http://www.w3.org/2000/svg" width="100%" style="display:block;">
+      <!-- Background grid -->
+      <line x1="80" y1="20" x2="80" y2="190" stroke="#f0ece8" stroke-width="1"/>
+      <line x1="80" y1="190" x2="520" y2="190" stroke="#e8e0d4" stroke-width="1.5"/>
+      <line x1="80" y1="150" x2="520" y2="150" stroke="#f0ece8" stroke-width="1"/>
+      <line x1="80" y1="110" x2="520" y2="110" stroke="#f0ece8" stroke-width="1"/>
+      <line x1="80" y1="70" x2="520" y2="70" stroke="#f0ece8" stroke-width="1"/>
+      <line x1="80" y1="30" x2="520" y2="30" stroke="#f0ece8" stroke-width="1"/>
+
+      <!-- Key date: Hormuz closure (Apr) and ceasefire (Jun 17) -->
+      <line x1="200" y1="25" x2="200" y2="185" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+      <text x="201" y="22" class="axis-label" fill="#b91c1c" font-size="9">Hormuz</text>
+      <text x="201" y="32" class="axis-label" fill="#b91c1c" font-size="9">closure</text>
+      <text x="201" y="42" class="axis-label" fill="#b91c1c" font-size="9">Apr 2026</text>
+
+      <line x1="390" y1="25" x2="390" y2="185" stroke="#15803d" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.6"/>
+      <text x="391" y="22" class="axis-label" fill="#15803d" font-size="9">Ceasefire</text>
+      <text x="391" y="32" class="axis-label" fill="#15803d" font-size="9">MOU signed</text>
+      <text x="391" y="42" class="axis-label" fill="#15803d" font-size="9">Jun 17</text>
+
+      <!-- X-axis labels -->
+      <text x="120" y="208" text-anchor="middle" class="axis-label">Mar 26</text>
+      <text x="200" y="208" text-anchor="middle" class="axis-label">Apr 26</text>
+      <text x="280" y="208" text-anchor="middle" class="axis-label">May 26</text>
+      <text x="360" y="208" text-anchor="middle" class="axis-label">Jun 26</text>
+      <text x="440" y="208" text-anchor="middle" class="axis-label">Jul 26</text>
+      <text x="510" y="208" text-anchor="middle" class="axis-label">Aug 26E</text>
+
+      <!-- LNG import cost index line (rises then falls) -->
+      <!-- Pre-Hormuz: 100 = neutral; spike to ~140 then falling -->
+      <!-- Scale: 160=30, 140=70, 120=110, 100=150, 80=190 each 20 pts = 40px; 1pt=2px -->
+      <!-- 100 = 150, 110 = 130, 130 = 90, 140 = 70, 135 = 80, 115 = 120, 100 = 150 -->
+      <polyline points="120,150 200,130 280,90 360,75 390,80 440,110 510,130" stroke="#c2410c" stroke-width="2.5" fill="none"/>
+      <circle cx="120" cy="150" r="4" fill="#c2410c"/>
+      <circle cx="200" cy="130" r="4" fill="#c2410c"/>
+      <circle cx="280" cy="90" r="4" fill="#c2410c"/>
+      <circle cx="360" cy="75" r="4" fill="#c2410c"/>
+      <circle cx="440" cy="110" r="4" fill="#c2410c"/>
+      <circle cx="510" cy="130" r="4" fill="#c2410c" stroke-dasharray=""/>
+
+      <!-- Value labels -->
+      <text x="90" y="147" class="bar-value" font-size="9" fill="#c2410c">100</text>
+      <text x="290" y="86" class="bar-value" font-size="9" fill="#c2410c">135</text>
+      <text x="370" y="71" class="bar-value" font-size="9" fill="#c2410c">142</text>
+      <text x="450" y="106" class="bar-value" font-size="9" fill="#c2410c">120</text>
+      <text x="515" y="127" class="bar-value" font-size="9" fill="#c2410c">~110E</text>
+
+      <!-- BOJ rate step line -->
+      <polyline points="120,185 200,185 200,181 280,181 360,181 360,165 440,165 510,165" stroke="#3730a3" stroke-width="2" fill="none" stroke-dasharray="6,3"/>
+      <text x="90" y="182" class="bar-value" font-size="9" fill="#3730a3">0.75%</text>
+      <text x="207" y="178" class="bar-value" font-size="9" fill="#3730a3">0.75%</text>
+      <text x="365" y="161" class="bar-value" font-size="9" fill="#3730a3">1.00%</text>
+      <text x="450" y="161" class="bar-value" font-size="9" fill="#3730a3">Hold?</text>
+
+      <!-- Legend -->
+      <line x1="90" y1="228" x2="115" y2="228" stroke="#c2410c" stroke-width="2.5"/>
+      <text x="120" y="231" class="axis-label">LNG import cost index (100 = pre-war)</text>
+      <line x1="300" y1="228" x2="325" y2="228" stroke="#3730a3" stroke-width="2" stroke-dasharray="6,3"/>
+      <text x="330" y="231" class="axis-label">BOJ policy rate</text>
+    </svg>
+    <div class="chart-sub">Illustrative. LNG import cost index is indicative based on reported May import growth (+12.5% YoY) and direction of Hormuz-linked spot prices. BOJ rate based on confirmed decisions. Forecast assumes ceasefire holds.</div>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">Key Date: Jun 26</div>
+      <div class="annotation-text">May trade statistics detail released Friday. Commodity-level import data will quantify the energy cost impact during the Hormuz crisis and provide the first granular read on semiconductor equipment export geography.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Key Date: Jun 30</div>
+      <div class="annotation-text">BOJ Summary of Opinions from June 16 meeting due. The 7-1 vote (one dissent on growth risks) will be annotated. Whether additional members expressed caution on pace of future hikes is the signal to read.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Conditional Risk</div>
+      <div class="annotation-text">Post-April ceasefire, ship traffic through Hormuz remained well below pre-war levels. If the June MOU follows the same pattern, LNG cost relief is partial and slower — keeping upward pressure on Japan's import bill.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="page-footer-text">Japan Brief Issue #22 · June 22, 2026 · Not investment advice · Tomodachi Agent</div>
+</div>
+
+<script>
+function showViz(id, tabIndex) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab')[tabIndex].classList.add('active');
+}
+</script>
+</body>
+</html>
