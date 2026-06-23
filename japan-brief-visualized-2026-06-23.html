@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #23 · Visualized · June 23, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f0f2f6; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:20px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .page-header a { color:#818cf8; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; }
+  .page-header a:hover { color:#a5b4fc; }
+  .page-title { color:#fff; font-family:'Playfair Display',serif; font-size:22px; }
+  .page-title span { color:#818cf8; font-size:13px; font-weight:400; margin-left:12px; }
+  .tabs { display:flex; gap:0; background:#fff; border-bottom:2px solid #e4e6f0; padding:0 24px; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; border-bottom:3px solid transparent; color:#6a7a9a; transition:all 0.2s; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .tab:hover { color:#3730a3; }
+  .viz-panel { display:none; padding:28px 24px; }
+  .viz-panel.active { display:block; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border-radius:8px; padding:18px; border:1px solid #e4e6f0; }
+  .signal-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .signal-value { font-size:26px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal-sub { font-size:11px; color:#6a7a9a; margin-top:4px; }
+  .signal-delta { font-size:12px; font-weight:600; margin-top:4px; }
+  .signal-delta.up { color:#166534; }
+  .signal-delta.down { color:#991b1b; }
+  .chart-card { background:#fff; border-radius:8px; padding:20px; border:1px solid #e4e6f0; margin-bottom:20px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .annotation-card { background:#fff; border-radius:8px; padding:14px 16px; border-left:3px solid #3730a3; }
+  .annotation-tag { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:4px; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .footer-bar { background:#1a1a2e; padding:12px 32px; text-align:center; font-size:10px; color:#4a5a7a; letter-spacing:1px; }
+
+  /* Chart styles */
+  svg { width:100%; overflow:visible; }
+  .chart-line { fill:none; stroke:#3730a3; stroke-width:2.5; }
+  .chart-bar { fill:#3730a3; }
+  .chart-bar.secondary { fill:#818cf8; }
+  .chart-bar.accent { fill:#be185d; }
+  .chart-axis text { font-size:10px; fill:#6a7a9a; font-family:'Inter',sans-serif; }
+  .chart-axis line, .chart-axis path { stroke:#e4e6f0; }
+  .chart-grid line { stroke:#f0f2f6; stroke-dasharray:3,3; }
+  .chart-dot { fill:#3730a3; }
+  .chart-label { font-size:10px; fill:#3730a3; font-weight:600; font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="japan-brief.html">← Japan Brief</a>
+  <div class="page-title">Issue #23 — Visualized<span>June 23, 2026</span></div>
+  <div style="font-size:11px;color:#4a5a7a;">3 stories · 3 charts</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('v1',this)">01 · Data Center Risk</div>
+  <div class="tab" onclick="showViz('v2',this)">02 · Nikkei / Tokyo Electron</div>
+  <div class="tab" onclick="showViz('v3',this)">03 · BOJ Rate Path</div>
+</div>
+
+<!-- PANEL 1: Data Center Backlash -->
+<div class="viz-panel active" id="v1">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Legal Cases Filed</div>
+      <div class="signal-value">2+</div>
+      <div class="signal-sub">Lawsuits in Chiba Prefecture</div>
+      <div class="signal-delta up">Inzai + Shiroi City</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Affected Municipalities</div>
+      <div class="signal-value">7+</div>
+      <div class="signal-sub">Tokyo Metro Area</div>
+      <div class="signal-delta down">Growing opposition</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Property Value Impact</div>
+      <div class="signal-value">-25%</div>
+      <div class="signal-sub">Reported in Inzai case</div>
+      <div class="signal-delta down">Post-permit approval</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Japan AI Data Center Investment vs. Opposition Geography (2026)</div>
+    <svg viewBox="0 0 620 200">
+      <!-- Title labels -->
+      <text x="10" y="18" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">Investment committed (selected, $B USD)</text>
+      <!-- Bars -->
+      <rect x="20" y="30" width="130" height="30" fill="#3730a3" rx="3"/>
+      <text x="160" y="50" style="font-size:11px;fill:#1a1a2e;font-family:Inter,sans-serif;font-weight:600;">Microsoft  $10B (Japan AI infra, through 2029)</text>
+      <rect x="20" y="70" width="225" height="30" fill="#818cf8" rx="3"/>
+      <text x="255" y="90" style="font-size:11px;fill:#1a1a2e;font-family:Inter,sans-serif;font-weight:600;">AWS  $15.2B (through 2027)</text>
+      <rect x="20" y="110" width="105" height="30" fill="#be185d" rx="3"/>
+      <text x="135" y="130" style="font-size:11px;fill:#1a1a2e;font-family:Inter,sans-serif;font-weight:600;">Rapidus govt. support  ~$19B cumulative</text>
+      <rect x="20" y="150" width="55" height="30" fill="#c7d2fe" rx="3"/>
+      <text x="85" y="170" style="font-size:11px;fill:#1a1a2e;font-family:Inter,sans-serif;font-weight:600;">IDC AI infra spend 2026  $5.5B</text>
+      <!-- Opposition label -->
+      <text x="460" y="45" style="font-size:10px;fill:#991b1b;font-family:Inter,sans-serif;font-weight:600;">Opposition hotspots (Metro Tokyo)</text>
+      <text x="460" y="62" style="font-size:10px;fill:#6a7a9a;font-family:Inter,sans-serif;">Inzai (lawsuits filed)</text>
+      <text x="460" y="78" style="font-size:10px;fill:#6a7a9a;font-family:Inter,sans-serif;">Shiroi City (2 lawsuits)</text>
+      <text x="460" y="94" style="font-size:10px;fill:#6a7a9a;font-family:Inter,sans-serif;">Saitama City</text>
+      <text x="460" y="110" style="font-size:10px;fill:#6a7a9a;font-family:Inter,sans-serif;">Akishima, Hino, Kodaira, Koto Ward</text>
+      <line x1="440" y1="30" x2="440" y2="185" stroke="#e4e6f0" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="440" y="195" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Opposition emerging</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card">
+      <div class="annotation-tag">Regulatory Gap</div>
+      <div class="annotation-text">Japan's Urban Planning Act (都市計画法) permits data centers in quasi-industrial zones shared with residential buildings — no conflict-of-use review required. Inzai City acknowledged this "cannot be adequately addressed within current rules."</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Legal Trigger</div>
+      <div class="annotation-text">Inzai 5 project: Colt Technology (London) SPV backed by Mitsui, CPP Investments (Canada), and Fidelity. 52-meter structure adjacent to 15-story condo. Residents document 25% property value loss post-permit. Case now in litigation.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Investor Risk</div>
+      <div class="annotation-text">Site selection risk for Tokyo-metro data center greenfield investment is now demonstrably litigable. No moratorium expected near-term, but METI + MLIT coordination on national zoning standards is a watch item before H2 2026 investment decisions.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Nikkei / Tokyo Electron -->
+<div class="viz-panel" id="v2">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Nikkei 225 Close</div>
+      <div class="signal-value">72,648</div>
+      <div class="signal-sub">June 22, 2026 — record</div>
+      <div class="signal-delta up">+1.95% session gain</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Tokyo Electron Index Weight</div>
+      <div class="signal-value">~10%</div>
+      <div class="signal-sub">Price-weighted; single stock</div>
+      <div class="signal-delta up">840+ pts contributed Mon.</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Foreign Inflows (since Apr '25)</div>
+      <div class="signal-value">¥16T</div>
+      <div class="signal-sub">~$100B USD (Goldman Sachs)</div>
+      <div class="signal-delta up">AI infra-driven allocation</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Nikkei 225 Trajectory · June 14–22, 2026 (record run context)</div>
+    <svg viewBox="0 0 620 220">
+      <!-- Grid lines -->
+      <line x1="60" y1="20" x2="580" y2="20" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="60" y1="60" x2="580" y2="60" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="60" y1="100" x2="580" y2="100" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="60" y1="140" x2="580" y2="140" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="60" y1="180" x2="580" y2="180" stroke="#f0f2f6" stroke-width="1"/>
+      <!-- Y axis labels -->
+      <text x="52" y="24" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">73,000</text>
+      <text x="52" y="64" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">72,000</text>
+      <text x="52" y="104" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">71,000</text>
+      <text x="52" y="144" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">70,000</text>
+      <text x="52" y="184" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">68,500</text>
+      <!-- Chart line: Jun14=187, Jun15=48 (surge +4.99%), Jun16=64 (crossed70k), Jun17=104 (~70800), Jun18=112, Jun19=112, Jun20=108, Jun21=80, Jun22=28 -->
+      <!-- Points: (x, y) -->
+      <!-- Jun14: ~68,700 → y=175 -->
+      <!-- Jun15: ~72,000 (+4.99%) → y=64 (big surge) -->
+      <!-- Jun16: ~70,000 → y=140 (BOJ hike day, crossed 70k) -->
+      <!-- Jun17: ~70,800 → y=108 -->
+      <!-- Jun18: ~71,200 → y=92 -->
+      <!-- Jun21: ~71,400 → y=84 -->
+      <!-- Jun22: ~72,648 → y=27 -->
+      <polyline points="80,175 150,64 220,140 290,108 360,92 430,84 500,27" class="chart-line"/>
+      <!-- Data points -->
+      <circle cx="80" cy="175" r="4" fill="#3730a3"/>
+      <circle cx="150" cy="64" r="4" fill="#3730a3"/>
+      <circle cx="220" cy="140" r="4" fill="#3730a3"/>
+      <circle cx="290" cy="108" r="4" fill="#3730a3"/>
+      <circle cx="360" cy="92" r="4" fill="#3730a3"/>
+      <circle cx="430" cy="84" r="4" fill="#3730a3"/>
+      <circle cx="500" cy="27" r="5" fill="#be185d"/>
+      <!-- X axis labels -->
+      <text x="80" y="200" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jun 14</text>
+      <text x="150" y="200" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jun 15</text>
+      <text x="220" y="200" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jun 16</text>
+      <text x="290" y="200" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jun 17</text>
+      <text x="360" y="200" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jun 18</text>
+      <text x="430" y="200" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jun 21</text>
+      <text x="500" y="200" text-anchor="middle" style="font-size:9px;fill:#be185d;font-family:Inter,sans-serif;font-weight:700;">Jun 22</text>
+      <!-- Annotations -->
+      <text x="150" y="52" text-anchor="middle" style="font-size:9px;fill:#991b1b;font-family:Inter,sans-serif;">US-Iran</text>
+      <text x="150" y="42" text-anchor="middle" style="font-size:9px;fill:#991b1b;font-family:Inter,sans-serif;">+4.99%</text>
+      <text x="220" y="128" text-anchor="middle" style="font-size:9px;fill:#b45309;font-family:Inter,sans-serif;">BOJ</text>
+      <text x="220" y="118" text-anchor="middle" style="font-size:9px;fill:#b45309;font-family:Inter,sans-serif;">1.00%</text>
+      <text x="500" y="15" text-anchor="middle" style="font-size:9px;fill:#be185d;font-family:Inter,sans-serif;font-weight:700;">72,648</text>
+      <text x="500" y="7" text-anchor="middle" style="font-size:8px;fill:#be185d;font-family:Inter,sans-serif;">RECORD</text>
+      <!-- Baseline -->
+      <line x1="60" y1="180" x2="560" y2="180" stroke="#e4e6f0" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card">
+      <div class="annotation-tag">Index Structure</div>
+      <div class="annotation-text">Nikkei 225 is price-weighted, not cap-weighted. Tokyo Electron's ~¥36,000 share price gives it ~10% index weight. Every AI fab investment globally flows to TEL's order book and amplifies the Nikkei more than any comparable index.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Rapidus Risk Variable</div>
+      <div class="annotation-text">Government backing approaches ¥3T cumulatively. Pilot line running since Apr 2025. 2nm GAA transistors confirmed Jul 2025. Design-win pipeline beyond Tenstorrent is the execution gap — commercial viability unproven without broader customer commitments.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Rate-Hike Immunity</div>
+      <div class="annotation-text">BOJ raised to 1.0% June 16 — Nikkei hit 70,000 the same day. Structural foreign inflows (~¥16T since Apr 2025) driven by AI infra logic, not carry trade, explains why rate hikes have not disrupted the rally. Watch for disruption if yen breaks below ¥155/$.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: BOJ Rate Path -->
+<div class="viz-panel" id="v3">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">BOJ Policy Rate</div>
+      <div class="signal-value">1.00%</div>
+      <div class="signal-sub">As of June 16, 2026</div>
+      <div class="signal-delta up">Highest since Sep 1995</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">JGB Monthly Purchases</div>
+      <div class="signal-value">¥2T</div>
+      <div class="signal-sub">Target: Jan-Mar 2027</div>
+      <div class="signal-delta down">From ~¥6T peak</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">BOJ Balance Sheet</div>
+      <div class="signal-value">¥695.8T</div>
+      <div class="signal-sub">End-September 2025</div>
+      <div class="signal-delta down">-7.6% year-on-year</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">BOJ Policy Rate Normalization Path · 2024–2026</div>
+    <svg viewBox="0 0 620 210">
+      <!-- Grid -->
+      <line x1="70" y1="20" x2="580" y2="20" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="70" y1="60" x2="580" y2="60" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="70" y1="100" x2="580" y2="100" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="70" y1="140" x2="580" y2="140" stroke="#f0f2f6" stroke-width="1"/>
+      <line x1="70" y1="170" x2="580" y2="170" stroke="#e4e6f0" stroke-width="1"/>
+      <!-- Y axis labels -->
+      <text x="62" y="24" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">1.25%</text>
+      <text x="62" y="64" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">1.00%</text>
+      <text x="62" y="104" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">0.75%</text>
+      <text x="62" y="144" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">0.50%</text>
+      <text x="62" y="174" text-anchor="end" style="font-size:10px;fill:#9a8a7a;font-family:Inter,sans-serif;">0.25%</text>
+      <!-- Rate path line: Mar24=0.1%, Jul24=0.25%, Jan25=0.5%, Jul25=0.75% (implied), Jan26=0.75%, Jun26=1.00% -->
+      <!-- x positions: Mar24=90, Jul24=155, Jan25=245, Jul25=335, Oct25=380, Jan26=425, Jun26=530 -->
+      <!-- y positions for rates:
+           -0.1 → about 190
+           0% → 185
+           0.10 → 174 (0.25% at y=174)
+           0.25% → 165
+           0.50% → 144
+           0.75% → 104
+           1.00% → 64
+           1.25% → 24
+      -->
+      <!-- Step function for rates -->
+      <!-- Negative rate era: flat at y=190 from start to Mar 2024 -->
+      <polyline points="90,190 155,190 155,165 245,165 245,144 335,144 335,104 425,104 425,64 530,64" class="chart-line"/>
+      <!-- Rate hike markers -->
+      <circle cx="155" cy="165" r="4" fill="#3730a3"/>
+      <circle cx="245" cy="144" r="4" fill="#3730a3"/>
+      <circle cx="335" cy="144" r="4" fill="#3730a3"/>
+      <circle cx="425" cy="104" r="4" fill="#3730a3"/>
+      <circle cx="530" cy="64" r="5" fill="#be185d"/>
+      <!-- X axis labels -->
+      <text x="90" y="198" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Mar 24</text>
+      <text x="155" y="198" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jul 24</text>
+      <text x="245" y="198" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jan 25</text>
+      <text x="335" y="198" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Jan 26</text>
+      <text x="425" y="198" text-anchor="middle" style="font-size:9px;fill:#9a8a7a;font-family:Inter,sans-serif;">Mar 26</text>
+      <text x="530" y="198" text-anchor="middle" style="font-size:9px;fill:#be185d;font-family:Inter,sans-serif;font-weight:700;">Jun 16</text>
+      <!-- Annotation labels -->
+      <text x="155" y="155" text-anchor="middle" style="font-size:8px;fill:#3730a3;font-family:Inter,sans-serif;">0.25%</text>
+      <text x="245" y="134" text-anchor="middle" style="font-size:8px;fill:#3730a3;font-family:Inter,sans-serif;">0.50%</text>
+      <text x="425" y="94" text-anchor="middle" style="font-size:8px;fill:#3730a3;font-family:Inter,sans-serif;">0.75%</text>
+      <text x="530" y="54" text-anchor="middle" style="font-size:8px;fill:#be185d;font-family:Inter,sans-serif;font-weight:600;">1.00%</text>
+      <!-- "Highest since 1995" marker -->
+      <text x="540" y="42" style="font-size:8px;fill:#991b1b;font-family:Inter,sans-serif;">← highest since 1995</text>
+      <!-- Zero line reference -->
+      <line x1="70" y1="185" x2="580" y2="185" stroke="#c7d2fe" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="62" y="188" text-anchor="end" style="font-size:9px;fill:#818cf8;font-family:Inter,sans-serif;">0%</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card">
+      <div class="annotation-tag">JGB Reduction Path</div>
+      <div class="annotation-text">Monthly JGB purchases declining toward ¥2T/month by Jan-Mar 2027. Pace slows from ¥400B/quarter to ¥200B/quarter from Apr 2026. June 2026 MPM conducted interim assessment; formal modification optionality retained.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Next Datapoints</div>
+      <div class="annotation-text">June 26: Detailed May trade statistics (commodity-level import costs, semiconductor export geography). June 30: BOJ Summary of Opinions from June 16 meeting — will reveal whether Board dissenter's employment-risk concern attracted sympathy.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Pause Scenario</div>
+      <div class="annotation-text">Himino: real rates "at extremely low levels" even at 1.0% — tightening bias intact. But if Hormuz reopening lowers LNG import costs by Aug-Sep, the imported inflation component dissipates and supports a pause at 1.00% through Q3 2026.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #23 · June 23, 2026 · Not investment advice
+</div>
+
+<script>
+function showViz(id, tabEl) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tabEl.classList.add('active');
+}
+</script>
+</body>
+</html>
