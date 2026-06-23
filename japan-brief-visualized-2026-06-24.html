@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #24 · Visualized · June 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+
+  .page-header {
+    background:#1a1a2e; padding:24px 40px; border-bottom:4px solid #3730a3;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:22px; color:#fff; }
+  .page-header-title span { color:#818cf8; font-size:13px; font-weight:500; font-family:'Inter',sans-serif; display:block; margin-top:2px; }
+  .page-header-back { font-size:12px; color:#818cf8; text-decoration:none; }
+  .page-header-back:hover { color:#c7d2fe; }
+
+  .tab-bar {
+    background:#fff; border-bottom:2px solid #e8e0d4; padding:0 40px;
+    display:flex; gap:0;
+  }
+  .tab-btn {
+    padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:0.5px;
+    cursor:pointer; border:none; background:none; color:#7a6a5a;
+    border-bottom:3px solid transparent; margin-bottom:-2px;
+    transition:color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover { color:#3730a3; }
+  .tab-btn.active { color:#3730a3; border-bottom-color:#3730a3; }
+
+  .tab-panel { display:none; padding:32px 40px 48px; }
+  .tab-panel.active { display:block; }
+
+  .signal-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .signal-card {
+    background:#fff; border:1px solid #e8e0d4; border-radius:6px;
+    padding:16px 18px; box-shadow:0 1px 4px rgba(0,0,0,0.05);
+  }
+  .signal-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#1a1a2e; }
+  .signal-sub { font-size:11px; color:#7a6a5a; margin-top:4px; }
+  .signal-up { color:#166534; }
+  .signal-down { color:#991b1b; }
+  .signal-neutral { color:#1e40af; }
+
+  .chart-area {
+    background:#fff; border:1px solid #e8e0d4; border-radius:6px;
+    padding:20px 24px; margin-bottom:24px; box-shadow:0 1px 4px rgba(0,0,0,0.05);
+  }
+  .chart-title { font-size:12px; font-weight:700; color:#1a1a2e; margin-bottom:16px; letter-spacing:0.3px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .annotation-card {
+    background:#fff; border-left:3px solid #3730a3;
+    border-radius:0 4px 4px 0; padding:12px 14px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  }
+  .annotation-card.warn { border-left-color:#b45309; }
+  .annotation-card.ok { border-left-color:#166534; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:5px; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+
+  /* SVG bar chart helpers */
+  .bar-chart-row { display:flex; align-items:center; margin-bottom:10px; gap:10px; }
+  .bar-label { font-size:11px; color:#4a4a4a; width:160px; flex-shrink:0; text-align:right; }
+  .bar-track { flex:1; background:#f0eee8; border-radius:3px; height:22px; position:relative; }
+  .bar-fill { height:100%; border-radius:3px; display:flex; align-items:center; padding-left:8px; }
+  .bar-fill span { font-size:11px; font-weight:700; color:#fff; }
+  .bar-value { font-size:11px; color:#4a4a4a; width:60px; flex-shrink:0; }
+
+  /* Page footer */
+  .page-footer {
+    background:#1a1a2e; padding:16px 40px; text-align:center;
+    font-size:11px; color:#4a5a7a; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-title">
+      Japan Brief · Issue #24 · Data Visualized
+      <span>June 24, 2026 · Three stories · Indigo Edition</span>
+    </div>
+  </div>
+  <a href="japan-brief.html" class="page-header-back">Back to Japan Brief</a>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showViz('story1', this)">Story 1: AI Governance</button>
+  <button class="tab-btn" onclick="showViz('story2', this)">Story 2: Robotics Investment</button>
+  <button class="tab-btn" onclick="showViz('story3', this)">Story 3: BOJ / Macro</button>
+</div>
+
+<!-- STORY 1: AI GOVERNANCE / FSA COMPLIANCE -->
+<div id="story1" class="tab-panel active">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">FSA AI Compliance Deadline</div>
+      <div class="signal-value signal-neutral">July 1</div>
+      <div class="signal-sub">2026 · Implementation date for regulated sectors</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Sectors Covered</div>
+      <div class="signal-value signal-neutral">4+</div>
+      <div class="signal-sub">Finance, healthcare, energy, critical infrastructure</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Demand Uplift (AI Compliance Tools)</div>
+      <div class="signal-value signal-up">+30%</div>
+      <div class="signal-sub">Projected YoY in Japan over 12 months</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">Japan AI Governance Policy Timeline — Key Milestones</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:200px;">
+      <!-- Timeline line -->
+      <line x1="40" y1="100" x2="545" y2="100" stroke="#e8e0d4" stroke-width="2"/>
+      <!-- Milestones -->
+      <!-- 1: AI Promotion Act -->
+      <circle cx="80" cy="100" r="8" fill="#3730a3"/>
+      <text x="80" y="88" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">Jun '25</text>
+      <text x="80" y="122" text-anchor="middle" font-size="9" fill="#4a4a4a">AI Promotion</text>
+      <text x="80" y="133" text-anchor="middle" font-size="9" fill="#4a4a4a">Act passed</text>
+      <!-- 2: AI Basic Plan -->
+      <circle cx="175" cy="100" r="8" fill="#3730a3"/>
+      <text x="175" y="88" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">Dec '25</text>
+      <text x="175" y="122" text-anchor="middle" font-size="9" fill="#4a4a4a">AI Basic Plan</text>
+      <text x="175" y="133" text-anchor="middle" font-size="9" fill="#4a4a4a">adopted (Cabinet)</text>
+      <!-- 3: FSA Discussion Paper v1.1 -->
+      <circle cx="280" cy="100" r="8" fill="#6b21a8"/>
+      <text x="280" y="88" text-anchor="middle" font-size="10" fill="#6b21a8" font-weight="600">Mar '26</text>
+      <text x="280" y="122" text-anchor="middle" font-size="9" fill="#4a4a4a">FSA AI Paper</text>
+      <text x="280" y="133" text-anchor="middle" font-size="9" fill="#4a4a4a">v1.1 published</text>
+      <!-- 4: National Guidelines Finalized -->
+      <circle cx="440" cy="100" r="10" fill="#0e7490"/>
+      <text x="440" y="86" text-anchor="middle" font-size="10" fill="#0e7490" font-weight="700">Jun 22</text>
+      <text x="440" y="122" text-anchor="middle" font-size="9" fill="#4a4a4a">National guidelines</text>
+      <text x="440" y="133" text-anchor="middle" font-size="9" fill="#4a4a4a">finalized</text>
+      <!-- 5: July 1 Effective -->
+      <circle cx="530" cy="100" r="10" fill="#166534"/>
+      <text x="530" y="86" text-anchor="middle" font-size="10" fill="#166534" font-weight="700">Jul 1</text>
+      <text x="530" y="122" text-anchor="middle" font-size="9" fill="#4a4a4a">Enforcement</text>
+      <text x="530" y="133" text-anchor="middle" font-size="9" fill="#4a4a4a">effective</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card">
+      <div class="annotation-label">Compliance Burden</div>
+      <div class="annotation-text">Banks must maintain immutable AI audit logs and produce explainability reports for credit-scoring and AML models on regulatory demand. Legacy vendors face urgent upgrade cycles.</div>
+    </div>
+    <div class="annotation-card warn">
+      <div class="annotation-label">Key Risk</div>
+      <div class="annotation-text">Three-month grace period ends July 1. Firms that have not audited AI workflow systems for FSA explainability standards face potential regulatory exposure in H2 2026.</div>
+    </div>
+    <div class="annotation-card ok">
+      <div class="annotation-label">Investment Signal</div>
+      <div class="annotation-text">Fujitsu and NTT, as dual-frontier AI integrators with existing FSA client relationships, are best-positioned to capture compliance tooling and implementation margin from this mandate cycle.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: ROBOTICS / INVESTMENT STRATEGY -->
+<div id="story2" class="tab-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Total Investment Target (to FY2040)</div>
+      <div class="signal-value signal-up">JPY 370T</div>
+      <div class="signal-sub">USD ~2.3 trillion across 17 strategic sectors</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Japan Global Robot Share</div>
+      <div class="signal-value signal-neutral">~50%</div>
+      <div class="signal-sub">Of world's installed industrial robot base</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">METI Physical AI Budget (FY2026)</div>
+      <div class="signal-value signal-up">JPY 387B</div>
+      <div class="signal-sub">Within ¥1.23T envelope for AI and semiconductors</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">Japan Strategic Sector Capacity — Robotics &amp; Semiconductor Context (Indexed, FY2026 Baseline = 100)</div>
+    <div style="padding:8px 0;">
+      <div class="bar-chart-row">
+        <div class="bar-label">Industrial Robots (Installed Base)</div>
+        <div class="bar-track"><div class="bar-fill" style="width:85%; background:#3730a3;"><span>~50% global share</span></div></div>
+        <div class="bar-value">100</div>
+      </div>
+      <div class="bar-chart-row">
+        <div class="bar-label">Semiconductor Equipment (Revenue)</div>
+        <div class="bar-track"><div class="bar-fill" style="width:72%; background:#6b21a8;"><span>TEL, Shin-Etsu</span></div></div>
+        <div class="bar-value">100</div>
+      </div>
+      <div class="bar-chart-row">
+        <div class="bar-label">Logic Chip Mfg (Rapidus Target)</div>
+        <div class="bar-track"><div class="bar-fill" style="width:18%; background:#be185d;"><span>FY2027 target</span></div></div>
+        <div class="bar-value">18</div>
+      </div>
+      <div class="bar-chart-row">
+        <div class="bar-label">TSMC JASM (Kumamoto) Production</div>
+        <div class="bar-track"><div class="bar-fill" style="width:42%; background:#0e7490;"><span>Ramping 12-28nm</span></div></div>
+        <div class="bar-value">42</div>
+      </div>
+      <div class="bar-chart-row">
+        <div class="bar-label">Physical AI (Foundation Models)</div>
+        <div class="bar-track"><div class="bar-fill" style="width:12%; background:#b45309;"><span>Pre-commerc.</span></div></div>
+        <div class="bar-value">12</div>
+      </div>
+    </div>
+    <div style="font-size:10px; color:#9a8a7a; margin-top:10px;">Bars are qualitative relative positioning, not revenue-equivalent units. Source: METI, Digitimes, Rapidus press releases.</div>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card ok">
+      <div class="annotation-label">Robotics Advantage</div>
+      <div class="annotation-text">Fanuc and Yaskawa dominate fab automation globally. Every new semiconductor fab investment — Rapidus, JASM Phase 2, Micron Hiroshima — generates downstream robotics equipment demand.</div>
+    </div>
+    <div class="annotation-card warn">
+      <div class="annotation-label">Timeline Risk</div>
+      <div class="annotation-text">JPY 370T is a FY2040 cumulative target spanning 14 years and multiple cabinet cycles. Japan's track record on large industrial strategy envelopes (GX, Green Innovation Fund) shows disbursement routinely trails announced figures.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Near-Term Signal</div>
+      <div class="annotation-text">Watch METI's FY2026 supplementary budget (expected autumn) for specific robotics-AI line items. Yaskawa and Fanuc Q2 order books (July earnings) will be the first industrial read on physical AI capex conversion.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: BOJ / MACRO -->
+<div id="story3" class="tab-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">BOJ Policy Rate (as of Jun 16)</div>
+      <div class="signal-value signal-up">1.00%</div>
+      <div class="signal-sub">Highest since 1995 · 7-1 vote · 8th hike since Mar '24</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD / JPY (Jun 22-23)</div>
+      <div class="signal-value signal-down">~161.5</div>
+      <div class="signal-sub">Near 40-year low · Verbal intervention ongoing</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">10Y JGB Yield</div>
+      <div class="signal-value signal-neutral">2.64%</div>
+      <div class="signal-sub">Highest this century · Post-Jun 16 hike</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">BOJ Rate Path — Hike Cycle Since March 2024 Exit (Key Decision Dates)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:220px;">
+      <!-- Grid lines -->
+      <line x1="60" y1="30" x2="560" y2="30" stroke="#f0eee8" stroke-width="1"/>
+      <line x1="60" y1="70" x2="560" y2="70" stroke="#f0eee8" stroke-width="1"/>
+      <line x1="60" y1="110" x2="560" y2="110" stroke="#f0eee8" stroke-width="1"/>
+      <line x1="60" y1="150" x2="560" y2="150" stroke="#f0eee8" stroke-width="1"/>
+      <line x1="60" y1="190" x2="560" y2="190" stroke="#e8e0d4" stroke-width="1"/>
+      <!-- Y labels -->
+      <text x="52" y="33" text-anchor="end" font-size="10" fill="#7a6a5a">1.25%</text>
+      <text x="52" y="73" text-anchor="end" font-size="10" fill="#7a6a5a">1.00%</text>
+      <text x="52" y="113" text-anchor="end" font-size="10" fill="#7a6a5a">0.75%</text>
+      <text x="52" y="153" text-anchor="end" font-size="10" fill="#7a6a5a">0.50%</text>
+      <text x="52" y="193" text-anchor="end" font-size="10" fill="#7a6a5a">0.25%</text>
+      <!-- Rate line (stepped) -->
+      <!-- -0.1% → 0% (Mar 2024) ~ x=80 -->
+      <!-- 0% → 0.10% (Mar 2024) -->
+      <!-- 0.10% → 0.25% (Jul 2024) ~ x=140 -->
+      <!-- 0.25% → 0.50% (Jan 2025) ~ x=220 -->
+      <!-- 0.50% → 0.75% (Oct 2025) ~ x=320 -->
+      <!-- 0.75% → 1.00% (Jun 2026) ~ x=470 -->
+      <!-- Map: 0.25% = 190, 0.50%=150, 0.75%=110, 1.00%=70 -->
+      <polyline points="60,210 80,210 80,200 130,200 130,190 200,190 200,150 300,150 300,110 470,110 470,70 560,70"
+               fill="none" stroke="#3730a3" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- Dots at hike dates -->
+      <circle cx="80" cy="200" r="4" fill="#3730a3"/>
+      <circle cx="130" cy="190" r="4" fill="#3730a3"/>
+      <circle cx="200" cy="150" r="4" fill="#3730a3"/>
+      <circle cx="300" cy="110" r="4" fill="#3730a3"/>
+      <circle cx="470" cy="70" r="6" fill="#166534"/>
+      <!-- Labels -->
+      <text x="80" y="218" text-anchor="middle" font-size="9" fill="#6a5a4a">Mar'24</text>
+      <text x="130" y="218" text-anchor="middle" font-size="9" fill="#6a5a4a">Jul'24</text>
+      <text x="200" y="218" text-anchor="middle" font-size="9" fill="#6a5a4a">Jan'25</text>
+      <text x="300" y="218" text-anchor="middle" font-size="9" fill="#6a5a4a">Oct'25</text>
+      <text x="470" y="218" text-anchor="middle" font-size="9" fill="#166534" font-weight="600">Jun'26</text>
+      <!-- Next MPM marker -->
+      <line x1="530" y1="30" x2="530" y2="190" stroke="#b45309" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="530" y="22" text-anchor="middle" font-size="9" fill="#b45309" font-weight="600">Jul 30-31</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card warn">
+      <div class="annotation-label">Political Tension</div>
+      <div class="annotation-text">PM Takaichi's "policy coordination" language — echoed by her BOJ appointee Asada's dissent — signals the government wants to hold at 1.00% through Q3. This political friction caps bond yield upside and compresses September hike probability.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">BOJ Summary (Today)</div>
+      <div class="annotation-text">The Summary of Opinions released June 24 is the first official window into the Board's internal debate at the June 16 meeting. Watch for language on pace: "further hikes warranted" vs. "data-dependent pause" will move JPY and 10Y JGB yields on the day.</div>
+    </div>
+    <div class="annotation-card ok">
+      <div class="annotation-label">Key Sector Reads</div>
+      <div class="annotation-text">Megabanks (MUFG, SMFG, Mizuho): NIM-positive at 1.00%. J-REITs: cap-rate pressure at 2.64% long-end. Export manufacturers: yen at 161.5 still amplifies repatriated earnings despite the hike cycle.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  Japan Brief Issue #24 · June 24, 2026 · Not investment advice · 友達 Tomodachi
+</div>
+
+<script>
+function showViz(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
