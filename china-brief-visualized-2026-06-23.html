@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #35 · Visualized · June 23, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0f0f1a; font-family:'Inter',sans-serif; color:#e0e8f0; min-height:100vh; }
+  .top-bar { background:#1a1a2e; border-bottom:3px solid #c0392b; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; }
+  .top-bar-left a { font-size:11px; color:#8a9bb5; text-decoration:none; letter-spacing:1px; }
+  .top-bar-left a:hover { color:#c0392b; }
+  .top-bar-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; }
+  .top-bar-meta { font-size:11px; color:#4a5a7a; }
+  .tab-bar { background:#1a1a2e; padding:0 28px; display:flex; gap:0; border-bottom:1px solid #2a2a4e; }
+  .tab { padding:14px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; cursor:pointer; color:#4a5a7a; border-bottom:3px solid transparent; transition:all 0.2s; }
+  .tab:hover { color:#a0b8d0; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+  .panel { display:none; padding:28px; }
+  .panel.active { display:block; }
+  /* Signal numbers */
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:6px; padding:20px 18px; text-align:center; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#e8d5b0; line-height:1; margin-bottom:6px; }
+  .signal-num.red { color:#c0392b; }
+  .signal-num.amber { color:#d4a017; }
+  .signal-num.green { color:#27ae60; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#5a6a8a; line-height:1.4; }
+  /* Charts */
+  .chart-box { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:6px; padding:20px; margin-bottom:24px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a9bb5; margin-bottom:16px; }
+  svg text { font-family:'Inter',sans-serif; }
+  /* Annotation cards */
+  .annotations { display:grid; grid-template-columns:1fr; gap:12px; }
+  .ann-card { border-radius:4px; padding:14px 16px; border-left:4px solid; }
+  .ann-card.red { background:#1e0e0e; border-color:#c0392b; }
+  .ann-card.amber { background:#1a150a; border-color:#d4a017; }
+  .ann-card.green { background:#0a1a0e; border-color:#27ae60; }
+  .ann-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-card.red .ann-card-label { color:#c0392b; }
+  .ann-card.amber .ann-card-label { color:#d4a017; }
+  .ann-card.green .ann-card-label { color:#27ae60; }
+  .ann-card-body { font-size:13px; color:#c0c8d8; line-height:1.6; }
+  .annotation-card-zh { color:#e8d5b0; font-weight:600; margin-top:4px; }
+  .annotation-card-en { font-size:11px; color:#8a9bb5; font-style:italic; margin-left:4px; }
+  /* Footer */
+  .viz-footer { background:#1a1a2e; border-top:1px solid #2a2a4e; padding:14px 28px; font-size:10px; color:#3a4a6a; text-align:center; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left"><a href="brief.html">← Return to China Brief</a></div>
+  <div class="top-bar-title">China Brief · Issue #35 · Visualized</div>
+  <div class="top-bar-meta">June 23, 2026</div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1', this)">AGIBOT Factory Livestream</div>
+  <div class="tab" onclick="showViz('s2', this)">Huawei Ascend vs Nvidia</div>
+  <div class="tab" onclick="showViz('s3', this)">Summer Davos Macro</div>
+</div>
+
+<!-- ========== PANEL 1: AGIBOT ========== -->
+<div id="s1" class="panel active">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-num">6</div>
+      <div class="signal-label">Day Livestream<br>June 23–28</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num amber">36h</div>
+      <div class="signal-label">Factory Integration<br>Arrival to Live Line</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num green">100</div>
+      <div class="signal-label">Target Robots<br>at Longcheer Q3 2026</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Humanoid Robot Shipments vs Deployment Targets — 2024–2026</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid lines -->
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="180" x2="560" y2="180" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="140" x2="560" y2="140" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="60" y1="100" x2="560" y2="100" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <line x1="60" y1="60" x2="560" y2="60" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="4,4"/>
+      <!-- Y-axis labels -->
+      <text x="54" y="183" font-size="9" fill="#5a6a8a" text-anchor="end">0</text>
+      <text x="54" y="143" font-size="9" fill="#5a6a8a" text-anchor="end">5K</text>
+      <text x="54" y="103" font-size="9" fill="#5a6a8a" text-anchor="end">10K</text>
+      <text x="54" y="63" font-size="9" fill="#5a6a8a" text-anchor="end">20K</text>
+      <!-- X-axis labels -->
+      <text x="160" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">2024</text>
+      <text x="310" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">2025</text>
+      <text x="460" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">2026E</text>
+      <!-- Bars: Shipments (blue) -->
+      <rect x="130" y="165" width="50" height="15" fill="#1a56db" rx="2"/>
+      <rect x="280" y="100" width="50" height="80" fill="#1a56db" rx="2"/>
+      <rect x="430" y="72" width="50" height="108" fill="#1a56db" rx="2"/>
+      <!-- Bars: AGIBOT highlight (red) -->
+      <rect x="188" y="150" width="25" height="30" fill="#c0392b" rx="2" opacity="0.7"/>
+      <rect x="338" y="120" width="25" height="60" fill="#c0392b" rx="2" opacity="0.7"/>
+      <rect x="488" y="90" width="25" height="90" fill="#c0392b" rx="2" opacity="0.7"/>
+      <!-- Legend -->
+      <rect x="70" y="26" width="10" height="8" fill="#1a56db" rx="1"/>
+      <text x="84" y="34" font-size="9" fill="#8a9bb5">China total humanoid shipments</text>
+      <rect x="220" y="26" width="10" height="8" fill="#c0392b" rx="1" opacity="0.7"/>
+      <text x="234" y="34" font-size="9" fill="#8a9bb5">AGIBOT share (est.)</text>
+      <!-- Data labels -->
+      <text x="155" y="162" font-size="8" fill="#e8d5b0" text-anchor="middle">~500</text>
+      <text x="305" y="97" font-size="8" fill="#e8d5b0" text-anchor="middle">5,200+</text>
+      <text x="455" y="69" font-size="8" fill="#e8d5b0" text-anchor="middle">~28K</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card red">
+      <div class="ann-card-label">Core Claim · Primary Risk</div>
+      <div class="ann-card-body">
+        AGIBOT's 6-day uninterrupted livestream is a credibility bet — any public failure or extended downtime directly undermines the "production-ready
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+        " narrative that the entire sector is building toward institutional buyers and government verifiers. The 36-hour integration claim also requires third-party validation — Longcheer has financial incentives to cooperate.
+      </div>
+    </div>
+    <div class="ann-card amber">
+      <div class="ann-card-label">Unverified · Watch</div>
+      <div class="ann-card-body">
+        The Q3 2026 target of 100 robots at Longcheer's Nanchang facility has not been confirmed by Longcheer independently. It is unclear whether the robots operate autonomously for full shifts or require periodic human intervention. Error rates and production throughput relative to human workers have not been disclosed.
+      </div>
+    </div>
+    <div class="ann-card green">
+      <div class="ann-card-label">Investable Signal</div>
+      <div class="ann-card-body">
+        The upstream supply chain — actuator makers, dexterous-hand component producers, and EMS companies building robot-integration competence — is the platform-agnostic trade. Regardless of whether AGIBOT or a competitor wins the
+        <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+        market, these component makers benefit from every unit shipped.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PANEL 2: HUAWEI ASCEND / MOORE THREADS ========== -->
+<div id="s2" class="panel">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-num">$12B</div>
+      <div class="signal-label">Huawei AI Chip Revenue<br>2026 Forecast</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num amber">+60%</div>
+      <div class="signal-label">YoY Revenue Growth<br>Huawei AI Chips 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num green">8K</div>
+      <div class="signal-label">Ascend Chips per<br>Atlas 950 SuperPoD Cluster</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China AI Chip Market Share Trajectory — Huawei Ascend vs Nvidia (2023–2026E)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid -->
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="180" x2="560" y2="180" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="140" x2="560" y2="140" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="60" y1="100" x2="560" y2="100" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="60" y1="60" x2="560" y2="60" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <!-- Y labels -->
+      <text x="54" y="183" font-size="9" fill="#5a6a8a" text-anchor="end">0%</text>
+      <text x="54" y="143" font-size="9" fill="#5a6a8a" text-anchor="end">25%</text>
+      <text x="54" y="103" font-size="9" fill="#5a6a8a" text-anchor="end">50%</text>
+      <text x="54" y="63" font-size="9" fill="#5a6a8a" text-anchor="end">75%</text>
+      <text x="54" y="28" font-size="9" fill="#5a6a8a" text-anchor="end">100%</text>
+      <!-- X labels -->
+      <text x="130" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">2023</text>
+      <text x="246" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">2024</text>
+      <text x="362" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">2025</text>
+      <text x="478" y="196" font-size="9" fill="#5a6a8a" text-anchor="middle">2026E</text>
+      <!-- Nvidia line (declining) -->
+      <polyline points="130,50 246,80 362,120 478,148" fill="none" stroke="#76b900" stroke-width="2.5" stroke-dasharray="6,3"/>
+      <!-- Huawei Ascend line (rising) -->
+      <polyline points="130,148 246,130 362,100 478,64" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+      <!-- Moore Threads (rising slowly) -->
+      <polyline points="130,172 246,168 362,160 478,152" fill="none" stroke="#d4a017" stroke-width="1.5"/>
+      <!-- Data points -->
+      <circle cx="130" cy="50" r="4" fill="#76b900"/>
+      <circle cx="246" cy="80" r="4" fill="#76b900"/>
+      <circle cx="362" cy="120" r="4" fill="#76b900"/>
+      <circle cx="478" cy="148" r="4" fill="#76b900"/>
+      <circle cx="130" cy="148" r="4" fill="#c0392b"/>
+      <circle cx="246" cy="130" r="4" fill="#c0392b"/>
+      <circle cx="362" cy="100" r="4" fill="#c0392b"/>
+      <circle cx="478" cy="64" r="4" fill="#c0392b"/>
+      <!-- Legend -->
+      <line x1="70" y1="26" x2="90" y2="26" stroke="#76b900" stroke-width="2" stroke-dasharray="4,2"/>
+      <text x="94" y="30" font-size="9" fill="#8a9bb5">Nvidia China share (est.)</text>
+      <line x1="220" y1="26" x2="240" y2="26" stroke="#c0392b" stroke-width="2"/>
+      <text x="244" y="30" font-size="9" fill="#8a9bb5">Huawei Ascend share (est.)</text>
+      <line x1="390" y1="26" x2="410" y2="26" stroke="#d4a017" stroke-width="1.5"/>
+      <text x="414" y="30" font-size="9" fill="#8a9bb5">Moore Threads (est.)</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card red">
+      <div class="ann-card-label">Core Claim · Primary Risk</div>
+      <div class="ann-card-body">
+        The SCMP analysis rests on the premise that Beijing will sustain its instruction to defer Nvidia deployments. If US-China trade negotiations produce a chip-access deal — as a goodwill measure — the policy-enforced Ascend moat becomes less durable. The
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · compute power</span></div>
+        ecosystem lock-in is real but not irreversible.
+      </div>
+    </div>
+    <div class="ann-card amber">
+      <div class="ann-card-label">Unverified · Watch</div>
+      <div class="ann-card-body">
+        Huawei's CANN software stack maturity relative to CUDA is an ongoing dispute. Independent benchmarks on Ascend 950 real-world training workloads have not been published. The $12B revenue forecast for 2026 is analyst projection, not Huawei-reported (the company does not break out chip revenue separately in filings).
+      </div>
+    </div>
+    <div class="ann-card green">
+      <div class="ann-card-label">Investable Signal</div>
+      <div class="ann-card-body">
+        Supply chain beneficiaries of the Ascend buildout that trade publicly include optical transceiver makers (Zhongji Innolight, already in the landscape) and advanced packaging firms. CXMT (
+        <div class="annotation-card-zh">长鑫存储<span class="annotation-card-en">Cháng Xīn Cúnchú · China's HBM alternative maker</span></div>
+        ) as the domestic HBM-alternative supply represents the highest-leverage unpriced option if Ascend scaling continues at this pace.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PANEL 3: SUMMER DAVOS / MACRO ========== -->
+<div id="s3" class="panel">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-num">+19.4%</div>
+      <div class="signal-label">China Exports YoY<br>May 2026 (record $376.8B)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num amber">1.9%</div>
+      <div class="signal-label">WTO Global Goods<br>Trade Growth Forecast 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num red">11%</div>
+      <div class="signal-label">World Trade Affected<br>by Tariffs Since 2025</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Monthly Exports — Record Run vs Global Trade Slowdown (2025–2026)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid -->
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="180" x2="560" y2="180" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="60" y1="140" x2="560" y2="140" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="60" y1="100" x2="560" y2="100" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <line x1="60" y1="60" x2="560" y2="60" stroke="#2a2a4e" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <!-- Y labels (USD Bn) -->
+      <text x="54" y="183" font-size="9" fill="#5a6a8a" text-anchor="end">$280B</text>
+      <text x="54" y="143" font-size="9" fill="#5a6a8a" text-anchor="end">$310B</text>
+      <text x="54" y="103" font-size="9" fill="#5a6a8a" text-anchor="end">$340B</text>
+      <text x="54" y="63" font-size="9" fill="#5a6a8a" text-anchor="end">$370B</text>
+      <!-- X labels: selected months -->
+      <text x="100" y="196" font-size="8" fill="#5a6a8a" text-anchor="middle">Sep 25</text>
+      <text x="160" y="196" font-size="8" fill="#5a6a8a" text-anchor="middle">Nov 25</text>
+      <text x="220" y="196" font-size="8" fill="#5a6a8a" text-anchor="middle">Jan 26</text>
+      <text x="280" y="196" font-size="8" fill="#5a6a8a" text-anchor="middle">Mar 26</text>
+      <text x="340" y="196" font-size="8" fill="#5a6a8a" text-anchor="middle">Apr 26</text>
+      <text x="400" y="196" font-size="8" fill="#5a6a8a" text-anchor="middle">May 26</text>
+      <!-- Export line -->
+      <polyline points="100,130 160,118 220,108 280,96 340,110 400,52" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+      <!-- Area fill -->
+      <polygon points="100,130 160,118 220,108 280,96 340,110 400,52 400,180 100,180" fill="#c0392b" opacity="0.06"/>
+      <!-- Data points -->
+      <circle cx="100" cy="130" r="4" fill="#c0392b"/>
+      <circle cx="160" cy="118" r="4" fill="#c0392b"/>
+      <circle cx="220" cy="108" r="4" fill="#c0392b"/>
+      <circle cx="280" cy="96" r="4" fill="#c0392b"/>
+      <circle cx="340" cy="110" r="4" fill="#c0392b"/>
+      <circle cx="400" cy="52" r="5" fill="#e8d5b0" stroke="#c0392b" stroke-width="2"/>
+      <!-- May 26 annotation -->
+      <text x="408" y="48" font-size="9" fill="#e8d5b0">$376.8B record</text>
+      <text x="408" y="59" font-size="8" fill="#c0392b">+19.4% YoY</text>
+      <!-- WTO slowdown reference line -->
+      <line x1="60" y1="95" x2="560" y2="95" stroke="#d4a017" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+      <text x="565" y="95" font-size="8" fill="#d4a017" text-anchor="start">WTO 1.9%</text>
+      <!-- Legend -->
+      <circle cx="76" cy="28" r="4" fill="#c0392b"/>
+      <text x="84" y="32" font-size="9" fill="#8a9bb5">China monthly exports (USD bn, est.)</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card red">
+      <div class="ann-card-label">Core Claim · Primary Risk</div>
+      <div class="ann-card-body">
+        Li Qiang's Summer Davos pledge is consistent and directional but does not represent a new policy mechanism. The risk for investors who take the consumption pivot at face value without a specific instrument: the export surge is masking the structural weakness in domestic demand. May retail sales fell YoY for the first time since December 2022, and the
+        <div class="annotation-card-zh">脱钩<span class="annotation-card-en">tuōgōu · decoupling</span></div>
+        trend in advanced goods is accelerating regardless of rhetoric.
+      </div>
+    </div>
+    <div class="ann-card amber">
+      <div class="ann-card-label">Unverified · Watch</div>
+      <div class="ann-card-body">
+        Whether Beijing will follow Summer Davos with an incremental domestic consumption stimulus instrument — or a specific market-access opening timeline for foreign financial institutions — is unknown. The forum is an external-signaling venue; follow-through via NDRC or State Council circulars in the following two weeks is the measurable test.
+      </div>
+    </div>
+    <div class="ann-card green">
+      <div class="ann-card-label">Investable Signal</div>
+      <div class="ann-card-body">
+        China's record May export run (+19.4% YoY to $376.8B) alongside the WTO's 1.9% global goods-trade growth forecast suggests China is capturing global market share in manufactured goods. For institutional investors, this positions Chinese export-oriented industrials and logistics infrastructure as a relative beneficiary even in a low-growth global trade environment. The
+        <div class="annotation-card-zh">夏季达沃斯<span class="annotation-card-en">Xiàjì Dáwòsī · Summer Davos</span></div>
+        forum tone also opens the question of further foreign bank licensing windows.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="viz-footer">
+  China Brief Issue #35 · June 23, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
