@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #36 · Data Visualized · June 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .viz-header { background:#1a1a2e; padding:24px 40px 20px; border-bottom:4px solid #c0392b; }
+  .viz-header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:6px; }
+  .viz-header-title { font-family:'Playfair Display',serif; font-size:26px; color:#fff; font-weight:700; }
+  .viz-header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .viz-back { display:inline-block; font-size:11px; color:#c0392b; text-decoration:none; margin-top:10px; letter-spacing:1px; font-weight:600; }
+  .viz-back:hover { color:#e05a40; }
+  /* Tabs */
+  .tab-nav { background:#fff; border-bottom:2px solid #e0d8d0; display:flex; overflow-x:auto; }
+  .tab-btn { flex:1; min-width:120px; padding:14px 16px; border:none; background:transparent; font-family:'Inter',sans-serif; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a7a6a; cursor:pointer; border-bottom:3px solid transparent; transition:all 0.2s; white-space:nowrap; }
+  .tab-btn:hover { color:#1a1a2e; }
+  .tab-btn.active { color:#c0392b; border-bottom-color:#c0392b; }
+  /* Viz panel */
+  .viz-panel { display:none; padding:32px 40px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  /* Signal numbers */
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:32px; }
+  .signal-card { background:#fff; border:1px solid #e0d8d0; border-radius:6px; padding:20px; text-align:center; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .signal-label { font-size:11px; color:#8a7a6a; letter-spacing:1px; text-transform:uppercase; line-height:1.4; }
+  /* SVG chart area */
+  .chart-wrap { background:#fff; border:1px solid #e0d8d0; border-radius:6px; padding:24px; margin-bottom:24px; overflow:hidden; }
+  .chart-title { font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#5a4a3a; margin-bottom:16px; }
+  /* Annotation cards */
+  .annotation-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:16px; border-left:4px solid #ccc; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.amber { border-left-color:#d97706; }
+  .annotation-card.green { border-left-color:#16a34a; }
+  .annotation-card-header { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:8px; }
+  .annotation-card.red .annotation-card-header { color:#c0392b; }
+  .annotation-card.amber .annotation-card-header { color:#d97706; }
+  .annotation-card.green .annotation-card-header { color:#16a34a; }
+  .annotation-card-body { font-size:12.5px; color:#3a3a3a; line-height:1.6; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-top:4px; }
+  .annotation-card-en { font-size:11px; font-style:italic; color:#7a6a5a; margin-left:6px; font-weight:400; }
+  /* Footer */
+  .viz-footer { background:#1a1a2e; padding:16px 40px; text-align:center; }
+  .viz-footer-text { font-size:11px; color:#4a5a7a; }
+  /* SVG shared styles */
+  .axis-label { font-family:Inter,sans-serif; font-size:10px; fill:#8a7a6a; }
+  .bar-label { font-family:Inter,sans-serif; font-size:10px; fill:#3a3a3a; font-weight:600; }
+  .chart-legend { font-family:Inter,sans-serif; font-size:10px; fill:#5a4a3a; }
+</style>
+</head>
+<body>
+
+<div class="viz-header">
+  <div class="viz-header-eyebrow">China Brief · Issue #36 · Data Visualized</div>
+  <div class="viz-header-title">June 24, 2026 — Three Stories, Quantified</div>
+  <div class="viz-header-sub">Signal numbers, charts, and annotation cards for each story</div>
+  <a href="brief.html" class="viz-back">← Return to China Brief</a>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showViz('v1',this)">Alibaba vs Pentagon</button>
+  <button class="tab-btn" onclick="showViz('v2',this)">L3/L4 AV Standards</button>
+  <button class="tab-btn" onclick="showViz('v3',this)">Foreign Investment Plan</button>
+</div>
+
+<!-- PANEL 1: Alibaba Pentagon CMC Lawsuit -->
+<div id="v1" class="viz-panel active">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-num">7+</div>
+      <div class="signal-label">Chinese tech companies added to DoD CMC list on June 9</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">$200B+</div>
+      <div class="signal-label">Combined market cap of June 9 CMC additions (Alibaba, BYD, Nio, Baidu)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">~1%</div>
+      <div class="signal-label">Estimated near-term forced-sale exposure for NDAA-constrained funds</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">CMC List: Sector Spread of June 9 Additions</div>
+    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="700" height="220" fill="#fafaf8"/>
+      <!-- Y axis line -->
+      <line x1="140" y1="20" x2="140" y2="180" stroke="#d0c8c0" stroke-width="1"/>
+      <!-- Grid lines -->
+      <line x1="140" y1="60" x2="650" y2="60" stroke="#e8e0d8" stroke-width="0.5"/>
+      <line x1="140" y1="100" x2="650" y2="100" stroke="#e8e0d8" stroke-width="0.5"/>
+      <line x1="140" y1="140" x2="650" y2="140" stroke="#e8e0d8" stroke-width="0.5"/>
+      <!-- Bars -->
+      <!-- E-Commerce / AI -->
+      <rect x="145" y="40" width="320" height="28" fill="#c0392b" rx="2"/>
+      <text x="475" y="59" class="bar-label">Alibaba · Baidu (2 companies)</text>
+      <!-- EVs / Mobility -->
+      <rect x="145" y="80" width="240" height="28" fill="#7b2d2d" rx="2"/>
+      <text x="395" y="99" class="bar-label">BYD · Nio (2 companies)</text>
+      <!-- Robotics -->
+      <rect x="145" y="120" width="160" height="28" fill="#b04020" rx="2"/>
+      <text x="315" y="139" class="bar-label">Unitree Robotics (1 company)</text>
+      <!-- Networking -->
+      <rect x="145" y="160" width="120" height="28" fill="#d07060" rx="2"/>
+      <text x="275" y="179" class="bar-label">TP-Link + others</text>
+      <!-- Y axis labels -->
+      <text x="135" y="59" class="axis-label" text-anchor="end">AI &amp; Cloud</text>
+      <text x="135" y="99" class="axis-label" text-anchor="end">EV / Mobility</text>
+      <text x="135" y="139" class="axis-label" text-anchor="end">Robotics</text>
+      <text x="135" y="179" class="axis-label" text-anchor="end">Networking</text>
+      <!-- Title note -->
+      <text x="400" y="210" class="chart-legend" text-anchor="middle">Bar length = relative market cap weight of additions per sector. DoD provided no public methodology.</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-header">Core Risk</div>
+      <div class="annotation-card-body">
+        The Pentagon's broad interpretation of dual-use risk now sweeps consumer e-commerce and search into the same regulatory bucket as defense contractors.
+        <div class="annotation-card-zh">军事企业名单<span class="annotation-card-en">jūnshì qǐyè míngdān · CMC list</span></div>
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-header">Unverified</div>
+      <div class="annotation-card-body">
+        Whether Alibaba's lawsuit will succeed is genuinely uncertain — DoD has wide discretion under Section 1260H. Precedent for successful challenges exists but is limited.
+        <div class="annotation-card-zh">正当程序<span class="annotation-card-en">zhèngdāng chéngxù · due process</span></div>
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-header">Investable Signal</div>
+      <div class="annotation-card-body">
+        If Alibaba wins, it removes an overhang on BABA ADR for NDAA-restricted funds — a narrow but real catalyst. A loss accelerates institutional divestment timelines.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: L3/L4 Autonomous Driving Standards -->
+<div id="v2" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-num">Jul 1, 2027</div>
+      <div class="signal-label">MIIT mandatory implementation date for L3/L4 safety standard</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">3</div>
+      <div class="signal-label">Mandatory requirements: black box (DSSAD), biometric monitoring, MRM capability</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">L3 → OEM</div>
+      <div class="signal-label">Liability shift: when L3 is engaged and driver non-responsive, OEM is liable</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">China AV Regulatory Timeline: From Voluntary to Mandatory</div>
+    <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="200" fill="#fafaf8"/>
+      <!-- Horizontal timeline axis -->
+      <line x1="60" y1="100" x2="660" y2="100" stroke="#b0a090" stroke-width="2"/>
+      <!-- Arrow head -->
+      <polygon points="660,95 672,100 660,105" fill="#b0a090"/>
+      <!-- Milestone markers -->
+      <!-- 2022: First pilot zones -->
+      <circle cx="120" cy="100" r="6" fill="#d0a080"/>
+      <text x="120" y="85" class="axis-label" text-anchor="middle">2022</text>
+      <text x="120" y="130" class="axis-label" text-anchor="middle">First L3</text>
+      <text x="120" y="142" class="axis-label" text-anchor="middle">pilot zones</text>
+      <!-- 2025: Optional standard -->
+      <circle cx="270" cy="100" r="6" fill="#c07050"/>
+      <text x="270" y="85" class="axis-label" text-anchor="middle">Feb 2026</text>
+      <text x="270" y="130" class="axis-label" text-anchor="middle">MIIT draft</text>
+      <text x="270" y="142" class="axis-label" text-anchor="middle">published</text>
+      <!-- June 24: Comment period closes -->
+      <circle cx="430" cy="100" r="8" fill="#c0392b"/>
+      <text x="430" y="80" class="axis-label" text-anchor="middle" font-weight="600">Jun 24, 2026</text>
+      <text x="430" y="130" class="axis-label" text-anchor="middle">Comment</text>
+      <text x="430" y="142" class="axis-label" text-anchor="middle">period closes</text>
+      <text x="430" y="154" class="axis-label" text-anchor="middle" fill="#c0392b">TODAY</text>
+      <!-- July 2027: Mandatory -->
+      <circle cx="600" cy="100" r="8" fill="#1a56db"/>
+      <text x="600" y="80" class="axis-label" text-anchor="middle">Jul 1, 2027</text>
+      <text x="600" y="130" class="axis-label" text-anchor="middle">Mandatory</text>
+      <text x="600" y="142" class="axis-label" text-anchor="middle">enforcement</text>
+      <!-- Connecting dashed sections -->
+      <line x1="126" y1="100" x2="264" y2="100" stroke="#c07050" stroke-dasharray="4,3" stroke-width="1.5"/>
+      <line x1="276" y1="100" x2="422" y2="100" stroke="#c0392b" stroke-width="2"/>
+      <line x1="438" y1="100" x2="592" y2="100" stroke="#1a56db" stroke-dasharray="4,3" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-header">Core Risk</div>
+      <div class="annotation-card-body">
+        Foreign OEMs (Mercedes, BMW, VW) whose L3 systems were designed to EU/US type-approval standards face a compressed certification runway in China.
+        <div class="annotation-card-zh">智能网联汽车<span class="annotation-card-en">zhìnéng wǎnglián qìchē · intelligent connected vehicles</span></div>
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-header">Unverified</div>
+      <div class="annotation-card-body">
+        Whether the finalized standard will differ materially from the draft is unconfirmed. Enforcement timelines have slipped before in China's AV regulatory history.
+        <div class="annotation-card-zh">最小风险操作<span class="annotation-card-en">zuìxiǎo fēngxiǎn cāozuò · minimal risk maneuver</span></div>
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-header">Investable Signal</div>
+      <div class="annotation-card-body">
+        Domestic AV system developers — Huawei 乾崑智驾 (Qiánkūn Zhì Jià, HarmonyOS ADS), Xpeng, Li Auto — are better positioned to certify quickly, strengthening their premium EV moat.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: Foreign Investment Action Plan -->
+<div id="v3" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-num">533,000</div>
+      <div class="signal-label">Foreign-invested enterprises in China as of end-2025</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">¥2.5T</div>
+      <div class="signal-label">Annual tax revenue from foreign-invested enterprises (~1/7 of national total)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-num">27</div>
+      <div class="signal-label">Government departments jointly behind the June 22 action plan</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Foreign-Invested Enterprise Count — 5-Year Growth vs. FDI Flow Direction</div>
+    <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="220" fill="#fafaf8"/>
+      <!-- Axis -->
+      <line x1="80" y1="30" x2="80" y2="170" stroke="#b0a090" stroke-width="1.5"/>
+      <line x1="80" y1="170" x2="660" y2="170" stroke="#b0a090" stroke-width="1.5"/>
+      <!-- Y axis labels -->
+      <text x="70" y="50" class="axis-label" text-anchor="end">530K</text>
+      <text x="70" y="90" class="axis-label" text-anchor="end">470K</text>
+      <text x="70" y="130" class="axis-label" text-anchor="end">420K</text>
+      <text x="70" y="170" class="axis-label" text-anchor="end">380K</text>
+      <!-- Grid lines -->
+      <line x1="80" y1="50" x2="660" y2="50" stroke="#e8e0d8" stroke-width="0.5"/>
+      <line x1="80" y1="90" x2="660" y2="90" stroke="#e8e0d8" stroke-width="0.5"/>
+      <line x1="80" y1="130" x2="660" y2="130" stroke="#e8e0d8" stroke-width="0.5"/>
+      <!-- Enterprise count line (growing) -->
+      <polyline points="130,160 240,145 350,125 460,100 570,55 620,45" fill="none" stroke="#1a56db" stroke-width="2.5"/>
+      <!-- Dots -->
+      <circle cx="130" cy="160" r="4" fill="#1a56db"/>
+      <circle cx="240" cy="145" r="4" fill="#1a56db"/>
+      <circle cx="350" cy="125" r="4" fill="#1a56db"/>
+      <circle cx="460" cy="100" r="4" fill="#1a56db"/>
+      <circle cx="570" cy="55" r="4" fill="#1a56db"/>
+      <circle cx="620" cy="45" r="5" fill="#1a56db" stroke="#fff" stroke-width="1.5"/>
+      <!-- X axis labels -->
+      <text x="130" y="190" class="axis-label" text-anchor="middle">2021</text>
+      <text x="240" y="190" class="axis-label" text-anchor="middle">2022</text>
+      <text x="350" y="190" class="axis-label" text-anchor="middle">2023</text>
+      <text x="460" y="190" class="axis-label" text-anchor="middle">2024</text>
+      <text x="570" y="190" class="axis-label" text-anchor="middle">2025</text>
+      <text x="620" y="190" class="axis-label" text-anchor="middle" fill="#c0392b">2026</text>
+      <!-- FDI flow arrow (declining) — secondary indicator -->
+      <polyline points="130,100 240,110 350,125 460,148 570,160" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="5,3"/>
+      <circle cx="130" cy="100" r="3" fill="#c0392b"/>
+      <circle cx="570" cy="160" r="3" fill="#c0392b"/>
+      <!-- Legend -->
+      <rect x="460" y="32" width="10" height="3" fill="#1a56db"/>
+      <text x="475" y="36" class="chart-legend">Enterprise count (growing +4.5%/yr)</text>
+      <rect x="460" y="46" width="10" height="3" fill="#c0392b"/>
+      <text x="475" y="50" class="chart-legend">FDI inflow trend (declining 2024-25)</text>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-header">Core Risk</div>
+      <div class="annotation-card-body">
+        FDI inflows into China fell in 2024 and 2025 even as enterprise count grew — suggesting existing firms are staying while new entrants are hesitating. The action plan does not resolve the structural deterrents.
+        <div class="annotation-card-zh">外资利用<span class="annotation-card-en">wàizī lìyòng · foreign investment utilization</span></div>
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-header">Unverified</div>
+      <div class="annotation-card-body">
+        Local government implementation of the central plan is the critical unknown. Prior foreign investment action plans (2023, 2024, 2025) have had mixed follow-through at the provincial level.
+        <div class="annotation-card-zh">国民待遇<span class="annotation-card-en">guómín dàiyù · national treatment</span></div>
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-header">Investable Signal</div>
+      <div class="annotation-card-body">
+        Treasury futures and financial risk-tool access for foreign banks is a concrete, specific concession. Financial services firms with China operations should monitor PBOC/CSRC implementation guidance over the next 60–90 days.
+        <div class="annotation-card-zh">十五五<span class="annotation-card-en">Shíwǔwǔ · 15th Five-Year Plan</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="viz-footer">
+  <div class="viz-footer-text">China Brief Issue #36 · June 24, 2026 · Not investment advice · Data sourced from public reporting</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
