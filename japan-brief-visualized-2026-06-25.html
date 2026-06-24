@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #25 · Data Visualizations · June 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .page-header { background:#1a1a2e; padding:20px 40px; border-bottom:3px solid #3730a3; display:flex; align-items:center; justify-content:space-between; }
+  .page-header a { color:#818cf8; font-size:12px; text-decoration:none; letter-spacing:1px; }
+  .page-header a:hover { color:#c7d2fe; }
+  .page-title { color:#fff; font-family:'Playfair Display',serif; font-size:20px; }
+  .page-meta { color:#8a9bb5; font-size:11px; margin-top:4px; }
+  .tabs { background:#fff; border-bottom:2px solid #e5e7eb; padding:0 40px; display:flex; gap:0; }
+  .tab { padding:14px 22px; font-size:13px; font-weight:500; color:#6b7280; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+  .tab:hover { color:#3730a3; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; font-weight:600; }
+  .panel { display:none; padding:32px 40px; }
+  .panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:22px; color:#1a1a2e; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:24px; }
+  .signals-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border:1px solid #e5e7eb; border-radius:6px; padding:16px; text-align:center; border-top:3px solid #3730a3; }
+  .signal-number { font-size:28px; font-weight:700; color:#3730a3; font-family:'Playfair Display',serif; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#6b7280; margin-top:4px; }
+  .signal-context { font-size:11px; color:#9ca3af; margin-top:4px; }
+  .chart-container { background:#fff; border:1px solid #e5e7eb; border-radius:6px; padding:24px; margin-bottom:24px; }
+  .chart-title { font-size:13px; font-weight:600; color:#374151; margin-bottom:16px; }
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .annotation-card { background:#f8f9ff; border:1px solid #e0e7ff; border-radius:6px; padding:14px; }
+  .annotation-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .annotation-text { font-size:12.5px; color:#374151; line-height:1.5; }
+  .page-footer { background:#1a1a2e; padding:14px 40px; text-align:center; }
+  .page-footer-text { font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Japan Brief · Issue #25 · Data Visualizations</div>
+    <div class="page-meta">June 25, 2026 · 3 stories · <a href="japan-brief.html">Back to Japan Brief</a></div>
+  </div>
+  <a href="japan-brief.html">Japan Brief Home</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1', 0)">Story 1 · PFN PLaMo 3.0</div>
+  <div class="tab" onclick="showViz('s2', 1)">Story 2 · Japan Investment Plan</div>
+  <div class="tab" onclick="showViz('s3', 2)">Story 3 · Blackstone Data Centers</div>
+</div>
+
+<!-- PANEL 1: PFN PLaMo 3.0 Prime -->
+<div id="s1" class="panel active">
+  <div class="panel-headline">Preferred Networks PLaMo 3.0 Prime · Japanese LLM Pricing vs. Global Models</div>
+  <div class="panel-source">Source: Nikkei Asia · IT Business Today · June 23, 2026</div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">&lt;50%</div>
+      <div class="signal-label">Price vs. comparable OpenAI models</div>
+      <div class="signal-context">PLaMo input: ¥60/M tokens</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">¥250</div>
+      <div class="signal-label">Output cost per million tokens</div>
+      <div class="signal-context">GPT-4o mini tier pricing</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">¥1,000</div>
+      <div class="signal-label">Free signup credit</div>
+      <div class="signal-context">~10 million tokens, 1 month</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Indicative LLM API Pricing — Input Tokens (¥ per million, approx.) · June 2026</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Y axis -->
+      <line x1="80" y1="20" x2="80" y2="180" stroke="#d1d5db" stroke-width="1"/>
+      <!-- X axis -->
+      <line x1="80" y1="180" x2="560" y2="180" stroke="#d1d5db" stroke-width="1"/>
+      <!-- Y axis labels -->
+      <text x="70" y="185" text-anchor="end" font-size="10" fill="#9ca3af">0</text>
+      <text x="70" y="135" text-anchor="end" font-size="10" fill="#9ca3af">200</text>
+      <text x="70" y="85" text-anchor="end" font-size="10" fill="#9ca3af">400</text>
+      <text x="70" y="35" text-anchor="end" font-size="10" fill="#9ca3af">600</text>
+      <!-- Grid lines -->
+      <line x1="80" y1="130" x2="560" y2="130" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="80" y1="80" x2="560" y2="80" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="80" y1="30" x2="560" y2="30" stroke="#f3f4f6" stroke-width="1"/>
+
+      <!-- Bar: PLaMo 3.0 Prime -->
+      <rect x="105" y="168" width="70" height="12" fill="#3730a3" rx="2"/>
+      <text x="140" y="163" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">¥60</text>
+      <text x="140" y="196" text-anchor="middle" font-size="10" fill="#374151">PLaMo 3.0 Prime</text>
+      <text x="140" y="207" text-anchor="middle" font-size="9" fill="#9ca3af">(PFN)</text>
+
+      <!-- Bar: GPT-4o mini (indicative ~¥100-120) -->
+      <rect x="210" y="150" width="70" height="30" fill="#6366f1" rx="2" opacity="0.7"/>
+      <text x="245" y="145" text-anchor="middle" font-size="10" fill="#6366f1" font-weight="600">~¥110</text>
+      <text x="245" y="196" text-anchor="middle" font-size="10" fill="#374151">GPT-4o mini</text>
+      <text x="245" y="207" text-anchor="middle" font-size="9" fill="#9ca3af">(OpenAI)</text>
+
+      <!-- Bar: GPT-4o (~¥375 indicative) -->
+      <rect x="315" y="87" width="70" height="93" fill="#818cf8" rx="2" opacity="0.7"/>
+      <text x="350" y="82" text-anchor="middle" font-size="10" fill="#818cf8" font-weight="600">~¥375</text>
+      <text x="350" y="196" text-anchor="middle" font-size="10" fill="#374151">GPT-4o</text>
+      <text x="350" y="207" text-anchor="middle" font-size="9" fill="#9ca3af">(OpenAI)</text>
+
+      <!-- Bar: Claude Sonnet (~¥480 indicative) -->
+      <rect x="420" y="60" width="70" height="120" fill="#a5b4fc" rx="2" opacity="0.6"/>
+      <text x="455" y="55" text-anchor="middle" font-size="10" fill="#6b7280" font-weight="600">~¥480</text>
+      <text x="455" y="196" text-anchor="middle" font-size="10" fill="#374151">Major US Frontier</text>
+      <text x="455" y="207" text-anchor="middle" font-size="9" fill="#9ca3af">(indicative)</text>
+
+      <!-- Annotation line for PLaMo -->
+      <line x1="140" y1="155" x2="140" y2="140" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="145" y="138" font-size="9" fill="#3730a3">Domestic LLM</text>
+    </svg>
+    <div style="font-size:10px;color:#9ca3af;margin-top:8px;">Note: Non-PLaMo figures are indicative USD-to-JPY conversions at approx. ¥160/$. Exact rates vary by plan. Chart for directional comparison only.</div>
+  </div>
+
+  <div class="annotation-grid">
+    <div class="annotation-card">
+      <div class="annotation-tag">Positioning</div>
+      <div class="annotation-text">PFN is not competing on benchmark supremacy — it is competing on price, Japanese-language quality, and data sovereignty. The FSA compliance environment (effective July 1) gives domestic models a structural preference in financial services.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Physical AI Link</div>
+      <div class="annotation-text">PFN's existing deployments in factory automation (Toyota, Fanuc) give PLaMo 3.0 a natural distribution path into physical AI environments — the sector the Takaichi investment plan prioritizes most heavily for FY2040.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Watch</div>
+      <div class="annotation-text">First government procurement contract using PLaMo; whether METI or Digital Agency references PFN in the AI foundation model consortium framework; any FSA examination finding citing domestic LLM use.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Japan ¥370T Investment Plan -->
+<div id="s2" class="panel">
+  <div class="panel-headline">Japan ¥370 Trillion Investment Plan · AI and Semiconductor Allocation Detail</div>
+  <div class="panel-source">Source: Bloomberg · Nikkei Asia · The Japan Times · June 24, 2026</div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">¥370T</div>
+      <div class="signal-label">Total 14-year plan (FY2026-FY2040)</div>
+      <div class="signal-context">~$2.3 trillion; ~50% govt, ~50% private</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">¥101.6T</div>
+      <div class="signal-label">AI + semiconductors allocation</div>
+      <div class="signal-context">27% of total; largest sector share</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">5x</div>
+      <div class="signal-label">Domestic chip sales target</div>
+      <div class="signal-context">¥8T today → ¥40T by FY2040</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Japan Investment Plan · Projected Economic Effects by Technology Category (¥ Trillion, by FY2040)</div>
+    <svg viewBox="0 0 580 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Axes -->
+      <line x1="160" y1="20" x2="160" y2="185" stroke="#d1d5db" stroke-width="1"/>
+      <line x1="160" y1="185" x2="560" y2="185" stroke="#d1d5db" stroke-width="1"/>
+      <!-- Grid verticals -->
+      <line x1="240" y1="20" x2="240" y2="185" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="320" y1="20" x2="320" y2="185" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="400" y1="20" x2="400" y2="185" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="480" y1="20" x2="480" y2="185" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="560" y1="20" x2="560" y2="185" stroke="#f3f4f6" stroke-width="1"/>
+      <!-- X axis labels -->
+      <text x="240" y="198" text-anchor="middle" font-size="9" fill="#9ca3af">100T</text>
+      <text x="320" y="198" text-anchor="middle" font-size="9" fill="#9ca3af">200T</text>
+      <text x="400" y="198" text-anchor="middle" font-size="9" fill="#9ca3af">300T</text>
+      <text x="480" y="198" text-anchor="middle" font-size="9" fill="#9ca3af">400T</text>
+      <text x="560" y="198" text-anchor="middle" font-size="9" fill="#9ca3af">500T</text>
+      <text x="160" y="198" text-anchor="middle" font-size="9" fill="#9ca3af">0</text>
+      <!-- Label: X axis unit -->
+      <text x="360" y="215" text-anchor="middle" font-size="10" fill="#6b7280">Projected economic effect (¥ trillion)</text>
+
+      <!-- Bar: Semiconductor investment (¥443T effect) -->
+      <rect x="161" y="30" width="362" height="28" fill="#3730a3" rx="2"/>
+      <text x="156" y="50" text-anchor="end" font-size="10" fill="#374151" font-weight="600">Semiconductor</text>
+      <text x="530" y="50" text-anchor="start" font-size="10" fill="#fff" font-weight="700">¥443T</text>
+
+      <!-- Bar: Vertical AI (¥222T effect) -->
+      <rect x="161" y="73" width="177" height="28" fill="#6366f1" rx="2"/>
+      <text x="156" y="93" text-anchor="end" font-size="10" fill="#374151" font-weight="600">Vertical AI</text>
+      <text x="345" y="93" text-anchor="start" font-size="10" fill="#fff" font-weight="700">¥222T</text>
+
+      <!-- Bar: Physical AI (¥144T effect) -->
+      <rect x="161" y="116" width="115" height="28" fill="#818cf8" rx="2"/>
+      <text x="156" y="136" text-anchor="end" font-size="10" fill="#374151" font-weight="600">Physical AI</text>
+      <text x="283" y="136" text-anchor="start" font-size="10" fill="#1a1a2e" font-weight="700">¥144T</text>
+
+      <!-- Bar: Rapidus target chip sales (¥40T, shown as investment target) -->
+      <rect x="161" y="159" width="32" height="18" fill="#c7d2fe" rx="2"/>
+      <text x="156" y="172" text-anchor="end" font-size="10" fill="#374151" font-weight="600">Chip sales target</text>
+      <text x="200" y="172" text-anchor="start" font-size="10" fill="#6b7280">¥40T (FY2040 domestic target, from ¥8T today)</text>
+    </svg>
+  </div>
+
+  <div class="annotation-grid">
+    <div class="annotation-card">
+      <div class="annotation-tag">Disbursement Risk</div>
+      <div class="annotation-text">Historical Japan infrastructure plans (2021 chip plan, GX roadmap) have routinely undershot stated envelopes. The actionable signal is METI's autumn 2026 supplementary budget — specific line items, not headline numbers.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Rapidus Context</div>
+      <div class="annotation-text">Total state support for Rapidus now approximately ¥2.6T. Pilot line (IIM-1, Chitose) operational. Mass production target FY2027. Design-win pipeline beyond Tenstorrent remains the commercial viability test through Q3/Q4 2026.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Fiscal Sustainability</div>
+      <div class="annotation-text">Japan's debt-to-GDP ratio is projected to decline only if the growth strategy succeeds. If technological breakthroughs fall short, debt pressures re-emerge in the 2030s. JGB 10Y at 2.64% reflects incomplete investor confidence in fiscal discipline.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: Blackstone AI Data Centers -->
+<div id="s3" class="panel">
+  <div class="panel-headline">Blackstone Japan AI Data Center Commitment · $30B Over 3–5 Years</div>
+  <div class="panel-source">Source: Nikkei Asia · Reuters · Private Equity Wire · June 23, 2026</div>
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-number">$30B</div>
+      <div class="signal-label">Blackstone commitment, 3–5 years</div>
+      <div class="signal-context">Via AirTrunk platform, Japan</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">&gt;1 GW</div>
+      <div class="signal-label">Target capacity under negotiation</div>
+      <div class="signal-context">Up from 500 MW already built</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">$13.1B</div>
+      <div class="signal-label">Blackstone Asia PE fund (latest close)</div>
+      <div class="signal-context">Exceeded target; largest Asia PE raise</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Foreign AI Infrastructure Investment Commitments in Japan · Selected Announcements (2024–2026)</div>
+    <svg viewBox="0 0 580 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Timeline line -->
+      <line x1="60" y1="110" x2="550" y2="110" stroke="#d1d5db" stroke-width="2"/>
+
+      <!-- 2024 label -->
+      <text x="80" y="200" text-anchor="middle" font-size="10" fill="#9ca3af">2024</text>
+      <line x1="80" y1="105" x2="80" y2="115" stroke="#d1d5db" stroke-width="1"/>
+
+      <!-- 2025 label -->
+      <text x="230" y="200" text-anchor="middle" font-size="10" fill="#9ca3af">2025</text>
+      <line x1="230" y1="105" x2="230" y2="115" stroke="#d1d5db" stroke-width="1"/>
+
+      <!-- 2026 label -->
+      <text x="400" y="200" text-anchor="middle" font-size="10" fill="#9ca3af">2026</text>
+      <line x1="400" y1="105" x2="400" y2="115" stroke="#d1d5db" stroke-width="1"/>
+
+      <!-- Event 1: AWS commitment 2024 -->
+      <circle cx="100" cy="110" r="6" fill="#818cf8"/>
+      <text x="100" y="97" text-anchor="middle" font-size="9" fill="#6b7280">AWS</text>
+      <text x="100" y="87" text-anchor="middle" font-size="9" fill="#6b7280">¥2.3T</text>
+
+      <!-- Event 2: Microsoft commitment 2024 -->
+      <circle cx="160" cy="110" r="6" fill="#6366f1"/>
+      <text x="160" y="97" text-anchor="middle" font-size="9" fill="#6b7280">Microsoft</text>
+      <text x="160" y="87" text-anchor="middle" font-size="9" fill="#6b7280">$10B</text>
+
+      <!-- Event 3: AirTrunk Tokyo green loan Mar 2026 -->
+      <circle cx="420" cy="110" r="6" fill="#3730a3"/>
+      <line x1="420" y1="110" x2="420" y2="145" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="420" y="158" text-anchor="middle" font-size="9" fill="#3730a3" font-weight="600">AirTrunk Tokyo</text>
+      <text x="420" y="168" text-anchor="middle" font-size="9" fill="#3730a3">¥191.6B green loan</text>
+      <text x="420" y="178" text-anchor="middle" font-size="9" fill="#9ca3af">Mar 2026</text>
+
+      <!-- Event 4: Blackstone $30B Jun 2026 -->
+      <circle cx="490" cy="110" r="9" fill="#3730a3" stroke="#1a1a2e" stroke-width="2"/>
+      <line x1="490" y1="110" x2="490" y2="65" stroke="#3730a3" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="490" y="55" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">Blackstone $30B</text>
+      <text x="490" y="68" text-anchor="middle" font-size="9" fill="#6b7280">3-5 yr commitment</text>
+      <text x="490" y="78" text-anchor="middle" font-size="9" fill="#9ca3af">Jun 2026</text>
+    </svg>
+  </div>
+
+  <div class="annotation-grid">
+    <div class="annotation-card">
+      <div class="annotation-tag">Execution Risk</div>
+      <div class="annotation-text">Municipal lawsuits against data center permits (Chiba, Saitama) represent a practical friction point for deploying at 1 GW+ scale. METI and MLIT have not yet issued national zoning guidance — watch for that before treating the ¥370T infra plan as unobstructed.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">Capital Inflow Context</div>
+      <div class="annotation-text">Goldman Sachs estimates ¥16 trillion ($100B) in foreign equity inflows into Japan since April 2025, primarily AI infrastructure-driven. Blackstone's $30B commitment is a meaningful share of a single-sponsor basis — not carry trade, structural AI capex allocation.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-tag">PE Acceleration</div>
+      <div class="annotation-text">Blackstone's Asia PE fund ($13.1B, exceeded target) signals confidence in Japan's broader corporate governance reform trajectory alongside the AI infrastructure build. Watch for Blackstone PE activity in Japanese tech/industrial carve-outs alongside the data center program.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="page-footer-text">Japan Brief Issue #25 · June 25, 2026 · Not investment advice</div>
+</div>
+
+<script>
+function showViz(id, tabIdx) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab')[tabIdx].classList.add('active');
+}
+</script>
+</body>
+</html>
