@@ -37,7 +37,10 @@ const CFG = {
 html { scroll-behavior:smooth; }
 body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
 
-.header { background:#1a1a2e; padding:40px 56px 32px; border-bottom:4px solid var(--accent); }
+.header { background:#1a1a2e; padding:32px 56px 32px; border-bottom:4px solid var(--accent); }
+.header-back { margin-bottom:16px; }
+.header-back a { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; transition:background 0.2s; }
+.header-back a:hover { background:#2a2a4e; }
 .header-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
 .header-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:#fff; }
 .header-title .local { font-size:20px; font-weight:400; color:#e8d5b0; letter-spacing:6px; display:block; margin-top:6px; }
@@ -45,11 +48,6 @@ body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .header-meta { margin-top:20px; display:flex; gap:16px; flex-wrap:wrap; }
 .badge { border:1px solid #3a3a6e; border-radius:3px; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; }
 .badge.live { border-color:var(--accent); color:var(--accent-text,#e8a89a); }
-
-.back-nav { background:#13132a; padding:10px 56px; display:flex; align-items:center; gap:20px; border-bottom:1px solid #2a2a4e; }
-.back-nav a { display:inline-flex; align-items:center; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; }
-.back-nav a:hover { color:#e8d5b0; }
-.back-nav a::before { content:'←'; margin-right:6px; font-size:13px; }
 
 .stats-bar { background:#13132a; padding:16px 56px; display:flex; gap:32px; flex-wrap:wrap; border-bottom:1px solid #2a2a4e; }
 .stat { text-align:center; }
@@ -110,7 +108,7 @@ body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .loading { text-align:center; padding:80px; color:#9a8a7a; font-size:14px; }
 
 @media(max-width:680px) {
-  .header, .stats-bar, .controls, .grid-wrap, .footer, .back-nav { padding-left:20px; padding-right:20px; }
+  .header, .stats-bar, .controls, .grid-wrap, .footer { padding-left:20px; padding-right:20px; }
   .company-grid { grid-template-columns:1fr; }
 }
 </style>
@@ -118,6 +116,7 @@ body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 <body>
 
 <div class="header">
+  <div class="header-back"><a id="backLink" href="brief.html">← Return to China Brief</a></div>
   <div class="header-eyebrow" id="eyebrow">朋友 Pengyou · China Brief · Zhōngguó Jiǎnbào</div>
   <div class="header-title" id="hTitle"></div>
   <div class="header-deck" id="hDeck"></div>
@@ -126,10 +125,6 @@ body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
     <span class="badge" id="badgeDate"></span>
     <span class="badge live">Living Document</span>
   </div>
-</div>
-
-<div class="back-nav">
-  <a id="backLink" href="brief.html">Return to China Brief</a>
 </div>
 
 <div class="stats-bar" id="statsBar">
