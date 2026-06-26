@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief #39 · Data Viz · June 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0f0f1a; font-family:'Inter',sans-serif; color:#e0e0e0; min-height:100vh; }
+
+  .top-bar { background:#1a1a2e; border-bottom:3px solid #c0392b; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .top-bar-title { font-family:'Playfair Display',serif; font-size:18px; color:#e8d5b0; }
+  .top-bar-back { font-size:12px; color:#c0392b; text-decoration:none; letter-spacing:1px; }
+  .top-bar-back:hover { color:#e8d5b0; }
+
+  .tab-bar { background:#1a1a2e; display:flex; gap:0; border-bottom:1px solid #2a2a4e; padding:0 32px; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; color:#5a6a8a; border-bottom:3px solid transparent; transition:all 0.2s; user-select:none; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+  .tab:hover:not(.active) { color:#a0b0c8; }
+
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+
+  .panel-title { font-family:'Playfair Display',serif; font-size:22px; color:#e8d5b0; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#5a6a8a; margin-bottom:28px; letter-spacing:0.5px; }
+
+  /* Signal numbers */
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
+  .signal { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:8px; padding:20px 16px; text-align:center; }
+  .signal-value { font-size:28px; font-weight:700; color:#e8d5b0; font-family:'Playfair Display',serif; }
+  .signal-label { font-size:10px; color:#5a6a8a; letter-spacing:1.5px; text-transform:uppercase; margin-top:6px; line-height:1.4; }
+
+  /* Charts */
+  .chart-box { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:8px; padding:24px; margin-bottom:24px; }
+  .chart-title { font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a9bb5; margin-bottom:20px; }
+
+  /* Annotation cards */
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:24px; }
+  .annotation-card { background:#1a1a2e; border-radius:6px; padding:16px; border-left:4px solid; }
+  .annotation-card.red { border-left-color:#c0392b; }
+  .annotation-card.amber { border-left-color:#e67e22; }
+  .annotation-card.green { border-left-color:#27ae60; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .annotation-card.red .annotation-card-label { color:#c0392b; }
+  .annotation-card.amber .annotation-card-label { color:#e67e22; }
+  .annotation-card.green .annotation-card-label { color:#27ae60; }
+  .annotation-card-text { font-size:12.5px; color:#a0b0c8; line-height:1.6; }
+  .annotation-card-zh { font-size:13px; font-weight:600; color:#e8d5b0; margin-top:6px; }
+  .annotation-card-en { font-size:11px; color:#5a6a8a; font-style:italic; margin-left:6px; }
+
+  .footer-bar { background:#1a1a2e; border-top:1px solid #2a2a4e; padding:14px 32px; text-align:center; font-size:10px; color:#3a4a6a; letter-spacing:1px; margin-top:40px; }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-title">China Brief #39 · Data Viz · June 27, 2026</div>
+  <a class="top-bar-back" href="brief.html">← Return to China Brief</a>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1', this)">Z.ai GLM-5.2</div>
+  <div class="tab" onclick="showViz('s2', this)">Open-Source AI Global</div>
+  <div class="tab" onclick="showViz('s3', this)">Euro Sovereign Bond</div>
+</div>
+
+<!-- STORY 1: Zhipu AI GLM-5.2 -->
+<div class="viz-panel active" id="s1">
+  <div class="panel-title">Z.ai GLM-5.2: First Chinese Open-Source Model in Global Top 3</div>
+  <div class="panel-source">South China Morning Post · June 26, 2026 · Code Arena Benchmark · Hong Kong Exchange</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-value">#2</div>
+      <div class="signal-label">Global Rank — Code Arena Front-End Benchmark</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">HK$1T</div>
+      <div class="signal-label">Z.ai Market Cap (June 22, 2026)</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">+820%</div>
+      <div class="signal-label">Z.ai Stock Gain Since Jan 2026 IPO</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Global AI Model Open-Source Benchmark Landscape (Code Arena, June 2026)</div>
+    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background grid -->
+      <line x1="160" y1="20" x2="660" y2="20" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="160" y1="70" x2="660" y2="70" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="160" y1="120" x2="660" y2="120" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="160" y1="170" x2="660" y2="170" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="160" y1="220" x2="660" y2="220" stroke="#2a2a4e" stroke-width="1"/>
+
+      <!-- Score axis labels -->
+      <text x="145" y="24" fill="#5a6a8a" font-size="10" text-anchor="end">100</text>
+      <text x="145" y="74" fill="#5a6a8a" font-size="10" text-anchor="end">90</text>
+      <text x="145" y="124" fill="#5a6a8a" font-size="10" text-anchor="end">80</text>
+      <text x="145" y="174" fill="#5a6a8a" font-size="10" text-anchor="end">70</text>
+      <text x="145" y="224" fill="#5a6a8a" font-size="10" text-anchor="end">60</text>
+
+      <!-- Bars: (score-60)*10 = bar height, baseline at y=220 -->
+      <!-- Anthropic Fable 5: ~97 → height (97-60)*5=185 → top y=35 -->
+      <rect x="175" y="35" width="80" height="185" fill="#e74c3c" opacity="0.7" rx="3"/>
+      <text x="215" y="30" fill="#e8d5b0" font-size="10" text-anchor="middle">97</text>
+      <text x="215" y="240" fill="#8a9bb5" font-size="9" text-anchor="middle">Anthropic</text>
+      <text x="215" y="252" fill="#8a9bb5" font-size="9" text-anchor="middle">Fable 5</text>
+      <text x="215" y="264" fill="#5a6a8a" font-size="8" text-anchor="middle">(US closed)</text>
+
+      <!-- GLM-5.2: ~93 → height (93-60)*5=165 → top y=55 -->
+      <rect x="285" y="55" width="80" height="165" fill="#c0392b" opacity="0.9" rx="3"/>
+      <text x="325" y="50" fill="#e8d5b0" font-size="10" text-anchor="middle">93</text>
+      <text x="325" y="240" fill="#e8d5b0" font-size="10" text-anchor="middle" font-weight="600">Z.ai</text>
+      <text x="325" y="252" fill="#e8d5b0" font-size="9" text-anchor="middle">GLM-5.2</text>
+      <text x="325" y="264" fill="#c0392b" font-size="8" text-anchor="middle">(CN open)</text>
+
+      <!-- GPT-5.5: ~91 → height (91-60)*5=155 → top y=65 -->
+      <rect x="395" y="65" width="80" height="155" fill="#3498db" opacity="0.7" rx="3"/>
+      <text x="435" y="60" fill="#e8d5b0" font-size="10" text-anchor="middle">91</text>
+      <text x="435" y="240" fill="#8a9bb5" font-size="9" text-anchor="middle">OpenAI</text>
+      <text x="435" y="252" fill="#8a9bb5" font-size="9" text-anchor="middle">GPT-5.5</text>
+      <text x="435" y="264" fill="#5a6a8a" font-size="8" text-anchor="middle">(US closed)</text>
+
+      <!-- DeepSeek V4 Pro: ~83 → height (83-60)*5=115 → top y=105 -->
+      <rect x="505" y="105" width="80" height="115" fill="#e67e22" opacity="0.7" rx="3"/>
+      <text x="545" y="100" fill="#e8d5b0" font-size="10" text-anchor="middle">83</text>
+      <text x="545" y="240" fill="#8a9bb5" font-size="9" text-anchor="middle">DeepSeek</text>
+      <text x="545" y="252" fill="#8a9bb5" font-size="9" text-anchor="middle">V4 Pro</text>
+      <text x="545" y="264" fill="#5a6a8a" font-size="8" text-anchor="middle">(CN open)</text>
+
+      <!-- Axis line -->
+      <line x1="160" y1="220" x2="660" y2="220" stroke="#3a3a5e" stroke-width="1.5"/>
+      <line x1="160" y1="20" x2="160" y2="220" stroke="#3a3a5e" stroke-width="1.5"/>
+
+      <!-- "FIRST CHINESE OPEN MODEL TOP 3" label on GLM bar -->
+      <rect x="255" y="8" width="140" height="16" fill="#c0392b" rx="2"/>
+      <text x="325" y="20" fill="#fff" font-size="9" text-anchor="middle" font-weight="600">FIRST CHINESE IN TOP 3</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Signal</div>
+      <div class="annotation-card-text">First Chinese open model to achieve global top-3 benchmark ranking — a qualitative threshold, not just a score improvement. Validates China's ability to produce frontier-class AI without US chips.</div>
+      <div class="annotation-card-zh">开放权重<span class="annotation-card-en">kāifàng quánzhòng · open weights</span></div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Unverified</div>
+      <div class="annotation-card-text">GLM-5.2 benchmark claims have not yet been independently verified at scale. Code Arena rankings reflect specialist coding tasks — performance on broader enterprise workloads remains unproven.</div>
+      <div class="annotation-card-zh">大语言模型<span class="annotation-card-en">dà yǔyán móxíng · large language model</span></div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Actionable Signal</div>
+      <div class="annotation-card-text">MIT license with no regional restrictions is the investable moat. If enterprise adoption follows in Southeast Asia and Middle East, Z.ai's HK$1T market cap has a defensible growth path. Watch Q3 international developer adoption metrics.</div>
+      <div class="annotation-card-zh">智谱AI<span class="annotation-card-en">Zhìpǔ AI · Zhipu AI / Z.ai</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: China Open-Source AI Global Advance -->
+<div class="viz-panel" id="s2">
+  <div class="panel-title">China's Open-Source AI: Global Adoption vs. US Counter-Measures</div>
+  <div class="panel-source">Axios / CNAS Panel / State Department · June 26, 2026 · Global AI Download Data</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-value">~30%</div>
+      <div class="signal-label">Chinese Open-Weight Models' Share of Global AI Downloads</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">35</div>
+      <div class="signal-label">Nations Joining US Pax Silica AI Alliance This Week</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">2</div>
+      <div class="signal-label">Sovereign AI Ecosystems (SG, MY) Now Running on Chinese Models</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Global AI Model Download Share — Chinese vs. US Open Models (2024–2026)</div>
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grid -->
+      <line x1="80" y1="20" x2="660" y2="20" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="80" y1="60" x2="660" y2="60" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="80" y1="100" x2="660" y2="100" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="80" y1="140" x2="660" y2="140" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="80" y1="180" x2="660" y2="180" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="80" y1="220" x2="660" y2="220" stroke="#2a2a4e" stroke-width="1"/>
+
+      <!-- Y-axis labels -->
+      <text x="70" y="24" fill="#5a6a8a" font-size="10" text-anchor="end">50%</text>
+      <text x="70" y="64" fill="#5a6a8a" font-size="10" text-anchor="end">40%</text>
+      <text x="70" y="104" fill="#5a6a8a" font-size="10" text-anchor="end">30%</text>
+      <text x="70" y="144" fill="#5a6a8a" font-size="10" text-anchor="end">20%</text>
+      <text x="70" y="184" fill="#5a6a8a" font-size="10" text-anchor="end">10%</text>
+      <text x="70" y="224" fill="#5a6a8a" font-size="10" text-anchor="end">0%</text>
+
+      <!-- X axis points: Q1 2024, Q3 2024, Q1 2025, Q3 2025, Q1 2026, Q2 2026 -->
+      <!-- x positions: 120, 210, 300, 390, 480, 580 -->
+      <!-- US line: 43%, 42%, 38%, 30%, 25%, 22% → y = 220 - val*4 -->
+      <!-- CN line: 5%, 9%, 16%, 23%, 28%, 30% → y = 220 - val*4 -->
+
+      <!-- US line (blue) -->
+      <polyline points="120,48 210,52 300,68 390,100 480,120 580,132"
+                fill="none" stroke="#3498db" stroke-width="2.5" stroke-linejoin="round"/>
+      <!-- CN line (red) -->
+      <polyline points="120,200 210,184 300,156 390,128 480,108 580,100"
+                fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- Dots US -->
+      <circle cx="120" cy="48" r="4" fill="#3498db"/>
+      <circle cx="210" cy="52" r="4" fill="#3498db"/>
+      <circle cx="300" cy="68" r="4" fill="#3498db"/>
+      <circle cx="390" cy="100" r="4" fill="#3498db"/>
+      <circle cx="480" cy="120" r="4" fill="#3498db"/>
+      <circle cx="580" cy="132" r="4" fill="#3498db"/>
+
+      <!-- Dots CN -->
+      <circle cx="120" cy="200" r="4" fill="#c0392b"/>
+      <circle cx="210" cy="184" r="4" fill="#c0392b"/>
+      <circle cx="300" cy="156" r="4" fill="#c0392b"/>
+      <circle cx="390" cy="128" r="4" fill="#c0392b"/>
+      <circle cx="480" cy="108" r="4" fill="#c0392b"/>
+      <circle cx="580" cy="100" r="4" fill="#c0392b"/>
+
+      <!-- Crossover annotation -->
+      <line x1="400" y1="20" x2="400" y2="220" stroke="#e67e22" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="404" y="35" fill="#e67e22" font-size="9">CROSSOVER</text>
+      <text x="404" y="46" fill="#e67e22" font-size="9">Aug 2025</text>
+
+      <!-- Value labels -->
+      <text x="590" y="128" fill="#3498db" font-size="10">22%</text>
+      <text x="590" y="96" fill="#c0392b" font-size="10" font-weight="600">~30%</text>
+
+      <!-- X axis labels -->
+      <text x="120" y="240" fill="#5a6a8a" font-size="9" text-anchor="middle">Q1 2024</text>
+      <text x="210" y="240" fill="#5a6a8a" font-size="9" text-anchor="middle">Q3 2024</text>
+      <text x="300" y="240" fill="#5a6a8a" font-size="9" text-anchor="middle">Q1 2025</text>
+      <text x="390" y="240" fill="#5a6a8a" font-size="9" text-anchor="middle">Q3 2025</text>
+      <text x="480" y="240" fill="#5a6a8a" font-size="9" text-anchor="middle">Q1 2026</text>
+      <text x="580" y="240" fill="#5a6a8a" font-size="9" text-anchor="middle">Q2 2026</text>
+
+      <!-- Legend -->
+      <line x1="85" y1="255" x2="105" y2="255" stroke="#c0392b" stroke-width="2.5"/>
+      <text x="110" y="259" fill="#c0392b" font-size="10">Chinese open-weight models</text>
+      <line x1="310" y1="255" x2="330" y2="255" stroke="#3498db" stroke-width="2.5"/>
+      <text x="335" y="259" fill="#3498db" font-size="10">US open-weight models</text>
+
+      <!-- Axes -->
+      <line x1="80" y1="220" x2="660" y2="220" stroke="#3a3a5e" stroke-width="1.5"/>
+      <line x1="80" y1="20" x2="80" y2="220" stroke="#3a3a5e" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Signal</div>
+      <div class="annotation-card-text">China's open-weight models now at ~30% of global AI downloads — up from under 5% in early 2024. The US Pax Silica response confirms Washington views this as a strategic threat, not a commercial footnote.</div>
+      <div class="annotation-card-zh">开源<span class="annotation-card-en">kāiyuán · open source</span></div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Unverified</div>
+      <div class="annotation-card-text">Download share metrics do not equal production deployment share. Chinese models may be heavily downloaded but less deployed in regulated enterprise environments. Pax Silica adoption among signatory governments is also unconfirmed.</div>
+      <div class="annotation-card-zh">软实力<span class="annotation-card-en">ruǎn shílì · soft power</span></div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Actionable Signal</div>
+      <div class="annotation-card-text">Bilateral risk for Chinese AI equities: Pax Silica constrains Western market, but validates the China open-source thesis. Investors with EM/Asia mandates are better positioned than global tech generalists to capture this bifurcation.</div>
+      <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: Euro Sovereign Bond -->
+<div class="viz-panel" id="s3">
+  <div class="panel-title">China's Record €5B Euro Sovereign Bond — Pricing and Demand Structure</div>
+  <div class="panel-source">China Daily / Bloomberg / Ministry of Finance · June 25–26, 2026 · Luxembourg</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-value">4.96x</div>
+      <div class="signal-label">Oversubscription Ratio (24.8B orders / 5B offered)</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">49%</div>
+      <div class="signal-label">Non-Asian Investor Share of Orders</div>
+    </div>
+    <div class="signal">
+      <div class="signal-value">15 bps</div>
+      <div class="signal-label">5-Yr Mid-Swap Spread (tightest-ever for China sovereign)</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Euro Sovereign Bond — Tranche Structure &amp; Investor Geography</div>
+    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- LEFT: Tranche bar chart -->
+      <!-- 5yr: 2.5B, 8yr: 1.5B, 12yr: 1.0B — scale: 1B = 80px -->
+      <text x="20" y="18" fill="#8a9bb5" font-size="10" font-weight="600">TRANCHE SIZE (€B)</text>
+
+      <!-- 5yr bar: 2.5B → 200px -->
+      <rect x="20" y="25" width="200" height="40" fill="#c0392b" opacity="0.85" rx="3"/>
+      <text x="226" y="50" fill="#e8d5b0" font-size="12" font-weight="600">€2.5B</text>
+      <text x="20" y="76" fill="#8a9bb5" font-size="10">5-year · 2.768% · 15 bps over</text>
+
+      <!-- 8yr bar: 1.5B → 120px -->
+      <rect x="20" y="90" width="120" height="40" fill="#c0392b" opacity="0.70" rx="3"/>
+      <text x="146" y="115" fill="#e8d5b0" font-size="12" font-weight="600">€1.5B</text>
+      <text x="20" y="141" fill="#8a9bb5" font-size="10">8-year · 2.966% · 22 bps over</text>
+
+      <!-- 12yr bar: 1.0B → 80px -->
+      <rect x="20" y="155" width="80" height="40" fill="#c0392b" opacity="0.55" rx="3"/>
+      <text x="106" y="180" fill="#e8d5b0" font-size="12" font-weight="600">€1.0B</text>
+      <text x="20" y="206" fill="#8a9bb5" font-size="10">12-year · 3.212% · 33 bps over</text>
+
+      <!-- Total -->
+      <line x1="20" y1="215" x2="300" y2="215" stroke="#3a3a5e" stroke-width="1"/>
+      <text x="20" y="230" fill="#e8d5b0" font-size="12" font-weight="600">Total: €5.0B issued · €24.8B subscribed</text>
+
+      <!-- DIVIDER -->
+      <line x1="340" y1="10" x2="340" y2="250" stroke="#2a2a4e" stroke-width="1"/>
+
+      <!-- RIGHT: Investor geography donut-style bar -->
+      <text x="360" y="18" fill="#8a9bb5" font-size="10" font-weight="600">INVESTOR GEOGRAPHY (% of orders)</text>
+
+      <!-- Asia investors: 51% -->
+      <rect x="360" y="30" width="255" height="44" fill="#3498db" opacity="0.6" rx="3"/>
+      <text x="490" y="57" fill="#e8d5b0" font-size="13" font-weight="600" text-anchor="middle">Asia 51%</text>
+
+      <!-- Non-Asia investors: 49% -->
+      <rect x="360" y="82" width="245" height="44" fill="#27ae60" opacity="0.7" rx="3"/>
+      <text x="480" y="109" fill="#e8d5b0" font-size="13" font-weight="600" text-anchor="middle">Non-Asia 49%</text>
+
+      <text x="360" y="145" fill="#8a9bb5" font-size="10">Investor types (non-Asia pool):</text>
+      <text x="360" y="162" fill="#a0b0c8" font-size="10">· Sovereign wealth funds</text>
+      <text x="360" y="177" fill="#a0b0c8" font-size="10">· Pension funds &amp; insurance</text>
+      <text x="360" y="192" fill="#a0b0c8" font-size="10">· Central banks</text>
+      <text x="360" y="207" fill="#a0b0c8" font-size="10">· International commercial banks</text>
+
+      <text x="360" y="230" fill="#5a6a8a" font-size="10">Lead managers: JPMorgan · Deutsche Bank · StanChart · Citi</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Signal</div>
+      <div class="annotation-card-text">China sovereign paper priced at tightest-ever euro spreads with 5x oversubscription during peak US-China tension — global capital markets are treating sovereign credit as independent of bilateral geopolitics. A persistent, not episodic, pattern.</div>
+      <div class="annotation-card-zh">主权信用<span class="annotation-card-en">zhǔquán xìnyòng · sovereign creditworthiness</span></div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Unverified</div>
+      <div class="annotation-card-text">49% non-Asian investor participation is reported, but the breakdown between European institutional accounts vs. Middle Eastern sovereigns (who may have different risk tolerance) is not disclosed. Actual secondary market performance will test the primary demand signal.</div>
+      <div class="annotation-card-zh">收益率曲线<span class="annotation-card-en">shōuyìlǜ qūxiàn · yield curve</span></div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Actionable Signal</div>
+      <div class="annotation-card-text">A complete 5/8/12-year euro yield curve for Chinese sovereign paper lowers corporate financing costs for Chinese issuers seeking euro debt. Watch for follow-on euro bond mandates from Chinese state banks (CDB, ICBC, Bank of China) at tighter spreads.</div>
+      <div class="annotation-card-zh">财政部<span class="annotation-card-en">Cáizhèngbù · Ministry of Finance</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #39 · June 27, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+  function showViz(id, tab) {
+    document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    tab.classList.add('active');
+  }
+</script>
+</body>
+</html>
