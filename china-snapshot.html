@@ -13,12 +13,6 @@
   --cream: #e8d5b0;
   --border: #e0d8d0;
   --text-dim: #9a8a7a;
-  --c-foundation: #c0392b;
-  --c-robotics:   #27ae60;
-  --c-chips:      #e67e22;
-  --c-cloud:      #1a56db;
-  --c-auto:       #8e44ad;
-  --c-security:   #2c3e50;
 }
 body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--navy); min-height: 100vh; }
 
@@ -40,20 +34,12 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 /* ── Category section ── */
 .cat-section { margin-bottom: 48px; }
 .cat-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-.cat-label {
-  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-  text-transform: uppercase; padding: 4px 12px; border-radius: 2px;
-  white-space: nowrap; color: #fff;
-}
+.cat-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; white-space: nowrap; color: #fff; }
 .cat-line { flex: 1; height: 1px; background: var(--border); }
 .cat-count { font-size: 10px; color: var(--text-dim); white-space: nowrap; }
 
 /* ── Logo grid ── */
-.logo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 14px;
-}
+.logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 14px; }
 
 /* ── Logo card ── */
 .logo-card {
@@ -64,89 +50,108 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
   box-shadow: 0 1px 6px rgba(0,0,0,.05);
   cursor: pointer;
   transition: box-shadow .15s, transform .15s;
-  text-decoration: none;
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
-.logo-card:hover {
-  box-shadow: 0 4px 20px rgba(0,0,0,.12);
-  transform: translateY(-2px);
-}
+.logo-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.12); transform: translateY(-2px); }
 
-/* ── Logo face — top half of card ── */
-.logo-face {
-  height: 90px;
-  display: flex;
+/* ── Logo face ── */
+.logo-face { height: 90px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.logo-img { width: 56px; height: 56px; object-fit: contain; display: block; }
+.logo-monogram { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0; }
+.mono-zh { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: 1px; }
+.mono-en { font-size: 9px; font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+
+/* ── Card info ── */
+.logo-info { padding: 10px 10px 11px; border-top: 1px solid var(--border); flex: 1; }
+.logo-name-en { font-size: 11px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 2px; }
+.logo-name-zh { font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; }
+
+/* ── Modal overlay ── */
+#modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1000;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+}
+#modal-overlay.open { display: flex; }
+
+#modal-box {
+  background: #fff;
+  border-radius: 10px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 82vh;
+  overflow-y: auto;
   position: relative;
-  overflow: hidden;
-}
-.logo-img {
-  width: 52px;
-  height: 52px;
-  object-fit: contain;
-  display: block;
-}
-.logo-monogram {
-  width: 60px;
-  height: 60px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 0;
-}
-.mono-zh {
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.1;
-  letter-spacing: 1px;
-}
-.mono-en {
-  font-size: 9px;
-  font-weight: 700;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-top: 2px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
 }
 
-/* ── Card info — bottom half ── */
-.logo-info {
-  padding: 10px 10px 11px;
-  border-top: 1px solid var(--border);
-  flex: 1;
+.modal-close {
+  position: absolute; top: 14px; right: 14px;
+  background: none; border: none; cursor: pointer;
+  font-size: 18px; color: #9a8a7a; line-height: 1;
+  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: background .15s;
 }
-.logo-name-en {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--navy);
-  line-height: 1.3;
-  margin-bottom: 2px;
+.modal-close:hover { background: #f0ece6; }
+
+.modal-header {
+  padding: 28px 28px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
 }
-.logo-name-zh {
-  font-size: 11px;
-  color: var(--text-dim);
-  letter-spacing: 0.5px;
+.modal-logo {
+  width: 64px; height: 64px; flex-shrink: 0;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #f8f6f2;
 }
+.modal-logo img { width: 48px; height: 48px; object-fit: contain; }
+.modal-logo .modal-mono { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border-radius: 9px; }
+.modal-mono-text { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+.modal-names { flex: 1; min-width: 0; }
+.modal-name-en { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 4px; }
+.modal-name-zh { font-size: 15px; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 2px; }
+.modal-pinyin { font-size: 11px; color: #b0a090; letter-spacing: 0.5px; font-style: italic; }
+.modal-badges { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
+.modal-cat-badge { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; color: #fff; }
+.modal-status-badge { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; border: 1px solid var(--border); color: var(--text-dim); }
+
+.modal-body { padding: 20px 28px 28px; }
+.modal-desc { font-size: 13px; line-height: 1.8; color: #3a3a4a; margin-bottom: 16px; }
+.modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 2px; letter-spacing: 0.5px; }
+.tag-highlight { background: #fff8e1; color: #b7791f; border: 1px solid #f6d860; }
+.tag-green { background: #f0faf4; color: #276749; border: 1px solid #b2e0c4; }
+.tag-default { background: #f4f1ec; color: #5a5a6a; border: 1px solid var(--border); }
+.modal-issue { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); border-top: 1px solid var(--border); padding-top: 12px; }
+.modal-full-link { display: inline-block; margin-top: 12px; font-size: 11px; font-weight: 600; color: #c0392b; text-decoration: none; letter-spacing: 0.5px; }
+.modal-full-link:hover { text-decoration: underline; }
 
 /* ── Footer ── */
 .footer { background: var(--navy); padding: 18px 56px; display: flex; align-items: center; justify-content: space-between; }
 .footer-brand { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--cream); }
 .footer-text { font-size: 10px; color: #4a5a7a; }
+.footer-text a { color: #4a5a7a; }
 
 /* ── Responsive ── */
 @media(max-width:680px) {
   .header, .content, .footer { padding-left: 20px; padding-right: 20px; }
   .logo-grid { grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 10px; }
   .logo-face { height: 72px; }
+  .modal-header { flex-direction: column; }
 }
 
-/* ── Loading ── */
 .loading { text-align: center; padding: 80px 20px; color: var(--text-dim); font-size: 14px; }
 </style>
 </head>
@@ -174,8 +179,17 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 </div>
 
 <div class="footer">
-  <div class="footer-brand" id="footer-brand">China AI Snapshot · 中国AI速览</div>
-  <div class="footer-text">Updated automatically · <a href="china-ai-landscape-viz.html" style="color:#4a5a7a">Full Landscape →</a></div>
+  <div class="footer-brand">China AI Snapshot · 中国AI速览</div>
+  <div class="footer-text">Updated automatically · <a href="china-ai-landscape-viz.html">Full Landscape →</a></div>
+</div>
+
+<!-- Modal -->
+<div id="modal-overlay" onclick="closeModal()">
+  <div id="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header" id="modal-header"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
 </div>
 
 <script>
@@ -188,80 +202,137 @@ const CATS = {
   security:   { label: 'AI Security & Enterprise',     color: '#2c3e50', bg: '#f0f4f8' },
 };
 
-// Best-effort domain map for logo lookup via Clearbit
+// Domain map — Clearbit primary, Google social favicon fallback, then monogram
 const DOMAINS = {
-  'DeepSeek':              'deepseek.com',
-  'Baidu':                 'baidu.com',
-  'ByteDance':             'bytedance.com',
-  'Alibaba':               'alibaba.com',
-  'Tencent':               'tencent.com',
-  'Huawei (AI Chips)':     'huawei.com',
-  'Huawei Cloud':          'huawei.com',
-  'Huawei Smart Car':      'huawei.com',
-  'Huawei Ascend 950':     'huawei.com',
-  'Alibaba Cloud':         'alibabacloud.com',
-  'Tencent Cloud':         'cloud.tencent.com',
-  'Baidu AI Cloud':        'baidu.com',
-  'Baidu Apollo':          'apollo.auto',
-  'Unitree Robotics':      'unitree.com',
-  'UBTECH':                'ubtrobot.com',
-  'Cambricon':             'cambricon.com',
-  'D-Robotics (Horizon Robotics)': 'horizon.auto',
-  'Xpeng':                 'xiaopeng.com',
-  'Xpeng Turing AI Chip':  'xiaopeng.com',
-  'Pony.ai':               'pony.ai',
-  'WeRide':                'weride.ai',
-  'Momenta':               'momenta.ai',
-  'BYD Robotics':          'byd.com',
-  'Manus':                 'manus.im',
-  'Zhipu AI':              'zhipuai.cn',
-  'Moonshot AI':           'moonshot.cn',
-  'Moore Threads':         'mthreads.com',
-  'Tuya Smart':            'tuya.com',
-  'YMTC':                  'ymtc.com',
-  'CXMT':                  'cxmt.com',
+  'DeepSeek':                       'deepseek.com',
+  'Baidu':                          'baidu.com',
+  'ByteDance':                      'bytedance.com',
+  'Alibaba':                        'alibaba.com',
+  'Tencent':                        'tencent.com',
+  'Zhipu AI':                       'zhipuai.cn',
+  'Moonshot AI':                    'moonshot.cn',
+  'Minimax':                        'minimaxi.com',
+  '01.AI':                          '01.ai',
+  'StepFun':                        'stepfun.com',
+  'Manus':                          'manus.im',
+  'Huawei (AI Chips)':              'huawei.com',
+  'Huawei Cloud':                   'huawei.com',
+  'Huawei Smart Car':               'huawei.com',
+  'Huawei Ascend 950':              'huawei.com',
+  'Alibaba Cloud':                  'alibabacloud.com',
+  'Tencent Cloud':                  'cloud.tencent.com',
+  'Baidu AI Cloud':                 'baidu.com',
+  'Cambricon':                      'cambricon.com',
+  'Moore Threads':                  'mthreads.com',
+  'Biren Technology':               'birentech.com',
+  'YMTC':                           'ymtc.com',
+  'CXMT':                           'cxmt.com',
+  'Tuya Smart':                     'tuya.com',
+  'Unitree Robotics':               'unitree.com',
+  'UBTECH':                         'ubtrobot.com',
+  'Fourier Intelligence':           'fftai.com',
+  'AgiBot':                         'agibot.com',
+  'D-Robotics (Horizon Robotics)':  'horizon.auto',
+  'Baidu Apollo':                   'apollo.auto',
+  'Xpeng':                          'xiaopeng.com',
+  'Xpeng Turing AI Chip':           'xiaopeng.com',
+  'Pony.ai':                        'pony.ai',
+  'WeRide':                         'weride.ai',
+  'Momenta':                        'momenta.ai',
+  'BYD Robotics':                   'byd.com',
 };
 
-function initials(name, zh) {
-  // Use first 2 Chinese chars if available, else initials of English name
-  if (zh && zh.length >= 2) return zh.substring(0, 2);
-  return name.split(/[\s\-\.]+/).map(w => w[0]).join('').substring(0, 3).toUpperCase();
+// Store all entities for modal lookup
+let entityMap = {};
+
+function logoInitials(name, zh) {
+  if (zh && /[一-龥]/.test(zh) && zh.length >= 2) return zh.substring(0, 2);
+  return name.split(/[\s\-\.]+/).map(w => w[0] || '').join('').substring(0, 3).toUpperCase();
+}
+
+function makeLogoHtml(entity, size = 56) {
+  const cat = CATS[entity.cat] || CATS.security;
+  const domain = DOMAINS[entity.name];
+  const mono = logoInitials(entity.name, entity.zh);
+  const monoHtml = `<div class="logo-monogram" style="background:${cat.color};width:${size}px;height:${size}px;border-radius:${Math.round(size*0.2)}px;display:flex;align-items:center;justify-content:center;"><span class="mono-zh" style="font-size:${Math.round(size*0.33)}px">${mono}</span></div>`;
+
+  if (!domain) return monoHtml;
+
+  return `<img class="logo-img" style="width:${size}px;height:${size}px;"
+    src="https://logo.clearbit.com/${domain}?size=128"
+    onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
+    alt="${entity.name}">
+  ${monoHtml.replace('display:flex', 'display:none')}`;
 }
 
 function makeCard(entity) {
   const cat = CATS[entity.cat] || CATS.security;
-  const domain = DOMAINS[entity.name];
-  const landmarkUrl = `china-ai-landscape-viz.html`;
-
-  const mono = initials(entity.name, entity.zh);
-  const monoHtml = `
-    <div class="logo-monogram" style="background:${cat.color}">
-      <div class="mono-zh">${mono}</div>
-    </div>`;
-
-  let faceHtml;
-  if (domain) {
-    faceHtml = `
-      <img class="logo-img"
-        src="https://logo.clearbit.com/${domain}?size=104"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-        alt="${entity.name}">
-      <div class="logo-monogram" style="background:${cat.color};display:none">
-        <div class="mono-zh">${mono}</div>
-      </div>`;
-  } else {
-    faceHtml = monoHtml;
-  }
-
   return `
-    <a class="logo-card" href="${landmarkUrl}" title="${entity.name} · ${entity.zh||''}">
-      <div class="logo-face" style="background:${cat.bg}">${faceHtml}</div>
+    <div class="logo-card" onclick="openModal('${entity.name.replace(/'/g,"\\'")}')">
+      <div class="logo-face" style="background:${cat.bg}">
+        ${makeLogoHtml(entity, 56)}
+      </div>
       <div class="logo-info">
         <div class="logo-name-en">${entity.name}</div>
         ${entity.zh ? `<div class="logo-name-zh">${entity.zh}</div>` : ''}
       </div>
-    </a>`;
+    </div>`;
 }
+
+function openModal(name) {
+  const e = entityMap[name];
+  if (!e) return;
+  const cat = CATS[e.cat] || CATS.security;
+  const mono = logoInitials(e.name, e.zh);
+  const domain = DOMAINS[e.name];
+
+  // Build logo for modal (64px box)
+  let logoInner;
+  if (domain) {
+    logoInner = `<img style="width:48px;height:48px;object-fit:contain;"
+      src="https://logo.clearbit.com/${domain}?size=128"
+      onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
+      alt="${e.name}">
+    <div class="modal-mono" style="background:${cat.color};display:none"><span class="modal-mono-text">${mono}</span></div>`;
+  } else {
+    logoInner = `<div class="modal-mono" style="background:${cat.color}"><span class="modal-mono-text">${mono}</span></div>`;
+  }
+
+  const statusLabel = e.status === 'public' ? (e.ticker || 'Public') : e.status === 'gov' ? 'Government' : 'Private';
+
+  document.getElementById('modal-header').innerHTML = `
+    <div class="modal-logo">${logoInner}</div>
+    <div class="modal-names">
+      <div class="modal-name-en">${e.name}</div>
+      ${e.zh ? `<div class="modal-name-zh">${e.zh}</div>` : ''}
+      ${e.py ? `<div class="modal-pinyin">${e.py}</div>` : ''}
+      <div class="modal-badges">
+        <span class="modal-cat-badge" style="background:${cat.color}">${cat.label}</span>
+        <span class="modal-status-badge">${statusLabel}</span>
+      </div>
+    </div>`;
+
+  const tagsHtml = (e.tags || []).map(t => {
+    const cls = t.t === 'highlight' ? 'tag-highlight' : t.t === 'green' ? 'tag-green' : 'tag-default';
+    return `<span class="tag ${cls}">${t.l}</span>`;
+  }).join('');
+
+  document.getElementById('modal-body').innerHTML = `
+    ${e.desc ? `<div class="modal-desc">${e.desc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')}</div>` : ''}
+    ${tagsHtml ? `<div class="modal-tags">${tagsHtml}</div>` : ''}
+    ${e.issue ? `<div class="modal-issue">Covered in ${e.issue}</div>` : ''}
+    <a class="modal-full-link" href="china-ai-landscape-viz.html">View Full Landscape →</a>`;
+
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 fetch('china-ai-landscape.json?v=' + Date.now())
   .then(r => r.json())
@@ -269,15 +340,20 @@ fetch('china-ai-landscape.json?v=' + Date.now())
     const meta = data.meta || {};
     const all = (data.entities || []).filter(e => e.cat !== 'gov');
 
+    // Build lookup map
+    all.forEach(e => entityMap[e.name] = e);
+
     document.getElementById('badge-issue').textContent = 'Issue #' + (meta.issue || '—');
     document.getElementById('badge-date').textContent = meta.updated || '—';
     document.getElementById('badge-count').textContent = all.length + ' companies';
 
+    // Group by category, sort alphabetically within each
     const grouped = {};
     all.forEach(e => {
       if (!grouped[e.cat]) grouped[e.cat] = [];
       grouped[e.cat].push(e);
     });
+    Object.values(grouped).forEach(arr => arr.sort((a,b) => a.name.localeCompare(b.name)));
 
     let html = '';
     for (const [cat, catMeta] of Object.entries(CATS)) {
@@ -298,7 +374,7 @@ fetch('china-ai-landscape.json?v=' + Date.now())
 
     document.getElementById('content').innerHTML = html;
   })
-  .catch(e => {
+  .catch(() => {
     document.getElementById('content').innerHTML =
       '<div class="loading">Could not load landscape data.</div>';
   });
