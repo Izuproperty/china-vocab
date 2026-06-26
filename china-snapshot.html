@@ -260,7 +260,7 @@ function makeLogoHtml(entity, size = 56) {
 
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
     src="https://logo.clearbit.com/${domain}?size=128"
-    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://www.google.com/s2/favicons?sz=128&domain=${domain}';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
 }
@@ -291,7 +291,7 @@ function openModal(name) {
   if (domain) {
     logoInner = `<img style="width:48px;height:48px;object-fit:contain;"
       src="https://logo.clearbit.com/${domain}?size=128"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+      onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://www.google.com/s2/favicons?sz=128&domain=${domain}';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
       alt="${e.name}">
     <div class="modal-mono" style="background:${cat.color};display:none"><span class="modal-mono-text">${mono}</span></div>`;
   } else {
