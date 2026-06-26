@@ -129,6 +129,43 @@ html, body {
 }
 .nav-archive-btn:hover { color: var(--navy); border-color: var(--navy); }
 
+/* ── Search ── */
+#search-bar {
+  display: none; align-items: center; gap: 8px;
+  padding: 8px 16px; background: #f0ede8;
+  border-bottom: 1px solid var(--border);
+  position: sticky; z-index: 85;
+}
+#search-bar.open { display: flex; }
+#search-input {
+  flex: 1; border: 1px solid #d0c8c0; border-radius: 4px;
+  padding: 6px 10px; font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  background: var(--card); color: var(--text); outline: none;
+}
+#search-input:focus { border-color: var(--navy); }
+#search-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--text-dim); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.5px; padding: 5px 8px; border-radius: 4px; white-space: nowrap;
+}
+#search-close:hover { color: var(--navy); }
+#search-results {
+  display: none; background: var(--card);
+  border-bottom: 2px solid var(--border);
+  max-height: 55vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+}
+#search-results.open { display: block; }
+.search-hit { padding: 12px 16px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background .1s; }
+.search-hit:hover { background: var(--card2); }
+.search-hit:last-child { border-bottom: none; }
+.search-hit-meta { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); margin-bottom: 3px; }
+.search-hit-title { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px; line-height: 1.4; }
+.search-hit-snippet { font-size: 12px; color: var(--text-mid); line-height: 1.6; }
+.search-hit-snippet mark, .search-hit-title mark { background: #fff3cd; color: inherit; border-radius: 2px; padding: 0 1px; font-style: normal; }
+.search-info { padding: 8px 16px 4px; font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.search-empty { padding: 28px 16px; text-align: center; font-size: 13px; color: var(--text-dim); }
+
 /* ── Archive modal ── */
 #archive-modal {
   display: none;
@@ -466,8 +503,16 @@ html, body {
   <button class="nav-btn" id="nav-newer" onclick="navigateNewer()">← Newer</button>
   <button class="nav-btn" id="nav-older" onclick="navigateOlder()">Older →</button>
   <div class="nav-spacer"></div>
+  <button class="nav-btn" id="nav-search" onclick="openSearch()">Search</button>
   <button class="nav-archive-btn" onclick="openArchive()">All Issues ▾</button>
 </div>
+
+<div id="search-bar">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;color:var(--text-dim)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <input id="search-input" type="search" placeholder="Search all issues…" autocomplete="off" oninput="runSearch(this.value)">
+  <button id="search-close" onclick="closeSearch()">✕ close</button>
+</div>
+<div id="search-results"></div>
 
 <!-- Archive modal -->
 <div id="archive-modal" onclick="if(event.target===this)closeArchive()">
@@ -715,6 +760,70 @@ function showToast() {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
 }
+
+// ── Search ──────────────────────────────────────────────
+function openSearch() {
+  const sb = document.getElementById('search-bar');
+  sb.style.top = (document.getElementById('topbar').offsetHeight + document.getElementById('issue-nav').offsetHeight) + 'px';
+  sb.classList.add('open');
+  document.getElementById('nav-search').style.display = 'none';
+  requestAnimationFrame(() => document.getElementById('search-input').focus());
+}
+
+function closeSearch() {
+  document.getElementById('search-bar').classList.remove('open');
+  document.getElementById('search-results').classList.remove('open');
+  document.getElementById('search-input').value = '';
+  document.getElementById('nav-search').style.display = '';
+}
+
+function buildSnippet(text, q) {
+  if (!text || !q) return '';
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return '';
+  const s = Math.max(0, idx - 60), e = Math.min(text.length, idx + q.length + 100);
+  const snip = (s > 0 ? '…' : '') + text.substring(s, e) + (e < text.length ? '…' : '');
+  return snip.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<mark>$1</mark>');
+}
+
+function runSearch(q) {
+  const panel = document.getElementById('search-results');
+  q = (q || '').trim();
+  if (q.length < 2) { panel.classList.remove('open'); panel.innerHTML = ''; return; }
+  const ql = q.toLowerCase();
+  const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+  const hits = [];
+  const issuesSeen = new Set();
+  BRIEFS.forEach(b => {
+    const d = new Date(b.date + 'T12:00:00');
+    const ds = d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+    (b.sections || []).forEach(sec => {
+      const txt = [sec.title, sec.body, sec.takeaway].filter(Boolean).join(' ');
+      if (txt.toLowerCase().includes(ql)) {
+        hits.push({ issue: b.issue, ds, title: sec.title || '', snippet: buildSnippet(sec.body, q) || buildSnippet(sec.takeaway, q) || '' });
+        issuesSeen.add(b.issue);
+      }
+    });
+    if (!issuesSeen.has(b.issue) && ((b.title||'').toLowerCase().includes(ql) || (b.summary||'').toLowerCase().includes(ql))) {
+      hits.push({ issue: b.issue, ds, title: b.title || '', snippet: buildSnippet(b.summary, q) || '' });
+    }
+  });
+  panel.classList.add('open');
+  if (!hits.length) { panel.innerHTML = '<div class="search-empty">No results for "' + q + '"</div>'; return; }
+  let html = '<div class="search-info">' + hits.length + ' result' + (hits.length === 1 ? '' : 's') + '</div>';
+  hits.forEach(h => {
+    html += '<div class="search-hit" onclick="closeSearch();showIssue(' + h.issue + ')">';
+    html += '<div class="search-hit-meta">#' + h.issue + ' · ' + h.ds + '</div>';
+    html += '<div class="search-hit-title">' + h.title.replace(re, '<mark>$1</mark>') + '</div>';
+    if (h.snippet) html += '<div class="search-hit-snippet">' + h.snippet + '</div>';
+    html += '</div>';
+  });
+  panel.innerHTML = html;
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('search-bar').classList.contains('open')) closeSearch();
+});
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
