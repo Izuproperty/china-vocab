@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #38 · Visualized · June 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 32px; border-bottom:4px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; }
+  .page-header-eyebrow { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:4px; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; }
+  .page-header-meta { font-size:11px; color:#8a9bb5; margin-top:4px; }
+  .back-link { font-size:12px; color:#8a9bb5; text-decoration:none; border:1px solid #2a2a4e; padding:6px 14px; border-radius:4px; transition:color 0.2s,border-color 0.2s; white-space:nowrap; }
+  .back-link:hover { color:#e8d5b0; border-color:#4a4a6e; }
+
+  /* Tabs */
+  .tabs-bar { background:#1a1a2e; padding:0 32px; border-bottom:1px solid #2a2a4e; display:flex; gap:0; }
+  .tab-btn { font-size:11px; font-weight:600; letter-spacing:0.5px; color:#6a7a9a; padding:13px 20px; border:none; background:transparent; cursor:pointer; border-bottom:3px solid transparent; transition:color 0.2s,border-color 0.2s; white-space:nowrap; }
+  .tab-btn.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+  .tab-btn:hover:not(.active) { color:#a0b0c8; }
+
+  /* Content panels */
+  .tab-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .tab-panel.active { display:block; }
+
+  /* Signals row */
+  .signals-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border-radius:6px; padding:20px 18px; box-shadow:0 1px 8px rgba(0,0,0,0.07); border-top:3px solid #c0392b; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal-label { font-size:11px; color:#7a6a5a; margin-top:6px; line-height:1.4; }
+
+  /* Chart area */
+  .chart-card { background:#fff; border-radius:6px; padding:24px; box-shadow:0 1px 8px rgba(0,0,0,0.07); margin-bottom:28px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:20px; }
+
+  /* Annotation cards */
+  .annotations-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:16px; box-shadow:0 1px 8px rgba(0,0,0,0.06); }
+  .annotation-card.red { border-left:4px solid #c0392b; }
+  .annotation-card.amber { border-left:4px solid #d97706; }
+  .annotation-card.green { border-left:4px solid #16a34a; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .annotation-card.red .annotation-card-tag { color:#c0392b; }
+  .annotation-card.amber .annotation-card-tag { color:#d97706; }
+  .annotation-card.green .annotation-card-tag { color:#16a34a; }
+  .annotation-card-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .annotation-card-zh { font-size:13px; font-weight:700; color:#1a1a2e; margin-top:6px; }
+  .annotation-card-en { font-size:11px; color:#7a6a5a; font-style:italic; margin-left:4px; }
+
+  .footer-bar { background:#1a1a2e; padding:14px 32px; text-align:center; font-size:11px; color:#4a5a7a; margin-top:24px; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="page-header-eyebrow">朋友 Pengyou · Data Visualization</div>
+    <div class="page-header-title">China Brief Issue #38 · Visualized</div>
+    <div class="page-header-meta">Friday, June 26, 2026 · 3 Stories</div>
+  </div>
+  <a href="brief.html" class="back-link">← Return to China Brief</a>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="showViz('s1',this)">Morgan Stanley Humanoid Forecast</button>
+  <button class="tab-btn" onclick="showViz('s2',this)">Robots Football Challenge MWC</button>
+  <button class="tab-btn" onclick="showViz('s3',this)">Bank of China Audit Finding</button>
+</div>
+
+<!-- STORY 1: Morgan Stanley Humanoid Forecast -->
+<div id="s1" class="tab-panel active">
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-value">50,000</div>
+      <div class="signal-label">Revised 2026 China humanoid robot shipment forecast — Morgan Stanley, June 24</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">+79%</div>
+      <div class="signal-label">Magnitude of forecast upgrade vs prior estimate of 28,000 units</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">39%</div>
+      <div class="signal-label">AgiBot's 2025 global humanoid shipment market share (Omdia); 10,000th robot produced March 2026</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">China Humanoid Robot Shipments — Trajectory &amp; Forecast Revisions 2025–2027</div>
+    <svg viewBox="0 0 780 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Grid -->
+      <line x1="80" y1="20" x2="80" y2="270" stroke="#e8e0d4" stroke-width="1"/>
+      <line x1="80" y1="270" x2="740" y2="270" stroke="#e8e0d4" stroke-width="1"/>
+      <!-- Horizontal gridlines -->
+      <line x1="80" y1="220" x2="740" y2="220" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="170" x2="740" y2="170" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="120" x2="740" y2="120" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="70" x2="740" y2="70" stroke="#f0ede8" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- Y axis labels -->
+      <text x="70" y="274" text-anchor="end" font-size="11" fill="#9a8a7a">0</text>
+      <text x="70" y="224" text-anchor="end" font-size="11" fill="#9a8a7a">20k</text>
+      <text x="70" y="174" text-anchor="end" font-size="11" fill="#9a8a7a">40k</text>
+      <text x="70" y="124" text-anchor="end" font-size="11" fill="#9a8a7a">60k</text>
+      <text x="70" y="74" text-anchor="end" font-size="11" fill="#9a8a7a">80k</text>
+      <!-- X axis labels: 2025 actual, 2026 prior est, 2026 revised, 2027 est -->
+      <text x="200" y="290" text-anchor="middle" font-size="11" fill="#9a8a7a">2025 Actual</text>
+      <text x="370" y="290" text-anchor="middle" font-size="11" fill="#9a8a7a">2026 Prior Est.</text>
+      <text x="530" y="290" text-anchor="middle" font-size="11" fill="#9a8a7a">2026 Revised</text>
+      <text x="680" y="290" text-anchor="middle" font-size="11" fill="#9a8a7a">2027 Est.</text>
+      <!-- Bars: 2025 actual ~16k, prior 28k, revised 50k, 2027 est ~120k -->
+      <!-- 16k = 270 - (16/80*250) = 270-50 = 220 -->
+      <rect x="150" y="220" width="100" height="50" fill="#8a9bb5" rx="2"/>
+      <text x="200" y="215" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">16,000</text>
+      <!-- prior 28k = 270 - (28/80*250) = 270 - 87.5 = 182.5 -->
+      <rect x="320" y="182" width="100" height="88" fill="#ddd8d0" rx="2"/>
+      <text x="370" y="177" text-anchor="middle" font-size="11" font-weight="600" fill="#7a6a5a">28,000</text>
+      <!-- revised 50k = 270 - (50/80*250) = 270 - 156 = 114 -->
+      <rect x="480" y="114" width="100" height="156" fill="#c0392b" rx="2"/>
+      <text x="530" y="109" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">50,000</text>
+      <!-- 2027 est ~120k (extrapolated) = 270 - (80/80*250) = 20, capped at top -->
+      <rect x="630" y="55" width="100" height="215" fill="#1a1a2e" opacity="0.3" rx="2"/>
+      <text x="680" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#4a5a7a">~120k+</text>
+      <!-- Annotation arrow for upgrade -->
+      <line x1="450" y1="182" x2="490" y2="140" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="440" y="178" text-anchor="end" font-size="10" fill="#c0392b">+79% revision</text>
+      <defs>
+        <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#c0392b"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Signal</div>
+      <div class="annotation-card-text">Morgan Stanley's +79% forecast revision is driven by the RaaS (Robotics-as-a-Service) model removing enterprise capex barriers — structural commercialization signal, not hype revision.
+        <div class="annotation-card-zh">机器人即服务<span class="annotation-card-en">jīqìrén jí fúwù · Robotics-as-a-Service</span></div>
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      <div class="annotation-card-text">RaaS margin durability is unproven; long-term servicing obligations may compress returns. AgiBot's carrier-partnership dependency ties commercial trajectory to state-telco capex priorities.
+        <div class="annotation-card-zh">智元机器人<span class="annotation-card-en">Zhìyuán Jīqìrén · AgiBot</span></div>
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Investable Signal</div>
+      <div class="annotation-card-text">AgiBot's 39% 2025 market share plus carrier distribution moat creates near-term volume defensibility. Watch for H-share listing disclosure as next valuation anchor.
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: Humanoid Robot Football -->
+<div id="s2" class="tab-panel">
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-value">&lt;10ms</div>
+      <div class="signal-label">5G-Advanced round-trip latency threshold for real-time robot control loop — required for cloud-edge compute offload in industrial deployment</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">50:26</div>
+      <div class="signal-label">HONOR Flash half-marathon finish time (km/h autonomous) — April 19, Beijing Yizhuang; first robot to beat human world record of 57:20</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">3</div>
+      <div class="signal-label">Motion challenge categories tested in China's public robot competitions in H1 2026: distance running, penalty kicks, and industrial manipulation tasks</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">China Physical AI Open Competition Infrastructure — Testing Scope vs Industrial Deployment Requirements</div>
+    <svg viewBox="0 0 780 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Two-axis assessment: Competition coverage vs Industrial relevance -->
+      <!-- Quadrant chart -->
+      <line x1="80" y1="20" x2="80" y2="250" stroke="#e8e0d4" stroke-width="1"/>
+      <line x1="80" y1="250" x2="720" y2="250" stroke="#e8e0d4" stroke-width="1"/>
+      <line x1="400" y1="20" x2="400" y2="250" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="80" y1="135" x2="720" y2="135" stroke="#e8e0d4" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- Axis labels -->
+      <text x="400" y="275" text-anchor="middle" font-size="11" fill="#9a8a7a">Industrial Deployment Relevance</text>
+      <text x="20" y="135" text-anchor="middle" font-size="11" fill="#9a8a7a" transform="rotate(-90,20,135)">Competition Coverage</text>
+      <text x="240" y="15" text-anchor="middle" font-size="10" fill="#c0392b">Low Relevance</text>
+      <text x="570" y="15" text-anchor="middle" font-size="10" fill="#16a34a">High Relevance</text>
+      <!-- Data points (bubbles) -->
+      <!-- Locomotion / running: high coverage, high-medium relevance -->
+      <circle cx="520" cy="80" r="28" fill="#c0392b" opacity="0.7"/>
+      <text x="520" cy="80" text-anchor="middle" font-size="9" fill="#fff" dominant-baseline="middle" y="77">Locomotion</text>
+      <text x="520" text-anchor="middle" font-size="8" fill="#fff" y="90">(Running/Balance)</text>
+      <!-- Penalty kicks: high coverage, medium relevance -->
+      <circle cx="430" cy="100" r="22" fill="#d97706" opacity="0.7"/>
+      <text x="430" cy="100" text-anchor="middle" font-size="9" fill="#fff" dominant-baseline="middle" y="97">Kicks</text>
+      <text x="430" text-anchor="middle" font-size="8" fill="#fff" y="109">(Visual servo)</text>
+      <!-- Dexterous manipulation: low competition coverage, highest industrial relevance -->
+      <circle cx="650" cy="160" r="32" fill="#1a1a2e" opacity="0.5"/>
+      <text x="650" text-anchor="middle" font-size="9" fill="#fff" y="157">Dexterous</text>
+      <text x="650" text-anchor="middle" font-size="8" fill="#fff" y="170">Manipulation</text>
+      <!-- Object pick-and-place: medium both -->
+      <circle cx="500" cy="170" r="20" fill="#8a9bb5" opacity="0.8"/>
+      <text x="500" text-anchor="middle" font-size="9" fill="#fff" y="168">Pick</text>
+      <text x="500" text-anchor="middle" font-size="8" fill="#fff" y="179">&amp; Place</text>
+      <!-- Force feedback: lowest competition, highest industrial -->
+      <circle cx="690" cy="195" r="18" fill="#1a1a2e" opacity="0.35"/>
+      <text x="690" text-anchor="middle" font-size="8" fill="#fff" y="193">Force</text>
+      <text x="690" text-anchor="middle" font-size="7" fill="#fff" y="203">Feedback</text>
+      <!-- Legend labels -->
+      <text x="90" y="40" font-size="10" fill="#9a8a7a">High Competition</text>
+      <text x="90" y="55" font-size="10" fill="#9a8a7a">Coverage</text>
+      <text x="90" y="210" font-size="10" fill="#9a8a7a">Low Competition</text>
+      <text x="90" y="225" font-size="10" fill="#9a8a7a">Coverage</text>
+      <!-- Gap annotation -->
+      <text x="600" y="50" font-size="10" fill="#c0392b" font-weight="600">Gap: competitions test</text>
+      <text x="600" y="63" font-size="10" fill="#c0392b">locomotion well,</text>
+      <text x="600" y="76" font-size="10" fill="#c0392b">not manipulation</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Claim</div>
+      <div class="annotation-card-text">China's public robot competitions (half-marathon, penalty shootout) test locomotion and visual servoing — necessary but insufficient to validate factory-floor dexterous manipulation capability.
+        <div class="annotation-card-zh">视觉伺服<span class="annotation-card-en">shìjué sìfú · visual servoing</span></div>
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      <div class="annotation-card-text">Competition results may use support infrastructure (pre-mapped routes, supervised environments) not disclosed to observers. HONOR Flash half-marathon questioned by MIT AI Lab's Rodney Brooks on reasoning depth.
+        <div class="annotation-card-zh">运动基元<span class="annotation-card-en">yùndòng jīyuán · motion primitives</span></div>
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Investable Signal</div>
+      <div class="annotation-card-text">Open-competition infrastructure creates low-cost rapid benchmarking across vendors — a structural Chinese advantage for comparative evaluation that Western markets lack. Watch for manipulation-task competitions as the next phase.
+        <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: Bank of China Audit -->
+<div id="s3" class="tab-panel">
+
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-value">¥2.37B</div>
+      <div class="signal-label">Tax evaded by Bank of China via disguised mutual funds — April 2023 to August 2025 ($348M USD)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">11</div>
+      <div class="signal-label">Privately offered funds packaged as public funds to exploit income tax exemption — required recruiting large number of nominal employee investors at 1–100 yuan each</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">2</div>
+      <div class="signal-label">Major SOE banks named in the 2026 National Audit Office annual report: Bank of China (tax evasion) and Agricultural Bank of China (improper lending)</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">SOE Bank Audit Finding — Mechanism and Enforcement Pathway</div>
+    <svg viewBox="0 0 780 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Flow diagram: Fund structuring → Tax exemption exploit → Audit finding → Disclosure → Enforcement? -->
+      <!-- Node boxes -->
+      <!-- Step 1 -->
+      <rect x="30" y="80" width="120" height="60" rx="4" fill="#1a1a2e"/>
+      <text x="90" y="106" text-anchor="middle" font-size="10" fill="#e8d5b0" font-weight="600">11 Private Funds</text>
+      <text x="90" y="120" text-anchor="middle" font-size="9" fill="#8a9bb5">Packaged as</text>
+      <text x="90" y="133" text-anchor="middle" font-size="9" fill="#8a9bb5">Public Funds</text>
+      <!-- Arrow -->
+      <line x1="150" y1="110" x2="175" y2="110" stroke="#c0392b" stroke-width="2" marker-end="url(#arr2)"/>
+      <!-- Step 2 -->
+      <rect x="175" y="80" width="130" height="60" rx="4" fill="#c0392b" opacity="0.8"/>
+      <text x="240" y="106" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Income Tax</text>
+      <text x="240" y="120" text-anchor="middle" font-size="9" fill="#ffe0d4">Exemption Claimed</text>
+      <text x="240" y="133" text-anchor="middle" font-size="9" fill="#ffe0d4">(¥2.37B avoided)</text>
+      <!-- Arrow -->
+      <line x1="305" y1="110" x2="330" y2="110" stroke="#c0392b" stroke-width="2" marker-end="url(#arr2)"/>
+      <!-- Step 3 -->
+      <rect x="330" y="80" width="130" height="60" rx="4" fill="#1a1a2e"/>
+      <text x="395" y="106" text-anchor="middle" font-size="10" fill="#e8d5b0" font-weight="600">NAO Audit</text>
+      <text x="395" y="120" text-anchor="middle" font-size="9" fill="#8a9bb5">Annual Review</text>
+      <text x="395" y="133" text-anchor="middle" font-size="9" fill="#8a9bb5">Apr 2023–Aug 2025</text>
+      <!-- Arrow -->
+      <line x1="460" y1="110" x2="485" y2="110" stroke="#c0392b" stroke-width="2" marker-end="url(#arr2)"/>
+      <!-- Step 4 -->
+      <rect x="485" y="80" width="120" height="60" rx="4" fill="#2a4a2e"/>
+      <text x="545" y="106" text-anchor="middle" font-size="10" fill="#b0d0b0" font-weight="600">Public Naming</text>
+      <text x="545" y="120" text-anchor="middle" font-size="9" fill="#8ab08a">NPC Report +</text>
+      <text x="545" y="133" text-anchor="middle" font-size="9" fill="#8ab08a">NAO Website</text>
+      <!-- Arrow -->
+      <line x1="605" y1="110" x2="630" y2="110" stroke="#d97706" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arr3)"/>
+      <!-- Step 5 question -->
+      <rect x="630" y="80" width="120" height="60" rx="4" fill="#fef3e2" stroke="#d97706" stroke-width="1.5"/>
+      <text x="690" y="106" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">Enforcement?</text>
+      <text x="690" y="120" text-anchor="middle" font-size="9" fill="#b45309">Variable</text>
+      <text x="690" y="133" text-anchor="middle" font-size="9" fill="#b45309">follow-through</text>
+      <!-- Defs for arrows -->
+      <defs>
+        <marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#c0392b"/>
+        </marker>
+        <marker id="arr3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+          <path d="M0,0 L6,3 L0,6 Z" fill="#d97706"/>
+        </marker>
+      </defs>
+      <!-- Bottom label -->
+      <text x="390" y="185" text-anchor="middle" font-size="10" fill="#9a8a7a">Structure: Private funds → public fund wrapper → public fund tax exemption → NAO flags</text>
+      <text x="390" y="200" text-anchor="middle" font-size="10" fill="#9a8a7a">Institutional investors may hold exposure via fund-of-fund structures using similar product wrappers</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Core Claim</div>
+      <div class="annotation-card-text">First explicit public naming of a major SOE bank (Bank of China) for tax evasion in recent years. Method: disguising 11 private funds as public to exploit income tax exemption — requires institutional coordination at scale.
+        <div class="annotation-card-zh">国家审计署<span class="annotation-card-en">Guójiā Shěnjì Shǔ · National Audit Office</span></div>
+      </div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Unverified</div>
+      <div class="annotation-card-text">Enforcement follow-through is historically variable; state media framed this as routine audit disclosure, not a governance crisis. Bank of China shares recovered after initial dip, suggesting market read this as administrative.
+        <div class="annotation-card-zh">避税<span class="annotation-card-en">bì shuì · tax avoidance / evasion</span></div>
+      </div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Investable Signal</div>
+      <div class="annotation-card-text">Beijing's audit apparatus is running systematic public reviews of state-owned financial institutions. Future findings will be equally visible. The private-to-public fund structuring technique flagged here may appear in other SOE fund portfolios — worth checking cross-holdings.
+        <div class="annotation-card-zh">国有银行<span class="annotation-card-en">guóyǒu yínháng · state-owned bank</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #38 · June 26, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+</body>
+</html>
