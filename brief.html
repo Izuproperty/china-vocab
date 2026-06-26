@@ -75,39 +75,114 @@ html, body {
 .topbar-pinyin { font-size: 10px; color: #4a5a7a; font-style: italic; letter-spacing: .5px; margin-top: 2px; }
 .topbar-issue { font-size: 10px; font-weight: 600; letter-spacing: 1px; color: #4a5a7a; text-align: right; line-height: 1.6; text-transform: uppercase; }
 
-/* ── Issue selector ── */
+/* ── Issue nav bar ── */
 #issue-nav {
   display: flex;
-  gap: 0;
-  padding: 0 20px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
   background: #f0ede8;
   border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 57px;
+  z-index: 90;
 }
-#issue-nav::-webkit-scrollbar { display:none; }
-.issue-pill {
-  flex-shrink: 0;
+.nav-btn {
   background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-  border-radius: 0;
-  color: #9a8a7a;
+  border: 1px solid #d0c8c0;
+  border-radius: 4px;
+  color: var(--text-mid);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 1px;
-  padding: 10px 14px 8px;
+  letter-spacing: 0.5px;
+  padding: 5px 11px;
   cursor: pointer;
-  transition: all .15s;
   white-space: nowrap;
-  text-transform: uppercase;
+  transition: all .15s;
+  line-height: 1;
 }
-.issue-pill.active {
-  border-bottom-color: var(--red);
-  color: var(--red);
+.nav-btn:hover:not(:disabled) { color: var(--navy); border-color: var(--navy); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn.latest {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
 }
-.issue-pill:active { opacity: .7; }
+.nav-btn.latest.at-latest {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.nav-spacer { flex: 1; }
+.nav-archive-btn {
+  background: transparent;
+  border: 1px solid #d0c8c0;
+  border-radius: 4px;
+  color: var(--text-dim);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+  line-height: 1;
+}
+.nav-archive-btn:hover { color: var(--navy); border-color: var(--navy); }
+
+/* ── Archive modal ── */
+#archive-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(10,10,20,0.6);
+  align-items: flex-end;
+  justify-content: center;
+}
+#archive-modal.open { display: flex; }
+.archive-sheet {
+  background: var(--card);
+  width: 100%;
+  max-width: 520px;
+  max-height: 72vh;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -4px 32px rgba(0,0,0,0.2);
+}
+.archive-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.archive-title { font-weight: 700; font-size: 13px; color: var(--navy); letter-spacing: 0.5px; text-transform: uppercase; }
+.archive-close {
+  background: none; border: none; font-size: 16px; cursor: pointer;
+  color: var(--text-dim); padding: 2px 6px; border-radius: 3px; line-height: 1;
+}
+.archive-close:hover { color: var(--navy); }
+.archive-body { overflow-y: auto; flex: 1; -webkit-overflow-scrolling: touch; }
+.archive-month {
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--text-dim); padding: 14px 20px 6px; background: var(--card2);
+  border-bottom: 1px solid var(--border);
+}
+.archive-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 20px; cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background .1s;
+}
+.archive-row:hover { background: var(--card2); }
+.archive-row.current { background: #fff8f6; }
+.archive-num { font-size: 10px; font-weight: 700; color: var(--text-dim); min-width: 28px; }
+.archive-date { font-size: 12px; font-weight: 600; color: var(--text-mid); min-width: 52px; flex-shrink: 0; }
+.archive-hed { font-size: 12px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.archive-tag { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--red); flex-shrink: 0; }
 
 /* ── Main content ── */
 #content {
@@ -264,7 +339,7 @@ html, body {
 .chip-zh { color: var(--red); font-size: 16px; font-weight: 600; }
 .chip-en { color: var(--text-mid); font-size: 11px; }
 
-/* ── Source line ── */
+/* ── Source / takeaway ── */
 .section-source {
   font-size: 10px;
   font-weight: 600;
@@ -275,8 +350,6 @@ html, body {
   padding-top: 12px;
   border-top: 1px solid var(--border);
 }
-
-/* ── Takeaway box ── */
 .takeaway-box {
   background: var(--card2);
   border-left: 3px solid var(--blue);
@@ -300,49 +373,25 @@ html, body {
   margin-bottom: 12px;
 }
 .podcast-eyebrow {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--red);
-  margin-bottom: 6px;
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--red); margin-bottom: 6px;
 }
 .podcast-hed {
-  font-family: 'Playfair Display', serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #c8d0e0;
-  margin-bottom: 10px;
-  line-height: 1.4;
+  font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 700;
+  color: #c8d0e0; margin-bottom: 10px; line-height: 1.4;
 }
-.podcast-audio {
-  width: 100%;
-  height: 32px;
-  accent-color: var(--red);
-  display: block;
-}
+.podcast-audio { width: 100%; height: 32px; accent-color: var(--red); display: block; }
 
-/* ── Empty / loading states ── */
-#loading {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text-dim);
-  font-size: 14px;
-}
-#empty {
-  display: none;
-  text-align: center;
-  padding: 60px 20px;
-}
-.empty-icon { font-size: 48px; margin-bottom: 16px; }
+/* ── Empty / loading ── */
+#loading { text-align: center; padding: 60px 20px; color: var(--text-dim); font-size: 14px; }
+#empty { display: none; text-align: center; padding: 60px 20px; }
 .empty-title { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
 .empty-text { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
 
 /* ── Bottom bar ── */
 #bottombar {
   position: fixed;
-  bottom: 0;
-  left: 0; right: 0;
+  bottom: 0; left: 0; right: 0;
   background: var(--navy);
   border-top: 1px solid #2e2e52;
   padding: 10px 16px;
@@ -367,30 +416,22 @@ html, body {
 .bottom-btn:active { transform: scale(.97); }
 .btn-vocab { background: transparent; color: #8a9bb5; border: 1px solid #2e2e52; text-decoration: none; display:flex; align-items:center; justify-content:center; }
 .btn-vocab:hover { color: var(--cream); }
-.btn-prev { background: transparent; color: #8a9bb5; border: 1px solid #2e2e52; }
-.btn-prev:disabled { opacity: .3; cursor: default; }
-.btn-next { background: var(--red); color: #fff; border: none; }
-.btn-next:disabled { opacity: .3; cursor: default; background: #2e2e52; }
+.btn-older { background: transparent; color: #8a9bb5; border: 1px solid #2e2e52; }
+.btn-older:disabled { opacity: .3; cursor: default; }
+.btn-newer { background: var(--red); color: #fff; border: none; }
+.btn-newer:disabled { opacity: .3; cursor: default; background: #2e2e52; }
 
-/* ── XP toast ── */
+/* ── Toast ── */
 #xp-toast {
   position: fixed;
-  bottom: 80px;
-  left: 50%;
+  bottom: 80px; left: 50%;
   transform: translateX(-50%) translateY(20px);
-  background: var(--navy);
-  color: var(--cream);
+  background: var(--navy); color: var(--cream);
   border: 1px solid #2e2e52;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  padding: 8px 20px;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity .3s, transform .3s;
-  pointer-events: none;
-  z-index: 200;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 4px;
+  opacity: 0; transition: opacity .3s, transform .3s;
+  pointer-events: none; z-index: 200;
 }
 #xp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
@@ -418,14 +459,30 @@ html, body {
   </div>
 </div>
 
-<!-- Issue selector pills -->
-<div id="issue-nav"></div>
+<!-- Issue nav bar -->
+<div id="issue-nav">
+  <button class="nav-btn latest" id="nav-latest" onclick="goLatest()">Latest</button>
+  <button class="nav-btn" id="nav-newer" onclick="navigateNewer()">← Newer</button>
+  <button class="nav-btn" id="nav-older" onclick="navigateOlder()">Older →</button>
+  <div class="nav-spacer"></div>
+  <button class="nav-archive-btn" onclick="openArchive()">All Issues ▾</button>
+</div>
 
-<!-- Main content area -->
+<!-- Archive modal -->
+<div id="archive-modal" onclick="if(event.target===this)closeArchive()">
+  <div class="archive-sheet">
+    <div class="archive-header">
+      <span class="archive-title">All Issues</span>
+      <button class="archive-close" onclick="closeArchive()">✕</button>
+    </div>
+    <div class="archive-body" id="archive-body"></div>
+  </div>
+</div>
+
+<!-- Main content -->
 <div id="content">
   <div id="loading">Loading brief…</div>
   <div id="empty">
-    <div class="empty-icon" style="font-size:32px;font-weight:800;color:var(--text-dim);letter-spacing:-2px;">—</div>
     <div class="empty-title">No brief yet</div>
     <div class="empty-text">Add a brief to <code>briefs.json</code> in the repo to see it here.</div>
   </div>
@@ -435,16 +492,13 @@ html, body {
 <!-- Bottom nav -->
 <div id="bottombar">
   <a href="index.html" class="bottom-btn btn-vocab">Study Vocab</a>
-  <button class="bottom-btn btn-prev" id="btn-prev" onclick="navigateIssue(-1)">← Prev</button>
-  <button class="bottom-btn btn-next" id="btn-next" onclick="navigateIssue(1)">Next →</button>
+  <button class="bottom-btn btn-older" id="btn-older" onclick="navigateOlder()">Older →</button>
+  <button class="bottom-btn btn-newer" id="btn-newer" onclick="navigateNewer()">← Newer</button>
 </div>
 
 <div id="xp-toast">Brief read</div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════════════
 let BRIEFS = [];
 let currentIssue = null;
 
@@ -452,8 +506,7 @@ async function loadBriefs() {
   try {
     const r = await fetch('briefs.json');
     BRIEFS = await r.json();
-    // Sort descending by issue number
-    BRIEFS.sort((a, b) => b.issue - a.issue);
+    BRIEFS.sort((a, b) => b.issue - a.issue); // descending: newest first
   } catch(e) {
     console.error('Could not load briefs.json:', e);
     BRIEFS = [];
@@ -461,86 +514,104 @@ async function loadBriefs() {
   initBriefApp();
 }
 
-// ═══════════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════════
 function initBriefApp() {
   document.getElementById('loading').style.display = 'none';
-
   if (!BRIEFS.length) {
     document.getElementById('empty').style.display = 'block';
     return;
   }
-
-  buildIssueNav();
-
-  // Check URL for ?issue=N, default to latest
   const params = new URLSearchParams(window.location.search);
   const requested = parseInt(params.get('issue'));
   const target = BRIEFS.find(b => b.issue === requested) || BRIEFS[0];
   showIssue(target.issue);
 }
 
-// ═══════════════════════════════════════════════════════
-// NAVIGATION
-// ═══════════════════════════════════════════════════════
-function buildIssueNav() {
-  const nav = document.getElementById('issue-nav');
-  nav.innerHTML = BRIEFS.map(b =>
-    `<button class="issue-pill" id="pill-${b.issue}" onclick="showIssue(${b.issue})">
-      #${b.issue} · ${formatDate(b.date)}
-    </button>`
-  ).join('');
-}
+// ── Navigation ──────────────────────────────────────────
+function goLatest() { showIssue(BRIEFS[0].issue); }
 
-function navigateIssue(dir) {
+function navigateNewer() {
   const idx = BRIEFS.findIndex(b => b.issue === currentIssue);
-  const next = BRIEFS[idx - dir]; // array is descending, so -dir moves forward in time
-  if (next) showIssue(next.issue);
+  if (idx > 0) showIssue(BRIEFS[idx - 1].issue);
 }
 
+function navigateOlder() {
+  const idx = BRIEFS.findIndex(b => b.issue === currentIssue);
+  if (idx < BRIEFS.length - 1) showIssue(BRIEFS[idx + 1].issue);
+}
+
+function updateNavState() {
+  const idx = BRIEFS.findIndex(b => b.issue === currentIssue);
+  const isLatest = idx === 0;
+  const isOldest = idx === BRIEFS.length - 1;
+  document.getElementById('nav-latest').classList.toggle('at-latest', isLatest);
+  document.getElementById('nav-newer').disabled = isLatest;
+  document.getElementById('nav-older').disabled = isOldest;
+  document.getElementById('btn-newer').disabled = isLatest;
+  document.getElementById('btn-older').disabled = isOldest;
+}
+
+// ── Archive modal ────────────────────────────────────────
+function openArchive() {
+  const body = document.getElementById('archive-body');
+  const months = {};
+  BRIEFS.forEach(b => {
+    const d = new Date(b.date + 'T12:00:00');
+    const key = d.toLocaleDateString('en-US', {month:'long', year:'numeric'});
+    if (!months[key]) months[key] = [];
+    months[key].push(b);
+  });
+  let html = '';
+  for (const [month, issues] of Object.entries(months)) {
+    html += `<div class="archive-month">${month}</div>`;
+    issues.forEach(b => {
+      const isLatest = b.issue === BRIEFS[0].issue;
+      const isCurrent = b.issue === currentIssue;
+      const dateStr = formatDate(b.date, false);
+      const hed = b.title ? (b.title.length > 45 ? b.title.substring(0,45)+'…' : b.title) : '';
+      html += `<div class="archive-row${isCurrent?' current':''}" onclick="pickArchive(${b.issue})">
+        <span class="archive-num">#${b.issue}</span>
+        <span class="archive-date">${dateStr}</span>
+        <span class="archive-hed">${hed}</span>
+        ${isLatest ? '<span class="archive-tag">Latest</span>' : ''}
+      </div>`;
+    });
+  }
+  body.innerHTML = html;
+  // scroll current issue into view
+  setTimeout(() => {
+    const cur = body.querySelector('.current');
+    if (cur) cur.scrollIntoView({block:'center'});
+  }, 50);
+  document.getElementById('archive-modal').classList.add('open');
+}
+
+function closeArchive() {
+  document.getElementById('archive-modal').classList.remove('open');
+}
+
+function pickArchive(issueNum) {
+  closeArchive();
+  showIssue(issueNum);
+}
+
+// ── Show issue ───────────────────────────────────────────
 function showIssue(issueNum) {
   const brief = BRIEFS.find(b => b.issue === issueNum);
   if (!brief) return;
   currentIssue = issueNum;
-
-  // Update URL without reload
   history.replaceState({}, '', '?issue=' + issueNum);
-
-  // Update pills
-  document.querySelectorAll('.issue-pill').forEach(p => p.classList.remove('active'));
-  const pill = document.getElementById('pill-' + issueNum);
-  if (pill) {
-    pill.classList.add('active');
-    pill.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
-  }
-
-  // Update subtitle
   document.getElementById('topbar-subtitle').textContent =
     formatDate(brief.date, true) + ' · Issue #' + issueNum;
-
-  // Update prev/next buttons
-  const idx = BRIEFS.findIndex(b => b.issue === issueNum);
-  document.getElementById('btn-prev').disabled = (idx >= BRIEFS.length - 1);
-  document.getElementById('btn-next').disabled = (idx <= 0);
-
-  // Render brief
+  updateNavState();
   renderBrief(brief);
-
-  // Scroll to top
   window.scrollTo({top: 0, behavior: 'smooth'});
-
-  // Mark as read (for future use)
   markRead(issueNum);
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDERING
-// ═══════════════════════════════════════════════════════
+// ── Rendering ────────────────────────────────────────────
 function renderBrief(brief) {
   const container = document.getElementById('brief-content');
   container.style.display = 'block';
-
   const tagMap = {
     ai:       ['tag-ai',     'AI & Tech'],
     macro:    ['tag-macro',  'Macro'],
@@ -552,48 +623,29 @@ function renderBrief(brief) {
     trade:    ['tag-macro',  'Trade'],
     chip:     ['tag-ai',     'Chips & Semis'],
   };
-
   const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
   const sectionsHtml = (brief.sections || []).map((sec, i) => {
     const [tagCls, tagLabel] = tagMap[sec.tag] || ['tag-policy', sec.tag || 'Note'];
     const vocabHtml = sec.vocab && sec.vocab.length
       ? `<div class="vocab-chips">
            <div class="vocab-chips-label">Vocab from this story</div>
-           ${sec.vocab.map(v => `
-             <div class="vocab-chip">
-               <span class="chip-zh">${v.zh}</span>
-               <span class="chip-en">${v.en}</span>
-             </div>`).join('')}
-         </div>`
-      : '';
-    const sourceHtml = sec.source
-      ? `<div class="section-source">SOURCE · ${sec.source}</div>`
-      : '';
-    const takeawayHtml = sec.takeaway
-      ? `<div class="takeaway-box"><strong>Key takeaway:</strong> ${sec.takeaway}</div>`
-      : '';
-    const bodyHtml = (sec.body || '')
-      .split('\n\n')
-      .map(p => p.trim())
-      .filter(Boolean)
-      .map(p => `<p>${p}</p>`)
-      .join('');
-
-    return `
-      <div class="section-card" id="sec-${i}">
-        <div class="section-header" onclick="toggleSection(${i})">
-          <div class="section-num">${roman[i] || (i+1)}</div>
-          <div class="section-title">${sec.title}</div>
-          <span class="section-tag ${tagCls}">${tagLabel}</span>
-          <span class="section-chevron">▼</span>
-        </div>
-        <div class="section-body">
-          <div class="section-text">${bodyHtml}</div>
-          ${sourceHtml}
-          ${takeawayHtml}
-          ${vocabHtml}
-        </div>
-      </div>`;
+           ${sec.vocab.map(v => `<div class="vocab-chip"><span class="chip-zh">${v.zh}</span><span class="chip-en">${v.en}</span></div>`).join('')}
+         </div>` : '';
+    const sourceHtml = sec.source ? `<div class="section-source">SOURCE · ${sec.source}</div>` : '';
+    const takeawayHtml = sec.takeaway ? `<div class="takeaway-box"><strong>Key takeaway:</strong> ${sec.takeaway}</div>` : '';
+    const bodyHtml = (sec.body||'').split('\n\n').map(p=>p.trim()).filter(Boolean).map(p=>`<p>${p}</p>`).join('');
+    return `<div class="section-card" id="sec-${i}">
+      <div class="section-header" onclick="toggleSection(${i})">
+        <div class="section-num">${roman[i]||(i+1)}</div>
+        <div class="section-title">${sec.title}</div>
+        <span class="section-tag ${tagCls}">${tagLabel}</span>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="section-text">${bodyHtml}</div>
+        ${sourceHtml}${takeawayHtml}${vocabHtml}
+      </div>
+    </div>`;
   }).join('');
 
   container.innerHTML = `
@@ -626,7 +678,6 @@ function renderBrief(brief) {
       中国简报 · <a href="index.html" style="color:#c0392b;text-decoration:none">Study the vocab →</a>
     </div>`;
 
-  // Auto-open the first section
   setTimeout(() => {
     const firstSec = document.getElementById('sec-0');
     if (firstSec) firstSec.classList.add('open');
@@ -634,13 +685,10 @@ function renderBrief(brief) {
 }
 
 function toggleSection(i) {
-  const card = document.getElementById('sec-' + i);
-  card.classList.toggle('open');
+  document.getElementById('sec-' + i).classList.toggle('open');
 }
 
-// ═══════════════════════════════════════════════════════
-// UTILITIES
-// ═══════════════════════════════════════════════════════
+// ── Utilities ────────────────────────────────────────────
 function formatDate(dateStr, long) {
   if (!dateStr) return '';
   try {
@@ -656,7 +704,6 @@ function markRead(issueNum) {
     if (!read.includes(issueNum)) {
       read.push(issueNum);
       localStorage.setItem('cn_briefs_read', JSON.stringify(read));
-      // Show a brief toast the first time you read an issue
       showToast();
     }
   } catch {}
@@ -668,9 +715,6 @@ function showToast() {
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-// ═══════════════════════════════════════════════════════
-// SERVICE WORKER
-// ═══════════════════════════════════════════════════════
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
