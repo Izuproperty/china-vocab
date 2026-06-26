@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief #26 · Visualized · June 26, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:20px 32px 16px; border-bottom:3px solid #3730a3; }
+  .page-header a { color:#818cf8; font-size:11px; text-decoration:none; letter-spacing:1px; }
+  .page-header a:hover { color:#a5b4fc; }
+  .page-header h1 { font-family:'Playfair Display',serif; color:#fff; font-size:22px; margin-top:6px; }
+  .page-header .sub { color:#8a9bb5; font-size:11px; margin-top:4px; }
+  .tabs { display:flex; background:#13132a; padding:0 32px; border-bottom:1px solid #2a2a4e; }
+  .tab { padding:12px 20px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:#6a7a9a; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; }
+  .tab.active { color:#a5b4fc; border-bottom:2px solid #3730a3; }
+  .tab:hover { color:#c7d2fe; }
+  .tab-content { display:none; padding:28px 32px; }
+  .tab-content.active { display:block; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:24px; }
+  .signal-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:16px; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#9a9a9a; margin-bottom:6px; }
+  .signal-value { font-size:24px; font-weight:700; color:#1a1a2e; }
+  .signal-unit { font-size:12px; color:#6a7a9a; margin-top:2px; }
+  .signal-note { font-size:11px; color:#9a8a7a; margin-top:4px; line-height:1.4; }
+  .chart-area { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:13px; font-weight:600; color:#1a1a2e; margin-bottom:16px; }
+  .anno-cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .anno-card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; border-top:3px solid #3730a3; }
+  .anno-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a9a9a; margin-bottom:6px; }
+  .anno-card-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .page-footer { background:#1a1a2e; padding:14px 32px; text-align:center; }
+  .page-footer p { font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <a href="japan-brief.html">Japan Brief Home</a>
+  <h1>Japan Brief #26 · Data Visualization</h1>
+  <div class="sub">June 26, 2026 · Three stories, three signal sets · Not investment advice</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1','t1')">FSA July 1 Deadline</div>
+  <div class="tab" onclick="showViz('s2','t2')">NAND Supercycle / Kioxia</div>
+  <div class="tab" onclick="showViz('s3','t3')">BOJ Rate Path / Yen</div>
+</div>
+
+<!-- TAB 1: FSA COMPLIANCE TIMELINE -->
+<div id="s1" class="tab-content active">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Days to FSA Deadline</div>
+      <div class="signal-value">4</div>
+      <div class="signal-unit">July 1, 2026</div>
+      <div class="signal-note">No grace period extension signaled by FSA or METI</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Firms Impacted</div>
+      <div class="signal-value">~3,000+</div>
+      <div class="signal-unit">regulated entities</div>
+      <div class="signal-note">Banks, insurers, asset managers, healthcare, energy utilities</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">AI Tooling Market Uplift</div>
+      <div class="signal-value">~30%</div>
+      <div class="signal-unit">proj. YoY growth</div>
+      <div class="signal-note">Compliance-focused AI tooling demand in Japan H2 2026</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">FSA AI Compliance Milestone Timeline</div>
+    <svg viewBox="0 0 580 180" xmlns="http://www.w3.org/2000/svg">
+      <!-- Timeline axis -->
+      <line x1="30" y1="90" x2="560" y2="90" stroke="#d1d5db" stroke-width="2"/>
+
+      <!-- Milestones -->
+      <!-- Mar 2026 FSA v1.1 -->
+      <circle cx="80" cy="90" r="6" fill="#3730a3"/>
+      <text x="80" y="75" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">Mar 3</text>
+      <text x="80" y="112" text-anchor="middle" font-size="9" fill="#6a7a9a">FSA AI Paper</text>
+      <text x="80" y="124" text-anchor="middle" font-size="9" fill="#6a7a9a">v1.1 Published</text>
+
+      <!-- May 2026 AI Promotion Act -->
+      <circle cx="190" cy="90" r="6" fill="#3730a3"/>
+      <text x="190" y="75" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">May 2025</text>
+      <text x="190" y="112" text-anchor="middle" font-size="9" fill="#6a7a9a">AI Promotion</text>
+      <text x="190" y="124" text-anchor="middle" font-size="9" fill="#6a7a9a">Act Passed</text>
+
+      <!-- Jun 22 Guidelines Finalized -->
+      <circle cx="340" cy="90" r="8" fill="#7c3aed"/>
+      <text x="340" y="72" text-anchor="middle" font-size="10" fill="#7c3aed" font-weight="600">Jun 22</text>
+      <text x="340" y="112" text-anchor="middle" font-size="9" fill="#6a7a9a">Guidelines</text>
+      <text x="340" y="124" text-anchor="middle" font-size="9" fill="#6a7a9a">Finalized</text>
+
+      <!-- Jul 1 DEADLINE -->
+      <circle cx="470" cy="90" r="10" fill="#dc2626"/>
+      <text x="470" y="68" text-anchor="middle" font-size="11" fill="#dc2626" font-weight="700">Jul 1</text>
+      <text x="470" y="112" text-anchor="middle" font-size="9" fill="#dc2626" font-weight="700">DEADLINE</text>
+      <text x="470" y="124" text-anchor="middle" font-size="9" fill="#dc2626">Enforceable</text>
+
+      <!-- Q3 Enforcement -->
+      <circle cx="540" cy="90" r="6" fill="#9a9a9a" stroke="#9a9a9a"/>
+      <text x="540" y="75" text-anchor="middle" font-size="10" fill="#9a9a9a">Q3 2026</text>
+      <text x="540" y="112" text-anchor="middle" font-size="9" fill="#9a9a9a">FSA Exam</text>
+      <text x="540" y="124" text-anchor="middle" font-size="9" fill="#9a9a9a">Findings</text>
+
+      <!-- TODAY marker -->
+      <line x1="400" y1="60" x2="400" y2="120" stroke="#059669" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <text x="400" y="55" text-anchor="middle" font-size="9" fill="#059669" font-weight="600">TODAY</text>
+      <text x="400" y="45" text-anchor="middle" font-size="9" fill="#059669">Jun 26</text>
+    </svg>
+  </div>
+
+  <div class="anno-cards">
+    <div class="anno-card">
+      <div class="anno-card-label">Domestic AI Advantage</div>
+      <div class="anno-card-text">Fujitsu, NTT Data, PFN's PLaMo 3.0 all architect native audit trails within Japanese infrastructure — structurally preferred under explainability mandates after July 1.</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-card-label">Displacement Risk</div>
+      <div class="anno-card-text">Financial institutions that adopted AI tools without built-in audit log capabilities face immediate remediation or vendor switch. Q3 2026 FSA examination findings will surface the gap.</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-card-label">SoftBank JV Watch</div>
+      <div class="anno-card-text">10 additional investors (Asahi Kasei, Yaskawa, heavy industry) expected to finalize in late June. Consortium expansion matters as physical AI model compute needs funded infrastructure beyond founding four.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: NAND SUPERCYCLE -->
+<div id="s2" class="tab-content">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Micron Q3 Revenue Growth</div>
+      <div class="signal-value">+346%</div>
+      <div class="signal-unit">YoY, $41.46B actual</div>
+      <div class="signal-note">vs. $35.6B consensus estimate; NAND +169%, HBM sold out 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Kioxia Q1 Profit Guidance</div>
+      <div class="signal-value">+48x</div>
+      <div class="signal-unit">YoY net profit</div>
+      <div class="signal-note">¥869B net profit; ¥1.3T operating profit; all metrics at all-time highs</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Nikkei Rebound Jun 25</div>
+      <div class="signal-value">+3,191</div>
+      <div class="signal-unit">points</div>
+      <div class="signal-note">Semiconductor stocks led; sharpest single-day gain in recent weeks</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">NAND Flash Revenue YoY Growth — Micron Benchmark vs. Kioxia Guidance</div>
+    <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes -->
+      <line x1="60" y1="20" x2="60" y2="160" stroke="#d1d5db" stroke-width="1.5"/>
+      <line x1="60" y1="160" x2="540" y2="160" stroke="#d1d5db" stroke-width="1.5"/>
+
+      <!-- Y-axis labels -->
+      <text x="50" y="165" text-anchor="end" font-size="9" fill="#9a9a9a">0%</text>
+      <text x="50" y="125" text-anchor="end" font-size="9" fill="#9a9a9a">100%</text>
+      <text x="50" y="85" text-anchor="end" font-size="9" fill="#9a9a9a">200%</text>
+      <text x="50" y="45" text-anchor="end" font-size="9" fill="#9a9a9a">300%</text>
+      <line x1="58" y1="125" x2="540" y2="125" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="58" y1="85" x2="540" y2="85" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="58" y1="45" x2="540" y2="45" stroke="#f3f4f6" stroke-width="1"/>
+
+      <!-- Micron quarterly bars (illustrative trend Q1-Q3 FY2026) -->
+      <rect x="85" y="135" width="50" height="25" fill="#818cf8" opacity="0.7" rx="2"/>
+      <text x="110" y="148" text-anchor="middle" font-size="8" fill="#fff">+62%</text>
+      <text x="110" y="175" text-anchor="middle" font-size="9" fill="#6a7a9a">Q1</text>
+
+      <rect x="175" y="110" width="50" height="50" fill="#818cf8" opacity="0.7" rx="2"/>
+      <text x="200" y="140" text-anchor="middle" font-size="8" fill="#fff">+125%</text>
+      <text x="200" y="175" text-anchor="middle" font-size="9" fill="#6a7a9a">Q2</text>
+
+      <rect x="265" y="47" width="50" height="113" fill="#3730a3" rx="2"/>
+      <text x="290" y="85" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">+346%</text>
+      <text x="290" y="96" text-anchor="middle" font-size="8" fill="#c7d2fe">RECORD</text>
+      <text x="290" y="175" text-anchor="middle" font-size="9" fill="#6a7a9a">Q3 (Jun 24)</text>
+
+      <!-- Kioxia guidance bar -->
+      <rect x="380" y="25" width="50" height="135" fill="#7c3aed" rx="2"/>
+      <text x="405" y="60" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">+4,700%</text>
+      <text x="405" y="72" text-anchor="middle" font-size="7" fill="#ddd8fe">(48x net profit)</text>
+      <text x="405" y="175" text-anchor="middle" font-size="9" fill="#6a7a9a">Kioxia Q1</text>
+      <text x="405" y="185" text-anchor="middle" font-size="9" fill="#6a7a9a">FY2027 Guidance</text>
+
+      <!-- Gen.10 annotation -->
+      <rect x="460" y="100" width="70" height="40" fill="#f0fdf4" stroke="#16a34a" stroke-width="1" rx="3"/>
+      <text x="495" y="116" text-anchor="middle" font-size="9" fill="#166534" font-weight="600">Gen.10</text>
+      <text x="495" y="128" text-anchor="middle" font-size="8" fill="#166534">Samples</text>
+      <text x="495" y="138" text-anchor="middle" font-size="8" fill="#166534">Summer '26</text>
+
+      <!-- Legend -->
+      <rect x="75" y="10" width="10" height="8" fill="#3730a3" rx="1"/>
+      <text x="90" y="18" font-size="9" fill="#6a7a9a">Micron NAND</text>
+      <rect x="165" y="10" width="10" height="8" fill="#7c3aed" rx="1"/>
+      <text x="180" y="18" font-size="9" fill="#6a7a9a">Kioxia guidance</text>
+    </svg>
+  </div>
+
+  <div class="anno-cards">
+    <div class="anno-card">
+      <div class="anno-card-label">AI Inference Demand Driver</div>
+      <div class="anno-card-text">KV-cache storage for large language model inference is NAND's fastest-growing application. Longer context windows = exponentially more flash needed per inference call. Kioxia's CM series targets this specifically.</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-card-label">Kioxia Gen.10 Edge</div>
+      <div class="anno-card-text">BiCS Flash Gen.10: 332-layer, 1Tb TLC. 59% better bit density vs. Gen.8. 40% better read power efficiency. Sample shipments targeted July-August 2026. If ramp succeeds, sets cost structure for 2027-2028 AI storage buildout.</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-card-label">Risk to Watch</div>
+      <div class="anno-card-text">If Kioxia Gen.10 faces yield headwinds at scale, margin expansion vs. Micron's 84.9% gross margin diverges sharply. Iran energy shock remains an operating-cost wildcard for Japan's domestic fabs.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3: BOJ RATE PATH -->
+<div id="s3" class="tab-content">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-label">Current BOJ Policy Rate</div>
+      <div class="signal-value">1.00%</div>
+      <div class="signal-unit">since June 16, 2026</div>
+      <div class="signal-note">Highest since 1995; June 16 hike was 7-1 vote (Tamura dissented for larger move)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Tamura Neutral Rate Target</div>
+      <div class="signal-value">~2.00%</div>
+      <div class="signal-unit">4 more hikes implied</div>
+      <div class="signal-note">Tamura: quarter-point hikes "every few months" — 12-18 month trajectory to neutral</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY (Jun 25)</div>
+      <div class="signal-value">161.8</div>
+      <div class="signal-unit">near 1986 lows</div>
+      <div class="signal-note">Weak despite June 16 hike; Katayama-Bessent FX coordination language activated</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">BOJ Policy Rate — Actual Path and Tamura's Implied Cadence Toward 2% Neutral</div>
+    <svg viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes -->
+      <line x1="70" y1="20" x2="70" y2="155" stroke="#d1d5db" stroke-width="1.5"/>
+      <line x1="70" y1="155" x2="540" y2="155" stroke="#d1d5db" stroke-width="1.5"/>
+
+      <!-- Y labels -->
+      <text x="62" y="158" text-anchor="end" font-size="9" fill="#9a9a9a">0%</text>
+      <text x="62" y="120" text-anchor="end" font-size="9" fill="#9a9a9a">0.5%</text>
+      <text x="62" y="83" text-anchor="end" font-size="9" fill="#9a9a9a">1.0%</text>
+      <text x="62" y="45" text-anchor="end" font-size="9" fill="#9a9a9a">1.5%</text>
+      <text x="62" y="24" text-anchor="end" font-size="9" fill="#9a9a9a">2.0%</text>
+      <line x1="68" y1="120" x2="540" y2="120" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="68" y1="83" x2="540" y2="83" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="68" y1="45" x2="540" y2="45" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="68" y1="24" x2="540" y2="24" stroke="#e0e7ff" stroke-width="1" stroke-dasharray="4,3"/>
+
+      <!-- Actual rate path (solid line) -->
+      <!-- 0% Jan 2024 = x=90, y=155 -->
+      <!-- 0.1% Jul 2024 = x=140, y=149 -->
+      <!-- 0.25% Oct 2024 = x=175, y=145 -->
+      <!-- 0.5% Jan 2025 = x=210, y=139 -->
+      <!-- 0.75% Dec 2025 = x=310, y=120 (actually hits 120 at 0.5%) -->
+      <!-- Let me recalibrate: 0%=155, 2%=24, so 1% per 65.5px -->
+      <!-- 0.1=148.5, 0.25=138.6, 0.5=122.5, 0.75=106, 1.0=89.5 -->
+      <polyline points="90,155 140,149 175,139 210,123 310,106 400,89"
+        fill="none" stroke="#3730a3" stroke-width="2.5" stroke-linejoin="round"/>
+
+      <!-- Tamura implied path (dashed) -->
+      <polyline points="400,89 440,72 475,56 510,40 540,24"
+        fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+      <!-- Data points -->
+      <circle cx="90" cy="155" r="4" fill="#3730a3"/>
+      <circle cx="140" cy="149" r="4" fill="#3730a3"/>
+      <circle cx="175" cy="139" r="4" fill="#3730a3"/>
+      <circle cx="210" cy="123" r="4" fill="#3730a3"/>
+      <circle cx="310" cy="106" r="4" fill="#3730a3"/>
+      <circle cx="400" cy="89" r="5" fill="#3730a3" stroke="#fff" stroke-width="2"/>
+
+      <!-- Labels -->
+      <text x="90" y="170" text-anchor="middle" font-size="8" fill="#6a7a9a">Jan</text>
+      <text x="90" y="179" text-anchor="middle" font-size="8" fill="#6a7a9a">'24</text>
+      <text x="210" y="170" text-anchor="middle" font-size="8" fill="#6a7a9a">Jan</text>
+      <text x="210" y="179" text-anchor="middle" font-size="8" fill="#6a7a9a">'25</text>
+      <text x="310" y="170" text-anchor="middle" font-size="8" fill="#6a7a9a">Dec</text>
+      <text x="310" y="179" text-anchor="middle" font-size="8" fill="#6a7a9a">'25</text>
+      <text x="400" y="170" text-anchor="middle" font-size="8" fill="#3730a3" font-weight="600">Jun 16</text>
+      <text x="400" y="179" text-anchor="middle" font-size="8" fill="#3730a3">'26</text>
+      <text x="540" y="170" text-anchor="middle" font-size="8" fill="#dc2626">2%</text>
+      <text x="540" y="179" text-anchor="middle" font-size="8" fill="#dc2626">Neutral</text>
+
+      <!-- TODAY marker -->
+      <line x1="415" y1="20" x2="415" y2="155" stroke="#059669" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="415" y="15" text-anchor="middle" font-size="8" fill="#059669">TODAY</text>
+
+      <!-- Legend -->
+      <line x1="80" y1="12" x2="105" y2="12" stroke="#3730a3" stroke-width="2.5"/>
+      <text x="110" y="16" font-size="9" fill="#6a7a9a">Actual rate</text>
+      <line x1="185" y1="12" x2="210" y2="12" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,2"/>
+      <text x="215" y="16" font-size="9" fill="#6a7a9a">Tamura implied path</text>
+    </svg>
+  </div>
+
+  <div class="anno-cards">
+    <div class="anno-card">
+      <div class="anno-card-label">Why Tamura's Speech Matters Now</div>
+      <div class="anno-card-text">Tamura's Dec 2025 call for 0.5% hike was dismissed as fringe. Committee subsequently moved in his direction. His explicit "every few months" cadence language is the market's outer-bound guide for Q3-Q4 BOJ action.</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-card-label">Yen Intervention Trigger Framework</div>
+      <div class="anno-card-text">Katayama-Bessent bilateral coordination language implies a pre-agreed intervention trigger. Japan deployed ¥11.7T in April-May 2026 above ¥160. USD/JPY at 161.8 on June 25 suggests proximity to next trigger test.</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-card-label">Positioning Implication</div>
+      <div class="anno-card-text">If Tamura's cadence becomes consensus (three to four more hikes), USD/JPY repricing toward 150-155 is possible without additional Fed action. Current 300bp rate differential with US is the structural anchor holding the yen weak.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  <p>Japan Brief Issue #26 · June 26, 2026 · Not investment advice</p>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
