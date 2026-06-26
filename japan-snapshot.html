@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Japan AI Snapshot · 日本AI速覧</title>
+<title>Japan AI Snapshot · 日本AIスナップショット</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -164,9 +164,9 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
   <div class="header-eyebrow">朋友 Pengyou · Japan Brief</div>
   <div class="header-title">
     Japan AI Snapshot
-    <span class="local">日本AI速覧</span>
+    <span class="local">日本AIスナップショット</span>
   </div>
-  <div class="header-deck">Corporate entities only · logos and names at a glance · click any card for full profile</div>
+  <div class="header-deck">Corporate entities only · click any card for full profile</div>
   <div class="header-meta">
     <span class="badge" id="badge-issue">—</span>
     <span class="badge" id="badge-date">—</span>
@@ -179,7 +179,7 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 </div>
 
 <div class="footer">
-  <div class="footer-brand">Japan AI Snapshot · 日本AI速覧</div>
+  <div class="footer-brand">Japan AI Snapshot · 日本AIスナップショット</div>
   <div class="footer-text">Updated automatically · <a href="japan-ai-landscape-viz.html">Full Landscape →</a></div>
 </div>
 
@@ -250,7 +250,7 @@ function makeLogoHtml(entity, size) {
 
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
     src="https://logo.clearbit.com/${domain}?size=128"
-    onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
 }
@@ -280,7 +280,7 @@ function openModal(name) {
   if (domain) {
     logoInner = `<img style="width:48px;height:48px;object-fit:contain;"
       src="https://logo.clearbit.com/${domain}?size=128"
-      onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://${domain}&size=128';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
       alt="${e.name}">
     <div class="modal-mono" style="background:${cat.color};display:none"><span class="modal-mono-text">${mono}</span></div>`;
   } else {
