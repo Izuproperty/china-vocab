@@ -68,75 +68,28 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 .logo-name-en { font-size: 11px; font-weight: 700; color: var(--navy); line-height: 1.3; margin-bottom: 2px; }
 .logo-name-zh { font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; }
 
-/* ── Modal overlay ── */
-#modal-overlay {
+/* ── Hover popup ── */
+#hover-popup {
+  position: fixed; z-index: 500; pointer-events: none;
+  background: #fff; border-radius: 10px; border: 1px solid var(--border);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+  width: 300px; padding: 16px;
   display: none;
-  position: fixed; inset: 0;
-  background: rgba(0,0,0,0.55);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
 }
-#modal-overlay.open { display: flex; }
-
-#modal-box {
-  background: #fff;
-  border-radius: 10px;
-  max-width: 560px;
-  width: 100%;
-  max-height: 82vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-}
-
-.modal-close {
-  position: absolute; top: 14px; right: 14px;
-  background: none; border: none; cursor: pointer;
-  font-size: 18px; color: #9a8a7a; line-height: 1;
-  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  transition: background .15s;
-}
-.modal-close:hover { background: #f0ece6; }
-
-.modal-header {
-  padding: 28px 28px 20px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-}
-.modal-logo {
-  width: 64px; height: 64px; flex-shrink: 0;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: #f8f6f2;
-}
-.modal-logo img { width: 48px; height: 48px; object-fit: contain; }
-.modal-logo .modal-mono { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border-radius: 9px; }
-.modal-mono-text { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 1px; }
-.modal-names { flex: 1; min-width: 0; }
-.modal-name-en { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--navy); line-height: 1.2; margin-bottom: 4px; }
-.modal-name-zh { font-size: 15px; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 2px; }
-.modal-pinyin { font-size: 11px; color: #b0a090; letter-spacing: 0.5px; font-style: italic; }
-.modal-badges { margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap; }
-.modal-cat-badge { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; color: #fff; }
-.modal-status-badge { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; border: 1px solid var(--border); color: var(--text-dim); }
-
-.modal-body { padding: 20px 28px 28px; }
-.modal-desc { font-size: 13px; line-height: 1.8; color: #3a3a4a; margin-bottom: 16px; }
-.modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
-.tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 2px; letter-spacing: 0.5px; }
-.tag-highlight { background: #fff8e1; color: #b7791f; border: 1px solid #f6d860; }
-.tag-green { background: #f0faf4; color: #276749; border: 1px solid #b2e0c4; }
-.tag-default { background: #f4f1ec; color: #5a5a6a; border: 1px solid var(--border); }
-.modal-issue { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); border-top: 1px solid var(--border); padding-top: 12px; }
-.modal-full-link { display: inline-block; margin-top: 12px; font-size: 11px; font-weight: 600; color: #c0392b; text-decoration: none; letter-spacing: 0.5px; }
-.modal-full-link:hover { text-decoration: underline; }
+#hover-popup.show { display: block; }
+.pp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.pp-en { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.2; }
+.pp-zh { font-size: 12px; color: var(--text-dim); margin-top: 2px; letter-spacing: 0.5px; }
+.pp-py { font-size: 10px; color: #b0a090; font-style: italic; margin-top: 1px; }
+.pp-badge { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; color: #fff; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+.pp-status { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.pp-desc { font-size: 12px; line-height: 1.7; color: #3a3a4a; margin-bottom: 10px; }
+.pp-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.ptag { font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 2px; letter-spacing: 0.3px; }
+.ptag-hi { background: #fff8e1; color: #b7791f; border: 1px solid #f6d860; }
+.ptag-gr { background: #f0faf4; color: #276749; border: 1px solid #b2e0c4; }
+.ptag-df { background: #f4f1ec; color: #5a5a6a; border: 1px solid var(--border); }
+.pp-issue { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
 
 /* ── Footer ── */
 .footer { background: var(--navy); padding: 18px 56px; display: flex; align-items: center; justify-content: space-between; }
@@ -149,7 +102,7 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
   .header, .content, .footer { padding-left: 20px; padding-right: 20px; }
   .logo-grid { grid-template-columns: repeat(auto-fill, minmax(100px,1fr)); gap: 10px; }
   .logo-face { height: 72px; }
-  .modal-header { flex-direction: column; }
+  #hover-popup { width: calc(100vw - 32px); }
 }
 
 .loading { text-align: center; padding: 80px 20px; color: var(--text-dim); font-size: 14px; }
@@ -166,7 +119,7 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
     China AI Snapshot
     <span class="local">中国AI速览</span>
   </div>
-  <div class="header-deck">Corporate entities only · click any card for full profile</div>
+  <div class="header-deck">Corporate entities only · hover any card for profile</div>
   <div class="header-meta">
     <span class="badge" id="badge-issue">—</span>
     <span class="badge" id="badge-date">—</span>
@@ -183,14 +136,8 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
   <div class="footer-text">Updated automatically · <a href="china-ai-landscape-viz.html">Full Landscape →</a></div>
 </div>
 
-<!-- Modal -->
-<div id="modal-overlay" onclick="closeModal()">
-  <div id="modal-box" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-header" id="modal-header"></div>
-    <div class="modal-body" id="modal-body"></div>
-  </div>
-</div>
+<!-- Hover popup -->
+<div id="hover-popup"></div>
 
 <script>
 const CATS = {
@@ -202,7 +149,7 @@ const CATS = {
   security:   { label: 'AI Security & Enterprise',     color: '#2c3e50', bg: '#f0f4f8' },
 };
 
-// Domain map — Clearbit primary, Google social favicon fallback, then monogram
+// Domain map — Clearbit primary, monogram fallback
 const DOMAINS = {
   'DeepSeek':                       'deepseek.com',
   'Baidu':                          'baidu.com',
@@ -260,15 +207,16 @@ function makeLogoHtml(entity, size = 56) {
 
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
     src="https://logo.clearbit.com/${domain}?size=128"
-    onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://www.google.com/s2/favicons?sz=128&domain=${domain}';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
+    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
 }
 
 function makeCard(entity) {
   const cat = CATS[entity.cat] || CATS.security;
+  const safeName = entity.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   return `
-    <div class="logo-card" onclick="openModal('${entity.name.replace(/'/g,"\\'")}')">
+    <div class="logo-card" onmouseenter="showPopup(event,'${safeName}')" onmouseleave="hidePopup()">
       <div class="logo-face" style="background:${cat.bg}">
         ${makeLogoHtml(entity, 56)}
       </div>
@@ -279,60 +227,58 @@ function makeCard(entity) {
     </div>`;
 }
 
-function openModal(name) {
+let popupTimer = null;
+const popup = document.getElementById('hover-popup');
+
+function showPopup(evt, name) {
+  clearTimeout(popupTimer);
   const e = entityMap[name];
   if (!e) return;
   const cat = CATS[e.cat] || CATS.security;
-  const mono = logoInitials(e.name, e.zh);
-  const domain = DOMAINS[e.name];
-
-  // Build logo for modal (64px box)
-  let logoInner;
-  if (domain) {
-    logoInner = `<img style="width:48px;height:48px;object-fit:contain;"
-      src="https://logo.clearbit.com/${domain}?size=128"
-      onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='https://www.google.com/s2/favicons?sz=128&domain=${domain}';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}"
-      alt="${e.name}">
-    <div class="modal-mono" style="background:${cat.color};display:none"><span class="modal-mono-text">${mono}</span></div>`;
-  } else {
-    logoInner = `<div class="modal-mono" style="background:${cat.color}"><span class="modal-mono-text">${mono}</span></div>`;
-  }
-
   const statusLabel = e.status === 'public' ? (e.ticker || 'Public') : e.status === 'gov' ? 'Government' : 'Private';
-
-  document.getElementById('modal-header').innerHTML = `
-    <div class="modal-logo">${logoInner}</div>
-    <div class="modal-names">
-      <div class="modal-name-en">${e.name}</div>
-      ${e.zh ? `<div class="modal-name-zh">${e.zh}</div>` : ''}
-      ${e.py ? `<div class="modal-pinyin">${e.py}</div>` : ''}
-      <div class="modal-badges">
-        <span class="modal-cat-badge" style="background:${cat.color}">${cat.label}</span>
-        <span class="modal-status-badge">${statusLabel}</span>
-      </div>
-    </div>`;
-
-  const tagsHtml = (e.tags || []).map(t => {
-    const cls = t.t === 'highlight' ? 'tag-highlight' : t.t === 'green' ? 'tag-green' : 'tag-default';
-    return `<span class="tag ${cls}">${t.l}</span>`;
+  const tagsHtml = (e.tags||[]).map(t => {
+    const cls = t.t==='highlight'?'ptag-hi':t.t==='green'?'ptag-gr':'ptag-df';
+    return `<span class="ptag ${cls}">${t.l}</span>`;
   }).join('');
+  const rawDesc = e.desc || '';
+  const shortDesc = rawDesc.length > 280 ? rawDesc.substring(0,280) + '…' : rawDesc;
+  const descHtml = shortDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
 
-  document.getElementById('modal-body').innerHTML = `
-    ${e.desc ? `<div class="modal-desc">${e.desc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')}</div>` : ''}
-    ${tagsHtml ? `<div class="modal-tags">${tagsHtml}</div>` : ''}
-    ${e.issue ? `<div class="modal-issue">Covered in ${e.issue}</div>` : ''}
-    <a class="modal-full-link" href="china-ai-landscape-viz.html">View Full Landscape →</a>`;
+  popup.innerHTML = `
+    <div class="pp-head">
+      <div>
+        <div class="pp-en">${e.name}</div>
+        ${e.zh?`<div class="pp-zh">${e.zh}</div>`:''}
+        ${e.py?`<div class="pp-py">${e.py}</div>`:''}
+      </div>
+      <span class="pp-badge" style="background:${cat.color}">${cat.label}</span>
+    </div>
+    <div class="pp-status">${statusLabel}</div>
+    ${descHtml?`<div class="pp-desc">${descHtml}</div>`:''}
+    ${tagsHtml?`<div class="pp-tags">${tagsHtml}</div>`:''}
+    ${e.issue?`<div class="pp-issue">Covered in ${e.issue}</div>`:''}
+  `;
 
-  document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // Position: show near card, adjust for viewport edges
+  const rect = evt.currentTarget.getBoundingClientRect();
+  const pw = 300;
+  let left = rect.left;
+  let top = rect.bottom + 8;
+  if (left + pw > window.innerWidth - 8) left = Math.max(8, window.innerWidth - pw - 8);
+
+  // Measure height to check bottom overflow
+  popup.style.left = '-9999px';
+  popup.style.top = '-9999px';
+  popup.classList.add('show');
+  const ph = popup.offsetHeight;
+  if (top + ph > window.innerHeight - 8) top = rect.top - ph - 8;
+  popup.style.left = left + 'px';
+  popup.style.top = top + 'px';
 }
 
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.body.style.overflow = '';
+function hidePopup() {
+  popupTimer = setTimeout(() => popup.classList.remove('show'), 80);
 }
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 fetch('china-ai-landscape.json?v=' + Date.now())
   .then(r => r.json())
