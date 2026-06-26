@@ -45,10 +45,9 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .badge { border:1px solid #3a3a6e; border-radius:3px; padding:4px 12px; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; }
 .badge.live { border-color:#3730a3; color:#a5b4fc; }
 
-.back-nav { background:#13132a; padding:10px 56px; display:flex; align-items:center; gap:20px; border-bottom:1px solid #2a2a4e; }
-.back-nav a { display:inline-flex; align-items:center; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; text-decoration:none; }
-.back-nav a:hover { color:#c7d2fe; }
-.back-nav a::before { content:'←'; margin-right:6px; font-size:13px; }
+.header-back { margin-bottom:16px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.header-back a { color:#c7d2fe; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; transition:background .2s; }
+.header-back a:hover { background:#2a2a4e; }
 
 .stats-bar { background:#13132a; padding:16px 56px; display:flex; gap:32px; flex-wrap:wrap; border-bottom:1px solid #2a2a4e; }
 .stat { text-align:center; }
@@ -109,7 +108,7 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .loading { text-align:center; padding:80px; color:#9a8a7a; font-size:14px; }
 
 @media(max-width:680px) {
-  .header, .stats-bar, .controls, .grid-wrap, .footer, .back-nav { padding-left:20px; padding-right:20px; }
+  .header, .stats-bar, .controls, .grid-wrap, .footer { padding-left:20px; padding-right:20px; }
   .company-grid { grid-template-columns:1fr; }
 }
 </style>
@@ -117,6 +116,10 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 <body>
 
 <div class="header">
+  <div class="header-back">
+    <a id="backLink" href="japan-brief.html">← Return to Japan Brief</a>
+    <a href="japan-snapshot.html" style="color:#c7d2fe;font-size:11px;font-weight:600;text-decoration:none;letter-spacing:1px;border:1px solid #3a3a6e;padding:5px 12px;border-radius:3px;display:inline-block;transition:background 0.2s;" onmouseover="this.style.background='#2a2a4e'" onmouseout="this.style.background=''">Snapshot ↗</a>
+  </div>
   <div class="header-eyebrow">友達 Tomodachi · Japan Brief · Nihon Sokuhō</div>
   <div class="header-title" id="hTitle"></div>
   <div class="header-deck" id="hDeck"></div>
@@ -125,10 +128,6 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
     <span class="badge" id="badgeDate"></span>
     <span class="badge live">Living Document</span>
   </div>
-</div>
-
-<div class="back-nav">
-  <a id="backLink" href="japan-brief.html">Return to Japan Brief</a>
 </div>
 
 <div class="stats-bar" id="statsBar"></div>
@@ -161,7 +160,6 @@ document.documentElement.style.setProperty('--accent', CFG.accent);
 document.getElementById('hTitle').innerHTML = CFG.title + `<span class="local">${CFG.titleLocal}</span>`;
 document.getElementById('hDeck').textContent = CFG.subtitle;
 document.getElementById('backLink').href = CFG.backLink;
-document.getElementById('backLink').textContent = '← ' + CFG.backLabel;
 
 let allEntities = [];
 let currentCat = 'all';
