@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Issue #40 · Visualized · June 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:20px 32px 16px; border-bottom:4px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { }
+  .page-header-eyebrow { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:4px; }
+  .page-header-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#fff; }
+  .page-header-sub { font-size:11px; color:#8a9bb5; margin-top:4px; }
+  .back-link { font-size:11px; color:#8a9bb5; text-decoration:none; border:1px solid #3a3a6e; border-radius:3px; padding:5px 12px; transition:all 0.2s; white-space:nowrap; }
+  .back-link:hover { color:#e8d5b0; border-color:#c0392b; }
+  .tabs { display:flex; background:#141428; border-bottom:1px solid #2a2a4e; overflow-x:auto; }
+  .tab { font-size:11px; font-weight:600; letter-spacing:0.5px; padding:12px 20px; color:#6a7a9a; cursor:pointer; border-bottom:2px solid transparent; white-space:nowrap; flex-shrink:0; transition:all 0.2s; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+  .tab:hover:not(.active) { color:#a0b0c8; }
+  .viz-panel { display:none; padding:28px 32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border-radius:6px; padding:16px 18px; box-shadow:0 1px 8px rgba(0,0,0,0.07); border-top:3px solid #c0392b; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; margin-bottom:4px; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#7a8a9a; }
+  .signal-note { font-size:11px; color:#9a8a7a; margin-top:4px; }
+  .chart-box { background:#fff; border-radius:6px; padding:20px; box-shadow:0 1px 8px rgba(0,0,0,0.07); margin-bottom:24px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#4a5a7a; margin-bottom:16px; }
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .annotation-card { border-radius:5px; padding:14px 16px; font-size:12.5px; line-height:1.6; }
+  .annotation-card.red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .annotation-card.amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .annotation-card.green { background:#f0faf4; border-left:4px solid #16a34a; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .red .annotation-card-label { color:#c0392b; }
+  .amber .annotation-card-label { color:#d97706; }
+  .green .annotation-card-label { color:#16a34a; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:2px; }
+  .annotation-card-en { font-size:11px; color:#7a6a5a; font-style:italic; }
+  .footer-bar { background:#1a1a2e; padding:14px 32px; text-align:center; font-size:11px; color:#4a5a7a; border-top:1px solid #2a2a4e; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; Pengyou &middot; Private</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="page-header-eyebrow">朋友 Pengyou · Data Visualization</div>
+    <div class="page-header-title">China Brief Issue #40 · June 28, 2026</div>
+    <div class="page-header-sub">DeepSeek Funding · Anyverse Dynamics · Week Ahead Macro</div>
+  </div>
+  <a href="brief.html" class="back-link">← Return to China Brief</a>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1', this)">DeepSeek Funding</div>
+  <div class="tab" onclick="showViz('s2', this)">Anyverse Robotics Raise</div>
+  <div class="tab" onclick="showViz('s3', this)">Week Ahead Macro</div>
+</div>
+
+<!-- STORY 1: DeepSeek $7.4B Funding -->
+<div class="viz-panel active" id="s1">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">$7.4B</div>
+      <div class="signal-label">Total Round Size</div>
+      <div class="signal-note">50 billion yuan — first external funding</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">$50B+</div>
+      <div class="signal-label">Post-Money Valuation</div>
+      <div class="signal-note">China's most valuable private AI company</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">2x</div>
+      <div class="signal-label">Headcount Target</div>
+      <div class="signal-note">Every department to at least double</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Investor Composition — DeepSeek Round (Approximate Breakdown, 50B yuan total)</div>
+    <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Founder Liang Wenfeng -->
+      <rect x="20" y="30" width="300" height="44" rx="4" fill="#1a1a2e"/>
+      <text x="32" y="49" font-family="Inter,sans-serif" font-size="11" fill="#e8d5b0" font-weight="600">梁文锋 Liáng Wénfēng (Founder/CEO)</text>
+      <text x="32" y="64" font-family="Inter,sans-serif" font-size="11" fill="#8a9bb5">~20B yuan · ~40% of round</text>
+      <rect x="328" y="30" width="120" height="44" rx="4" fill="#c0392b"/>
+      <text x="388" y="56" font-family="Inter,sans-serif" font-size="14" fill="#fff" font-weight="700" text-anchor="middle">~¥20B</text>
+
+      <!-- Tencent -->
+      <rect x="20" y="88" width="300" height="44" rx="4" fill="#2a2a4e"/>
+      <text x="32" y="107" font-family="Inter,sans-serif" font-size="11" fill="#e8d5b0" font-weight="600">腾讯 Téngxùn (Tencent)</text>
+      <text x="32" y="122" font-family="Inter,sans-serif" font-size="11" fill="#8a9bb5">~10B yuan · ~20% of round</text>
+      <rect x="328" y="88" width="60" height="44" rx="4" fill="#c0392b" opacity="0.7"/>
+      <text x="358" y="114" font-family="Inter,sans-serif" font-size="13" fill="#fff" font-weight="700" text-anchor="middle">¥10B</text>
+
+      <!-- CATL -->
+      <rect x="20" y="146" width="300" height="44" rx="4" fill="#2a2a4e"/>
+      <text x="32" y="165" font-family="Inter,sans-serif" font-size="11" fill="#e8d5b0" font-weight="600">宁德时代 Níngdé Shídài (CATL)</text>
+      <text x="32" y="180" font-family="Inter,sans-serif" font-size="11" fill="#8a9bb5">~5B yuan · ~10% of round</text>
+      <rect x="328" y="146" width="30" height="44" rx="4" fill="#c0392b" opacity="0.5"/>
+      <text x="343" y="172" font-family="Inter,sans-serif" font-size="12" fill="#fff" font-weight="700" text-anchor="middle">¥5B</text>
+
+      <!-- Others -->
+      <text x="480" y="100" font-family="Inter,sans-serif" font-size="11" fill="#7a8a9a">+ National AI Fund</text>
+      <text x="480" y="118" font-family="Inter,sans-serif" font-size="11" fill="#7a8a9a">+ NetEase / JD.com</text>
+      <text x="480" y="136" font-family="Inter,sans-serif" font-size="11" fill="#7a8a9a">+ IDG Capital</text>
+      <text x="480" y="154" font-family="Inter,sans-serif" font-size="11" fill="#7a8a9a">~15B yuan remaining (~30%)</text>
+
+      <!-- Note -->
+      <text x="20" y="208" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" font-style="italic">Structure: commercial investors subscribe into LP managed by CEO Liang — no direct equity in DeepSeek operating entity.</text>
+    </svg>
+  </div>
+
+  <div class="annotation-grid">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Signal</div>
+      <div class="annotation-card-zh">商业化转型<span class="annotation-card-en">shāngyèhuà zhuǎnxíng · commercialisation pivot</span></div>
+      DeepSeek is shifting from a lean research lab into a scaled enterprise. The capital and hiring targets signal a move toward distribution and product — not just model benchmarks.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Unverified</div>
+      <div class="annotation-card-zh">有限合伙<span class="annotation-card-en">yǒuxiàn héhuǒ · limited partnership</span></div>
+      Exact individual investor allocations are Caixin-sourced estimates, not disclosed. The LP structure's full governance terms — including any state fund rights or conditions — have not been made public.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable Signal</div>
+      <div class="annotation-card-zh">算力需求<span class="annotation-card-en">suànlì xūqiú · compute demand</span></div>
+      DeepSeek's infrastructure build-out will flow through domestic chip and data centre suppliers — a secondary demand signal for Huawei Ascend ecosystem and Chinese hyperscaler capex.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: Anyverse Dynamics Robotics Raise -->
+<div class="viz-panel" id="s2">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">$200M+</div>
+      <div class="signal-label">Angel Round Closed</div>
+      <div class="signal-note">Anyverse Dynamics, founded 2025</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">140+</div>
+      <div class="signal-label">Humanoid Manufacturers</div>
+      <div class="signal-note">Active in China, 330+ product models</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">+6.4%</div>
+      <div class="signal-label">Robotics Industry Index</div>
+      <div class="signal-note">China, June 2026 single-month rise</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">China Embodied AI Funding Pace — Selected H1 2026 Raises</div>
+    <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Y axis label -->
+      <text x="10" y="120" font-family="Inter,sans-serif" font-size="10" fill="#9a8a7a" transform="rotate(-90,10,120)" text-anchor="middle">Raise size (illustrative scale)</text>
+
+      <!-- Bars -->
+      <!-- Kunlunxing: multibillion yuan ~$500M+ -->
+      <rect x="80" y="50" width="100" height="140" rx="3" fill="#1a1a2e"/>
+      <text x="130" y="46" font-family="Inter,sans-serif" font-size="10" fill="#4a5a7a" text-anchor="middle">Kunlunxing</text>
+      <text x="130" y="206" font-family="Inter,sans-serif" font-size="10" fill="#8a9bb5" text-anchor="middle">~$500M+</text>
+      <text x="130" y="216" font-family="Inter,sans-serif" font-size="9" fill="#6a7a9a" text-anchor="middle">Jun 24</text>
+
+      <!-- Anyverse angel round: $200M+ -->
+      <rect x="220" y="80" width="100" height="110" rx="3" fill="#c0392b"/>
+      <text x="270" y="76" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="600">Anyverse</text>
+      <text x="270" y="206" font-family="Inter,sans-serif" font-size="10" fill="#8a9bb5" text-anchor="middle">$200M+</text>
+      <text x="270" y="216" font-family="Inter,sans-serif" font-size="9" fill="#6a7a9a" text-anchor="middle">Jun 26</text>
+      <text x="270" y="228" font-family="Inter,sans-serif" font-size="9" fill="#c0392b" text-anchor="middle">+ pre-A pending</text>
+
+      <!-- AgiBot (earlier reference) ~$300M -->
+      <rect x="360" y="68" width="100" height="122" rx="3" fill="#2a2a4e"/>
+      <text x="410" y="64" font-family="Inter,sans-serif" font-size="10" fill="#4a5a7a" text-anchor="middle">AgiBot</text>
+      <text x="410" y="206" font-family="Inter,sans-serif" font-size="10" fill="#8a9bb5" text-anchor="middle">~$300M</text>
+      <text x="410" y="216" font-family="Inter,sans-serif" font-size="9" fill="#6a7a9a" text-anchor="middle">H1 2026</text>
+
+      <!-- Galaxy Bot ~$150M -->
+      <rect x="500" y="110" width="100" height="80" rx="3" fill="#2a2a4e" opacity="0.7"/>
+      <text x="550" y="106" font-family="Inter,sans-serif" font-size="10" fill="#4a5a7a" text-anchor="middle">Galaxy Bot</text>
+      <text x="550" y="206" font-family="Inter,sans-serif" font-size="10" fill="#8a9bb5" text-anchor="middle">~$150M</text>
+      <text x="550" y="216" font-family="Inter,sans-serif" font-size="9" fill="#6a7a9a" text-anchor="middle">H1 2026</text>
+
+      <!-- Axis -->
+      <line x1="60" y1="190" x2="720" y2="190" stroke="#e0d8d0" stroke-width="1"/>
+      <text x="640" y="180" font-family="Inter,sans-serif" font-size="9" fill="#9a8a7a" font-style="italic">Bars illustrative — exact figures vary by source.</text>
+    </svg>
+  </div>
+
+  <div class="annotation-grid">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Risk</div>
+      <div class="annotation-card-zh">价格战风险<span class="annotation-card-en">jiàgé zhàn fēngxiǎn · price war risk</span></div>
+      140-plus manufacturers competing in an early-revenue category implies severe eventual consolidation. Caixin flagged this explicitly June 15. Capital formation is outpacing commercial proof.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Unverified</div>
+      <div class="annotation-card-zh">技术差异化<span class="annotation-card-en">jìshù chāyìhuà · technology differentiation</span></div>
+      Anyverse Dynamics' specific technical advantages versus Kunlunxing, AgiBot, or Unitree have not been independently assessed. The raise size is not itself evidence of product differentiation.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable Signal</div>
+      <div class="annotation-card-zh">支柱产业<span class="annotation-card-en">zhīzhù chǎnyè · pillar industry</span></div>
+      Government designation of robotics as a pillar industry and rising Robotics Industry Index (+6.4% June) confirm sustained policy tailwind. Basket approach to sector exposure may reduce single-name risk.
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: Week Ahead Macro -->
+<div class="viz-panel" id="s3">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-value">Jul 1</div>
+      <div class="signal-label">ODI Regulation Effective</div>
+      <div class="signal-note">China's outbound investment security regime</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">3.0%</div>
+      <div class="signal-label">PBOC 1-Year LPR</div>
+      <div class="signal-note">Held 13 consecutive months — watch PMI</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-value">€150</div>
+      <div class="signal-label">EU De Minimis Threshold</div>
+      <div class="signal-note">Removed July 1 — Shein / Temu impact</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Week of June 29 – July 5 · Key Regulatory and Data Events</div>
+    <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Timeline axis -->
+      <line x1="40" y1="100" x2="720" y2="100" stroke="#c0392b" stroke-width="2"/>
+
+      <!-- Markers -->
+      <!-- Jun 29 -->
+      <circle cx="100" cy="100" r="7" fill="#2a2a4e"/>
+      <text x="100" y="85" font-family="Inter,sans-serif" font-size="10" fill="#4a5a7a" text-anchor="middle">Jun 29</text>
+      <text x="100" y="120" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">Week opens</text>
+
+      <!-- Jul 1 ODI -->
+      <circle cx="280" cy="100" r="10" fill="#c0392b"/>
+      <text x="280" y="82" font-family="Inter,sans-serif" font-size="10" fill="#c0392b" text-anchor="middle" font-weight="700">Jul 1</text>
+      <text x="280" y="120" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">ODI Regulation</text>
+      <text x="280" y="132" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">effective</text>
+      <line x1="280" y1="90" x2="280" y2="60" stroke="#c0392b" stroke-width="1" stroke-dasharray="3,2"/>
+      <rect x="200" y="40" width="160" height="22" rx="3" fill="#c0392b" opacity="0.15"/>
+      <text x="280" y="55" font-family="Inter,sans-serif" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="600">境外投资条例 · NBS PMI · EU de minimis</text>
+
+      <!-- Jul 1 NBS PMI -->
+      <circle cx="380" cy="100" r="8" fill="#1a1a2e"/>
+      <text x="380" y="122" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">NBS PMI</text>
+      <text x="380" y="134" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">released</text>
+
+      <!-- Jul 2 Caixin PMI -->
+      <circle cx="480" cy="100" r="8" fill="#2a2a4e"/>
+      <text x="480" y="82" font-family="Inter,sans-serif" font-size="10" fill="#4a5a7a" text-anchor="middle">Jul 2</text>
+      <text x="480" y="122" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">Caixin PMI</text>
+      <text x="480" y="134" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">released</text>
+
+      <!-- Jul 5 -->
+      <circle cx="660" cy="100" r="7" fill="#2a2a4e"/>
+      <text x="660" y="85" font-family="Inter,sans-serif" font-size="10" fill="#4a5a7a" text-anchor="middle">Jul 5</text>
+      <text x="660" y="120" font-family="Inter,sans-serif" font-size="9" fill="#8a9bb5" text-anchor="middle">Week closes</text>
+
+      <!-- PMI threshold line -->
+      <text x="42" y="168" font-family="Inter,sans-serif" font-size="10" fill="#7a8a9a">PMI watch: above 50 = expansion, below 50 = contraction. Sub-50 print would reprice H2 RRR cut expectations.</text>
+    </svg>
+  </div>
+
+  <div class="annotation-grid">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Core Signal</div>
+      <div class="annotation-card-zh">境外投资管控<span class="annotation-card-en">jìngwài tóuzī guǎnkòng · outbound investment controls</span></div>
+      ODI Regulation formalises Beijing's legal authority to retroactively restrict or unwind Chinese overseas investments on national security grounds. Deal-level compliance risk for cross-border transactions rises materially.
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch Closely</div>
+      <div class="annotation-card-zh">采购经理人指数<span class="annotation-card-en">cǎigòu jǐnglǐrén zhǐshù · PMI</span></div>
+      Jun PMI is the first month-end read post Q1 5.0% GDP print. A sub-50 result would reshape consensus on China's H2 growth trajectory and PBOC policy timing. Caixin version more private-sector representative.
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Investable Signal</div>
+      <div class="annotation-card-zh">电商利润率<span class="annotation-card-en">diànshāng lìrùnlǜ · e-commerce margin</span></div>
+      EU de minimis removal creates a quantifiable headwind for Pinduoduo's Temu European revenue; watch Q2/Q3 earnings for margin disclosure. Shein's private status limits direct equity impact.
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #40 · June 28, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
