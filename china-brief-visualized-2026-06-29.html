@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief #41 · Visualized · June 29, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:20px 32px 16px; border-bottom:4px solid #c0392b; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-left .eyebrow { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; }
+  .page-header-left .title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; margin-top:2px; }
+  .page-header-right a { font-size:12px; color:#8a9bb5; text-decoration:none; border:1px solid #2a2a4e; padding:6px 14px; border-radius:3px; }
+  .page-header-right a:hover { color:#e8d5b0; border-color:#4a4a6e; }
+  .tabs { display:flex; background:#fff; border-bottom:2px solid #e0d8d0; padding:0 24px; }
+  .tab { font-size:11px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; padding:14px 20px 12px; cursor:pointer; color:#9a8a7a; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; }
+  .tab:hover:not(.active) { color:#1a1a2e; }
+  .viz-panel { display:none; padding:28px 32px; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border:1px solid #e0d8d0; border-radius:6px; padding:16px 18px; }
+  .signal-card .label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:6px; }
+  .signal-card .value { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal-card .sub { font-size:11px; color:#7a6a5a; margin-top:4px; }
+  .chart-area { background:#fff; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin-bottom:24px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotation-cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .annotation-card { border-radius:6px; padding:14px 16px; font-size:12.5px; line-height:1.6; }
+  .annotation-card.red { background:#fef2f2; border-left:4px solid #c0392b; }
+  .annotation-card.amber { background:#fffbeb; border-left:4px solid #d97706; }
+  .annotation-card.green { background:#f0fdf4; border-left:4px solid #16a34a; }
+  .annotation-card .card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .card-label { color:#c0392b; }
+  .annotation-card.amber .card-label { color:#d97706; }
+  .annotation-card.green .card-label { color:#16a34a; }
+  .annotation-card-zh { font-weight:700; color:#1a1a2e; margin-right:4px; }
+  .annotation-card-en { font-size:11px; color:#7a6a5a; font-style:italic; }
+  .page-footer { text-align:center; padding:16px 32px; font-size:11px; color:#9a8a7a; border-top:1px solid #e0d8d0; background:#fff; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="eyebrow">朋友 Pengyou · China Brief #41 · June 29, 2026</div>
+    <div class="title">Data Visualized</div>
+  </div>
+  <div class="page-header-right">
+    <a href="brief.html">Return to China Brief</a>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('viz1', this)">DeepSeek DSpark</div>
+  <div class="tab" onclick="showViz('viz2', this)">LineShine TOP500</div>
+  <div class="tab" onclick="showViz('viz3', this)">PBOC Rate Corridor</div>
+</div>
+
+<!-- VIZ 1: DeepSeek DSpark -->
+<div id="viz1" class="viz-panel active">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="label">Inference Speed Gain</div>
+      <div class="value">+85%</div>
+      <div class="sub">per-user response speed, V4 model</div>
+    </div>
+    <div class="signal-card">
+      <div class="label">Method</div>
+      <div class="value">2-Stage</div>
+      <div class="sub">draft model + batch verification</div>
+    </div>
+    <div class="signal-card">
+      <div class="label">Release Model</div>
+      <div class="value">Open</div>
+      <div class="sub">HuggingFace + GitHub, June 28</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">DSpark Architecture: Speculative Decoding Flow</div>
+    <svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Standard generation -->
+      <text x="10" y="22" font-family="Inter" font-size="10" font-weight="700" fill="#9a8a7a" letter-spacing="1">STANDARD TOKEN-BY-TOKEN GENERATION</text>
+      <rect x="10" y="32" width="80" height="34" rx="4" fill="#fef2f2" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="50" y="53" font-family="Inter" font-size="10" fill="#1a1a2e" text-anchor="middle">Token 1</text>
+      <line x1="90" y1="49" x2="118" y2="49" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arr1)"/>
+      <rect x="118" y="32" width="80" height="34" rx="4" fill="#fef2f2" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="158" y="53" font-family="Inter" font-size="10" fill="#1a1a2e" text-anchor="middle">Token 2</text>
+      <line x1="198" y1="49" x2="226" y2="49" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arr1)"/>
+      <rect x="226" y="32" width="80" height="34" rx="4" fill="#fef2f2" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="266" y="53" font-family="Inter" font-size="10" fill="#1a1a2e" text-anchor="middle">Token 3</text>
+      <line x1="306" y1="49" x2="334" y2="49" stroke="#9a8a7a" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="380" y="53" font-family="Inter" font-size="10" fill="#9a8a7a">Sequential — GPU underutilized</text>
+
+      <!-- DSpark generation -->
+      <text x="10" y="106" font-family="Inter" font-size="10" font-weight="700" fill="#1a56db" letter-spacing="1">DSPARK: DRAFT + VERIFY IN PARALLEL</text>
+
+      <!-- Draft model box -->
+      <rect x="10" y="116" width="130" height="34" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="75" y="133" font-family="Inter" font-size="10" fill="#1a56db" text-anchor="middle" font-weight="600">Draft Model</text>
+      <text x="75" y="145" font-family="Inter" font-size="9" fill="#1a56db" text-anchor="middle">(proposes T1, T2, T3, T4)</text>
+
+      <line x1="140" y1="133" x2="168" y2="133" stroke="#1a56db" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+      <!-- Verify box -->
+      <rect x="168" y="116" width="130" height="34" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="233" y="133" font-family="Inter" font-size="10" fill="#1a56db" text-anchor="middle" font-weight="600">V4 Verify (batch)</text>
+      <text x="233" y="145" font-family="Inter" font-size="9" fill="#1a56db" text-anchor="middle">(accept / reject in parallel)</text>
+
+      <line x1="298" y1="133" x2="326" y2="133" stroke="#1a56db" stroke-width="1.5" marker-end="url(#arr2)"/>
+
+      <!-- Output box -->
+      <rect x="326" y="116" width="100" height="34" rx="4" fill="#e8f0fe" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="376" y="133" font-family="Inter" font-size="10" fill="#1a56db" text-anchor="middle" font-weight="600">Output</text>
+      <text x="376" y="145" font-family="Inter" font-size="9" fill="#1a56db" text-anchor="middle">(+85% faster)</text>
+
+      <!-- Confidence scheduler -->
+      <rect x="10" y="168" width="240" height="30" rx="4" fill="#f8f4ee" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="15" y="186" font-family="Inter" font-size="10" fill="#7a6a5a" font-weight="600">Confidence-based scheduler</text>
+      <text x="135" y="186" font-family="Inter" font-size="10" fill="#9a8a7a"> — adjusts verification depth per GPU load</text>
+
+      <!-- Arrows defs -->
+      <defs>
+        <marker id="arr1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#c0392b"/>
+        </marker>
+        <marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L6,3 z" fill="#1a56db"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="annotation-cards">
+    <div class="annotation-card red">
+      <div class="card-label">Primary Signal</div>
+      <div><span class="annotation-card-zh">推理</span><span class="annotation-card-en">tuīlǐ · inference</span> efficiency is now a distinct competitive axis in Chinese AI, separate from model quality. DeepSeek is racing to lower cost-per-token as margins compress.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="card-label">What Remains Unverified</div>
+      <div>The 85% speed gain is a lab benchmark. Production-scale verification under mixed workloads and realistic GPU fleet configurations has not been independently confirmed. Replication by rivals could be rapid.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="card-label">Investable Signal</div>
+      <div>Inference efficiency gains reduce the <span class="annotation-card-zh">算力</span><span class="annotation-card-en">suànlì · compute</span> cluster size needed for a given traffic level — relieving structural demand pressure on domestic GPU alternatives, including Huawei Ascend procurement cycles.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIZ 2: LineShine TOP500 -->
+<div id="viz2" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="label">Linpack Performance</div>
+      <div class="value">2.19 EF</div>
+      <div class="sub">exaflops — 22% faster than El Capitan</div>
+    </div>
+    <div class="signal-card">
+      <div class="label">Processing Cores</div>
+      <div class="value">13.97M</div>
+      <div class="sub">domestic Arm-based CPUs, no GPUs</div>
+    </div>
+    <div class="signal-card">
+      <div class="label">Last Chinese #1</div>
+      <div class="value">2017</div>
+      <div class="sub">Sunway TaihuLight (神威·太湖之光)</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">TOP500 #1 Positions: US vs China, 2010–2026</div>
+    <svg viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Y axis -->
+      <line x1="60" y1="20" x2="60" y2="180" stroke="#e0d8d0" stroke-width="1"/>
+      <!-- X axis -->
+      <line x1="60" y1="180" x2="580" y2="180" stroke="#e0d8d0" stroke-width="1"/>
+
+      <!-- Y labels -->
+      <text x="50" y="182" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">0</text>
+      <text x="50" y="142" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">0.5</text>
+      <text x="50" y="102" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">1.0</text>
+      <text x="50" y="62" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">1.5</text>
+      <text x="50" y="24" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">2.0+ EF</text>
+
+      <!-- Grid lines -->
+      <line x1="60" y1="140" x2="580" y2="140" stroke="#f0ede8" stroke-width="1"/>
+      <line x1="60" y1="100" x2="580" y2="100" stroke="#f0ede8" stroke-width="1"/>
+      <line x1="60" y1="60" x2="580" y2="60" stroke="#f0ede8" stroke-width="1"/>
+
+      <!-- X labels (years) -->
+      <text x="90" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2011</text>
+      <text x="145" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2013</text>
+      <text x="200" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2015</text>
+      <text x="260" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2017</text>
+      <text x="315" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2019</text>
+      <text x="370" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2021</text>
+      <text x="425" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2023</text>
+      <text x="490" y="196" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="middle">2025</text>
+      <text x="550" y="196" font-family="Inter" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">Jun 2026</text>
+
+      <!-- China bars -->
+      <!-- Tianhe-2 2013: ~0.034 PF, scaled — bar height tiny -->
+      <rect x="135" y="178" width="16" height="2" fill="#c0392b" opacity="0.7"/>
+      <!-- Sunway 2016-2017: ~0.093 PF -->
+      <rect x="245" y="174" width="16" height="6" fill="#c0392b" opacity="0.7"/>
+      <!-- LineShine 2026: 2.19 EF (much larger) -->
+      <rect x="540" y="25" width="18" height="155" fill="#c0392b"/>
+      <text x="549" y="20" font-family="Inter" font-size="9" fill="#c0392b" text-anchor="middle" font-weight="700">2.19 EF</text>
+
+      <!-- US bars (representative peaks) -->
+      <!-- Titan 2012: 0.017 PF -->
+      <rect x="120" y="179" width="12" height="1" fill="#1a56db" opacity="0.7"/>
+      <!-- Summit 2018-2019: 0.148 PF -->
+      <rect x="300" y="170" width="16" height="10" fill="#1a56db" opacity="0.7"/>
+      <!-- Frontier 2022: 1.1 EF -->
+      <rect x="405" y="95" width="16" height="85" fill="#1a56db" opacity="0.7"/>
+      <!-- El Capitan 2024-2026: 1.742 EF -->
+      <rect x="460" y="41" width="16" height="139" fill="#1a56db"/>
+      <text x="468" y="37" font-family="Inter" font-size="8" fill="#1a56db" text-anchor="middle">1.74 EF</text>
+
+      <!-- Legend -->
+      <rect x="65" y="22" width="10" height="10" fill="#c0392b"/>
+      <text x="80" y="31" font-family="Inter" font-size="9" fill="#1a1a2e">China #1</text>
+      <rect x="130" y="22" width="10" height="10" fill="#1a56db"/>
+      <text x="145" y="31" font-family="Inter" font-size="9" fill="#1a1a2e">US #1</text>
+
+      <!-- Annotation line for Sunway -->
+      <line x1="253" y1="174" x2="253" y2="155" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="2,2"/>
+      <text x="256" y="152" font-family="Inter" font-size="8" fill="#c0392b">Sunway 2017</text>
+    </svg>
+  </div>
+
+  <div class="annotation-cards">
+    <div class="annotation-card red">
+      <div class="card-label">Primary Signal</div>
+      <div><span class="annotation-card-zh">国产芯片</span><span class="annotation-card-en">guóchǎn xīnpiàn · domestic chips</span> have reached exascale performance. The export-control containment thesis — that chip restrictions cap Chinese compute — is being directly stress-tested by this result.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="card-label">What Remains Unverified</div>
+      <div>TOP500 Linpack measures linear algebra throughput. AI training throughput (FP8/FP16 tensor ops) remains a distinct and more commercially relevant metric where GPU-based systems still hold substantial leads. LineShine's AI training efficiency has not been benchmarked publicly.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="card-label">Investable Signal</div>
+      <div>Domestic Arm CPU ecosystem maturity reduces the structural dependency on <span class="annotation-card-zh">算力</span><span class="annotation-card-en">suànlì · computing power</span> imports at the scientific and industrial computing layer. This creates pricing tension for Huawei Ascend in adjacent enterprise workloads.</div>
+    </div>
+  </div>
+</div>
+
+<!-- VIZ 3: PBOC Rate Corridor -->
+<div id="viz3" class="viz-panel">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="label">New Overnight Rate</div>
+      <div class="value">1.30%</div>
+      <div class="sub">PBOC overnight reverse repo, debut Jun 29</div>
+    </div>
+    <div class="signal-card">
+      <div class="label">7-Day Benchmark</div>
+      <div class="value">1.40%</div>
+      <div class="sub">unchanged, existing policy rate</div>
+    </div>
+    <div class="signal-card">
+      <div class="label">10Y CGB Yield</div>
+      <div class="value">1.73%</div>
+      <div class="sub">fell ~3 bps on corridor announcement</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div class="chart-title">PBOC Rate Corridor Structure (as of June 29, 2026)</div>
+    <svg viewBox="0 0 600 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Y axis rates -->
+      <text x="55" y="30" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">2.00%</text>
+      <text x="55" y="65" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">1.80%</text>
+      <text x="55" y="100" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">1.60%</text>
+      <text x="55" y="135" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">1.40%</text>
+      <text x="55" y="170" font-family="Inter" font-size="9" fill="#9a8a7a" text-anchor="end">1.20%</text>
+
+      <!-- Y axis line -->
+      <line x1="60" y1="18" x2="60" y2="185" stroke="#e0d8d0" stroke-width="1"/>
+
+      <!-- Grid lines -->
+      <line x1="60" y1="26" x2="580" y2="26" stroke="#f0ede8" stroke-width="1"/>
+      <line x1="60" y1="62" x2="580" y2="62" stroke="#f0ede8" stroke-width="1"/>
+      <line x1="60" y1="98" x2="580" y2="98" stroke="#f0ede8" stroke-width="1"/>
+      <line x1="60" y1="134" x2="580" y2="134" stroke="#f0ede8" stroke-width="1"/>
+      <line x1="60" y1="170" x2="580" y2="170" stroke="#f0ede8" stroke-width="1"/>
+
+      <!-- Corridor band (shaded) between overnight deposit floor ~0.85% and overnight lending ceiling -->
+      <!-- Overnight deposit facility floor approx 0.75% - off chart; ceiling approx 2.25% -->
+      <!-- Band showing corridor zone -->
+      <rect x="80" y="27" width="480" height="160" fill="#e8f0fe" opacity="0.18"/>
+
+      <!-- 7-day rate line (1.40%) -->
+      <line x1="80" y1="134" x2="560" y2="134" stroke="#1a56db" stroke-width="2"/>
+      <circle cx="560" cy="134" r="4" fill="#1a56db"/>
+      <text x="566" y="137" font-family="Inter" font-size="10" fill="#1a56db" font-weight="600">7-day repo: 1.40%</text>
+
+      <!-- NEW overnight rate line (1.30%) -->
+      <line x1="80" y1="148" x2="560" y2="148" stroke="#c0392b" stroke-width="2.5"/>
+      <circle cx="560" cy="148" r="4" fill="#c0392b"/>
+      <text x="566" y="151" font-family="Inter" font-size="10" fill="#c0392b" font-weight="700">NEW overnight: 1.30%</text>
+
+      <!-- 10Y CGB yield (1.73%) -->
+      <line x1="80" y1="87" x2="560" y2="87" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5,3"/>
+      <circle cx="560" cy="87" r="3" fill="#16a34a"/>
+      <text x="566" y="90" font-family="Inter" font-size="10" fill="#16a34a">10Y CGB: 1.73%</text>
+
+      <!-- Bracket showing corridor -->
+      <line x1="72" y1="134" x2="72" y2="148" stroke="#9a8a7a" stroke-width="1.5"/>
+      <line x1="68" y1="134" x2="76" y2="134" stroke="#9a8a7a" stroke-width="1.5"/>
+      <line x1="68" y1="148" x2="76" y2="148" stroke="#9a8a7a" stroke-width="1.5"/>
+      <text x="63" y="142" font-family="Inter" font-size="9" fill="#7a6a5a" text-anchor="middle">10bp</text>
+      <text x="63" y="151" font-family="Inter" font-size="9" fill="#7a6a5a" text-anchor="middle">corridor</text>
+
+      <!-- X labels (time) -->
+      <text x="80" y="200" font-family="Inter" font-size="9" fill="#9a8a7a">Jun 17 (announcement)</text>
+      <text x="480" y="200" font-family="Inter" font-size="9" fill="#c0392b" font-weight="700">Jun 29 (debut ops)</text>
+      <line x1="480" y1="195" x2="480" y2="148" stroke="#c0392b" stroke-width="0.8" stroke-dasharray="3,2"/>
+
+      <!-- Legend box -->
+      <rect x="65" y="22" width="12" height="3" fill="#1a56db"/>
+      <text x="82" y="29" font-family="Inter" font-size="9" fill="#1a1a2e">7-day reverse repo</text>
+      <rect x="65" y="34" width="12" height="3" fill="#c0392b"/>
+      <text x="82" y="41" font-family="Inter" font-size="9" fill="#1a1a2e">NEW overnight reverse repo</text>
+      <line x1="65" y1="49" x2="77" y2="49" stroke="#16a34a" stroke-dasharray="3,2" stroke-width="1.5"/>
+      <text x="82" y="52" font-family="Inter" font-size="9" fill="#1a1a2e">10Y government bond yield</text>
+    </svg>
+  </div>
+
+  <div class="annotation-cards">
+    <div class="annotation-card red">
+      <div class="card-label">Primary Signal</div>
+      <div>The PBOC is modernizing its policy toolkit under <span class="annotation-card-zh">潘功胜</span><span class="annotation-card-en">Pān Gōngshèng · Governor Pan Gongsheng</span>. Adding an overnight rate creates a more precise <span class="annotation-card-zh">利率走廊</span><span class="annotation-card-en">lìlǜ zǒuláng · rate corridor</span>, enabling finer liquidity management without committing the 7-day benchmark.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="card-label">What Remains Unverified</div>
+      <div>The overnight rate level (1.30%) has not been officially confirmed as permanent — it may adjust. Whether this corridor signals an imminent cut to the 7-day rate is contested; most consensus sees H2 2026 as the earliest window for any benchmark rate move.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="card-label">Investable Signal</div>
+      <div>Tighter overnight rate control reduces intraday volatility in <span class="annotation-card-zh">国债</span><span class="annotation-card-en">guózhài · government bonds</span> funding costs, compressing term premia. Modestly constructive for duration positioning in China fixed income if sustained without disruption through Q3.</div>
+    </div>
+  </div>
+</div>
+
+<div class="page-footer">
+  China Brief Issue #41 · June 29, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
