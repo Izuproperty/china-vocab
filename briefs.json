@@ -1,5 +1,94 @@
 [
   {
+    "issue": 41,
+    "date": "2026-06-29",
+    "title": "DeepSeek DSpark Inference Boost, China's LineShine Tops TOP500, PBOC Overnight Reverse Repo Debuts",
+    "audio_label": "DeepSeek DSpark Inference Upgrade · China's LineShine Tops TOP500",
+    "summary": "Issue #41 covers three signals from the week's close: DeepSeek's open-source speculative decoding framework that accelerates V4 inference by 85%, China's LineShine supercomputer retaking the global TOP500 crown using only domestic chips, and the PBOC's debut of overnight reverse repo operations that sketches a new rate corridor framework.",
+    "viz_url": "china-brief-visualized-2026-06-29.html",
+    "audio_url": "podcast_2026-06-29.m4a",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "DeepSeek's DSpark Cuts Inference Costs by Making Fewer Chips Do More — the Efficiency Race Now Runs Alongside the Model Race",
+        "tag": "ai",
+        "body": "深度求索 (Shēndù Qiúsuǒ, DeepSeek) published research on Saturday introducing DSpark, a speculative 推测解码 (tuīcè jiěmǎ, speculative decoding) framework for its V4 large language model that the lab claims increases per-user response speeds by up to 85 percent. Rather than generating tokens one at a time, DSpark uses a lightweight draft model to propose candidate responses in parallel, then verifies them in batches using the larger V4 model — a technique known as semi-autoregressive generation. A confidence-based scheduling system dynamically adjusts how much verification is applied based on current 算力 (suànlì, computing power) load, allowing the system to trade verification depth against throughput in real time. The research was published on HuggingFace and GitHub simultaneously, consistent with DeepSeek's open-research posture.\n\nThe investment case matters here but should be read carefully. Faster 推理 (tuīlǐ, inference) per GPU means lower serving cost per query, which matters for enterprise API pricing and for the cash economics of Chinese AI labs competing in a market where DeepSeek has already compressed margins across the board. If DSpark's gains hold at production scale — which the paper does not fully demonstrate — they would reduce the GPU cluster size needed to serve a given level of traffic, easing pressure on 算力 supply that remains constrained by US export controls. That is the genuine signal worth tracking: China's AI labs are competing not just on model quality but on inference efficiency as an explicit axis of differentiation, and publishing that research openly continues to accelerate the broader ecosystem. Whether DSpark represents a durable moat or a technique that rivals can replicate within weeks is the question most worth watching.",
+        "takeaway": "Chinese AI labs are now openly competing on inference efficiency as a distinct axis alongside model quality — reducing GPU requirements while US export controls keep compute constrained.",
+        "source": "South China Morning Post · AI Foundation Models · June 28, 2026",
+        "vocab": [
+          {
+            "zh": "推测解码",
+            "en": "speculative decoding"
+          },
+          {
+            "zh": "推理",
+            "en": "inference"
+          },
+          {
+            "zh": "算力",
+            "en": "computing power"
+          },
+          {
+            "zh": "深度求索",
+            "en": "DeepSeek"
+          }
+        ]
+      },
+      {
+        "icon": "💻",
+        "title": "China's LineShine Retakes the TOP500 Crown for the First Time Since 2017 — and It Did So Without a Single NVIDIA or AMD GPU",
+        "tag": "chip",
+        "body": "灵晟 (Língshèng, LineShine), housed at the 深圳国家超级计算中心 (Shēnzhèn Guójiā Chāojí Jìsuàn Zhōngxīn, National Supercomputing Center in Shenzhen), placed first on the TOP500 list of the world's fastest supercomputers published on June 23, delivering 2.19 exaflops on the Linpack benchmark — 22 percent faster than El Capitan at Lawrence Livermore National Laboratory in the United States, which had held the top position. The last time a Chinese system topped the list was 2017, when 神威·太湖之光 (Shénwēi Tàihú zhī Guāng, Sunway TaihuLight) held the position. What distinguishes LineShine technically is the absence of graphics processing units: the system uses nearly 14 million processing cores built on domestic Arm-based CPU designs, with custom interconnects to handle the dense matrix calculations that GPUs perform on competing machines. US export controls on AI chips to China, in place since 2022 and tightened repeatedly, directly shaped this architectural choice.\n\nFor financial professionals, this result warrants careful framing. A TOP500 ranking is a benchmark for high-precision scientific computing — linear algebra at exascale — not a direct measure of AI training throughput or inference efficiency, where GPU-based systems built by hyperscalers remain dominant. That said, the architectural demonstration is substantive: China has built a system capable of two quintillion calculations per second using 国产芯片 (guóchǎn xīnpiàn, domestic chips) alone. Researchers at Tsinghua and the Shenzhen center have already run combined physics-AI weather models on LineShine, suggesting the system is genuinely operational, not merely a benchmark entry. The longer-term implication for institutional positioning is that the export-control thesis — that chip restrictions would suppress Chinese compute capacity — is being tested in real time. LineShine does not close that gap in AI training, where H100-class hardware still leads, but it does suggest China's domestic chip ecosystem is maturing faster than the floor case.",
+        "takeaway": "China's domestic chip ecosystem has reached exascale compute without NVIDIA or AMD — the export-control containment thesis is being stress-tested, though the AI training gap versus GPU-based systems remains substantial.",
+        "source": "Nature / The Register · Chip & Compute Infrastructure · June 24–25, 2026",
+        "vocab": [
+          {
+            "zh": "灵晟",
+            "en": "LineShine (supercomputer)"
+          },
+          {
+            "zh": "超级计算机",
+            "en": "supercomputer"
+          },
+          {
+            "zh": "国产芯片",
+            "en": "domestic chips"
+          },
+          {
+            "zh": "神威·太湖之光",
+            "en": "Sunway TaihuLight (2017 predecessor)"
+          }
+        ]
+      },
+      {
+        "icon": "🏦",
+        "title": "PBOC Conducts Its First Overnight Reverse Repo Today, Sketching a Rate Corridor That Moves the Policy Framework Closer to Global Norms",
+        "tag": "macro",
+        "body": "中国人民银行 (Zhōngguó Rénmín Yínháng, People's Bank of China) today conducted overnight reverse repurchase operations in the open market — the first of a new standing facility announced by Governor 潘功胜 (Pān Gōngshèng) at the Lujiazui Forum on June 17. The new 隔夜逆回购 (géyè nì huígòu, overnight reverse repo) rate, expected to be set at 1.30 percent, sits below the existing seven-day reverse repo rate of 1.40 percent, thereby creating an explicit 利率走廊 (lìlǜ zǒuláng, interest rate corridor): banks and funds can borrow overnight at 1.30 percent or at seven days at 1.40 percent, with the overnight deposit facility forming the floor. In response, China's ten-year government bond yield fell to approximately 1.73 percent — approaching a three-week low — as markets interpreted the move as a signal of continued accommodative bias in the PBOC's liquidity stance heading into the second half of 2026.\n\nThe significance of this development is structural rather than immediately stimulative. The PBOC has operated for years with the seven-day reverse repo as its sole short-term benchmark rate, creating a blunter instrument than the layered overnight-to-term corridor used by the Federal Reserve or the European Central Bank. Adding an overnight policy rate gives the PBOC a more granular lever to manage intraday and overnight funding conditions without committing to the seven-day rate — useful when it wants to ease short-term volatility without signalling an outright policy shift. For investors in Chinese fixed income, the development is modestly constructive: reduced overnight rate volatility tends to compress term premia and attract passive institutional flows into 国债 (guózhài, government bonds). Whether this rate corridor is accompanied by an eventual cut to the seven-day benchmark remains the key question for the second half; the PBOC has given itself a new tool but has not yet committed to using it aggressively.",
+        "takeaway": "The PBOC's overnight reverse repo debut is a structural toolkit upgrade, not a rate cut signal — but reduced overnight volatility is modestly constructive for duration positioning in Chinese fixed income.",
+        "source": "Bloomberg / PBOC Statement · Monetary Policy · June 25–29, 2026",
+        "vocab": [
+          {
+            "zh": "隔夜逆回购",
+            "en": "overnight reverse repo"
+          },
+          {
+            "zh": "利率走廊",
+            "en": "interest rate corridor"
+          },
+          {
+            "zh": "国债",
+            "en": "government bonds"
+          },
+          {
+            "zh": "潘功胜",
+            "en": "PBOC Governor Pan Gongsheng"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 40,
     "date": "2026-06-28",
     "title": "DeepSeek $7.4B Funding Round, Anyverse Dynamics Embodied AI Raise, Week Ahead: ODI Rules & PMI",
