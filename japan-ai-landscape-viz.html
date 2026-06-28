@@ -214,6 +214,7 @@ function buildGrid(entities) {
   Object.entries(CFG.cats).forEach(([catKey, catMeta]) => {
     const group = byCat[catKey];
     if (!group) return;
+    group.sort((a, b) => a.name.localeCompare(b.name));
     const section = document.createElement('div');
     section.className = 'cat-section';
     section.dataset.cat = catKey;
