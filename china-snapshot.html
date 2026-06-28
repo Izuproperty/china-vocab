@@ -151,7 +151,7 @@ const CATS = {
   security:   { label: 'AI Security & Enterprise',     color: '#2c3e50', bg: '#f0f4f8' },
 };
 
-// Domain map — Clearbit primary, monogram fallback
+// Domain map — Clearbit fallback
 const DOMAINS = {
   'DeepSeek':                       'deepseek.com',
   'Baidu':                          'baidu.com',
@@ -191,6 +191,24 @@ const DOMAINS = {
   'BYD Robotics':                   'byd.com',
 };
 
+// Logo overrides — GitHub org avatars: reliable CDN, real branding, no globe fallbacks
+const LOGO_OVERRIDES = {
+  'DeepSeek':                'https://github.com/deepseek-ai.png?size=128',
+  'Baidu':                   'https://github.com/baidu.png?size=128',
+  'Baidu AI Cloud':          'https://github.com/baidu.png?size=128',
+  'Baidu Apollo':            'https://github.com/ApolloAuto.png?size=128',
+  'ByteDance':               'https://github.com/bytedance.png?size=128',
+  'Alibaba':                 'https://github.com/alibaba.png?size=128',
+  'Alibaba Cloud':           'https://github.com/alibaba.png?size=128',
+  'Tencent':                 'https://github.com/Tencent.png?size=128',
+  'Tencent Cloud':           'https://github.com/Tencent.png?size=128',
+  'Moonshot AI':             'https://github.com/MoonshotAI.png?size=128',
+  '01.AI':                   'https://github.com/01-ai.png?size=128',
+  'Zhipu AI':                'https://github.com/zai-org.png?size=128',
+  'Minimax':                 'https://github.com/MiniMax-AI.png?size=128',
+  'Unitree Robotics':        'https://github.com/unitreerobotics.png?size=128',
+};
+
 // Store all entities for modal lookup
 let entityMap = {};
 
@@ -199,17 +217,37 @@ function logoInitials(name, zh) {
   return name.split(/[\s\-\.]+/).map(w => w[0] || '').join('').substring(0, 3).toUpperCase();
 }
 
+function logoFallback(img) {
+  const fb = img.dataset.fb;
+  if (fb) {
+    img.removeAttribute('data-fb');
+    img.onerror = function() { img.style.display='none'; img.nextElementSibling.style.display='flex'; };
+    img.src = fb;
+  } else {
+    img.style.display = 'none';
+    img.nextElementSibling.style.display = 'flex';
+  }
+}
+
 function makeLogoHtml(entity, size = 56) {
   const cat = CATS[entity.cat] || CATS.security;
-  const domain = DOMAINS[entity.name];
   const mono = logoInitials(entity.name, entity.zh);
   const monoHtml = `<div class="logo-monogram" style="background:${cat.color};width:${size}px;height:${size}px;border-radius:${Math.round(size*0.2)}px;display:flex;align-items:center;justify-content:center;"><span class="mono-zh" style="font-size:${Math.round(size*0.33)}px">${mono}</span></div>`;
 
-  if (!domain) return monoHtml;
+  const override = LOGO_OVERRIDES[entity.name];
+  const domain = DOMAINS[entity.name];
+
+  if (!override && !domain) return monoHtml;
+
+  // Primary: override (GitHub avatar) if known, else Clearbit
+  // Fallback: if override was primary and domain exists, try Clearbit next; else monogram
+  const primary = override || `https://logo.clearbit.com/${domain}?size=128`;
+  const fallback = (override && domain) ? `https://logo.clearbit.com/${domain}?size=128` : '';
 
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
-    src="https://logo.clearbit.com/${domain}?size=128"
-    onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+    src="${primary}"
+    data-fb="${fallback}"
+    onerror="logoFallback(this)"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
 }
