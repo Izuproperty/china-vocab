@@ -18,8 +18,8 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 
 /* ── Header ── */
 .header { background: var(--navy); padding: 32px 56px 28px; border-bottom: 4px solid #c0392b; }
-.header-back { margin-bottom: 16px; }
-.header-back a { color: var(--cream); font-size: 11px; font-weight: 600; text-decoration: none; letter-spacing: 1px; border: 1px solid #3a3a6e; padding: 5px 12px; border-radius: 3px; display: inline-block; transition: background .2s; }
+.header-back { margin-bottom: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+.header-back a { color: var(--cream); font-size: 11px; font-weight: 600; text-decoration: none; letter-spacing: 1px; text-transform: uppercase; border: 1px solid #3a3a6e; padding: 5px 12px; border-radius: 3px; display: inline-block; transition: background .2s; }
 .header-back a:hover { background: #2a2a4e; }
 .header-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #c0392b; margin-bottom: 10px; }
 .header-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #fff; }
@@ -109,10 +109,11 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 </style>
 </head>
 <body>
-<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">朋友 Pengyou · Private</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">朋友 · Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
 
 <div class="header">
   <div class="header-back">
+    <a href="brief.html">← China Brief</a>
     <a href="china-ai-landscape-viz.html">← AI Landscape</a>
   </div>
   <div class="header-eyebrow">朋友 Pengyou · China Brief</div>
