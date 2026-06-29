@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Issue #29 · Visualized · June 29, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f0f1f5; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; padding:18px 32px 14px; border-bottom:4px solid #3730a3; display:flex; align-items:center; justify-content:space-between; }
+  .page-header-title { font-family:'Playfair Display',serif; color:#fff; font-size:18px; }
+  .page-header-sub { font-size:11px; color:#818cf8; letter-spacing:2px; text-transform:uppercase; }
+  .back-link { font-size:11px; color:#818cf8; text-decoration:none; letter-spacing:1px; }
+  .back-link:hover { color:#a5b4fc; }
+  .tab-bar { background:#1a1a2e; padding:0 32px; display:flex; gap:4px; }
+  .tab { padding:10px 20px; font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#6a7a9a; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; }
+  .tab.active { color:#a5b4fc; border-bottom-color:#3730a3; }
+  .tab:hover { color:#c4c8e8; }
+  .viz-panel { display:none; padding:28px 32px; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border:1px solid #e0e4f0; border-radius:6px; padding:16px 20px; }
+  .signal-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a9ab8; margin-bottom:6px; }
+  .signal-value { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; margin-bottom:4px; }
+  .signal-delta { font-size:12px; }
+  .delta-up { color:#059669; }
+  .delta-down { color:#dc2626; }
+  .delta-flat { color:#9a7a5a; }
+  .chart-box { background:#fff; border:1px solid #e0e4f0; border-radius:6px; padding:20px; margin-bottom:24px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:16px; }
+  .anno-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .anno-card { background:#fff; border:1px solid #e0e4f0; border-radius:6px; padding:14px 16px; }
+  .anno-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:2px 7px; border-radius:2px; display:inline-block; margin-bottom:8px; }
+  .tag-watch { background:#e0e7ff; color:#3730a3; }
+  .tag-risk { background:#fee2e2; color:#991b1b; }
+  .tag-implication { background:#f0fdf4; color:#166534; }
+  .anno-card p { font-size:12.5px; line-height:1.6; color:#3a3a4a; }
+  .footer-bar { background:#1a1a2e; padding:12px 32px; text-align:center; font-size:10px; color:#4a5a7a; letter-spacing:1px; }
+  svg text { font-family:'Inter', sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div>
+    <div class="page-header-sub">Japan Brief Issue #29 · June 29, 2026</div>
+    <div class="page-header-title">Data Visualizations</div>
+  </div>
+  <a class="back-link" href="japan-brief.html">Back to Dashboard</a>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('viz1', this)">Story 1 · AI Consortium</div>
+  <div class="tab" onclick="showViz('viz2', this)">Story 2 · Hormuz Supply</div>
+  <div class="tab" onclick="showViz('viz3', this)">Story 3 · Macro / BOJ</div>
+</div>
+
+<!-- VIZ 1: AI Foundation Model Consortium -->
+<div class="viz-panel active" id="viz1">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Consortium Members</div>
+      <div class="signal-value">~30</div>
+      <div class="signal-delta delta-up">Up from 4 founders (April 2026)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">NEDO Committed Funding</div>
+      <div class="signal-value">¥1T</div>
+      <div class="signal-delta delta-flat">Over 5 years from FY2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Target Model Size</div>
+      <div class="signal-value">1T</div>
+      <div class="signal-delta delta-flat">Parameters · 2027 target</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Japan AI Foundation Model Consortium Build-Out · 2026</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Horizontal timeline -->
+      <line x1="40" y1="100" x2="540" y2="100" stroke="#c4c8e8" stroke-width="2"/>
+      <!-- April marker -->
+      <circle cx="100" cy="100" r="10" fill="#3730a3"/>
+      <text x="100" y="88" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">Apr 12</text>
+      <text x="100" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">4 founders</text>
+      <text x="100" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">established</text>
+      <!-- May marker -->
+      <circle cx="220" cy="100" r="8" fill="#6366f1"/>
+      <text x="220" y="88" text-anchor="middle" font-size="10" fill="#6366f1" font-weight="600">May 28</text>
+      <text x="220" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">~30 firms</text>
+      <text x="220" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">considering</text>
+      <!-- Jun 30 marker -->
+      <circle cx="380" cy="100" r="10" fill="#f59e0b"/>
+      <text x="380" y="88" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">Jun 30</text>
+      <text x="380" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">Investor close</text>
+      <text x="380" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">(fiscal Q1 end)</text>
+      <!-- 2027 marker -->
+      <circle cx="500" cy="100" r="8" fill="#c4c8e8"/>
+      <text x="500" y="88" text-anchor="middle" font-size="10" fill="#6a7a9a" font-weight="600">2027</text>
+      <text x="500" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">1T-parameter</text>
+      <text x="500" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">model target</div>
+      <!-- Today marker -->
+      <line x1="345" y1="60" x2="345" y2="140" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="345" y="56" text-anchor="middle" font-size="9" fill="#dc2626" font-weight="600">TODAY</text>
+    </svg>
+  </div>
+
+  <div class="anno-row">
+    <div class="anno-card">
+      <div class="anno-tag tag-watch">Watch</div>
+      <p>Yaskawa Electric's entry signals robotics sector demand for physical AI; watch for additional automation names (Fanuc, Denso) joining the next tranche.</p>
+    </div>
+    <div class="anno-card">
+      <div class="anno-tag tag-risk">Risk</div>
+      <p>Friday's SoftBank OpenAI delay shock could slow late-stage institutional commitment if boards reassess AI investment timing before June 30 close.</p>
+    </div>
+    <div class="anno-card">
+      <div class="anno-tag tag-implication">Implication</div>
+      <p>A ~30-member consortium passing the June 30 close intact signals Japan's state-backed AI buildout is decoupled from Vision Fund sentiment cycles.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VIZ 2: Hormuz / Supply Chain -->
+<div class="viz-panel" id="viz2">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">Japan Oil via Hormuz</div>
+      <div class="signal-value">~90%</div>
+      <div class="signal-delta delta-down">Critical chokepoint dependency</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Japan IP (April 2026)</div>
+      <div class="signal-value">+0.8%</div>
+      <div class="signal-delta delta-up">MoM · First positive since Jan</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Tokyo CPI Core-Core (Jun)</div>
+      <div class="signal-value">+1.9%</div>
+      <div class="signal-delta delta-up">YoY · Closest to BOJ 2% target</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Naphtha Supply Shock Passthrough Timeline — Japan Industrial / Semiconductor Sector</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Timeline arrow -->
+      <line x1="30" y1="100" x2="550" y2="100" stroke="#c4c8e8" stroke-width="2"/>
+      <polygon points="550,96 560,100 550,104" fill="#c4c8e8"/>
+      <!-- Week 0 -->
+      <circle cx="70" cy="100" r="10" fill="#dc2626"/>
+      <text x="70" y="88" text-anchor="middle" font-size="10" fill="#dc2626" font-weight="600">Week 0</text>
+      <text x="70" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">Hormuz closure</text>
+      <text x="70" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">announced</text>
+      <!-- Week 2-3 -->
+      <circle cx="180" cy="100" r="8" fill="#f59e0b"/>
+      <text x="180" y="88" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">Wk 2-3</text>
+      <text x="180" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">Spot naphtha</text>
+      <text x="180" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">price spike</text>
+      <!-- Week 6-8 -->
+      <circle cx="310" cy="100" r="8" fill="#f59e0b"/>
+      <text x="310" y="88" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">Wk 6-8</text>
+      <text x="310" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">Fab precursor gas</text>
+      <text x="310" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">inventory draws</text>
+      <!-- Month 3-4 -->
+      <circle cx="430" cy="100" r="8" fill="#9333ea"/>
+      <text x="430" y="88" text-anchor="middle" font-size="10" fill="#7e22ce" font-weight="600">Mo. 3-4</text>
+      <text x="430" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">Consumer price</text>
+      <text x="430" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">passthrough</text>
+      <!-- Month 6+ -->
+      <circle cx="520" cy="100" r="8" fill="#3730a3"/>
+      <text x="520" y="88" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">Mo. 6+</text>
+      <text x="520" y="126" text-anchor="middle" font-size="9" fill="#6a7a9a">BOJ policy</text>
+      <text x="520" y="138" text-anchor="middle" font-size="9" fill="#6a7a9a">reassessment</text>
+      <!-- Today marker -->
+      <line x1="70" y1="60" x2="70" y2="145" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+    </svg>
+  </div>
+
+  <div class="anno-row">
+    <div class="anno-card">
+      <div class="anno-tag tag-watch">Watch</div>
+      <p>METI May IP data released today — electronics/semiconductor machinery sub-index is the key signal for Rapidus IIM-1 and JASM Kumamoto input readiness.</p>
+    </div>
+    <div class="anno-card">
+      <div class="anno-tag tag-risk">Risk</div>
+      <p>Rapidus IIM-1 EUV process in Chitose uses naphtha-derived precursor gases at scale; no public inventory disclosure. Sustained closure exceeding 30 days enters operational risk territory.</p>
+    </div>
+    <div class="anno-card">
+      <div class="anno-tag tag-implication">Implication</div>
+      <p>Tokyo Electron (-3.2% Friday) faces dual risk: equipment orders from cost-pressured fabs slow AND its own Chitose-area service operations face materials disruption.</p>
+    </div>
+  </div>
+</div>
+
+<!-- VIZ 3: Macro / BOJ -->
+<div class="viz-panel" id="viz3">
+  <div class="signal-row">
+    <div class="signal-card">
+      <div class="signal-label">BOJ Policy Rate</div>
+      <div class="signal-value">1.00%</div>
+      <div class="signal-delta delta-up">Highest since Sep 1995 (hiked Jun 16)</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY</div>
+      <div class="signal-value">~162</div>
+      <div class="signal-delta delta-down">Near 1986 lows; 300bp rate gap</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Tokyo Core-Core CPI</div>
+      <div class="signal-value">1.9%</div>
+      <div class="signal-delta delta-up">YoY · Jun 26 release; up from 1.6%</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">BOJ Policy Rate Path · 2024–2026 and Market Expectation Forward</div>
+    <svg viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Y axis -->
+      <line x1="60" y1="20" x2="60" y2="170" stroke="#c4c8e8" stroke-width="1"/>
+      <!-- X axis -->
+      <line x1="60" y1="170" x2="540" y2="170" stroke="#c4c8e8" stroke-width="1"/>
+      <!-- Y labels -->
+      <text x="50" y="172" text-anchor="end" font-size="9" fill="#9a9ab8">0%</text>
+      <text x="50" y="142" text-anchor="end" font-size="9" fill="#9a9ab8">0.25%</text>
+      <text x="50" y="112" text-anchor="end" font-size="9" fill="#9a9ab8">0.50%</text>
+      <text x="50" y="82" text-anchor="end" font-size="9" fill="#9a9ab8">0.75%</text>
+      <text x="50" y="52" text-anchor="end" font-size="9" fill="#9a9ab8">1.00%</text>
+      <text x="50" y="32" text-anchor="end" font-size="9" fill="#9a9ab8">1.25%</text>
+      <!-- Grid lines -->
+      <line x1="60" y1="142" x2="540" y2="142" stroke="#e8e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="60" y1="112" x2="540" y2="112" stroke="#e8e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="60" y1="82" x2="540" y2="82" stroke="#e8e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="60" y1="52" x2="540" y2="52" stroke="#e8e8f0" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="60" y1="32" x2="540" y2="32" stroke="#e8e8f0" stroke-width="1" stroke-dasharray="2,4"/>
+      <!-- Rate path actual: step function -->
+      <!-- -0.1% to 0% Mar 2024: x=80 -->
+      <line x1="80" y1="170" x2="140" y2="170" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- 0% to 0.1% Mar 2024 to Jul 2024: step at x=140 -->
+      <line x1="140" y1="170" x2="140" y2="166" stroke="#3730a3" stroke-width="2.5"/>
+      <line x1="140" y1="166" x2="190" y2="166" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Jul 2024 to Jan 2025 0.25%: step at x=190 -->
+      <line x1="190" y1="166" x2="190" y2="142" stroke="#3730a3" stroke-width="2.5"/>
+      <line x1="190" y1="142" x2="240" y2="142" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Jan 2025 to Mar 2025 0.5%: step at x=240 -->
+      <line x1="240" y1="142" x2="240" y2="112" stroke="#3730a3" stroke-width="2.5"/>
+      <line x1="240" y1="112" x2="300" y2="112" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Mar to Jun 16 0.75%: step at x=300 -->
+      <line x1="300" y1="112" x2="300" y2="82" stroke="#3730a3" stroke-width="2.5"/>
+      <line x1="300" y1="82" x2="375" y2="82" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Jun 16 to present 1.0%: step at x=375 -->
+      <line x1="375" y1="82" x2="375" y2="52" stroke="#3730a3" stroke-width="2.5"/>
+      <line x1="375" y1="52" x2="420" y2="52" stroke="#3730a3" stroke-width="2.5"/>
+      <!-- Projected Oct 1.25% dashed -->
+      <line x1="420" y1="52" x2="480" y2="52" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,4"/>
+      <line x1="480" y1="52" x2="480" y2="32" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,4"/>
+      <line x1="480" y1="32" x2="540" y2="32" stroke="#6366f1" stroke-width="2" stroke-dasharray="5,4"/>
+      <!-- Today marker -->
+      <line x1="420" y1="20" x2="420" y2="175" stroke="#dc2626" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="420" y="18" text-anchor="middle" font-size="9" fill="#dc2626" font-weight="600">Jun 29</text>
+      <!-- Oct marker -->
+      <text x="480" y="18" text-anchor="middle" font-size="9" fill="#6366f1">Oct MPM</text>
+      <!-- X labels -->
+      <text x="80" y="184" text-anchor="middle" font-size="8" fill="#9a9ab8">Mar'24</text>
+      <text x="190" y="184" text-anchor="middle" font-size="8" fill="#9a9ab8">Jul'24</text>
+      <text x="240" y="184" text-anchor="middle" font-size="8" fill="#9a9ab8">Jan'25</text>
+      <text x="300" y="184" text-anchor="middle" font-size="8" fill="#9a9ab8">Mar'25</text>
+      <text x="375" y="184" text-anchor="middle" font-size="8" fill="#9a9ab8">Jun'26</text>
+      <text x="480" y="184" text-anchor="middle" font-size="8" fill="#9a9ab8">Oct'26</text>
+    </svg>
+  </div>
+
+  <div class="anno-row">
+    <div class="anno-card">
+      <div class="anno-tag tag-watch">Watch</div>
+      <p>July 30-31 BOJ MPM: default hold, but watch guidance language. Any upgrade from "if the economy and prices evolve in line with our outlook" to more explicit October timing would be the signal.</p>
+    </div>
+    <div class="anno-card">
+      <div class="anno-tag tag-risk">Risk</div>
+      <p>USD/JPY at ~162 approaching Finance Ministry's implied intervention trigger (~162-163). MSCI quarterly rebalancing creates additional dollar demand at quarter-end, potentially amplifying yen weakness.</p>
+    </div>
+    <div class="anno-card">
+      <div class="anno-tag tag-implication">Implication</div>
+      <p>Hormuz closure adds upside CPI risk to an already-accelerating core-core trend. The BOJ's preference for a measured pace may be tested if underlying inflation breaks convincingly above 2% before October.</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #29 · June 29, 2026 · Not investment advice
+</div>
+
+<script>
+function showViz(id, tabEl) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tabEl.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
