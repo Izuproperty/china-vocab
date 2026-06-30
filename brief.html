@@ -472,19 +472,8 @@ html, body {
 .btn-newer { background: var(--red); color: #fff; border: none; }
 .btn-newer:disabled { opacity: .3; cursor: default; background: #2e2e52; }
 
-/* ── Toast ── */
-#xp-toast {
-  position: fixed;
-  bottom: 80px; left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: var(--navy); color: var(--cream);
-  border: 1px solid #2e2e52;
-  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  padding: 8px 20px; border-radius: 4px;
-  opacity: 0; transition: opacity .3s, transform .3s;
-  pointer-events: none; z-index: 200;
-}
-#xp-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+/* ── Toast (hidden) ── */
+#xp-toast { display: none; }
 /* ── Mobile ── */
 @media (max-width: 600px) {
   #topbar { padding: 10px 14px 8px; }
