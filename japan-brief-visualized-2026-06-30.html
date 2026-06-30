@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief #30 · Visualized · June 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f0f1f5; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .top-bar { background:#1a1a2e; padding:12px 24px; border-bottom:3px solid #3730a3; display:flex; align-items:center; gap:20px; }
+  .top-bar a { color:#818cf8; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; text-decoration:none; }
+  .top-bar a:hover { color:#c7d2fe; }
+  .top-bar-title { color:#d4d8f0; font-size:13px; font-weight:500; }
+  .top-bar-meta { color:#4a5a7a; font-size:11px; margin-left:auto; }
+  .tabs { background:#fff; border-bottom:2px solid #e5e7eb; padding:0 24px; display:flex; gap:0; }
+  .tab { padding:14px 22px; font-size:12px; font-weight:600; letter-spacing:0.5px; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; color:#6b7280; transition:all 0.15s; }
+  .tab:hover { color:#3730a3; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:28px 24px; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .panel-sub { font-size:12px; color:#9ca3af; margin-bottom:24px; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:28px; }
+  .signal { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:16px; text-align:center; }
+  .signal-val { font-size:26px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9ca3af; margin-top:4px; }
+  .signal-change { font-size:11px; margin-top:6px; }
+  .up { color:#059669; }
+  .down { color:#dc2626; }
+  .neutral { color:#6b7280; }
+  .chart-box { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:13px; font-weight:600; color:#374151; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:20px; }
+  .annotation { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:14px; border-left:3px solid #3730a3; }
+  .annotation-title { font-size:11px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .annotation-body { font-size:12px; color:#4b5563; line-height:1.5; }
+  .footer-bar { background:#1a1a2e; padding:12px 24px; text-align:center; }
+  .footer-bar-text { font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="top-bar">
+  <a href="japan-brief.html">← JAPAN BRIEF</a>
+  <span class="top-bar-title">Issue #30 · Data Visualizations · June 30, 2026</span>
+  <span class="top-bar-meta">3 stories · H1 2026 Close Edition</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('ai', this)">AI &amp; Compliance</div>
+  <div class="tab" onclick="showViz('auto', this)">Toyota Sales</div>
+  <div class="tab" onclick="showViz('macro', this)">Yen &amp; BOJ</div>
+</div>
+
+<!-- PANEL 1: AI & Compliance -->
+<div class="viz-panel active" id="ai">
+  <div class="panel-title">Japan AI Compliance Timeline · Q3 2026</div>
+  <div class="panel-sub">FSA enforcement, APPI vote, and Tankan AI capex read — three sequential milestones in the next 17 days</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-val">July 1</div>
+      <div class="signal-label">FSA Enforcement Live</div>
+      <div class="signal-change neutral">Audit trail + explainability mandated</div>
+    </div>
+    <div class="signal">
+      <div class="signal-val">July 17</div>
+      <div class="signal-label">Diet Session Closes</div>
+      <div class="signal-change neutral">APPI Upper House vote deadline</div>
+    </div>
+    <div class="signal">
+      <div class="signal-val">July 1</div>
+      <div class="signal-label">Q2 Tankan Releases</div>
+      <div class="signal-change neutral">First post-Hormuz corporate capex read</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Japan AI Policy Milestone Timeline · June–October 2026</div>
+    <svg viewBox="0 0 620 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <!-- Baseline -->
+      <line x1="30" y1="90" x2="590" y2="90" stroke="#e5e7eb" stroke-width="2"/>
+      <!-- Arrow -->
+      <polygon points="586,85 596,90 586,95" fill="#e5e7eb"/>
+
+      <!-- Month labels -->
+      <text x="30" y="115" font-family="Inter" font-size="9" fill="#9ca3af">Jun 30</text>
+      <text x="120" y="115" font-family="Inter" font-size="9" fill="#9ca3af">Jul 1</text>
+      <text x="200" y="115" font-family="Inter" font-size="9" fill="#9ca3af">Jul 17</text>
+      <text x="310" y="115" font-family="Inter" font-size="9" fill="#9ca3af">Jul 30–31</text>
+      <text x="440" y="115" font-family="Inter" font-size="9" fill="#9ca3af">Oct MPM</text>
+      <text x="540" y="115" font-family="Inter" font-size="9" fill="#9ca3af">→ Q4</text>
+
+      <!-- Tick marks -->
+      <line x1="40" y1="85" x2="40" y2="95" stroke="#6b7280" stroke-width="1.5"/>
+      <line x1="130" y1="85" x2="130" y2="95" stroke="#3730a3" stroke-width="2"/>
+      <line x1="210" y1="85" x2="210" y2="95" stroke="#3730a3" stroke-width="2"/>
+      <line x1="325" y1="85" x2="325" y2="95" stroke="#6b7280" stroke-width="1.5"/>
+      <line x1="455" y1="85" x2="455" y2="95" stroke="#3730a3" stroke-width="2"/>
+
+      <!-- Event labels above line -->
+      <!-- Jun 30 today -->
+      <text x="40" y="78" font-family="Inter" font-size="8" fill="#6b7280" text-anchor="middle">Today</text>
+
+      <!-- Jul 1 FSA + Tankan -->
+      <text x="130" y="65" font-family="Inter" font-size="8" fill="#3730a3" text-anchor="middle" font-weight="600">FSA Enforcement</text>
+      <text x="130" y="75" font-family="Inter" font-size="8" fill="#3730a3" text-anchor="middle">+ Q2 Tankan</text>
+
+      <!-- Jul 17 APPI -->
+      <text x="210" y="55" font-family="Inter" font-size="8" fill="#3730a3" text-anchor="middle" font-weight="600">APPI Upper House</text>
+      <text x="210" y="65" font-family="Inter" font-size="8" fill="#3730a3" text-anchor="middle">Vote Deadline</text>
+
+      <!-- Jul 30-31 BOJ MPM -->
+      <text x="325" y="70" font-family="Inter" font-size="8" fill="#6b7280" text-anchor="middle">BOJ MPM</text>
+      <text x="325" y="80" font-family="Inter" font-size="8" fill="#6b7280" text-anchor="middle">(Hold expected)</text>
+
+      <!-- Oct MPM -->
+      <text x="455" y="65" font-family="Inter" font-size="8" fill="#3730a3" text-anchor="middle" font-weight="600">Oct MPM</text>
+      <text x="455" y="75" font-family="Inter" font-size="8" fill="#3730a3" text-anchor="middle">+25bp candidate</text>
+
+      <!-- Dot today -->
+      <circle cx="40" cy="90" r="5" fill="#6b7280"/>
+      <!-- Dot Jul 1 -->
+      <circle cx="130" cy="90" r="6" fill="#3730a3"/>
+      <!-- Dot Jul 17 -->
+      <circle cx="210" cy="90" r="6" fill="#3730a3"/>
+      <!-- Dot Jul 30-31 -->
+      <circle cx="325" cy="90" r="5" fill="#6b7280"/>
+      <!-- Dot Oct -->
+      <circle cx="455" cy="90" r="6" fill="#3730a3"/>
+
+      <!-- Today vertical line -->
+      <line x1="40" y1="28" x2="40" y2="90" stroke="#e5e7eb" stroke-dasharray="4,3" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-title">FSA Compliance Scope</div>
+      <div class="annotation-body">Banks, insurers, asset managers, healthcare, energy, and critical infrastructure operating in Japan. Audit trail and explainability mandates apply to any AI-driven regulatory-consequence decision.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">APPI If Passed</div>
+      <div class="annotation-body">Allows AI training on pseudonymized personal data without individual consent. Expands training data for the SoftBank-NEC-Sony-Honda physical AI JV and domestic model developers including PFN.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">Tankan Risk Factor</div>
+      <div class="annotation-body">Q2 Tankan captures sentiment after Hormuz re-closure. A sharp large manufacturer DI decline could dampen corporate AI capex intent heading into H2, even as the regulatory architecture advances.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Toyota Sales -->
+<div class="viz-panel" id="auto">
+  <div class="panel-title">Toyota Global Sales · May 2026 Regional Breakdown</div>
+  <div class="panel-sub">Data released June 29, 2026 — fourth consecutive monthly decline</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-val down">-7.2%</div>
+      <div class="signal-label">Global YoY</div>
+      <div class="signal-change down">834,279 units — 4th month decline</div>
+    </div>
+    <div class="signal">
+      <div class="signal-val down">-31.7%</div>
+      <div class="signal-label">China</div>
+      <div class="signal-change neutral">Structural EV competition + fuel costs</div>
+    </div>
+    <div class="signal">
+      <div class="signal-val up">+11.1%</div>
+      <div class="signal-label">Japan Domestic</div>
+      <div class="signal-change up">RAV4 + bZ4X demand strong</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Toyota May 2026 Sales: Regional YoY Change (%)</div>
+    <svg viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <!-- Y-axis -->
+      <line x1="90" y1="20" x2="90" y2="180" stroke="#e5e7eb" stroke-width="1.5"/>
+      <!-- Zero line -->
+      <line x1="90" y1="120" x2="590" y2="120" stroke="#374151" stroke-width="1.5"/>
+      <text x="75" y="124" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">0%</text>
+      <!-- Grid lines -->
+      <line x1="90" y1="60" x2="590" y2="60" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="90" y1="90" x2="590" y2="90" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="90" y1="150" x2="590" y2="150" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="90" y1="180" x2="590" y2="180" stroke="#f3f4f6" stroke-width="1"/>
+      <!-- Y labels -->
+      <text x="75" y="64" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">+30%</text>
+      <text x="75" y="94" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">+15%</text>
+      <text x="75" y="154" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">-15%</text>
+      <text x="75" y="184" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">-30%</text>
+
+      <!-- Bars: Each region -->
+      <!-- China: -31.7% → bar goes down from zero line -->
+      <!-- Zero at y=120; scale: 1% = 2px -->
+      <!-- China: -31.7% → height=63.4, starts at 120, goes to 183 -->
+      <rect x="110" y="120" width="55" height="63" fill="#dc2626" rx="2"/>
+      <text x="137" y="196" font-family="Inter" font-size="9" fill="#6b7280" text-anchor="middle">China</text>
+      <text x="137" y="116" font-family="Inter" font-size="10" fill="#dc2626" text-anchor="middle" font-weight="700">-31.7%</text>
+
+      <!-- Middle East: -38.6% → height=77.2 -->
+      <rect x="180" y="120" width="55" height="77" fill="#dc2626" opacity="0.8" rx="2"/>
+      <text x="207" y="210" font-family="Inter" font-size="9" fill="#6b7280" text-anchor="middle">Mid East</text>
+      <text x="207" y="116" font-family="Inter" font-size="10" fill="#dc2626" text-anchor="middle" font-weight="700">-38.6%</text>
+
+      <!-- Global: -7.2% → height=14.4 -->
+      <rect x="250" y="120" width="55" height="14" fill="#6b7280" rx="2"/>
+      <text x="277" y="146" font-family="Inter" font-size="9" fill="#6b7280" text-anchor="middle">Global</text>
+      <text x="277" y="116" font-family="Inter" font-size="10" fill="#6b7280" text-anchor="middle" font-weight="700">-7.2%</text>
+
+      <!-- USA: -0.6% → height=1.2 -->
+      <rect x="320" y="120" width="55" height="2" fill="#f59e0b" rx="1"/>
+      <text x="347" y="134" font-family="Inter" font-size="9" fill="#6b7280" text-anchor="middle">USA</text>
+      <text x="347" y="116" font-family="Inter" font-size="10" fill="#f59e0b" text-anchor="middle" font-weight="700">-0.6%</text>
+
+      <!-- Japan: +11.1% → height=22.2, starts at 120, goes up to 98 -->
+      <rect x="390" y="98" width="55" height="22" fill="#059669" rx="2"/>
+      <text x="417" y="134" font-family="Inter" font-size="9" fill="#6b7280" text-anchor="middle">Japan</text>
+      <text x="417" y="94" font-family="Inter" font-size="10" fill="#059669" text-anchor="middle" font-weight="700">+11.1%</text>
+
+      <!-- India: +15.3% → height=30.6 -->
+      <rect x="460" y="89" width="55" height="31" fill="#059669" opacity="0.8" rx="2"/>
+      <text x="487" y="134" font-family="Inter" font-size="9" fill="#6b7280" text-anchor="middle">India</text>
+      <text x="487" y="85" font-family="Inter" font-size="10" fill="#059669" text-anchor="middle" font-weight="700">+15.3%</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-title">China — Structural</div>
+      <div class="annotation-body">EV brand displacement and rising domestic fuel prices are structural headwinds. Toyota's localized EV volumes on BYD co-developed platforms have not yet offset gasoline model losses. Multi-year reset, not a cycle.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">Middle East — Cyclical</div>
+      <div class="annotation-body">38.6% collapse tied to Iran conflict logistics disruption and demand destruction in GCC markets. Exports from Japan to the Middle East fell 65.9%. Resolution-contingent recovery — unlike China, not structural.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">Supply Chain Watch</div>
+      <div class="annotation-body">Fanuc, Denso, and Yaskawa carry material Toyota capex exposure. Sustained volume decline through June–July data could prompt automation supplier capex-guidance revisions before H1 earnings season.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: Yen & BOJ -->
+<div class="viz-panel" id="macro">
+  <div class="panel-title">USD/JPY &amp; BOJ Rate Path · H1 2026 Close</div>
+  <div class="panel-sub">Yen at 40-year low despite BOJ tightening; MSCI rebalancing amplifies dollar demand today</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-val down">~162</div>
+      <div class="signal-label">USD/JPY</div>
+      <div class="signal-change down">Near 40-year low (1986 level)</div>
+    </div>
+    <div class="signal">
+      <div class="signal-val">1.00%</div>
+      <div class="signal-label">BOJ Policy Rate</div>
+      <div class="signal-change neutral">Highest since Sep 1995 (hiked Jun 16)</div>
+    </div>
+    <div class="signal">
+      <div class="signal-val">~300bp</div>
+      <div class="signal-label">US–Japan Rate Diff</div>
+      <div class="signal-change down">Structural yen weakness driver</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">BOJ Policy Rate Normalization Path · 2024–2026 (with forward guidance)</div>
+    <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+      <!-- Axes -->
+      <line x1="60" y1="20" x2="60" y2="170" stroke="#e5e7eb" stroke-width="1.5"/>
+      <line x1="60" y1="170" x2="590" y2="170" stroke="#e5e7eb" stroke-width="1.5"/>
+
+      <!-- Y grid and labels -->
+      <!-- Scale: 0% at y=170, each 25bp = 30px -->
+      <!-- 0% → 170, 0.25% → 140, 0.50% → 110, 0.75% → 80, 1.00% → 50, 1.25% → 20 -->
+      <line x1="60" y1="140" x2="590" y2="140" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="110" x2="590" y2="110" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="80" x2="590" y2="80" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="50" x2="590" y2="50" stroke="#f3f4f6" stroke-width="1"/>
+      <line x1="60" y1="20" x2="590" y2="20" stroke="#f3f4f6" stroke-width="1"/>
+
+      <text x="50" y="174" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">0%</text>
+      <text x="50" y="144" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">0.25%</text>
+      <text x="50" y="114" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">0.50%</text>
+      <text x="50" y="84" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">0.75%</text>
+      <text x="50" y="54" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">1.00%</text>
+      <text x="50" y="24" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">1.25%</text>
+
+      <!-- Timeline labels -->
+      <text x="90" y="188" font-family="Inter" font-size="8" fill="#9ca3af" text-anchor="middle">Mar'24</text>
+      <text x="160" y="188" font-family="Inter" font-size="8" fill="#9ca3af" text-anchor="middle">Jul'24</text>
+      <text x="240" y="188" font-family="Inter" font-size="8" fill="#9ca3af" text-anchor="middle">Jan'25</text>
+      <text x="330" y="188" font-family="Inter" font-size="8" fill="#9ca3af" text-anchor="middle">Jul'25</text>
+      <text x="420" y="188" font-family="Inter" font-size="8" fill="#9ca3af" text-anchor="middle">Dec'25</text>
+      <text x="510" y="188" font-family="Inter" font-size="8" fill="#3730a3" text-anchor="middle" font-weight="600">Jun/Oct'26</text>
+
+      <!-- BOJ rate step-up line -->
+      <!-- NIRP end Mar 2024: from -0.1% → 0% to 0.1% (~0.1% = y≈167) -->
+      <polyline points="90,167 90,163 160,163 160,140 240,140 240,110 330,110 330,80 420,80 420,50 510,50 510,20 570,20"
+        fill="none" stroke="#3730a3" stroke-width="3" stroke-linejoin="round" stroke-dasharray="none"/>
+
+      <!-- Dashed forecast after today -->
+      <line x1="510" y1="50" x2="570" y2="20" stroke="#3730a3" stroke-width="2" stroke-dasharray="5,4"/>
+
+      <!-- Today marker -->
+      <line x1="510" y1="25" x2="510" y2="175" stroke="#e5e7eb" stroke-dasharray="4,3" stroke-width="1"/>
+      <text x="510" y="16" font-family="Inter" font-size="8" fill="#6b7280" text-anchor="middle">Today / 1.00%</text>
+      <circle cx="510" cy="50" r="5" fill="#3730a3"/>
+
+      <!-- Oct forecast -->
+      <circle cx="570" cy="20" r="5" fill="none" stroke="#3730a3" stroke-width="2" stroke-dasharray="3,2"/>
+      <text x="573" y="16" font-family="Inter" font-size="8" fill="#3730a3">1.25% (Oct candidate)</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation">
+      <div class="annotation-title">MSCI Rebalancing Today</div>
+      <div class="annotation-body">Quarterly MSCI rebalancing on June 30 generates cross-border dollar demand as foreign investors reweight Japanese equity allocations. Amplifies structural yen weakness at quarter close.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">Intervention Framework</div>
+      <div class="annotation-body">Finance Minister Katayama invoked Bessent coordination at 161.8; 162–163 range is the watch level for escalated verbal intervention or actual MOF market action. $70B+ deployed H1 2026.</div>
+    </div>
+    <div class="annotation">
+      <div class="annotation-title">Tankan Pivot Tomorrow</div>
+      <div class="annotation-body">Q2 Tankan (July 1) large manufacturer DI is the first post-Hormuz corporate confidence read. Holds near zero or better → October hike case strengthens. Sharp decline → BOJ pauses tightening signal at July 30-31 MPM.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <div class="footer-bar-text">Japan Brief Issue #30 · June 30, 2026 · Not investment advice · 友達 Tomodachi</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
