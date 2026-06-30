@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #43 · July 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0f0f1a; font-family:'Inter',sans-serif; color:#e0e0e0; min-height:100vh; }
+
+  /* Header */
+  .viz-header { background:#1a1a2e; border-bottom:3px solid #c0392b; padding:18px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .viz-header-back { font-size:11px; font-weight:700; letter-spacing:2px; color:#c0392b; text-decoration:none; text-transform:uppercase; }
+  .viz-header-back:hover { color:#e05040; }
+  .viz-header-title { font-family:'Playfair Display',serif; font-size:18px; color:#e8d5b0; text-align:center; }
+  .viz-header-meta { font-size:11px; color:#4a5a7a; text-align:right; }
+
+  /* Tabs */
+  .tab-bar { background:#141428; border-bottom:1px solid #2a2a4e; display:flex; padding:0 32px; overflow-x:auto; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#4a5a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:color 0.2s,border-color 0.2s; }
+  .tab:hover { color:#8a9bb5; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; }
+
+  /* Panel */
+  .panel { display:none; padding:32px; max-width:960px; margin:0 auto; }
+  .panel.active { display:block; }
+
+  /* Signal numbers */
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:32px; }
+  .signal-card { background:#1a1a2e; border:1px solid #2a2a4e; border-top:3px solid #c0392b; border-radius:6px; padding:20px; }
+  .signal-number { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:#e8d5b0; line-height:1; }
+  .signal-unit { font-size:12px; color:#8a9bb5; margin-top:4px; }
+  .signal-label { font-size:11px; color:#4a5a7a; margin-top:8px; text-transform:uppercase; letter-spacing:1px; }
+
+  /* Chart container */
+  .chart-container { background:#1a1a2e; border:1px solid #2a2a4e; border-radius:6px; padding:24px; margin-bottom:28px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a9bb5; margin-bottom:20px; }
+
+  /* Annotation cards */
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .annotation { background:#141428; border-radius:6px; padding:16px; border-left:4px solid; }
+  .annotation.red { border-left-color:#c0392b; }
+  .annotation.amber { border-left-color:#d4860a; }
+  .annotation.green { border-left-color:#27ae60; }
+  .annotation-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .annotation.red .annotation-tag { color:#c0392b; }
+  .annotation.amber .annotation-tag { color:#d4860a; }
+  .annotation.green .annotation-tag { color:#27ae60; }
+  .annotation-text { font-size:12.5px; color:#8a9bb5; line-height:1.6; }
+  .annotation-card-zh { display:inline-block; margin-top:6px; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#e8d5b0; }
+  .annotation-card-en { font-size:11px; color:#6a7a9a; font-style:italic; margin-left:4px; }
+
+  /* SVG text */
+  .chart-container svg text { font-family:'Inter',sans-serif; }
+
+  /* Footer */
+  .viz-footer { background:#1a1a2e; border-top:1px solid #2a2a4e; padding:14px 32px; text-align:center; font-size:11px; color:#3a4a6a; margin-top:40px; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="viz-header">
+  <a href="brief.html" class="viz-header-back">← CHINA BRIEF</a>
+  <div class="viz-header-title">Issue #43 · Data Visualized</div>
+  <div class="viz-header-meta">July 1, 2026</div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('v1', this)">GLM-5.2 Open Source</div>
+  <div class="tab" onclick="showViz('v2', this)">China July AI Governance</div>
+  <div class="tab" onclick="showViz('v3', this)">June Manufacturing PMI</div>
+</div>
+
+<!-- PANEL 1: GLM-5.2 -->
+<div class="panel active" id="v1">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-number">51</div>
+      <div class="signal-unit">Artificial Analysis score</div>
+      <div class="signal-label">Top open-source model globally</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">744B</div>
+      <div class="signal-unit">total / 40B active (MoE)</div>
+      <div class="signal-label">GLM-5.2 parameter architecture</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">HK$1T</div>
+      <div class="signal-unit">~$128B USD market cap</div>
+      <div class="signal-label">Z.ai valuation crossed June 30</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">Benchmark Comparison — GLM-5.2 vs. Selected Models (Scores / Rankings)</div>
+    <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Background -->
+      <rect width="860" height="320" fill="transparent"/>
+
+      <!-- Grid lines -->
+      <line x1="160" y1="20" x2="160" y2="270" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="160" y1="270" x2="840" y2="270" stroke="#2a2a4e" stroke-width="1"/>
+
+      <!-- Y-axis labels -->
+      <text x="148" y="275" font-size="11" fill="#4a5a7a" text-anchor="end">Artificial Analysis</text>
+      <text x="148" y="195" font-size="11" fill="#4a5a7a" text-anchor="end">Code Arena</text>
+      <text x="148" y="115" font-size="11" fill="#4a5a7a" text-anchor="end">FrontierSWE</text>
+
+      <!-- X-axis score markers -->
+      <text x="160" y="290" font-size="10" fill="#3a4a6a" text-anchor="middle">0</text>
+      <text x="360" y="290" font-size="10" fill="#3a4a6a" text-anchor="middle">20</text>
+      <text x="560" y="290" font-size="10" fill="#3a4a6a" text-anchor="middle">40</text>
+      <text x="760" y="290" font-size="10" fill="#3a4a6a" text-anchor="middle">60</text>
+      <line x1="360" y1="20" x2="360" y2="270" stroke="#1e1e38" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="560" y1="20" x2="560" y2="270" stroke="#1e1e38" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="760" y1="20" x2="760" y2="270" stroke="#1e1e38" stroke-width="1" stroke-dasharray="4,4"/>
+
+      <!-- Artificial Analysis row — scores: GLM-5.2=51, Claude Opus 4.8=54, GPT-5.5=49 -->
+      <!-- Scale: 0-60 → 160 to 760+, 1 point = (760-160)/60 = 10px -->
+      <!-- GLM-5.2: 51 → 160 + 51*10 = 670 -->
+      <rect x="170" y="253" width="500" height="22" rx="3" fill="#c0392b" opacity="0.85"/>
+      <text x="678" y="268" font-size="10" fill="#e8d5b0" font-weight="600">51 ★ #1 open-source</text>
+      <!-- Claude: 54 → 700 -->
+      <rect x="170" y="231" width="530" height="18" rx="3" fill="#3a6ac0" opacity="0.6"/>
+      <text x="708" y="244" font-size="10" fill="#8a9bb5">54 (Claude Opus 4.8)</text>
+      <!-- GPT: 49 → 650 -->
+      <rect x="170" y="210" width="480" height="18" rx="3" fill="#2a4a6a" opacity="0.6"/>
+      <text x="658" y="223" font-size="10" fill="#8a9bb5">49 (GPT-5.5)</text>
+
+      <!-- Code Arena row — GLM-5.2 #1 -->
+      <!-- Relative bars: #1 = full, #2 = slightly less -->
+      <rect x="170" y="178" width="520" height="22" rx="3" fill="#c0392b" opacity="0.85"/>
+      <text x="698" y="193" font-size="10" fill="#e8d5b0" font-weight="600">#1 globally (blind user tests)</text>
+      <rect x="170" y="157" width="500" height="18" rx="3" fill="#3a6ac0" opacity="0.6"/>
+      <text x="678" y="170" font-size="10" fill="#8a9bb5">~#2 (Claude Opus 4.8)</text>
+
+      <!-- FrontierSWE — Claude leads by 1ppt, GLM-5.2 close -->
+      <rect x="170" y="98" width="490" height="22" rx="3" fill="#3a6ac0" opacity="0.8"/>
+      <text x="668" y="113" font-size="10" fill="#e8d5b0">Claude Opus 4.8 (leads by 1 ppt)</text>
+      <rect x="170" y="77" width="480" height="18" rx="3" fill="#c0392b" opacity="0.7"/>
+      <text x="658" y="90" font-size="10" fill="#e8d5b0" font-weight="600">GLM-5.2 (-1 ppt gap)</text>
+
+      <!-- Legend -->
+      <rect x="170" y="30" width="12" height="10" fill="#c0392b" rx="2"/>
+      <text x="186" y="40" font-size="10" fill="#8a9bb5">GLM-5.2 (Z.ai)</text>
+      <rect x="280" y="30" width="12" height="10" fill="#3a6ac0" opacity="0.8" rx="2"/>
+      <text x="296" y="40" font-size="10" fill="#8a9bb5">Claude Opus 4.8</text>
+      <rect x="420" y="30" width="12" height="10" fill="#2a4a6a" opacity="0.8" rx="2"/>
+      <text x="436" y="40" font-size="10" fill="#8a9bb5">GPT-5.5</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation red">
+      <div class="annotation-tag">Core Claim</div>
+      <div class="annotation-text">GLM-5.2 tops open-source rankings globally but trails Anthropic frontier by 1–4 percentage points on long-horizon coding. Performance gap is narrower than any prior Chinese open model has achieved — but closed is not closed.</div>
+    </div>
+    <div class="annotation amber">
+      <div class="annotation-tag">Unverified</div>
+      <div class="annotation-text">Z.ai revenue base is small relative to its HK$1T market cap. JP Morgan's 534% revenue growth projection assumes commercial enterprise adoption follows benchmark rankings — that link is undemonstrated at scale.
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàng Bǎn · STAR Market</span></div> dual listing plan adds capital markets overhang.
+      </div>
+    </div>
+    <div class="annotation green">
+      <div class="annotation-tag">Actionable Signal</div>
+      <div class="annotation-text">MIT license + native
+        <div class="annotation-card-zh">华为昇腾<span class="annotation-card-en">Huáwéi Shēngténg · Huawei Ascend</span></div>
+        support creates a compliant domestic AI stack. Chinese enterprise customers now have a frontier-adjacent model deployable on export-control-free hardware — a structural shift in AI procurement optionality.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: AI Governance -->
+<div class="panel" id="v2">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-number">3</div>
+      <div class="signal-unit">new AI frameworks</div>
+      <div class="signal-label">Taking effect in July 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">1M</div>
+      <div class="signal-unit">registered users</div>
+      <div class="signal-label">Threshold triggering mandatory safety assessment</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">70%</div>
+      <div class="signal-unit">smart terminal target</div>
+      <div class="signal-label">AI agent adoption by 2027 (CAC/NDRC/MIIT)</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">China July 2026 AI Regulatory Timeline</div>
+    <svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <rect width="860" height="260" fill="transparent"/>
+
+      <!-- Timeline spine -->
+      <line x1="80" y1="130" x2="800" y2="130" stroke="#2a2a4e" stroke-width="2"/>
+
+      <!-- Date markers and events -->
+      <!-- May 19: TC260 published -->
+      <circle cx="130" cy="130" r="8" fill="#4a5a7a"/>
+      <line cx="130" x1="130" y1="122" x2="130" y2="75" stroke="#4a5a7a" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="130" y="68" font-size="10" fill="#4a5a7a" text-anchor="middle">May 19</text>
+      <text x="130" y="56" font-size="10" fill="#4a5a7a" text-anchor="middle">TC260 Guidelines</text>
+      <text x="130" y="44" font-size="10" fill="#4a5a7a" text-anchor="middle">Published</text>
+
+      <!-- July 1: TC260 effective -->
+      <circle cx="380" cy="130" r="12" fill="#c0392b"/>
+      <line x1="380" y1="142" x2="380" y2="195" stroke="#c0392b" stroke-width="2"/>
+      <text x="380" y="208" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">July 1 — TODAY</text>
+      <text x="380" y="221" font-size="10" fill="#c0392b" text-anchor="middle">TC260 Ethics-Safety</text>
+      <text x="380" y="233" font-size="10" fill="#c0392b" text-anchor="middle">Guidelines 1.0 Effective</text>
+      <text x="380" y="245" font-size="9" fill="#6a5a4a" text-anchor="middle">(Voluntary · 9 core principles)</text>
+
+      <!-- July 15: Anthropomorphic AI -->
+      <circle cx="580" cy="130" r="10" fill="#d4860a"/>
+      <line x1="580" y1="122" x2="580" y2="60" stroke="#d4860a" stroke-width="1.5"/>
+      <text x="580" y="53" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">July 15</text>
+      <text x="580" y="41" font-size="10" fill="#d4860a" text-anchor="middle">Anthropomorphic AI</text>
+      <text x="580" y="29" font-size="10" fill="#d4860a" text-anchor="middle">Interim Measures Effective</text>
+      <text x="580" y="18" font-size="9" fill="#6a5a4a" text-anchor="middle">(Binding · Algorithm filing required)</text>
+
+      <!-- July 15: AI Agent framework -->
+      <circle cx="700" cy="130" r="10" fill="#27ae60"/>
+      <line x1="700" y1="142" x2="700" y2="195" stroke="#27ae60" stroke-width="1.5"/>
+      <text x="700" y="207" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">July 15</text>
+      <text x="700" y="220" font-size="10" fill="#27ae60" text-anchor="middle">AI Agent Framework</text>
+      <text x="700" y="232" font-size="10" fill="#27ae60" text-anchor="middle">Effective</text>
+      <text x="700" y="244" font-size="9" fill="#6a5a4a" text-anchor="middle">(CAC + NDRC + MIIT joint)</text>
+
+      <!-- Legend -->
+      <circle cx="90" cy="20" r="6" fill="#c0392b"/>
+      <text x="100" y="24" font-size="10" fill="#8a9bb5">Binding / Effective</text>
+      <circle cx="220" cy="20" r="6" fill="#4a5a7a"/>
+      <text x="230" y="24" font-size="10" fill="#8a9bb5">Published / Prior step</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation red">
+      <div class="annotation-tag">Core Claim</div>
+      <div class="annotation-text">
+        <div class="annotation-card-zh">算法备案<span class="annotation-card-en">suànfǎ bèi'àn · algorithm filing</span></div>
+        now required for
+        <div class="annotation-card-zh">拟人化AI<span class="annotation-card-en">nǐrén huà AI · anthropomorphic AI</span></div>
+        services — chatbot and virtual companion platforms face new multi-agency compliance obligations. Services above 1M users or 100K monthly actives must complete safety assessments.
+      </div>
+    </div>
+    <div class="annotation amber">
+      <div class="annotation-tag">Unverified</div>
+      <div class="annotation-text">TC260 guidelines are technically voluntary — but watch how regulators use them in inspections and enforcement. The gap between "voluntary guidance" and "de facto requirement" has often closed quickly in prior China internet regulatory cycles (algorithm rules, AIGC measures).</div>
+    </div>
+    <div class="annotation green">
+      <div class="annotation-tag">Actionable Signal</div>
+      <div class="annotation-text">Compliance cost creates a moat for scaled platforms. Smaller AI companion and agent startups face disproportionate filing, assessment, and audit burdens — institutional investors should expect market consolidation in these sub-sectors over 12–18 months.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: June PMI -->
+<div class="panel" id="v3">
+  <div class="signals">
+    <div class="signal-card">
+      <div class="signal-number">50.3</div>
+      <div class="signal-unit">NBS June manufacturing PMI</div>
+      <div class="signal-label">Beat 50.1 consensus; third consecutive month above 50</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">53.5</div>
+      <div class="signal-unit">High-tech manufacturing sub-index</div>
+      <div class="signal-label">AI-linked hardware exports driving divergence</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-number">48.4</div>
+      <div class="signal-unit">Employment sub-index</div>
+      <div class="signal-label">Third consecutive month in contraction territory</div>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <div class="chart-title">June 2026 NBS PMI — Key Sub-Index Comparison (50 = expansion/contraction line)</div>
+    <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <rect width="860" height="300" fill="transparent"/>
+
+      <!-- Axis -->
+      <line x1="80" y1="20" x2="80" y2="250" stroke="#2a2a4e" stroke-width="1"/>
+      <line x1="80" y1="250" x2="840" y2="250" stroke="#2a2a4e" stroke-width="1"/>
+
+      <!-- 50 line (expansion/contraction) — scale: 45 to 56, height 230px -->
+      <!-- 50 maps to: 250 - (50-45)/(56-45)*230 = 250 - 5/11*230 = 250-104.5 = 145.5 -->
+      <line x1="80" y1="146" x2="840" y2="146" stroke="#c0392b" stroke-width="1" stroke-dasharray="6,4" opacity="0.6"/>
+      <text x="68" y="150" font-size="10" fill="#c0392b" text-anchor="end">50</text>
+
+      <!-- Y-axis ticks -->
+      <text x="68" y="251" font-size="10" fill="#4a5a7a" text-anchor="end">45</text>
+      <text x="68" y="41" font-size="10" fill="#4a5a7a" text-anchor="end">56</text>
+      <text x="68" y="41" font-size="10" fill="#4a5a7a" text-anchor="end">56</text>
+
+      <!-- Bars: scale = (value - 45) / 11 * 230, bar bottom at y=250 -->
+      <!-- Overall PMI: 50.3 → height=(50.3-45)/11*230 = 110.8, top y=250-110.8=139.2 -->
+      <!-- New Orders: 51.2 → height=(51.2-45)/11*230 = 129.6, top y=250-129.6=120.4 -->
+      <!-- Foreign Orders: 50.1 → height=(50.1-45)/11*230 = 106.6, top y=143.4 -->
+      <!-- Employment: 48.4 → height=(48.4-45)/11*230 = 71.1, top y=178.9 -->
+      <!-- High-tech: 53.5 → height=(53.5-45)/11*230 = 177.7, top y=72.3 -->
+      <!-- Output price: 48.2 → height=(48.2-45)/11*230 = 66.9, top y=183.1 -->
+
+      <!-- Bar positions: 6 bars, x positions -->
+      <!-- Bar width ~80, gap ~30. Total = 6*80 + 5*30 = 630. Start at 100. -->
+
+      <!-- Overall PMI 50.3 -->
+      <rect x="105" y="139" width="75" height="111" rx="3" fill="#e8d5b0" opacity="0.8"/>
+      <text x="143" y="135" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">50.3</text>
+      <text x="143" y="268" font-size="10" fill="#6a7a8a" text-anchor="middle">Overall</text>
+      <text x="143" y="279" font-size="10" fill="#6a7a8a" text-anchor="middle">PMI</text>
+
+      <!-- New Orders 51.2 -->
+      <rect x="215" y="120" width="75" height="130" rx="3" fill="#27ae60" opacity="0.7"/>
+      <text x="253" y="116" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">51.2</text>
+      <text x="253" y="268" font-size="10" fill="#6a7a8a" text-anchor="middle">New</text>
+      <text x="253" y="279" font-size="10" fill="#6a7a8a" text-anchor="middle">Orders</text>
+
+      <!-- Foreign Orders 50.1 -->
+      <rect x="325" y="143" width="75" height="107" rx="3" fill="#27ae60" opacity="0.5"/>
+      <text x="363" y="139" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">50.1</text>
+      <text x="363" y="268" font-size="10" fill="#6a7a8a" text-anchor="middle">Foreign</text>
+      <text x="363" y="279" font-size="10" fill="#6a7a8a" text-anchor="middle">Orders</text>
+
+      <!-- Employment 48.4 -->
+      <rect x="435" y="179" width="75" height="71" rx="3" fill="#c0392b" opacity="0.7"/>
+      <text x="473" y="175" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">48.4</text>
+      <text x="473" y="268" font-size="10" fill="#6a7a8a" text-anchor="middle">Employ-</text>
+      <text x="473" y="279" font-size="10" fill="#6a7a8a" text-anchor="middle">ment</text>
+
+      <!-- High-tech manufacturing 53.5 -->
+      <rect x="545" y="72" width="75" height="178" rx="3" fill="#1a56db" opacity="0.8"/>
+      <text x="583" y="68" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">53.5</text>
+      <text x="583" y="268" font-size="10" fill="#6a7a8a" text-anchor="middle">High-Tech</text>
+      <text x="583" y="279" font-size="10" fill="#6a7a8a" text-anchor="middle">Mfg</text>
+
+      <!-- Output prices 48.2 -->
+      <rect x="655" y="183" width="75" height="67" rx="3" fill="#c0392b" opacity="0.5"/>
+      <text x="693" y="179" font-size="11" fill="#e8d5b0" text-anchor="middle" font-weight="600">48.2</text>
+      <text x="693" y="268" font-size="10" fill="#6a7a8a" text-anchor="middle">Output</text>
+      <text x="693" y="279" font-size="10" fill="#6a7a8a" text-anchor="middle">Prices</text>
+
+      <!-- Expansion label -->
+      <text x="830" y="140" font-size="9" fill="#c0392b" text-anchor="end" opacity="0.7">Expansion</text>
+      <text x="830" y="160" font-size="9" fill="#c0392b" text-anchor="end" opacity="0.7">Contraction</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation red">
+      <div class="annotation-tag">Core Claim</div>
+      <div class="annotation-text">Employment at 48.4 for the third straight month signals producers are not converting output gains into headcount. Consumer demand recovery is not guaranteed — household balance sheets remain constrained by property overhang.</div>
+    </div>
+    <div class="annotation amber">
+      <div class="annotation-tag">Unverified</div>
+      <div class="annotation-text">Foreign orders returned to 50.1, but the recovery may include a front-loading element ahead of tariff or procurement changes — the same pattern inflated Q1 before Q2 softness. Today's
+        <div class="annotation-card-zh">财新<span class="annotation-card-en">Cáixīn · Caixin</span></div>
+        PMI release provides a key private-sector cross-check.
+      </div>
+    </div>
+    <div class="annotation green">
+      <div class="annotation-tag">Actionable Signal</div>
+      <div class="annotation-text">
+        <div class="annotation-card-zh">高端制造<span class="annotation-card-en">gāoduān zhìzào · high-tech manufacturing</span></div>
+        at 53.5 confirms AI-linked hardware export complex running on a separate demand cycle. Sector-level exposure (AI servers, optical modules, precision instruments) may outperform broad China manufacturing allocations in H2.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="viz-footer">
+  China Brief Issue #43 &nbsp;·&nbsp; July 1, 2026 &nbsp;·&nbsp; Not investment advice &nbsp;·&nbsp; Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
