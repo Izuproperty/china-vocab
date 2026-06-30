@@ -670,12 +670,17 @@ if (name === 'progress') renderProgress();
 function startMode(mode) {
 if (mode === 'cards') {
 const due = getDueCards();
-fcQueue = shuffle(due.length ? due : VOCAB).slice(0, 20);
+// Sort by date_added descending (newest first), then shuffle within same-date groups
+const pool = due.length ? due : VOCAB;
+const byDate = [...pool].sort((a,b) => (b.date_added||'') > (a.date_added||'') ? 1 : (b.date_added||'') < (a.date_added||'') ? -1 : 0);
+fcQueue = byDate.slice(0, 20);
 fcIndex = 0;
 showScreen('cards');
 renderFlashcard();
 } else if (mode === 'quiz') {
-quizQueue = shuffle(VOCAB).slice(0, 20);
+// Quiz: recent terms first
+const byDateQ = [...VOCAB].sort((a,b) => (b.date_added||'') > (a.date_added||'') ? 1 : (b.date_added||'') < (a.date_added||'') ? -1 : 0);
+quizQueue = byDateQ.slice(0, 20);
 quizIndex = 0;
 showScreen('quiz');
 renderQuiz();
