@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #44 · July 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #44 · Visualized</div>
+    <div class="page-meta">July 2, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">UBTECH U1 Robot</div>
+  <div class="tab" onclick="showViz('s2',this)">DeepSeek V4 Pricing</div>
+  <div class="tab" onclick="showViz('s3',this)">Momenta HK IPO</div>
+</div>
+
+<!-- ============================================================ PANEL 1: UBTECH U1 -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">11,000+</div>
+      <div class="signal-label">Pre-orders</div>
+      <div class="signal-sub">Since June 2 launch</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">¥119.8K</div>
+      <div class="signal-label">Entry price (Lite)</div>
+      <div class="signal-sub">~$17,600 USD</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">88</div>
+      <div class="signal-label">DOF joints</div>
+      <div class="signal-sub">High-degree-of-freedom</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">UWORLD U1 Series — Pricing Tiers vs. Reference Consumer Items</div>
+    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- Background -->
+      <rect width="700" height="280" fill="#fafaf8" rx="4"/>
+      <!-- Grid lines -->
+      <line x1="140" y1="20" x2="140" y2="235" stroke="#e0d8d0" stroke-width="1"/>
+      <line x1="140" y1="235" x2="660" y2="235" stroke="#e0d8d0" stroke-width="1"/>
+      <!-- X-axis labels -->
+      <text x="140" y="255" text-anchor="middle" font-size="10" fill="#9a8a7a">¥0</text>
+      <text x="267" y="255" text-anchor="middle" font-size="10" fill="#9a8a7a">¥250K</text>
+      <text x="394" y="255" text-anchor="middle" font-size="10" fill="#9a8a7a">¥500K</text>
+      <text x="521" y="255" text-anchor="middle" font-size="10" fill="#9a8a7a">¥750K</text>
+      <text x="648" y="255" text-anchor="middle" font-size="10" fill="#9a8a7a">¥1M</text>
+      <!-- Scale: 660-140 = 520px for 1M yuan; 1px = 520/1000000 -->
+      <!-- iPhone 16 Pro Max: ~¥12,000 -->
+      <!-- U1 Lite: ¥119,800 -->
+      <!-- Tesla Model 3 entry: ~¥245,900 -->
+      <!-- U1 Pro: ~¥500,000 est mid -->
+      <!-- U1 Ultra: ¥990,000 -->
+
+      <!-- Row labels -->
+      <text x="135" y="50" text-anchor="end" font-size="11" fill="#5a5a5a">iPhone 16 Pro Max</text>
+      <text x="135" y="90" text-anchor="end" font-size="11" fill="#5a5a5a">U1 Lite</text>
+      <text x="135" y="130" text-anchor="end" font-size="11" fill="#5a5a5a">Tesla Model 3 (CN)</text>
+      <text x="135" y="170" text-anchor="end" font-size="11" fill="#5a5a5a">U1 Pro</text>
+      <text x="135" y="210" text-anchor="end" font-size="11" fill="#5a5a5a">U1 Ultra</text>
+
+      <!-- iPhone: ¥12,000 → 140 + 12000*520/1000000 = 140 + 6.2 = 146 -->
+      <rect x="140" y="36" width="6" height="18" fill="#8a9bb5" rx="2"/>
+      <text x="152" y="49" font-size="10" fill="#5a5a5a">¥12,000</text>
+
+      <!-- U1 Lite: ¥119,800 → 140 + 119800*520/1000000 = 140 + 62.3 = 202 -->
+      <rect x="140" y="76" width="62" height="18" fill="#c0392b" rx="2"/>
+      <text x="208" y="89" font-size="10" fill="#c0392b" font-weight="600">¥119,800</text>
+
+      <!-- Tesla Model 3: ¥245,900 → 140 + 245900*520/1000000 = 140 + 127.9 = 268 -->
+      <rect x="140" y="116" width="128" height="18" fill="#8a9bb5" rx="2"/>
+      <text x="274" y="129" font-size="10" fill="#5a5a5a">¥245,900</text>
+
+      <!-- U1 Pro: ~¥500,000 → 140 + 500000*520/1000000 = 140 + 260 = 400 -->
+      <rect x="140" y="156" width="260" height="18" fill="#c0392b" rx="2" opacity="0.7"/>
+      <text x="406" y="169" font-size="10" fill="#c0392b" font-weight="600">~¥500,000</text>
+
+      <!-- U1 Ultra: ¥990,000 → 140 + 990000*520/1000000 = 140 + 514.8 = 655 -->
+      <rect x="140" y="196" width="515" height="18" fill="#c0392b" rx="2" opacity="0.5"/>
+      <text x="661" y="209" font-size="10" fill="#c0392b" font-weight="600">¥990,000</text>
+
+      <!-- Legend -->
+      <rect x="160" y="265" width="10" height="10" fill="#c0392b" rx="2"/>
+      <text x="174" y="274" font-size="10" fill="#5a5a5a">UBTECH U1 variants</text>
+      <rect x="310" y="265" width="10" height="10" fill="#8a9bb5" rx="2"/>
+      <text x="324" y="274" font-size="10" fill="#5a5a5a">Reference items</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Risk</div>
+      <div><span class="annotation-card-zh">具身智能</span><span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span> products face structurally different repeat-purchase dynamics than smartphones. After-sales infrastructure at consumer scale does not yet exist, and UBTECH's track record is primarily enterprise/industrial.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>Pre-order conversion to delivered units remains unknown. The 11,000 figure includes a ¥3,000 refundable deposit — actual fulfillment rate on September 16 will be the first real test of consumer demand depth for <span class="annotation-card-zh">人形机器人</span><span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span>.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>¥119,800 entry price represents a market-formation threshold — below a luxury vehicle — that prior industry projections placed 3–5 years out. If September deliveries succeed, supply-chain exposure (joints, <span class="annotation-card-zh">情感模型</span><span class="annotation-card-en">qínggǎn móxíng · emotional AI</span>, local storage chips) merits assessment.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 2: DeepSeek V4 Pricing -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">Mid-Jul</div>
+      <div class="signal-label">V4 official launch</div>
+      <div class="signal-sub">Builds on preview release</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">2x</div>
+      <div class="signal-label">Peak vs off-peak rate</div>
+      <div class="signal-sub">First demand-based API pricing</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">1M</div>
+      <div class="signal-label">Token context window</div>
+      <div class="signal-sub">Standard across full lineup</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">DeepSeek V4 Peak/Off-Peak API Windows (China Standard Time)</div>
+    <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="200" fill="#fafaf8" rx="4"/>
+
+      <!-- 24-hour timeline bar: x=50 to x=650, y=80 height=50 -->
+      <!-- Total width = 600px for 24 hours; 1hr = 25px -->
+      <!-- Hours start at 0:00 -->
+
+      <!-- Background (off-peak) -->
+      <rect x="50" y="80" width="600" height="50" fill="#e8f0fe" rx="4"/>
+
+      <!-- Peak block 1: 9:00-12:00 = 3hrs = 75px, starts at x=50+9*25=275 -->
+      <rect x="275" y="80" width="75" height="50" fill="#c0392b" rx="0"/>
+      <!-- Peak block 2: 14:00-18:00 = 4hrs = 100px, starts at x=50+14*25=400 -->
+      <rect x="400" y="80" width="100" height="50" fill="#c0392b" rx="0"/>
+
+      <!-- Hour markers -->
+      <!-- 0,3,6,9,12,15,18,21,24 -->
+      <line x1="50" y1="130" x2="50" y2="140" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="50" y="152" text-anchor="middle" font-size="10" fill="#9a8a7a">0</text>
+
+      <line x1="125" y1="130" x2="125" y2="140" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="125" y="152" text-anchor="middle" font-size="10" fill="#9a8a7a">3</text>
+
+      <line x1="200" y1="130" x2="200" y2="140" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="200" y="152" text-anchor="middle" font-size="10" fill="#9a8a7a">6</text>
+
+      <line x1="275" y1="130" x2="275" y2="140" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="275" y="152" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">9</text>
+
+      <line x1="350" y1="130" x2="350" y2="140" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="350" y="152" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">12</text>
+
+      <line x1="375" y1="130" x2="375" y2="140" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="375" y="152" text-anchor="middle" font-size="10" fill="#9a8a7a">13</text>
+
+      <line x1="400" y1="130" x2="400" y2="140" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="400" y="152" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">14</text>
+
+      <line x1="500" y1="130" x2="500" y2="140" stroke="#c0392b" stroke-width="1.5"/>
+      <text x="500" y="152" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">18</text>
+
+      <line x1="575" y1="130" x2="575" y2="140" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="575" y="152" text-anchor="middle" font-size="10" fill="#9a8a7a">21</text>
+
+      <line x1="650" y1="130" x2="650" y2="140" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="650" y="152" text-anchor="middle" font-size="10" fill="#9a8a7a">24</text>
+
+      <!-- Labels inside bars -->
+      <text x="312" y="109" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">PEAK</text>
+      <text x="312" y="121" text-anchor="middle" font-size="10" fill="#fce7e7">9–12 · 2x rate</text>
+      <text x="450" y="109" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">PEAK</text>
+      <text x="450" y="121" text-anchor="middle" font-size="10" fill="#fce7e7">14–18 · 2x rate</text>
+
+      <!-- Off-peak labels -->
+      <text x="162" y="109" text-anchor="middle" font-size="11" fill="#1a56db">OFF-PEAK</text>
+      <text x="162" y="121" text-anchor="middle" font-size="10" fill="#3a70c8">1x base rate</text>
+
+      <text x="562" y="109" text-anchor="middle" font-size="11" fill="#1a56db">OFF-PEAK</text>
+      <text x="562" y="121" text-anchor="middle" font-size="10" fill="#3a70c8">1x base rate</text>
+
+      <!-- US time zone reference -->
+      <text x="350" y="170" text-anchor="middle" font-size="11" fill="#9a8a7a">China Standard Time (CST / UTC+8)</text>
+      <text x="350" y="184" text-anchor="middle" font-size="10" fill="#b0a898">US East Coast off-peak: 1am–4am and 6am–11pm EST (overnight arbitrage available)</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      <div>Peak-hour pricing signals genuine <span class="annotation-card-zh">算力</span><span class="annotation-card-en">suànlì · compute</span> scarcity during Chinese business hours at current adoption scale. DeepSeek's previous cost leadership depended on no demand-based differentiation — this is the first structural break in that model.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>Dollar-denominated rate card and international user exposure to peak surcharges not yet disclosed. The 2x multiplier may compress or expand depending on absolute base rates set at official V4 launch. <span class="annotation-card-zh">峰谷定价</span><span class="annotation-card-en">fēng gǔ dìngjià · peak/off-peak pricing</span> details pending.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>Non-China time-zone enterprise clients may have structural off-peak access — a potential cost arbitrage. The 1M-token context window becoming standard across Chinese frontier labs raises the floor for <span class="annotation-card-zh">大模型</span><span class="annotation-card-en">dà móxíng · LLM</span> enterprise adoption use cases.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 3: Momenta HK IPO -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">$751M</div>
+      <div class="signal-label">IPO proceeds target</div>
+      <div class="signal-sub">HK$5.89B at HK$295.60/share</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">~50%</div>
+      <div class="signal-label">Cornerstone coverage</div>
+      <div class="signal-sub">HK$2.94B of offering locked</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">225%</div>
+      <div class="signal-label">Revenue growth</div>
+      <div class="signal-sub">RMB 743M (2023) → 2.41B (2025)</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Momenta Cornerstone Investor Breakdown — HK$2.94B Committed (~$375M USD)</div>
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="260" fill="#fafaf8" rx="4"/>
+
+      <!-- Horizontal bar chart of cornerstone commitments -->
+      <!-- Scale: max bar = 200px for $100M; 2px per $1M -->
+      <!-- GIC: $100M = 200px -->
+      <!-- Fidelity: $100M = 200px -->
+      <!-- BlackRock: estimated ~$60M = 120px -->
+      <!-- Oaktree: estimated ~$50M = 100px -->
+      <!-- Franklin Templeton: estimated ~$40M = 80px -->
+      <!-- BYD Golden Link: estimated ~$30M = 60px -->
+      <!-- Mercedes: estimated ~$30M = 60px -->
+      <!-- China domestic (Gaoyi+Boyu+ChinaAMC+GF+CPIC): remaining ~$65M = 130px -->
+
+      <!-- Y positions: start 30, step 28 -->
+      <text x="135" y="46" text-anchor="end" font-size="11" fill="#3a3a3a">GIC</text>
+      <rect x="140" y="32" width="200" height="18" fill="#c0392b" rx="2"/>
+      <text x="346" y="45" font-size="10" fill="#c0392b" font-weight="600">$100M</text>
+
+      <text x="135" y="74" text-anchor="end" font-size="11" fill="#3a3a3a">Fidelity Intl</text>
+      <rect x="140" y="60" width="200" height="18" fill="#c0392b" rx="2"/>
+      <text x="346" y="73" font-size="10" fill="#c0392b" font-weight="600">$100M</text>
+
+      <text x="135" y="102" text-anchor="end" font-size="11" fill="#3a3a3a">BlackRock</text>
+      <rect x="140" y="88" width="120" height="18" fill="#8a9bb5" rx="2"/>
+      <text x="266" y="101" font-size="10" fill="#5a5a5a">~$60M est.</text>
+
+      <text x="135" y="130" text-anchor="end" font-size="11" fill="#3a3a3a">Oaktree</text>
+      <rect x="140" y="116" width="100" height="18" fill="#8a9bb5" rx="2"/>
+      <text x="246" y="129" font-size="10" fill="#5a5a5a">~$50M est.</text>
+
+      <text x="135" y="158" text-anchor="end" font-size="11" fill="#3a3a3a">Franklin Templeton</text>
+      <rect x="140" y="144" width="80" height="18" fill="#8a9bb5" rx="2"/>
+      <text x="226" y="157" font-size="10" fill="#5a5a5a">~$40M est.</text>
+
+      <text x="135" y="186" text-anchor="end" font-size="11" fill="#3a3a3a">BYD Golden Link</text>
+      <rect x="140" y="172" width="60" height="18" fill="#2a7a4e" rx="2"/>
+      <text x="206" y="185" font-size="10" fill="#2a7a4e">strategic</text>
+
+      <text x="135" y="214" text-anchor="end" font-size="11" fill="#3a3a3a">Mercedes-Benz</text>
+      <rect x="140" y="200" width="60" height="18" fill="#2a7a4e" rx="2"/>
+      <text x="206" y="213" font-size="10" fill="#2a7a4e">strategic</text>
+
+      <text x="135" y="242" text-anchor="end" font-size="11" fill="#3a3a3a">CN Institutions (5)</text>
+      <rect x="140" y="228" width="130" height="18" fill="#d97706" rx="2"/>
+      <text x="276" y="241" font-size="10" fill="#d97706">Gaoyi · Boyu · ChinaAMC · GF · CPIC</text>
+
+      <!-- Legend -->
+      <rect x="400" y="32" width="10" height="10" fill="#c0392b" rx="2"/>
+      <text x="416" y="41" font-size="10" fill="#5a5a5a">Global allocators (disclosed)</text>
+      <rect x="400" y="50" width="10" height="10" fill="#8a9bb5" rx="2"/>
+      <text x="416" y="59" font-size="10" fill="#5a5a5a">Global allocators (est.)</text>
+      <rect x="400" y="68" width="10" height="10" fill="#2a7a4e" rx="2"/>
+      <text x="416" y="77" font-size="10" fill="#5a5a5a">Strategic / OEM investors</text>
+      <rect x="400" y="86" width="10" height="10" fill="#d97706" rx="2"/>
+      <text x="416" y="95" font-size="10" fill="#5a5a5a">Domestic Chinese institutions</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Risk</div>
+      <div>Robotaxi commercialization timeline depends on MIIT and NDRC licensing progression — not Momenta's own roadmap. <span class="annotation-card-zh">自动驾驶</span><span class="annotation-card-en">zìdòng jiàshǐ · autonomous driving</span> regulatory risk remains the key overhang. Pre-profitability with adjusted net loss of RMB 302.8M in 2025.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>Individual commitment sizes for BlackRock, Oaktree, and Franklin Templeton are not publicly disclosed — estimates derived from total cornerstone commitment vs. named anchors. <span class="annotation-card-zh">基石投资者</span><span class="annotation-card-en">jīshí tóuzīzhě · cornerstone investors</span> lock-up is 6 months post-listing.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>GIC + Fidelity anchoring at $100M each signals sustained international institutional appetite for China AI infrastructure plays. R7 <span class="annotation-card-zh">世界模型</span><span class="annotation-card-en">shìjiè móxíng · world model</span> entering mass production is a tangible commercialization milestone. Revenue 3x over two years with narrowing losses.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #44 · July 2, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
