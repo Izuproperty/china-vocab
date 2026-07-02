@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-06-25",
-    "issue": 35,
+    "updated": "2026-07-02",
+    "issue": 44,
     "title": "China AI Landscape"
   },
   "entities": [
@@ -11,7 +11,7 @@
       "py": "Shēndù Qiúsuǒ",
       "cat": "foundation",
       "status": "private",
-      "desc": "Hangzhou. Backed by High-Flyer Quant + National AI Fund (state-led) + Tencent + CATL + Hillhouse. Models: DeepSeek-V3, V4. Cost-efficient frontier — disrupted US cost narrative Jan 2025. V4 natively optimized for Huawei Ascend; migrated fully from CUDA to Ascend-native. **Funding round (June 2026):** Raised ¥50B ($7.4B) in first-ever external round at ¥350–400B ($52–59B) valuation. Round CLOSED June 17, 2026. Final structure: all commercial investors (Tencent, CATL, others) accepted 5-year lock-up and surrendered ALL voting rights. National AI Industry Investment Fund received direct equity + voting rights + no lock-up — only voting investor. Makes DeepSeek structurally state-controlled. **Engram (May 26):** conditional memory module committing static knowledge to system RAM, freeing HBM for dynamic computation; reduces AI inference dependence on foreign HBM. **Code Harness team (May 2026):** dedicated agentic coding team explicitly benchmarking against Claude Code, Cursor, Codex. Hired former Jane Street engineer Cui Tianyi (崔天一) to lead effort.",
+      "desc": "Hangzhou. Backed by High-Flyer Quant + National AI Fund (state-led) + Tencent + CATL + Hillhouse. Models: DeepSeek-V3, V4. Cost-efficient frontier — disrupted US cost narrative Jan 2025. V4 natively optimized for Huawei Ascend; migrated fully from CUDA to Ascend-native. **Funding round (June 2026):** Raised ¥50B ($7.4B) in first-ever external round at ¥350–400B ($52–59B) valuation. Round CLOSED June 17, 2026. Final structure: all commercial investors (Tencent, CATL, others) accepted 5-year lock-up and surrendered ALL voting rights. National AI Industry Investment Fund received direct equity + voting rights + no lock-up — only voting investor. Makes DeepSeek structurally state-controlled. **Engram (May 26):** conditional memory module committing static knowledge to system RAM, freeing HBM for dynamic computation; reduces AI inference dependence on foreign HBM. **Code Harness team (May 2026):** dedicated agentic coding team explicitly benchmarking against Claude Code, Cursor, Codex. Hired former Jane Street engineer Cui Tianyi (崔天一) to lead effort. **DSpark (#41, Jun 2026):** Speculative decoding framework for V4. Lightweight draft model proposes tokens; V4 batch-verifies in parallel (semi-autoregressive). 85% inference speed gain per user. Open-weight release on HuggingFace + GitHub Jun 28, 2026.",
       "tags": [
         {
           "l": "$52–59B valuation",
@@ -30,9 +30,13 @@
         },
         {
           "l": "Engram memory innovation"
+        },
+        {
+          "l": "DSpark: 85% speed gain",
+          "t": "green"
         }
       ],
-      "issue": "#1, #3, #13, #18, #22, #23, #34"
+      "issue": "#1, #3, #13, #18, #22, #23, #34, #41"
     },
     {
       "name": "Baidu",
@@ -61,7 +65,7 @@
       "py": "Zìjié Tiàodòng",
       "cat": "foundation",
       "status": "private",
-      "desc": "TikTok/Douyin parent. Massive AI infra investment. Doubao (豆包, Dòubāo) is China's #1 consumer AI app, 600M+ generative AI users in China as of May 2026. Among 10 Chinese firms cleared to buy Nvidia H200 chips (May 2026) but purchase pending Beijing guidance. **Volcengine / Seedance 2.0 / 即梦AI:** premiered *Hell Grind* — world's first full-length AI-generated feature film (95 min) — at the 79th Cannes Film Festival on May 22, 2026. 15-person team, 14 days, <$500K budget. Luc Besson's SEEN studio developing an AI animated feature using Seedance 2.0. **Seres partnership (Jun 2026):** Volcengine powers Xiaosai humanoid robot decision-making at Seres smart factory.",
+      "desc": "TikTok/Douyin parent. Massive AI infra investment. Doubao (豆包, Dòubāo) is China's #1 consumer AI app, 600M+ generative AI users in China as of May 2026. Among 10 Chinese firms cleared to buy Nvidia H200 chips (May 2026) but purchase pending Beijing guidance. **Volcengine / Seedance 2.0 / 即梦AI:** premiered *Hell Grind* — world's first full-length AI-generated feature film (95 min) — at the 79th Cannes Film Festival on May 22, 2026. 15-person team, 14 days, <$500K budget. Luc Besson's SEEN studio developing an AI animated feature using Seedance 2.0. **Seres partnership (Jun 2026):** Volcengine powers Xiaosai humanoid robot decision-making at Seres smart factory. **Server CPU (#42, Jun 2026):** Developing first proprietary Arm-based server CPU, H1 2027 debut, with Qualcomm (高通, Gāotōng) providing architecture-level design collaboration. Strategic goal: reduce AI infrastructure cost and dependency on foreign compute. Doubao (豆包, Dòubāo) assistant >600M generative AI users drives the cost imperative.",
       "tags": [
         {
           "l": "600M+ AI users",
@@ -76,9 +80,13 @@
         },
         {
           "l": "Seres robot partnership"
+        },
+        {
+          "l": "Server CPU with Qualcomm",
+          "t": "highlight"
         }
       ],
-      "issue": "#1, #2, #11, #21"
+      "issue": "#1, #2, #11, #21, #42"
     },
     {
       "name": "Alibaba",
@@ -134,24 +142,25 @@
       "cat": "foundation",
       "status": "public",
       "ticker": "HKEX (listed Jan 2026)",
-      "desc": "Tsinghua spinout. State-backed + Alibaba/Tencent. International brand: Z.ai. Listed on HKEX January 2026; stock +300%+ since listing. Joining Hang Seng Tech Index effective June 5, 2026 — est. HK$51–92B in passive inflows via Stock Connect. **GLM-5.2 (June 13, 2026):** MIT licence — no usage restrictions. Architecture: 744B total / 40B active MoE; 1M-token context window. SWE-bench Pro: 62.1 (vs GPT-5.5's 58.6). Output cost ~$4.40/M tokens (vs $30 for GPT-5.5). Anthropic-compatible endpoint → plug-in to Claude Code, Cline, OpenClaw. First Chinese frontier model with permissive licence positioned as genuine offshore enterprise product.",
+      "desc": "Tsinghua spinout. State-backed + Alibaba/Tencent. International brand: Z.ai. Listed on HKEX January 2026; stock +300%+ since listing. Joining Hang Seng Tech Index effective June 5, 2026 — est. HK$51–92B in passive inflows via Stock Connect. **GLM-5.2 (June 13, 2026):** MIT licence — no usage restrictions. Architecture: 744B total / 40B active MoE; 1M-token context window. SWE-bench Pro: 62.1 (vs GPT-5.5's 58.6). Output cost ~$4.40/M tokens (vs $30 for GPT-5.5). Anthropic-compatible endpoint → plug-in to Claude Code, Cline, OpenClaw. First Chinese frontier model with permissive licence positioned as genuine offshore enterprise product. **GLM-5.2 (#43, Jul 2026):** Mixture-of-experts (混合专家, hùnhé zhuānjiā) model, 744B total / 40B active params, 1M-token context, MIT license, no regional restrictions. #1 open-source on Artificial Analysis leaderboard (51 pts). Runs on Huawei Ascend, T-Head, Moore Threads, Cambricon from day one. Company HK market cap crossed HK$1 trillion.",
       "tags": [
         {
-          "l": "GLM-5.2 MIT licence",
+          "l": "HK$1T market cap",
           "t": "highlight"
         },
         {
-          "l": "SWE-bench 62.1 > GPT-5.5",
+          "l": "GLM-5.2 #1 open-source",
           "t": "green"
         },
         {
-          "l": "1M-token context"
+          "l": "Ascend/domestic chip native",
+          "t": "green"
         },
         {
-          "l": "HKEX listed, HSI Tech Index"
+          "l": "MIT license global release"
         }
       ],
-      "issue": "#1, #12, #34"
+      "issue": "#1, #12, #34, #43"
     },
     {
       "name": "Moonshot AI",
@@ -277,7 +286,7 @@
           "l": "HK IPO pending"
         }
       ],
-      "issue": "#1, #21"
+      "issue": "#1, #21, #36, #38"
     },
     {
       "name": "UBTECH",
@@ -286,19 +295,20 @@
       "cat": "robotics",
       "status": "public",
       "ticker": "HKEX: 9880",
-      "desc": "Walker S1 humanoid robot. Deployments at automotive OEMs in Guangdong and Jiangsu. China's first publicly listed pure-play humanoid robot company. Morgan Stanley cited as top-volume humanoid shipper.",
+      "desc": "Walker S1 humanoid robot. Deployments at automotive OEMs in Guangdong and Jiangsu. China's first publicly listed pure-play humanoid robot company. Morgan Stanley cited as top-volume humanoid shipper. **UWORLD U1 (#44, Jul 2026):** First full-size consumer humanoid robot. Consumer brand 'UWORLD'. 50+ body configs (1.60–1.85m), 88 degrees-of-freedom joints, proprietary emotional AI model (情感模型). Founder Zhou Jian (周剑). Structural shift from industrial pilot to consumer market.",
       "tags": [
         {
-          "l": "Walker S1"
+          "l": "UWORLD U1: consumer humanoid",
+          "t": "highlight"
         },
         {
-          "l": "Automotive OEM deployments"
+          "l": "88-DOF, emotional AI model"
         },
         {
           "l": "HKEX: 9880"
         }
       ],
-      "issue": "#1"
+      "issue": "#1, #44"
     },
     {
       "name": "Fourier Intelligence",
@@ -323,7 +333,7 @@
       "py": "Zhìyuán Jīqìrén",
       "cat": "robotics",
       "status": "private",
-      "desc": "A2 humanoid robot. Well-funded. Among top-volume Chinese humanoid shipment leaders per Morgan Stanley. Strong backing from major Chinese tech and industrial investors.",
+      "desc": "A2 humanoid robot. Well-funded. Among top-volume Chinese humanoid shipment leaders per Morgan Stanley. Strong backing from major Chinese tech and industrial investors. **RaaS deployment (#38, Jun 2026):** Announced Robotics-as-a-Service (机器人即服务) model with China Telecom (中国电信) across aviation logistics and warehouse environments. Removes capex barrier for enterprise buyers. Considered most operationally significant signal in humanoid robot commercial deployment to date.",
       "tags": [
         {
           "l": "A2 humanoid"
@@ -331,9 +341,13 @@
         {
           "l": "Top shipment volume",
           "t": "green"
+        },
+        {
+          "l": "RaaS with China Telecom",
+          "t": "highlight"
         }
       ],
-      "issue": "#1"
+      "issue": "#1, #38"
     },
     {
       "name": "ROBOTERA",
@@ -811,7 +825,7 @@
       "py": "Chángxīn Cúnchǔ",
       "cat": "chips",
       "status": "private",
-      "desc": "China's only domestically owned integrated DRAM producer. HQ: Hefei. Founded 2016. Still on US Entity List. Q1 2026: revenue ¥50.8B (+719% YoY), net profit ¥24.76B (+1,688% YoY). Listing committee review May 27, 2026 — seeking ~¥29.5B on STAR Market. Would be largest chip IPO in China's capital markets history. Driven by global DRAM price supercycle + domestic procurement shift. With YMTC, forms China's 'dual memory champion' (双存储冠军) axis.",
+      "desc": "China's only domestically owned integrated DRAM producer. HQ: Hefei. Founded 2016. Still on US Entity List. Q1 2026: revenue ¥50.8B (+719% YoY), net profit ¥24.76B (+1,688% YoY). Listing committee review May 27, 2026 — seeking ~¥29.5B on STAR Market. Would be largest chip IPO in China's capital markets history. Driven by global DRAM price supercycle + domestic procurement shift. With YMTC, forms China's 'dual memory champion' (双存储冠军) axis. **STAR Market IPO (#42, Jun 2026):** Filed for listing. Tencent divesting ~10% stake (regulatory pressure, ~¥33.5B). ByteDance hold structure under scrutiny. IPO creates secondary exposure opportunity for semiconductor equipment makers NAURA (北方华创) and AMEC (中微公司) via CXMT capex cycle.",
       "tags": [
         {
           "l": "+719% YoY revenue",
@@ -822,9 +836,13 @@
         },
         {
           "l": "Only domestic DRAM maker"
+        },
+        {
+          "l": "STAR Market IPO filing",
+          "t": "highlight"
         }
       ],
-      "issue": "#11, #22"
+      "issue": "#11, #22, #42"
     },
     {
       "name": "YMTC",
@@ -1090,17 +1108,20 @@
       "py": "Mó​méntǎ",
       "cat": "auto",
       "status": "private",
-      "desc": "Data-driven AV. Backed by Toyota and GM — cross-Pacific credibility signal. Flywheel data strategy: more miles → better models → more miles.",
+      "desc": "Data-driven AV. Backed by Toyota and GM — cross-Pacific credibility signal. Flywheel data strategy: more miles → better models → more miles. **HK IPO (#44, Jul 2026):** Listed on HKEX as 6880.HK. Cornerstone investors include Mercedes-Benz, BYD's Golden Link, GIC, Fidelity, CPIC, ChinaAMC. 14 cornerstone investors ~50% of offering.",
       "tags": [
         {
-          "l": "Toyota · GM backed",
+          "l": "HK IPO: 6880.HK",
           "t": "highlight"
         },
         {
-          "l": "Data flywheel"
+          "l": "Mercedes-Benz + BYD cornerstone"
+        },
+        {
+          "l": "Data-driven world model AV"
         }
       ],
-      "issue": "#1"
+      "issue": "#1, #44"
     },
     {
       "name": "Huawei Smart Car",
@@ -1353,7 +1374,7 @@
       "py": "Kūnlún Xīng",
       "cat": "robotics",
       "status": "private",
-      "desc": "Beijing. Founded March 2026 by Ren Geng (任耕), former Huawei branch GM and Alibaba Cloud vet. Closed three consecutive funding rounds totaling several billion yuan within 90 days of incorporation — fastest capital ramp of any Chinese robotics startup on record. Focus: embodied AI humanoid robots. Reached unicorn valuation by June 2026.",
+      "desc": "Embodied AI robotics startup, Beijing. Founded March 2026. Co-founders: Ren Geng (任耕, former Huawei branch GM + Alibaba Cloud exec) + Li Auto executive. Raised several billion yuan across 3 rounds in 90 days — fastest embodied AI unicorn ramp on record. Investors: Gaorong Capital (高榕资本), GL Ventures (高瓴创投), CAS Star (中科创星), Sinovation Ventures (创新工场), C&D Capital (建发资本). Product: Kunlun World Model (昆仑世界模型, Kūnlún Shìjiè Móxíng) — dual-system architecture (high-level reasoning + low-level motion controller). Full-stack proprietary hardware. Pre-product as of June 2026.",
       "tags": [
         {
           "l": "Unicorn in 90 days",
@@ -1367,7 +1388,7 @@
           "l": "Ex-Huawei founder"
         }
       ],
-      "issue": "#35"
+      "issue": "#35, #37"
     },
     {
       "name": "Anyverse Dynamics",
@@ -1393,6 +1414,70 @@
         }
       ],
       "issue": "#40"
+    },
+    {
+      "name": "Booster Robotics",
+      "zh": "派宝机器人",
+      "py": "Pàibǎo Jīqìrén",
+      "cat": "robotics",
+      "status": "private",
+      "desc": "Shenzhen. Full-size bipedal humanoid robot developer. Competed in the Humanoid Robot Football Penalties Challenge final at MWC Shanghai 2026 (Jun 24–26), organized by GSMA. Part of China's open-competition-as-testing-infrastructure ecosystem — public tournaments test irregular terrain, adversarial contact, and dynamic obstacle avoidance at scale. Represents the emerging cohort of competition-circuit humanoid developers contributing to China's physical AI iteration speed.",
+      "tags": [
+        {
+          "l": "MWC Shanghai 2026 finalist"
+        },
+        {
+          "l": "Open-competition circuit"
+        },
+        {
+          "l": "Full-size bipedal humanoid"
+        }
+      ],
+      "issue": "#38"
+    },
+    {
+      "name": "NAURA Technology",
+      "zh": "北方华创",
+      "py": "Běifāng Huāchuàng",
+      "cat": "chips",
+      "status": "public",
+      "ticker": "SZSE: 002371",
+      "desc": "Beijing. Leading domestic semiconductor equipment manufacturer. Key product lines: CVD, PVD, etch, thermal processing, and cleaning equipment for wafer fabs. Direct beneficiary of China's semiconductor self-sufficiency drive. Visible order pipeline from CXMT's STAR Market IPO capex cycle (#42). Critical node in China's ambition to reduce dependency on ASML, Applied Materials, and Lam Research.",
+      "tags": [
+        {
+          "l": "CXMT capex cycle beneficiary",
+          "t": "highlight"
+        },
+        {
+          "l": "SZSE: 002371"
+        },
+        {
+          "l": "Domestic fab equipment leader"
+        }
+      ],
+      "issue": "#42"
+    },
+    {
+      "name": "AMEC",
+      "zh": "中微公司",
+      "py": "Zhōngwēi Gōngsī",
+      "cat": "chips",
+      "status": "public",
+      "ticker": "SSE STAR: 688012",
+      "desc": "Shanghai. Advanced semiconductor etch equipment maker. One of the few Chinese companies with etch tools competitive at advanced nodes. Key supplier for domestic wafer fabs including CXMT and SMIC. Benefits from CXMT's STAR Market IPO capex ramp (#42). Co-beneficiary with NAURA of China's equipment localization push under export control pressure.",
+      "tags": [
+        {
+          "l": "CXMT capex beneficiary",
+          "t": "highlight"
+        },
+        {
+          "l": "SSE STAR: 688012"
+        },
+        {
+          "l": "Advanced node etch tools"
+        }
+      ],
+      "issue": "#42"
     }
   ]
 }
