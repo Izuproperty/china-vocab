@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #33 · 2026-07-03</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .page-header { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:20px 32px; display:flex; align-items:center; justify-content:space-between; }
+  .back-link { color:#818cf8; font-size:11px; font-weight:700; letter-spacing:2px; text-decoration:none; text-transform:uppercase; }
+  .back-link:hover { color:#a5b4fc; }
+  .page-title { font-family:'Playfair Display',serif; color:#fff; font-size:20px; }
+  .page-meta { font-size:11px; color:#8a9bb5; margin-top:2px; }
+  .tabs { display:flex; background:#fff; border-bottom:2px solid #e0e0e8; padding:0 32px; }
+  .tab { padding:14px 20px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:#6a7a9a; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.15s; }
+  .tab:hover { color:#3730a3; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signals-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:28px; }
+  .signal-card { background:#fff; border-radius:8px; padding:20px; box-shadow:0 1px 6px rgba(0,0,0,0.07); border-top:3px solid #3730a3; }
+  .signal-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a9bb5; margin-bottom:6px; }
+  .signal-value { font-size:28px; font-weight:700; color:#1a1a2e; font-family:'Playfair Display',serif; }
+  .signal-sub { font-size:11px; color:#8a9bb5; margin-top:4px; }
+  .signal-delta { font-size:12px; font-weight:600; margin-top:4px; }
+  .delta-up { color:#16a34a; }
+  .delta-down { color:#dc2626; }
+  .chart-card { background:#fff; border-radius:8px; padding:24px; box-shadow:0 1px 6px rgba(0,0,0,0.07); margin-bottom:24px; }
+  .chart-title { font-size:13px; font-weight:600; color:#1a1a2e; margin-bottom:4px; }
+  .chart-sub { font-size:11px; color:#8a9bb5; margin-bottom:20px; }
+  .annotations-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .annotation-card { background:#fff; border-radius:8px; padding:16px; box-shadow:0 1px 6px rgba(0,0,0,0.07); }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .annotation-text { font-size:12.5px; color:#2c2c2c; line-height:1.6; }
+  .footer-bar { background:#1a1a2e; padding:14px 32px; text-align:center; font-size:11px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <a href="japan-brief.html" class="back-link">← JAPAN BRIEF</a>
+  <div>
+    <div class="page-title">Japan Brief · Data Signals</div>
+    <div class="page-meta">Issue #33 · July 3, 2026</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showViz('s1', 0)">Physical-AI Dataset</div>
+  <div class="tab" onclick="showViz('s2', 1)">Chip Selloff</div>
+  <div class="tab" onclick="showViz('s3', 2)">JGB Auction</div>
+</div>
+
+<!-- PANEL 1: Physical-AI Dataset -->
+<div class="viz-panel active" id="s1">
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">METI / NEDO Support</div>
+      <div class="signal-value">¥2B</div>
+      <div class="signal-sub">Up to, over one year</div>
+      <div class="signal-delta delta-up">Selected July 2, 2026</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Year-One Data Target</div>
+      <div class="signal-value">5,000 hrs</div>
+      <div class="signal-sub">Video + tactile + motion</div>
+      <div class="signal-delta">VTLA foundation dataset</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Rival Makers Cooperating</div>
+      <div class="signal-value">3</div>
+      <div class="signal-sub">Kawasaki · Fanuc · Yaskawa</div>
+      <div class="signal-delta delta-up">+ Osaka U · FingerVision</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">VTLA Dataset — Four Integrated Modalities</div>
+    <div class="chart-sub">Vision · Tactile · Language · Action · combined into one physical-AI training substrate</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <rect x="30" y="60" width="140" height="90" rx="6" fill="#e0e7ff"/>
+      <text x="100" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#3730a3">Vision</text>
+      <text x="100" y="120" text-anchor="middle" font-size="10" fill="#6a7a9a">映像 · eizō</text>
+      <rect x="185" y="60" width="140" height="90" rx="6" fill="#e0f7fa"/>
+      <text x="255" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#0e7490">Tactile</text>
+      <text x="255" y="120" text-anchor="middle" font-size="10" fill="#6a7a9a">触覚 · shokkaku</text>
+      <rect x="340" y="60" width="140" height="90" rx="6" fill="#fce7f3"/>
+      <text x="410" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#be185d">Language</text>
+      <text x="410" y="120" text-anchor="middle" font-size="10" fill="#6a7a9a">言語 · gengo</text>
+      <rect x="495" y="60" width="140" height="90" rx="6" fill="#fef3e2"/>
+      <text x="565" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#b45309">Action</text>
+      <text x="565" y="120" text-anchor="middle" font-size="10" fill="#6a7a9a">動作 · dōsa</text>
+      <text x="335" y="35" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">V · T · L · A</text>
+      <rect x="30" y="175" width="605" height="30" rx="4" fill="#1a1a2e"/>
+      <text x="332" y="195" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">Standardized across 3 vendors · Automotive + robotics + food sites · Aug 2026 to Jul 2027</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">The Bottleneck</div>
+      <div class="annotation-text">Embodied AI's constraint is not compute but data: force and contact signals are rarely captured and are fragmented across incompatible machines. A shared, tactile-inclusive dataset targets exactly that gap.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Why Cooperation Is Notable</div>
+      <div class="annotation-text">Kawasaki, Fanuc and Yaskawa compete directly in arms and controllers and guard motion data closely. Standardizing specs across three rivals is the unusual part — and the part most likely to fray under commercial pressure.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Where It Sits</div>
+      <div class="annotation-text">One layer below the Noetra national model: Noetra targets the model, this targets the training substrate. Leverage may accrue to whoever controls the dataset and tooling, not any single robot maker.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Chip Selloff -->
+<div class="viz-panel" id="s2">
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">Nikkei 225 (Jul 2)</div>
+      <div class="signal-value">&lt;70,000</div>
+      <div class="signal-sub">Slipped below the round level</div>
+      <div class="signal-delta delta-down">Chip names led lower</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Kioxia From June Peak</div>
+      <div class="signal-value">-30%+</div>
+      <div class="signal-sub">~¥110,000 to ~¥75,000</div>
+      <div class="signal-delta delta-down">Main index drag</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Prime Market Breadth</div>
+      <div class="signal-value">1,157 / 375</div>
+      <div class="signal-sub">Advancers / decliners</div>
+      <div class="signal-delta delta-up">TOPIX held on rotation</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">July 2 Session — Selling Concentrated in Semiconductor Names</div>
+    <div class="chart-sub">Illustrative single-name moves vs. a positive-breadth tape · rotation, not broad risk-off</div>
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="150" y1="20" x2="150" y2="180" stroke="#dde0e8" stroke-width="1.5"/>
+      <line x1="150" y1="100" x2="640" y2="100" stroke="#e0e0e8" stroke-width="1"/>
+      <text x="645" y="103" font-size="9" fill="#8a9bb5">0%</text>
+      <!-- Taiyo Yuden -10% -->
+      <text x="140" y="50" text-anchor="end" font-size="11" fill="#1a1a2e" font-weight="600">Taiyo Yuden</text>
+      <rect x="150" y="100" width="150" height="24" fill="#dc2626" rx="2"/>
+      <text x="308" y="117" font-size="11" fill="#dc2626" font-weight="700">~-10% (off record)</text>
+      <!-- Kioxia (from peak) -->
+      <text x="140" y="90" text-anchor="end" font-size="11" fill="#1a1a2e" font-weight="600">Kioxia*</text>
+      <rect x="150" y="140" width="230" height="24" fill="#dc2626" rx="2"/>
+      <text x="388" y="157" font-size="11" fill="#dc2626" font-weight="700">-30%+ from June peak</text>
+      <!-- Tokyo Electron / Advantest -->
+      <text x="140" y="70" text-anchor="end" font-size="11" fill="#1a1a2e" font-weight="600">TEL · Advantest</text>
+      <rect x="150" y="60" width="95" height="24" fill="#f87171" rx="2"/>
+      <text x="253" y="77" font-size="11" fill="#dc2626" font-weight="700">heavy selling</text>
+      <text x="150" y="205" font-size="10" fill="#8a9bb5">*Kioxia figure is cumulative from its June high, not a single-session move.</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">Rotation, Not Panic</div>
+      <div class="annotation-text">TOPIX held firm as capital moved into banks, software, airlines and trading houses. Positive breadth (1,157 up vs 375 down) on ~¥9.1T turnover is a rotation out of crowded names, not broad de-risking.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Rate Backdrop</div>
+      <div class="annotation-text">A higher risk-free rate makes leveraged growth valuations harder to defend. The chip de-rating and the 2.7% JGB coupon (Tab 3) are two faces of the same repricing.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">What Would Confirm Downside</div>
+      <div class="annotation-text">A one-day reset from record levels does not invalidate the AI-capex story. The tell to watch is the order picture — especially memory pricing signals from Kioxia into earnings.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: JGB Auction -->
+<div class="viz-panel" id="s3">
+  <div class="signals-row">
+    <div class="signal-card">
+      <div class="signal-label">New 10Y JGB Coupon</div>
+      <div class="signal-value">2.7%</div>
+      <div class="signal-sub">July issue, set Jul 2</div>
+      <div class="signal-delta delta-up">29-year, 1-month high</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">Auction Tail</div>
+      <div class="signal-value">0.20</div>
+      <div class="signal-sub">Was 0.05 in June</div>
+      <div class="signal-delta delta-down">Weaker demand</div>
+    </div>
+    <div class="signal-card">
+      <div class="signal-label">USD/JPY Backdrop</div>
+      <div class="signal-value">~162</div>
+      <div class="signal-sub">Four-decade yen low</div>
+      <div class="signal-delta">Next BOJ: July 31</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">10-Year JGB New-Issue Coupon — Recent Monthly Path</div>
+    <div class="chart-sub">Coupon set at each monthly auction (%) · July jumps to a 29-year high</div>
+    <svg viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="60" y1="20" x2="60" y2="170" stroke="#dde0e8" stroke-width="1.5"/>
+      <line x1="60" y1="170" x2="640" y2="170" stroke="#dde0e8" stroke-width="1.5"/>
+      <line x1="60" y1="130" x2="640" y2="130" stroke="#f0f0f5" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="90" x2="640" y2="90" stroke="#f0f0f5" stroke-width="1" stroke-dasharray="4,3"/>
+      <line x1="60" y1="50" x2="640" y2="50" stroke="#f0f0f5" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="50" y="173" text-anchor="end" font-size="10" fill="#8a9bb5">2.0</text>
+      <text x="50" y="133" text-anchor="end" font-size="10" fill="#8a9bb5">2.2</text>
+      <text x="50" y="93" text-anchor="end" font-size="10" fill="#8a9bb5">2.4</text>
+      <text x="50" y="53" text-anchor="end" font-size="10" fill="#8a9bb5">2.6</text>
+      <!-- Map coupon c% -> y = 170 - ((c-2.0)/0.7)*150 ; Apr 2.25->170-53.6=116; May 2.35->170-75=95; Jun 2.4->170-85.7=84; Jul 2.7->170-150=20 -->
+      <polyline points="140,116 300,95 440,84 590,20" fill="none" stroke="#3730a3" stroke-width="2.5" stroke-linejoin="round"/>
+      <circle cx="140" cy="116" r="5" fill="#3730a3"/>
+      <circle cx="300" cy="95" r="5" fill="#3730a3"/>
+      <circle cx="440" cy="84" r="5" fill="#3730a3"/>
+      <circle cx="590" cy="20" r="6" fill="#3730a3" stroke="#fff" stroke-width="2"/>
+      <text x="140" y="135" text-anchor="middle" font-size="10" fill="#8a9bb5">Apr 2.25</text>
+      <text x="300" y="112" text-anchor="middle" font-size="10" fill="#8a9bb5">May 2.35</text>
+      <text x="440" y="101" text-anchor="middle" font-size="10" fill="#8a9bb5">Jun 2.40</text>
+      <text x="590" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 2.70</text>
+    </svg>
+  </div>
+
+  <div class="annotations-row">
+    <div class="annotation-card">
+      <div class="annotation-label">The Soft Tail</div>
+      <div class="annotation-text">The tail widened to 0.2 from 0.05 — thinner demand at these levels. If subsequent long-end auctions stay soft, the market is signaling that supply and a weak yen, not just BOJ policy, set the clearing yield.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">Repricing Everything</div>
+      <div class="annotation-text">A 2.7% risk-free 10-year lifts bank net interest margins and raises the discount rate on growth names — the same valuation pressure visible in the Tab 2 chip selloff.</div>
+    </div>
+    <div class="annotation-card">
+      <div class="annotation-label">The Counter-Case</div>
+      <div class="annotation-text">Domestic life insurers and banks may step back in as absolute yields reach a generational high. Governor Ueda reiterated readiness to hike further; the next BOJ decision is July 31.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  Japan Brief Issue #33 · July 3, 2026 · Not investment advice
+</div>
+
+<script>
+  function showViz(id, tabIdx) {
+    document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.tab')[tabIdx].classList.add('active');
+  }
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
