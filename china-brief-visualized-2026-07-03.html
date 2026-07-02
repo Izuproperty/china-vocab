@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #45 · July 3, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #45 · Visualized</div>
+    <div class="page-meta">July 3, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">Nvidia ASPIRE</div>
+  <div class="tab" onclick="showViz('s2',this)">Drone Airworthiness</div>
+  <div class="tab" onclick="showViz('s3',this)">Outbound Investment Rules</div>
+</div>
+
+<!-- ============================================================ PANEL 1: NVIDIA ASPIRE -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">20% → 92%</div>
+      <div class="signal-label">Handover success rate</div>
+      <div class="signal-sub">Dual-arm task, Nvidia benchmark</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">Jul 1</div>
+      <div class="signal-label">Open-sourced</div>
+      <div class="signal-sub">GEAR Lab, free to use</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">12+</div>
+      <div class="signal-label">China robotics roles</div>
+      <div class="signal-sub">Beijing · Shanghai · Shenzhen</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Skill-Library Loop — Performance Compounds as Skills Accumulate</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- Left: loop schematic -->
+      <text x="170" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#9a8a7a">ASPIRE LOOP</text>
+      <rect x="95" y="45" width="150" height="34" rx="6" fill="#e8f0fe"/>
+      <text x="170" y="66" text-anchor="middle" font-size="11" fill="#1a56db">Execute task (code as policy)</text>
+      <rect x="95" y="105" width="150" height="34" rx="6" fill="#fef3e2"/>
+      <text x="170" y="126" text-anchor="middle" font-size="11" fill="#b45309">Record trajectory, diagnose failure</text>
+      <rect x="95" y="165" width="150" height="34" rx="6" fill="#fff5f5"/>
+      <text x="170" y="186" text-anchor="middle" font-size="11" fill="#c0392b">Repair own program</text>
+      <rect x="95" y="225" width="150" height="34" rx="6" fill="#f0fff4"/>
+      <text x="170" y="246" text-anchor="middle" font-size="11" fill="#16a34a">Distill into skill library</text>
+      <line x1="170" y1="79" x2="170" y2="105" stroke="#9a8a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="170" y1="139" x2="170" y2="165" stroke="#9a8a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <line x1="170" y1="199" x2="170" y2="225" stroke="#9a8a7a" stroke-width="1.5" marker-end="url(#arr)"/>
+      <path d="M 245 242 C 300 242 300 62 245 62" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrg)"/>
+      <text x="302" y="152" font-size="10" fill="#16a34a" transform="rotate(90 302 152)" text-anchor="middle">reuse skills</text>
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#9a8a7a" stroke-width="1.2"/></marker>
+        <marker id="arrg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#16a34a" stroke-width="1.2"/></marker>
+      </defs>
+      <!-- Right: success rate bars -->
+      <text x="510" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#9a8a7a">DUAL-ARM HANDOVER SUCCESS</text>
+      <line x1="380" y1="250" x2="660" y2="250" stroke="#e0d8d0"/>
+      <!-- 20% baseline: height 190*0.2=38 -->
+      <rect x="420" y="212" width="80" height="38" fill="#8a9bb5" rx="3"/>
+      <text x="460" y="204" text-anchor="middle" font-size="14" font-weight="700" fill="#5a5a5a">20%</text>
+      <text x="460" y="266" text-anchor="middle" font-size="10" fill="#9a8a7a">Without library</text>
+      <!-- 92%: height 190*0.92=175 -->
+      <rect x="545" y="75" width="80" height="175" fill="#c0392b" rx="3"/>
+      <text x="585" y="67" text-anchor="middle" font-size="14" font-weight="700" fill="#c0392b">92%</text>
+      <text x="585" y="266" text-anchor="middle" font-size="10" fill="#9a8a7a">With skill library</text>
+      <text x="520" y="290" text-anchor="middle" font-size="9" fill="#b0a898">Source: Nvidia GEAR Lab benchmark, not independently verified</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      <div>Training paradigm shift: output moves from model weights to a growing <span class="annotation-card-zh">技能库</span><span class="annotation-card-en">jìnéng kù · skill library</span>. Robots stop re-learning from zero. Free and open-source lowers the software barrier for China's hardware-strong humanoid makers.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>The 92% figure is Nvidia's own benchmark on constrained tasks — not independently reproduced, and far from open-ended factory work. Whether skill libraries generalize to MIIT's real-scene deployment targets for <span class="annotation-card-zh">具身智能</span><span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span> is untested.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>If skill refinement displaces in-house model training, the differentiator among Chinese humanoid names (Unitree, UBTECH, Tier 2) shifts to data access and deployment scale — while ecosystem dependence on Nvidia deepens just as Beijing funds domestic alternatives.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 2: DRONE AIRWORTHINESS -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">Jul 1</div>
+      <div class="signal-label">Regime in force</div>
+      <div class="signal-sub">Revised Civil Aviation Law</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">10 yrs</div>
+      <div class="signal-label">Production records</div>
+      <div class="signal-sub">Plus unique ID per unit</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">¥2T+</div>
+      <div class="signal-label">Market by 2030</div>
+      <div class="signal-sub">From ~¥1.5T in 2025</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Regulatory Timeline — From Interim Rules to Statutory Regime</div>
+    <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="240" fill="#fafaf8" rx="4"/>
+      <line x1="60" y1="120" x2="650" y2="120" stroke="#9a8a7a" stroke-width="2"/>
+      <!-- 2024: real-name registration -->
+      <circle cx="120" cy="120" r="7" fill="#8a9bb5"/>
+      <text x="120" y="95" text-anchor="middle" font-size="11" font-weight="700" fill="#5a5a5a">2024</text>
+      <text x="120" y="145" text-anchor="middle" font-size="10" fill="#5a5a5a">Real-name registration</text>
+      <text x="120" y="159" text-anchor="middle" font-size="10" fill="#9a8a7a">(interim rules)</text>
+      <!-- Dec 2025: law amendment passed -->
+      <circle cx="300" cy="120" r="7" fill="#d97706"/>
+      <text x="300" y="95" text-anchor="middle" font-size="11" font-weight="700" fill="#5a5a5a">Dec 2025</text>
+      <text x="300" y="145" text-anchor="middle" font-size="10" fill="#5a5a5a">Civil Aviation Law amendment</text>
+      <text x="300" y="159" text-anchor="middle" font-size="10" fill="#9a8a7a">+ CAAC mandatory standards</text>
+      <!-- Jul 1 2026: in force -->
+      <circle cx="480" cy="120" r="9" fill="#c0392b"/>
+      <text x="480" y="92" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">Jul 1, 2026</text>
+      <text x="480" y="145" text-anchor="middle" font-size="10" fill="#5a5a5a">Airworthiness certificates</text>
+      <text x="480" y="159" text-anchor="middle" font-size="10" fill="#9a8a7a">mandatory, penalties live</text>
+      <!-- 2030: market target -->
+      <circle cx="620" cy="120" r="7" fill="#16a34a"/>
+      <text x="620" y="95" text-anchor="middle" font-size="11" font-weight="700" fill="#5a5a5a">2030</text>
+      <text x="620" y="145" text-anchor="middle" font-size="10" fill="#5a5a5a">¥2T+ market</text>
+      <text x="620" y="159" text-anchor="middle" font-size="10" fill="#9a8a7a">projection</text>
+      <text x="350" y="210" text-anchor="middle" font-size="10" fill="#b0a898">Scope: manufacturers, importers, maintenance providers and operators of medium/large civil drones</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      <div>First binding statutory regime for civil drones: CAAC <span class="annotation-card-zh">适航证</span><span class="annotation-card-en">shìháng zhèng · airworthiness certificate</span> now mandatory, with fines and criminal penalties replacing interim administrative rules. DJI and EHang are directly in scope.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>Enforcement intensity is unknown. If CAAC certification throughput lags, the regime becomes a bottleneck for the <span class="annotation-card-zh">低空经济</span><span class="annotation-card-en">dīkōng jīngjì · low-altitude economy</span> rather than an enabler. Watch the certification queue over the next two quarters.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>Certification regimes historically favor scaled incumbents with balance sheets and regulator relationships — a consolidation setup around DJI, EHang and SOE-adjacent operators, and a potential moat for listed names if throughput holds.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 3: OUTBOUND INVESTMENT REGULATION -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">No. 837</div>
+      <div class="signal-label">State Council decree</div>
+      <div class="signal-sub">First dedicated ODI regulation</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">1%</div>
+      <div class="signal-label">Max fine</div>
+      <div class="signal-sub">Of investment amount + divestiture</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">3 yrs</div>
+      <div class="signal-label">Max investment ban</div>
+      <div class="signal-sub">Plus personal liability</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Two-Way Capital Screen — How Decree 837 Pairs With Inbound Controls</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- Center: China box -->
+      <rect x="280" y="105" width="140" height="90" rx="8" fill="#1a1a2e"/>
+      <text x="350" y="143" text-anchor="middle" font-size="13" font-weight="700" fill="#e8d5b0">CHINA</text>
+      <text x="350" y="162" text-anchor="middle" font-size="10" fill="#8a9bb5">NDRC + MOFCOM</text>
+      <text x="350" y="177" text-anchor="middle" font-size="10" fill="#8a9bb5">security review</text>
+      <!-- Left: outbound arrow -->
+      <text x="140" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">OUTBOUND (Decree 837, Jul 1)</text>
+      <line x1="280" y1="125" x2="90" y2="125" stroke="#c0392b" stroke-width="2.5" marker-end="url(#arrR)"/>
+      <text x="180" y="115" text-anchor="middle" font-size="9.5" fill="#5a5a5a">Capital, tech, data leaving</text>
+      <text x="140" y="150" text-anchor="middle" font-size="9.5" fill="#9a8a7a">· VIE / SPV structures in scope</text>
+      <text x="140" y="166" text-anchor="middle" font-size="9.5" fill="#9a8a7a">· Art. 13: no controlled tech export</text>
+      <text x="140" y="182" text-anchor="middle" font-size="9.5" fill="#9a8a7a">· Art. 15: security review</text>
+      <text x="140" y="198" text-anchor="middle" font-size="9.5" fill="#9a8a7a">· Art. 23-25: countermeasures</text>
+      <!-- Right: inbound arrow -->
+      <text x="560" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">INBOUND (2026 precedents)</text>
+      <line x1="620" y1="125" x2="420" y2="125" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrA)"/>
+      <text x="520" y="115" text-anchor="middle" font-size="9.5" fill="#5a5a5a">Foreign capital entering</text>
+      <text x="560" y="150" text-anchor="middle" font-size="9.5" fill="#9a8a7a">· Manus acquisition blocked (Apr)</text>
+      <text x="560" y="166" text-anchor="middle" font-size="9.5" fill="#9a8a7a">· US LP clearance guidance</text>
+      <text x="560" y="182" text-anchor="middle" font-size="9.5" fill="#9a8a7a">· AI startups warned on US capital</text>
+      <defs>
+        <marker id="arrR" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#c0392b" stroke-width="1.4"/></marker>
+        <marker id="arrA" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#d97706" stroke-width="1.4"/></marker>
+      </defs>
+      <text x="350" y="240" text-anchor="middle" font-size="10.5" fill="#5a5a5a" font-weight="600">Direction of travel: capital crossing the border in either direction now passes a security lens</text>
+      <text x="350" y="262" text-anchor="middle" font-size="9.5" fill="#b0a898">Enforcement scope depends on implementing rules, expected over coming quarters</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      <div>First State Council regulation dedicated to <span class="annotation-card-zh">境外投资</span><span class="annotation-card-en">jìngwài tóuzī · outbound investment</span>: lifecycle supervision, <span class="annotation-card-zh">安全审查</span><span class="annotation-card-en">ānquán shěnchá · security review</span>, and forced divestiture power replace one-time approval.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>This is framework legislation — implementing rules will decide how hard it bites. Whether it codifies existing practice or genuinely tightens depends on the first enforcement cases, likely in sensitive-technology deals.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>Counterparty compliance is now a deal risk: a Chinese partner's violation can unwind a transaction after close. Diligence standards for cross-border structures involving Chinese capital — including VIE and fund channels — need updating now, ahead of the implementing rules.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #45 · July 3, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
