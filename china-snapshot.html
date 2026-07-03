@@ -206,6 +206,12 @@ const DOMAINS = {
   'Robotphoenix':                   'robotphoenix.com',
   'Booster Robotics':               'boosterobotics.com',
   'AsiaInfo Security':              'asiainfo-sec.com',
+  // Issue #45 additions
+  'Guangdong Tianji Intelligent Systems': 'tianjizn.com',
+  'Matrix Robotics':                      'matrixrobotics.ai',
+  'Kaihong Digital Industry':             'kaihong.com',
+  'DJI':                                  'dji.com',
+  'EHang':                                'ehang.com',
 };
 
 // Logo overrides — GitHub org avatars + Wikimedia Commons PNG thumbnails
@@ -267,6 +273,8 @@ const LOGO_OVERRIDES = {
   'Zhongji Innolight':       'https://commons.wikimedia.org/wiki/Special:FilePath/Zhongji_Innolight.png?width=128',
   'Anyverse Dynamics':       'https://github.com/anyverse.png?size=128',
   'Booster Robotics':        'https://github.com/BoosterRobotics.png?size=128',
+  // Issue #45 — drones / low-altitude economy
+  'DJI':                     'https://github.com/dji-sdk.png?size=128',
 };
 
 // Store all entities for modal lookup
@@ -386,6 +394,9 @@ fetch('china-ai-landscape.json?v=' + Date.now())
     const meta = data.meta || {};
     const all = (data.entities || []).filter(e => e.cat !== 'gov');
 
+    // Normalise legacy cat values that don't match CATS keys
+    all.forEach(e => { if (e.cat === 'autonomous') e.cat = 'auto'; });
+
     // Build lookup map
     all.forEach(e => entityMap[e.name] = e);
 
@@ -425,6 +436,6 @@ fetch('china-ai-landscape.json?v=' + Date.now())
       '<div class="loading">Could not load landscape data.</div>';
   });
 </script>
-<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+<script>(function(){var H='cdb59ac48dc26ea4f7d9b448777a6032754d77da15bf580ac3f55788b3ea577d',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
 </body>
 </html>
