@@ -275,6 +275,10 @@ const LOGO_OVERRIDES = {
   'Booster Robotics':        'https://github.com/BoosterRobotics.png?size=128',
   // Issue #45 — drones / low-altitude economy
   'DJI':                     'https://github.com/dji-sdk.png?size=128',
+  'EHang':                   'https://commons.wikimedia.org/wiki/Special:FilePath/EHang_logo.svg?width=128',
+  // Chips — Wikimedia (no GitHub org)
+  'CXMT':                    'https://en.wikipedia.org/wiki/Special:FilePath/CXMT.svg?width=128',
+  'AMEC':                    'https://commons.wikimedia.org/wiki/Special:FilePath/AMEC-Logo.svg?width=128',
 };
 
 // Store all entities for modal lookup
@@ -286,14 +290,17 @@ function logoInitials(name, zh) {
 }
 
 function logoFallback(img) {
+  // Monogram is next sibling of <picture> (or <img> if no picture wrapper)
+  const wrapper = img.closest('picture') || img;
+  const mono = wrapper.nextElementSibling;
   const fb = img.dataset.fb;
   if (fb) {
     img.removeAttribute('data-fb');
-    img.onerror = function() { img.style.display='none'; img.nextElementSibling.style.display='flex'; };
+    img.onerror = function() { wrapper.style.display='none'; if (mono) mono.style.display='flex'; };
     img.src = fb;
   } else {
-    img.style.display = 'none';
-    img.nextElementSibling.style.display = 'flex';
+    wrapper.style.display = 'none';
+    if (mono) mono.style.display = 'flex';
   }
 }
 
@@ -310,12 +317,15 @@ function makeLogoHtml(entity, size = 56) {
   const localUrl  = `logos/${s}.png`;          // self-hosted — primary
   const override  = LOGO_OVERRIDES[entity.name]; // GitHub/Wikimedia — fallback
 
-  // Load order: self-hosted logo → LOGO_OVERRIDES URL → monogram
-  return `<img class="logo-img" style="width:${size}px;height:${size}px;"
-    src="${localUrl}"
-    data-fb="${override || ''}"
-    onerror="logoFallback(this)"
-    alt="${entity.name}">
+  // Load order: logos/{s}.svg → logos/{s}.png → LOGO_OVERRIDES URL → monogram
+  return `<picture>
+    <source srcset="logos/${s}.svg" type="image/svg+xml">
+    <img class="logo-img" style="width:${size}px;height:${size}px;"
+      src="${localUrl}"
+      data-fb="${override || ''}"
+      onerror="logoFallback(this)"
+      alt="${entity.name}">
+  </picture>
   ${monoHtml.replace('display:flex', 'display:none')}`;
 }
 
@@ -435,6 +445,6 @@ fetch('china-ai-landscape.json?v=' + Date.now())
       '<div class="loading">Could not load landscape data.</div>';
   });
 </script>
-<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})()</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
 </body>
 </html>
