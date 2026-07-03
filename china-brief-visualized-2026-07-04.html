@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #46 · July 4, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #46 · Visualized</div>
+    <div class="page-meta">July 4, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">Unitree IPO</div>
+  <div class="tab" onclick="showViz('s2',this)">ByteDance Brazil</div>
+  <div class="tab" onclick="showViz('s3',this)">Services PMI</div>
+</div>
+
+<!-- ============================================================ PANEL 1: UNITREE IPO -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">¥4.2B</div>
+      <div class="signal-label">IPO raise</div>
+      <div class="signal-sub">≈$618M · ~¥42B valuation</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">13.7×</div>
+      <div class="signal-label">Revenue growth</div>
+      <div class="signal-sub">¥123M (2022) → ¥1.69B (2025)</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">−47.7%</div>
+      <div class="signal-label">Q1 '26 net profit YoY</div>
+      <div class="signal-sub">Revenue +68.5% · spend ramping</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Revenue Trajectory and the Road to Registration</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- Left: revenue bars 2022-2025 (max 1.69B → 170px) -->
+      <text x="185" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#9a8a7a">REVENUE, ¥M</text>
+      <line x1="60" y1="230" x2="310" y2="230" stroke="#e0d8d0"/>
+      <rect x="75" y="217.7" width="42" height="12.3" fill="#8a9bb5" rx="2"/>
+      <text x="96" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#5a5a5a">123</text>
+      <text x="96" y="246" text-anchor="middle" font-size="10" fill="#9a8a7a">2022</text>
+      <rect x="135" y="214.1" width="42" height="15.9" fill="#8a9bb5" rx="2"/>
+      <text x="156" y="208" text-anchor="middle" font-size="10" font-weight="600" fill="#5a5a5a">159</text>
+      <text x="156" y="246" text-anchor="middle" font-size="10" fill="#9a8a7a">2023</text>
+      <rect x="195" y="190.8" width="42" height="39.2" fill="#d97706" rx="2"/>
+      <text x="216" y="184" text-anchor="middle" font-size="10" font-weight="600" fill="#b45309">392</text>
+      <text x="216" y="246" text-anchor="middle" font-size="10" fill="#9a8a7a">2024</text>
+      <rect x="255" y="61" width="42" height="169" fill="#c0392b" rx="2"/>
+      <text x="276" y="54" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">1,690</text>
+      <text x="276" y="246" text-anchor="middle" font-size="10" fill="#9a8a7a">2025</text>
+      <text x="216" y="272" text-anchor="middle" font-size="9.5" fill="#b0a898">Profitable since 2024 · ¥278M net profit in 2025</text>
+      <!-- Right: IPO timeline -->
+      <text x="520" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#9a8a7a">IPO MILESTONES</text>
+      <line x1="390" y1="55" x2="390" y2="245" stroke="#9a8a7a" stroke-width="2"/>
+      <circle cx="390" cy="65" r="6" fill="#8a9bb5"/>
+      <text x="405" y="62" font-size="10.5" font-weight="600" fill="#5a5a5a">Jun 2025 · Private round, ¥12.7B post-money</text>
+      <text x="405" y="76" font-size="9.5" fill="#9a8a7a">Valuation basis one year ago</text>
+      <circle cx="390" cy="105" r="6" fill="#8a9bb5"/>
+      <text x="405" y="102" font-size="10.5" font-weight="600" fill="#5a5a5a">Mar 20, 2026 · SSE accepts STAR filing</text>
+      <circle cx="390" cy="145" r="6" fill="#d97706"/>
+      <text x="405" y="142" font-size="10.5" font-weight="600" fill="#5a5a5a">Jun 1, 2026 · Listing committee clears</text>
+      <circle cx="390" cy="185" r="8" fill="#c0392b"/>
+      <text x="405" y="182" font-size="10.5" font-weight="700" fill="#c0392b">Jul 3, 2026 · CSRC approves registration</text>
+      <text x="405" y="196" font-size="9.5" fill="#9a8a7a">Final regulatory gate cleared</text>
+      <circle cx="390" cy="230" r="6" fill="#16a34a"/>
+      <text x="405" y="227" font-size="10.5" font-weight="600" fill="#5a5a5a">Late July · Possible debut (~¥42B val.)</text>
+      <text x="405" y="241" font-size="9.5" fill="#9a8a7a">≈3× the June 2025 private mark</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      <div>First A-share pricing benchmark for <span class="annotation-card-zh">具身智能</span><span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span>: CSRC registration clears the way for a <span class="annotation-card-zh">科创板</span><span class="annotation-card-en">kēchuàngbǎn · STAR Market</span> debut as early as late July at ~¥42B.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>Whether the tripled valuation survives contact with Q1 economics — revenue +68.5% but profit −47.7% — is untested. Pricing and subscription levels are not yet set; Pentagon CMC listing may constrain some foreign capital via Stock Connect later.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>Unitree becomes the reference mark for the whole listing queue: UBTECH (HK), AgiBot's expected HK filing, and A-share hopefuls <span class="annotation-card-zh">云深处</span><span class="annotation-card-en">Yúnshēnchù · Deep Robotics</span> and Leju. Debut performance will reprice the private Tier 2 immediately.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 2: BYTEDANCE BRAZIL -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">$39B</div>
+      <div class="signal-label">Estimated project</div>
+      <div class="signal-sub">≈R$200B · up to 20 data halls</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">200MW → 1GW</div>
+      <div class="signal-label">Capacity ramp</div>
+      <div class="signal-sub">First hall late 2027</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">$2B</div>
+      <div class="signal-label">Wind power PPA</div>
+      <div class="signal-sub">20 years · Casa dos Ventos</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Why Pecém — Site Logic and the Regulatory Lens It Passes Through</div>
+    <svg viewBox="0 0 700 310" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="310" fill="#fafaf8" rx="4"/>
+      <!-- Center: site box -->
+      <rect x="270" y="115" width="160" height="80" rx="8" fill="#1a1a2e"/>
+      <text x="350" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#e8d5b0">PECÉM, CEARÁ</text>
+      <text x="350" y="166" text-anchor="middle" font-size="10" fill="#8a9bb5">Largest ByteDance DC</text>
+      <text x="350" y="180" text-anchor="middle" font-size="10" fill="#8a9bb5">outside China</text>
+      <!-- Inputs (left) -->
+      <text x="125" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">SITE INPUTS</text>
+      <rect x="40" y="65" width="170" height="34" rx="5" fill="#f0fff4"/>
+      <text x="125" y="86" text-anchor="middle" font-size="10.5" fill="#16a34a">Wind PPA · 630MW Ibiapaba +</text>
+      <rect x="40" y="107" width="170" height="34" rx="5" fill="#f0fff4"/>
+      <text x="125" y="128" text-anchor="middle" font-size="10.5" fill="#16a34a">Fortaleza subsea cable landing</text>
+      <rect x="40" y="149" width="170" height="34" rx="5" fill="#f0fff4"/>
+      <text x="125" y="170" text-anchor="middle" font-size="10.5" fill="#16a34a">Free-trade zone: gear tariffs cut</text>
+      <line x1="210" y1="82" x2="270" y2="125" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrG2)"/>
+      <line x1="210" y1="124" x2="270" y2="150" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrG2)"/>
+      <line x1="210" y1="166" x2="270" y2="175" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arrG2)"/>
+      <!-- Serves (right) -->
+      <text x="575" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#1a56db">SERVES</text>
+      <rect x="490" y="65" width="170" height="34" rx="5" fill="#e8f0fe"/>
+      <text x="575" y="86" text-anchor="middle" font-size="10.5" fill="#1a56db">TikTok ops outside BR / US / EU / CN</text>
+      <line x1="430" y1="140" x2="490" y2="90" stroke="#1a56db" stroke-width="1.5" marker-end="url(#arrB2)"/>
+      <!-- Open question (right lower) -->
+      <rect x="490" y="130" width="170" height="48" rx="5" fill="#fffbf0"/>
+      <text x="575" y="149" text-anchor="middle" font-size="10.5" font-weight="600" fill="#d97706">Open question:</text>
+      <text x="575" y="164" text-anchor="middle" font-size="10" fill="#b45309">which chips fill the halls?</text>
+      <line x1="430" y1="165" x2="490" y2="155" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrA2)"/>
+      <!-- Regulatory lens (bottom) -->
+      <rect x="200" y="235" width="300" height="42" rx="6" fill="#fff5f5" stroke="#c0392b" stroke-width="1.2"/>
+      <text x="350" y="252" text-anchor="middle" font-size="10.5" font-weight="700" fill="#c0392b">Decree No. 837 · outbound security review</text>
+      <text x="350" y="267" text-anchor="middle" font-size="9.5" fill="#9a8a7a">In force Jul 1 — mega-ODI in strategic tech now passes this lens</text>
+      <line x1="350" y1="195" x2="350" y2="235" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrR2)"/>
+      <defs>
+        <marker id="arrG2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#16a34a" stroke-width="1.2"/></marker>
+        <marker id="arrB2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#1a56db" stroke-width="1.2"/></marker>
+        <marker id="arrA2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#d97706" stroke-width="1.2"/></marker>
+        <marker id="arrR2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#c0392b" stroke-width="1.2"/></marker>
+      </defs>
+      <text x="350" y="298" text-anchor="middle" font-size="9.5" fill="#b0a898">$39B is a phased long-horizon estimate, not committed capex · Reported Jul 1, Bloomberg</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      <div>Chinese AI <span class="annotation-card-zh">出海</span><span class="annotation-card-en">chūhǎi · going overseas</span> at unprecedented scale: a $39B, 1GW-target compute campus in Brazil — and one of the first mega-transactions to live under the Decree 837 outbound review regime.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>The headline number is a long-run estimate for a phased build. Chip sourcing is unstated — US export controls on advanced accelerators follow Chinese firms abroad, so the actual <span class="annotation-card-zh">算力</span><span class="annotation-card-en">suànlì · computing power</span> installed matters more than the real count.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>Near-term beneficiaries are concrete: Brazilian renewables developers (Casa dos Ventos PPA structure), subsea bandwidth, and energy-rich Global South jurisdictions competing for Chinese compute that cannot sit in the US or Europe — a siting pattern worth tracking as a theme.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 3: SERVICES PMI -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">54.1</div>
+      <div class="signal-label">June services PMI</div>
+      <div class="signal-sub">vs 53.0 consensus · 54.4 May</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">20-mo high</div>
+      <div class="signal-label">Services export orders</div>
+      <div class="signal-sub">Fastest since Oct 2024</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">1st in 4 mo</div>
+      <div class="signal-label">Selling-price rise</div>
+      <div class="signal-sub">Partly cost-push (Middle East)</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">June Print vs Consensus — and the Two Signals Beneath the Headline</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- Left: PMI bars. Scale: 50 baseline at y=230, 1pt = 30px -->
+      <text x="170" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#9a8a7a">RATINGDOG SERVICES PMI</text>
+      <line x1="55" y1="230" x2="300" y2="230" stroke="#c0392b" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="305" y="234" font-size="9" fill="#c0392b">50 = neutral</text>
+      <rect x="75" y="98" width="55" height="132" fill="#8a9bb5" rx="3"/>
+      <text x="102" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#5a5a5a">54.4</text>
+      <text x="102" y="248" text-anchor="middle" font-size="10" fill="#9a8a7a">May</text>
+      <rect x="150" y="140" width="55" height="90" fill="#e0d8d0" rx="3"/>
+      <text x="177" y="132" text-anchor="middle" font-size="13" font-weight="700" fill="#9a8a7a">53.0</text>
+      <text x="177" y="248" text-anchor="middle" font-size="10" fill="#9a8a7a">Jun consensus</text>
+      <rect x="225" y="107" width="55" height="123" fill="#c0392b" rx="3"/>
+      <text x="252" y="99" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">54.1</text>
+      <text x="252" y="248" text-anchor="middle" font-size="10" fill="#9a8a7a">Jun actual</text>
+      <text x="177" y="275" text-anchor="middle" font-size="9.5" fill="#b0a898">42nd consecutive month above 50 (since Jan 2023)</text>
+      <!-- Right: two sub-signals -->
+      <text x="510" y="28" text-anchor="middle" font-size="11" font-weight="700" fill="#9a8a7a">BENEATH THE HEADLINE</text>
+      <rect x="370" y="45" width="280" height="80" rx="6" fill="#f0fff4"/>
+      <text x="510" y="68" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">Export orders: fastest since Oct 2024</text>
+      <text x="510" y="86" text-anchor="middle" font-size="10" fill="#5a5a5a">Services exports leading — possibly partly</text>
+      <text x="510" y="100" text-anchor="middle" font-size="10" fill="#5a5a5a">front-loading around tariff uncertainty</text>
+      <rect x="370" y="140" width="280" height="80" rx="6" fill="#fffbf0"/>
+      <text x="510" y="163" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">Selling prices up, first time in 4 months</text>
+      <text x="510" y="181" text-anchor="middle" font-size="10" fill="#5a5a5a">Marginal pricing power returning — the</text>
+      <text x="510" y="195" text-anchor="middle" font-size="10" fill="#5a5a5a">direction policy has tried to engineer</text>
+      <text x="510" y="245" text-anchor="middle" font-size="9.5" fill="#b0a898">Private panel (smaller, export-tilted firms) again warmer</text>
+      <text x="510" y="259" text-anchor="middle" font-size="9.5" fill="#b0a898">than the SOE-heavy official non-manufacturing gauge</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      <div>Services momentum holds: <span class="annotation-card-zh">服务业</span><span class="annotation-card-en">fúwùyè · services sector</span> PMI beat consensus at 54.1, with export orders at a 20-month high and the first selling-price increase in four months — a marginal data point against the <span class="annotation-card-zh">通缩</span><span class="annotation-card-en">tōngsuō · deflation</span> narrative.</div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      <div>One month of pricing is not a trend, and the increase is partly imported cost-push (Middle East supply disruptions), not demand-pull. Export-services strength may reflect front-loading around tariff uncertainty rather than durable demand.</div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Investable Signal</div>
+      <div>Supports the services-over-industry rotation. The July print is the real test: a second consecutive month of rising selling prices alongside firm new orders would upgrade the reflation case from noise toward signal.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  China Brief Issue #46 · July 4, 2026 · Not investment advice · Data sourced from public reporting
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
