@@ -297,24 +297,23 @@ function logoFallback(img) {
   }
 }
 
+function nameToSlug(name) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 function makeLogoHtml(entity, size = 56) {
   const cat = CATS[entity.cat] || CATS.security;
   const mono = logoInitials(entity.name, entity.zh);
   const monoHtml = `<div class="logo-monogram" style="background:${cat.color};width:${size}px;height:${size}px;border-radius:${Math.round(size*0.2)}px;display:flex;align-items:center;justify-content:center;"><span class="mono-zh" style="font-size:${Math.round(size*0.33)}px">${mono}</span></div>`;
 
-  const override = LOGO_OVERRIDES[entity.name];
-  const domain = DOMAINS[entity.name];
+  const s = nameToSlug(entity.name);
+  const localUrl  = `logos/${s}.png`;          // self-hosted — primary
+  const override  = LOGO_OVERRIDES[entity.name]; // GitHub/Wikimedia — fallback
 
-  if (!override && !domain) return monoHtml;
-
-  // Primary: override (GitHub avatar) if known, else Clearbit
-  // Fallback: if override was primary and domain exists, try Clearbit next; else monogram
-  const primary = override || `https://logo.clearbit.com/${domain}?size=128`;
-  const fallback = (override && domain) ? `https://logo.clearbit.com/${domain}?size=128` : '';
-
+  // Load order: self-hosted logo → LOGO_OVERRIDES URL → monogram
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
-    src="${primary}"
-    data-fb="${fallback}"
+    src="${localUrl}"
+    data-fb="${override || ''}"
     onerror="logoFallback(this)"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
@@ -436,6 +435,6 @@ fetch('china-ai-landscape.json?v=' + Date.now())
       '<div class="loading">Could not load landscape data.</div>';
   });
 </script>
-<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})()</script>
 </body>
 </html>
