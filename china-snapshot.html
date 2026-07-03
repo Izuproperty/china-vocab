@@ -290,17 +290,21 @@ function logoInitials(name, zh) {
 }
 
 function logoFallback(img) {
-  // Monogram is next sibling of <picture> (or <img> if no picture wrapper)
-  const wrapper = img.closest('picture') || img;
-  const mono = wrapper.nextElementSibling;
+  // Step 1: try .svg variant (for logos downloaded as SVG, saved as .svg on GitHub)
+  if (!img.dataset.triedSvg && img.src && img.src.endsWith('.png')) {
+    img.dataset.triedSvg = '1';
+    img.src = img.src.replace('.png', '.svg');
+    return;
+  }
+  // Step 2: LOGO_OVERRIDES fallback
   const fb = img.dataset.fb;
   if (fb) {
     img.removeAttribute('data-fb');
-    img.onerror = function() { wrapper.style.display='none'; if (mono) mono.style.display='flex'; };
+    img.onerror = function() { img.style.display='none'; img.nextElementSibling.style.display='flex'; };
     img.src = fb;
   } else {
-    wrapper.style.display = 'none';
-    if (mono) mono.style.display = 'flex';
+    img.style.display = 'none';
+    img.nextElementSibling.style.display = 'flex';
   }
 }
 
@@ -317,15 +321,12 @@ function makeLogoHtml(entity, size = 56) {
   const localUrl  = `logos/${s}.png`;          // self-hosted — primary
   const override  = LOGO_OVERRIDES[entity.name]; // GitHub/Wikimedia — fallback
 
-  // Load order: logos/{s}.svg → logos/{s}.png → LOGO_OVERRIDES URL → monogram
-  return `<picture>
-    <source srcset="logos/${s}.svg" type="image/svg+xml">
-    <img class="logo-img" style="width:${size}px;height:${size}px;"
-      src="${localUrl}"
-      data-fb="${override || ''}"
-      onerror="logoFallback(this)"
-      alt="${entity.name}">
-  </picture>
+  // Load order: logos/{s}.png → logos/{s}.svg → LOGO_OVERRIDES URL → monogram
+  return `<img class="logo-img" style="width:${size}px;height:${size}px;"
+    src="${localUrl}"
+    data-fb="${override || ''}"
+    onerror="logoFallback(this)"
+    alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
 }
 
