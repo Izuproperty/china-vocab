@@ -77,7 +77,12 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
   width: 300px; padding: 16px;
   display: none;
 }
-#hover-popup.show { display: block; }
+#hover-popup.show { display: block; pointer-events: auto; }
+.pp-close { position: absolute; top: 10px; right: 12px; background: none; border: none;
+  font-size: 18px; color: var(--text-dim); cursor: pointer; line-height: 1;
+  display: none; padding: 2px 6px; }
+@media (hover: none) { .pp-close { display: block; } }
+#hover-popup { position: fixed; }
 .pp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
 .pp-en { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 700; color: var(--navy); line-height: 1.2; }
 .pp-zh { font-size: 12px; color: var(--text-dim); margin-top: 2px; letter-spacing: 0.5px; }
@@ -299,6 +304,7 @@ function showPopup(evt, name) {
   const descHtml = shortDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
 
   popup.innerHTML = `
+    <button class="pp-close" onclick="hidePopupNow()">×</button>
     <div class="pp-head">
       <div>
         <div class="pp-en">${e.name}</div>
@@ -331,6 +337,18 @@ function showPopup(evt, name) {
 function hidePopup() {
   popupTimer = setTimeout(() => popup.classList.remove('show'), 80);
 }
+function hidePopupNow() {
+  clearTimeout(popupTimer);
+  popup.classList.remove('show');
+}
+
+document.addEventListener('touchstart', function(e) {
+  if (popup.classList.contains('show') &&
+      !popup.contains(e.target) &&
+      !e.target.closest('.logo-card')) {
+    hidePopupNow();
+  }
+}, { passive: true });
 
 fetch('japan-ai-landscape.json?v=' + Date.now())
   .then(r => r.json())
