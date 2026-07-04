@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #35 · July 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { font-size:11px; font-weight:700; letter-spacing:2px; color:#818cf8; text-decoration:none; display:inline-block; margin-bottom:10px; }
+  .back-link:hover { color:#a5b4fc; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#1a1a2e; padding:0 40px; gap:4px; }
+  .tab { background:#2a2a4e; border:none; color:#a0b0c8; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; padding:10px 18px; cursor:pointer; border-radius:6px 6px 0 0; letter-spacing:0.5px; }
+  .tab.active { background:#fff; color:#3730a3; }
+  .panel { display:none; padding:32px 40px 48px; }
+  .panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .panel-sub { font-size:12px; color:#9a8a7a; margin-bottom:24px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px; }
+  .signal { background:#f5f6fa; border-top:3px solid #3730a3; border-radius:0 0 6px 6px; padding:16px; }
+  .signal-value { font-size:26px; font-weight:700; color:#3730a3; line-height:1.2; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:6px; }
+  .chart-box { background:#fbfbfd; border:1px solid #e8e8f0; border-radius:6px; padding:20px; margin-bottom:28px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .card { background:#fff; border:1px solid #e8e0d4; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .card-head { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:8px; }
+  .card-body { font-size:12.5px; color:#3a3a3a; line-height:1.65; }
+  .footer { padding:18px 40px 30px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  svg text { font-family:'Inter',sans-serif; }
+  @media (max-width:640px) { .signals, .cards { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="japan-brief.html">&#8592; JAPAN BRIEF</a>
+    <div class="header-title">Japan Brief Visualized</div>
+    <div class="header-sub">Issue #35 · Sunday, July 5, 2026 · Three stories in charts</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" id="tab-1" onclick="showViz('panel-1','tab-1')">AI Basic Plan</button>
+    <button class="tab" id="tab-2" onclick="showViz('panel-2','tab-2')">Micron Hiroshima</button>
+    <button class="tab" id="tab-3" onclick="showViz('panel-3','tab-3')">JGB Yields</button>
+  </div>
+
+  <!-- PANEL 1: AI BASIC PLAN TIMELINE -->
+  <div class="panel active" id="panel-1">
+    <div class="panel-title">The Revised AI Basic Plan Heads for Cabinet</div>
+    <div class="panel-sub">Week Ahead Preview · Japan's light-touch AI regime faces its first frontier-model stress test</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">6 months</div><div class="signal-label">Age of the original AI Basic Plan (Dec 2025) when the revision draft appeared — an unusually fast policy refresh</div></div>
+      <div class="signal"><div class="signal-value">&#165;387.3B</div><div class="signal-label">FY2026 commission to the Noetra physical-AI consortium the plan's buildout agenda blesses</div></div>
+      <div class="signal"><div class="signal-value">0</div><div class="signal-label">Monetary penalties in Japan's AI Promotion Act — the light-touch line the revision will test</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Japan AI Policy Timeline · Act to Revision in 14 Months</div>
+      <svg viewBox="0 0 780 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="95" x2="740" y2="95" stroke="#c7cbe0" stroke-width="2"/>
+        <!-- milestones -->
+        <g>
+          <circle cx="80" cy="95" r="7" fill="#3730a3"/>
+          <text x="80" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">May 2025</text>
+          <text x="80" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">AI Promotion Act</text>
+          <text x="80" y="139" text-anchor="middle" font-size="10" fill="#5a5a6a">enacted</text>
+        </g>
+        <g>
+          <circle cx="255" cy="95" r="7" fill="#3730a3"/>
+          <text x="255" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Dec 2025</text>
+          <text x="255" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">First AI Basic Plan</text>
+          <text x="255" y="139" text-anchor="middle" font-size="10" fill="#5a5a6a">adopted</text>
+        </g>
+        <g>
+          <circle cx="430" cy="95" r="7" fill="#3730a3"/>
+          <text x="430" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Jun 19, 2026</text>
+          <text x="430" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">Draft revision released</text>
+          <text x="430" y="139" text-anchor="middle" font-size="10" fill="#5a5a6a">frontier-AI, disinformation focus</text>
+        </g>
+        <g>
+          <circle cx="590" cy="95" r="9" fill="#fff" stroke="#3730a3" stroke-width="3"/>
+          <text x="590" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 2026</text>
+          <text x="590" y="125" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">Cabinet approval</text>
+          <text x="590" y="139" text-anchor="middle" font-size="10" fill="#3730a3">targeted (this month)</text>
+        </g>
+        <g>
+          <circle cx="720" cy="95" r="7" fill="#9aa2d0"/>
+          <text x="720" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">By Mar 2027</text>
+          <text x="720" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">Noetra first</text>
+          <text x="720" y="139" text-anchor="middle" font-size="10" fill="#5a5a6a">foundation model due</text>
+        </g>
+      </svg>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-head">Why revise so fast</div><div class="card-body">The stated trigger is frontier-model capability growth — specifically weaponisation risk from models that can find and exploit unknown vulnerabilities — plus AI-generated disinformation and Global South cooperation.</div></div>
+      <div class="card"><div class="card-head">What to watch</div><div class="card-body">Whether the final cabinet text stays promotion-first with duties of effort, or adds anything binding on frontier models. Expect signal, not enforcement — the arbitrage against the EU regime is deliberate.</div></div>
+      <div class="card"><div class="card-head">The buildout leg</div><div class="card-body">The same policy window funds Noetra (SoftBank, Sony, NEC, Honda with AIST) at &#165;387.3B this fiscal year, first model due before March. Risk monitoring and model funding are one strategy, not a contradiction.</div></div>
+    </div>
+  </div>
+
+  <!-- PANEL 2: MICRON HIROSHIMA -->
+  <div class="panel" id="panel-2">
+    <div class="panel-title">Micron Breaks Ground on a &#165;1.5T Hiroshima HBM Fab</div>
+    <div class="panel-sub">July 4, 2026 · METI underwrites roughly a third of a $9.3B memory bet</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">&#165;1.5T</div><div class="signal-label">Total investment (~$9.3B) in the Higashi-Hiroshima DRAM/HBM expansion</div></div>
+      <div class="signal"><div class="signal-value">&#165;536B</div><div class="signal-label">Maximum METI subsidy pledged — cumulative Hiroshima-site support nears &#165;775B</div></div>
+      <div class="signal"><div class="signal-value">2028</div><div class="signal-label">Target for first shipments (around summer), landing into whatever memory cycle exists then</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Capital Stack · Investment vs State Support (&#165; billions)</div>
+      <svg viewBox="0 0 780 230" xmlns="http://www.w3.org/2000/svg">
+        <!-- scale: 1500 -> 620px, x0=140 -->
+        <g>
+          <text x="130" y="52" text-anchor="end" font-size="11" font-weight="600" fill="#1a1a2e">Total investment</text>
+          <rect x="140" y="36" width="620" height="26" rx="3" fill="#3730a3"/>
+          <text x="750" y="53" text-anchor="end" font-size="11" font-weight="700" fill="#fff">&#165;1,500B</text>
+        </g>
+        <g>
+          <text x="130" y="112" text-anchor="end" font-size="11" font-weight="600" fill="#1a1a2e">New METI subsidy (max)</text>
+          <rect x="140" y="96" width="222" height="26" rx="3" fill="#be185d"/>
+          <text x="370" y="113" font-size="11" font-weight="700" fill="#be185d">&#165;536B (~36%)</text>
+        </g>
+        <g>
+          <text x="130" y="172" text-anchor="end" font-size="11" font-weight="600" fill="#1a1a2e">Cumulative Hiroshima support</text>
+          <rect x="140" y="156" width="320" height="26" rx="3" fill="#9aa2d0"/>
+          <text x="468" y="173" font-size="11" font-weight="700" fill="#5a5a8a">&#165;774.5B</text>
+        </g>
+        <line x1="140" y1="20" x2="140" y2="200" stroke="#c7cbe0" stroke-width="1"/>
+        <text x="140" y="216" font-size="9" fill="#8a8a9a">0</text>
+        <text x="760" y="216" text-anchor="end" font-size="9" fill="#8a8a9a">&#165;1,500B scale</text>
+      </svg>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-head">Why HBM matters</div><div class="card-body">High-bandwidth memory is the stacked DRAM co-packaged with AI accelerators — currently the highest-margin, most supply-constrained memory product in the world, and a binding constraint on AI compute.</div></div>
+      <div class="card"><div class="card-head">A different policy bet</div><div class="card-body">Versus Rapidus at 2nm, subsidizing a proven US memory maker is lower technology risk with faster payback in equipment orders — Tokyo Electron, Shin-Etsu, and SUMCO are mechanical beneficiaries of the build.</div></div>
+      <div class="card"><div class="card-head">The timing tension</div><div class="card-body">The ceremony came two days after Kioxia-led memory volatility on supply-demand concerns. Committing capital through 2028 says Micron sees demand through the cycle — or supply arriving as it turns.</div></div>
+    </div>
+  </div>
+
+  <!-- PANEL 3: JGB / MARKETS -->
+  <div class="panel" id="panel-3">
+    <div class="panel-title">JGB Long Yields Print a 30-Year High at 2.81%</div>
+    <div class="panel-sub">July 3, 2026 · The fiscal premium under Takaichi is now the trade, not the yen</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">2.81%</div><div class="signal-label">10-year JGB yield, highest in roughly 30 years, on fiscal concerns under the Takaichi administration</div></div>
+      <div class="signal"><div class="signal-value">+1,011</div><div class="signal-label">Nikkei points gained at the July 3 close after a 1,100-point morning drop — a 2,100-point intraday swing</div></div>
+      <div class="signal"><div class="signal-value">&#165;10.9T</div><div class="signal-label">Prime Market turnover on July 3, with nearly 80% of issues advancing in the rebound</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Nikkei 225 · July 3 Intraday Whipsaw (index points)</div>
+      <svg viewBox="0 0 780 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- y: 67,400 (y=200) to 70,000 (y=30). scale: 2600pts -> 170px -->
+        <line x1="70" y1="30" x2="740" y2="30" stroke="#eceef5" stroke-width="1"/>
+        <line x1="70" y1="87" x2="740" y2="87" stroke="#eceef5" stroke-width="1"/>
+        <line x1="70" y1="144" x2="740" y2="144" stroke="#eceef5" stroke-width="1"/>
+        <line x1="70" y1="200" x2="740" y2="200" stroke="#c7cbe0" stroke-width="1"/>
+        <text x="62" y="34" text-anchor="end" font-size="10" fill="#8a8a9a">70,000</text>
+        <text x="62" y="91" text-anchor="end" font-size="10" fill="#8a8a9a">69,130</text>
+        <text x="62" y="148" text-anchor="end" font-size="10" fill="#8a8a9a">68,260</text>
+        <text x="62" y="204" text-anchor="end" font-size="10" fill="#8a8a9a">67,400</text>
+        <!-- path: prev close 68,733 (y=113) -> open lower -> low 67,609 (y=186) -> recover -> high 69,788 (y=44) -> close 69,744 (y=47) -->
+        <path d="M 90 113 L 170 148 L 260 186 L 360 160 L 470 110 L 590 60 L 680 44 L 730 47"
+              fill="none" stroke="#3730a3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="90" cy="113" r="5" fill="#9aa2d0"/>
+        <text x="90" y="100" text-anchor="middle" font-size="10" fill="#5a5a6a">Jul 2 close 68,733</text>
+        <circle cx="260" cy="186" r="5" fill="#be185d"/>
+        <text x="260" y="212" text-anchor="middle" font-size="10" font-weight="600" fill="#be185d">AM low 67,609</text>
+        <circle cx="680" cy="44" r="5" fill="#3730a3"/>
+        <text x="655" y="30" text-anchor="middle" font-size="10" fill="#5a5a6a">High 69,788</text>
+        <circle cx="730" cy="47" r="6" fill="#3730a3"/>
+        <text x="712" y="70" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3">Close 69,744</text>
+      </svg>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-head">The durable signal</div><div class="card-body">Equities whipsawed, but 2.81% on the 10-year is the mechanism to watch: a fiscal premium layered on a BOJ at just 1%. Rising long yields plus a weak yen constrains policy from both sides.</div></div>
+      <div class="card"><div class="card-head">Cleanest expression</div><div class="card-body">Megabanks rose about 4% on margin expectations and some regional banks hit new highs — the rotation out of semiconductor leaders into banks, exporters, and value laggards had real breadth.</div></div>
+      <div class="card"><div class="card-head">The week's number</div><div class="card-body">If long yields grind higher into the BOJ's July 31 meeting, the fiscal-premium story starts to dominate both the equity rotation and the 160-162 yen range. The counter-read requires autumn budget restraint.</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Japan Brief Issue #35 &middot; July 5, 2026 &middot; Not investment advice</div>
+</div>
+<script>
+function showViz(panelId, tabId) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(panelId).classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
