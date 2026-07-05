@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #48 · July 6, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+  @media (max-width:640px){ .signal-row,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #48 · Visualized</div>
+    <div class="page-meta">July 6, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">Agent Takedowns</div>
+  <div class="tab" onclick="showViz('s2',this)">Compute Network</div>
+  <div class="tab" onclick="showViz('s3',this)">PBOC Liquidity</div>
+</div>
+
+<!-- ============================================================ PANEL 1: AGENT TAKEDOWNS -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">3</div>
+      <div class="signal-label">Platforms retreating</div>
+      <div class="signal-sub">Doubao · Qwen · Yuanbao</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">Jul 15</div>
+      <div class="signal-label">Rules take effect</div>
+      <div class="signal-sub">Agent features offline same day</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">5</div>
+      <div class="signal-label">Regulators behind measures</div>
+      <div class="signal-sub">CAC-led · NDRC · MIIT · MPS · SAMR</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Timeline: From Publication to Product Takedown</div>
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="260" fill="#fafaf8" rx="4"/>
+      <line x1="60" y1="130" x2="660" y2="130" stroke="#1a1a2e" stroke-width="2"/>
+      <!-- Apr 10 -->
+      <circle cx="100" cy="130" r="7" fill="#1a56db"/>
+      <line x1="100" y1="123" x2="100" y2="78" stroke="#c8c0b4" stroke-dasharray="3,3"/>
+      <text x="100" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Apr 10</text>
+      <text x="100" y="152" text-anchor="middle" font-size="10" fill="#5a5a5a">Measures published</text>
+      <text x="100" y="166" text-anchor="middle" font-size="9.5" fill="#9a8a7a">5 departments, CAC lead</text>
+      <!-- Jun 30 -->
+      <circle cx="280" cy="130" r="7" fill="#d97706"/>
+      <line x1="280" y1="123" x2="280" y2="78" stroke="#c8c0b4" stroke-dasharray="3,3"/>
+      <text x="280" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jun 30</text>
+      <text x="280" y="152" text-anchor="middle" font-size="10" fill="#5a5a5a">Tencent Yuanbao</text>
+      <text x="280" y="166" text-anchor="middle" font-size="9.5" fill="#9a8a7a">"AI应用" feature offline</text>
+      <!-- Jul 4 -->
+      <circle cx="390" cy="130" r="8" fill="#c0392b"/>
+      <line x1="390" y1="122" x2="390" y2="78" stroke="#c8c0b4" stroke-dasharray="3,3"/>
+      <text x="390" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">Jul 4</text>
+      <text x="390" y="152" text-anchor="middle" font-size="10" font-weight="600" fill="#c0392b">Doubao + Qwen notices</text>
+      <text x="390" y="166" text-anchor="middle" font-size="9.5" fill="#9a8a7a">Agents offline Jul 15</text>
+      <!-- Jul 15 -->
+      <circle cx="490" cy="130" r="8" fill="#1a1a2e"/>
+      <line x1="490" y1="122" x2="490" y2="188" stroke="#c8c0b4" stroke-dasharray="3,3"/>
+      <text x="490" y="205" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 15</text>
+      <text x="490" y="220" text-anchor="middle" font-size="10" fill="#5a5a5a">Rules in force · features gone</text>
+      <text x="490" y="108" text-anchor="middle" font-size="9.5" fill="#9a8a7a">effective date</text>
+      <!-- Oct 15 -->
+      <circle cx="620" cy="130" r="7" fill="#8a9bb5"/>
+      <line x1="620" y1="123" x2="620" y2="78" stroke="#c8c0b4" stroke-dasharray="3,3"/>
+      <text x="620" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Oct 15</text>
+      <text x="620" y="152" text-anchor="middle" font-size="10" fill="#5a5a5a">Doubao agent data</text>
+      <text x="620" y="166" text-anchor="middle" font-size="9.5" fill="#9a8a7a">deleted permanently</text>
+      <text x="60" y="245" font-size="10.5" fill="#b45309">Both platforms chose wholesale removal of user-created agents over retrofitting compliance by the deadline.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core claim</div>
+      First visible product retrenchment of the 2026 AI-governance cycle: ByteDance and Alibaba delete consumer <span class="annotation-card-zh">智能体<span class="annotation-card-en">zhìnéngtǐ · AI agent</span></span> ecosystems rather than retrofit them for the <span class="annotation-card-zh">拟人化<span class="annotation-card-en">nǐrénhuà · anthropomorphization</span></span> rules.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Neither platform has announced a compliant relaunch (age checks, time limits are permitted paths). Where regulators draw the line between companion agents and productivity agents in practice is unknown until enforcement begins.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable signal</div>
+      Regulatory beta on consumer AI engagement is real and fast-moving: discount engagement-based valuations of Chinese AI chat platforms, and watch whether Doubao's paid-subscription push absorbs the lost surface.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 2: COMPUTE NETWORK -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">1,400x</div>
+      <div class="signal-label">Token call growth</div>
+      <div class="signal-sub">National daily volume, 2 years</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">1,000+</div>
+      <div class="signal-label">AI firms calling tokens</div>
+      <div class="signal-sub">Mostly in eastern China</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">20</div>
+      <div class="signal-label">Industries targeted</div>
+      <div class="signal-sub">"模数共振" plan · MIIT + NDA</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Token Demand Curve vs. the East–West Capacity Mismatch</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- left: growth curve -->
+      <text x="40" y="28" font-size="11" font-weight="700" fill="#9a8a7a">DAILY TOKEN CALLS (INDEXED, LOG SCALE)</text>
+      <line x1="60" y1="250" x2="330" y2="250" stroke="#c8c0b4"/>
+      <line x1="60" y1="250" x2="60" y2="45" stroke="#c8c0b4"/>
+      <path d="M 60 245 C 140 240, 200 220, 250 160 C 280 120, 305 75, 325 52" fill="none" stroke="#c0392b" stroke-width="3"/>
+      <circle cx="325" cy="52" r="5" fill="#c0392b"/>
+      <text x="318" y="42" text-anchor="end" font-size="11" font-weight="700" fill="#c0392b">1,400x · mid-2026</text>
+      <text x="60" y="268" font-size="10" fill="#9a8a7a">mid-2024</text>
+      <text x="245" y="268" font-size="10" fill="#9a8a7a">2025</text>
+      <text x="310" y="268" font-size="10" fill="#9a8a7a">2026</text>
+      <text x="60" y="288" font-size="9.5" fill="#b0a898">Source: CCTV Xinwen Lianbo field report, Jul 5 · growth accelerating in 2026</text>
+      <!-- right: east-west bars -->
+      <text x="400" y="28" font-size="11" font-weight="700" fill="#9a8a7a">WHERE DEMAND SITS VS. WHERE CAPACITY SITS</text>
+      <text x="400" y="70" font-size="10.5" fill="#5a5a5a">AI-firm token demand</text>
+      <rect x="400" y="78" width="220" height="22" fill="#c0392b" rx="3"/>
+      <text x="405" y="93" font-size="10" fill="#fff" font-weight="600">EAST — majority of 1,000+ firms</text>
+      <rect x="400" y="104" width="60" height="22" fill="#e8b0a8" rx="3"/>
+      <text x="466" y="119" font-size="10" fill="#5a5a5a">West</text>
+      <text x="400" y="162" font-size="10.5" fill="#5a5a5a">Spare compute capacity</text>
+      <rect x="400" y="170" width="70" height="22" fill="#8a9bb5" rx="3"/>
+      <text x="476" y="185" font-size="10" fill="#5a5a5a">East — rationed, supply-tight</text>
+      <rect x="400" y="196" width="200" height="22" fill="#1a1a2e" rx="3"/>
+      <text x="405" y="211" font-size="10" fill="#fff" font-weight="600">WEST — 东数西算 hub build-out</text>
+      <text x="400" y="252" font-size="10.5" fill="#b45309">The mismatch is the policy problem the national</text>
+      <text x="400" y="266" font-size="10.5" fill="#b45309">integrated compute network is built to solve.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core claim</div>
+      Prime-time state TV framed <span class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></span> as a public utility — with <span class="annotation-card-zh">词元<span class="annotation-card-en">cíyuán · token</span></span> calls up 1,400x in two years, compute stays a top-tier state priority into WAIC (Jul 17).
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      1,400x is off a near-zero 2024 base and token calls do not map to revenue. Western-hub utilization has been uneven historically, and inference-price deflation compresses the case for incremental capex.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable signal</div>
+      Narrative-setting of this kind often precedes support measures: the watch-list is western data-center hubs, optical transport, and power equipment — plus the reported Shanghai compute-futures market as the financialization leg.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ PANEL 3: PBOC LIQUIDITY -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">¥1T</div>
+      <div class="signal-label">Outright reverse repo</div>
+      <div class="signal-sub">Operated today · announced Jul 3</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">91 days</div>
+      <div class="signal-label">Tenor</div>
+      <div class="signal-sub">Matures Oct 5, 2026</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">+¥200B</div>
+      <div class="signal-label">Net injection</div>
+      <div class="signal-sub">vs ~¥800B maturing in July</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">July Outright Reverse Repo Book: Roll Plus a Modest Top-Up (¥ Billions)</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- waterfall: baseline y=240, scale 0.2 px/B -->
+      <line x1="60" y1="240" x2="640" y2="240" stroke="#c8c0b4"/>
+      <!-- new operation +1000 -->
+      <rect x="90" y="40" width="120" height="200" fill="#16a34a" rx="3"/>
+      <text x="150" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#16a34a">+1,000</text>
+      <text x="150" y="258" text-anchor="middle" font-size="10.5" fill="#5a5a5a">New 3-month operation</text>
+      <text x="150" y="272" text-anchor="middle" font-size="9.5" fill="#9a8a7a">Jul 6 · rate bidding, multi-price</text>
+      <!-- maturing -800 -->
+      <rect x="290" y="40" width="120" height="160" fill="#c0392b" rx="3"/>
+      <text x="350" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">−800</text>
+      <text x="350" y="258" text-anchor="middle" font-size="10.5" fill="#5a5a5a">Maturing this month</text>
+      <text x="350" y="272" text-anchor="middle" font-size="9.5" fill="#9a8a7a">same instrument, per 21财经</text>
+      <!-- net +200 -->
+      <rect x="490" y="200" width="120" height="40" fill="#1a1a2e" rx="3"/>
+      <text x="550" y="190" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">+200 net</text>
+      <text x="550" y="258" text-anchor="middle" font-size="10.5" fill="#5a5a5a">Net medium-term add</text>
+      <text x="550" y="272" text-anchor="middle" font-size="9.5" fill="#9a8a7a">maintenance, not stimulus</text>
+      <!-- connectors -->
+      <line x1="210" y1="40" x2="290" y2="40" stroke="#b0a898" stroke-dasharray="4,3"/>
+      <line x1="410" y1="200" x2="490" y2="200" stroke="#b0a898" stroke-dasharray="4,3"/>
+      <text x="90" y="292" font-size="10" fill="#b45309">Context: July carries tax payments + heavy government-bond supply; a rate cut stays holstered ahead of Q2 GDP (Jul 15) and the late-July Politburo.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core claim</div>
+      PBOC rolls ¥1T of <span class="annotation-card-zh">买断式逆回购<span class="annotation-card-en">mǎiduànshì nìhuígòu · outright reverse repo</span></span> with a ~¥200B <span class="annotation-card-zh">净投放<span class="annotation-card-en">jìng tóufàng · net injection</span></span> — quantity tools over price tools, announced in advance.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      The ~¥800B July maturity figure is from local financial media, not a PBOC statement. Whether June credit data (due this week) confirm weak private loan demand is the open input to the easing path.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable signal</div>
+      Supportive for CGB carry and repo-funded positions; not an easing signal. Watch the mid-month MLF rollover size — a large add there plus soft credit data would strengthen the case for RRR-then-rates sequencing at the Politburo window.
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">China Brief Issue #48 · July 6, 2026 · Not investment advice · Data sourced from public reporting</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
