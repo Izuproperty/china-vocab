@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #37 · July 7, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; color:#818cf8; text-decoration:none; margin-bottom:14px; }
+  .back-link:hover { color:#a5b4fc; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#1a1a2e; padding:0 40px; gap:4px; }
+  .tab { background:#2a2a4e; border:none; border-radius:6px 6px 0 0; color:#a0b0c8; cursor:pointer; font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:0.5px; padding:11px 18px; }
+  .tab.active { background:#fff; color:#3730a3; }
+  .panel { display:none; padding:32px 40px 40px; }
+  .panel.active { display:block; }
+  .panel-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:10px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:21px; font-weight:700; line-height:1.3; color:#1a1a2e; margin-bottom:22px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+  .signal { background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:16px 18px; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; line-height:1.45; }
+  .chart-box { background:#fbfbfd; border:1px solid #e8e8f0; border-radius:8px; padding:22px; margin-bottom:28px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:16px; }
+  .annos { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .anno { background:#fff; border:1px solid #e8e8f0; border-top:3px solid #3730a3; border-radius:0 0 6px 6px; padding:16px 18px; }
+  .anno-title { font-size:12px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .anno-body { font-size:12px; color:#4a4a5a; line-height:1.55; }
+  .anno-body .ja { color:#3730a3; font-weight:600; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.annos{grid-template-columns:1fr;} .tabs{flex-wrap:wrap;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="japan-brief.html">&#8592; JAPAN BRIEF</a>
+    <div class="header-title">Japan Brief Visualized</div>
+    <div class="header-sub">Issue #37 · Tuesday, July 7, 2026 · Three stories in data</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" id="tab-1" onclick="showViz('panel-1','tab-1')">AI Complex Sell-Off</button>
+    <button class="tab" id="tab-2" onclick="showViz('panel-2','tab-2')">Yaskawa Q1 Preview</button>
+    <button class="tab" id="tab-3" onclick="showViz('panel-3','tab-3')">Defense Rotation</button>
+  </div>
+
+  <!-- PANEL 1 -->
+  <div class="panel active" id="panel-1">
+    <span class="panel-tag tag-ai">AI &amp; Tech</span>
+    <div class="panel-headline">Monday's session hit AI-adjacent component makers hardest while the index closed flat</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-num">-10.3%</div><div class="signal-label">Taiyo Yuden, July 6 — worst performer in the Nikkei 225</div></div>
+      <div class="signal"><div class="signal-num">69,737</div><div class="signal-label">Nikkei 225 close, essentially flat (-0.01%) despite the tech rout</div></div>
+      <div class="signal"><div class="signal-num">-3.1%</div><div class="signal-label">SoftBank Group decline ahead of SB Neo's Delaware incorporation</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">July 6 One-Day Moves · AI-Adjacent Names (%)</div>
+      <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <line x1="90" y1="30" x2="90" y2="230" stroke="#d0d0e0" stroke-width="1"/>
+        <line x1="90" y1="45" x2="620" y2="45" stroke="#eeeef4" stroke-width="1"/>
+        <text x="86" y="49" font-size="11" fill="#8a8a9a" text-anchor="end" font-family="Inter,sans-serif">0</text>
+        <!-- scale: 44px per -1%, bars leftward from x=620? Use bars extending right from axis with negative scale annotation -->
+        <!-- Taiyo Yuden -10.31 -->
+        <rect x="90" y="60" width="464" height="26" rx="3" fill="#3730a3" opacity="0.9"/>
+        <text x="98" y="78" font-size="12" fill="#ffffff" font-family="Inter,sans-serif" font-weight="600">Taiyo Yuden</text>
+        <text x="562" y="78" font-size="12.5" fill="#3730a3" font-family="Inter,sans-serif" font-weight="700">-10.3%</text>
+        <!-- Murata -9.70 -->
+        <rect x="90" y="96" width="437" height="26" rx="3" fill="#4f46b8" opacity="0.9"/>
+        <text x="98" y="114" font-size="12" fill="#ffffff" font-family="Inter,sans-serif" font-weight="600">Murata Manufacturing</text>
+        <text x="535" y="114" font-size="12.5" fill="#3730a3" font-family="Inter,sans-serif" font-weight="700">-9.7%</text>
+        <!-- Minebea -6.89 -->
+        <rect x="90" y="132" width="310" height="26" rx="3" fill="#6a63c8" opacity="0.9"/>
+        <text x="98" y="150" font-size="12" fill="#ffffff" font-family="Inter,sans-serif" font-weight="600">MinebeaMitsumi</text>
+        <text x="408" y="150" font-size="12.5" fill="#3730a3" font-family="Inter,sans-serif" font-weight="700">-6.9%</text>
+        <!-- SoftBank -3.1 -->
+        <rect x="90" y="168" width="140" height="26" rx="3" fill="#8a84d8" opacity="0.9"/>
+        <text x="98" y="186" font-size="12" fill="#ffffff" font-family="Inter,sans-serif" font-weight="600">SoftBank Group</text>
+        <text x="238" y="186" font-size="12.5" fill="#3730a3" font-family="Inter,sans-serif" font-weight="700">-3.1%</text>
+        <!-- Nikkei -0.01 -->
+        <rect x="90" y="204" width="4" height="26" rx="2" fill="#b0aee0"/>
+        <text x="102" y="222" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif" font-weight="600">Nikkei 225: -0.01% (flat)</text>
+        <text x="620" y="248" font-size="10" fill="#9a9aaa" text-anchor="end" font-family="Inter,sans-serif">Bar length proportional to one-day decline</text>
+      </svg>
+    </div>
+    <div class="annos">
+      <div class="anno"><div class="anno-title">Order-book vs fiscal exposure</div><div class="anno-body">The hardest-hit names carry AI exposure through cyclical orders. State-anchored names — <span class="ja">ラピダス</span> suppliers, <span class="ja">ノエトラ</span> members — have fiscal backing that cushions the same doubt.</div></div>
+      <div class="anno"><div class="anno-title">The China variable</div><div class="anno-body">Cited alongside capacity worries: intensifying competition among AI providers, particularly from China — an echo of the pricing pressure argument that has trailed the AI trade all year.</div></div>
+      <div class="anno"><div class="anno-title">Friday decides the read</div><div class="anno-body">Yaskawa's Q1 orders on July 10 are the first hard demand data since the sell-off. Confirmation reframes Monday as positioning (<span class="ja">利益確定</span>, profit-taking); a miss extends the adjustment.</div></div>
+    </div>
+  </div>
+
+  <!-- PANEL 2 -->
+  <div class="panel" id="panel-2">
+    <span class="panel-tag tag-robotics">Robotics · Preview</span>
+    <div class="panel-headline">Yaskawa guides for a 26.8% operating-profit rebound — and consensus reportedly wants more</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-num">+20%</div><div class="signal-label">Q4 FY2025 orders, year-on-year — AI and semiconductor demand plus a steel-plant project</div></div>
+      <div class="signal"><div class="signal-num">&#165;60bn</div><div class="signal-label">FY2026 operating-profit guidance, up 26.8% from &#165;47.3bn</div></div>
+      <div class="signal"><div class="signal-num">Jul 10</div><div class="signal-label">Q1 results date — first major industrial print since Noetra's commissioning</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Yaskawa Operating Profit · Actual vs Guidance (&#165;bn)</div>
+      <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <line x1="70" y1="220" x2="660" y2="220" stroke="#d0d0e0" stroke-width="1"/>
+        <!-- scale: 220 - value*2.6 -->
+        <!-- FY2024 ~50.2 -->
+        <rect x="120" y="89.5" width="90" height="130.5" rx="4" fill="#b0aee0"/>
+        <text x="165" y="80" font-size="13" fill="#4a4a5a" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">50.2</text>
+        <text x="165" y="240" font-size="11.5" fill="#6a6a7a" text-anchor="middle" font-family="Inter,sans-serif">FY2024 actual</text>
+        <!-- FY2025 47.3 -->
+        <rect x="310" y="97" width="90" height="123" rx="4" fill="#8a84d8"/>
+        <text x="355" y="88" font-size="13" fill="#4a4a5a" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">47.3</text>
+        <text x="355" y="240" font-size="11.5" fill="#6a6a7a" text-anchor="middle" font-family="Inter,sans-serif">FY2025 actual (-5.7%)</text>
+        <!-- FY2026 guide 60 -->
+        <rect x="500" y="64" width="90" height="156" rx="4" fill="#3730a3"/>
+        <text x="545" y="55" font-size="13" fill="#3730a3" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">60.0</text>
+        <text x="545" y="240" font-size="11.5" fill="#6a6a7a" text-anchor="middle" font-family="Inter,sans-serif">FY2026 guidance (+26.8%)</text>
+        <line x1="500" y1="40" x2="660" y2="40" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5,4"/>
+        <text x="580" y="32" font-size="10.5" fill="#b45309" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">consensus reportedly above guidance</text>
+      </svg>
+    </div>
+    <div class="annos">
+      <div class="anno"><div class="anno-title">Where AI shows up</div><div class="anno-body">Motion control — servo orders from semiconductor equipment makers — is the most AI-linked segment (<span class="ja">受注</span>, orders). That line, not the headline, is the physical-AI signal.</div></div>
+      <div class="anno"><div class="anno-title">FX flatters the print</div><div class="anno-body">With the yen near 162 versus conservative planning rates, translation lifts reported figures (<span class="ja">円安</span>, weak yen). Underlying volume is the honest trend.</div></div>
+      <div class="anno"><div class="anno-title">Revision math</div><div class="anno-body">Consensus above guidance means an in-line quarter can disappoint. An early upward revision (<span class="ja">上方修正</span>) would ripple across Fanuc, Kawasaki, and the physical-AI complex.</div></div>
+    </div>
+  </div>
+
+  <!-- PANEL 3 -->
+  <div class="panel" id="panel-3">
+    <span class="panel-tag tag-macro">Macro &amp; Markets</span>
+    <div class="panel-headline">Defense and heavy industry led the index on the day the AI trade wobbled</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-num">+10.4%</div><div class="signal-label">Mitsui E&amp;S, July 6 — best performer in the Nikkei 225</div></div>
+      <div class="signal"><div class="signal-num">+8.2%</div><div class="signal-label">Mitsubishi Heavy Industries, extending the post-GCAP-contract re-rating</div></div>
+      <div class="signal"><div class="signal-num">162-163</div><div class="signal-label">USD/JPY range — yen near a four-decade low, intervention watch ongoing</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">July 6 One-Day Moves · Rotation Winners vs AI Losers (%)</div>
+      <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <!-- center axis at x=360, scale 24px per 1% -->
+        <line x1="360" y1="20" x2="360" y2="272" stroke="#d0d0e0" stroke-width="1"/>
+        <text x="360" y="292" font-size="10.5" fill="#8a8a9a" text-anchor="middle" font-family="Inter,sans-serif">0%</text>
+        <!-- Mitsui E&S +10.43 -->
+        <rect x="360" y="28" width="250" height="24" rx="3" fill="#166534" opacity="0.85"/>
+        <text x="354" y="45" font-size="11.5" fill="#3a3a4a" text-anchor="end" font-family="Inter,sans-serif" font-weight="600">Mitsui E&amp;S</text>
+        <text x="616" y="45" font-size="12" fill="#166534" font-family="Inter,sans-serif" font-weight="700">+10.4</text>
+        <!-- MHI +8.20 -->
+        <rect x="360" y="62" width="197" height="24" rx="3" fill="#15803d" opacity="0.85"/>
+        <text x="354" y="79" font-size="11.5" fill="#3a3a4a" text-anchor="end" font-family="Inter,sans-serif" font-weight="600">Mitsubishi Heavy</text>
+        <text x="563" y="79" font-size="12" fill="#166534" font-family="Inter,sans-serif" font-weight="700">+8.2</text>
+        <!-- JSW +7.10 -->
+        <rect x="360" y="96" width="170" height="24" rx="3" fill="#22a04e" opacity="0.85"/>
+        <text x="354" y="113" font-size="11.5" fill="#3a3a4a" text-anchor="end" font-family="Inter,sans-serif" font-weight="600">Japan Steel Works</text>
+        <text x="536" y="113" font-size="12" fill="#166534" font-family="Inter,sans-serif" font-weight="700">+7.1</text>
+        <!-- Losers: bars leftward -->
+        <!-- SoftBank -3.1 -->
+        <rect x="286" y="150" width="74" height="24" rx="3" fill="#8a84d8" opacity="0.9"/>
+        <text x="366" y="167" font-size="11.5" fill="#3a3a4a" font-family="Inter,sans-serif" font-weight="600">SoftBank Group</text>
+        <text x="280" y="167" font-size="12" fill="#3730a3" text-anchor="end" font-family="Inter,sans-serif" font-weight="700">-3.1</text>
+        <!-- Minebea -6.89 -->
+        <rect x="195" y="184" width="165" height="24" rx="3" fill="#6a63c8" opacity="0.9"/>
+        <text x="366" y="201" font-size="11.5" fill="#3a3a4a" font-family="Inter,sans-serif" font-weight="600">MinebeaMitsumi</text>
+        <text x="189" y="201" font-size="12" fill="#3730a3" text-anchor="end" font-family="Inter,sans-serif" font-weight="700">-6.9</text>
+        <!-- Murata -9.7 -->
+        <rect x="127" y="218" width="233" height="24" rx="3" fill="#4f46b8" opacity="0.9"/>
+        <text x="366" y="235" font-size="11.5" fill="#3a3a4a" font-family="Inter,sans-serif" font-weight="600">Murata Manufacturing</text>
+        <text x="121" y="235" font-size="12" fill="#3730a3" text-anchor="end" font-family="Inter,sans-serif" font-weight="700">-9.7</text>
+        <!-- Taiyo Yuden -10.31 -->
+        <rect x="113" y="252" width="247" height="20" rx="3" fill="#3730a3" opacity="0.9"/>
+        <text x="366" y="267" font-size="11.5" fill="#3a3a4a" font-family="Inter,sans-serif" font-weight="600">Taiyo Yuden</text>
+        <text x="107" y="267" font-size="12" fill="#3730a3" text-anchor="end" font-family="Inter,sans-serif" font-weight="700">-10.3</text>
+      </svg>
+    </div>
+    <div class="annos">
+      <div class="anno"><div class="anno-title">Policy-anchored destinations</div><div class="anno-body">The rotation targets are not random: GCAP's July 3 contract and the June growth strategy put fiscal floors under defense and shipbuilding (<span class="ja">防衛関連株</span>).</div></div>
+      <div class="anno"><div class="anno-title">Rates do the sorting</div><div class="anno-body">Higher long-term rates (<span class="ja">長期金利</span>) since the June hike to 1.0% compress long-duration AI multiples while leaving contracted defense earnings largely untouched.</div></div>
+      <div class="anno"><div class="anno-title">This week's macro feed</div><div class="anno-body">May wages and household spending land this week and feed the July 30-31 BOJ Outlook. Firmer real wages harden rate expectations — and give the rotation more room.</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Japan Brief Issue #37 · July 7, 2026 · Not investment advice</div>
+</div>
+<script>
+function showViz(panelId, tabId) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(panelId).classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
