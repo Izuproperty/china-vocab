@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #50 · July 8, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+  @media (max-width:640px){ .signal-row,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #50 · Visualized</div>
+    <div class="page-meta">July 8, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">Humanoid Output Forecast</div>
+  <div class="tab" onclick="showViz('s2',this)">Chinese Model Share</div>
+  <div class="tab" onclick="showViz('s3',this)">PBOC Gold Streak</div>
+</div>
+
+<!-- ============================================ PANEL 1: MIIT HUMANOID FORECAST -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">100,000+</div>
+      <div class="signal-label">2026 output forecast</div>
+      <div class="signal-sub">Complete humanoid units · MIIT, Jul 7</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">&gt;30%</div>
+      <div class="signal-label">AI adoption rate</div>
+      <div class="signal-sub">Industrial enterprises above designated size</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">¥1.2T</div>
+      <div class="signal-label">AI core industry, 2025</div>
+      <div class="signal-sub">Official estimate of sector scale</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Policy Runway: June Campaign to Year-End Deployment Target</div>
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="260" fill="#fafaf8" rx="4"/>
+      <!-- timeline axis -->
+      <line x1="50" y1="130" x2="660" y2="130" stroke="#1a1a2e" stroke-width="2"/>
+      <!-- milestone 1 -->
+      <circle cx="90" cy="130" r="7" fill="#9a8a7a"/>
+      <line x1="90" y1="123" x2="90" y2="78" stroke="#9a8a7a" stroke-width="1.5"/>
+      <text x="90" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jun 2026</text>
+      <text x="90" y="150" text-anchor="middle" font-size="10" fill="#6a5a4a">MIIT + SASAC launch</text>
+      <text x="90" y="163" text-anchor="middle" font-size="10" fill="#6a5a4a">real-scenario training</text>
+      <text x="90" y="176" text-anchor="middle" font-size="10" fill="#6a5a4a">campaign</text>
+      <!-- milestone 2 (the event) -->
+      <circle cx="240" cy="130" r="9" fill="#c0392b"/>
+      <line x1="240" y1="121" x2="240" y2="66" stroke="#c0392b" stroke-width="2"/>
+      <text x="240" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">Jul 7 · MIIT presser</text>
+      <text x="240" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#c0392b">100,000+ unit output</text>
+      <text x="240" y="163" text-anchor="middle" font-size="10" font-weight="600" fill="#c0392b">forecast on the record</text>
+      <!-- milestone 3 -->
+      <circle cx="390" cy="130" r="7" fill="#1a56db"/>
+      <line x1="390" y1="123" x2="390" y2="78" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="390" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 17–20</text>
+      <text x="390" y="150" text-anchor="middle" font-size="10" fill="#6a5a4a">WAIC Shanghai —</text>
+      <text x="390" y="163" text-anchor="middle" font-size="10" fill="#6a5a4a">watch for orders,</text>
+      <text x="390" y="176" text-anchor="middle" font-size="10" fill="#6a5a4a">not demos</text>
+      <!-- milestone 4 -->
+      <circle cx="510" cy="130" r="7" fill="#1a56db"/>
+      <line x1="510" y1="123" x2="510" y2="78" stroke="#1a56db" stroke-width="1.5"/>
+      <text x="510" y="64" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Late Jul</text>
+      <text x="510" y="150" text-anchor="middle" font-size="10" fill="#6a5a4a">Unitree expected</text>
+      <text x="510" y="163" text-anchor="middle" font-size="10" fill="#6a5a4a">STAR Market debut</text>
+      <!-- milestone 5 -->
+      <circle cx="630" cy="130" r="7" fill="#16a34a"/>
+      <line x1="630" y1="123" x2="630" y2="78" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="630" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">End-2026</text>
+      <text x="630" y="64" text-anchor="middle" font-size="10" fill="#6a5a4a">target</text>
+      <text x="630" y="150" text-anchor="middle" font-size="10" fill="#6a5a4a">~10,000 units in</text>
+      <text x="630" y="163" text-anchor="middle" font-size="10" fill="#6a5a4a">commercial deployment</text>
+      <text x="630" y="176" text-anchor="middle" font-size="10" fill="#6a5a4a">(the binding metric)</text>
+      <!-- caption -->
+      <text x="350" y="225" text-anchor="middle" font-size="10" fill="#b0a898">Output forecast covers all form factors and uses (education, research, factory) — 10x the commercial-deployment target</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      An MIIT official put a six-figure humanoid output forecast on the record ten days before WAIC — a deliberate demand-side signal to the supply chain and capital markets. But <span class="annotation-card-zh">整机产量</span><span class="annotation-card-en">zhěngjī chǎnliàng · complete-unit output</span> counts education and research units, not economically productive robots.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      No breakdown of the 100,000 units by use case or maker was disclosed. With 140+ domestic humanoid firms, a price war remains the sector's most predictable risk; the ~10,000-unit commercial-deployment target is the honest adoption measure.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      The forecast supports the component and contract-manufacturing thesis — actuators, reducers, sensors — more than any single robot maker. Watch WAIC for order announcements and the Unitree listing as sentiment catalysts for <span class="annotation-card-zh">具身智能</span><span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span> supply chains.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ PANEL 2: CHINESE MODEL SHARE -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">46%</div>
+      <div class="signal-label">Peak weekly token share</div>
+      <div class="signal-sub">US companies → Chinese models, OpenRouter</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">60–90%</div>
+      <div class="signal-label">Cheaper than US flagships</div>
+      <div class="signal-sub">Open-source Chinese model pricing</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">27x</div>
+      <div class="signal-label">GLM-5.2 token growth</div>
+      <div class="signal-sub">First full week · fastest Vercel tracked in 2026</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">US Companies' Token Share Routed to Chinese Models (OpenRouter)</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- y gridlines -->
+      <line x1="80" y1="250" x2="660" y2="250" stroke="#d0c8c0" stroke-width="1"/>
+      <line x1="80" y1="190" x2="660" y2="190" stroke="#eee6de" stroke-width="1"/>
+      <line x1="80" y1="130" x2="660" y2="130" stroke="#eee6de" stroke-width="1"/>
+      <line x1="80" y1="70" x2="660" y2="70" stroke="#eee6de" stroke-width="1"/>
+      <text x="70" y="254" text-anchor="end" font-size="10" fill="#9a8a7a">0%</text>
+      <text x="70" y="194" text-anchor="end" font-size="10" fill="#9a8a7a">15%</text>
+      <text x="70" y="134" text-anchor="end" font-size="10" fill="#9a8a7a">30%</text>
+      <text x="70" y="74" text-anchor="end" font-size="10" fill="#9a8a7a">45%</text>
+      <!-- bars: scale 4px per % -->
+      <rect x="110" y="232" width="90" height="18" fill="#9a8a7a" rx="2"/>
+      <text x="155" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">4.5%</text>
+      <text x="155" y="268" text-anchor="middle" font-size="10" fill="#6a5a4a">H1 2025</text>
+      <rect x="250" y="206" width="90" height="44" fill="#b45309" rx="2"/>
+      <text x="295" y="196" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">11%</text>
+      <text x="295" y="268" text-anchor="middle" font-size="10" fill="#6a5a4a">Prior 12-mo average</text>
+      <rect x="390" y="130" width="90" height="120" fill="#c0392b" rx="2"/>
+      <text x="435" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">30%+</text>
+      <text x="435" y="268" text-anchor="middle" font-size="10" fill="#6a5a4a">Every week since Feb 8</text>
+      <rect x="530" y="66" width="90" height="184" fill="#1a1a2e" rx="2"/>
+      <text x="575" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">46%</text>
+      <text x="575" y="268" text-anchor="middle" font-size="10" fill="#6a5a4a">2026 weekly peak</text>
+      <!-- caption -->
+      <text x="370" y="290" text-anchor="middle" font-size="10" fill="#b0a898">Source: OpenRouter / Vercel data via CNBC, Jul 7, 2026 · developer-skewed platform, not a census of enterprise spend</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      This is revealed preference by paying US customers, not benchmark theater. The driver is <span class="annotation-card-zh">性价比</span><span class="annotation-card-en">xìngjiàbǐ · price-performance</span>: tasks that don't need the best model get routed to the cheapest one that clears the bar — and Chinese <span class="annotation-card-zh">开源</span><span class="annotation-card-en">kāiyuán · open source</span> models are winning that trade.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      OpenRouter skews to developers and startups; large regulated enterprises contract directly with US labs, and compliance objections to Chinese-origin models remain hard constraints in the highest-spend sectors. Sustained 30%+ share also invites a Washington policy response.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Watch three things: whether share holds after US labs reprice mid-tier models, whether a large US enterprise publicly standardizes on a Chinese open-weight model, and whether Zhipu's GLM-5.2 momentum (27x tokens, 80x customers in week one) persists past the novelty window.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ PANEL 3: PBOC GOLD / FX RESERVES -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">$3.4163T</div>
+      <div class="signal-label">FX reserves, end-June</div>
+      <div class="signal-sub">–$26B m/m · mostly valuation effects</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">14.9t</div>
+      <div class="signal-label">June gold purchase</div>
+      <div class="signal-sub">480k oz · largest monthly add since 2023</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">20</div>
+      <div class="signal-label">Consecutive months buying</div>
+      <div class="signal-sub">Longest streak since 2015 · ~2,346t held</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Buying Streak Accelerates — and Gold Is Still Under 10% of Reserves</div>
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="320" fill="#fafaf8" rx="4"/>
+      <!-- streak strip -->
+      <text x="50" y="40" font-size="11" font-weight="700" fill="#1a1a2e">20-month accumulation streak (Nov 2024 → Jun 2026)</text>
+      <g>
+        <rect x="50" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="79" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="108" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="137" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="166" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="195" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="224" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="253" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="282" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="311" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="340" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="369" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="398" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="427" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="456" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="485" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="514" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="543" y="52" width="24" height="24" fill="#d8c8b8" rx="3"/>
+        <rect x="572" y="52" width="24" height="24" fill="#b45309" rx="3"/>
+        <rect x="601" y="52" width="24" height="24" fill="#c0392b" rx="3"/>
+      </g>
+      <text x="584" y="92" text-anchor="middle" font-size="9" fill="#b45309">May</text>
+      <text x="613" y="92" text-anchor="middle" font-size="9" fill="#c0392b">Jun</text>
+      <text x="50" y="108" font-size="10" fill="#9a8a7a">May 2026: +9.95t &nbsp;·&nbsp; Jun 2026: +14.93t — the pace roughly doubled into the year-end stretch</text>
+      <!-- composition bars -->
+      <text x="50" y="150" font-size="11" font-weight="700" fill="#1a1a2e">Gold as share of official reserves — the runway argument</text>
+      <!-- China bar -->
+      <text x="50" y="182" font-size="11" fill="#6a5a4a">China</text>
+      <rect x="130" y="168" width="490" height="22" fill="#eee6de" rx="3"/>
+      <rect x="130" y="168" width="47" height="22" fill="#c0392b" rx="3"/>
+      <text x="185" y="184" font-size="11" font-weight="700" fill="#c0392b">&lt;10%</text>
+      <!-- Western bar -->
+      <text x="50" y="226" font-size="11" fill="#6a5a4a">Large Western</text>
+      <text x="50" y="238" font-size="11" fill="#6a5a4a">central banks</text>
+      <rect x="130" y="212" width="490" height="22" fill="#eee6de" rx="3"/>
+      <rect x="130" y="212" width="290" height="22" fill="#1a1a2e" rx="3"/>
+      <text x="430" y="228" font-size="11" font-weight="700" fill="#1a1a2e">majority of reserves</text>
+      <text x="50" y="270" font-size="10" fill="#9a8a7a">Convergence toward peer allocations at the current pace would take years — a structural, policy-driven bid, not momentum.</text>
+      <text x="350" y="305" text-anchor="middle" font-size="10" fill="#b0a898">Source: SAFE / PBOC data via Bloomberg, Jul 7, 2026 · Disclosed figures; WGC estimates unreported official buying runs higher</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      Twenty months of buying, accelerating into price swings rather than pausing, is structural reserve policy: a <span class="annotation-card-zh">去美元化</span><span class="annotation-card-en">qù měiyuán huà · de-dollarization</span> hedge against sanctions risk and dollar-asset concentration — not tactical trading.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Monthly SAFE prints are disclosed policy, and actual accumulation may differ — the World Gold Council has repeatedly estimated unreported official buying well above published volumes. The –$26B reserves dip is attributed to valuation effects, not confirmed intervention.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      With <span class="annotation-card-zh">黄金储备</span><span class="annotation-card-en">huángjīn chǔbèi · gold reserves</span> under 10% of the portfolio versus a majority at Western peers, the program has years of runway — a persistent structural bid under gold. Watch H2 pace and Q3 Treasury-holdings data.
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">China Brief Issue #50 · July 8, 2026 · Not investment advice · Data sourced from public reporting</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
