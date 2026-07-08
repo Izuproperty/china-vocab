@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #51 · July 9, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+  @media (max-width:640px){ .signal-row,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #51 · Visualized</div>
+    <div class="page-meta">July 9, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">DeepSeek Chip Effort</div>
+  <div class="tab" onclick="showViz('s2',this)">Model Export Curbs</div>
+  <div class="tab" onclick="showViz('s3',this)">Momenta HK Debut</div>
+</div>
+
+<!-- ============================================ PANEL 1: DEEPSEEK INFERENCE CHIP -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">~1 year</div>
+      <div class="signal-label">Project age</div>
+      <div class="signal-sub">Quiet recruiting, no public job posts · Reuters, Jul 7</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">2 vendors</div>
+      <div class="signal-label">Dependence targeted</div>
+      <div class="signal-sub">Nvidia AND Huawei Ascend</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">0</div>
+      <div class="signal-label">Tape-outs reported</div>
+      <div class="signal-sub">Early stage · no foundry announced</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Custom Inference Silicon Path — Who Has Walked It</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- lane labels -->
+      <text x="20" y="55" font-size="12" font-weight="700" fill="#1a1a2e">Google</text>
+      <text x="20" y="115" font-size="12" font-weight="700" fill="#1a1a2e">OpenAI</text>
+      <text x="20" y="175" font-size="12" font-weight="700" fill="#c0392b">DeepSeek</text>
+      <text x="20" y="235" font-size="12" font-weight="700" fill="#1a1a2e">Meituan et al.</text>
+      <!-- Google bar: design → deployed at scale -->
+      <rect x="110" y="40" width="540" height="20" rx="3" fill="#e8f0fe"/>
+      <rect x="110" y="40" width="540" height="20" rx="3" fill="none" stroke="#1a56db" stroke-width="1"/>
+      <text x="120" y="54" font-size="10" fill="#1a56db">TPU · designing since ~2014, v7 deployed — full training + inference independence achieved</text>
+      <!-- OpenAI bar -->
+      <rect x="110" y="100" width="380" height="20" rx="3" fill="#fef3e2"/>
+      <rect x="110" y="100" width="380" height="20" rx="3" fill="none" stroke="#b45309" stroke-width="1"/>
+      <text x="120" y="114" font-size="10" fill="#b45309">Custom inference ASIC with Broadcom · announced 2025, first silicon ramping</text>
+      <!-- DeepSeek bar -->
+      <rect x="110" y="160" width="180" height="20" rx="3" fill="#c0392b" opacity="0.85"/>
+      <text x="120" y="174" font-size="10" font-weight="700" fill="#fff">In design · ~1 yr · pre-tape-out</text>
+      <line x1="290" y1="170" x2="420" y2="170" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="428" y="174" font-size="10" font-style="italic" fill="#9a8a7a">foundry unknown — SMIC node access is the constraint</text>
+      <!-- Meituan lane: uses domestic chips (different strategy) -->
+      <rect x="110" y="220" width="270" height="20" rx="3" fill="#f0ede8"/>
+      <rect x="110" y="220" width="270" height="20" rx="3" fill="none" stroke="#9a8a7a" stroke-width="1"/>
+      <text x="120" y="234" font-size="10" fill="#6a5a4a">Alternative strategy: buy domestic (Ascend, Moore Threads, MetaX, Cambricon)</text>
+      <!-- axis note -->
+      <line x1="110" y1="265" x2="650" y2="265" stroke="#d0c8c0" stroke-width="1"/>
+      <text x="110" y="284" font-size="10" fill="#9a8a7a">Design start</text>
+      <text x="650" y="284" text-anchor="end" font-size="10" fill="#9a8a7a">Deployed at scale</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      DeepSeek is designing an in-house <span class="annotation-card-zh">推理芯片<span class="annotation-card-en">tuīlǐ xīnpiàn · inference chip</span></span> to cut reliance on Nvidia AND Huawei — challenging the assumption that Ascend consolidates China's AI compute layer by default.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      No <span class="annotation-card-zh">流片<span class="annotation-card-en">liúpiàn · tape-out</span></span>, no named foundry, no timeline. Most custom-chip projects stall, and advanced-node capacity at SMIC is rationed under US export controls.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Watch merchant-silicon names — Cambricon <span class="annotation-card-zh">寒武纪<span class="annotation-card-en">Hánwǔjì · Cambricon</span></span>, Moore Threads — whose valuations assume big labs keep buying third-party chips. A confirmed SMIC tape-out is the re-rating trigger.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ PANEL 2: MODEL EXPORT CURBS -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">3</div>
+      <div class="signal-label">Firms in the room</div>
+      <div class="signal-sub">Alibaba · ByteDance · Zhipu (Z.ai)</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">3 tiers</div>
+      <div class="signal-label">Proposed regime</div>
+      <div class="signal-sub">Filing → security review → no public release</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">&gt;30%</div>
+      <div class="signal-label">At stake</div>
+      <div class="signal-sub">Weekly US OpenRouter token share of Chinese models</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Tiered Control Regime Under Discussion (MOFCOM-Led Talks, Nothing Decided)</div>
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="320" fill="#fafaf8" rx="4"/>
+      <!-- Tier 3 (bottom, widest): basic open source -->
+      <rect x="80" y="230" width="540" height="60" rx="4" fill="#f0fff4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="350" y="255" text-anchor="middle" font-size="13" font-weight="700" fill="#16a34a">TIER 1 · Basic open-source tools</text>
+      <text x="350" y="274" text-anchor="middle" font-size="11" fill="#3a3a3a">Simple filing requirement — overseas access continues</text>
+      <!-- Tier 2 -->
+      <rect x="150" y="140" width="400" height="60" rx="4" fill="#fffbf0" stroke="#d97706" stroke-width="1.5"/>
+      <text x="350" y="165" text-anchor="middle" font-size="13" font-weight="700" fill="#d97706">TIER 2 · Advanced models</text>
+      <text x="350" y="184" text-anchor="middle" font-size="11" fill="#3a3a3a">Formal security review before release</text>
+      <!-- Tier 1 (top, narrowest): frontier -->
+      <rect x="220" y="50" width="260" height="60" rx="4" fill="#fff5f5" stroke="#c0392b" stroke-width="2"/>
+      <text x="350" y="75" text-anchor="middle" font-size="13" font-weight="700" fill="#c0392b">TIER 3 · Sensitive frontier models</text>
+      <text x="350" y="94" text-anchor="middle" font-size="11" fill="#3a3a3a">Barred from public release, or domestic use only</text>
+      <!-- connecting arrows -->
+      <line x1="350" y1="110" x2="350" y2="140" stroke="#9a8a7a" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="350" y1="200" x2="350" y2="230" stroke="#9a8a7a" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <!-- side note -->
+      <text x="640" y="70" text-anchor="end" font-size="10" font-style="italic" fill="#c0392b">also discussed: leaks of</text>
+      <text x="640" y="84" text-anchor="end" font-size="10" font-style="italic" fill="#c0392b">proprietary AI tech as a</text>
+      <text x="640" y="98" text-anchor="end" font-size="10" font-style="italic" fill="#c0392b">national-security offense</text>
+      <text x="90" y="70" font-size="10" font-style="italic" fill="#9a8a7a">capability</text>
+      <text x="90" y="84" font-size="10" font-style="italic" fill="#9a8a7a">sensitivity</text>
+      <polygon points="97,95 92,110 102,110" fill="#9a8a7a"/>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      Beijing is weighing <span class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></span> on its own <span class="annotation-card-zh">前沿模型<span class="annotation-card-en">qiányán móxíng · frontier models</span></span> — mirroring US chip controls and cutting against the open-weight strategy driving overseas adoption.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Pre-decisional: scope under discussion, may apply only to future models, no timeline, no official comment. Consultations like this often narrow or die under industry lobbying.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Exposure is asymmetric: Alibaba's cloud thesis leans on Qwen's global traction; Zhipu's listing story is international <span class="annotation-card-zh">开源<span class="annotation-card-en">kāiyuán · open source</span></span>. Watch Jul 15 AI rules and WAIC (Jul 17–20) for where the line settles.
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ PANEL 3: MOMENTA HK DEBUT -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">$751M</div>
+      <div class="signal-label">IPO raise</div>
+      <div class="signal-sub">HK$5.89B · priced top of range · HKEX 6880</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">413.6x</div>
+      <div class="signal-label">Retail oversubscription</div>
+      <div class="signal-sub">Institutional orders &gt; HK$100B</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">+1.8%</div>
+      <div class="signal-label">Opening premium</div>
+      <div class="signal-sub">Open HK$301 vs offer HK$295.60 · ~US$9B mkt cap</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Day One: Subscription Frenzy vs. Aftermarket Discipline (Jul 8)</div>
+    <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+      <rect width="700" height="300" fill="#fafaf8" rx="4"/>
+      <!-- price axis -->
+      <line x1="80" y1="30" x2="80" y2="240" stroke="#d0c8c0" stroke-width="1"/>
+      <!-- gridlines -->
+      <line x1="80" y1="60" x2="650" y2="60" stroke="#eee8e0" stroke-width="1"/>
+      <text x="72" y="64" text-anchor="end" font-size="10" fill="#9a8a7a">315</text>
+      <line x1="80" y1="120" x2="650" y2="120" stroke="#eee8e0" stroke-width="1"/>
+      <text x="72" y="124" text-anchor="end" font-size="10" fill="#9a8a7a">305</text>
+      <line x1="80" y1="180" x2="650" y2="180" stroke="#eee8e0" stroke-width="1"/>
+      <text x="72" y="184" text-anchor="end" font-size="10" fill="#9a8a7a">295</text>
+      <!-- offer price line -->
+      <line x1="80" y1="177" x2="650" y2="177" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="6,4"/>
+      <text x="645" y="170" text-anchor="end" font-size="10" font-weight="700" fill="#c0392b">Offer HK$295.60</text>
+      <!-- price path: open 301 (y≈144) → high 314.80 (y≈61) → settle 299 (y≈156) -->
+      <path d="M 140 144 L 260 100 L 340 61 L 440 110 L 560 156" fill="none" stroke="#1a1a2e" stroke-width="2.5"/>
+      <circle cx="140" cy="144" r="5" fill="#16a34a"/>
+      <text x="140" y="132" text-anchor="middle" font-size="10" font-weight="700" fill="#16a34a">Open 301 (+1.8%)</text>
+      <circle cx="340" cy="61" r="5" fill="#1a1a2e"/>
+      <text x="340" y="48" text-anchor="middle" font-size="10" font-weight="700" fill="#1a1a2e">High 314.80 (+6.5%)</text>
+      <circle cx="560" cy="156" r="5" fill="#d97706"/>
+      <text x="560" y="144" text-anchor="middle" font-size="10" font-weight="700" fill="#d97706">~299 (+1.2%)</text>
+      <!-- x labels -->
+      <text x="140" y="262" text-anchor="middle" font-size="10" fill="#9a8a7a">Open</text>
+      <text x="340" y="262" text-anchor="middle" font-size="10" fill="#9a8a7a">Intraday high</text>
+      <text x="560" y="262" text-anchor="middle" font-size="10" fill="#9a8a7a">Late session</text>
+      <!-- proceeds allocation inset -->
+      <rect x="90" y="200" width="200" height="14" rx="2" fill="#e8f0fe"/>
+      <rect x="90" y="200" width="120" height="14" rx="2" fill="#1a56db"/>
+      <rect x="210" y="200" width="40" height="14" fill="#7a9be0"/>
+      <text x="90" y="228" font-size="9" fill="#6a5a4a">Proceeds: 60% R&amp;D · 20% robotaxi · 20% mass-production + working capital</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      A 413.6x <span class="annotation-card-zh">超额认购<span class="annotation-card-en">chāo'é rèngòu · oversubscription</span></span> that opens just 1.8% higher: the aftermarket is applying more valuation discipline than Hong Kong's H1 subscription books imply.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      One session is not a verdict — and Momenta <span class="annotation-card-zh">魔门塔<span class="annotation-card-en">Mó​méntǎ · Momenta</span></span> has real mass-production ADAS revenue via GM and other OEMs, unlike much of the pre-revenue queue behind it.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Record H2 <span class="annotation-card-zh">解禁<span class="annotation-card-en">jiějìn · lock-up expiries</span></span> loom over H1's tech listings. Pricing on Unitree's STAR debut and Moonshot's mooted HK IPO will show if the ceiling holds.
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">China Brief Issue #51 · July 9, 2026 · Not investment advice · Data sourced from public reporting</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
