@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #39 · July 9, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; color:#818cf8; text-decoration:none; margin-bottom:10px; }
+  .back-link:hover { color:#d4d8f0; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:6px; font-size:12px; color:#8a9bb5; }
+  .tabs { display:flex; background:#eef0f5; border-bottom:1px solid #dde0e8; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#6a7a9a; cursor:pointer; border-bottom:3px solid transparent; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; background:#fff; }
+  .viz-panel { display:none; padding:28px 40px 40px; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:18px; line-height:1.35; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal { background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; padding:14px 16px; }
+  .signal-number { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#5a5a6a; margin-top:4px; line-height:1.45; }
+  .chart-box { background:#fbfbfd; border:1px solid #e8eaf2; border-radius:6px; padding:18px; margin-bottom:24px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:12px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation { background:#fff; border:1px solid #e8eaf2; border-radius:6px; padding:14px 16px; }
+  .annotation-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .annotation-body { font-size:12.5px; color:#3a3a4a; line-height:1.55; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px) { .signals, .annotations { grid-template-columns:1fr; } .viz-panel { padding:20px; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="japan-brief.html">&#8592; JAPAN BRIEF</a>
+    <div class="header-title">Japan Brief Visualized</div>
+    <div class="header-meta">Issue #39 · Thursday, July 9, 2026 · Three data views</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-1" onclick="showViz('viz-1','tab-1')">AI Legal Council</div>
+    <div class="tab" id="tab-2" onclick="showViz('viz-2','tab-2')">Hardware Data Week</div>
+    <div class="tab" id="tab-3" onclick="showViz('viz-3','tab-3')">Current Account</div>
+  </div>
+
+  <!-- PANEL 1: AI policy timeline -->
+  <div class="viz-panel active" id="viz-1">
+    <div class="panel-headline">From promotion to法整備: Japan's AI policy architecture is being rebuilt in stages</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-number">Jul 7</div><div class="signal-label">Plan adopted at PM's office to launch a new council overhauling AI legal frameworks</div></div>
+      <div class="signal"><div class="signal-number">4</div><div class="signal-label">Priority fields named: elderly care, transport/infrastructure, workplaces, administration</div></div>
+      <div class="signal"><div class="signal-number">&#165;1T</div><div class="signal-label">METI commitment behind the Noetra sovereign-model program the rules must eventually govern</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Policy timeline: Japan's AI framework build-out</div>
+      <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <line x1="40" y1="110" x2="740" y2="110" stroke="#c7cbe0" stroke-width="2"/>
+        <circle cx="90" cy="110" r="7" fill="#818cf8"/>
+        <text x="90" y="90" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">2025</text>
+        <text x="90" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">AI Promotion Act</text>
+        <text x="90" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">(light-touch, no penalties)</text>
+        <circle cx="280" cy="110" r="7" fill="#818cf8"/>
+        <text x="280" y="90" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Jun 30, 2026</text>
+        <text x="280" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">METI commits up to &#165;1T</text>
+        <text x="280" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">to Noetra consortium</text>
+        <circle cx="470" cy="110" r="9" fill="#3730a3"/>
+        <text x="470" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 7, 2026</text>
+        <text x="470" y="140" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a2e">New AI legal-framework</text>
+        <text x="470" y="154" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a2e">council adopted</text>
+        <circle cx="650" cy="110" r="7" fill="none" stroke="#3730a3" stroke-width="2" stroke-dasharray="3,2"/>
+        <text x="650" y="90" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">July 2026</text>
+        <text x="650" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">Revised AI Basic Plan</text>
+        <text x="650" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">targeted for cabinet</text>
+      </svg>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-title">Why now</div><div class="annotation-body">Deployment targets (10M robots by 2040) outran the legal plumbing. Liability, certification, and data rules for AI in care, transport, and government have to live in sector law, not guidelines.</div></div>
+      <div class="annotation"><div class="annotation-title">Investor read</div><div class="annotation-body">Clarified liability for physical AI would de-risk the robotics and integrator names the Noetra program feeds. Frontier-model restrictions, if they come, bite foreign labs harder than domestic adopters.</div></div>
+      <div class="annotation"><div class="annotation-title">Watch item</div><div class="annotation-body">The council's membership and first work program. Reorganized councils can produce real legislation or consensus management; the first circulated drafts will show which this is.</div></div>
+    </div>
+  </div>
+
+  <!-- PANEL 2: capital goods / SPE preview -->
+  <div class="viz-panel" id="viz-2">
+    <div class="panel-headline">The bar the June data has to clear: machine tool orders decelerated once already</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-number">+37.4%</div><div class="signal-label">May machine tool orders YoY (&#165;176.9B) — down from April's four-year-high pace</div></div>
+      <div class="signal"><div class="signal-number">Jul 10</div><div class="signal-label">TSMC June revenue and Yaskawa Q1 land the same day; JMTBA June data follows</div></div>
+      <div class="signal"><div class="signal-number">3</div><div class="signal-label">Consecutive down sessions in Tokyo chip-equipment names into the data window</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Japan machine tool orders, YoY growth by month</div>
+      <svg viewBox="0 0 780 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <line x1="60" y1="200" x2="740" y2="200" stroke="#c7cbe0" stroke-width="1.5"/>
+        <text x="45" y="205" text-anchor="end" font-size="10" fill="#8a8a9a">0%</text>
+        <line x1="60" y1="120" x2="740" y2="120" stroke="#eef0f5" stroke-width="1"/>
+        <text x="45" y="125" text-anchor="end" font-size="10" fill="#8a8a9a">25%</text>
+        <line x1="60" y1="40" x2="740" y2="40" stroke="#eef0f5" stroke-width="1"/>
+        <text x="45" y="45" text-anchor="end" font-size="10" fill="#8a8a9a">50%</text>
+        <rect x="120" y="110" width="90" height="90" fill="#b4bce8"/>
+        <text x="165" y="100" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">+28.1%</text>
+        <text x="165" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">Mar 2026</text>
+        <rect x="280" y="56" width="90" height="144" fill="#6b74c8"/>
+        <text x="325" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">+45.1%</text>
+        <text x="325" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">Apr 2026</text>
+        <rect x="440" y="80" width="90" height="120" fill="#3730a3"/>
+        <text x="485" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">+37.4%</text>
+        <text x="485" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">May 2026</text>
+        <rect x="600" y="80" width="90" height="120" fill="none" stroke="#3730a3" stroke-width="2" stroke-dasharray="5,4"/>
+        <text x="645" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">?</text>
+        <text x="645" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">Jun 2026 (due)</text>
+      </svg>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-title">The question</div><div class="annotation-body">A second straight YoY deceleration in June would give the "order growth peaked in April" thesis its first real data point. One month alone will not settle it — this series is noisy.</div></div>
+      <div class="annotation"><div class="annotation-title">TSMC read-through</div><div class="annotation-body">June monthly revenue proxies utilization pressure at JASM Kumamoto and forward orders for Japanese equipment and materials suppliers — the cleanest external check on the cycle.</div></div>
+      <div class="annotation"><div class="annotation-title">Positioning</div><div class="annotation-body">Tokyo Electron and Advantest de-rated on sentiment, not data. If the releases hold trend, the pullback reads as a washout; if both soften, the complex is repricing the cycle itself.</div></div>
+    </div>
+  </div>
+
+  <!-- PANEL 3: current account -->
+  <div class="viz-panel" id="viz-3">
+    <div class="panel-headline">Near-record surplus, 40-year-low currency: the composition explains the disconnect</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-number">&#165;3.97T</div><div class="signal-label">May current account surplus (preliminary), up from &#165;3.91T in April</div></div>
+      <div class="signal"><div class="signal-number">~162</div><div class="signal-label">USD/JPY near its weakest since 1986 despite the surplus run</div></div>
+      <div class="signal"><div class="signal-number">&#165;11.7T</div><div class="signal-label">Record April-May FX intervention, already round-tripped by the market</div></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Current account surplus, monthly (trillion yen)</div>
+      <svg viewBox="0 0 780 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <line x1="60" y1="200" x2="740" y2="200" stroke="#c7cbe0" stroke-width="1.5"/>
+        <text x="45" y="205" text-anchor="end" font-size="10" fill="#8a8a9a">0</text>
+        <line x1="60" y1="120" x2="740" y2="120" stroke="#eef0f5" stroke-width="1"/>
+        <text x="45" y="125" text-anchor="end" font-size="10" fill="#8a8a9a">2.0</text>
+        <line x1="60" y1="40" x2="740" y2="40" stroke="#eef0f5" stroke-width="1"/>
+        <text x="45" y="45" text-anchor="end" font-size="10" fill="#8a8a9a">4.0</text>
+        <rect x="140" y="105" width="110" height="95" fill="#b4bce8"/>
+        <text x="195" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">&#165;2.37T</text>
+        <text x="195" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">May 2025</text>
+        <rect x="340" y="43.7" width="110" height="156.3" fill="#6b74c8"/>
+        <text x="395" y="33" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">&#165;3.91T</text>
+        <text x="395" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">Apr 2026</text>
+        <rect x="540" y="41.2" width="110" height="158.8" fill="#3730a3"/>
+        <text x="595" y="31" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">&#165;3.97T</text>
+        <text x="595" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">May 2026</text>
+      </svg>
+    </div>
+    <div class="annotations">
+      <div class="annotation"><div class="annotation-title">Composition</div><div class="annotation-body">The surplus is dominated by primary income — dividends and coupons on overseas assets, much of it reinvested abroad without ever converting to yen. Headline flow overstates yen demand.</div></div>
+      <div class="annotation"><div class="annotation-title">Implication</div><div class="annotation-body">The "yen is too cheap versus fundamentals" case weakens when the fundamentals do not supply the flow. Durable reversal depends on the rate path and repatriation incentives, not the surplus.</div></div>
+      <div class="annotation"><div class="annotation-title">Policy calendar</div><div class="annotation-body">Markets price better-than-even odds of another BOJ hike by October; the July 30-31 meeting and any renewed intervention are the near-term catalysts, not this data.</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Japan Brief Issue #39 · July 9, 2026 · Not investment advice</div>
+</div>
+<script>
+function showViz(id, tab) {
+  var panels = document.querySelectorAll('.viz-panel');
+  for (var i = 0; i < panels.length; i++) { panels[i].classList.remove('active'); }
+  var tabs = document.querySelectorAll('.tab');
+  for (var j = 0; j < tabs.length; j++) { tabs[j].classList.remove('active'); }
+  document.getElementById(id).classList.add('active');
+  document.getElementById(tab).classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
