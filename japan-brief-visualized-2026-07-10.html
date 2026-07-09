@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #40 · July 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:860px; margin:0 auto; padding:0 16px 48px; }
+  .topbar { padding:20px 0 12px; }
+  .backlink { font-size:11px; font-weight:700; letter-spacing:2px; color:#3730a3; text-decoration:none; }
+  .header { background:#1a1a2e; border-bottom:4px solid #3730a3; border-radius:8px 8px 0 0; padding:28px 32px; }
+  .header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:8px; font-size:12px; color:#8a9bb5; }
+  .tabs { display:flex; background:#fff; border-bottom:1px solid #e0e0e8; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:12px; font-weight:600; color:#6a6a7a; cursor:pointer; border-bottom:3px solid transparent; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; background:#f8f8fc; }
+  .panel { display:none; background:#fff; padding:28px 32px 36px; border-radius:0 0 8px 8px; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+  .panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:18px; line-height:1.35; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .signal-num { font-size:24px; font-weight:700; color:#3730a3; line-height:1.2; }
+  .signal-label { font-size:11px; color:#5a5a6a; margin-top:4px; }
+  .chart-block { margin-bottom:26px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:12px; }
+  .chart-note { font-size:11px; color:#8a8a96; margin-top:8px; }
+  .annos { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .anno { background:#fbfbfd; border:1px solid #e8e8f0; border-radius:6px; padding:14px 16px; }
+  .anno-head { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .anno-body { font-size:12.5px; color:#3a3a44; line-height:1.55; }
+  .footer { text-align:center; margin-top:28px; font-size:11px; color:#7a7a88; }
+  @media (max-width:640px) { .signals, .annos { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="topbar"><a class="backlink" href="japan-brief.html">&larr; JAPAN BRIEF</a></div>
+  <div class="header">
+    <div class="header-eyebrow">Japan Brief Visualized</div>
+    <div class="header-title">Issue #40 · Three Stories in Charts</div>
+    <div class="header-meta">Friday, July 10, 2026 · AI Basic Plan preview · Rapidus pricing · Machine-tool orders</div>
+  </div>
+  <div class="tabs">
+    <div class="tab active" id="tab-viz1" onclick="showViz('viz1','tab-viz1')">AI Basic Plan (Preview)</div>
+    <div class="tab" id="tab-viz2" onclick="showViz('viz2','tab-viz2')">Rapidus 2nm Pricing</div>
+    <div class="tab" id="tab-viz3" onclick="showViz('viz3','tab-viz3')">Machine-Tool Orders</div>
+  </div>
+
+  <!-- TAB 1: AI BASIC PLAN TIMELINE -->
+  <div class="panel active" id="viz1">
+    <div class="panel-title">The revised AI Basic Plan heads for cabinet approval — a six-month rewrite driven by frontier-model security</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-num">Dec 23, 2025</div><div class="signal-label">First AI Basic Plan adopted by cabinet</div></div>
+      <div class="signal"><div class="signal-num">Jun 19, 2026</div><div class="signal-label">Draft revision published by Cabinet Office</div></div>
+      <div class="signal"><div class="signal-num">July 2026</div><div class="signal-label">Cabinet approval window for revised plan</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">Policy Timeline · Promotion to Evaluation</div>
+      <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Timeline of Japan AI policy milestones">
+        <line x1="40" y1="110" x2="720" y2="110" stroke="#c8c8d8" stroke-width="2"/>
+        <circle cx="90" cy="110" r="7" fill="#3730a3"/>
+        <text x="90" y="88" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Dec 2025</text>
+        <text x="90" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">First AI Basic Plan</text>
+        <text x="90" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">(promotion-first)</text>
+        <circle cx="240" cy="110" r="7" fill="#3730a3"/>
+        <text x="240" y="88" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">FY2026</text>
+        <text x="240" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">AI Promotion Act in force</text>
+        <text x="240" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">(no penalties)</text>
+        <circle cx="400" cy="110" r="7" fill="#3730a3"/>
+        <text x="400" y="88" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Jun 19, 2026</text>
+        <text x="400" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">Draft revision:</text>
+        <text x="400" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">frontier-model security</text>
+        <circle cx="540" cy="110" r="7" fill="#3730a3"/>
+        <text x="540" y="88" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Jul 7, 2026</text>
+        <text x="540" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">Legal-framework council</text>
+        <text x="540" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">clears PM's office</text>
+        <circle cx="670" cy="110" r="9" fill="none" stroke="#3730a3" stroke-width="3" stroke-dasharray="4 3"/>
+        <text x="670" y="88" text-anchor="middle" font-size="11" font-weight="600" fill="#3730a3">Jul 2026</text>
+        <text x="670" y="140" text-anchor="middle" font-size="10" fill="#5a5a6a">Cabinet approval</text>
+        <text x="670" y="154" text-anchor="middle" font-size="10" fill="#5a5a6a">(pending)</text>
+      </svg>
+      <div class="chart-note">Dashed marker denotes pending decision. Sources: Cabinet Office draft (June 19, 2026), public reporting.</div>
+    </div>
+    <div class="annos">
+      <div class="anno"><div class="anno-head">Why a rewrite in six months</div><div class="anno-body">The December plan was promotion-first. Escalating frontier-model cybersecurity risk forced a revision that layers evaluation on top of promotion rather than replacing it.</div></div>
+      <div class="anno"><div class="anno-head">The institutional tell</div><div class="anno-body">The draft positions the Japan AI Safety Institute to run cybersecurity evaluations of frontier models. Whether those evaluations gate procurement is the substantive question.</div></div>
+      <div class="anno"><div class="anno-head">Investor read</div><div class="anno-body">Gating evaluations would favor large domestic integrators who can carry compliance cost; hortatory language would make the revision signaling, not regulation.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 2: RAPIDUS PRICING -->
+  <div class="panel" id="viz2">
+    <div class="panel-title">Rapidus prices 2nm at TSMC parity — the roadmap and the benchmark</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-num">&yen;3&ndash;3.5M</div><div class="signal-label">Expected TSMC 2nm price per wafer, cited as Rapidus's benchmark</div></div>
+      <div class="signal"><div class="signal-num">2027</div><div class="signal-label">Rapidus 2nm mass-production target at Chitose</div></div>
+      <div class="signal"><div class="signal-num">1.4nm / 1nm</div><div class="signal-label">Next nodes Koike says await after 2nm ramp</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">Node Roadmap · Rapidus Stated Sequence</div>
+      <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rapidus node roadmap line chart">
+        <line x1="60" y1="200" x2="720" y2="200" stroke="#c8c8d8" stroke-width="1"/>
+        <line x1="60" y1="200" x2="60" y2="30" stroke="#c8c8d8" stroke-width="1"/>
+        <text x="30" y="70" font-size="10" fill="#8a8a96">1nm</text>
+        <text x="24" y="120" font-size="10" fill="#8a8a96">1.4nm</text>
+        <text x="30" y="170" font-size="10" fill="#8a8a96">2nm</text>
+        <polyline points="140,165 400,165 560,115 690,65" fill="none" stroke="#3730a3" stroke-width="3"/>
+        <circle cx="140" cy="165" r="6" fill="#3730a3"/>
+        <text x="140" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">2025 pilot line</text>
+        <text x="140" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a2e">2nm prototype</text>
+        <circle cx="400" cy="165" r="6" fill="#3730a3"/>
+        <text x="400" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">2027 target</text>
+        <text x="400" y="150" text-anchor="middle" font-size="10" font-weight="600" fill="#1a1a2e">2nm mass production</text>
+        <circle cx="560" cy="115" r="6" fill="none" stroke="#3730a3" stroke-width="2.5" stroke-dasharray="3 3"/>
+        <text x="560" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">post-2nm</text>
+        <text x="560" y="100" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">1.4nm race</text>
+        <circle cx="690" cy="65" r="6" fill="none" stroke="#3730a3" stroke-width="2.5" stroke-dasharray="3 3"/>
+        <text x="690" y="220" text-anchor="middle" font-size="11" fill="#5a5a6a">aspiration</text>
+        <text x="690" y="50" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">1nm</text>
+      </svg>
+      <div class="chart-note">Dashed markers are stated ambitions, not committed dates. Source: Koike remarks, Japan Productivity Center event, Karuizawa, July 8, 2026 (via The Japan Times).</div>
+    </div>
+    <div class="annos">
+      <div class="anno"><div class="anno-head">What parity pricing says</div><div class="anno-body">A challenger declining to discount is selling supply-chain resilience, not cost — and signaling its backers are not asking it to buy market share.</div></div>
+      <div class="anno"><div class="anno-head">Where the risk sits</div><div class="anno-body">At parity, every point of yield shortfall against TSMC comes out of margin — or in practice out of public funds. The strategy lives or dies on budomari.</div></div>
+      <div class="anno"><div class="anno-head">What to watch</div><div class="anno-body">Pilot-line yield disclosures and an anchor customer tape-out committed at parity pricing, not a subsidized teaser, through the autumn.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 3: MACHINE TOOL ORDERS -->
+  <div class="panel" id="viz3">
+    <div class="panel-title">June machine-tool orders accelerate to +52.8% — broad strength, foreign demand leading</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-num">+52.8%</div><div class="signal-label">Total orders, June 2026 vs. year earlier (preliminary)</div></div>
+      <div class="signal"><div class="signal-num">+45.5%</div><div class="signal-label">Domestic orders (naiju), June YoY</div></div>
+      <div class="signal"><div class="signal-num">+56.0%</div><div class="signal-label">Foreign orders (gaiju), June YoY</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">JMTBA Orders · Year-on-Year Growth</div>
+      <svg viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart of machine tool order growth">
+        <line x1="60" y1="220" x2="720" y2="220" stroke="#c8c8d8" stroke-width="1"/>
+        <text x="30" y="224" font-size="10" fill="#8a8a96">0%</text>
+        <text x="24" y="130" font-size="10" fill="#8a8a96">30%</text>
+        <text x="24" y="40" font-size="10" fill="#8a8a96">60%</text>
+        <line x1="60" y1="126" x2="720" y2="126" stroke="#eeeef4" stroke-width="1"/>
+        <line x1="60" y1="32" x2="720" y2="32" stroke="#eeeef4" stroke-width="1"/>
+        <rect x="120" y="102.5" width="90" height="117.5" fill="#a5b4fc" rx="3"/>
+        <text x="165" y="94" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">+37.5%</text>
+        <text x="165" y="240" text-anchor="middle" font-size="11" fill="#5a5a6a">May total</text>
+        <rect x="280" y="54.5" width="90" height="165.5" fill="#3730a3" rx="3"/>
+        <text x="325" y="46" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">+52.8%</text>
+        <text x="325" y="240" text-anchor="middle" font-size="11" fill="#5a5a6a">June total</text>
+        <rect x="440" y="77.5" width="90" height="142.5" fill="#6366f1" rx="3"/>
+        <text x="485" y="69" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">+45.5%</text>
+        <text x="485" y="240" text-anchor="middle" font-size="11" fill="#5a5a6a">June domestic</text>
+        <rect x="600" y="44.5" width="90" height="175.5" fill="#6366f1" rx="3"/>
+        <text x="645" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">+56.0%</text>
+        <text x="645" y="240" text-anchor="middle" font-size="11" fill="#5a5a6a">June foreign</text>
+      </svg>
+      <div class="chart-note">Preliminary figures released July 9, 2026 by the Japan Machine Tool Builders' Association. Orders have risen year-on-year since July 2025.</div>
+    </div>
+    <div class="annos">
+      <div class="anno"><div class="anno-head">Against the tape</div><div class="anno-body">Tokyo's equipment and automation names sold off this week on capacity doubts; the order data, a leading capex indicator, accelerated instead.</div></div>
+      <div class="anno"><div class="anno-head">Caveats first</div><div class="anno-body">Preliminary data, a soft year-ago base, and lumpy monthly series — one strong print does not by itself refute a positioning unwind.</div></div>
+      <div class="anno"><div class="anno-head">Confirmation tests</div><div class="anno-body">Yaskawa's Q1 print today and TSMC's June revenue within days. If Yaskawa's orders echo JMTBA, the order-flow vs. positioning divergence is the trade to interrogate.</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Japan Brief Issue #40 · July 10, 2026 · Not investment advice</div>
+</div>
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  document.getElementById(tab).classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
