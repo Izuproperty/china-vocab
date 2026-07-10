@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #41 · July 11, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; padding:24px 16px; }
+  .container { max-width:860px; margin:0 auto; }
+  .back-link { display:inline-block; font-size:11px; font-weight:700; letter-spacing:2px; color:#3730a3; text-decoration:none; margin-bottom:16px; }
+  .header { background:#1a1a2e; border-radius:8px 8px 0 0; padding:28px 32px; border-bottom:4px solid #3730a3; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:26px; color:#fff; }
+  .header .sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#fff; border-bottom:1px solid #e5e7eb; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:12px; font-weight:600; color:#6b7280; cursor:pointer; border-bottom:3px solid transparent; background:none; border-top:none; border-left:none; border-right:none; font-family:'Inter',sans-serif; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; background:#f5f6fa; }
+  .panel { display:none; background:#fff; padding:28px 32px 36px; border-radius:0 0 8px 8px; }
+  .panel.active { display:block; }
+  .panel h2 { font-family:'Playfair Display',serif; font-size:19px; color:#1a1a2e; margin-bottom:18px; line-height:1.35; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .signal .num { font-size:24px; font-weight:700; color:#3730a3; }
+  .signal .lbl { font-size:11px; color:#6b7280; margin-top:4px; }
+  .chart-wrap { background:#fafbfc; border:1px solid #eceef2; border-radius:8px; padding:18px; margin-bottom:26px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#6b7280; margin-bottom:12px; }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .card { background:#fff; border:1px solid #e5e7eb; border-radius:8px; padding:16px; }
+  .card h3 { font-size:12px; font-weight:700; color:#3730a3; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+  .card p { font-size:12.5px; color:#374151; }
+  .footer { text-align:center; font-size:11px; color:#6b7280; margin-top:24px; }
+  @media (max-width:640px){ .signals,.cards{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="container">
+  <a class="back-link" href="japan-brief.html">&#8592; JAPAN BRIEF</a>
+  <div class="header">
+    <h1>Japan Brief Visualized</h1>
+    <div class="sub">Issue #41 · Saturday, July 11, 2026 · Three stories in numbers</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="showViz('viz1', this)">SoftBank x Seven &amp; i</button>
+    <button class="tab" onclick="showViz('viz2', this)">Yaskawa Q1</button>
+    <button class="tab" onclick="showViz('viz3', this)">Pension Remarks</button>
+  </div>
+
+  <!-- TAB 1 -->
+  <div class="panel active" id="viz1">
+    <h2>SoftBank and PayPay weigh up to a ¥300 billion stake in Seven &amp; i</h2>
+    <div class="signals">
+      <div class="signal"><div class="num">¥300B</div><div class="lbl">Reported maximum investment (Nikkei), incl. possible Sumitomo Mitsui Card participation</div></div>
+      <div class="signal"><div class="num">21,000</div><div class="lbl">Approx. 7-Eleven stores in Japan — the AI and robotics deployment surface</div></div>
+      <div class="signal"><div class="num">Summer</div><div class="lbl">Targeted signing window; talks described as fluid</div></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Capital committed to Japan physical-AI deployment (¥ billions)</div>
+      <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img">
+        <line x1="140" y1="20" x2="140" y2="200" stroke="#d1d5db" stroke-width="1"/>
+        <line x1="140" y1="200" x2="680" y2="200" stroke="#d1d5db" stroke-width="1"/>
+        <!-- scale: 1000 -> 520px => 0.52 px per B -->
+        <text x="130" y="55" font-size="12" fill="#374151" text-anchor="end" font-family="Inter,sans-serif">Noetra, 5-yr METI ceiling</text>
+        <rect x="140" y="40" width="520" height="24" fill="#3730a3" rx="3"/>
+        <text x="668" y="57" font-size="12" fill="#1a1a2e" text-anchor="end" font-family="Inter,sans-serif" font-weight="600" opacity="0.0">.</text>
+        <text x="655" y="57" font-size="12" fill="#ffffff" text-anchor="end" font-family="Inter,sans-serif" font-weight="600">1,000</text>
+        <text x="130" y="115" font-size="12" fill="#374151" text-anchor="end" font-family="Inter,sans-serif">Noetra, FY2026 tranche</text>
+        <rect x="140" y="100" width="201" height="24" fill="#6366f1" rx="3"/>
+        <text x="349" y="117" font-size="12" fill="#374151" font-family="Inter,sans-serif" font-weight="600">387.3</text>
+        <text x="130" y="175" font-size="12" fill="#374151" text-anchor="end" font-family="Inter,sans-serif">Seven &amp; i stake (max)</text>
+        <rect x="140" y="160" width="156" height="24" fill="#a5b4fc" rx="3"/>
+        <text x="304" y="177" font-size="12" fill="#374151" font-family="Inter,sans-serif" font-weight="600">300</text>
+        <text x="140" y="222" font-size="10" fill="#9ca3af" font-family="Inter,sans-serif">Sources: METI program disclosures (Jun 30); Bloomberg / Nikkei deal reporting (Jul 10). Stake is private capital, shown for scale.</text>
+      </svg>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Stated logic</h3><p>SoftBank in-house AI for store management plus autonomous robots against konbini labor shortage — a national retail network as physical-AI proving ground.</p></div>
+      <div class="card"><h3>Measurable logic</h3><p>PayPay locked into Japan's largest convenience network ahead of its US listing, hardening both against rival retail-payment alliances.</p></div>
+      <div class="card"><h3>What to watch</h3><p>Deal structure (new-share issuance and size) and whether AI deployment gets concrete KPIs — store counts, robot units — or stays narrative.</p></div>
+    </div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div class="panel" id="viz2">
+    <h2>Yaskawa Q1: the first automation earnings print since Noetra came in soft</h2>
+    <div class="signals">
+      <div class="signal"><div class="num">-5.1%</div><div class="lbl">Revenue y/y, to ¥125.6B (fiscal Q1, Mar–May)</div></div>
+      <div class="signal"><div class="num">-24%</div><div class="lbl">Net income y/y, to ¥6.95B; margin 5.5% vs 6.9%</div></div>
+      <div class="signal"><div class="num">+52.8%</div><div class="lbl">JMTBA June machine-tool orders y/y — the leading indicator pointing the other way</div></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">Yaskawa fiscal Q1, year on year</div>
+      <svg viewBox="0 0 700 250" xmlns="http://www.w3.org/2000/svg" role="img">
+        <line x1="60" y1="210" x2="680" y2="210" stroke="#d1d5db" stroke-width="1"/>
+        <!-- Revenue pair: scale 132.4 -> 150px -->
+        <text x="145" y="232" font-size="12" fill="#374151" text-anchor="middle" font-family="Inter,sans-serif">Revenue (¥B)</text>
+        <rect x="90" y="60" width="50" height="150" fill="#c7d2fe" rx="3"/>
+        <text x="115" y="52" font-size="11" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">132.4</text>
+        <rect x="150" y="68" width="50" height="142" fill="#3730a3" rx="3"/>
+        <text x="175" y="60" font-size="11" fill="#1a1a2e" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">125.6</text>
+        <!-- Net income pair: scale 9.14 -> 150px => 16.4 px/B -->
+        <text x="385" y="232" font-size="12" fill="#374151" text-anchor="middle" font-family="Inter,sans-serif">Net income (¥B)</text>
+        <rect x="330" y="60" width="50" height="150" fill="#c7d2fe" rx="3"/>
+        <text x="355" y="52" font-size="11" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">9.1</text>
+        <rect x="390" y="96" width="50" height="114" fill="#3730a3" rx="3"/>
+        <text x="415" y="88" font-size="11" fill="#1a1a2e" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">7.0</text>
+        <!-- EPS pair: scale 35.19 -> 150px -->
+        <text x="605" y="232" font-size="12" fill="#374151" text-anchor="middle" font-family="Inter,sans-serif">EPS (¥)</text>
+        <rect x="550" y="60" width="50" height="150" fill="#c7d2fe" rx="3"/>
+        <text x="575" y="52" font-size="11" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">35.19</text>
+        <rect x="610" y="96" width="50" height="114" fill="#3730a3" rx="3"/>
+        <text x="635" y="88" font-size="11" fill="#1a1a2e" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">26.81</text>
+        <text x="60" y="26" font-size="10" fill="#9ca3af" font-family="Inter,sans-serif">Light bars: 1Q FY2025 (derived from reported y/y changes). Dark bars: 1Q FY2026 reported Jul 10.</text>
+      </svg>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Timing, not contradiction</h3><p>The quarter covers March–May; JMTBA's June order surge postdates nearly all of it. Orders lead, recognized revenue lags.</p></div>
+      <div class="card"><h3>The real read</h3><p>Order intake and guidance matter more than the headline miss. Motion control proxies semi capex; the robotics order book proxies physical-AI demand.</p></div>
+      <div class="card"><h3>Divergence test</h3><p>If Q1 orders inflected while revenue lagged, the JMTBA thesis survives. If orders were flat, the automation complex's equity weakness has fundamentals behind it.</p></div>
+    </div>
+  </div>
+
+  <!-- TAB 3 -->
+  <div class="panel" id="viz3">
+    <h2>Katayama's pension remarks move currency, rates, and equities at once</h2>
+    <div class="signals">
+      <div class="signal"><div class="num">~161</div><div class="lbl">Yen per dollar Friday, firming from ~162.5 near 40-year lows</div></div>
+      <div class="signal"><div class="num">+1.2%</div><div class="lbl">Nikkei 225 Friday close, 68,557 — semis led (Kioxia +8.3%)</div></div>
+      <div class="signal"><div class="num">30-yr</div><div class="lbl">10-year JGB yield pulled back from a three-decade high on the remarks</div></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="chart-title">USD/JPY through the week (indicative closes)</div>
+      <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" role="img">
+        <line x1="60" y1="20" x2="60" y2="200" stroke="#d1d5db" stroke-width="1"/>
+        <line x1="60" y1="200" x2="680" y2="200" stroke="#d1d5db" stroke-width="1"/>
+        <!-- y: 160 -> 190px, 163 -> 30px ; 1 yen = 53.3px. x: Mon..Fri -->
+        <text x="52" y="35" font-size="10" fill="#9ca3af" text-anchor="end" font-family="Inter,sans-serif">163</text>
+        <line x1="60" y1="30" x2="680" y2="30" stroke="#f0f1f5" stroke-width="1"/>
+        <text x="52" y="115" font-size="10" fill="#9ca3af" text-anchor="end" font-family="Inter,sans-serif">161.5</text>
+        <line x1="60" y1="110" x2="680" y2="110" stroke="#f0f1f5" stroke-width="1"/>
+        <text x="52" y="195" font-size="10" fill="#9ca3af" text-anchor="end" font-family="Inter,sans-serif">160</text>
+        <polyline points="120,105 260,80 400,55 540,57 660,110" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="120" cy="105" r="4" fill="#3730a3"/>
+        <circle cx="260" cy="80" r="4" fill="#3730a3"/>
+        <circle cx="400" cy="55" r="4" fill="#3730a3"/>
+        <circle cx="540" cy="57" r="4" fill="#3730a3"/>
+        <circle cx="660" cy="110" r="5" fill="#b45309"/>
+        <text x="660" y="132" font-size="11" fill="#b45309" text-anchor="end" font-family="Inter,sans-serif" font-weight="600">Katayama remarks</text>
+        <text x="120" y="222" font-size="10" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">Mon</text>
+        <text x="260" y="222" font-size="10" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">Tue</text>
+        <text x="400" y="222" font-size="10" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">Wed</text>
+        <text x="540" y="222" font-size="10" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">Thu</text>
+        <text x="660" y="222" font-size="10" fill="#6b7280" text-anchor="middle" font-family="Inter,sans-serif">Fri</text>
+        <text x="60" y="238" font-size="10" fill="#9ca3af" font-family="Inter,sans-serif">Indicative weekly path: yen weakened toward 162.5 on oil / Middle East risk, then firmed toward 161 on Friday's remarks.</text>
+      </svg>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Positioning tell</h3><p>One sentence repricing three markets means the weak-yen and JGB-selloff trades lean on assumed institutional outflows — and are crowded.</p></div>
+      <div class="card"><h3>Mechanism check</h3><p>Ministerial encouragement is not a mandate. GPIF allocations move through formal portfolio reviews, not press conferences.</p></div>
+      <div class="card"><h3>What confirms it</h3><p>An MOF policy document or GPIF reference-portfolio signal. Absent that, yen direction reverts to oil and the rate differential after the June BOJ hike to 1%.</p></div>
+    </div>
+  </div>
+
+  <div class="footer">Japan Brief Issue #41 · July 11, 2026 · Not investment advice</div>
+</div>
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
