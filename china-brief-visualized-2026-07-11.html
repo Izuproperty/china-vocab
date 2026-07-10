@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #53 · July 11, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+  @media (max-width:640px){ .signal-row,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #53 · Visualized</div>
+    <div class="page-meta">July 11, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">Zhipu and MiniMax Unlocks</div>
+  <div class="tab" onclick="showViz('s2',this)">Nexchip HK Debut</div>
+  <div class="tab" onclick="showViz('s3',this)">Yuan Fix Below 6.80</div>
+</div>
+
+<!-- ============================================ PANEL 1: ZHIPU / MINIMAX LOCK-UP EXPIRIES -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">34.25%</div>
+      <div class="signal-label">MiniMax capital unlocked</div>
+      <div class="signal-sub">107.4M shares · Jul 9 · ~HK$40B at recent prices</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">&lt;4% / &lt;6%</div>
+      <div class="signal-label">Real float pre-unlock</div>
+      <div class="signal-sub">Zhipu / MiniMax genuinely tradable shares</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">HK$1.55T</div>
+      <div class="signal-label">2026 HK unlock wave</div>
+      <div class="signal-sub">vs ~HK$600B in 2025 (Wind) · nearly 3x</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Scarcity Unwind · Float, Unlocks and the Road Back to A-Shares</div>
+    <svg viewBox="0 0 740 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- float expansion bars -->
+      <text x="40" y="26" font-size="11" font-weight="700" fill="#6a5a4a">TRADABLE FLOAT · BEFORE AND AFTER UNLOCK (% OF SHARE CAPITAL)</text>
+      <!-- Zhipu -->
+      <text x="40" y="55" font-size="11" font-weight="600" fill="#1a1a2e">Zhipu 2513.HK</text>
+      <rect x="160" y="44" width="22" height="16" rx="2" fill="#8a9bb5"/>
+      <text x="188" y="57" font-size="10.5" fill="#6a5a4a">&lt;4% before (Jul 8 unlock ~HK$15B cornerstone shares)</text>
+      <rect x="160" y="66" width="50" height="16" rx="2" fill="#c0392b"/>
+      <text x="216" y="79" font-size="10.5" fill="#6a5a4a">wider but still narrow after · cornerstone cohort of ~11</text>
+      <!-- MiniMax -->
+      <text x="40" y="115" font-size="11" font-weight="600" fill="#1a1a2e">MiniMax 0100.HK</text>
+      <rect x="160" y="104" width="33" height="16" rx="2" fill="#8a9bb5"/>
+      <text x="199" y="117" font-size="10.5" fill="#6a5a4a">&lt;6% before</text>
+      <rect x="160" y="126" width="222" height="16" rx="2" fill="#c0392b"/>
+      <text x="388" y="139" font-size="10.5" fill="#6a5a4a">~40% after Jul 9 · financial investors hold over 1/3 of unlocking shares</text>
+      <!-- timeline -->
+      <line x1="40" y1="200" x2="700" y2="200" stroke="#e0d8d0" stroke-width="3"/>
+      <circle cx="90" cy="200" r="7" fill="#1a1a2e"/>
+      <text x="90" y="226" font-size="10" text-anchor="middle" fill="#6a5a4a">May 31 / Jun 1</text>
+      <text x="90" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">STAR return plans</text>
+      <circle cx="240" cy="200" r="7" fill="#1a1a2e"/>
+      <text x="240" y="226" font-size="10" text-anchor="middle" fill="#6a5a4a">Jun 9</text>
+      <text x="240" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">Join Hang Seng Tech</text>
+      <circle cx="390" cy="200" r="7" fill="#d97706"/>
+      <text x="390" y="226" font-size="10" text-anchor="middle" fill="#6a5a4a">Jul 2</text>
+      <text x="390" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#d97706">-17% / -15% front-run</text>
+      <circle cx="540" cy="200" r="9" fill="#c0392b"/>
+      <text x="540" y="230" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Jul 8–9 · UNLOCKS</text>
+      <text x="540" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#c0392b">HK$15B + ~HK$40B free</text>
+      <circle cx="670" cy="200" r="7" fill="#8a9bb5"/>
+      <text x="670" y="226" font-size="10" text-anchor="middle" fill="#6a5a4a">Next 2 wks</text>
+      <text x="670" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">Turnover test</text>
+      <text x="40" y="278" font-size="10.5" fill="#7a6a5a">Context: Zhipu rose 83.8% in May on just 11.9% monthly turnover — pricing built on scarcity, now being tested by supply</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      Hong Kong's pure-play AI valuations were set on artificially thin floats. This week's <span class="annotation-card-zh">解禁<span class="annotation-card-en">jiějìn · lock-up expiry</span></span> starts genuine price discovery — and it is the leading edge of an HK$1.55T unlock wave across 2026.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Whether holders actually sell. Cornerstones may sit; over a third of MiniMax's unlocking stock is with financial investors, the cohort with the least restraint. Post-unlock turnover and <span class="annotation-card-zh">流通盘<span class="annotation-card-en">liútōngpán · free float</span></span> depth are not yet observable.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Both firms are racing to the <span class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàngbǎn · STAR Market</span></span> (Zhipu: up to CNY15B) — a financing necessity given 2025 losses, and a second pricing anchor. Watch southbound Stock Connect flows; index inclusion partially cushions exits.
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================ PANEL 2: NEXCHIP HK DEBUT -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">$891M</div>
+      <div class="signal-label">Raised in HK listing</div>
+      <div class="signal-sub">216.2M shares at HK$32.30 · top of range</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">57%</div>
+      <div class="signal-label">Discount to A-shares</div>
+      <div class="signal-sub">vs Shanghai close CNY65.21 Thursday</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">+14%</div>
+      <div class="signal-label">Debut pop (intraday)</div>
+      <div class="signal-sub">First day of Hong Kong trading · Jul 10</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Pricing Gap and the Phase IV Capacity Ramp</div>
+    <svg viewBox="0 0 740 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- A/H pricing bars -->
+      <text x="40" y="26" font-size="11" font-weight="700" fill="#6a5a4a">A-SHARE VS H-SHARE PRICING (CNY-EQUIVALENT, INDICATIVE)</text>
+      <text x="40" y="55" font-size="11" fill="#1a1a2e">Shanghai A-share close (Jul 9)</text>
+      <rect x="260" y="42" width="420" height="18" rx="3" fill="#1a1a2e"/>
+      <text x="672" y="56" font-size="11" font-weight="700" text-anchor="end" fill="#e8d5b0">CNY 65.21</text>
+      <text x="40" y="85" font-size="11" fill="#1a1a2e">HK offer price (HK$32.30)</text>
+      <rect x="260" y="72" width="181" height="18" rx="3" fill="#c0392b"/>
+      <text x="448" y="86" font-size="11" font-weight="700" fill="#c0392b">~57% discount</text>
+      <text x="40" y="112" font-size="10.5" fill="#7a6a5a">China foundry rank: #3 after SMIC and Hua Hong · #8 worldwide · mature nodes: display drivers, PMICs, image sensors</text>
+      <!-- capacity timeline -->
+      <line x1="40" y1="200" x2="700" y2="200" stroke="#e0d8d0" stroke-width="3"/>
+      <circle cx="90" cy="200" r="7" fill="#1a1a2e"/>
+      <text x="90" y="226" font-size="10" text-anchor="middle" fill="#6a5a4a">2015</text>
+      <text x="90" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">Founded: Hefei + Powerchip JV</text>
+      <circle cx="300" cy="200" r="9" fill="#c0392b"/>
+      <text x="300" y="230" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Jul 10 2026 · HK DEBUT</text>
+      <text x="300" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#c0392b">53.6% of proceeds to 22nm R&amp;D</text>
+      <circle cx="480" cy="200" r="7" fill="#d97706"/>
+      <text x="480" y="226" font-size="10" text-anchor="middle" fill="#6a5a4a">Q4 2026</text>
+      <text x="480" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">Phase IV equipment install</text>
+      <circle cx="650" cy="200" r="7" fill="#16a34a"/>
+      <text x="650" y="226" font-size="10" text-anchor="middle" fill="#6a5a4a">Q2 2028</text>
+      <text x="650" y="178" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">55k wafers/mo at 28/40nm</text>
+      <text x="40" y="278" font-size="10.5" fill="#7a6a5a">Phase IV Hefei fab: CNY35.5B (~$5.1B) investment · adds mature-node supply into a market already adding capacity nationwide</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      Hong Kong's primary market is the funding channel for domestic <span class="annotation-card-zh">晶圆代工<span class="annotation-card-en">jīngyuán dàigōng · wafer foundry</span></span> expansion — Nexchip's $891M follows Momenta a day earlier — with steep A/H discounts as the price of access.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Margin durability. <span class="annotation-card-zh">成熟制程<span class="annotation-card-en">chéngshú zhìchéng · mature node</span></span> capacity is being added across China simultaneously — the same overcapacity mechanics the anti-involution campaign targets elsewhere. Utilization above ~80% through the Phase IV ramp is the number to watch.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      A 14% pop on a 57% discount says demand for the paper, not conviction on margins. For positioning, the cleaner trades are the A/H spread and driver-IC pricing through H2 — not the debut headline. <span class="annotation-card-zh">晶合集成<span class="annotation-card-en">Jīnghé Jíchéng · Nexchip</span></span> is now a two-market price signal.
+    </div>
+  </div>
+
+</div>
+
+<!-- ============================================ PANEL 3: YUAN FIXING -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">6.7989</div>
+      <div class="signal-label">Friday's fixing</div>
+      <div class="signal-sub">First below 6.80 since Feb 10, 2023</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">6.7785</div>
+      <div class="signal-label">Offshore yuan (CNH)</div>
+      <div class="signal-sub">+0.3% · biggest jump in nearly a month</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">~3%</div>
+      <div class="signal-label">Fix appreciation in H1</div>
+      <div class="signal-sub">Crossed back through 7 only in late January</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Managed Climb · PBOC Daily Fixing, January to July 2026</div>
+    <svg viewBox="0 0 740 280" xmlns="http://www.w3.org/2000/svg">
+      <!-- axes: y from 7.05 (y=60) to 6.75 (y=220); stronger = lower value = further down? invert: stronger yuan (lower number) plotted lower on axis? Plot value descending: 7.05 top, 6.75 bottom -->
+      <line x1="70" y1="40" x2="70" y2="230" stroke="#e0d8d0" stroke-width="2"/>
+      <line x1="70" y1="230" x2="700" y2="230" stroke="#e0d8d0" stroke-width="2"/>
+      <text x="62" y="65" font-size="10" text-anchor="end" fill="#9a8a7a">7.00</text>
+      <line x1="70" y1="60" x2="700" y2="60" stroke="#f0ede8" stroke-width="1"/>
+      <text x="62" y="125" font-size="10" text-anchor="end" fill="#9a8a7a">6.90</text>
+      <line x1="70" y1="120" x2="700" y2="120" stroke="#f0ede8" stroke-width="1"/>
+      <text x="62" y="185" font-size="10" text-anchor="end" fill="#9a8a7a">6.80</text>
+      <line x1="70" y1="180" x2="700" y2="180" stroke="#c0392b" stroke-width="1" stroke-dasharray="5,4"/>
+      <text x="695" y="173" font-size="10" font-weight="700" text-anchor="end" fill="#c0392b">6.80 threshold</text>
+      <!-- fixing path: Jan ~7.00 -> Jul 6.7989 ; x Jan=110 ... Jul=650 -->
+      <path d="M 110 58 L 200 75 L 290 95 L 380 118 L 470 140 L 560 165 L 620 176 L 650 186" fill="none" stroke="#1a1a2e" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="110" cy="58" r="5" fill="#1a1a2e"/>
+      <text x="110" y="45" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">Jan 23: below 7 again</text>
+      <circle cx="620" cy="176" r="5" fill="#d97706"/>
+      <text x="600" y="160" font-size="10" font-weight="600" text-anchor="end" fill="#d97706">Jul 9: 6.8036 (3.5-yr high)</text>
+      <circle cx="650" cy="186" r="7" fill="#c0392b"/>
+      <text x="650" y="210" font-size="11" font-weight="700" text-anchor="middle" fill="#c0392b">Jul 10: 6.7989</text>
+      <!-- x labels -->
+      <text x="110" y="248" font-size="10" text-anchor="middle" fill="#9a8a7a">Jan</text>
+      <text x="200" y="248" font-size="10" text-anchor="middle" fill="#9a8a7a">Feb</text>
+      <text x="290" y="248" font-size="10" text-anchor="middle" fill="#9a8a7a">Mar</text>
+      <text x="380" y="248" font-size="10" text-anchor="middle" fill="#9a8a7a">Apr</text>
+      <text x="470" y="248" font-size="10" text-anchor="middle" fill="#9a8a7a">May</text>
+      <text x="560" y="248" font-size="10" text-anchor="middle" fill="#9a8a7a">Jun</text>
+      <text x="650" y="248" font-size="10" text-anchor="middle" fill="#9a8a7a">Jul</text>
+      <text x="70" y="272" font-size="10.5" fill="#7a6a5a">Indicative path of the CNY/USD midpoint (lower = stronger yuan). The fixing is a policy instrument — the trajectory is the message.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      The <span class="annotation-card-zh">中间价<span class="annotation-card-en">zhōngjiānjià · daily fixing</span></span> is a policy instrument, so crossing 6.80 is a deliberate signal: the PBOC is comfortable with — arguably guiding — <span class="annotation-card-zh">升值<span class="annotation-card-en">shēngzhí · appreciation</span></span>, consistent with reserve diversification and the RMB-asset story.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Whether the economy can carry it. A stronger yuan stacks a second margin squeeze on exporters already absorbing the PPI-CPI pass-through gap. June trade (~Jul 13), credit (Jul 14) and Q2 GDP (Jul 15) are the immediate tests; the PBOC has reversed course before.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Cleaner read-through is FX-hedging costs and the relative appeal of RMB-denominated assets — including the <span class="annotation-card-zh">离岸人民币<span class="annotation-card-en">lí'àn rénmínbì · offshore yuan</span></span> funding leg of Hong Kong's listing wave — rather than a one-way currency trade.
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-bar">China Brief Issue #53 · July 11, 2026 · Not investment advice · Data sourced from public reporting</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
