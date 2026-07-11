@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #42 · July 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:860px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { font-size:11px; font-weight:700; letter-spacing:2px; color:#818cf8; text-decoration:none; display:inline-block; margin-bottom:10px; }
+  .back-link:hover { color:#d4d8f0; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:6px; font-size:12px; color:#8a9bb5; }
+  .tabs { display:flex; background:#1a1a2e; padding:0 40px; gap:4px; }
+  .tab { background:#2a2a4e; border:none; color:#a0b0c8; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; padding:10px 18px; border-radius:6px 6px 0 0; cursor:pointer; letter-spacing:0.5px; }
+  .tab.active { background:#fff; color:#3730a3; }
+  .panel { display:none; padding:32px 40px 48px; }
+  .panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:20px; line-height:1.35; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+  .signal { background:#f5f6fa; border-top:3px solid #3730a3; border-radius:0 0 6px 6px; padding:14px 16px; }
+  .signal-value { font-size:26px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#5a5a6a; margin-top:4px; line-height:1.4; }
+  .chart-block { margin-bottom:28px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:12px; }
+  .chart-note { font-size:11px; color:#9a9aa8; margin-top:8px; }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .card { background:#fff; border:1px solid #e4e6ee; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .card-title { font-size:12px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .card-body { font-size:12px; color:#4a4a5a; line-height:1.55; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.cards{grid-template-columns:1fr;} .tabs{flex-wrap:wrap;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="japan-brief.html">&#8592; JAPAN BRIEF</a>
+    <div class="header-title">Japan Brief Visualized</div>
+    <div class="header-meta">Issue #42 · Sunday, July 12, 2026 · Three stories, three charts</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" id="tab-1" onclick="showViz('viz-1','tab-1')">AI Basic Plan</button>
+    <button class="tab" id="tab-2" onclick="showViz('viz-2','tab-2')">TSMC Week Ahead</button>
+    <button class="tab" id="tab-3" onclick="showViz('viz-3','tab-3')">Producer Prices</button>
+  </div>
+
+  <!-- TAB 1 -->
+  <div class="panel active" id="viz-1">
+    <div class="panel-headline">The second AI Basic Plan is adopted: "Japan AX," 19 priority fields, and a cross-ministry regulatory rewrite</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">19</div><div class="signal-label">Priority fields designated, sorted by marketability, public value, and strategic importance</div></div>
+      <div class="signal"><div class="signal-value">&#165;1T</div><div class="signal-label">Five-year NEDO envelope for domestic AI development the plan sits on top of</div></div>
+      <div class="signal"><div class="signal-value">&#165;387.3B</div><div class="signal-label">FY2026 tranche already committed to Noetra and related physical-AI projects</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">Policy timeline: from first plan to funded execution</div>
+      <svg viewBox="0 0 780 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Timeline of Japan AI policy milestones">
+        <line x1="40" y1="95" x2="740" y2="95" stroke="#c9cde0" stroke-width="2"/>
+        <!-- Dec 2025 -->
+        <circle cx="90" cy="95" r="7" fill="#8a93c8"/>
+        <text x="90" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Dec 2025</text>
+        <text x="90" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">First AI Basic</text>
+        <text x="90" y="138" text-anchor="middle" font-size="10" fill="#5a5a6a">Plan decided</text>
+        <!-- Apr 2026 -->
+        <circle cx="250" cy="95" r="7" fill="#8a93c8"/>
+        <text x="250" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Apr 2026</text>
+        <text x="250" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">Noetra consortium</text>
+        <text x="250" y="138" text-anchor="middle" font-size="10" fill="#5a5a6a">established</text>
+        <!-- Jul 1 -->
+        <circle cx="410" cy="95" r="7" fill="#8a93c8"/>
+        <text x="410" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 1, 2026</text>
+        <text x="410" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">&#165;387.3B FY2026</text>
+        <text x="410" y="138" text-anchor="middle" font-size="10" fill="#5a5a6a">support designated</text>
+        <!-- Jul 10 -->
+        <circle cx="570" cy="95" r="9" fill="#3730a3"/>
+        <text x="570" y="66" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 10, 2026</text>
+        <text x="570" y="125" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">2nd-phase plan</text>
+        <text x="570" y="138" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">adopted (5th mtg)</text>
+        <!-- Late Aug -->
+        <circle cx="700" cy="95" r="7" fill="#fff" stroke="#3730a3" stroke-width="2"/>
+        <text x="700" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Late Aug</text>
+        <text x="700" y="125" text-anchor="middle" font-size="10" fill="#5a5a6a">FY2027 budget</text>
+        <text x="700" y="138" text-anchor="middle" font-size="10" fill="#5a5a6a">requests due</text>
+      </svg>
+      <div class="chart-note">Filled indigo marker: this issue's trigger event. Open marker: the next checkpoint that turns plan into money.</div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-title">What is actually new</div><div class="card-body">The regulatory posture: existing rules rewritten assuming AI in the loop, cross-ministry, plus an expanded AI Safety Institute mandate covering safety evaluation and cyber defense.</div></div>
+      <div class="card"><div class="card-title">The subsidy map</div><div class="card-body">Fields tagged "market" — manufacturing, logistics, finance — are where procurement and co-investment land first. That is the pipeline thesis for NEC, Fujitsu, and NTT Data.</div></div>
+      <div class="card"><div class="card-title">What would confirm it</div><div class="card-body">Dated line items in the late-August FY2027 budget requests and implementation ordinances per field. Without those, the plan remains a taxonomy.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div class="panel" id="viz-2">
+    <div class="panel-headline">Week-ahead preview: TSMC reports twice — delayed June revenue Monday, Q2 results and the call Thursday</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">~$40B</div><div class="signal-label">Street expectation for TSMC Q2 2026 revenue, reported July 16</div></div>
+      <div class="signal"><div class="signal-value">+33%</div><div class="signal-label">Implied year-on-year growth vs Q2 2025's $30.07B</div></div>
+      <div class="signal"><div class="signal-value">Jul 13</div><div class="signal-label">Typhoon-delayed June monthly revenue release, originally due July 10</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">TSMC Q2 revenue: last year vs this week's expectation (USD billions)</div>
+      <svg viewBox="0 0 780 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart comparing TSMC Q2 2025 revenue to Q2 2026 expectations">
+        <line x1="120" y1="170" x2="700" y2="170" stroke="#c9cde0" stroke-width="2"/>
+        <!-- Q2 2025 bar: 30.07 -->
+        <rect x="200" y="63" width="120" height="107" fill="#8a93c8" rx="3"/>
+        <text x="260" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">$30.1B</text>
+        <text x="260" y="192" text-anchor="middle" font-size="11" fill="#5a5a6a">Q2 2025 actual</text>
+        <!-- Q2 2026E bar: 40 -->
+        <rect x="460" y="28" width="120" height="142" fill="#3730a3" rx="3"/>
+        <text x="520" y="18" text-anchor="middle" font-size="14" font-weight="700" fill="#3730a3">~$40B</text>
+        <text x="520" y="192" text-anchor="middle" font-size="11" fill="#5a5a6a">Q2 2026 street estimate</text>
+      </svg>
+      <div class="chart-note">Scale proportional to revenue. Estimate per pre-earnings consensus reporting; actuals land Thursday, July 16.</div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-title">Why the call beats the print</div><div class="card-body">CoWoS and advanced-packaging capacity commentary is the demand signal for Tokyo Electron, Advantest, Shin-Etsu, and SUMCO — the names that have re-rated on AI capex.</div></div>
+      <div class="card"><div class="card-title">The Kumamoto angle</div><div class="card-body">JASM's second fab was assigned a 3nm line in February but still lacks a firm tooling schedule. Any timing language on the call is a direct read for the domestic supply chain.</div></div>
+      <div class="card"><div class="card-title">The tension into Thursday</div><div class="card-body">Machine-tool orders +52.8% vs a soft Yaskawa quarter, plus a July 9 short-covering rally led by Kioxia. Positioning is jumpy — Thursday arbitrates cycle turn vs restocking.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 3 -->
+  <div class="panel" id="viz-3">
+    <div class="panel-headline">June producer prices at 7.1% — the pipeline gap that keeps BOJ risk language pointed at overshoot</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">7.1%</div><div class="signal-label">June corporate goods price index, year on year — fastest since March 2023</div></div>
+      <div class="signal"><div class="signal-value">&#165;162</div><div class="signal-label">USDJPY around the Friday-morning release, near four-decade lows</div></div>
+      <div class="signal"><div class="signal-value">1.0%</div><div class="signal-label">BOJ policy rate going into the July 30-31 meeting and Outlook Report</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">The gap the hawks argue from (percent)</div>
+      <svg viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bar chart comparing producer price inflation, the BOJ inflation target, and the policy rate">
+        <line x1="120" y1="180" x2="700" y2="180" stroke="#c9cde0" stroke-width="2"/>
+        <!-- CGPI 7.1 -->
+        <rect x="160" y="38" width="110" height="142" fill="#3730a3" rx="3"/>
+        <text x="215" y="28" text-anchor="middle" font-size="14" font-weight="700" fill="#3730a3">7.1%</text>
+        <text x="215" y="200" text-anchor="middle" font-size="11" fill="#5a5a6a">CGPI, June YoY</text>
+        <!-- Target 2.0 -->
+        <rect x="360" y="140" width="110" height="40" fill="#8a93c8" rx="3"/>
+        <text x="415" y="130" text-anchor="middle" font-size="14" font-weight="700" fill="#1a1a2e">2.0%</text>
+        <text x="415" y="200" text-anchor="middle" font-size="11" fill="#5a5a6a">BOJ inflation target</text>
+        <!-- Policy rate 1.0 -->
+        <rect x="560" y="160" width="110" height="20" fill="#b45309" rx="3"/>
+        <text x="615" y="150" text-anchor="middle" font-size="14" font-weight="700" fill="#b45309">1.0%</text>
+        <text x="615" y="200" text-anchor="middle" font-size="11" fill="#5a5a6a">Policy rate</text>
+      </svg>
+      <div class="chart-note">Pipeline inflation at 7.1% against a 1.0% policy rate is the spread October rate-hike bets are built on.</div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-title">It is the yen, upstream</div><div class="card-body">Drivers were oil and gasoline, electricity, and plastics — import-heavy categories. The print is largely currency weakness arriving as input costs, amplified by war-related energy pricing.</div></div>
+      <div class="card"><div class="card-title">Friday's two-front push</div><div class="card-body">Morning: the 7.1% data. Afternoon: Katayama's pension remarks pulled the yen toward 161. Data and flows, both leaning against currency weakness.</div></div>
+      <div class="card"><div class="card-title">The margin question</div><div class="card-body">7.1% input inflation against much lower consumer inflation implies squeeze for domestic-demand names without pass-through power; exporters keep the translation tailwind.</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Japan Brief Issue #42 · July 12, 2026 · Not investment advice</div>
+</div>
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  document.getElementById(tab).classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
