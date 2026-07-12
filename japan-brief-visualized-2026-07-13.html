@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #43 · July 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:820px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { font-size:11px; font-weight:700; letter-spacing:2px; color:#818cf8; text-decoration:none; display:inline-block; margin-bottom:12px; }
+  .back-link:hover { color:#d4d8f0; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#1a1a2e; padding:0 40px; gap:4px; }
+  .tab { padding:12px 18px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a9bb5; cursor:pointer; border:none; background:transparent; border-bottom:3px solid transparent; font-family:'Inter',sans-serif; }
+  .tab.active { color:#fff; border-bottom-color:#3730a3; background:#24244a; }
+  .panel { display:none; padding:32px 40px 40px; }
+  .panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:20px; line-height:1.35; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+  .signal { background:#f5f6fa; border-top:3px solid #3730a3; border-radius:0 0 6px 6px; padding:14px 16px; }
+  .signal-value { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#5a5a6a; margin-top:4px; line-height:1.4; }
+  .chart-block { margin-bottom:28px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a8a7a; margin-bottom:10px; }
+  .chart-frame { background:#fbfbfd; border:1px solid #e8e8f0; border-radius:6px; padding:12px; }
+  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .card { background:#fff; border:1px solid #e4e4ee; border-left:3px solid #3730a3; border-radius:4px; padding:14px 16px; }
+  .card-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .card-body { font-size:12.5px; color:#3a3a3a; line-height:1.6; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.cards{grid-template-columns:1fr;} .tabs{flex-wrap:wrap;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="japan-brief.html">&#8592; JAPAN BRIEF</a>
+    <div class="header-title">Japan Brief Visualized</div>
+    <div class="header-sub">Issue #43 · Monday, July 13, 2026 · Three stories in signals and charts</div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" onclick="showViz('viz1', this)">Frontier-AI Cyber</button>
+    <button class="tab" onclick="showViz('viz2', this)">RV-X First Flight</button>
+    <button class="tab" onclick="showViz('viz3', this)">BOJ Data Week</button>
+  </div>
+
+  <!-- TAB 1 -->
+  <div class="panel active" id="viz1">
+    <div class="panel-headline">NTT Data and NTT Docomo Business launch a frontier-AI cyber-risk service for banks and utilities on July 31</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">Jul 31</div><div class="signal-label">Service launch date for critical-infrastructure customers</div></div>
+      <div class="signal"><div class="signal-value">~10,000</div><div class="signal-label">Systems in the reported serviceable base at launch</div></div>
+      <div class="signal"><div class="signal-value">2</div><div class="signal-label">Frontier-model partners behind the service (Anthropic, OpenAI)</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">Timeline · From announcement to supervisory verdict</div>
+      <div class="chart-frame">
+        <svg viewBox="0 0 720 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Timeline of NTT frontier AI cyber service milestones">
+          <line x1="50" y1="85" x2="680" y2="85" stroke="#c7cbe3" stroke-width="2"/>
+          <circle cx="90" cy="85" r="7" fill="#3730a3"/>
+          <text x="90" y="60" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e" font-family="Inter,sans-serif">Jul 7</text>
+          <text x="90" y="115" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">Service announced</text>
+          <circle cx="270" cy="85" r="7" fill="#3730a3"/>
+          <text x="270" y="60" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e" font-family="Inter,sans-serif">Jul 31</text>
+          <text x="270" y="115" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">Launch: banks, utilities</text>
+          <circle cx="460" cy="85" r="7" fill="#818cf8"/>
+          <text x="460" y="60" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e" font-family="Inter,sans-serif">Q3 FY26</text>
+          <text x="460" y="115" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">First reference customers</text>
+          <circle cx="630" cy="85" r="7" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="3 2"/>
+          <text x="630" y="60" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e" font-family="Inter,sans-serif">TBD</text>
+          <text x="630" y="115" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">FSA supervisory stance</text>
+        </svg>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-title">Why it matters</div><div class="card-body">Regulated banks putting frontier models in the remediation loop forces the FSA to rule on AI-executed changes in bank systems — precedent for every enterprise-AI deal after it.</div></div>
+      <div class="card"><div class="card-title">The test</div><div class="card-body">Recurring managed-service pricing versus one-off consulting decides whether this moves NTT Data's earnings profile or stays a headline.</div></div>
+      <div class="card"><div class="card-title">The caveat</div><div class="card-body">Security marketing routinely outruns shipped capability. Nothing is verifiable until customers are live after July 31.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 2 -->
+  <div class="panel" id="viz2">
+    <div class="panel-headline">RV-X hops 11 meters at Noshiro — Japan's first reusable-rocket flight test, co-developed by JAXA and Mitsubishi Heavy</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">11 m</div><div class="signal-label">Altitude reached on the July 11 first flight, with a 16 m lateral translation</div></div>
+      <div class="signal"><div class="signal-value">&lt;60 s</div><div class="signal-label">Total flight time from liftoff to upright touchdown on four legs</div></div>
+      <div class="signal"><div class="signal-value">100 m</div><div class="signal-label">Target altitude for the next test campaign</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">Flight-envelope roadmap · Altitude by campaign (log-style steps)</div>
+      <div class="chart-frame">
+        <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RV-X altitude roadmap line chart">
+          <line x1="60" y1="160" x2="680" y2="160" stroke="#c7cbe3" stroke-width="1.5"/>
+          <line x1="60" y1="160" x2="60" y2="20" stroke="#c7cbe3" stroke-width="1.5"/>
+          <polyline points="120,150 320,110 520,55" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+          <line x1="520" y1="55" x2="650" y2="30" stroke="#818cf8" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <circle cx="120" cy="150" r="6" fill="#3730a3"/>
+          <circle cx="320" cy="110" r="6" fill="#3730a3"/>
+          <circle cx="520" cy="55" r="6" fill="none" stroke="#3730a3" stroke-width="2"/>
+          <circle cx="650" cy="30" r="6" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="3 2"/>
+          <text x="120" y="178" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">Ground firings</text>
+          <text x="320" y="178" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">Jul 11: 11 m hop</text>
+          <text x="520" y="178" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">Next: ~100 m</text>
+          <text x="650" y="178" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">High-altitude / EU joint work</text>
+          <text x="320" y="95" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3" font-family="Inter,sans-serif">First flight + landing</text>
+        </svg>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-title">What it proves</div><div class="card-body">Throttleable propulsion, guidance, and landing control — flight heritage, not economics. SpaceX flew comparable hops in 2012.</div></div>
+      <div class="card"><div class="card-title">Who carries it</div><div class="card-body">Mitsubishi Heavy, prime contractor for the H3, gains in-house reusable-flight experience ahead of next-flagship-launcher decisions.</div></div>
+      <div class="card"><div class="card-title">The signal to watch</div><div class="card-body">Reusability language moving from JAXA research papers into funded requirements for the H3 successor — that is when it becomes investable.</div></div>
+    </div>
+  </div>
+
+  <!-- TAB 3 -->
+  <div class="panel" id="viz3">
+    <div class="panel-headline">Machinery orders, trade, and June CPI land this week — the last full data set before the BOJ's July 30-31 Outlook Report</div>
+    <div class="signals">
+      <div class="signal"><div class="signal-value">1.0%</div><div class="signal-label">BOJ policy rate since the June 16 hike, decided 7-1 — highest since 1995</div></div>
+      <div class="signal"><div class="signal-value">3</div><div class="signal-label">Major releases due this week: May core machinery orders, June trade, June nationwide CPI</div></div>
+      <div class="signal"><div class="signal-value">165</div><div class="signal-label">Goldman's 12-month USD/JPY forecast (July 6 revision), the bearish edge of the Street</div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-title">BOJ policy rate path · Toward the July 30-31 meeting</div>
+      <div class="chart-frame">
+        <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BOJ policy rate step line">
+          <line x1="60" y1="165" x2="680" y2="165" stroke="#c7cbe3" stroke-width="1.5"/>
+          <line x1="60" y1="165" x2="60" y2="20" stroke="#c7cbe3" stroke-width="1.5"/>
+          <text x="48" y="150" text-anchor="end" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">0.5%</text>
+          <text x="48" y="105" text-anchor="end" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">0.75%</text>
+          <text x="48" y="60" text-anchor="end" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">1.0%</text>
+          <polyline points="90,145 240,145 240,100 420,100 420,55 600,55" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+          <line x1="600" y1="55" x2="660" y2="55" stroke="#818cf8" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <circle cx="240" cy="100" r="5" fill="#3730a3"/>
+          <circle cx="420" cy="55" r="5" fill="#3730a3"/>
+          <circle cx="660" cy="55" r="6" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="3 2"/>
+          <text x="150" y="185" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">2025: 0.5%</text>
+          <text x="240" y="88" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">Dec: 0.75%</text>
+          <text x="420" y="43" text-anchor="middle" font-size="10" fill="#5a5a6a" font-family="Inter,sans-serif">Jun 16: 1.0%</text>
+          <text x="660" y="85" text-anchor="middle" font-size="10" fill="#818cf8" font-family="Inter,sans-serif">Jul 30-31?</text>
+        </svg>
+      </div>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="card-title">The real-side test</div><div class="card-body">Core orders swung +13.6% in February, -9.4% in March. May's print tests whether June's 52.8% machine-tool jump extends to the broader capex series.</div></div>
+      <div class="card"><div class="card-title">The price test</div><div class="card-body">Producer prices are running at their fastest since March 2023. June CPI measures pass-through — the last inflation read the board sees before it meets.</div></div>
+      <div class="card"><div class="card-title">The trade</div><div class="card-body">Firm data pulls the next hike forward: banks over exporters, yen support. Soft data leaves the carry trade in charge near 160-161.</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Japan Brief Issue #43 · July 13, 2026 · Not investment advice</div>
+</div>
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  if (tab) tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
