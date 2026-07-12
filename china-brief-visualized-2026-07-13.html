@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #55 · July 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { background:#1a1a2e; text-align:center; padding:14px; font-size:10px; color:#4a5a7a; letter-spacing:0.5px; margin-top:24px; }
+  svg text { font-family:'Inter',sans-serif; }
+  @media (max-width:640px){ .signal-row,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">Issue #55 · Visualized</div>
+    <div class="page-meta">July 13, 2026 · 3 stories</div>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">WAIC Exhibition Slate</div>
+  <div class="tab" onclick="showViz('s2',this)">DexForce Series B</div>
+  <div class="tab" onclick="showViz('s3',this)">Debt Swap at 94%</div>
+</div>
+
+<!-- ============================ PANEL 1: WAIC EXHIBITION SLATE -->
+<div class="viz-panel active" id="s1">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">8,192</div>
+      <div class="signal-label">Ascend NPUs in Atlas 950</div>
+      <div class="signal-sub">First physical display at WAIC</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">300+</div>
+      <div class="signal-label">Global product debuts</div>
+      <div class="signal-sub">1,000+ exhibitors · 3,000+ technologies</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">100K+ m²</div>
+      <div class="signal-label">Exhibition floor space</div>
+      <div class="signal-sub">Largest WAIC footprint to date · July 17–20</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Full-Stack Showcase · What Gets Platformed, Layer by Layer</div>
+    <svg viewBox="0 0 740 330" xmlns="http://www.w3.org/2000/svg">
+      <text x="40" y="26" font-size="11" font-weight="700" fill="#6a5a4a">DOMESTIC AI STACK ON DISPLAY · SHANGHAI ORGANIZING BRIEFING, JULY 7</text>
+      <!-- stack layers -->
+      <rect x="40" y="44" width="430" height="46" rx="4" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="56" y="63" font-size="11" font-weight="700" fill="#1a1a2e">Cluster compute</text>
+      <text x="56" y="80" font-size="9.5" fill="#6a5a4a">Huawei Atlas 950 SuperPoD · 8,192 Ascend NPU cards · first physical display</text>
+      <rect x="40" y="98" width="430" height="46" rx="4" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="56" y="117" font-size="11" font-weight="700" fill="#1a1a2e">Novel silicon</text>
+      <text x="56" y="134" font-size="9.5" fill="#6a5a4a">Dongfang Suanxin near-memory 3D chip · targets the memory-bandwidth wall</text>
+      <rect x="40" y="152" width="430" height="46" rx="4" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="56" y="171" font-size="11" font-weight="700" fill="#1a1a2e">Models</text>
+      <text x="56" y="188" font-size="9.5" fill="#6a5a4a">MiniMax M3 multimodal · frontier labs on the main floor</text>
+      <rect x="40" y="206" width="430" height="46" rx="4" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="56" y="225" font-size="11" font-weight="700" fill="#1a1a2e">Agent layer</text>
+      <text x="56" y="242" font-size="9.5" fill="#6a5a4a">StepFun agent OS · claimed world-first "AI agent phone" (developer unnamed)</text>
+      <rect x="40" y="260" width="430" height="46" rx="4" fill="#fff5f5" stroke="#c0392b"/>
+      <text x="56" y="279" font-size="11" font-weight="700" fill="#c0392b">Physical AI</text>
+      <text x="56" y="296" font-size="9.5" fill="#7a5a5a">New humanoids + dexterous hands · output/deployment stats covered in Issue #50</text>
+      <!-- context column -->
+      <rect x="495" y="44" width="215" height="120" rx="5" fill="#1a1a2e"/>
+      <text x="510" y="68" font-size="10.5" font-weight="700" fill="#c0392b">THE SEQUENCING</text>
+      <text x="510" y="88" font-size="10" fill="#e8d5b0">Days after reported H200</text>
+      <text x="510" y="103" font-size="10" fill="#e8d5b0">rationing (Issue #54), the</text>
+      <text x="510" y="118" font-size="10" fill="#e8d5b0">state stages an end-to-end</text>
+      <text x="510" y="133" font-size="10" fill="#e8d5b0">domestic demonstration at</text>
+      <text x="510" y="148" font-size="10" fill="#e8d5b0">its flagship venue.</text>
+      <rect x="495" y="176" width="215" height="130" rx="5" fill="#fffbf0" stroke="#d97706"/>
+      <text x="510" y="200" font-size="10.5" font-weight="700" fill="#d97706">CHECKABLE AT WAIC</text>
+      <text x="510" y="220" font-size="10" fill="#7a6a4a">· Atlas 950: customers or</text>
+      <text x="510" y="234" font-size="10" fill="#7a6a4a">&#160;&#160;static exhibit?</text>
+      <text x="510" y="252" font-size="10" fill="#7a6a4a">· Agent phone: maker and</text>
+      <text x="510" y="266" font-size="10" fill="#7a6a4a">&#160;&#160;ship date?</text>
+      <text x="510" y="284" font-size="10" fill="#7a6a4a">· Near-memory chip:</text>
+      <text x="510" y="298" font-size="10" fill="#7a6a4a">&#160;&#160;silicon or slideware?</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      The exhibition slate is a policy statement: cluster-scale <span class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></span>, novel chips, models, <span class="annotation-card-zh">智能体<span class="annotation-card-en">zhìnéngtǐ · AI agent</span></span> software and robots shown as one working domestic stack — staged just as Nvidia access is being rationed.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Every product claim is a press-briefing assertion so far — the agent phone has no named developer, Atlas 950 has no disclosed customers, and exhibition slates are curated precisely to create the full-stack impression. The conference is where claims become checkable.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Watch which Tier-2 names get state-platformed. <span class="annotation-card-zh">近存计算<span class="annotation-card-en">jìncún jìsuàn · near-memory computing</span></span> is a globally scarce theme aimed at domestic accelerators' binding constraint; Dongfang Suanxin is a new name for the tracking list. Governance-meeting language may also touch the Issue #51 model-export question.
+    </div>
+  </div>
+</div>
+
+<!-- ============================ PANEL 2: DEXFORCE SERIES B -->
+<div class="viz-panel" id="s2">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">¥1B</div>
+      <div class="signal-label">Series B raised</div>
+      <div class="signal-sub">Post-money valuation above ¥10B — unicorn</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">¥100M</div>
+      <div class="signal-label">H1 2026 revenue</div>
+      <div class="signal-sub">Targeting ¥300M+ full year — rare in the sector</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">~33x</div>
+      <div class="signal-label">Implied forward sales multiple</div>
+      <div class="signal-sub">¥10B valuation on ¥300M forecast revenue</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Who Funds Embodied AI Now · DexForce's All-State Syndicate</div>
+    <svg viewBox="0 0 740 330" xmlns="http://www.w3.org/2000/svg">
+      <text x="40" y="26" font-size="11" font-weight="700" fill="#6a5a4a">SERIES B INVESTOR STACK · ¥1B ROUND, ALL STATE-LINKED CAPITAL</text>
+      <!-- investor boxes -->
+      <rect x="40" y="42" width="155" height="58" rx="5" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="117" y="65" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1a1a2e">Shenzhen Capital Group</text>
+      <text x="117" y="82" font-size="9.5" text-anchor="middle" fill="#6a5a4a">Municipal VC platform</text>
+      <rect x="212" y="42" width="155" height="58" rx="5" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="289" y="65" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1a1a2e">Qianhai Fund of Funds</text>
+      <text x="289" y="82" font-size="9.5" text-anchor="middle" fill="#6a5a4a">Shenzhen zone FoF</text>
+      <rect x="384" y="42" width="155" height="58" rx="5" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="461" y="65" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1a1a2e">Hengjian AM</text>
+      <text x="461" y="82" font-size="9.5" text-anchor="middle" fill="#6a5a4a">Guangdong provincial SOE</text>
+      <rect x="556" y="42" width="155" height="58" rx="5" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="633" y="65" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1a1a2e">ICBC Capital</text>
+      <text x="633" y="82" font-size="9.5" text-anchor="middle" fill="#6a5a4a">Big-four bank arm</text>
+      <!-- arrows to company -->
+      <line x1="117" y1="100" x2="330" y2="150" stroke="#9a8a7a" stroke-width="1.2"/>
+      <line x1="289" y1="100" x2="355" y2="150" stroke="#9a8a7a" stroke-width="1.2"/>
+      <line x1="461" y1="100" x2="395" y2="150" stroke="#9a8a7a" stroke-width="1.2"/>
+      <line x1="633" y1="100" x2="420" y2="150" stroke="#9a8a7a" stroke-width="1.2"/>
+      <!-- company node -->
+      <rect x="255" y="152" width="240" height="64" rx="6" fill="#1a1a2e"/>
+      <text x="375" y="177" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">DexForce 跨维智能</text>
+      <text x="375" y="195" font-size="9.5" text-anchor="middle" fill="#8a9bb5">DexVerse engine: synthetic data · 3D perception</text>
+      <text x="375" y="208" font-size="9.5" text-anchor="middle" fill="#8a9bb5">skill generation · model training</text>
+      <!-- where revenue comes from -->
+      <line x1="375" y1="216" x2="375" y2="240" stroke="#c0392b" stroke-width="1.5"/>
+      <rect x="150" y="244" width="450" height="42" rx="5" fill="#fff5f5" stroke="#c0392b"/>
+      <text x="375" y="262" font-size="10.5" font-weight="700" text-anchor="middle" fill="#c0392b">Industrial deployments: inspection · picking · dexterous manipulation cells</text>
+      <text x="375" y="278" font-size="9.5" text-anchor="middle" fill="#7a5a5a">Engine vendor, not humanoid-first — revenue from factory integration, not demos</text>
+      <text x="40" y="316" font-size="10" fill="#b0a898">Trade press now calls ¥1B Series B rounds the sector's "starting price" — a dozen-plus embodied-AI unicorns minted in H1 2026.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      With US LP capital pushed out by NDRC clearance rules, <span class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></span> financing has become a state-syndicate business. That capital is patient but political — it selects for procurement-pipeline fit, not consumer stories.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      Revenue figures (¥100M H1, ¥300M+ target) are company-reported, not audited disclosures. And ~33x forward sales still requires the MIIT–SASAC deployment mandate to convert into recurring integration contracts for third-party engine vendors — not yet demonstrated.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      The November progress reports under the 10,000-unit deployment mandate are the validation event: named SOE deployments at scale would support the engine-vendor thesis. DexForce joins the Tier-2 list as the revenue-bearing counterexample in a sector priced on choreography.
+    </div>
+  </div>
+</div>
+
+<!-- ============================ PANEL 3: HIDDEN-DEBT SWAP AT 94% -->
+<div class="viz-panel" id="s3">
+
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">94%</div>
+      <div class="signal-label">Of swap quota used</div>
+      <div class="signal-sub">By end-June 2026 (Bloomberg tally of MOF data)</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">¥6T</div>
+      <div class="signal-label">Three-year allowance</div>
+      <div class="signal-sub">Core of the Nov 2024 debt package (~$880B)</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">¥1.62T</div>
+      <div class="signal-label">Issued in H1 2026 alone</div>
+      <div class="signal-sub">Jiangsu, Shandong, Zhejiang lead</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Quota Burn-Down · A 2024–26 Program Finishing More Than a Year Early</div>
+    <svg viewBox="0 0 740 330" xmlns="http://www.w3.org/2000/svg">
+      <text x="40" y="26" font-size="11" font-weight="700" fill="#6a5a4a">¥6 TRILLION HIDDEN-DEBT SWAP QUOTA · CUMULATIVE USAGE</text>
+      <!-- progress bar -->
+      <rect x="40" y="46" width="640" height="30" rx="4" fill="#f0ede8" stroke="#e0d8d0"/>
+      <rect x="40" y="46" width="602" height="30" rx="4" fill="#c0392b"/>
+      <text x="330" y="66" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">~94% used by end-June 2026</text>
+      <text x="662" y="66" font-size="9.5" text-anchor="middle" fill="#9a8a7a">6%</text>
+      <!-- timeline -->
+      <line x1="40" y1="130" x2="700" y2="130" stroke="#9a8a7a" stroke-width="1.5"/>
+      <circle cx="80" cy="130" r="5" fill="#1a1a2e"/>
+      <text x="80" y="112" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">Nov 2024</text>
+      <text x="80" y="150" font-size="9.5" text-anchor="middle" fill="#6a5a4a">¥10T package:</text>
+      <text x="80" y="163" font-size="9.5" text-anchor="middle" fill="#6a5a4a">¥6T swap quota</text>
+      <circle cx="250" cy="130" r="5" fill="#1a1a2e"/>
+      <text x="250" y="112" font-size="10" font-weight="600" text-anchor="middle" fill="#1a1a2e">FY2025</text>
+      <text x="250" y="150" font-size="9.5" text-anchor="middle" fill="#6a5a4a">Bulk of issuance;</text>
+      <text x="250" y="163" font-size="9.5" text-anchor="middle" fill="#6a5a4a">LGFV spreads compress</text>
+      <circle cx="430" cy="130" r="5" fill="#c0392b"/>
+      <text x="430" y="112" font-size="10" font-weight="600" text-anchor="middle" fill="#c0392b">End-June 2026</text>
+      <text x="430" y="150" font-size="9.5" text-anchor="middle" fill="#7a5a5a">~94% used;</text>
+      <text x="430" y="163" font-size="9.5" text-anchor="middle" fill="#7a5a5a">¥1.62T in H1</text>
+      <circle cx="570" cy="130" r="5" fill="none" stroke="#c0392b" stroke-width="2"/>
+      <text x="570" y="112" font-size="10" font-weight="600" text-anchor="middle" fill="#c0392b">Jul–Aug 2026</text>
+      <text x="570" y="150" font-size="9.5" text-anchor="middle" fill="#7a5a5a">Quota exhausted</text>
+      <text x="570" y="163" font-size="9.5" text-anchor="middle" fill="#7a5a5a">at current clip</text>
+      <circle cx="672" cy="130" r="5" fill="none" stroke="#9a8a7a" stroke-width="2"/>
+      <text x="672" y="112" font-size="10" font-weight="600" text-anchor="middle" fill="#9a8a7a">Late July</text>
+      <text x="672" y="150" font-size="9.5" text-anchor="middle" fill="#6a5a4a">Politburo:</text>
+      <text x="672" y="163" font-size="9.5" text-anchor="middle" fill="#6a5a4a">successor signal?</text>
+      <!-- successor options -->
+      <line x1="40" y1="195" x2="700" y2="195" stroke="#e0d8d0" stroke-width="1"/>
+      <text x="40" y="218" font-size="11" font-weight="700" fill="#6a5a4a">WHAT COULD FOLLOW · IN ORDER OF AMBITION</text>
+      <rect x="40" y="232" width="200" height="60" rx="4" fill="#f8f4ee" stroke="#9a8a7a"/>
+      <text x="140" y="254" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a2e">Top-up swap quota</text>
+      <text x="140" y="271" font-size="9.5" text-anchor="middle" fill="#6a5a4a">Incremental — most likely</text>
+      <rect x="270" y="232" width="200" height="60" rx="4" fill="#fffbf0" stroke="#d97706"/>
+      <text x="370" y="254" font-size="11" font-weight="700" text-anchor="middle" fill="#d97706">Bigger special-bond envelope</text>
+      <text x="370" y="271" font-size="9.5" text-anchor="middle" fill="#7a6a4a">Redirected to investment/consumption</text>
+      <rect x="500" y="232" width="200" height="60" rx="4" fill="#fff5f5" stroke="#c0392b"/>
+      <text x="600" y="254" font-size="11" font-weight="700" text-anchor="middle" fill="#c0392b">Central balance sheet shift</text>
+      <text x="600" y="271" font-size="9.5" text-anchor="middle" fill="#7a5a5a">The true "fiscal rethink" — regime change</text>
+      <text x="40" y="318" font-size="10" fill="#b0a898">No successor = passive fiscal tightening in H2, landing as trade and GDP data test the reflation story this week.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Core Claim</div>
+      The <span class="annotation-card-zh">化债<span class="annotation-card-en">huà zhài · debt resolution</span></span> program is finishing over a year early. Without a successor, H2 2026 sees passive fiscal tightening exactly as reflation is being tested — the ending of stimulus by completion rather than decision.
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Unverified</div>
+      The 94% figure is Bloomberg's compilation of issuance data, not an official milestone. Beijing has let programs lapse before without replacement, and nothing obliges the late-July Politburo to address it explicitly.
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Actionable Signal</div>
+      Watch the MOF H1 fiscal briefing and the Politburo readout for successor language. A shift of borrowing toward the central government balance sheet — not another <span class="annotation-card-zh">专项债<span class="annotation-card-en">zhuānxiàng zhài · special-purpose bond</span></span> tranche — is what the bond market would treat as regime change.
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">China Brief Issue #55 · July 13, 2026 · Not investment advice · Data sourced from public reporting</div>
+
+<script>
+function showViz(id, tab){
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
