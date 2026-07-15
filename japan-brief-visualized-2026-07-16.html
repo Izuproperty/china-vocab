@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #46 · July 16, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .header { background:#1a1a2e; padding:28px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:8px; font-size:12px; color:#8a9bb5; }
+  .viz-tabs { display:flex; gap:0; background:#22223e; border-bottom:1px solid #2a2a4e; padding:0 32px; overflow-x:auto; }
+  .viz-tab { background:none; border:none; color:#8a9bb5; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.5px; padding:14px 18px; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; }
+  .viz-tab.active { color:#fff; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .panel-sub { font-size:12px; color:#8a7a6a; margin-bottom:22px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#fff; border:1px solid #e4e6ee; border-radius:6px; padding:16px 18px; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+  .signal-num { font-size:26px; font-weight:700; color:#3730a3; line-height:1.2; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; }
+  .chart-card { background:#fff; border:1px solid #e4e6ee; border-radius:6px; padding:20px; box-shadow:0 1px 6px rgba(0,0,0,0.04); margin-bottom:26px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; border-top:3px solid; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#059669; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .red .annotation-card-tag { color:#dc2626; }
+  .amber .annotation-card-tag { color:#d97706; }
+  .green .annotation-card-tag { color:#059669; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:12px; color:#3a3a4a; line-height:1.55; }
+  .footer { padding:20px 32px 30px; background:#1a1a2e; text-align:center; margin-top:24px; }
+  .footer-text { font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-eyebrow">友達 Tomodachi · Data Companion</div>
+  <div class="header-title">Japan Brief Visualized</div>
+  <div class="header-meta">Issue #46 · Thursday, July 16, 2026 · 3 stories</div>
+</div>
+
+<div class="viz-tabs">
+  <button class="viz-tab active" onclick="showViz('viz1', this)">NVIDIA-Japan Partnership</button>
+  <button class="viz-tab" onclick="showViz('viz2', this)">Rapidus 2nm Signal</button>
+  <button class="viz-tab" onclick="showViz('viz3', this)">Reuters Tankan Split</button>
+</div>
+
+<!-- PANEL 1 -->
+<div class="viz-panel active" id="viz1">
+  <div class="panel-title">The sovereign AI stack Japan is assembling</div>
+  <div class="panel-sub">NVIDIA GPU supply → six Japanese clouds → Noetra & domestic developers → physical AI deployment</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">¥1T</div><div class="signal-label">METI commitment to the Noetra physical-AI program over 5 years</div></div>
+    <div class="signal"><div class="signal-num">6</div><div class="signal-label">Japanese cloud providers building on NVIDIA infrastructure</div></div>
+    <div class="signal"><div class="signal-num">10M</div><div class="signal-label">AI robots targeted across 18 sectors by 2040</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Compute-to-Robot Stack · Who Sits Where</div>
+    <svg viewBox="0 0 840 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a8aa8"/></marker>
+      </defs>
+      <!-- Layer 1: NVIDIA supply -->
+      <rect x="40" y="20" width="760" height="56" rx="6" fill="#1a1a2e"/>
+      <text x="420" y="44" text-anchor="middle" font-family="Inter" font-size="14" font-weight="700" fill="#fff">NVIDIA · GPU supply + full-stack platform</text>
+      <text x="420" y="63" text-anchor="middle" font-family="Inter" font-size="11" fill="#818cf8">July 16 government partnership · "the day Japanese AI begins"</text>
+      <line x1="420" y1="76" x2="420" y2="102" stroke="#8a8aa8" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Layer 2: Clouds -->
+      <rect x="40" y="104" width="760" height="66" rx="6" fill="#eef0fb" stroke="#c7cdf0"/>
+      <text x="420" y="126" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#3730a3">DOMESTIC AI CLOUD LAYER</text>
+      <text x="150" y="152" text-anchor="middle" font-family="Inter" font-size="11" fill="#2c2c3c">SoftBank</text>
+      <text x="270" y="152" text-anchor="middle" font-family="Inter" font-size="11" fill="#2c2c3c">KDDI</text>
+      <text x="390" y="152" text-anchor="middle" font-family="Inter" font-size="11" fill="#2c2c3c">GMO Internet</text>
+      <text x="530" y="152" text-anchor="middle" font-family="Inter" font-size="11" fill="#2c2c3c">SAKURA internet</text>
+      <text x="650" y="152" text-anchor="middle" font-family="Inter" font-size="11" fill="#2c2c3c">Highreso</text>
+      <text x="750" y="152" text-anchor="middle" font-family="Inter" font-size="11" fill="#2c2c3c">Rutilea</text>
+      <line x1="420" y1="170" x2="420" y2="196" stroke="#8a8aa8" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Layer 3: Model developers -->
+      <rect x="40" y="198" width="760" height="60" rx="6" fill="#fff" stroke="#c7cdf0"/>
+      <text x="420" y="221" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#3730a3">MODEL LAYER · Noetra consortium (SoftBank · Sony · NEC · Honda + AIST)</text>
+      <text x="420" y="242" text-anchor="middle" font-family="Inter" font-size="11" fill="#6a6a7a">¥1T METI program FY2026–2030 · multimodal foundation model for physical AI</text>
+      <line x1="420" y1="258" x2="420" y2="284" stroke="#8a8aa8" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Layer 4: Deployment -->
+      <rect x="40" y="286" width="760" height="42" rx="6" fill="#e6f6f1" stroke="#a7dcc8"/>
+      <text x="420" y="312" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#065f46">DEPLOYMENT · 10M AI robots across 18 sectors by 2040 · robotics, auto, healthcare, telecom</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">主権AI<span class="annotation-card-en">shuken AI · sovereign AI</span></div>
+      <div class="annotation-card-body">Sovereignty built on single-US-supplier GPU allocation is sovereignty of operation, not supply. Export-policy shifts remain an external switch.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">提携<span class="annotation-card-en">teikei · partnership</span></div>
+      <div class="annotation-card-body">MOU or contract? Disclosed volumes, delivery timelines, and capex revisions at KDDI / GMO / SAKURA internet (TSE: 3778) separate a program from a photo op.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">物理AI<span class="annotation-card-en">butsuri AI · physical AI</span></div>
+      <div class="annotation-card-body">The compute gap was Noetra's unresolved constraint. A state-brokered supply line addresses it directly — and Tokyo extracted the visit after "Japan passing."</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2 -->
+<div class="viz-panel" id="viz2">
+  <div class="panel-title">Rapidus: pricing set, timeline set — demand still unproven</div>
+  <div class="panel-sub">Huang's July 15 "future opportunity" remark is the first demand-side signal; the wafer-price wedge is the supply-side pitch</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">¥3–3.5M</div><div class="signal-label">Targeted 2nm wafer price (~$18.5–21.5k) — parity or below TSMC</div></div>
+    <div class="signal"><div class="signal-num">60+</div><div class="signal-label">Potential customers Rapidus says it is in talks with</div></div>
+    <div class="signal"><div class="signal-num">H2 2027</div><div class="signal-label">Targeted start of 2nm mass production (量産, ryōsan)</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Reported 2nm-Class Wafer Pricing · USD per Wafer</div>
+    <svg viewBox="0 0 840 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- gridlines -->
+      <g stroke="#eceef4" stroke-width="1">
+        <line x1="120" y1="40" x2="800" y2="40"/><line x1="120" y1="90" x2="800" y2="90"/>
+        <line x1="120" y1="140" x2="800" y2="140"/><line x1="120" y1="190" x2="800" y2="190"/>
+        <line x1="120" y1="240" x2="800" y2="240"/>
+      </g>
+      <g font-family="Inter" font-size="10" fill="#9a9aae" text-anchor="end">
+        <text x="112" y="44">$30k</text><text x="112" y="94">$25k</text>
+        <text x="112" y="144">$20k</text><text x="112" y="194">$15k</text><text x="112" y="244">$10k</text>
+      </g>
+      <!-- bars: scale 0 at y=340 impossible; use $10k=240, $30k=40 → $1k = 10px, baseline extended: value v → y = 240 - (v-10)*10 -->
+      <!-- TSMC $30k -->
+      <rect x="160" y="40" width="90" height="220" fill="#be185d" opacity="0.85" rx="3"/>
+      <text x="205" y="30" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#be185d">$30k</text>
+      <text x="205" y="280" text-anchor="middle" font-family="Inter" font-size="11" fill="#3a3a4a">TSMC</text>
+      <!-- Intel $30k -->
+      <rect x="310" y="40" width="90" height="220" fill="#8a5cf5" opacity="0.75" rx="3"/>
+      <text x="355" y="30" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#7c4dec">$30k</text>
+      <text x="355" y="280" text-anchor="middle" font-family="Inter" font-size="11" fill="#3a3a4a">Intel</text>
+      <!-- Samsung $20k -->
+      <rect x="460" y="140" width="90" height="120" fill="#0e7490" opacity="0.8" rx="3"/>
+      <text x="505" y="130" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#0e7490">$20k</text>
+      <text x="505" y="280" text-anchor="middle" font-family="Inter" font-size="11" fill="#3a3a4a">Samsung</text>
+      <!-- Rapidus $18.5-21.5k: bar to 21.5 with range marker -->
+      <rect x="610" y="125" width="90" height="135" fill="#3730a3" rx="3"/>
+      <line x1="655" y1="125" x2="655" y2="155" stroke="#fff" stroke-width="2" stroke-dasharray="3,3"/>
+      <text x="655" y="115" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#3730a3">$18.5–21.5k</text>
+      <text x="655" y="280" text-anchor="middle" font-family="Inter" font-size="11" font-weight="700" fill="#3730a3">Rapidus (target)</text>
+      <text x="460" y="298" text-anchor="middle" font-family="Inter" font-size="9.5" fill="#9a9aae">Reported figures (TrendForce / Electronics Weekly, July 2026); Rapidus notes actual prices vary by spec and FX · 2027 launch pricing</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">歩留まり<span class="annotation-card-en">budomari · manufacturing yield</span></div>
+      <div class="annotation-card-body">No published 2nm GAA yield data, no PDK maturity evidence, no packaging capacity. Price parity is meaningless if wafers don't yield.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">受託製造<span class="annotation-card-en">jutaku seizō · contract manufacturing</span></div>
+      <div class="annotation-card-body">A CEO courtesy is not a design win. The observable sequence: ecosystem/EDA announcement → test-chip engagement → volume talk no earlier than 2028.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">量産<span class="annotation-card-en">ryōsan · mass production</span></div>
+      <div class="annotation-card-body">First public NVIDIA mention of a Rapidus opportunity — the strongest demand-side validation signal the project has had since launch.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3 -->
+<div class="viz-panel" id="viz3">
+  <div class="panel-title">Reuters Tankan: the split, not the level</div>
+  <div class="panel-sub">Manufacturers hold at +13 on chip and AI-server demand; non-manufacturers absorb the cost shock</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">+13</div><div class="signal-label">Manufacturers' DI, July — unchanged, chip-led</div></div>
+    <div class="signal"><div class="signal-num">+25</div><div class="signal-label">Non-manufacturers' DI, July — down from +32</div></div>
+    <div class="signal"><div class="signal-num">~162</div><div class="signal-label">USD/JPY — the 円安 feeding services' import costs</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Business Conditions Index (DI) · June → July → October Forecast</div>
+    <svg viewBox="0 0 840 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <g stroke="#eceef4" stroke-width="1">
+        <line x1="100" y1="40" x2="790" y2="40"/><line x1="100" y1="95" x2="790" y2="95"/>
+        <line x1="100" y1="150" x2="790" y2="150"/><line x1="100" y1="205" x2="790" y2="205"/>
+        <line x1="100" y1="260" x2="790" y2="260"/>
+      </g>
+      <g font-family="Inter" font-size="10" fill="#9a9aae" text-anchor="end">
+        <text x="92" y="44">+40</text><text x="92" y="99">+30</text>
+        <text x="92" y="154">+20</text><text x="92" y="209">+10</text><text x="92" y="264">0</text>
+      </g>
+      <!-- y: 0 → 260, +40 → 40 ; value v → y = 260 - v*5.5 -->
+      <!-- Non-manufacturers: Jun +32 (84), Jul +25 (122.5), Oct +25 (122.5) -->
+      <polyline points="230,84 445,122.5 660,122.5" fill="none" stroke="#d97706" stroke-width="3"/>
+      <circle cx="230" cy="84" r="5" fill="#d97706"/><circle cx="445" cy="122.5" r="5" fill="#d97706"/><circle cx="660" cy="122.5" r="5" fill="#d97706" stroke="#fff" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <text x="230" y="70" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#d97706">+32</text>
+      <text x="445" y="110" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#d97706">+25</text>
+      <text x="660" y="110" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#d97706">+25f</text>
+      <!-- Manufacturers: Jun +13 (188.5), Jul +13 (188.5), Oct +14 (183) -->
+      <polyline points="230,188.5 445,188.5 660,183" fill="none" stroke="#3730a3" stroke-width="3"/>
+      <circle cx="230" cy="188.5" r="5" fill="#3730a3"/><circle cx="445" cy="188.5" r="5" fill="#3730a3"/><circle cx="660" cy="183" r="5" fill="#3730a3" stroke="#fff" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <text x="230" y="212" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#3730a3">+13</text>
+      <text x="445" y="212" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#3730a3">+13</text>
+      <text x="660" y="207" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#3730a3">+14f</text>
+      <!-- x labels -->
+      <g font-family="Inter" font-size="11" fill="#3a3a4a" text-anchor="middle">
+        <text x="230" y="285">June 2026</text><text x="445" y="285">July 2026</text><text x="660" y="285">October (forecast)</text>
+      </g>
+      <!-- legend -->
+      <rect x="620" y="30" width="12" height="4" fill="#3730a3"/><text x="638" y="36" font-family="Inter" font-size="10.5" fill="#3a3a4a">Manufacturers</text>
+      <rect x="620" y="48" width="12" height="4" fill="#d97706"/><text x="638" y="54" font-family="Inter" font-size="10.5" fill="#3a3a4a">Non-manufacturers</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">非製造業<span class="annotation-card-en">hi-seizōgyō · non-manufacturing</span></div>
+      <div class="annotation-card-body">Seven-point drop in one month — the larger employer is absorbing Middle East energy costs, 円安 imports, and rising rates simultaneously.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">展望レポート<span class="annotation-card-en">tenbō repōto · Outlook Report</span></div>
+      <div class="annotation-card-body">July 30–31 MPM: the Outlook Report's cost-push pass-through language shows which half of this survey the BOJ weighs while holding at 1.00%.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">業況判断指数<span class="annotation-card-en">gyōkyō handan shisū · business conditions DI</span></div>
+      <div class="annotation-card-body">Chip and AI-server orders hold manufacturers steady, corroborating June's +52.8% machine-tool surge; October forecasts point to stabilization, not slide.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-text">Japan Brief Issue #46 · July 16, 2026 · Not investment advice</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.viz-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
