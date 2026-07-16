@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #47 · July 17, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .header { background:#1a1a2e; padding:28px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:8px; font-size:12px; color:#8a9bb5; }
+  .viz-tabs { display:flex; gap:0; background:#22223e; border-bottom:1px solid #2a2a4e; padding:0 32px; overflow-x:auto; }
+  .viz-tab { background:none; border:none; color:#8a9bb5; font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.5px; padding:14px 18px; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; }
+  .viz-tab.active { color:#fff; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .panel-sub { font-size:12px; color:#8a7a6a; margin-bottom:22px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#fff; border:1px solid #e4e6ee; border-radius:6px; padding:16px 18px; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+  .signal-num { font-size:26px; font-weight:700; color:#3730a3; line-height:1.2; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; }
+  .chart-card { background:#fff; border:1px solid #e4e6ee; border-radius:6px; padding:20px; box-shadow:0 1px 6px rgba(0,0,0,0.04); margin-bottom:26px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; border-top:3px solid; box-shadow:0 1px 6px rgba(0,0,0,0.04); }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#059669; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .red .annotation-card-tag { color:#dc2626; }
+  .amber .annotation-card-tag { color:#d97706; }
+  .green .annotation-card-tag { color:#059669; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:12px; color:#3a3a4a; line-height:1.55; }
+  .footer { padding:20px 32px 30px; background:#1a1a2e; text-align:center; margin-top:24px; }
+  .footer-text { font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-eyebrow">友達 Tomodachi · Data Companion</div>
+  <div class="header-title">Japan Brief Visualized</div>
+  <div class="header-meta">Issue #47 · Friday, July 17, 2026 · 3 stories</div>
+</div>
+
+<div class="viz-tabs">
+  <button class="viz-tab active" onclick="showViz('viz1', this)">Noetra 1T Program</button>
+  <button class="viz-tab" onclick="showViz('viz2', this)">Collaborative Control Platform</button>
+  <button class="viz-tab" onclick="showViz('viz3', this)">Record Inflation Expectations</button>
+</div>
+
+<!-- PANEL 1: Noetra / FRONTia timeline -->
+<div class="viz-panel active" id="viz1">
+  <div class="panel-title">FRONTia: the ¥1 trillion sovereign model, on a 2028 compute clock</div>
+  <div class="panel-sub">Program milestones vs. the timeline risk — the AI factory arrives two hardware generations into the future</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">¥1T</div><div class="signal-label">METI commitment over five years to the Noetra / FRONTia program (~$6.2bn)</div></div>
+    <div class="signal"><div class="signal-num">27,500</div><div class="signal-label">NVIDIA Rubin GPUs (plus 13,750 Vera CPUs) in the planned AI factory</div></div>
+    <div class="signal"><div class="signal-num">44</div><div class="signal-label">Companies expected to participate, incl. Fanuc, PFN, Hitachi, Kubota</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Program Timeline · Announcement to Operations</div>
+    <svg viewBox="0 0 840 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="60" y1="150" x2="790" y2="150" stroke="#c8ccd8" stroke-width="2"/>
+      <!-- milestone dots -->
+      <circle cx="100" cy="150" r="9" fill="#3730a3"/>
+      <circle cx="290" cy="150" r="9" fill="#3730a3"/>
+      <circle cx="480" cy="150" r="9" fill="#818cf8"/>
+      <circle cx="680" cy="150" r="9" fill="#818cf8"/>
+      <!-- above labels -->
+      <text x="100" y="105" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#1a1a2e">Jul 16, 2026</text>
+      <text x="100" y="122" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#5a5a6a">Full-scale R&amp;D launch</text>
+      <text x="290" y="105" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#1a1a2e">2026–27</text>
+      <text x="290" y="122" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#5a5a6a">Consortium onboarding, data pooling</text>
+      <text x="480" y="105" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#1a1a2e">Apr 2027</text>
+      <text x="480" y="122" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#5a5a6a">AI factory construction begins</text>
+      <text x="680" y="105" text-anchor="middle" font-family="Inter" font-size="12" font-weight="700" fill="#1a1a2e">Jun 2028</text>
+      <text x="680" y="122" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#5a5a6a">27,500 Rubin GPUs operational</text>
+      <!-- below annotations -->
+      <text x="100" y="185" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#3730a3" font-weight="600">Sony · SoftBank · NEC · Honda</text>
+      <text x="100" y="200" text-anchor="middle" font-family="Inter" font-size="10" fill="#8a8a9a">core members</text>
+      <text x="480" y="185" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#b45309" font-weight="600">Open question:</text>
+      <text x="480" y="200" text-anchor="middle" font-family="Inter" font-size="10" fill="#8a8a9a">checkpoints on rented compute before 2028?</text>
+      <text x="680" y="185" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#dc2626" font-weight="600">~2 hardware generations</text>
+      <text x="680" y="200" text-anchor="middle" font-family="Inter" font-size="10" fill="#8a8a9a">behind frontier-lab deployment by then</text>
+      <!-- funding band -->
+      <rect x="100" y="235" width="580" height="26" rx="4" fill="#e0e7ff"/>
+      <text x="390" y="252" text-anchor="middle" font-family="Inter" font-size="11" font-weight="600" fill="#3730a3">METI ¥1 trillion disbursement window · FY2026–FY2030</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">計算資源の遅れ<span class="annotation-card-en">keisan shigen no okure · compute lag</span></div>
+      <div class="annotation-card-body">The Rubin cluster goes live June 2028 — well after US frontier labs deploy the same generation. Waiting for domestic compute is the program's biggest schedule risk.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">官民連携<span class="annotation-card-en">kanmin renkei · public-private partnership</span></div>
+      <div class="annotation-card-body">How METI structures the ¥1T (subsidy vs. equity, milestone gating, Rapidus-style) determines discipline. Watch whether Noetra ships checkpoints before the AI factory exists.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">産業データ<span class="annotation-card-en">sangyō dēta · industrial data</span></div>
+      <div class="annotation-card-body">Fanuc, Honda and Kubota machine data is unlicensable by US labs. In physical AI, proprietary real-world data may matter more than raw FLOPs — the credible bull case.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: Collaborative control platform architecture -->
+<div class="viz-panel" id="viz2">
+  <div class="panel-title">Opening the controller: who sits where in the new stack</div>
+  <div class="panel-sub">Fujitsu-led collaborative control platform on NVIDIA's physical-AI stack — and the incumbents plugging into it</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">4</div><div class="signal-label">Platform partners: Fujitsu (lead) + Fanuc, Yaskawa, Kawasaki Heavy</div></div>
+    <div class="signal"><div class="signal-num">3</div><div class="signal-label">NVIDIA stack layers integrated: Cosmos, Omniverse, Isaac Sim</div></div>
+    <div class="signal"><div class="signal-num">4</div><div class="signal-label">World-model builders on Cosmos: PFN, NEC, Hitachi, OMRON</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Platform Architecture · NVIDIA Stack to Factory Floor</div>
+    <svg viewBox="0 0 840 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <defs>
+        <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#8a8aa8"/></marker>
+      </defs>
+      <!-- Layer 1: NVIDIA -->
+      <rect x="40" y="16" width="760" height="54" rx="6" fill="#1a1a2e"/>
+      <text x="420" y="39" text-anchor="middle" font-family="Inter" font-size="13.5" font-weight="700" fill="#fff">NVIDIA physical-AI stack · Cosmos (world models) · Omniverse (digital twins) · Isaac Sim (robot sim)</text>
+      <text x="420" y="58" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#818cf8">open Cosmos Coalition · announced with Huang in Tokyo, July 15–16</text>
+      <line x1="420" y1="70" x2="420" y2="94" stroke="#8a8aa8" stroke-width="1.5" marker-end="url(#arr2)"/>
+      <!-- Layer 2: Fujitsu platform -->
+      <rect x="120" y="96" width="600" height="54" rx="6" fill="#3730a3"/>
+      <text x="420" y="119" text-anchor="middle" font-family="Inter" font-size="13.5" font-weight="700" fill="#fff">Fujitsu 富士通 · collaborative control platform 協調制御</text>
+      <text x="420" y="138" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#c7d2fe">model development · digital twins · pre-deployment validation</text>
+      <line x1="230" y1="150" x2="230" y2="176" stroke="#8a8aa8" stroke-width="1.5" marker-end="url(#arr2)"/>
+      <line x1="420" y1="150" x2="420" y2="176" stroke="#8a8aa8" stroke-width="1.5" marker-end="url(#arr2)"/>
+      <line x1="610" y1="150" x2="610" y2="176" stroke="#8a8aa8" stroke-width="1.5" marker-end="url(#arr2)"/>
+      <!-- Layer 3: incumbents -->
+      <rect x="140" y="178" width="180" height="56" rx="6" fill="#e0e7ff"/>
+      <text x="230" y="201" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="700" fill="#1a1a2e">Fanuc ファナック</text>
+      <text x="230" y="219" text-anchor="middle" font-family="Inter" font-size="10" fill="#5a5a6a">TSE: 6954 · CNC / robots</text>
+      <rect x="330" y="178" width="180" height="56" rx="6" fill="#e0e7ff"/>
+      <text x="420" y="201" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="700" fill="#1a1a2e">Yaskawa 安川電機</text>
+      <text x="420" y="219" text-anchor="middle" font-family="Inter" font-size="10" fill="#5a5a6a">TSE: 6506 · motion control</text>
+      <rect x="520" y="178" width="180" height="56" rx="6" fill="#e0e7ff"/>
+      <text x="610" y="201" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="700" fill="#1a1a2e">Kawasaki 川崎重工</text>
+      <text x="610" y="219" text-anchor="middle" font-family="Inter" font-size="10" fill="#5a5a6a">TSE: 7012 · multi-sector robots</text>
+      <!-- Side rail: world model builders -->
+      <rect x="40" y="262" width="760" height="42" rx="6" fill="#f5f6fa" stroke="#dde0e8"/>
+      <text x="420" y="288" text-anchor="middle" font-family="Inter" font-size="11.5" fill="#3a3a4a"><tspan font-weight="700" fill="#3730a3">Parallel track — world models 世界モデル:</tspan> Preferred Networks · NEC · Hitachi · OMRON build on Cosmos for industrial AI R&amp;D</text>
+      <text x="420" y="330" text-anchor="middle" font-family="Inter" font-size="10.5" fill="#8a8a9a">Also announced: Kubota (autonomous agriculture) · Enactic (Isaac GR00T elder-care fine-tune) · SoftBank (physical-AI dev platform)</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">囲い込み<span class="annotation-card-en">kakoikomi · lock-in</span></div>
+      <div class="annotation-card-body">Standardizing on NVIDIA's stack risks ceding the intelligence layer. If open Cosmos models commoditize robot control, incumbent software moats — where margins live — erode.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">製品化<span class="annotation-card-en">seihinka · productization</span></div>
+      <div class="annotation-card-body">Consortium announcements are cheap. The tell: whether Fanuc/Yaskawa earnings calls attach capex or engineering headcount to the platform, or it stays a logo slide.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">閉鎖から開放へ<span class="annotation-card-en">heisa kara kaihō e · from closed to open</span></div>
+      <div class="annotation-card-body">Fanuc and Yaskawa built decades of franchise on closed controllers. Voluntarily joining a shared platform is a real strategic shift — they see the world-model era coming.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: BOJ survey -->
+<div class="viz-panel" id="viz3">
+  <div class="panel-title">De-anchoring upward: the June Opinion Survey in three records</div>
+  <div class="panel-sub">BOJ 生活意識アンケート (household Opinion Survey), March vs. June 2026 — released July 16</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">90.4%</div><div class="signal-label">Households expecting prices to rise in the next year — record since 2006</div></div>
+    <div class="signal"><div class="signal-num">+13.1%</div><div class="signal-label">Mean expected one-year price rise — record, up from 11.4% in March</div></div>
+    <div class="signal"><div class="signal-num">86.1%</div><div class="signal-label">Expecting higher prices five years out — near two-decade high</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">March 2026 vs June 2026 Survey · Three Measures, Three Records</div>
+    <svg viewBox="0 0 840 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- gridlines -->
+      <line x1="70" y1="40" x2="70" y2="250" stroke="#c8ccd8" stroke-width="1.5"/>
+      <line x1="70" y1="250" x2="800" y2="250" stroke="#c8ccd8" stroke-width="1.5"/>
+      <!-- Group 1: 1yr % expecting rise (scale 0-100 -> 210px) -->
+      <rect x="120" y="74.2" width="70" height="175.8" fill="#c7d2fe"/>
+      <rect x="200" y="60.2" width="70" height="189.8" fill="#3730a3"/>
+      <text x="155" y="66" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#5a5a6a">83.7</text>
+      <text x="235" y="52" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="700" fill="#3730a3">90.4</text>
+      <text x="195" y="272" text-anchor="middle" font-family="Inter" font-size="11" fill="#3a3a4a">% expecting price rises, 1yr</text>
+      <!-- Group 2: 5yr % expecting rise -->
+      <rect x="370" y="76.5" width="70" height="173.5" fill="#c7d2fe"/>
+      <rect x="450" y="69.2" width="70" height="180.8" fill="#3730a3"/>
+      <text x="405" y="68" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#5a5a6a">82.6</text>
+      <text x="485" y="61" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="700" fill="#3730a3">86.1</text>
+      <text x="445" y="272" text-anchor="middle" font-family="Inter" font-size="11" fill="#3a3a4a">% expecting price rises, 5yr</text>
+      <!-- Group 3: mean expected rise (scale 0-15 -> 210px) -->
+      <rect x="620" y="90.4" width="70" height="159.6" fill="#c7d2fe"/>
+      <rect x="700" y="66.6" width="70" height="183.4" fill="#3730a3"/>
+      <text x="655" y="82" text-anchor="middle" font-family="Inter" font-size="12" font-weight="600" fill="#5a5a6a">11.4%</text>
+      <text x="735" y="58" text-anchor="middle" font-family="Inter" font-size="12.5" font-weight="700" fill="#3730a3">13.1%</text>
+      <text x="695" y="272" text-anchor="middle" font-family="Inter" font-size="11" fill="#3a3a4a">mean expected 1yr rise (own scale)</text>
+      <!-- legend -->
+      <rect x="300" y="296" width="12" height="12" fill="#c7d2fe"/>
+      <text x="318" y="306" font-family="Inter" font-size="11" fill="#5a5a6a">March 2026 survey</text>
+      <rect x="450" y="296" width="12" height="12" fill="#3730a3"/>
+      <text x="468" y="306" font-family="Inter" font-size="11" fill="#5a5a6a">June 2026 survey (released Jul 16)</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">円安ループ<span class="annotation-card-en">en'yasu rūpu · weak-yen loop</span></div>
+      <div class="annotation-card-body">At ¥162/USD, import prices lift necessities, necessities lift expectations, expectations pressure the BOJ. The loop doesn't break until the yen does.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Caveat</div>
+      <div class="annotation-card-zh">体感物価<span class="annotation-card-en">taikan bukka · perceived inflation</span></div>
+      <div class="annotation-card-body">Household expectations run structurally above realized CPI — respondents anchor on food and daily goods. 13.1% is not a forecast; the records and direction are the signal.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Positioning</div>
+      <div class="annotation-card-zh">利上げ圧力<span class="annotation-card-en">riage atsuryoku · rate-hike pressure</span></div>
+      <div class="annotation-card-body">Hawkish ammunition for the late-July MPM even if the board holds after June's hike to 1.0%. Supports the bank trade; keeps JGB duration risk alive into September.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-text">Japan Brief Issue #47 · July 17, 2026 · Not investment advice</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.viz-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
