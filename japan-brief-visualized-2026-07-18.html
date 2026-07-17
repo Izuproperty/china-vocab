@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #48 · July 18, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .header { background:#1a1a2e; padding:28px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; gap:0; background:#fff; border-bottom:1px solid #dde0e8; padding:0 24px; overflow-x:auto; }
+  .tab { padding:14px 20px; font-size:12.5px; font-weight:600; color:#6a6a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:20px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:16px 18px; }
+  .signal-num { font-size:26px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; line-height:1.4; }
+  .chart-box { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:20px; margin-bottom:26px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:14px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; border-top:3px solid; }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#059669; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-card.red .annotation-card-tag { color:#dc2626; }
+  .annotation-card.amber .annotation-card-tag { color:#d97706; }
+  .annotation-card.green .annotation-card-tag { color:#059669; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:12px; color:#3a3a3a; line-height:1.55; }
+  .footer { padding:18px 32px 28px; text-align:center; font-size:11px; color:#8a8a9a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-title">Japan Brief Visualized</div>
+  <div class="header-sub">Issue #48 · Saturday, July 18, 2026 · 日本速報 Nihon Sokuhō</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">SoftBank & the AI Unwind</div>
+  <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">Kioxia Patent Verdict</div>
+  <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">Yen, Correction & Week Ahead</div>
+</div>
+
+<!-- PANEL 1 -->
+<div class="viz-panel active" id="viz-1">
+  <div class="panel-headline">Friday's Tokyo session: the AI complex reprices in one day</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">−9%</div><div class="signal-label">SoftBank Group, July 17 — sharpest one-day drop of 2026</div></div>
+    <div class="signal"><div class="signal-num">−4%</div><div class="signal-label">Nikkei 225 close, confirming a 10% correction from June 25 peak</div></div>
+    <div class="signal"><div class="signal-num">2027</div><div class="signal-label">Reported new target year for the OpenAI IPO — the day's catalyst</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">July 17 One-Day Moves · Japan AI Complex (%)</div>
+    <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+      <line x1="70" y1="40" x2="70" y2="260" stroke="#d0d4dd" stroke-width="1"/>
+      <line x1="70" y1="60" x2="800" y2="60" stroke="#eceef2" stroke-width="1"/>
+      <text x="66" y="64" text-anchor="end" font-size="11" fill="#8a8a9a">0%</text>
+      <line x1="70" y1="110" x2="800" y2="110" stroke="#eceef2" stroke-width="1"/>
+      <text x="66" y="114" text-anchor="end" font-size="11" fill="#8a8a9a">−4%</text>
+      <line x1="70" y1="160" x2="800" y2="160" stroke="#eceef2" stroke-width="1"/>
+      <text x="66" y="164" text-anchor="end" font-size="11" fill="#8a8a9a">−8%</text>
+      <line x1="70" y1="210" x2="800" y2="210" stroke="#eceef2" stroke-width="1"/>
+      <text x="66" y="214" text-anchor="end" font-size="11" fill="#8a8a9a">−12%</text>
+      <line x1="70" y1="260" x2="800" y2="260" stroke="#eceef2" stroke-width="1"/>
+      <text x="66" y="264" text-anchor="end" font-size="11" fill="#8a8a9a">−16%</text>
+      <!-- bars: 12.5px per % below y=60 -->
+      <rect x="100" y="60" width="90" height="200" fill="#dc2626" opacity="0.85" rx="3"/>
+      <text x="145" y="278" text-anchor="middle" font-size="11.5" fill="#3a3a3a">Kioxia</text>
+      <text x="145" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">−16%</text>
+      <rect x="240" y="60" width="90" height="115" fill="#3730a3" opacity="0.85" rx="3"/>
+      <text x="285" y="278" text-anchor="middle" font-size="11.5" fill="#3a3a3a">SoftBank G</text>
+      <text x="285" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">−9.2%</text>
+      <rect x="380" y="60" width="90" height="100" fill="#3730a3" opacity="0.65" rx="3"/>
+      <text x="425" y="278" text-anchor="middle" font-size="11.5" fill="#3a3a3a">Tokyo Electron</text>
+      <text x="425" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">−8%</text>
+      <rect x="520" y="60" width="90" height="94" fill="#3730a3" opacity="0.5" rx="3"/>
+      <text x="565" y="278" text-anchor="middle" font-size="11.5" fill="#3a3a3a">Advantest</text>
+      <text x="565" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">−7.5%</text>
+      <rect x="660" y="60" width="90" height="50" fill="#6a6a8a" opacity="0.6" rx="3"/>
+      <text x="705" y="278" text-anchor="middle" font-size="11.5" fill="#3a3a3a">Nikkei 225</text>
+      <text x="705" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#4a4a6a">−4%</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">株価急落<span class="annotation-card-en">kabuka kyūraku · stock price plunge</span></div>
+      <div class="annotation-card-body">The AI trade's financing leg — leveraged loans and structured credit funding the capex — is the channel to watch, not the equity tape itself.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">新規株式公開<span class="annotation-card-en">shinki kabushiki kōkai · IPO</span></div>
+      <div class="annotation-card-body">An OpenAI IPO slipping to 2027 thins SoftBank's NAV-crystallization catalysts just as the holding-company discount widens into a falling market.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Support</div>
+      <div class="annotation-card-zh">国産AI<span class="annotation-card-en">kokusan AI · domestic AI</span></div>
+      <div class="annotation-card-body">Noetra's ¥387.3B first-year government allocation is committed public money — the sovereign-AI program is largely insulated from the market unwind.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2 -->
+<div class="viz-panel" id="viz-2">
+  <div class="panel-headline">Kioxia: a $229M verdict lands on a halved momentum trade</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">$229M</div><div class="signal-label">Jury damages for infringing Viasat's flash error-correction patent (July 16, W.D. Texas)</div></div>
+    <div class="signal"><div class="signal-num">−16%</div><div class="signal-label">July 17 move — limit-down (ストップ安) on the TSE</div></div>
+    <div class="signal"><div class="signal-num">≈ −50%</div><div class="signal-label">Decline from June 2026, when Kioxia was briefly Japan's largest company by market cap</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">Kioxia Indexed Share Price · June Peak = 100 (Stylized)</div>
+    <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="40" x2="60" y2="250" stroke="#d0d4dd"/>
+      <line x1="60" y1="250" x2="800" y2="250" stroke="#d0d4dd"/>
+      <line x1="60" y1="60" x2="800" y2="60" stroke="#eceef2"/><text x="56" y="64" text-anchor="end" font-size="11" fill="#8a8a9a">100</text>
+      <line x1="60" y1="123" x2="800" y2="123" stroke="#eceef2"/><text x="56" y="127" text-anchor="end" font-size="11" fill="#8a8a9a">80</text>
+      <line x1="60" y1="186" x2="800" y2="186" stroke="#eceef2"/><text x="56" y="190" text-anchor="end" font-size="11" fill="#8a8a9a">60</text>
+      <line x1="60" y1="250" x2="800" y2="250" stroke="#eceef2"/><text x="56" y="254" text-anchor="end" font-size="11" fill="#8a8a9a">40</text>
+      <polyline points="90,88 160,60 240,72 320,95 400,118 470,132 540,120 610,148 680,170 745,224" fill="none" stroke="#be185d" stroke-width="2.5"/>
+      <circle cx="160" cy="60" r="4" fill="#be185d"/>
+      <text x="160" y="46" text-anchor="middle" font-size="10.5" fill="#6a5a5a">June peak — Japan's #1 market cap</text>
+      <circle cx="610" cy="148" r="4" fill="#be185d"/>
+      <text x="610" y="134" text-anchor="middle" font-size="10.5" fill="#6a5a5a">July 14: −13% in regional rout</text>
+      <circle cx="680" cy="170" r="4" fill="#d97706"/>
+      <text x="690" y="158" text-anchor="middle" font-size="10.5" fill="#b45309">Jul 16: Viasat verdict</text>
+      <circle cx="745" cy="224" r="5" fill="#dc2626"/>
+      <text x="735" y="244" text-anchor="middle" font-size="10.5" font-weight="700" fill="#dc2626">Jul 17: −16% limit-down</text>
+      <text x="90" y="268" text-anchor="middle" font-size="10.5" fill="#8a8a9a">Early June</text>
+      <text x="430" y="268" text-anchor="middle" font-size="10.5" fill="#8a8a9a">Late June – Mid July</text>
+      <text x="745" y="268" text-anchor="middle" font-size="10.5" fill="#8a8a9a">Jul 17</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">特許侵害<span class="annotation-card-en">tokkyo shingai · patent infringement</span></div>
+      <div class="annotation-card-body">Error-correction patents cut across the whole NAND complex — a nine-figure verdict in a plaintiff-friendly venue invites follow-on suits.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">損害賠償<span class="annotation-card-en">songai baishō · damages</span></div>
+      <div class="annotation-card-body">$229M is a legal expense, not a solvency event, and Texas patent awards are routinely trimmed on appeal. Watch the post-trial motions.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Support</div>
+      <div class="annotation-card-zh">時価総額<span class="annotation-card-en">jika sōgaku · market cap</span></div>
+      <div class="annotation-card-body">Nothing in the verdict touches NAND demand or fab utilization. A halved price may now discount a merely good — not historic — memory cycle.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3 -->
+<div class="viz-panel" id="viz-3">
+  <div class="panel-headline">Week ahead: CPI Friday, MPM the week after — with the yen at 162.5</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">162.5</div><div class="signal-label">USD/JPY Friday close — weakest yen in roughly four decades</div></div>
+    <div class="signal"><div class="signal-num">−10%</div><div class="signal-label">Nikkei 225 from its June 25 all-time high — correction confirmed July 17</div></div>
+    <div class="signal"><div class="signal-num">Jul 24</div><div class="signal-label">June national CPI — the last major print before the July 30–31 BOJ meeting</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">The Two-Week Runway · Events Into the July MPM</div>
+    <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+      <line x1="50" y1="130" x2="790" y2="130" stroke="#b0b6c4" stroke-width="2"/>
+      <!-- events -->
+      <circle cx="90" cy="130" r="6" fill="#dc2626"/>
+      <text x="90" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Jul 17</text>
+      <text x="90" y="156" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Correction confirmed</text>
+      <text x="90" y="170" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Yen 162.5</text>
+      <circle cx="270" cy="130" r="6" fill="#d97706"/>
+      <text x="270" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">Jul 22–24</text>
+      <text x="270" y="156" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Flash PMIs · Services PPI</text>
+      <text x="270" y="170" text-anchor="middle" font-size="10.5" fill="#3a3a3a">SPE earnings begin</text>
+      <circle cx="450" cy="130" r="7" fill="#3730a3"/>
+      <text x="450" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Fri Jul 24</text>
+      <text x="450" y="156" text-anchor="middle" font-size="10.5" fill="#3a3a3a">June national CPI</text>
+      <text x="450" y="170" text-anchor="middle" font-size="10.5" fill="#3a3a3a">(Statistics Bureau)</text>
+      <circle cx="640" cy="130" r="8" fill="#1a1a2e"/>
+      <text x="640" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 30–31</text>
+      <text x="640" y="156" text-anchor="middle" font-size="10.5" fill="#3a3a3a">BOJ Monetary Policy Meeting</text>
+      <text x="640" y="170" text-anchor="middle" font-size="10.5" fill="#3a3a3a">+ Ueda press conference</text>
+      <circle cx="770" cy="130" r="5" fill="#8a8a9a"/>
+      <text x="770" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#6a6a7a">Jul 31</text>
+      <text x="770" y="156" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Tokyo July CPI</text>
+      <!-- annotation band -->
+      <text x="420" y="40" text-anchor="middle" font-size="12" fill="#6a5a5a" font-style="italic">Hike case: yen at 162, record inflation expectations · Wait case: 10% correction, AI-credit stress</text>
+    </svg>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">円安<span class="annotation-card-en">en'yasu · weak yen</span></div>
+      <div class="annotation-card-body">Friday's risk-off did not strengthen the yen — the repatriation reflex looks structurally weaker. Yen and equity weakness persisting together is the stress scenario.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">為替介入<span class="annotation-card-en">kawase kainyū · FX intervention</span></div>
+      <div class="annotation-card-body">¥11.7T of April–May intervention has fully round-tripped. Katayama's language is unchanged; markets have stopped pricing it as a constraint.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">消費者物価指数<span class="annotation-card-en">shōhisha bukka shisū · CPI</span></div>
+      <div class="annotation-card-body">Core holding ≥1.5–1.7% on July 24 keeps an early-autumn hike priced; a soft print plus market stress pushes the debate to October.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Japan Brief Issue #48 · July 18, 2026 · Not investment advice</div>
+
+<script>
+function showViz(id, tab){
+  document.querySelectorAll('.viz-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
