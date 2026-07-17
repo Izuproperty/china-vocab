@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-07-16",
-    "issue": 58,
+    "updated": "2026-07-18",
+    "issue": 60,
     "title": "China AI Landscape"
   },
   "entities": [
@@ -198,23 +198,26 @@
       "py": "Yuèzhī'ànmiàn",
       "cat": "foundation",
       "status": "private",
-      "desc": "Beijing. Founded 2023 by former ByteDance engineers. Backed by Alibaba + HongShan. Kimi K2.6: 1T-param MoE open-weight model; 300-agent swarms, 12-hr autonomous runs; ties GPT-5.5 on SWE-Bench Pro (58.6%). ~80% cheaper per token than US equivalents. $2B raise at $20B valuation (May 2026). NDRC ordered to reject US-origin capital without government clearance (Apr 2026). **Decree 837 (#45):** Cited as example of AI startups receiving private guidance to clear US limited-partner capital ahead of new outbound investment security-review framework.",
+      "desc": "Beijing. Founded 2023 by former ByteDance engineers. Backed by Alibaba + HongShan. Kimi K2.6: 1T-param MoE open-weight model; 300-agent swarms, 12-hr autonomous runs; ties GPT-5.5 on SWE-Bench Pro (58.6%). ~80% cheaper per token than US equivalents. $2B raise at $20B valuation (May 2026). NDRC ordered to reject US-origin capital without government clearance (Apr 2026). **Decree 837 (#45):** Cited as example of AI startups receiving private guidance to clear US limited-partner capital ahead of new outbound investment security-review framework. **Kimi K3 launched (July 16, 2026 / Issue #59):** Flagship model released the evening of July 16, hours after a teaser video. 2.8T total parameters (MoE) — claimed largest open-source model released to date — with a 1M-token context window. Uses Kimi-Linear, a hybrid linear-attention architecture with selective state compression the company says cuts KV cache ~75% and lifts decoding throughput ~6x at 1M context. Agent Swarm coordinates up to 300 sub-agents in parallel. Pricing: $0.30/M cached input, $3/M uncached input, $15/M output with full 1M context included. Moonshot claims overall intelligence second only to the top two US frontier models and wins on some coding benchmarks vs GPT-5.5. Caveats: benchmarks self-reported at launch; long runtimes on hard agent tasks (up to ~35 min); company remains under NDRC restrictions on US-origin LP capital (Apr 2026) and was named in Anthropic's Feb 2026 distillation allegations.",
       "tags": [
         {
-          "l": "$20B valuation",
+          "l": "Kimi K3 launched Jul 16 — 2.8T-param MoE",
           "t": "highlight"
         },
         {
-          "l": "Kimi K2.6 open-weight"
+          "l": "1M context · Kimi-Linear attention",
+          "t": "green"
         },
         {
-          "l": "300-agent swarms"
+          "l": "Claimed largest open-source model to date",
+          "t": "blue"
         },
         {
-          "l": "NDRC US capital restriction"
+          "l": "Self-reported benchmarks; US-LP capital restrictions",
+          "t": "red"
         }
       ],
-      "issue": "#1, #5, #20, #45"
+      "issue": "#1, #5, #20, #45, #59"
     },
     {
       "name": "StepFun",
@@ -222,7 +225,7 @@
       "py": "Jiēyuè Xīngchén",
       "cat": "foundation",
       "status": "private",
-      "desc": "Beijing. Founded 2023. Frontier multimodal AI lab. Step series models. Eyeing HK$500M Hong Kong IPO as of mid-2026. NDRC ordered to reject US-origin capital without government clearance (Apr 2026) — will limit US institutional participation in planned IPO. **Agent OS at WAIC (#55, Jul 2026):** Exhibited an agent operating system at WAIC 2026 (Jul 17–20, Shanghai) — first significant public product demo of StepFun's agent software track, spotlighted alongside Huawei's Atlas 950 SuperPoD and Dongfang Suanxin's near-memory chip.",
+      "desc": "Beijing. Founded 2023. Frontier multimodal AI lab. Step series models. Eyeing HK$500M Hong Kong IPO as of mid-2026. NDRC ordered to reject US-origin capital without government clearance (Apr 2026) — will limit US institutional participation in planned IPO. **Agent OS at WAIC (#55, Jul 2026):** Exhibited an agent operating system at WAIC 2026 (Jul 17–20, Shanghai) — first significant public product demo of StepFun's agent software track, spotlighted alongside Huawei's Atlas 950 SuperPoD and Dongfang Suanxin's near-memory chip. **STEPX Neo agent phone + Step AOS WAIC debut (July 17, 2026 / Issue #60):** Global public debut at WAIC of STEPX Neo, billed as the first LLM-native 'agent smartphone,' running Step AOS — an agent-native OS that schedules CPU/GPU/NPU as a unified compute layer, builds a cross-device/cross-app semantic data layer, and decomposes communication and file functions into atomic services agents can call. Built-in personal agent 'Amoo.' Four-part security frame: trusted execution environments, auditable operations, on-demand permissions revoked after use, rollback. Only agent phone certified L3 (highest open tier) under China's first national AI-terminal intelligence classification standard; named a WAIC 镇馆之宝 (star exhibit). Unveiled July 13–14 ahead of the conference. Direct rival claim: ZTE's Nubia is marketing its own 'world's first AI agent phone' at the same show. Caveats: no pricing/volume disclosed at debut; agent-phone category unproven vs incumbent Android ecosystems; company remains on the NDRC US-LP capital restriction list.",
       "tags": [
         {
           "l": "HK IPO planned"
@@ -233,9 +236,25 @@
         {
           "l": "Agent OS at WAIC (Jul 2026)",
           "t": "green"
+        },
+        {
+          "l": "STEPX Neo agent phone debuted at WAIC Jul 17",
+          "t": "highlight"
+        },
+        {
+          "l": "Step AOS — agent-native OS; L3 certified",
+          "t": "green"
+        },
+        {
+          "l": "WAIC 镇馆之宝 award",
+          "t": "blue"
+        },
+        {
+          "l": "US-LP capital restrictions; unproven category",
+          "t": "red"
         }
       ],
-      "issue": "#6, #20, #55"
+      "issue": "#6, #20, #55, #60"
     },
     {
       "name": "Minimax",
@@ -1746,7 +1765,7 @@
       "py": "Guójiā Tǒngjìjú",
       "cat": "gov",
       "status": "gov",
-      "desc": "National Bureau of Statistics — China's official data agency; publishes GDP, retail sales, industrial output, fixed asset investment, CPI/PPI. Q2 2026 GDP released July 15, 2026: +4.3% YoY, slowest since Q4 2022 and first quarter below the 4.5–5.0% target band since Covid. June retail +1.0% YoY with autos −16.1%; exports carried industrial output. Late-July Politburo is the policy-response venue to watch.",
+      "desc": "National Bureau of Statistics — China's official data agency; publishes GDP, retail sales, industrial output, fixed asset investment, CPI/PPI. Q2 2026 GDP released July 15, 2026: +4.3% YoY, slowest since Q4 2022 and first quarter below the 4.5–5.0% target band since Covid. June retail +1.0% YoY with autos −16.1%; exports carried industrial output. Late-July Politburo is the policy-response venue to watch. **June 70-city home prices (released July 15–16, 2026 / Issue #59):** New-home prices -3.3% y/y (36th consecutive annual decline, mildest since Feb 2026), -0.15% m/m vs -0.2% in May. Cities with m/m gains rose to 20 (from 16 in May) — most since May 2025. Shanghai new homes +3.1% y/y, the standout. Second-hand prices -0.32% m/m, worst in four months; first-tier second-hand -4.9% y/y. Credit backdrop: outstanding bank loan growth slowed a 15th straight month to 5.2% y/y with household borrowing weak — stabilization signal in new-home prices not yet confirmed by secondary market or credit demand.",
       "tags": [
         {
           "l": "Q2 GDP +4.3% — below target band",
@@ -1759,9 +1778,91 @@
         {
           "l": "Late-July Politburo watch",
           "t": "blue"
+        },
+        {
+          "l": "Jun new homes -3.3% y/y, mildest since Feb",
+          "t": "green"
+        },
+        {
+          "l": "Second-hand -0.32% m/m, worst in 4 months",
+          "t": "red"
         }
       ],
-      "issue": "#58"
+      "issue": "#58, #59"
+    },
+    {
+      "name": "World AI Cooperation Organization (WAICO)",
+      "zh": "世界人工智能合作组织",
+      "py": "Shìjiè Réngōngzhìnéng Hézuò Zǔzhī",
+      "cat": "gov",
+      "status": "gov",
+      "desc": "Proposed China-led international AI governance body, to be headquartered in Shanghai. Xi Jinping (习近平) used his first-ever WAIC keynote (opening ceremony, July 17, 2026, alongside UN Secretary-General Guterres, Kazakh President Tokayev, and Thai PM Anutin) to elevate the initiative — an institutional vehicle for the Global AI Governance Initiative, framed around rejecting technology monopolies, providing 'international public goods,' and Global South capacity building. Positioned as an alternative pole to Western-led AI governance frameworks. Charter, membership, and funding details not yet published.",
+      "tags": [
+        {
+          "l": "Xi keynote at WAIC Jul 17, 2026",
+          "t": "highlight"
+        },
+        {
+          "l": "Proposed HQ: Shanghai",
+          "t": "blue"
+        },
+        {
+          "l": "Global South capacity-building pitch",
+          "t": "green"
+        },
+        {
+          "l": "Charter/membership unconfirmed",
+          "t": "red"
+        }
+      ],
+      "issue": "#59"
+    },
+    {
+      "name": "Swancor Qiyuan",
+      "zh": "上纬新材·启元",
+      "py": "Shàngwěi Xīncái · Qǐyuán",
+      "cat": "robotics",
+      "status": "public",
+      "ticker": "SSE STAR: 688585",
+      "desc": "Personal-robot brand of Swancor Advanced Materials, the STAR Market composites maker whose control changed in November 2025 to Zhiyuan (AgiBot)-affiliated vehicles (Zhiyuan Hengyue ~29.99%) in the cycle's highest-profile robotics backdoor-listing (借壳上市) play. CEO Tian Hua is ex-Huawei (wireless, NE Europe VP; computing product line CBO) and ex-AgiBot (ecosystem GM, chief supply officer). Launched the Qiyuan brand Dec 31, 2025 with the Q1 — an 88 cm, 15 kg claimed 'world's smallest full-body force-controlled humanoid' aimed at developers/consumers, with open SDK/HDK and modular 3D-printable shells. **Quester1 WAIC debut (July 17, 2026 / Issue #60):** shape-shifting personal robot that auto-switches between wheeled-bipedal and quadruped forms on a single chassis ('transformer cross-morphology integrated architecture'); target scenarios: home companionship, outdoor escort, smart filming. Strategy: define the 'personal robot' category before it matures; offline experience stores planned in Shenzhen and Shanghai; pricing undisclosed. Materials synergy: parent's lightweight composites feed robot bodies.",
+      "tags": [
+        {
+          "l": "Quester1 shape-shifting robot debuted at WAIC Jul 17",
+          "t": "highlight"
+        },
+        {
+          "l": "AgiBot-linked backdoor listing vehicle (688585)",
+          "t": "blue"
+        },
+        {
+          "l": "Ex-Huawei/AgiBot CEO; open SDK/HDK platform",
+          "t": "green"
+        },
+        {
+          "l": "Pricing undisclosed; category unproven",
+          "t": "red"
+        }
+      ],
+      "issue": "#60"
+    },
+    {
+      "name": "PBOC",
+      "zh": "中国人民银行",
+      "py": "Zhōngguó Rénmín Yínháng",
+      "cat": "gov",
+      "status": "gov",
+      "desc": "People's Bank of China — central bank. Monetary policy stance 'moderately loose' since Dec 2025 CEWC; 7-day reverse repo 1.40%, overnight facility 1.30% (corridor since June 2026). **Week-ahead (July 20–24, 2026 / Issue #60):** July LPR fix due Monday July 20 — first rate decision after Q2 GDP printed 4.3%. Consensus: unchanged; quantity tools favored over price tools; late-July Politburo the main venue for H2 policy signals.",
+      "tags": [
+        {
+          "l": "Jul 20 LPR fix — consensus: unchanged",
+          "t": "blue"
+        },
+        {
+          "l": "Quantity tools over price tools since May 2026",
+          "t": "green"
+        }
+      ],
+      "issue": "#60"
     }
   ]
 }
