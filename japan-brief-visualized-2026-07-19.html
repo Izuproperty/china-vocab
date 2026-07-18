@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #49 · July 19, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .header { background:#1a1a2e; padding:28px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { background:#fff; border-bottom:1px solid #dde0e8; display:flex; flex-wrap:wrap; padding:0 24px; }
+  .tab { padding:14px 18px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:#6a6a7a; cursor:pointer; border-bottom:3px solid transparent; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:20px; line-height:1.35; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:16px 18px; }
+  .signal-num { font-size:24px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; }
+  .chart-box { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:20px; margin-bottom:26px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:14px; }
+  .chart-note { font-size:10.5px; color:#9a9aa8; margin-top:10px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:14px 16px; border-top:3px solid #ccc; }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#059669; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .red .annotation-card-tag { color:#dc2626; } .amber .annotation-card-tag { color:#d97706; } .green .annotation-card-tag { color:#059669; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:12px; color:#4a4a5a; }
+  .footer { padding:22px; text-align:center; font-size:11px; color:#8a8a98; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-title">Japan Brief Visualized</div>
+  <div class="header-sub">Issue #49 · Sunday, July 19, 2026 · Three charts behind today's stories</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-1" onclick="showViz(1,this)">Noetra Data Coalition</div>
+  <div class="tab" id="tab-2" onclick="showViz(2,this)">Disco Shipments</div>
+  <div class="tab" id="tab-3" onclick="showViz(3,this)">JGB Domestic Buyers</div>
+</div>
+
+<!-- PANEL 1 -->
+<div class="viz-panel active" id="viz-1">
+  <div class="panel-headline">Hitachi and Toshiba join Noetra — the sovereign-AI bet shifts from compute to proprietary field data</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">¥1.0T</div><div class="signal-label">METI commitment over 5 years (¥387.3B first tranche, FY2026)</div></div>
+    <div class="signal"><div class="signal-num">44</div><div class="signal-label">Investor companies, incl. new entrants Hitachi & Toshiba</div></div>
+    <div class="signal"><div class="signal-num">27,500</div><div class="signal-label">NVIDIA Rubin GPUs planned; data center live June 2028</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">Noetra Roadmap vs. Compute Availability</div>
+    <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="60" y1="120" x2="790" y2="120" stroke="#c9cede" stroke-width="2"/>
+      <!-- year ticks FY2026..FY2030 -->
+      <g font-family="Inter,sans-serif" font-size="11" fill="#6a6a7a" text-anchor="middle">
+        <line x1="90"  y1="114" x2="90"  y2="126" stroke="#c9cede" stroke-width="2"/><text x="90"  y="145">FY2026</text>
+        <line x1="265" y1="114" x2="265" y2="126" stroke="#c9cede" stroke-width="2"/><text x="265" y="145">FY2027</text>
+        <line x1="440" y1="114" x2="440" y2="126" stroke="#c9cede" stroke-width="2"/><text x="440" y="145">FY2028</text>
+        <line x1="615" y1="114" x2="615" y2="126" stroke="#c9cede" stroke-width="2"/><text x="615" y="145">FY2029</text>
+        <line x1="770" y1="114" x2="770" y2="126" stroke="#c9cede" stroke-width="2"/><text x="770" y="145">FY2030</text>
+      </g>
+      <!-- milestones above line -->
+      <g font-family="Inter,sans-serif" font-size="11.5">
+        <circle cx="90" cy="120" r="7" fill="#3730a3"/>
+        <text x="90" y="70" text-anchor="middle" fill="#1a1a2e" font-weight="600">Reasoning model</text>
+        <text x="90" y="86" text-anchor="middle" fill="#8a8a98" font-size="10">JP language + logic core</text>
+        <circle cx="440" cy="120" r="7" fill="#3730a3"/>
+        <text x="440" y="70" text-anchor="middle" fill="#1a1a2e" font-weight="600">Omni-modal model</text>
+        <text x="440" y="86" text-anchor="middle" fill="#8a8a98" font-size="10">text · image · video · audio</text>
+        <circle cx="770" cy="120" r="7" fill="#3730a3"/>
+        <text x="762" y="70" text-anchor="middle" fill="#1a1a2e" font-weight="600">Real-world Native AI</text>
+        <text x="762" y="86" text-anchor="middle" fill="#8a8a98" font-size="10">spatial / physical deployment</text>
+      </g>
+      <!-- compute below line -->
+      <g font-family="Inter,sans-serif" font-size="11">
+        <rect x="265" y="175" width="220" height="18" rx="4" fill="#e0e7ff"/>
+        <rect x="485" y="175" width="305" height="18" rx="4" fill="#3730a3"/>
+        <text x="270" y="212" fill="#6a6a7a">DC construction (from Apr 2027)</text>
+        <text x="490" y="212" fill="#3730a3" font-weight="600">27,500 Rubin GPUs live (Jun 2028 →)</text>
+        <line x1="265" y1="128" x2="265" y2="175" stroke="#c9cede" stroke-dasharray="3,3"/>
+        <line x1="485" y1="128" x2="485" y2="175" stroke="#c9cede" stroke-dasharray="3,3"/>
+      </g>
+    </svg>
+    <div class="chart-note">Model milestones (top) run ahead of the consortium's own compute (bottom) — early training leans on interim infrastructure.</div>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">現場データ<span class="annotation-card-en">genba dēta · field data</span></div>
+      <div class="annotation-card-body">Hitachi commits proprietary rail/grid/industrial data and will fold outputs into HMAX — the scarce input, not the GPUs.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">データ共有条件<span class="annotation-card-en">dēta kyōyū jōken · data-sharing terms</span></div>
+      <div class="annotation-card-body">Which of the 44 members formalize data contribution agreements — that decides whether this is a data coalition or a subsidy pool.</div>
+    </div>
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">周回遅れ<span class="annotation-card-en">shūkai okure · a lap behind</span></div>
+      <div class="annotation-card-body">Own compute arrives mid-2028; frontier labs will not wait. Commercial relevance depends on domain data advantage holding.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2 -->
+<div class="viz-panel" id="viz-2">
+  <div class="panel-headline">Disco's preliminary quarter: shipments outrun revenue while the sector sells off</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">+26%</div><div class="signal-label">June-quarter revenue y/y (¥95.0B, unconsolidated, preliminary)</div></div>
+    <div class="signal"><div class="signal-num">¥116.5B</div><div class="signal-label">Shipments, +25% y/y — ¥21.5B ahead of recognized revenue</div></div>
+    <div class="signal"><div class="signal-num">Jul 23</div><div class="signal-label">Full results — margin & HBM tooling commentary due</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">Revenue vs. Shipments — June Quarter, y/y (¥B)</div>
+    <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <g font-family="Inter,sans-serif">
+        <!-- gridlines -->
+        <g stroke="#eceef4" stroke-width="1">
+          <line x1="80" y1="40" x2="780" y2="40"/><line x1="80" y1="105" x2="780" y2="105"/>
+          <line x1="80" y1="170" x2="780" y2="170"/><line x1="80" y1="235" x2="780" y2="235"/>
+        </g>
+        <g font-size="10" fill="#9a9aa8" text-anchor="end">
+          <text x="72" y="44">120</text><text x="72" y="109">80</text><text x="72" y="174">40</text><text x="72" y="239">0</text>
+        </g>
+        <!-- Revenue group: FY25 75.4 -> h=122.5 ; FY26 95 -> h=154 (scale: 235-40=195px per 120) -->
+        <rect x="150" y="112.5" width="90" height="122.5" fill="#c7cdf0"/>
+        <rect x="255" y="80.6" width="90" height="154.4" fill="#3730a3"/>
+        <text x="195" y="255" font-size="11" fill="#6a6a7a" text-anchor="middle">Jun-Q FY25</text>
+        <text x="300" y="255" font-size="11" fill="#3730a3" font-weight="600" text-anchor="middle">Jun-Q FY26</text>
+        <text x="195" y="105" font-size="11" fill="#6a6a7a" text-anchor="middle">≈75</text>
+        <text x="300" y="73" font-size="11" fill="#3730a3" font-weight="700" text-anchor="middle">95.0</text>
+        <text x="247" y="285" font-size="11.5" fill="#1a1a2e" font-weight="600" text-anchor="middle">Revenue 売上高</text>
+        <!-- Shipments group: FY25 93.2 -> h=151.5 ; FY26 116.5 -> h=189.3 -->
+        <rect x="480" y="83.5" width="90" height="151.5" fill="#f3c6da"/>
+        <rect x="585" y="45.7" width="90" height="189.3" fill="#be185d"/>
+        <text x="525" y="255" font-size="11" fill="#6a6a7a" text-anchor="middle">Jun-Q FY25</text>
+        <text x="630" y="255" font-size="11" fill="#be185d" font-weight="600" text-anchor="middle">Jun-Q FY26</text>
+        <text x="525" y="76" font-size="11" fill="#6a6a7a" text-anchor="middle">≈93</text>
+        <text x="630" y="38" font-size="11" fill="#be185d" font-weight="700" text-anchor="middle">116.5</text>
+        <text x="577" y="285" font-size="11.5" fill="#1a1a2e" font-weight="600" text-anchor="middle">Shipments 出荷高</text>
+      </g>
+    </svg>
+    <div class="chart-note">Prior-year bars implied from disclosed +26% / +25% growth rates. Preliminary, unconsolidated figures released July 17, 2026.</div>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">出荷高<span class="annotation-card-en">shukka-daka · shipment value</span></div>
+      <div class="annotation-card-body">Shipments ¥21.5B ahead of revenue points to installation backlog — customers still adding back-end/HBM capacity.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">7月23日 本決算<span class="annotation-card-en">shichigatsu nijūsan-nichi hon-kessan · Jul 23 full results</span></div>
+      <div class="annotation-card-body">Gross margin, HBM tooling mix, and September-quarter indications decide whether the prelim beat holds up.</div>
+    </div>
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">後工程の遅行性<span class="annotation-card-en">atokōtei no chikōsei · back-end lag</span></div>
+      <div class="annotation-card-body">Back-end tooling can keep shipping quarters after front-end orders roll over — one strong quarter ≠ cycle immunity.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3 -->
+<div class="viz-panel" id="viz-3">
+  <div class="panel-headline">MOF's domestic-buyer push: GPIF tilt talk and JGBs-in-NISA with the 10-year near 30-year highs</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">≈2.7%</div><div class="signal-label">10Y JGB yield into the weekend — near three-decade highs</div></div>
+    <div class="signal"><div class="signal-num">$76B</div><div class="signal-label">SocGen estimate of JGB buying if GPIF rebalances domestic</div></div>
+    <div class="signal"><div class="signal-num">¥293.6T</div><div class="signal-label">GPIF assets under management (March 2026)</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">GPIF Portfolio — Actual vs. 25% Benchmark (March 2026)</div>
+    <svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <g font-family="Inter,sans-serif">
+        <!-- scale: 0-30% over 190px -> 6.33px per % ; baseline y=225, benchmark 25% -> y=225-158=67 -->
+        <g stroke="#eceef4" stroke-width="1">
+          <line x1="80" y1="35" x2="780" y2="35"/><line x1="80" y1="98" x2="780" y2="98"/>
+          <line x1="80" y1="162" x2="780" y2="162"/><line x1="80" y1="225" x2="780" y2="225"/>
+        </g>
+        <g font-size="10" fill="#9a9aa8" text-anchor="end">
+          <text x="72" y="39">30%</text><text x="72" y="102">20%</text><text x="72" y="166">10%</text><text x="72" y="229">0</text>
+        </g>
+        <!-- benchmark line at 25% -->
+        <line x1="80" y1="67" x2="780" y2="67" stroke="#d97706" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="778" y="60" font-size="10" fill="#d97706" text-anchor="end">25% benchmark per class</text>
+        <!-- bars: dom bonds 26.9 -> h=170.3; others ~24.3ish -->
+        <rect x="130" y="54.7" width="110" height="170.3" fill="#3730a3"/>
+        <rect x="300" y="71.5" width="110" height="153.5" fill="#c7cdf0"/>
+        <rect x="470" y="70" width="110" height="155" fill="#c7cdf0"/>
+        <rect x="640" y="73" width="110" height="152" fill="#c7cdf0"/>
+        <text x="185" y="47" font-size="11.5" fill="#3730a3" font-weight="700" text-anchor="middle">26.9%</text>
+        <text x="355" y="64" font-size="11" fill="#8a8a98" text-anchor="middle">≈24%</text>
+        <text x="525" y="63" font-size="11" fill="#8a8a98" text-anchor="middle">≈24%</text>
+        <text x="695" y="66" font-size="11" fill="#8a8a98" text-anchor="middle">≈24%</text>
+        <g font-size="11" fill="#4a4a5a" text-anchor="middle">
+          <text x="185" y="245">Domestic bonds 国債等</text>
+          <text x="355" y="245">Domestic equities</text>
+          <text x="525" y="245">Foreign bonds</text>
+          <text x="695" y="245">Foreign equities</text>
+        </g>
+      </g>
+    </svg>
+    <div class="chart-note">Domestic bonds 26.91% disclosed (Mar 2026); other classes shown indicatively near the 25% benchmark. Katayama: adjust "if needed," benchmark unchanged.</div>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">20年債入札<span class="annotation-card-en">nijūnen-sai nyūsatsu · 20Y auction</span></div>
+      <div class="annotation-card-body">July 14's 20-year sale drew demand above its 12-month average right after the GPIF remarks — the jawboning moved flows.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">政策連携<span class="annotation-card-en">seisaku renkei · policy coordination</span></div>
+      <div class="annotation-card-body">If MOF's domestic-buyer push and BOJ normalization get framed as one program into the MPM, JGB supply risk reprices.</div>
+    </div>
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">口先介入<span class="annotation-card-en">kuchisaki kainyū · verbal intervention</span></div>
+      <div class="annotation-card-body">No NISA decision, benchmark untouched — if talk isn't followed by mechanics, yields resume grinding to new 30-year highs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Japan Brief Issue #49 · July 19, 2026 · Not investment advice</div>
+
+<script>
+function showViz(id, tab){
+  document.querySelectorAll('.viz-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('viz-'+id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
