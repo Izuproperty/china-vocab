@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #62 · July 20, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { text-align:center; padding:18px; font-size:11px; color:#9a8a7a; }
+  @media (max-width:640px) { .signal-row, .annotations { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">China Brief · Visualized</div>
+  </div>
+  <div class="page-meta">Issue #62 · July 20, 2026</div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">Moonshot IPO</div>
+  <div class="tab" onclick="showViz('s2',this)">Qwen3.8-Max</div>
+  <div class="tab" onclick="showViz('s3',this)">LPR and Politburo</div>
+</div>
+
+<!-- STORY 1: Moonshot HK IPO -->
+<div class="viz-panel active" id="s1">
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">$30B+</div>
+      <div class="signal-label">Reported Round Valuation</div>
+      <div class="signal-sub">~7x December's $4.3B mark</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">$300M</div>
+      <div class="signal-label">ARR in June</div>
+      <div class="signal-sub">From $200M in April · ~100x at $30B</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">6 mo</div>
+      <div class="signal-label">Listing Target</div>
+      <div class="signal-sub">Shareholder resolution circulated Jul 19</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Moonshot Reported Valuation Trajectory — December 2025 to July 2026</div>
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- axis -->
+      <line x1="70" y1="250" x2="680" y2="250" stroke="#e0d8d0" stroke-width="2"/>
+      <!-- bars: scale $30B = 190px -->
+      <rect x="120" y="223" width="90" height="27" rx="3" fill="#8a9bb5"/>
+      <text x="165" y="212" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">$4.3B</text>
+      <text x="165" y="268" text-anchor="middle" font-size="10.5" fill="#8a8a8a">Dec 2025</text>
+      <rect x="300" y="123" width="90" height="127" rx="3" fill="#6a7a9a"/>
+      <text x="345" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">$20B</text>
+      <text x="345" y="268" text-anchor="middle" font-size="10.5" fill="#8a8a8a">May 2026 raise</text>
+      <rect x="480" y="60" width="90" height="190" rx="3" fill="#c0392b"/>
+      <text x="525" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#c0392b">&gt;$30B</text>
+      <text x="525" y="268" text-anchor="middle" font-size="10.5" fill="#8a8a8a">Jul 2026 (reported, not closed)</text>
+      <!-- K3 marker -->
+      <line x1="452" y1="40" x2="452" y2="250" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <text x="452" y="30" text-anchor="middle" font-size="10" font-weight="700" fill="#d97706">KIMI K3 · JUL 16</text>
+      <!-- ARR inset -->
+      <rect x="580" y="90" width="112" height="66" rx="4" fill="#f8f4ee" stroke="#e0d8d0"/>
+      <text x="636" y="108" text-anchor="middle" font-size="9.5" font-weight="700" fill="#9a8a7a">ARR RUN-RATE</text>
+      <text x="636" y="126" text-anchor="middle" font-size="11" fill="#3a3a3a">Apr: $200M</text>
+      <text x="636" y="143" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jun: $300M</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Risk</div>
+      ~100x ARR is steep against any comparable; the round is reported, not closed, and K3's benchmarks are still largely self-reported. Three separate things must hold for the price to make sense. <div class="annotation-card-zh">估值<span class="annotation-card-en">gūzhí · valuation</span></div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Watch</div>
+      The VIE dismantling under CSRC guidance must complete cleanly within a six-month target that is a goal, not a filing — the same restructuring path Zhipu took to HKEX. <div class="annotation-card-zh">可变利益实体<span class="annotation-card-en">kěbiàn lìyì shítǐ · VIE structure</span></div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Signal</div>
+      With US-LP capital restricted by the NDRC, the domestic/HK listing channel is working: Zhipu +800% since January, Unitree's STAR debut days away, Moonshot next in the queue. <div class="annotation-card-zh">赴港上市<span class="annotation-card-en">fù Gǎng shàngshì · Hong Kong listing</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: Qwen3.8-Max preview -->
+<div class="viz-panel" id="s2">
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">2.4T</div>
+      <div class="signal-label">Total Parameters</div>
+      <div class="signal-sub">Multimodal: image + video input</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">0</div>
+      <div class="signal-label">Third-Party Benchmarks</div>
+      <div class="signal-sub">Frontier claim rests on internal evals</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">~36%</div>
+      <div class="signal-label">Alibaba's Moonshot Stake</div>
+      <div class="signal-sub">The rival it most directly answers</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Chinese Frontier Scale Race — Total Parameters, Open-Weight Flagships</div>
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="180" y1="30" x2="180" y2="260" stroke="#e0d8d0" stroke-width="2"/>
+      <!-- bars scale: 2.8T = 480px -->
+      <rect x="182" y="40" width="480" height="34" rx="3" fill="#c0392b"/>
+      <text x="175" y="62" text-anchor="end" font-size="11.5" font-weight="600" fill="#1a1a2e">Kimi K3 (Jul 16)</text>
+      <text x="670" y="62" text-anchor="end" font-size="12" font-weight="700" fill="#fff">2.8T</text>
+      <rect x="182" y="95" width="411" height="34" rx="3" fill="#1a56db"/>
+      <text x="175" y="117" text-anchor="end" font-size="11.5" font-weight="600" fill="#1a1a2e">Qwen3.8-Max (Jul 19)</text>
+      <text x="585" y="117" text-anchor="end" font-size="12" font-weight="700" fill="#fff">2.4T</text>
+      <rect x="182" y="150" width="171" height="34" rx="3" fill="#8a9bb5"/>
+      <text x="175" y="172" text-anchor="end" font-size="11.5" font-weight="600" fill="#1a1a2e">Kimi K2.6 (Apr)</text>
+      <text x="345" y="172" text-anchor="end" font-size="12" font-weight="700" fill="#fff">1T</text>
+      <rect x="182" y="205" width="128" height="34" rx="3" fill="#b8c4d8"/>
+      <text x="175" y="227" text-anchor="end" font-size="11.5" font-weight="600" fill="#1a1a2e">GLM-5.2 (Jun)</text>
+      <text x="302" y="227" text-anchor="end" font-size="12" font-weight="700" fill="#1a1a2e">744B</text>
+      <text x="182" y="282" font-size="10" fill="#8a8a8a">Total parameters (MoE); active-parameter counts are far smaller. Scale is not capability — none of the Jul claims have third-party verification yet.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Risk</div>
+      "Second only to the US frontier" is an internal-evals claim with no third-party benchmarks at launch. Blind arena rankings have repeatedly reshuffled vendor claims this cycle. <div class="annotation-card-zh">基准测试<span class="annotation-card-en">jīzhǔn cèshì · benchmark testing</span></div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Watch</div>
+      Open weights are promised, license unspecified. And a 2.4T model is expensive to serve — with inference steered onto domestic silicon, serving economics may decide this race, not benchmarks. <div class="annotation-card-zh">推理<span class="annotation-card-en">tuīlǐ · inference</span></div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Signal</div>
+      Alibaba is both the largest outside shareholder in Moonshot and its best-resourced competitor. Two Chinese labs shipping 2T+-class open-weight flagships in one week is the structural datapoint. <div class="annotation-card-zh">大模型<span class="annotation-card-en">dà móxíng · large model</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: LPR and Politburo -->
+<div class="viz-panel" id="s3">
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">3.0 / 3.5</div>
+      <div class="signal-label">1Y / 5Y LPR (%)</div>
+      <div class="signal-sub">Record lows, untouched since May 2025</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">14</div>
+      <div class="signal-label">Months on Hold (Surveyed)</div>
+      <div class="signal-sub">July survey divided — a first this cycle</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">4.3%</div>
+      <div class="signal-label">Q2 GDP Growth</div>
+      <div class="signal-sub">First sub-target quarter since Covid</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Rates Flat, Growth Sliding — 1Y LPR vs Quarterly GDP, Q2 2025 to Q2 2026</div>
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- target band 4.5-5.0 mapped: y = 250 - (v-2.5)*70 → 4.5%→110, 5.0%→75 -->
+      <rect x="70" y="75" width="610" height="35" fill="#f0fff4"/>
+      <text x="675" y="95" text-anchor="end" font-size="9.5" fill="#16a34a">2026 TARGET BAND 4.5–5%</text>
+      <line x1="70" y1="250" x2="680" y2="250" stroke="#e0d8d0" stroke-width="2"/>
+      <!-- LPR line at 3.0% → y=215 -->
+      <line x1="70" y1="215" x2="680" y2="215" stroke="#c0392b" stroke-width="3"/>
+      <text x="675" y="232" text-anchor="end" font-size="10.5" font-weight="700" fill="#c0392b">1Y LPR · 3.0% — flat 14 months</text>
+      <!-- GDP points: Q2'25 5.2→61, Q3'25 4.8→89, Q4'25 4.5→110, Q1'26 5.0→75, Q2'26 4.3→124 -->
+      <polyline points="130,61 260,89 390,110 520,75 650,124" fill="none" stroke="#1a56db" stroke-width="2.5"/>
+      <circle cx="130" cy="61" r="5" fill="#1a56db"/><text x="130" y="47" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1a1a2e">5.2</text>
+      <circle cx="260" cy="89" r="5" fill="#1a56db"/><text x="260" y="76" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1a1a2e">4.8</text>
+      <circle cx="390" cy="110" r="5" fill="#1a56db"/><text x="390" y="97" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1a1a2e">4.5</text>
+      <circle cx="520" cy="75" r="5" fill="#1a56db"/><text x="520" y="62" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1a1a2e">5.0</text>
+      <circle cx="650" cy="124" r="7" fill="#c0392b" stroke="#1a1a2e" stroke-width="2"/><text x="650" y="108" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">4.3</text>
+      <text x="130" y="268" text-anchor="middle" font-size="10" fill="#8a8a8a">Q2 '25</text>
+      <text x="260" y="268" text-anchor="middle" font-size="10" fill="#8a8a8a">Q3 '25</text>
+      <text x="390" y="268" text-anchor="middle" font-size="10" fill="#8a8a8a">Q4 '25</text>
+      <text x="520" y="268" text-anchor="middle" font-size="10" fill="#8a8a8a">Q1 '26</text>
+      <text x="650" y="268" text-anchor="middle" font-size="10" fill="#8a8a8a">Q2 '26</text>
+      <text x="70" y="290" font-size="9.5" fill="#8a8a8a">GDP y/y % (blue) vs 1Y LPR (red). GDP history approximate from public releases; Q2 '26 = 4.3% per NBS.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Risk</div>
+      Q2's 4.3% is the first quarter below the official target band since the Covid era. If the Politburo answers with vague language, the growth-miss-without-response scenario is live. <div class="annotation-card-zh">增量政策<span class="annotation-card-en">zēngliàng zhèngcè · incremental policies</span></div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Watch</div>
+      The late-July Politburo is now the single event defining H2 policy: property language beyond "halt the decline," fiscal sizing, and whether anti-involution discipline survives the miss. <div class="annotation-card-zh">政治局会议<span class="annotation-card-en">zhèngzhìjú huìyì · Politburo meeting</span></div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Signal</div>
+      The hold logic is coherent: quantity tools carry the easing, bank margins at record lows argue against a symbolic 10bp trim, and a surprise cut would read as alarm, not support. <div class="annotation-card-zh">贷款市场报价利率<span class="annotation-card-en">dàikuǎn shìchǎng bàojià lìlǜ · loan prime rate</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">China Brief Issue #62 · July 20, 2026 · Not investment advice · Data sourced from public reporting</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
