@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #50 · July 20, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .header { background:#1a1a2e; padding:28px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { background:#fff; border-bottom:1px solid #dde0e8; display:flex; flex-wrap:wrap; padding:0 24px; }
+  .tab { padding:14px 18px; font-size:12px; font-weight:600; letter-spacing:0.5px; color:#6a6a7a; cursor:pointer; border-bottom:3px solid transparent; }
+  .tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:20px; line-height:1.35; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:16px 18px; }
+  .signal-num { font-size:24px; font-weight:700; color:#3730a3; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; }
+  .chart-box { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:20px; margin-bottom:26px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:14px; }
+  .chart-note { font-size:10.5px; color:#9a9aa8; margin-top:10px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:14px 16px; border-top:3px solid #ccc; }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#059669; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .red .annotation-card-tag { color:#dc2626; } .amber .annotation-card-tag { color:#d97706; } .green .annotation-card-tag { color:#059669; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:12px; color:#4a4a5a; }
+  .footer { padding:22px; text-align:center; font-size:11px; color:#8a8a98; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-title">Japan Brief Visualized</div>
+  <div class="header-sub">Issue #50 · Monday, July 20, 2026 (海の日 Umi no Hi · Marine Day) · Three charts behind today's stories</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-1" onclick="showViz(1,this)">JPYC Payment Rails</div>
+  <div class="tab" id="tab-2" onclick="showViz(2,this)">Tariff Handoff Timeline</div>
+  <div class="tab" id="tab-3" onclick="showViz(3,this)">BOJ Rate Path</div>
+</div>
+
+<!-- PANEL 1 -->
+<div class="viz-panel active" id="viz-1">
+  <div class="panel-headline">AZ-COM Maruwa moves carrier payouts on-chain — the first large-scale corporate rollout of a regulated yen stablecoin</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">¥1.0B</div><div class="signal-label">AZ-COM Maruwa's commitment to the JPYC rollout</div></div>
+    <div class="signal"><div class="signal-num">2,300</div><div class="signal-label">Partner carriers &amp; owner-drivers to be paid in JPYC</div></div>
+    <div class="signal"><div class="signal-num">Oct 2025</div><div class="signal-label">JPYC launch — first FSA-approved yen stablecoin (Payment Services Act)</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">Settlement Rails — Bank Transfer vs. JPYC</div>
+    <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <g font-family="Inter,sans-serif">
+        <!-- Payer box -->
+        <rect x="30" y="95" width="150" height="90" rx="8" fill="#1a1a2e"/>
+        <text x="105" y="130" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">AZ-COM Maruwa</text>
+        <text x="105" y="148" text-anchor="middle" fill="#8a9bb5" font-size="10">TSE: 9090</text>
+        <text x="105" y="164" text-anchor="middle" fill="#8a9bb5" font-size="10">Amazon Japan last-mile</text>
+        <!-- OLD RAIL (top) -->
+        <text x="240" y="52" fill="#9a9aa8" font-size="11" font-weight="700">OLD RAIL — bank transfer (銀行振込)</text>
+        <path d="M180 115 C 260 70, 480 70, 620 100" stroke="#c9cede" stroke-width="3" fill="none" stroke-dasharray="6,5"/>
+        <rect x="330" y="76" width="170" height="30" rx="5" fill="#f0f1f6" stroke="#dde0e8"/>
+        <text x="415" y="95" text-anchor="middle" fill="#6a6a7a" font-size="10.5">per-transfer fees · batch lag</text>
+        <!-- NEW RAIL (bottom) -->
+        <text x="240" y="248" fill="#3730a3" font-size="11" font-weight="700">NEW RAIL — JPYC on-chain settlement</text>
+        <path d="M180 165 C 260 215, 480 215, 620 180" stroke="#3730a3" stroke-width="4" fill="none"/>
+        <rect x="330" y="182" width="170" height="30" rx="5" fill="#e0e7ff"/>
+        <text x="415" y="201" text-anchor="middle" fill="#3730a3" font-size="10.5" font-weight="600">1:1 yen-pegged · ¥1B float</text>
+        <!-- Payee box -->
+        <rect x="620" y="95" width="170" height="90" rx="8" fill="#fff" stroke="#3730a3" stroke-width="2"/>
+        <text x="705" y="128" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="700">2,300 carriers</text>
+        <text x="705" y="146" text-anchor="middle" fill="#6a6a7a" font-size="10">small trucking firms</text>
+        <text x="705" y="162" text-anchor="middle" fill="#6a6a7a" font-size="10">owner-operator drivers</text>
+      </g>
+    </svg>
+    <div class="chart-note">High-frequency, small-ticket contractor payouts (委託費 itakuhi) are the wedge use case — where transfer fees and batch-settlement lag bite hardest. Schematic, not to scale.</div>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">資金決済法<span class="annotation-card-en">shikin kessai hō · Payment Services Act</span></div>
+      <div class="annotation-card-body">A live corporate deployment validates the FSA's trust-backed, 1:1-redeemable framework as production settlement infrastructure — not a crypto curiosity.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">決済量<span class="annotation-card-en">kessairyō · settlement volume</span></div>
+      <div class="annotation-card-body">Reported volumes, and whether a second large adopter follows within the quarter. Megabank yen-token projects now face pressure to show live flow.</div>
+    </div>
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">出口<span class="annotation-card-en">deguchi · the off-ramp</span></div>
+      <div class="annotation-card-body">Owner-operators still need cash-out to bank deposits, and Type II funds-transfer caps limit ticket sizes — fine for driver payouts, a ceiling on treasury-scale flows.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2 -->
+<div class="viz-panel" id="viz-2">
+  <div class="panel-headline">Section 122 dies by operation of law on Friday — USTR's open-ended Section 301 replacement is due today</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">10% → 12.5%</div><div class="signal-label">Current Section 122 surcharge → proposed Section 301 rate on Japan</div></div>
+    <div class="signal"><div class="signal-num">150 days</div><div class="signal-label">Statutory cap on Section 122 — sunset July 24 unless Congress acts</div></div>
+    <div class="signal"><div class="signal-num">46</div><div class="signal-label">Countries in the proposed 301 action, incl. Japan &amp; South Korea</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">The 2026 Tariff Handoff — Timeline</div>
+    <svg viewBox="0 0 820 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <g font-family="Inter,sans-serif">
+        <line x1="50" y1="150" x2="790" y2="150" stroke="#c9cede" stroke-width="2"/>
+        <!-- events -->
+        <g font-size="11" text-anchor="middle">
+          <circle cx="90" cy="150" r="7" fill="#1a1a2e"/>
+          <text x="90" y="110" fill="#1a1a2e" font-weight="600">Feb 20</text>
+          <text x="90" y="125" fill="#8a8a98" font-size="10">SCOTUS voids IEEPA;</text>
+          <text x="90" y="137" fill="#8a8a98" font-size="10">Sec. 122 signed</text>
+          <circle cx="200" cy="150" r="7" fill="#3730a3"/>
+          <text x="200" y="182" fill="#1a1a2e" font-weight="600">Feb 24</text>
+          <text x="200" y="196" fill="#8a8a98" font-size="10">10% surcharge effective</text>
+          <circle cx="330" cy="150" r="7" fill="#1a1a2e"/>
+          <text x="330" y="110" fill="#1a1a2e" font-weight="600">Mar 11</text>
+          <text x="330" y="125" fill="#8a8a98" font-size="10">Two Sec. 301</text>
+          <text x="330" y="137" fill="#8a8a98" font-size="10">investigations open</text>
+          <circle cx="590" cy="150" r="9" fill="#dc2626"/>
+          <text x="590" y="110" fill="#dc2626" font-weight="700">Jul 20 · TODAY</text>
+          <text x="590" y="125" fill="#8a8a98" font-size="10">USTR completion</text>
+          <text x="590" y="137" fill="#8a8a98" font-size="10">deadline</text>
+          <circle cx="700" cy="150" r="8" fill="#d97706"/>
+          <text x="700" y="182" fill="#1a1a2e" font-weight="600">Jul 24</text>
+          <text x="700" y="196" fill="#8a8a98" font-size="10">Day 150 — Sec. 122</text>
+          <text x="700" y="208" fill="#8a8a98" font-size="10">sunsets by law</text>
+        </g>
+        <!-- rate bands -->
+        <g font-size="10">
+          <rect x="200" y="230" width="500" height="16" rx="4" fill="#e0e7ff"/>
+          <text x="450" y="242" text-anchor="middle" fill="#3730a3" font-weight="600">Sec. 122 · 10% · hard 150-day limit</text>
+          <rect x="700" y="230" width="90" height="16" rx="4" fill="#fce7f3" stroke="#be185d" stroke-dasharray="4,3"/>
+          <text x="745" y="242" text-anchor="middle" fill="#be185d" font-weight="600">301 · 12.5%?</text>
+          <text x="745" y="262" text-anchor="middle" fill="#9a9aa8">no cap · no sunset</text>
+        </g>
+      </g>
+    </svg>
+    <div class="chart-note">Proposed 12.5%/46-country contours are from trade-law client alerts tracking the dockets — reported, not final, until the Federal Register notice lands.</div>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">上限なし<span class="annotation-card-en">jōgen nashi · no ceiling</span></div>
+      <div class="annotation-card-body">Section 301 has no rate cap and no time limit — 12.5% is a starting proposal. A temporary surcharge becomes an open-ended instrument on Japanese autos, machinery, SPE.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">貿易統計<span class="annotation-card-en">bōeki tōkei · trade statistics</span></div>
+      <div class="annotation-card-body">Wednesday's June MOF release gives the first read on pre-deadline front-loading of US-bound exports (対米輸出 taibei yushutsu).</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Scenario</div>
+      <div class="annotation-card-zh">空白期間<span class="annotation-card-en">kūhaku kikan · gap window</span></div>
+      <div class="annotation-card-body">If the 301 actions slip past Friday, imports face no surcharge at all until they land — expect customs-timing games either side of July 24.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3 -->
+<div class="viz-panel" id="viz-3">
+  <div class="panel-headline">Hold at 1%, upgrade the forecast — the sources stories sketch a July MPM that keeps autumn alive</div>
+  <div class="signals">
+    <div class="signal"><div class="signal-num">1.00%</div><div class="signal-label">Policy rate — 31-year high; sources signal a hold July 30–31</div></div>
+    <div class="signal"><div class="signal-num">0.5% ↑</div><div class="signal-label">April's FY2026 growth forecast, set to be raised in the Outlook Report</div></div>
+    <div class="signal"><div class="signal-num">Jul 24</div><div class="signal-label">June national CPI — last major print before the MPM; same day the surcharge sunsets</div></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-title">BOJ Policy Rate — Hikes to Date and the Polled Year-End Path (%)</div>
+    <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <g font-family="Inter,sans-serif">
+        <!-- gridlines -->
+        <g stroke="#eef0f5" stroke-width="1">
+          <line x1="70" y1="40" x2="790" y2="40"/>
+          <line x1="70" y1="90" x2="790" y2="90"/>
+          <line x1="70" y1="140" x2="790" y2="140"/>
+          <line x1="70" y1="190" x2="790" y2="190"/>
+          <line x1="70" y1="240" x2="790" y2="240"/>
+        </g>
+        <g font-size="10" fill="#9a9aa8" text-anchor="end">
+          <text x="62" y="44">1.25</text>
+          <text x="62" y="94">1.00</text>
+          <text x="62" y="144">0.75</text>
+          <text x="62" y="194">0.50</text>
+          <text x="62" y="244">0.25</text>
+        </g>
+        <line x1="70" y1="270" x2="790" y2="270" stroke="#c9cede" stroke-width="2"/>
+        <g font-size="10.5" fill="#6a6a7a" text-anchor="middle">
+          <text x="120" y="290">2024</text>
+          <text x="280" y="290">Jan 2025</text>
+          <text x="420" y="290">late 2025</text>
+          <text x="540" y="290">Jun 2026</text>
+          <text x="640" y="290">Jul 31 MPM</text>
+          <text x="755" y="290">Dec 2026</text>
+        </g>
+        <!-- realized path (step) -->
+        <path d="M120 240 L280 240 L280 190 L420 190 L420 140 L540 140 L540 90 L640 90"
+              stroke="#3730a3" stroke-width="3.5" fill="none"/>
+        <circle cx="120" cy="240" r="5" fill="#3730a3"/>
+        <circle cx="280" cy="190" r="5" fill="#3730a3"/>
+        <circle cx="420" cy="140" r="5" fill="#3730a3"/>
+        <circle cx="540" cy="90" r="6" fill="#3730a3"/>
+        <!-- hold marker -->
+        <circle cx="640" cy="90" r="8" fill="#fff" stroke="#d97706" stroke-width="3"/>
+        <text x="640" y="68" text-anchor="middle" fill="#d97706" font-size="11" font-weight="700">HOLD signaled</text>
+        <!-- polled path -->
+        <path d="M640 90 L755 40" stroke="#9a9aa8" stroke-width="2.5" stroke-dasharray="6,5" fill="none"/>
+        <circle cx="755" cy="40" r="6" fill="#fff" stroke="#9a9aa8" stroke-width="2.5"/>
+        <text x="748" y="24" text-anchor="middle" fill="#6a6a7a" font-size="11">1.25% — Reuters poll consensus</text>
+        <text x="540" y="115" text-anchor="middle" fill="#3730a3" font-size="10.5" font-weight="600">Jun hike to 1.00% (7–1)</text>
+      </g>
+    </svg>
+    <div class="chart-note">Stylized step path of BOJ hikes (dates approximate); dashed segment is the Reuters poll year-end consensus, not a forecast by this brief.</div>
+  </div>
+  <div class="annotations">
+    <div class="annotation-card green">
+      <div class="annotation-card-tag">Signal</div>
+      <div class="annotation-card-zh">据え置き<span class="annotation-card-en">sueoki · hold</span></div>
+      <div class="annotation-card-body">Sources stories ten days before an MPM are usually the message: hold now, tightening bias intact. Growth marked up lowers the bar for an October move.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-tag">Watch</div>
+      <div class="annotation-card-zh">全国CPI<span class="annotation-card-en">zenkoku CPI · national CPI</span></div>
+      <div class="annotation-card-body">Friday's June print is the last big input before the meeting — and lands the same day as the tariff sunset. Cash market reopens Tuesday after 海の日 (Umi no Hi · Marine Day).</div>
+    </div>
+    <div class="annotation-card red">
+      <div class="annotation-card-tag">Risk</div>
+      <div class="annotation-card-zh">円安<span class="annotation-card-en">en'yasu · weak yen</span></div>
+      <div class="annotation-card-body">A trimmed CPI path rests on oil staying put — fragile with the yen near 162 and household inflation expectations at record highs.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Japan Brief Issue #50 · July 20, 2026 · Not investment advice</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('viz-' + id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
