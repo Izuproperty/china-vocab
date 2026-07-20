@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #51 · July 21, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; }
+  .viz-header { background:#1a1a2e; padding:28px 32px 20px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .viz-header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .viz-header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .viz-header-meta { margin-top:8px; font-size:12px; color:#8a9bb5; }
+  .viz-tabs { background:#fff; border-bottom:1px solid #dde0e8; display:flex; overflow-x:auto; }
+  .viz-tab { padding:14px 22px; font-size:12.5px; font-weight:600; color:#6a6a7a; cursor:pointer; border:none; background:none; border-bottom:3px solid transparent; white-space:nowrap; font-family:'Inter',sans-serif; }
+  .viz-tab.active { color:#3730a3; border-bottom-color:#3730a3; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .panel-sub { font-size:12px; color:#8a7a6a; margin-bottom:20px; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-card { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:16px; }
+  .signal-num { font-size:26px; font-weight:700; color:#3730a3; line-height:1.1; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:6px; line-height:1.4; }
+  .chart-box { background:#fff; border:1px solid #e4e7ee; border-radius:6px; padding:20px; margin-bottom:24px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a7a6a; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; border-top:3px solid; }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#16a34a; }
+  .annotation-card-zh { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-text { font-size:12px; color:#4a4a5a; line-height:1.55; margin-top:6px; }
+  .viz-footer { text-align:center; padding:24px; font-size:11px; color:#8a9bb5; }
+  @media (max-width:640px) { .signal-row, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="viz-header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="viz-header-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+  <div class="viz-header-title">Issue #51 · Data Companion</div>
+  <div class="viz-header-meta">Tuesday, July 21, 2026 · Three stories, three charts</div>
+</div>
+
+<div class="viz-tabs">
+  <button class="viz-tab active" id="tab-0" onclick="showViz(0,this)">Standards Czar</button>
+  <button class="viz-tab" id="tab-1" onclick="showViz(1,this)">Chip Reopening Test</button>
+  <button class="viz-tab" id="tab-2" onclick="showViz(2,this)">Tariff Handoff</button>
+</div>
+
+<!-- PANEL 1: STANDARDS -->
+<div class="viz-panel active" id="panel-0">
+  <div class="panel-title">Tokyo's standards push: from Hiroshima Process to a czar</div>
+  <div class="panel-sub">Nikkei Asia · July 21, 2026</div>
+
+  <div class="signal-row">
+    <div class="signal-card"><div class="signal-num">¥370tn</div><div class="signal-label">Public + private investment targeted by 2040 across the Takaichi roadmap the post plugs into</div></div>
+    <div class="signal-card"><div class="signal-num">17</div><div class="signal-label">Strategic sectors in the growth roadmap; AI and semiconductors named first for standards work</div></div>
+    <div class="signal-card"><div class="signal-num">3+</div><div class="signal-label">Bodies currently splitting standards work: METI/JIS, AI Safety Institute, diplomatic channels</div></div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Timeline · Japan's standardization track to July 2026</div>
+    <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="40" y1="95" x2="780" y2="95" stroke="#c9cede" stroke-width="2"/>
+      <!-- events -->
+      <g>
+        <circle cx="90" cy="95" r="7" fill="#818cf8"/>
+        <text x="90" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">2016–19</text>
+        <text x="90" y="125" text-anchor="middle" font-size="10" fill="#5a5a6e">OECD AI</text>
+        <text x="90" y="138" text-anchor="middle" font-size="10" fill="#5a5a6e">Principles role</text>
+      </g>
+      <g>
+        <circle cx="250" cy="95" r="7" fill="#818cf8"/>
+        <text x="250" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">2023</text>
+        <text x="250" y="125" text-anchor="middle" font-size="10" fill="#5a5a6e">Hiroshima AI</text>
+        <text x="250" y="138" text-anchor="middle" font-size="10" fill="#5a5a6e">Process (G7)</text>
+      </g>
+      <g>
+        <circle cx="410" cy="95" r="7" fill="#818cf8"/>
+        <text x="410" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">2024</text>
+        <text x="410" y="125" text-anchor="middle" font-size="10" fill="#5a5a6e">AI Safety Institute</text>
+        <text x="410" y="138" text-anchor="middle" font-size="10" fill="#5a5a6e">as evaluation hub</text>
+      </g>
+      <g>
+        <circle cx="570" cy="95" r="7" fill="#818cf8"/>
+        <text x="570" y="70" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">2026</text>
+        <text x="570" y="125" text-anchor="middle" font-size="10" fill="#5a5a6e">¥370tn / 17-sector</text>
+        <text x="570" y="138" text-anchor="middle" font-size="10" fill="#5a5a6e">growth roadmap</text>
+      </g>
+      <g>
+        <circle cx="730" cy="95" r="9" fill="#3730a3"/>
+        <text x="730" y="65" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 21, 2026</text>
+        <text x="730" y="125" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">Standards czar</text>
+        <text x="730" y="138" text-anchor="middle" font-size="10" font-weight="600" fill="#3730a3">post announced</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card green">
+      <div class="annotation-card-zh">国際標準化<span class="annotation-card-en">kokusai hyōjunka · international standardization</span></div>
+      <div class="annotation-card-text">A single owner for standards strategy is the missing piece Japan's interoperability approach has lacked — royalties and reference designs follow the spec-writers.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-zh">内閣官房<span class="annotation-card-en">Naikaku Kanbō · Cabinet Secretariat</span></div>
+      <div class="annotation-card-text">Materiality hinges on placement: a Cabinet Secretariat post with budget authority is policy; an advisory perch is a press release. Autumn budget is the tell.</div>
+    </div>
+    <div class="annotation-card red">
+      <div class="annotation-card-zh">ガラパゴス化<span class="annotation-card-en">Garapagosu-ka · Galapagos syndrome</span></div>
+      <div class="annotation-card-text">The mobile era proved world-leading domestic specs can fail to travel. Coordination posts alone don't change adoption economics abroad.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: CHIP REOPENING -->
+<div class="viz-panel" id="panel-1">
+  <div class="panel-title">One-fifth of the index: the chip complex comes back from 海の日</div>
+  <div class="panel-sub">ts2.tech / Trading Economics / Invezz · July 20–21, 2026</div>
+
+  <div class="signal-row">
+    <div class="signal-card"><div class="signal-num">−6.4%</div><div class="signal-label">Nikkei's tech-led decline last week; Friday alone −4.03% to 64,141</div></div>
+    <div class="signal-card"><div class="signal-num">20.6%</div><div class="signal-label">Combined Nikkei weight of Advantest (10.35%) and Tokyo Electron (10.21%) as of Friday</div></div>
+    <div class="signal-card"><div class="signal-num">−55%</div><div class="signal-label">Kioxia's drawdown from its 2026 peak; Q1 results due July 31</div></div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Friday July 17 session · chip-complex declines (%)</div>
+    <svg viewBox="0 0 820 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- axis -->
+      <line x1="150" y1="15" x2="150" y2="215" stroke="#c9cede" stroke-width="1"/>
+      <!-- bars: scale 30px per % -->
+      <g font-size="12" fill="#3a3a4a">
+        <text x="140" y="42" text-anchor="end" font-weight="600">Kioxia</text>
+        <rect x="150" y="28" width="483" height="20" rx="2" fill="#dc2626"/>
+        <text x="641" y="42" font-weight="700" fill="#dc2626">−16.1%</text>
+
+        <text x="140" y="80" text-anchor="end" font-weight="600">Taiyo Yuden</text>
+        <rect x="150" y="66" width="357" height="20" rx="2" fill="#ef6a5a"/>
+        <text x="515" y="80" font-weight="700" fill="#dc2626">−11.9%</text>
+
+        <text x="140" y="118" text-anchor="end" font-weight="600">SoftBank G</text>
+        <rect x="150" y="104" width="270" height="20" rx="2" fill="#ef6a5a"/>
+        <text x="428" y="118" font-weight="700" fill="#dc2626">−9.0%</text>
+
+        <text x="140" y="156" text-anchor="end" font-weight="600">Tokyo Electron</text>
+        <rect x="150" y="142" width="243" height="20" rx="2" fill="#f0938a"/>
+        <text x="401" y="156" font-weight="700" fill="#dc2626">−8.1%</text>
+
+        <text x="140" y="194" text-anchor="end" font-weight="600">Advantest</text>
+        <rect x="150" y="180" width="216" height="20" rx="2" fill="#f0938a"/>
+        <text x="374" y="194" font-weight="700" fill="#dc2626">−7.2%</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-zh">寄与度<span class="annotation-card-en">kiyodo · index contribution</span></div>
+      <div class="annotation-card-text">Two stocks above 10% weight each means the Nikkei is structurally a chip bet — concentration manufactured the correction and gates the recovery.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-zh">底値買い<span class="annotation-card-en">sokone-gai · bargain-hunting</span></div>
+      <div class="annotation-card-text">The reopen tests whether domestic bottom-fishing absorbs foreign de-risking of the regional AI trade. Holding 64,000 was the tactical line.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-zh">決算<span class="annotation-card-en">kessan · earnings results</span></div>
+      <div class="annotation-card-text">Disco's shipment quarter says demand is intact; Kioxia (Jul 31) and Tokyo Electron (month-end) decide whether the rout was valuation or fundamentals.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: TARIFF -->
+<div class="viz-panel" id="panel-2">
+  <div class="panel-title">The Section 122 → 301 handoff window</div>
+  <div class="panel-sub">USTR / trade-law advisories · July 20–21, 2026</div>
+
+  <div class="signal-row">
+    <div class="signal-card"><div class="signal-num">12.5%</div><div class="signal-label">Proposed Section 301 rate for Japan (among 46 economies) under the forced-labor findings</div></div>
+    <div class="signal-card"><div class="signal-num">Jul 24</div><div class="signal-label">Friday sunset of the Section 122 blanket 10% surcharge — before the replacement is in force</div></div>
+    <div class="signal-card"><div class="signal-num">15%</div><div class="signal-label">Effective ceiling on covered Japanese products under the bilateral understanding USTR says it will respect</div></div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Timeline · Section 301 process vs Section 122 sunset</div>
+    <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="40" y1="100" x2="780" y2="100" stroke="#c9cede" stroke-width="2"/>
+      <g>
+        <circle cx="90" cy="100" r="7" fill="#818cf8"/>
+        <text x="90" y="75" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Jun 2</text>
+        <text x="90" y="130" text-anchor="middle" font-size="10" fill="#5a5a6e">Findings: 12.5%</text>
+        <text x="90" y="143" text-anchor="middle" font-size="10" fill="#5a5a6e">proposed, 46 economies</text>
+      </g>
+      <g>
+        <circle cx="240" cy="100" r="7" fill="#818cf8"/>
+        <text x="240" y="75" text-anchor="middle" font-size="11" font-weight="600" fill="#1a1a2e">Jul 6–7</text>
+        <text x="240" y="130" text-anchor="middle" font-size="10" fill="#5a5a6e">Comments close;</text>
+        <text x="240" y="143" text-anchor="middle" font-size="10" fill="#5a5a6e">public hearing</text>
+      </g>
+      <g>
+        <circle cx="450" cy="100" r="9" fill="#d97706"/>
+        <text x="450" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#d97706">Jul 20</text>
+        <text x="450" y="130" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">301 completion deadline —</text>
+        <text x="450" y="143" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706">no determination published</text>
+      </g>
+      <g>
+        <circle cx="620" cy="100" r="9" fill="#dc2626"/>
+        <text x="620" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">Jul 24</text>
+        <text x="620" y="130" text-anchor="middle" font-size="10" font-weight="600" fill="#dc2626">Section 122 10%</text>
+        <text x="620" y="143" text-anchor="middle" font-size="10" font-weight="600" fill="#dc2626">surcharge sunsets</text>
+      </g>
+      <g>
+        <circle cx="750" cy="100" r="7" fill="#3730a3"/>
+        <text x="750" y="75" text-anchor="middle" font-size="11" font-weight="600" fill="#3730a3">Then</text>
+        <text x="750" y="130" text-anchor="middle" font-size="10" fill="#3730a3">Federal Register /</text>
+        <text x="750" y="143" text-anchor="middle" font-size="10" fill="#3730a3">effective date</text>
+      </g>
+      <!-- gap shading -->
+      <rect x="620" y="88" width="130" height="24" fill="#dc2626" opacity="0.07"/>
+    </svg>
+  </div>
+
+  <div class="annotation-row">
+    <div class="annotation-card red">
+      <div class="annotation-card-zh">関税<span class="annotation-card-en">kanzei · tariff</span></div>
+      <div class="annotation-card-text">The old tariff dies before its replacement is formally in force — importers face a handoff window with no published rate schedule.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-zh">通商法301条<span class="annotation-card-en">Tsūshōhō 301-jō · Section 301</span></div>
+      <div class="annotation-card-text">Converting a temporary surcharge into an open-ended 301 instrument matters more than the 2.5-point rate delta — coverage lists and stacking are the open questions.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-zh">日米通商合意<span class="annotation-card-en">Nichi-Bei tsūshō gōi · US-Japan trade agreement</span></div>
+      <div class="annotation-card-text">USTR says it will respect the 15% ceiling, so 12.5% sits inside the band — and at ¥162, currency still does more for margins than the tariff takes away.</div>
+    </div>
+  </div>
+</div>
+
+<div class="viz-footer">Japan Brief Issue #51 · July 21, 2026 · Not investment advice</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.viz-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById('panel-' + id).classList.add('active');
+  (tab || document.getElementById('tab-' + id)).classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
