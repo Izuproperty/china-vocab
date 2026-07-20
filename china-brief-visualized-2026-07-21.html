@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #63 · July 21, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-height:100vh; }
+  .page-header { background:#1a1a2e; padding:20px 28px 16px; border-bottom:3px solid #c0392b; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+  .page-header-left { display:flex; flex-direction:column; gap:4px; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; text-decoration:none; }
+  .back-link:hover { color:#e8d5b0; }
+  .page-title { font-family:'Playfair Display',serif; font-size:20px; color:#fff; font-weight:700; }
+  .page-meta { font-size:11px; color:#8a9bb5; }
+  .tab-bar { display:flex; gap:0; background:#fff; border-bottom:2px solid #e0d8d0; overflow-x:auto; }
+  .tab { padding:12px 20px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; transition:all 0.15s; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fdf8f4; }
+  .tab:hover:not(.active) { color:#1a1a2e; background:#f8f4ee; }
+  .viz-panel { display:none; padding:24px; max-width:800px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .signal-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:24px; }
+  .signal-box { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:16px; text-align:center; }
+  .signal-num { font-size:28px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .signal-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:#9a8a7a; margin-top:5px; }
+  .signal-sub { font-size:11px; color:#b0a898; margin-top:3px; }
+  .chart-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,0.07); padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9a8a7a; margin-bottom:16px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .ann-card { border-radius:5px; padding:14px; font-size:12.5px; line-height:1.6; }
+  .ann-red { background:#fff5f5; border-left:4px solid #c0392b; }
+  .ann-amber { background:#fffbf0; border-left:4px solid #d97706; }
+  .ann-green { background:#f0fff4; border-left:4px solid #16a34a; }
+  .ann-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .ann-red .ann-label { color:#c0392b; }
+  .ann-amber .ann-label { color:#d97706; }
+  .ann-green .ann-label { color:#16a34a; }
+  .annotation-card-zh { color:#c0392b; font-weight:600; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:4px; }
+  .footer-bar { text-align:center; padding:18px; font-size:11px; color:#9a8a7a; }
+  @media (max-width:640px) { .signal-row, .annotations { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="page-header">
+  <div class="page-header-left">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="page-title">China Brief · Visualized</div>
+  </div>
+  <div class="page-meta">Issue #63 · July 21, 2026</div>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showViz('s1',this)">MIIT Robot Census</div>
+  <div class="tab" onclick="showViz('s2',this)">Kimi K3 Halt</div>
+  <div class="tab" onclick="showViz('s3',this)">AliExpress Fine</div>
+</div>
+
+<!-- STORY 1: MIIT humanoid census -->
+<div class="viz-panel active" id="s1">
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">400+</div>
+      <div class="signal-label">Humanoid Products Developed</div>
+      <div class="signal-sub">More than half the global total (MIIT, Jul 20)</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">~70%</div>
+      <div class="signal-label">Global Quadruped Sales</div>
+      <div class="signal-sub">Chinese makers, led by Unitree</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">100k</div>
+      <div class="signal-label">2026 Output Target</div>
+      <div class="signal-sub">Humanoid units, per officials at WAIC</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">China's Share of the Global Robot Buildout — MIIT Data, July 20, 2026</div>
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- Humanoid products share bar -->
+      <text x="40" y="58" font-size="11" font-weight="700" fill="#3a3a3a">Humanoid robot products</text>
+      <rect x="40" y="68" width="640" height="30" rx="4" fill="#e8e0d4"/>
+      <rect x="40" y="68" width="336" height="30" rx="4" fill="#c0392b"/>
+      <text x="52" y="88" font-size="11.5" font-weight="700" fill="#fff">China: 400+ products (&gt;50%)</text>
+      <text x="668" y="88" font-size="10.5" text-anchor="end" fill="#8a8a8a">Rest of world</text>
+      <!-- Quadruped sales share bar -->
+      <text x="40" y="138" font-size="11" font-weight="700" fill="#3a3a3a">Quadruped robot sales (global)</text>
+      <rect x="40" y="148" width="640" height="30" rx="4" fill="#e8e0d4"/>
+      <rect x="40" y="148" width="448" height="30" rx="4" fill="#d97706"/>
+      <text x="52" y="168" font-size="11.5" font-weight="700" fill="#fff">China: ~70% of global sales</text>
+      <text x="668" y="168" font-size="10.5" text-anchor="end" fill="#8a8a8a">Rest of world</text>
+      <!-- Token inset -->
+      <rect x="40" y="208" width="640" height="66" rx="4" fill="#f8f4ee" stroke="#e0d8d0"/>
+      <text x="60" y="232" font-size="10" font-weight="700" fill="#9a8a7a">SAME-DAY DATA POINT · DAILY AI TOKEN CALLS</text>
+      <text x="60" y="256" font-size="13" font-weight="700" fill="#1a1a2e">140 trillion / day</text>
+      <text x="200" y="256" font-size="11" fill="#6a5a4a">up more than 1,000x since early 2024</text>
+      <text x="668" y="256" font-size="10.5" text-anchor="end" fill="#c0392b" font-weight="700">Beijing is publishing a scoreboard</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Risk</div>
+      A product count measures breadth, not commercialization: 400 SKUs against a 100k-unit output target implies most products ship in the hundreds. Revenue stays concentrated — Unitree's RMB 1.7B is the outlier, not the norm. <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Watch</div>
+      Whether humanoid deployment appears explicitly in H2 stimulus language, and how Unitree's imminent STAR debut — the sector's first public-market valuation test — prices the gap between breadth and concentration. <div class="annotation-card-zh">四足机器人<span class="annotation-card-en">sìzú jīqìrén · quadruped robot</span></div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Signal</div>
+      Financing has moved down the stack: tactile-sensor maker Yimu Tech closed an RMB 1B+ Series E at a 10B+ valuation on the same day — the component layer, not just integrators, is now getting late-stage capital. <div class="annotation-card-zh">触觉传感<span class="annotation-card-en">chùjué chuángǎn · tactile sensing</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 2: Kimi K3 sign-up halt -->
+<div class="viz-panel" id="s2">
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">2 days</div>
+      <div class="signal-label">Launch to Sign-Up Halt</div>
+      <div class="signal-sub">Released Jul 17 · paused Jul 19</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">2.8T</div>
+      <div class="signal-label">K3 Parameters</div>
+      <div class="signal-sub">Largest open-weight model to date</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">$300M</div>
+      <div class="signal-label">ARR Before K3</div>
+      <div class="signal-sub">June run-rate · pre-launch demand base</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Five Days of K3 — Launch, Leaderboard, Halt, Selloff</div>
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <!-- timeline spine -->
+      <line x1="60" y1="150" x2="680" y2="150" stroke="#e0d8d0" stroke-width="2"/>
+      <!-- Jul 17 -->
+      <circle cx="120" cy="150" r="7" fill="#16a34a"/>
+      <text x="120" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 17</text>
+      <text x="120" y="180" text-anchor="middle" font-size="10.5" fill="#3a3a3a">K3 released</text>
+      <text x="120" y="194" text-anchor="middle" font-size="9.5" fill="#8a8a8a">2.8T open-weight</text>
+      <!-- Jul 18 -->
+      <circle cx="270" cy="150" r="7" fill="#6a7a9a"/>
+      <text x="270" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 18</text>
+      <text x="270" y="180" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Tops Arena chart</text>
+      <text x="270" y="194" text-anchor="middle" font-size="9.5" fill="#8a8a8a">front-end coding</text>
+      <!-- Jul 19 -->
+      <circle cx="430" cy="150" r="9" fill="#c0392b"/>
+      <text x="430" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">Jul 19</text>
+      <text x="430" y="180" text-anchor="middle" font-size="10.5" font-weight="700" fill="#c0392b">Sign-ups halted</text>
+      <text x="430" y="194" text-anchor="middle" font-size="9.5" fill="#8a8a8a">compute overwhelmed</text>
+      <!-- Jul 20 -->
+      <circle cx="590" cy="150" r="7" fill="#d97706"/>
+      <text x="590" y="120" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 20</text>
+      <text x="590" y="180" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Zhipu, MiniMax sell off</text>
+      <text x="590" y="194" text-anchor="middle" font-size="9.5" fill="#8a8a8a">margin repricing spreads</text>
+      <!-- context band -->
+      <rect x="60" y="228" width="620" height="48" rx="4" fill="#f8f4ee" stroke="#e0d8d0"/>
+      <text x="80" y="248" font-size="10" font-weight="700" fill="#9a8a7a">THE MECHANISM</text>
+      <text x="80" y="266" font-size="11" fill="#3a3a3a">Frontier benchmarks at K3's price compress the implied margin of every other model vendor — in China and beyond.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Risk</div>
+      A halt three days post-launch is a unit-economics signal as much as a popularity one: K3 may not be servable profitably at current prices inside an export-restricted compute environment. <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Watch</div>
+      Pause duration, whether pricing quietly rises when sign-ups reopen, and whether the reported round above $30B closes at that mark after K3 repriced Moonshot's own listed comparables downward. <div class="annotation-card-zh">利润率<span class="annotation-card-en">lìrùnlǜ · profit margin</span></div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Signal</div>
+      Demand is real: ARR was ~$300M before K3 launched, and the capacity-constrained debut supports the six-month Hong Kong listing narrative — scarcity is doing the marketing. <div class="annotation-card-zh">订阅<span class="annotation-card-en">dìngyuè · subscription</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY 3: AliExpress DSA fine -->
+<div class="viz-panel" id="s3">
+  <div class="signal-row">
+    <div class="signal-box">
+      <div class="signal-num">€550M</div>
+      <div class="signal-label">DSA Fine</div>
+      <div class="signal-sub">Largest under the law to date (~$625M)</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">Oct 20</div>
+      <div class="signal-label">Action Plan Deadline</div>
+      <div class="signal-sub">Corrective plan due to Commission, 2026</div>
+    </div>
+    <div class="signal-box">
+      <div class="signal-num">2</div>
+      <div class="signal-label">Platforms in the Queue</div>
+      <div class="signal-sub">Temu (open DSA case) · Shein (consumer track)</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The Escalation Path — From Preliminary Findings to a Record Fine</div>
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+      <line x1="60" y1="130" x2="680" y2="130" stroke="#e0d8d0" stroke-width="2"/>
+      <!-- Jun 2025 -->
+      <circle cx="120" cy="130" r="7" fill="#6a7a9a"/>
+      <text x="120" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jun 2025</text>
+      <text x="120" y="160" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Preliminary findings</text>
+      <text x="120" y="174" text-anchor="middle" font-size="9.5" fill="#8a8a8a">illegal-product risk</text>
+      <!-- Commitments -->
+      <circle cx="280" cy="130" r="7" fill="#16a34a"/>
+      <text x="280" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">2025</text>
+      <text x="280" y="160" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Commitments accepted</text>
+      <text x="280" y="174" text-anchor="middle" font-size="9.5" fill="#8a8a8a">partial scope</text>
+      <!-- Jul 20 2026 -->
+      <circle cx="450" cy="130" r="9" fill="#c0392b"/>
+      <text x="450" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">Jul 20, 2026</text>
+      <text x="450" y="160" text-anchor="middle" font-size="10.5" font-weight="700" fill="#c0392b">€550M fine</text>
+      <text x="450" y="174" text-anchor="middle" font-size="9.5" fill="#8a8a8a">ordered fixes not made</text>
+      <!-- Oct 20 -->
+      <circle cx="610" cy="130" r="7" fill="#d97706"/>
+      <text x="610" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Oct 20, 2026</text>
+      <text x="610" y="160" text-anchor="middle" font-size="10.5" fill="#3a3a3a">Action plan due</text>
+      <text x="610" y="174" text-anchor="middle" font-size="9.5" fill="#8a8a8a">appeal window open</text>
+      <!-- context band -->
+      <rect x="60" y="210" width="620" height="64" rx="4" fill="#f8f4ee" stroke="#e0d8d0"/>
+      <text x="80" y="232" font-size="10" font-weight="700" fill="#9a8a7a">WHY THE TIMING MATTERS</text>
+      <text x="80" y="250" font-size="11" fill="#3a3a3a">Chinese platforms rerouted volume to Europe as US tariff and de minimis changes squeezed the American channel.</text>
+      <text x="80" y="266" font-size="11" fill="#3a3a3a">Brussels has now attached a nine-figure price to non-compliance in the replacement market.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="ann-card ann-red">
+      <div class="ann-label">Risk</div>
+      The structural read: a recurring compliance-cost layer lands on the international commerce segment whose European growth was the offset story for US tariff pressure — and DSA enforcement has not once reversed direction. <div class="annotation-card-zh">罚款<span class="annotation-card-en">fákuǎn · fine</span></div>
+    </div>
+    <div class="ann-card ann-amber">
+      <div class="ann-label">Watch</div>
+      An appeal (likely, and appeals have trimmed EU penalties before), the pace of the Temu decision as the nearest PDD catalyst, and whether product-safety enforcement folds into the €150 de minimis abolition already in train. <div class="annotation-card-zh">跨境电商<span class="annotation-card-en">kuàjìng diànshāng · cross-border e-commerce</span></div>
+    </div>
+    <div class="ann-card ann-green">
+      <div class="ann-label">Signal</div>
+      The direct hit is absorbable — a low single-digit share of Alibaba's annual net income — and a costed precedent at least converts open-ended regulatory risk into a number the market can model. <div class="annotation-card-zh">假货<span class="annotation-card-en">jiǎhuò · counterfeit goods</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">China Brief Issue #63 · July 21, 2026 · Not investment advice · Data sourced from public reporting</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
