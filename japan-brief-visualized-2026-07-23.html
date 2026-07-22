@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #53 · July 23, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .header { background:#1a1a2e; padding:28px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:8px; font-size:12px; color:#8a9bb5; }
+  .tabs { display:flex; flex-wrap:wrap; gap:0; background:#23233f; padding:0 32px; }
+  .tab { padding:13px 20px; font-size:12px; font-weight:600; color:#8a9bb5; cursor:pointer; border-bottom:3px solid transparent; letter-spacing:0.3px; }
+  .tab:hover { color:#d4d8f0; }
+  .tab.active { color:#fff; border-bottom-color:#818cf8; background:#2a2a4e; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .panel-sub { font-size:12px; color:#7a6a5a; margin-bottom:22px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#fff; border:1px solid #e4e2ee; border-radius:6px; padding:16px 18px; }
+  .signal-num { font-size:24px; font-weight:700; color:#3730a3; line-height:1.2; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; }
+  .chart-card { background:#fff; border:1px solid #e4e2ee; border-radius:6px; padding:22px; margin-bottom:26px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; border:1px solid #e4e2ee; border-top:3px solid #ccc; }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#16a34a; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a8a9a; margin-bottom:6px; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-text { font-size:12px; color:#4a4a5a; line-height:1.55; }
+  .footer { padding:20px 32px 30px; text-align:center; font-size:11px; color:#8a8a9a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} .tabs{padding:0 12px;} .tab{padding:11px 12px;} .viz-panel{padding:20px 16px;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+  <div class="header-title">Issue #53 — Data Companion</div>
+  <div class="header-meta">Thursday, July 23, 2026 · Three stories, three charts</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">Sakana Fugu-Cyber</div>
+  <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">Disco Record Quarter</div>
+  <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">Yen Past 163</div>
+</div>
+
+<!-- PANEL 1: SAKANA -->
+<div class="viz-panel active" id="viz-1">
+  <div class="panel-title">The credibility gap: claimed vs. independently observed</div>
+  <div class="panel-sub">Sakana AI Fugu-Cyber launch · July 21, 2026 · methodology not disclosed</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">86.9%</div><div class="signal-label">Sakana's claimed CyberGym score — above GPT-5.5-Cyber and Mythos-Preview if it holds</div></div>
+    <div class="signal"><div class="signal-num">~20%</div><div class="signal-label">what CyberGym's own creators found for top model combinations at ICLR 2026</div></div>
+    <div class="signal"><div class="signal-num">72.1%</div><div class="signal-label">claimed CTI-REALM score for threat-intelligence tasks — also unverified</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">CyberGym: vendor claim vs. independent baseline</div>
+    <svg viewBox="0 0 800 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- axis -->
+      <line x1="230" y1="20" x2="230" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <line x1="230" y1="255" x2="770" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <!-- gridlines at 25/50/75/100% of 520px width -->
+      <line x1="360" y1="20" x2="360" y2="255" stroke="#f0eef8" stroke-width="1"/>
+      <line x1="490" y1="20" x2="490" y2="255" stroke="#f0eef8" stroke-width="1"/>
+      <line x1="620" y1="20" x2="620" y2="255" stroke="#f0eef8" stroke-width="1"/>
+      <line x1="750" y1="20" x2="750" y2="255" stroke="#f0eef8" stroke-width="1"/>
+      <text x="360" y="272" text-anchor="middle" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">25%</text>
+      <text x="490" y="272" text-anchor="middle" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">50%</text>
+      <text x="620" y="272" text-anchor="middle" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">75%</text>
+      <text x="750" y="272" text-anchor="middle" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">100%</text>
+
+      <!-- Bar 1: Sakana claim CyberGym 86.9% => 0.869*520 = 452 -->
+      <text x="222" y="60" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">Fugu-Cyber (claimed)</text>
+      <rect x="231" y="44" width="452" height="24" fill="#3730a3" rx="2"/>
+      <text x="690" y="61" font-size="12" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">86.9%</text>
+
+      <!-- Bar 2: CTI-REALM claim 72.1% => 375 -->
+      <text x="222" y="125" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">CTI-REALM (claimed)</text>
+      <rect x="231" y="109" width="375" height="24" fill="#818cf8" rx="2"/>
+      <text x="613" y="126" font-size="12" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">72.1%</text>
+
+      <!-- Bar 3: independent baseline ~20% => 104 -->
+      <text x="222" y="190" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">CyberGym top combos,</text>
+      <text x="222" y="204" text-anchor="end" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">independent (ICLR 2026)</text>
+      <rect x="231" y="178" width="104" height="24" fill="#b8b6c8" rx="2"/>
+      <text x="342" y="195" font-size="12" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">~20%</text>
+
+      <!-- gap annotation -->
+      <line x1="335" y1="190" x2="683" y2="56" stroke="#dc2626" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="510" y="160" font-size="11" font-weight="600" fill="#dc2626" font-family="Inter,sans-serif">~67-point unexplained gap</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">検証<span class="annotation-card-en">kenshō · verification</span></div>
+      <div class="annotation-card-text">No methodology disclosed. Until an independent party reproduces 86.9% on CyberGym, the score is a marketing number, not a capability datum.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">開示<span class="annotation-card-en">kaiji · disclosure</span></div>
+      <div class="annotation-card-text">Access is application-gated with usage-based pricing. The tell will be named enterprise customers — conversion, not benchmarks.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Signal</div>
+      <div class="annotation-card-zh">脆弱性<span class="annotation-card-en">zeijakusei · vulnerability</span></div>
+      <div class="annotation-card-text">Second Japanese AI-security claim in a week (after SoftBank's PaaS, #52). Tokyo now fields both ends of the stack: deployment capacity and model capability.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: DISCO -->
+<div class="viz-panel" id="viz-2">
+  <div class="panel-title">Plan vs. delivered: a record April–June quarter</div>
+  <div class="panel-sub">Disco (TSE: 6146) Q1 FY2026 results · July 23, 2026 · Nikkei / company disclosure</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">¥116.5bn</div><div class="signal-label">record quarterly shipment value (出荷額), ~+25% YoY, above internal plan</div></div>
+    <div class="signal"><div class="signal-num">+40%</div><div class="signal-label">reported operating-profit growth YoY to ¥45bn+, vs. April guidance of ¥42bn (+22%)</div></div>
+    <div class="signal"><div class="signal-num">+3%</div><div class="signal-label">July 22 share move to ¥66,840 — after fading the July 21 upside preview</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">April guidance vs. delivered (Apr–Jun, ¥bn)</div>
+    <svg viewBox="0 0 800 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- axis -->
+      <line x1="180" y1="20" x2="180" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <line x1="180" y1="255" x2="770" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <!-- scale: 4.4 px per ¥bn (sales ~110 => 484) -->
+
+      <!-- Sales -->
+      <text x="172" y="52" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">Sales — plan</text>
+      <rect x="181" y="38" width="467" height="20" fill="#c7cbea" rx="2"/>
+      <text x="654" y="53" font-size="11" fill="#4a4a5a" font-family="Inter,sans-serif">¥106.1</text>
+      <text x="172" y="80" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">Sales — delivered</text>
+      <rect x="181" y="66" width="484" height="20" fill="#3730a3" rx="2"/>
+      <text x="671" y="81" font-size="11" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">~¥110+</text>
+
+      <!-- OP -->
+      <text x="172" y="132" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">Op. profit — plan</text>
+      <rect x="181" y="118" width="185" height="20" fill="#c7cbea" rx="2"/>
+      <text x="372" y="133" font-size="11" fill="#4a4a5a" font-family="Inter,sans-serif">¥42.0</text>
+      <text x="172" y="160" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">Op. profit — delivered</text>
+      <rect x="181" y="146" width="198" height="20" fill="#3730a3" rx="2"/>
+      <text x="385" y="161" font-size="11" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">~¥45+ (+40% YoY)</text>
+
+      <!-- Shipments -->
+      <text x="172" y="212" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">Shipments — prior yr</text>
+      <rect x="181" y="198" width="409" height="20" fill="#c7cbea" rx="2"/>
+      <text x="596" y="213" font-size="11" fill="#4a4a5a" font-family="Inter,sans-serif">~¥93 (Apr–Jun 2025)</text>
+      <text x="172" y="240" text-anchor="end" font-size="12" fill="#4a4a5a" font-family="Inter,sans-serif">Shipments — delivered</text>
+      <rect x="181" y="226" width="513" height="20" fill="#be185d" rx="2"/>
+      <text x="700" y="241" font-size="11" font-weight="700" fill="#1a1a2e" font-family="Inter,sans-serif">¥116.5 ★record</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Signal</div>
+      <div class="annotation-card-zh">過去最高益<span class="annotation-card-en">kako saikō eki · record profit</span></div>
+      <div class="annotation-card-text">Record Apr–Jun on every line, driven by AI back-end demand — wafer thinning and grinding for HBM stacking is Disco's structural hook.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">出荷額<span class="annotation-card-en">shukkagaku · shipment value</span></div>
+      <div class="annotation-card-text">Disco guides quarterly. The Jul–Sep shipment forecast — not the June quarter — is the real event, and the cleanest test of the AI-capex-pause scare.</div>
+    </div>
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">消耗品<span class="annotation-card-en">shōmōhin · consumables</span></div>
+      <div class="annotation-card-text">A beat was already the base case (the stock fell on the July 21 preview). Soft consumables mix or a cautious guide would validate the July correction's bears.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: YEN -->
+<div class="viz-panel" id="viz-3">
+  <div class="panel-title">163 and the policy mix: intervention vs. arithmetic</div>
+  <div class="panel-sub">USDJPY past 163 on July 22, 2026 — weakest since 1986 · Reuters / CNBC</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">163+</div><div class="signal-label">USDJPY on July 22 — a fresh 40-year low, despite record spring intervention</div></div>
+    <div class="signal"><div class="signal-num">1.00%</div><div class="signal-label">BOJ policy rate (highest since 1995) — still deeply negative in real terms</div></div>
+    <div class="signal"><div class="signal-num">2.75%</div><div class="signal-label">10-year JGB yield, July 22 — fiscal expansion meeting policy normalization</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The road to 163 — events, not forecasts (USDJPY, 2026)</div>
+    <svg viewBox="0 0 800 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- y axis: 155 (y=240) to 165 (y=40): 20px per yen -->
+      <line x1="70" y1="30" x2="70" y2="250" stroke="#d4d2e0" stroke-width="1"/>
+      <line x1="70" y1="250" x2="770" y2="250" stroke="#d4d2e0" stroke-width="1"/>
+      <text x="62" y="244" text-anchor="end" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">155</text>
+      <line x1="70" y1="140" x2="770" y2="140" stroke="#f0eef8" stroke-width="1"/>
+      <text x="62" y="144" text-anchor="end" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">160</text>
+      <line x1="70" y1="40" x2="770" y2="40" stroke="#f0eef8" stroke-width="1"/>
+      <text x="62" y="44" text-anchor="end" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">165</text>
+
+      <!-- path: Apr ~158 (x=140,y=180) -> May intervention ~160 (x=260,y=140) -> Jun 16 hike (x=420,y=150) -> Jun 30 162.4 (x=540,y=92) -> Jul 22 163+ (x=680,y=76) -->
+      <polyline points="140,180 260,140 340,152 420,150 540,92 680,76" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+      <circle cx="140" cy="180" r="4" fill="#3730a3"/>
+      <circle cx="260" cy="140" r="4" fill="#dc2626"/>
+      <circle cx="420" cy="150" r="4" fill="#16a34a"/>
+      <circle cx="540" cy="92" r="4" fill="#3730a3"/>
+      <circle cx="680" cy="76" r="5" fill="#dc2626"/>
+
+      <text x="140" y="205" text-anchor="middle" font-size="10" fill="#4a4a5a" font-family="Inter,sans-serif">April</text>
+      <text x="140" y="218" text-anchor="middle" font-size="10" fill="#8a8a9a" font-family="Inter,sans-serif">yen nears 160</text>
+      <text x="260" y="120" text-anchor="middle" font-size="10" font-weight="600" fill="#dc2626" font-family="Inter,sans-serif">Apr–May: record</text>
+      <text x="260" y="132" text-anchor="middle" font-size="10" font-weight="600" fill="#dc2626" font-family="Inter,sans-serif">intervention ~160</text>
+      <text x="420" y="178" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a" font-family="Inter,sans-serif">Jun 16: BOJ</text>
+      <text x="420" y="190" text-anchor="middle" font-size="10" font-weight="600" fill="#16a34a" font-family="Inter,sans-serif">hikes to 1.0%</text>
+      <text x="540" y="72" text-anchor="middle" font-size="10" fill="#4a4a5a" font-family="Inter,sans-serif">Jun 30: 162.4</text>
+      <text x="680" y="56" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626" font-family="Inter,sans-serif">Jul 22: past 163</text>
+      <!-- MPM marker -->
+      <line x1="750" y1="40" x2="750" y2="250" stroke="#d97706" stroke-width="1" stroke-dasharray="4,3"/>
+      <text x="750" y="30" text-anchor="middle" font-size="10" font-weight="600" fill="#d97706" font-family="Inter,sans-serif">Jul 30–31 MPM</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">為替介入<span class="annotation-card-en">kawase kainyū · FX intervention</span></div>
+      <div class="annotation-card-text">Record spring intervention bought time, not direction. MOF would be defending a level its own government's fiscal stance works against.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">金融政策決定会合<span class="annotation-card-en">kin'yū seisaku kettei kaigō · BOJ MPM</span></div>
+      <div class="annotation-card-text">July 30–31 with a new Outlook Report: a hike toward 1.25%, or a hawkish hold with October signaling. Neither is fully priced.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Signal</div>
+      <div class="annotation-card-zh">円安<span class="annotation-card-en">en'yasu · weak yen</span></div>
+      <div class="annotation-card-text">The exporter tailwind still works mechanically — but at a 40-year low, yen weakness increasingly reads as fiscal-credibility stress, and the equity correlation frays.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Japan Brief Issue #53 · July 23, 2026 · Not investment advice</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
