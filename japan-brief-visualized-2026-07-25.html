@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #55 · July 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .header { background:#1a1a2e; padding:28px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:8px; font-size:12px; color:#8a9bb5; }
+  .tabs { display:flex; flex-wrap:wrap; gap:0; background:#23233f; padding:0 32px; }
+  .tab { padding:13px 20px; font-size:12px; font-weight:600; color:#8a9bb5; cursor:pointer; border-bottom:3px solid transparent; letter-spacing:0.3px; }
+  .tab:hover { color:#d4d8f0; }
+  .tab.active { color:#fff; border-bottom-color:#818cf8; background:#2a2a4e; }
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+  .panel-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .panel-sub { font-size:12px; color:#7a6a5a; margin-bottom:22px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#fff; border:1px solid #e4e2ee; border-radius:6px; padding:16px 18px; }
+  .signal-num { font-size:24px; font-weight:700; color:#3730a3; line-height:1.2; }
+  .signal-label { font-size:11px; color:#6a6a7a; margin-top:4px; }
+  .chart-card { background:#fff; border:1px solid #e4e2ee; border-radius:6px; padding:22px; margin-bottom:26px; }
+  .chart-title { font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border-radius:6px; padding:14px 16px; border:1px solid #e4e2ee; border-top:3px solid #ccc; }
+  .annotation-card.red { border-top-color:#dc2626; }
+  .annotation-card.amber { border-top-color:#d97706; }
+  .annotation-card.green { border-top-color:#16a34a; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a8a9a; margin-bottom:6px; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-text { font-size:12px; color:#4a4a5a; line-height:1.55; }
+  .footer { padding:20px 32px 30px; text-align:center; font-size:11px; color:#8a8a9a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} .tabs{padding:0 12px;} .tab{padding:11px 12px;} .viz-panel{padding:20px 16px;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+  <div class="header-title">Issue #55 — Data Companion</div>
+  <div class="header-meta">Saturday, July 25, 2026 · Three stories, three charts</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">SoftBank AI Unwind</div>
+  <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">Equipment Earnings Week</div>
+  <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">Core-Core Turns Up</div>
+</div>
+
+<!-- PANEL 1: SOFTBANK / CAPEX -->
+<div class="viz-panel active" id="viz-1">
+  <div class="panel-title">Punished for spending: the capex that triggered the sell-off</div>
+  <div class="panel-sub">Alphabet 2026 capex guidance revision · SoftBank Group −11.46% in Tokyo · July 24, 2026</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">−11.5%</div><div class="signal-label">SoftBank Group (9984) to ¥5,278 on July 24 — led the Nikkei lower</div></div>
+    <div class="signal"><div class="signal-num">+101%</div><div class="signal-label">Alphabet Q2 capex growth YoY, to $44.9bn — the number that spooked the tape</div></div>
+    <div class="signal"><div class="signal-num">$205bn</div><div class="signal-label">Alphabet's raised 2026 capex ceiling, up from $190bn prior guidance</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Alphabet 2026 capex guidance: prior vs. raised</div>
+    <svg viewBox="0 0 800 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- y axis: $0 at y=255, scale $250bn over 235px => $1bn = 0.94px -->
+      <line x1="90" y1="20" x2="90" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <line x1="90" y1="255" x2="760" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <g font-family="Inter,sans-serif">
+        <text x="80" y="259" text-anchor="end" font-size="10" fill="#8a8a9a">$0</text>
+        <line x1="90" y1="161" x2="760" y2="161" stroke="#f0eef8"/><text x="80" y="165" text-anchor="end" font-size="10" fill="#8a8a9a">$100bn</text>
+        <line x1="90" y1="67" x2="760" y2="67" stroke="#f0eef8"/><text x="80" y="71" text-anchor="end" font-size="10" fill="#8a8a9a">$200bn</text>
+
+        <!-- prior range 180-190: draw bar to midpoint 185 => h=174, y=81 -->
+        <rect x="170" y="81" width="120" height="174" fill="#b8b6c8" rx="2"/>
+        <text x="230" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">$180–190bn</text>
+        <text x="230" y="272" text-anchor="middle" font-size="11" fill="#6a6a7a">Prior guidance</text>
+
+        <!-- raised range 195-205: midpoint 200 => h=188, y=67 -->
+        <rect x="360" y="67" width="120" height="188" fill="#3730a3" rx="2"/>
+        <text x="420" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">$195–205bn</text>
+        <text x="420" y="272" text-anchor="middle" font-size="11" fill="#6a6a7a">Raised guidance</text>
+
+        <!-- Q2 actual capex 44.9bn => h=42, y=213 -->
+        <rect x="550" y="213" width="120" height="42" fill="#dc2626" rx="2" opacity="0.85"/>
+        <text x="610" y="204" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">$44.9bn</text>
+        <text x="610" y="272" text-anchor="middle" font-size="11" fill="#6a6a7a">Q2 alone (+101% YoY)</text>
+
+        <text x="500" y="35" text-anchor="middle" font-size="11" font-weight="600" fill="#d97706">Beat on earnings — sold on the spending</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">相関<span class="annotation-card-en">sōkan · correlation</span></div>
+      <div class="annotation-card-text">SoftBank Group now trades on US hyperscaler capex sentiment, not domestic fundamentals — a Nikkei heavyweight leveraged to decisions made in Mountain View.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">設備投資<span class="annotation-card-en">setsubi tōshi · capex</span></div>
+      <div class="annotation-card-text">The same acceleration is bullish and bearish: more spend means more demand for Japan's chips and equipment, yet the market is punishing the spenders.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Signal</div>
+      <div class="annotation-card-zh">持ち株会社<span class="annotation-card-en">mochikabu-gaisha · holding company</span></div>
+      <div class="annotation-card-text">The dip is a buy only if AI-infrastructure demand can absorb $200bn-a-year capex runs without a payback air-pocket — real, but unverified.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 2: EQUIPMENT EARNINGS -->
+<div class="viz-panel" id="viz-2">
+  <div class="panel-title">The correction meets the numbers: five days of equipment prints</div>
+  <div class="panel-sub">July 24 sector moves · earnings gauntlet week of July 28, 2026</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">−12%</div><div class="signal-label">Disco (6146) on July 24 — two sessions after a record April–June quarter</div></div>
+    <div class="signal"><div class="signal-num">−7%+</div><div class="signal-label">Nikkei's July drawdown — now in correction territory (調整局面)</div></div>
+    <div class="signal"><div class="signal-num">~1/5</div><div class="signal-label">semiconductor complex share of the Nikkei — earnings are an index event</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">The whipsaw and the week ahead</div>
+    <svg viewBox="0 0 800 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <g font-family="Inter,sans-serif">
+        <!-- timeline -->
+        <line x1="60" y1="150" x2="760" y2="150" stroke="#b8b6c8" stroke-width="1.5"/>
+
+        <!-- Jul 23: Disco record quarter -->
+        <circle cx="130" cy="150" r="7" fill="#16a34a"/>
+        <line x1="130" y1="143" x2="130" y2="95" stroke="#d4d2e0"/>
+        <text x="130" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#16a34a">Disco record Q</text>
+        <text x="130" y="185" text-anchor="middle" font-size="10" fill="#6a6a7a">Jul 23</text>
+
+        <!-- Jul 24: rout, Disco -12 -->
+        <circle cx="270" cy="150" r="8" fill="#dc2626"/>
+        <line x1="270" y1="158" x2="270" y2="205" stroke="#d4d2e0"/>
+        <text x="270" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="#dc2626">AI rout · Disco −12%</text>
+        <text x="270" y="185" text-anchor="middle" font-size="10" fill="#6a6a7a">Jul 24</text>
+
+        <!-- week of Jul 28: earnings -->
+        <circle cx="470" cy="150" r="7" fill="#3730a3"/>
+        <line x1="470" y1="143" x2="470" y2="95" stroke="#d4d2e0"/>
+        <text x="470" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">SCREEN · Advantest · TEL</text>
+        <text x="470" y="72" text-anchor="middle" font-size="10" fill="#6a6a7a">earnings — order books in focus</text>
+        <text x="470" y="185" text-anchor="middle" font-size="10" fill="#6a6a7a">week of Jul 28</text>
+
+        <!-- Jul 30-31: BOJ -->
+        <circle cx="660" cy="150" r="7" fill="#818cf8"/>
+        <line x1="660" y1="158" x2="660" y2="205" stroke="#d4d2e0"/>
+        <text x="660" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">BOJ MPM</text>
+        <text x="660" y="185" text-anchor="middle" font-size="10" fill="#6a6a7a">Jul 30–31</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">受注<span class="annotation-card-en">juchū · orders / bookings</span></div>
+      <div class="annotation-card-text">Soft guidance or a weak book-to-bill from even one bellwether validates the capex-pause fear now radiating out of the US.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">決算<span class="annotation-card-en">kessan · earnings</span></div>
+      <div class="annotation-card-text">Guidance beats the June-quarter print: the reversal was about multiples, not misses. A record quarter that can't hold a bid says the market is repricing the growth rate.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Signal</div>
+      <div class="annotation-card-zh">半導体製造装置<span class="annotation-card-en">handōtai seizō sōchi · chip equipment</span></div>
+      <div class="annotation-card-text">Firm order books would let fundamentals push back on a sentiment-driven correction — the picks-and-shovels read on real AI demand.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PANEL 3: CPI -->
+<div class="viz-panel" id="viz-3">
+  <div class="panel-title">Underlying inflation inches up as the tape falls</div>
+  <div class="panel-sub">June nationwide CPI released July 24 · core-core's first pickup in three months</div>
+
+  <div class="signals">
+    <div class="signal"><div class="signal-num">1.7%</div><div class="signal-label">June core-core CPI (ex-food & energy) — first acceleration in three months</div></div>
+    <div class="signal"><div class="signal-num">1.6%</div><div class="signal-label">June core CPI (ex-fresh food) — in line with consensus</div></div>
+    <div class="signal"><div class="signal-num">1.0%</div><div class="signal-label">BOJ policy rate into the July 30–31 meeting; still below the 2% target</div></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Japan CPI measures vs. the 2% target</div>
+    <svg viewBox="0 0 800 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <!-- y: 0 at 255, 2% at y=75 => 1% = 90px -->
+      <line x1="90" y1="20" x2="90" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <line x1="90" y1="255" x2="760" y2="255" stroke="#d4d2e0" stroke-width="1"/>
+      <g font-family="Inter,sans-serif">
+        <text x="80" y="259" text-anchor="end" font-size="10" fill="#8a8a9a">0%</text>
+        <line x1="90" y1="165" x2="760" y2="165" stroke="#f0eef8"/><text x="80" y="169" text-anchor="end" font-size="10" fill="#8a8a9a">1%</text>
+        <line x1="90" y1="75" x2="760" y2="75" stroke="#f0eef8"/><text x="80" y="79" text-anchor="end" font-size="10" fill="#8a8a9a">2%</text>
+
+        <line x1="90" y1="75" x2="760" y2="75" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6,4"/>
+        <text x="755" y="66" text-anchor="end" font-size="11" font-weight="600" fill="#dc2626">BOJ 2% target</text>
+
+        <line x1="90" y1="165" x2="760" y2="165" stroke="#8a8a9a" stroke-width="1" stroke-dasharray="2,3"/>
+        <text x="755" y="180" text-anchor="end" font-size="10" fill="#8a8a9a">policy rate 1.0%</text>
+
+        <!-- May core-core 1.6 (context) => h=144 y=111 -->
+        <rect x="150" y="111" width="90" height="144" fill="#b8b6c8" rx="2"/>
+        <text x="195" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">1.6%</text>
+        <text x="195" y="272" text-anchor="middle" font-size="10" fill="#6a6a7a">May core-core</text>
+
+        <!-- Jun core-core 1.7 => h=153 y=102 -->
+        <rect x="300" y="102" width="90" height="153" fill="#3730a3" rx="2"/>
+        <text x="345" y="93" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">1.7%</text>
+        <text x="345" y="272" text-anchor="middle" font-size="10" fill="#6a6a7a">Jun core-core</text>
+
+        <!-- Jun core 1.6 => h=144 y=111 -->
+        <rect x="450" y="111" width="90" height="144" fill="#818cf8" rx="2"/>
+        <text x="495" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">1.6%</text>
+        <text x="495" y="272" text-anchor="middle" font-size="10" fill="#6a6a7a">Jun core</text>
+
+        <!-- Jun headline 1.7 => h=153 y=102 -->
+        <rect x="600" y="102" width="90" height="153" fill="#16a34a" rx="2" opacity="0.8"/>
+        <text x="645" y="93" text-anchor="middle" font-size="12" font-weight="700" fill="#16a34a">1.7%</text>
+        <text x="645" y="272" text-anchor="middle" font-size="10" fill="#6a6a7a">Jun headline</text>
+
+        <!-- up arrow annotation -->
+        <text x="345" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#3730a3">↑ first pickup in 3 months</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">原油<span class="annotation-card-en">gen'yu · crude oil</span></div>
+      <div class="annotation-card-text">Oil above $100 and a yen near 40-year lows re-load the imported-inflation channel that the energy-subsidy roll-off already exposed.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">補助金<span class="annotation-card-en">hojokin · subsidy</span></div>
+      <div class="annotation-card-text">The pickup was mechanical — scaled-back electricity/gas subsidies slowing energy's decline, not a broad demand surge. A second rising month is the real tell.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Signal</div>
+      <div class="annotation-card-zh">コアコア<span class="annotation-card-en">koakoa · core-core CPI</span></div>
+      <div class="annotation-card-text">The BOJ's preferred trend gauge turned up as equities fell — keeping July 30–31 live for a hawkish hold with autumn signaling.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">Japan Brief Issue #55 · July 25, 2026 · Not investment advice</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
