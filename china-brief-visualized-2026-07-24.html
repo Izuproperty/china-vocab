@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #66 · July 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:760px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); min-height:100vh; }
+  .header { background:#1a1a2e; padding:28px 40px 24px; border-bottom:4px solid #c0392b; }
+  .back-link { display:inline-block; font-size:10px; font-weight:700; letter-spacing:2px; color:#8a9bb5; text-decoration:none; margin-bottom:14px; }
+  .back-link:hover { color:#e8d5b0; }
+  .header-title { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#fff; }
+  .header-sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#14142a; border-bottom:1px solid #2a2a4e; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6a7a9a; cursor:pointer; border-bottom:3px solid transparent; transition:all .2s; }
+  .tab:hover { color:#e8d5b0; }
+  .tab.active { color:#e8d5b0; border-bottom-color:#c0392b; background:#1a1a2e; }
+  .viz-panel { display:none; padding:32px 40px 40px; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; line-height:1.35; color:#1a1a2e; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:22px; }
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:26px; }
+  .signal { background:#f8f4ee; border-radius:6px; padding:16px 14px; text-align:center; border-top:3px solid #c0392b; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal-label { font-size:10.5px; color:#7a6a5a; margin-top:6px; letter-spacing:.3px; }
+  .chart-block { background:#fbf9f5; border:1px solid #eee5d8; border-radius:8px; padding:20px 18px 12px; margin-bottom:26px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a7a6a; margin-bottom:12px; }
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { border-radius:6px; padding:14px; font-size:12px; line-height:1.55; }
+  .annotation-card.red { background:#fdf0ee; border-left:3px solid #c0392b; }
+  .annotation-card.amber { background:#fdf6e9; border-left:3px solid #d68910; }
+  .annotation-card.green { background:#eef7ef; border-left:3px solid #27794b; }
+  .annotation-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .red .annotation-card-tag { color:#c0392b; }
+  .amber .annotation-card-tag { color:#b9770e; }
+  .green .annotation-card-tag { color:#27794b; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:6px; }
+  .annotation-card-body { color:#3a3a3a; }
+  .footer { padding:20px 40px 30px; background:#1a1a2e; text-align:center; margin-top:8px; }
+  .footer-text { font-size:11px; color:#4a5a7a; line-height:1.6; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} .viz-panel{padding:24px 20px 32px;} .header{padding:24px 20px 20px;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="header">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <div class="header-title">China Brief · Visualized</div>
+    <div class="header-sub">Issue #66 · Friday, July 24, 2026 · Three stories in charts</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">Beijing Compute Push</div>
+    <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">Horizon Robotics H1</div>
+    <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">Politburo Watch</div>
+  </div>
+
+  <!-- ============ TAB 1: BEIJING COMPUTE ============ -->
+  <div class="viz-panel active" id="viz-1">
+    <div class="panel-headline">Fifty Thousand Petaflops in Six Months: Beijing's H2 Compute Target</div>
+    <div class="panel-source">Beijing Municipal Bureau of Economy and Information Technology briefing, July 21 · via SCMP, July 22, 2026</div>
+
+    <div class="signals">
+      <div class="signal"><div class="signal-num">+50,000</div><div class="signal-label">PFLOPS targeted for H2 2026 — more than double H1's pace</div></div>
+      <div class="signal"><div class="signal-num">130,000+</div><div class="signal-label">PFLOPS citywide by end-2026 (82,000 today)</div></div>
+      <div class="signal"><div class="signal-num">200,000</div><div class="signal-label">PFLOPS target by 2027 — the "AI highland" plan</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Beijing intelligent computing capacity · PFLOPS (announced trajectory)</div>
+      <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <line x1="60" y1="220" x2="650" y2="220" stroke="#d8cfc0" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="220" stroke="#d8cfc0" stroke-width="1"/>
+        <text x="30" y="225" font-size="10" fill="#9a8a7a">0</text>
+        <text x="18" y="130" font-size="10" fill="#9a8a7a">100k</text>
+        <text x="18" y="40" font-size="10" fill="#9a8a7a">200k</text>
+        <line x1="60" y1="125" x2="650" y2="125" stroke="#eee5d8" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="60" y1="30" x2="650" y2="30" stroke="#eee5d8" stroke-width="1" stroke-dasharray="3,3"/>
+        <!-- bars: end-2025 60k, mid-2026 82k, end-2026 130k target, 2027 200k target -->
+        <rect x="100" y="163" width="90" height="57" fill="#8a9bb5"/>
+        <text x="145" y="155" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">60,000</text>
+        <text x="145" y="238" font-size="10.5" fill="#7a6a5a" text-anchor="middle">Start 2026</text>
+        <rect x="240" y="142" width="90" height="78" fill="#1a1a2e"/>
+        <text x="285" y="134" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">82,000</text>
+        <text x="285" y="238" font-size="10.5" fill="#7a6a5a" text-anchor="middle">Mid-2026 (actual)</text>
+        <rect x="380" y="96" width="90" height="124" fill="#c0392b"/>
+        <text x="425" y="88" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">130,000+</text>
+        <text x="425" y="238" font-size="10.5" fill="#7a6a5a" text-anchor="middle">End-2026 target</text>
+        <rect x="520" y="30" width="90" height="190" fill="#e0b48a"/>
+        <text x="565" y="22" font-size="12" font-weight="700" fill="#b9770e" text-anchor="middle">200,000</text>
+        <text x="565" y="238" font-size="10.5" fill="#7a6a5a" text-anchor="middle">2027 target</text>
+      </svg>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="annotation-card-tag">Risk</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></div>
+        <div class="annotation-card-body">Petaflop targets are input metrics: they say nothing about precision counted, rental rates, or utilization. 40 Beijing data centers already face low-carbon retrofits and punitive power pricing — the grid constraint is real.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-tag">Watch</div>
+        <div class="annotation-card-zh">人工智能高地<span class="annotation-card-en">réngōng zhìnéng gāodì · AI highland</span></div>
+        <div class="annotation-card-body">The "token economy" policies are the tell: Beijing is publishing consumption-side measures because utilization, not capacity, is the open question. Watch token-consumption statistics and whether other cities copy the demand-side play.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-tag">Signal</div>
+        <div class="annotation-card-zh">智能算力<span class="annotation-card-en">zhìnéng suànlì · intelligent computing power</span></div>
+        <div class="annotation-card-body">With NVIDIA constrained on both sides, the marginal chip is domestic. Municipal compute targets function as demand guarantees for Ascend-class accelerators, server integrators and optical interconnect — revenue visibility private capex doesn't offer.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 2: HORIZON ROBOTICS ============ -->
+  <div class="viz-panel" id="viz-2">
+    <div class="panel-headline">A Profit Built on Paper: Horizon Robotics' H1 2026 Guidance, Decomposed</div>
+    <div class="panel-source">HKEX profit alert, July 21, 2026 · via The Standard / Yicai</div>
+
+    <div class="signals">
+      <div class="signal"><div class="signal-num">+25–35%</div><div class="signal-label">H1 revenue growth guided: ¥1.93–2.08B on HSD mass production</div></div>
+      <div class="signal"><div class="signal-num">¥3.5–4B</div><div class="signal-label">Headline net profit — mostly non-cash CARIAD convertible gains</div></div>
+      <div class="signal"><div class="signal-num">–¥1.7B</div><div class="signal-label">Adjusted core net loss — still widening</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Headline profit vs core business · H1 2026 guidance, ¥ billions</div>
+      <svg viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <!-- zero line -->
+        <line x1="60" y1="150" x2="650" y2="150" stroke="#8a7a6a" stroke-width="1.5"/>
+        <text x="36" y="154" font-size="10" fill="#9a8a7a">¥0</text>
+        <line x1="60" y1="60" x2="650" y2="60" stroke="#eee5d8" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="30" y="64" font-size="10" fill="#9a8a7a">+4B</text>
+        <line x1="60" y1="195" x2="650" y2="195" stroke="#eee5d8" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="30" y="199" font-size="10" fill="#9a8a7a">–2B</text>
+        <!-- Revenue bar (positive ~2.0) -->
+        <rect x="105" y="105" width="100" height="45" fill="#1a1a2e"/>
+        <text x="155" y="97" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥1.93–2.08B</text>
+        <text x="155" y="215" font-size="10.5" fill="#7a6a5a" text-anchor="middle">Revenue</text>
+        <text x="155" y="228" font-size="9.5" fill="#9a8a7a" text-anchor="middle">+24.8–34.5% y/y</text>
+        <!-- Gross profit -->
+        <rect x="250" y="122" width="100" height="28" fill="#27794b"/>
+        <text x="300" y="114" font-size="12" font-weight="700" fill="#27794b" text-anchor="middle">¥1.16–1.37B</text>
+        <text x="300" y="215" font-size="10.5" fill="#7a6a5a" text-anchor="middle">Gross profit</text>
+        <!-- Headline net profit -->
+        <rect x="395" y="66" width="100" height="84" fill="#e0b48a"/>
+        <text x="445" y="58" font-size="12" font-weight="700" fill="#b9770e" text-anchor="middle">¥3.5–4.0B</text>
+        <text x="445" y="215" font-size="10.5" fill="#7a6a5a" text-anchor="middle">Headline net profit</text>
+        <text x="445" y="228" font-size="9.5" fill="#9a8a7a" text-anchor="middle">non-cash fair-value gains</text>
+        <!-- Adjusted net loss (negative) -->
+        <rect x="540" y="150" width="100" height="38" fill="#c0392b"/>
+        <text x="590" y="203" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">–¥1.7B</text>
+        <text x="590" y="220" font-size="10.5" fill="#7a6a5a" text-anchor="middle">Adjusted core loss</text>
+        <text x="590" y="233" font-size="9.5" fill="#9a8a7a" text-anchor="middle">widening y/y</text>
+      </svg>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="annotation-card-tag">Risk</div>
+        <div class="annotation-card-zh">价格战<span class="annotation-card-en">jiàgézhàn · price war</span></div>
+        <div class="annotation-card-body">High-level ADAS is becoming standard equipment on ¥150,000 cars. OEMs squeezed by discounting squeeze suppliers in turn — capping what anyone in the chain can charge and keeping the core business loss-making despite volume.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-tag">Watch</div>
+        <div class="annotation-card-zh">盈利预告<span class="annotation-card-en">yínglì yùgào · profit alert</span></div>
+        <div class="annotation-card-body">The August interim report is the real test: HSD unit economics, new OEM design wins, and whether the CARIAD tie-up converts into Volkswagen-platform volume outside China — the first genuine export of the stack.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-tag">Signal</div>
+        <div class="annotation-card-zh">高阶智驾<span class="annotation-card-en">gāojiē zhìjià · high-level smart driving</span></div>
+        <div class="annotation-card-body">HSD mass production is the volume proof for the "domestic NVIDIA alternative" thesis in autos — Chinese AI silicon shipping at scale in a global-quality end market, with revenue up a third year on year.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 3: POLITBURO WATCH ============ -->
+  <div class="viz-panel" id="viz-3">
+    <div class="panel-headline">After the Rescue, the Readout: The Setup Into Next Week's Politburo</div>
+    <div class="panel-source">SCMP / sell-side previews, July 22, 2026 · Look-ahead — meeting expected week of July 27</div>
+
+    <div class="signals">
+      <div class="signal"><div class="signal-num">4.3%</div><div class="signal-label">Q2 GDP — first sub-target quarter since Covid</div></div>
+      <div class="signal"><div class="signal-num">14 mo</div><div class="signal-label">LPR unchanged — the easing question handed to the Politburo</div></div>
+      <div class="signal"><div class="signal-num">$15T</div><div class="signal-label">Onshore market positioning around one readout</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">The July sequence the meeting inherits · event path to the readout</div>
+      <svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" width="100%">
+        <line x1="40" y1="125" x2="640" y2="125" stroke="#d8cfc0" stroke-width="2"/>
+        <!-- events -->
+        <circle cx="80" cy="125" r="7" fill="#c0392b"/>
+        <text x="80" y="100" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 15</text>
+        <text x="80" y="153" font-size="10" fill="#3a3a3a" text-anchor="middle">Q2 GDP 4.3%</text>
+        <text x="80" y="166" font-size="9" fill="#9a8a7a" text-anchor="middle">below target band</text>
+        <circle cx="200" cy="125" r="7" fill="#d68910"/>
+        <text x="200" y="100" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 20</text>
+        <text x="200" y="153" font-size="10" fill="#3a3a3a" text-anchor="middle">LPR hold #14</text>
+        <text x="200" y="166" font-size="9" fill="#9a8a7a" text-anchor="middle">easing deferred</text>
+        <circle cx="320" cy="125" r="7" fill="#27794b"/>
+        <text x="320" y="100" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 20–21</text>
+        <text x="320" y="153" font-size="10" fill="#3a3a3a" text-anchor="middle">Rescue wave 2</text>
+        <text x="320" y="166" font-size="9" fill="#9a8a7a" text-anchor="middle">insurers +¥10B; Star50 +11%</text>
+        <circle cx="440" cy="125" r="7" fill="#8a9bb5"/>
+        <text x="440" y="100" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 22</text>
+        <text x="440" y="153" font-size="10" fill="#3a3a3a" text-anchor="middle">Star50 –1%</text>
+        <text x="440" y="166" font-size="9" fill="#9a8a7a" text-anchor="middle">market waits</text>
+        <circle cx="580" cy="125" r="10" fill="#1a1a2e" stroke="#c0392b" stroke-width="3"/>
+        <text x="580" y="96" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Week of Jul 27</text>
+        <text x="580" y="153" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">Politburo meeting</text>
+        <text x="580" y="166" font-size="9" fill="#9a8a7a" text-anchor="middle">H2 policy tone set</text>
+        <!-- expectation box -->
+        <rect x="70" y="192" width="540" height="42" rx="5" fill="#f8f4ee" stroke="#eee5d8"/>
+        <text x="340" y="209" font-size="10.5" fill="#3a3a3a" text-anchor="middle">Consensus: firmer easing tone + faster execution of budgeted fiscal — tilted to AI / advanced manufacturing —</text>
+        <text x="340" y="224" font-size="10.5" fill="#3a3a3a" text-anchor="middle">not a new headline package. Key phrases: 逆周期调节 · 增量政策 · 止跌回稳</text>
+      </svg>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="annotation-card-tag">Risk</div>
+        <div class="annotation-card-zh">增量政策<span class="annotation-card-en">zēngliàng zhèngcè · incremental policies</span></div>
+        <div class="annotation-card-body">July Politburo meetings have a long record of disappointing big-bang-stimulus positioning. State capital is already deployed via the rescue, and the leadership frames 2026 weakness as transition cost — the base case is incremental.</div>
+      </div>
+      <div class="annotation-card amber">
+        <div class="annotation-card-tag">Watch</div>
+        <div class="annotation-card-zh">止跌回稳<span class="annotation-card-en">zhǐdiē huíwěn · halt declines, restore stability</span></div>
+        <div class="annotation-card-body">What would change the read: explicit consumption-side fiscal quota, property language stronger than the standard formula, or — the tail case — a central-government balance-sheet signal on debt.</div>
+      </div>
+      <div class="annotation-card green">
+        <div class="annotation-card-tag">Signal</div>
+        <div class="annotation-card-zh">逆周期调节<span class="annotation-card-en">nìzhōuqī tiáojié · countercyclical adjustment</span></div>
+        <div class="annotation-card-body">If the tech-over-consumption call is right, the readout is a relative-value event: it extends the policy floor under the AI/hardware complex the rescue already holds up — continuation of the K-shaped stance, not a pivot.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">China Brief Issue #66 · July 24, 2026 · Not investment advice · Data sourced from public reporting</div>
+  </div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
