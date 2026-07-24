@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #67 · July 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:840px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #c0392b; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2px; color:#8a9bb5; text-decoration:none; display:inline-block; margin-bottom:12px; }
+  .back-link:hover { color:#e8d5b0; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:26px; color:#fff; }
+  .header .sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#f0ede8; border-bottom:1px solid #e0d8d0; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a7a6a; cursor:pointer; border-bottom:3px solid transparent; transition:all .15s; }
+  .tab:hover { background:#e8e4dc; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+  .viz-panel { display:none; padding:32px 40px 40px; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; line-height:1.35; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:24px; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:28px; }
+  .signal { background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .signal .num { font-size:26px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal .lbl { font-size:11px; color:#7a6a5a; margin-top:6px; line-height:1.4; }
+  .chart-block { margin-bottom:28px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:12px; }
+  .chart-box { background:#fbf9f5; border:1px solid #eee6da; border-radius:8px; padding:18px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .annotation-card { border-radius:8px; padding:16px; font-size:12.5px; line-height:1.55; }
+  .annotation-card.red { background:#fdf0ee; border:1px solid #f2d5d0; }
+  .annotation-card.amber { background:#fdf7ea; border:1px solid #f0e2c0; }
+  .annotation-card.green { background:#eff7ef; border:1px solid #d2e6d2; }
+  .annotation-card .tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .annotation-card.red .tag { color:#c0392b; }
+  .annotation-card.amber .tag { color:#b45309; }
+  .annotation-card.green .tag { color:#2e7d32; }
+  .annotation-card-zh { font-size:16px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:6px; }
+  .annotation-card p { color:#3a3a3a; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} .viz-panel{padding:24px 20px;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <h1>China Brief Visualized · Issue #67</h1>
+    <div class="sub">Saturday, July 25, 2026 · Three stories in charts and signals</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">Humanoids at Work</div>
+    <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">Moonshot Accused</div>
+    <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">Fiscal Scorecard</div>
+  </div>
+
+  <!-- ══════════ TAB 1: HUMANOIDS ══════════ -->
+  <div class="viz-panel active" id="viz-1">
+    <div class="panel-headline">"Like Picking Up Tofu": Humanoids Clock In at the Garment Factory</div>
+    <div class="panel-source">Xinhua · July 24, 2026 · Aitu (Jack Technology) &amp; PIABOT Robotics</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">97%</div><div class="lbl">Fabric-separation success rate — single product &amp; fabric type (vendor-claimed)</div></div>
+      <div class="signal"><div class="num">~18 mo</div><div class="lbl">Claimed payback period for Aitu's garment-factory humanoid</div></div>
+      <div class="signal"><div class="num">2,283</div><div class="lbl">Tasks in 8 hours, zero errors — PIABOT G2 trial at electronics maker (claimed)</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Seat-Belt Component Tapping · Cycle Time (Seconds)</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="60" y1="170" x2="720" y2="170" stroke="#d8d0c4" stroke-width="1"/>
+          <!-- gridlines -->
+          <line x1="60" y1="40" x2="720" y2="40" stroke="#eee6da" stroke-width="1"/><text x="52" y="44" font-size="10" fill="#9a8a7a" text-anchor="end">20s</text>
+          <line x1="60" y1="105" x2="720" y2="105" stroke="#eee6da" stroke-width="1"/><text x="52" y="109" font-size="10" fill="#9a8a7a" text-anchor="end">10s</text>
+          <text x="52" y="174" font-size="10" fill="#9a8a7a" text-anchor="end">0s</text>
+          <!-- human bar: 18s → height = 18/20*130 = 117 -->
+          <rect x="170" y="53" width="150" height="117" fill="#8a9bb5" rx="3"/>
+          <text x="245" y="45" font-size="14" font-weight="700" fill="#1a1a2e" text-anchor="middle">18.0s</text>
+          <text x="245" y="192" font-size="11" fill="#5a5a5a" text-anchor="middle">Human worker</text>
+          <!-- robot bar: 12.9s → height = 12.9/20*130 = 84 -->
+          <rect x="440" y="86" width="150" height="84" fill="#c0392b" rx="3"/>
+          <text x="515" y="78" font-size="14" font-weight="700" fill="#c0392b" text-anchor="middle">12.9s</text>
+          <text x="515" y="192" font-size="11" fill="#5a5a5a" text-anchor="middle">PIABOT G2 (best cycle)</text>
+          <!-- delta -->
+          <text x="380" y="120" font-size="11" font-weight="600" fill="#2e7d32" text-anchor="middle">−28%</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">泛化<span class="annotation-card-en">fànhuà · generalization</span></div>
+        <p>All metrics are vendor-claimed and hold for one SKU. Robots can't run a full production flow, and skills don't yet transfer across unfamiliar fabrics — "like picking up tofu."</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">投资回收期<span class="annotation-card-en">tóuzī huíshōuqī · payback period</span></div>
+        <p>Aitu's own roadmap: single-process validation 2026–28, multi-station coordination 2028–30. The MIIT–SASAC 10,000-unit deployment push supplies demand assurance in the meantime.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied intelligence</span></div>
+        <p>Adoption is labor-supply-driven: garment workers leave faster than robots replace them. Near-term value sits in picks-and-shovels — training data, dexterous hands, force control.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 2: MOONSHOT ══════════ -->
+  <div class="viz-panel" id="viz-2">
+    <div class="panel-headline">Washington Names a Name: Moonshot Accused of Distilling Kimi K3</div>
+    <div class="panel-source">TechCrunch / Bloomberg / XenoSpectrum · July 22–24, 2026</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">~2.8T</div><div class="lbl">Parameters in Kimi K3, the open-weight model at the center of the allegation</div></div>
+      <div class="signal"><div class="num">$30B+</div><div class="lbl">Reported valuation talk for Moonshot's planned Hong Kong IPO — now under overhang</div></div>
+      <div class="signal"><div class="num">0</div><div class="lbl">Pieces of technical evidence published for the distillation claim as of July 24</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Seven Days From Model Launch to Sanctions Threat</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="60" y1="95" x2="700" y2="95" stroke="#d8d0c4" stroke-width="2"/>
+          <!-- Jul 17 -->
+          <circle cx="110" cy="95" r="7" fill="#8a9bb5"/>
+          <text x="110" y="70" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 17</text>
+          <text x="110" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Kimi K3 released</text>
+          <text x="110" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">(open weights)</text>
+          <!-- Jul 19 -->
+          <circle cx="270" cy="95" r="7" fill="#8a9bb5"/>
+          <text x="270" y="70" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 19</text>
+          <text x="270" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">HK IPO resolution</text>
+          <text x="270" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">$30B+ valuation talk</text>
+          <!-- Jul 22 -->
+          <circle cx="430" cy="95" r="8" fill="#c0392b"/>
+          <text x="430" y="70" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Jul 22</text>
+          <text x="430" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">OSTP names Moonshot;</text>
+          <text x="430" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">Treasury floats sanctions</text>
+          <!-- Jul 24 -->
+          <circle cx="610" cy="95" r="7" fill="#b45309"/>
+          <text x="610" y="70" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Jul 24</text>
+          <text x="610" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Beijing seeks clarity</text>
+          <text x="610" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">on AI talks scope</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">实体清单<span class="annotation-card-en">shítǐ qīngdān · Entity List</span></div>
+        <p>Sanctions or a designation — even unexecuted — complicates underwriting, index inclusion and cornerstone participation for the entire Chinese AI listing pipeline, not just Moonshot.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">蒸馏<span class="annotation-card-en">zhēngliú · distillation</span></div>
+        <p>No technical evidence published; independent researchers dispute the claim. Escalation = provenance evidence or actual designation. De-escalation = AI talks convene with distillation on the agenda.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">赴港上市<span class="annotation-card-en">fù Gǎng shàngshì · HK listing</span></div>
+        <p>Pressure now arrives from both directions: NDRC restricts US LP capital into Chinese AI labs while Washington threatens output-side enforcement. The HK route was partly built for this — that thesis gets its live test.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 3: FISCAL ══════════ -->
+  <div class="viz-panel" id="viz-3">
+    <div class="panel-headline">¥2.07 Trillion and Quietly Decentralizing: The MOF's H1 Bond Scorecard</div>
+    <div class="panel-source">Ministry of Finance briefing via China News Service / ECNS · July 22, 2026</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">47%</div><div class="lbl">Of the annual special-purpose bond quota issued in H1 (¥2.07T of ~¥4.4T)</div></div>
+      <div class="signal"><div class="num">77%</div><div class="lbl">Of national issuance came from "self-review, self-issuance" pilot provinces (¥1.6T)</div></div>
+      <div class="signal"><div class="num">−21.6%</div><div class="lbl">Y/y drop in H1 government-managed fund revenue — the land-sale drag persists</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">H1 2026 Special-Purpose Bond Issuance vs Quota (¥ Trillion)</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <!-- quota bar full width reference: 4.4T = 620px -->
+          <text x="70" y="52" font-size="11" fill="#5a5a5a" text-anchor="end">Annual quota</text>
+          <rect x="80" y="38" width="620" height="22" fill="#eee6da" rx="3"/>
+          <text x="706" y="53" font-size="11" font-weight="700" fill="#9a8a7a" text-anchor="end">~¥4.4T</text>
+          <!-- issued: 2.07/4.4 = 47% → 292px -->
+          <text x="70" y="97" font-size="11" fill="#5a5a5a" text-anchor="end">H1 issued</text>
+          <rect x="80" y="83" width="292" height="22" fill="#c0392b" rx="3"/>
+          <text x="380" y="98" font-size="11" font-weight="700" fill="#c0392b">¥2.07T · 47%</text>
+          <!-- pilot: 1.6/4.4 → 226px -->
+          <text x="70" y="142" font-size="11" fill="#5a5a5a" text-anchor="end">Pilot provinces</text>
+          <rect x="80" y="128" width="226" height="22" fill="#b45309" rx="3"/>
+          <text x="314" y="143" font-size="11" font-weight="700" fill="#b45309">¥1.6T · 77% of all issuance</text>
+          <text x="80" y="180" font-size="10" fill="#9a8a7a">Pilot = provinces approving their own project lists without NDRC/MOF sign-off (Hebei, Jiangxi, Hubei, Chongqing added 2026)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">政府性基金<span class="annotation-card-en">zhèngfǔxìng jījīn · government-managed funds</span></div>
+        <p>Land-sale-linked revenue fell 21.6% y/y to ¥1.52T. Fiscal capacity is increasingly consumed by balance-sheet repair — debt swaps and revenue substitution — rather than net new demand.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">增量政策<span class="annotation-card-en">zēngliàng zhèngcè · incremental policies</span></div>
+        <p>Politburo week: watch for issuance-acceleration language, broadening of the pilot toward national rollout, and July land-sale prints. 53% of the quota is still available for H2.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">自审自发<span class="annotation-card-en">zìshěn zìfā · self-review, self-issuance</span></div>
+        <p>The approval bottleneck — not quota size — throttled past stimulus rounds. With 77% of issuance now bypassing central sign-off, any H2 acceleration order transmits faster than in any prior cycle.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">China Brief Issue #67 · July 25, 2026 · Not investment advice · Data sourced from public reporting</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
