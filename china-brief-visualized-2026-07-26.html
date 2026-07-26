@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #68 · July 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:840px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #c0392b; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2px; color:#8a9bb5; text-decoration:none; display:inline-block; margin-bottom:12px; }
+  .back-link:hover { color:#e8d5b0; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:26px; color:#fff; }
+  .header .sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#f0ede8; border-bottom:1px solid #e0d8d0; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a7a6a; cursor:pointer; border-bottom:3px solid transparent; transition:all .15s; }
+  .tab:hover { background:#e8e4dc; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+  .viz-panel { display:none; padding:32px 40px 40px; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; line-height:1.35; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:24px; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:28px; }
+  .signal { background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .signal .num { font-size:26px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal .lbl { font-size:11px; color:#7a6a5a; margin-top:6px; line-height:1.4; }
+  .chart-block { margin-bottom:28px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:12px; }
+  .chart-box { background:#fbf9f5; border:1px solid #eee6da; border-radius:8px; padding:18px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .annotation-card { border-radius:8px; padding:16px; font-size:12.5px; line-height:1.55; }
+  .annotation-card.red { background:#fdf0ee; border:1px solid #f2d5d0; }
+  .annotation-card.amber { background:#fdf7ea; border:1px solid #f0e2c0; }
+  .annotation-card.green { background:#eff7ef; border:1px solid #d2e6d2; }
+  .annotation-card .tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .annotation-card.red .tag { color:#c0392b; }
+  .annotation-card.amber .tag { color:#b45309; }
+  .annotation-card.green .tag { color:#2e7d32; }
+  .annotation-card-zh { font-size:16px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:6px; }
+  .annotation-card p { color:#3a3a3a; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} .viz-panel{padding:24px 20px;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <h1>China Brief Visualized · Issue #68</h1>
+    <div class="sub">Sunday, July 26, 2026 · Three stories in charts and signals</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">Compute Rationing</div>
+    <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">A Gigawatt, No Nvidia</div>
+    <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">Credit Stalls</div>
+  </div>
+
+  <!-- ══════════ TAB 1: COMPUTE RATIONING ══════════ -->
+  <div class="viz-panel active" id="viz-1">
+    <div class="panel-headline">From Building It to Rationing It: Beijing Caps Small Data Centers</div>
+    <div class="panel-source">Trivium China / USCC China Bulletin · reported week of July 21, 2026 · NDRC / MIIT / National Data Bureau</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">&lt;30%</div><div class="lbl">Reported utilization at some AI compute centers built in the buildout frenzy</div></div>
+      <div class="signal"><div class="num">¥300M</div><div class="lbl">Investment ceiling defining a "small" data center now barred to local govts &amp; SOEs</div></div>
+      <div class="signal"><div class="num">3 yr</div><div class="lbl">New-project filing ban for developers who misreport a data center's size</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">The New Three-Tier Regime for Data-Center Builds</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <!-- Small tier -->
+          <rect x="60" y="30" width="200" height="150" fill="#fdf0ee" stroke="#f2d5d0" stroke-width="1.5" rx="6"/>
+          <text x="160" y="58" font-size="13" font-weight="700" fill="#c0392b" text-anchor="middle">SMALL</text>
+          <text x="160" y="82" font-size="10" fill="#5a5a5a" text-anchor="middle">&lt;¥300M · &lt;1,000 racks</text>
+          <text x="160" y="98" font-size="10" fill="#5a5a5a" text-anchor="middle">&lt;2,500 kW</text>
+          <text x="160" y="132" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">Barred</text>
+          <text x="160" y="150" font-size="10" fill="#5a5a5a" text-anchor="middle">for local govts / SOEs</text>
+          <!-- Medium tier -->
+          <rect x="280" y="30" width="200" height="150" fill="#fdf7ea" stroke="#f0e2c0" stroke-width="1.5" rx="6"/>
+          <text x="380" y="58" font-size="13" font-weight="700" fill="#b45309" text-anchor="middle">MEDIUM</text>
+          <text x="380" y="86" font-size="10" fill="#5a5a5a" text-anchor="middle">Above small thresholds</text>
+          <text x="380" y="132" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">Pre-approval</text>
+          <text x="380" y="150" font-size="10" fill="#5a5a5a" text-anchor="middle">required</text>
+          <!-- Large tier -->
+          <rect x="500" y="30" width="200" height="150" fill="#eff7ef" stroke="#d2e6d2" stroke-width="1.5" rx="6"/>
+          <text x="600" y="58" font-size="13" font-weight="700" fill="#2e7d32" text-anchor="middle">LARGE</text>
+          <text x="600" y="86" font-size="10" fill="#5a5a5a" text-anchor="middle">National-scale clusters</text>
+          <text x="600" y="132" font-size="12" font-weight="700" fill="#2e7d32" text-anchor="middle">National hubs only</text>
+          <text x="600" y="150" font-size="10" fill="#5a5a5a" text-anchor="middle">(8 designated hubs)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">东数西算<span class="annotation-card-en">dōng shù xī suàn · Eastern Data, Western Compute</span></div>
+        <p>The 2022 initiative encouraged provinces to compete on capacity — and they overbuilt. China has issued compute-discipline guidance before; interprovincial incentives have repeatedly outrun central intent.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></div>
+        <p>The rule bites only if enforcement is visible: a subsidy clawback, a grid-access denial, or a public project rejection. Until then it signals where capacity is meant to flow, not a completed reallocation.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">数据中心<span class="annotation-card-en">shùjù zhōngxīn · data center</span></div>
+        <p>If enforcement holds, demand tilts toward national-hub operators, state integrators and hub-designated domestic accelerator suppliers — away from the long tail of local vanity builds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 2: Z.AI GIGAWATT ══════════ -->
+  <div class="viz-panel" id="viz-2">
+    <div class="panel-headline">A Gigawatt With No Nvidia Inside: Z.AI's All-Domestic Training Cluster</div>
+    <div class="panel-source">Bloomberg / The Information / Tom's Hardware · reported July 20, 2026</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">~1 GW</div><div class="lbl">Power draw of Z.AI's new all-domestic-chip data center (~750,000 homes)</div></div>
+      <div class="signal"><div class="num">10,000+</div><div class="lbl">Domestic accelerators per cluster; the facility runs multiple such clusters</div></div>
+      <div class="signal"><div class="num">~$1B</div><div class="lbl">Annual recurring revenue — 2026 target reportedly hit in July</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Export Controls In, All-Domestic Stack Out</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="70" y1="95" x2="690" y2="95" stroke="#d8d0c4" stroke-width="2"/>
+          <!-- Jan 2025 -->
+          <circle cx="130" cy="95" r="7" fill="#c0392b"/>
+          <text x="130" y="70" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Jan 2025</text>
+          <text x="130" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Added to US</text>
+          <text x="130" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">Entity List — Nvidia cut off</text>
+          <!-- Build -->
+          <circle cx="400" cy="95" r="7" fill="#8a9bb5"/>
+          <text x="400" y="70" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2025–26</text>
+          <text x="400" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Builds ~1GW cluster on</text>
+          <text x="400" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">Ascend + MindSpore</text>
+          <!-- Jul 2026 -->
+          <circle cx="640" cy="95" r="8" fill="#2e7d32"/>
+          <text x="640" y="70" font-size="11" font-weight="700" fill="#2e7d32" text-anchor="middle">Jul 2026</text>
+          <text x="640" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Partial operation;</text>
+          <text x="640" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">~$1B ARR target hit</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">国产芯片<span class="annotation-card-en">guóchǎn xīnpiàn · domestic chips</span></div>
+        <p>Efficiency is unverified: effective training FLOPs per watt and per dollar versus an equivalent Nvidia deployment, and job-failure rates, are unknown. A self-sufficiency showcase is not parity.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">昇思<span class="annotation-card-en">shēngsī · MindSpore</span></div>
+        <p>The hard part is the training toolchain, not peak FLOPs. Signal to watch: whether frontier labs with Nvidia access voluntarily move training onto the Ascend + MindSpore stack — not just an Entity-Listed one.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">昇腾<span class="annotation-card-en">shēngténg · Ascend</span></div>
+        <p>Read against Story One: Beijing rations compute top-down while a leading lab proves a domestic-only stack bottom-up. Huawei's Ascend ecosystem gains a marquee gigawatt-scale reference deployment.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 3: CREDIT ══════════ -->
+  <div class="viz-panel" id="viz-3">
+    <div class="panel-headline">Record-Low Rates, Record-Low Credit: A Slipping Transmission Belt</div>
+    <div class="panel-source">Caixin / PBOC data / USCC China Bulletin · H1 2026 data, reported mid–late July 2026</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">−17%</div><div class="lbl">Y/y fall in H1 new RMB loans, to ¥10.7T — despite record-low rates</div></div>
+      <div class="signal"><div class="num">7.4%</div><div class="lbl">June total social financing growth y/y — the slowest on record</div></div>
+      <div class="signal"><div class="num">~86%</div><div class="lbl">Of listed Chinese banks now sit below a sustainable net interest margin</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Total Social Financing Growth · June 2026 vs Pre-COVID Norm (% Y/Y)</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="60" y1="170" x2="720" y2="170" stroke="#d8d0c4" stroke-width="1"/>
+          <line x1="60" y1="105" x2="720" y2="105" stroke="#eee6da" stroke-width="1"/><text x="52" y="109" font-size="10" fill="#9a8a7a" text-anchor="end">7%</text>
+          <line x1="60" y1="40" x2="720" y2="40" stroke="#eee6da" stroke-width="1"/><text x="52" y="44" font-size="10" fill="#9a8a7a" text-anchor="end">14%</text>
+          <text x="52" y="174" font-size="10" fill="#9a8a7a" text-anchor="end">0%</text>
+          <!-- pre-COVID avg 13% → height 13/14*130 = 121 -->
+          <rect x="170" y="49" width="150" height="121" fill="#8a9bb5" rx="3"/>
+          <text x="245" y="41" font-size="14" font-weight="700" fill="#1a1a2e" text-anchor="middle">~13%</text>
+          <text x="245" y="192" font-size="11" fill="#5a5a5a" text-anchor="middle">Pre-COVID 5-yr avg</text>
+          <!-- June 2026 7.4% → height 7.4/14*130 = 69 -->
+          <rect x="440" y="101" width="150" height="69" fill="#c0392b" rx="3"/>
+          <text x="515" y="93" font-size="14" font-weight="700" fill="#c0392b" text-anchor="middle">7.4%</text>
+          <text x="515" y="192" font-size="11" fill="#5a5a5a" text-anchor="middle">June 2026 (record low)</text>
+          <text x="380" y="140" font-size="11" font-weight="600" fill="#c0392b" text-anchor="middle">slowest</text>
+          <text x="380" y="154" font-size="11" font-weight="600" fill="#c0392b" text-anchor="middle">on record</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">净息差<span class="annotation-card-en">jìng xīchā · net interest margin</span></div>
+        <p>Margin compression is structural, not cyclical. Thin spreads leave banks less able to absorb bad loans — and a reported ~1.5% NPL ratio sits against independent estimates nearer 10%.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">直接融资<span class="annotation-card-en">zhíjiē róngzī · direct financing</span></div>
+        <p>The PBOC frames the slowdown as a shift to direct financing — but ~83% of that is government bonds, ~70% held by banks. It's fiscal policy through the bond market, not a maturing capital market.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">社会融资规模<span class="annotation-card-en">shèhuì róngzī guīmó · total social financing</span></div>
+        <p>Rate cuts have lost traction, shifting H2 support onto fiscal channels. Watch credit and TSF prints as a more honest read on domestic demand than headline GDP, which leaned on AI exports.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">China Brief Issue #68 · July 26, 2026 · Not investment advice · Data sourced from public reporting</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

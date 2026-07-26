@@ -1,5 +1,92 @@
 [
   {
+    "issue": 68,
+    "date": "2026-07-26",
+    "title": "Beijing rations data-center buildout, Z.AI's all-domestic gigawatt cluster, China's credit growth stalls",
+    "summary": "Issue #68 tracks China's compute strategy from two ends and its weakening macro core. Beijing's economic planners moved to ration data-center construction — barring small local-government and SOE builds and herding large clusters into national hubs — while model lab Z.AI switched on a ~1-gigawatt training cluster running entirely on domestic chips. On the macro side, H1 credit data showed new loans down 17% and total social financing at a record-low growth rate despite 14 months of record-low rates, a sign the transmission from monetary policy to the real economy is slipping.",
+    "viz_url": "china-brief-visualized-2026-07-26.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "From Building It to Rationing It: Beijing Moves to Cap Small Data Centers and Herd Compute Into National Hubs",
+        "tag": "ai",
+        "body": "China's three main compute-policy bodies — the NDRC (国家发展和改革委员会), MIIT, and the National Data Bureau (国家数据局) — have reportedly issued guidance that stops local governments and state-owned enterprises from building small data centers on their own initiative. \"Small\" is defined concretely: under ¥300 million in investment, 1,000 racks, or 2,500 kilowatts. Medium projects now require pre-approval, and large builds are to be confined to the eight national computing hubs. Non-hub projects lose subsidies and grid access, and developers who misreport a facility's size are barred from filing new projects for three years.\n\nThe significance is directional: Beijing is pivoting from promoting data-center buildout to centrally rationing it. The 2022 \"Eastern Data, Western Compute\" (东数西算) initiative encouraged provinces to compete on capacity, and they did — to the point that utilization at some AI compute centers reportedly sits below 30%, with clusters too small, too scattered, or built on dated or unreliable GPUs to serve current demand. The new guidance is a bet that China can compete on compute efficiency and coordination rather than raw provincial-level scale, paired with a separately reported ~$295 billion centrally administered buildout concentrated in approved hubs.\n\nFor positioning, the read-through is about who wins in a consolidated compute market: if enforcement holds, demand tilts toward national-hub operators, state-backed integrators, and hub-designated domestic accelerator suppliers, and away from the long tail of local vanity builds. The caveat: China has announced compute-discipline guidance before and interprovincial incentives have outrun central intent. What would need to be true for it to bite is visible enforcement — a subsidy clawback, a grid-access denial, or a public project rejection.",
+        "takeaway": "Treat the rule as a signal of where compute capacity is meant to flow — favoring national-hub operators and domestic accelerator suppliers — not as a completed reallocation until enforcement is visible.",
+        "vocab": [
+          {
+            "zh": "数据中心",
+            "en": "Data center"
+          },
+          {
+            "zh": "东数西算",
+            "en": "Eastern Data, Western Compute"
+          },
+          {
+            "zh": "国家数据局",
+            "en": "National Data Bureau"
+          },
+          {
+            "zh": "算力",
+            "en": "Computing power"
+          }
+        ],
+        "source": "Trivium China / USCC China Bulletin · AI & Tech / Compute Policy · reported week of July 21, 2026"
+      },
+      {
+        "icon": "🤖",
+        "title": "A Gigawatt With No Nvidia Inside: Z.AI Switches On an All-Domestic-Chip Training Cluster",
+        "tag": "chip",
+        "body": "Z.AI — the Beijing model lab formerly known as Zhipu (智谱), spun out of Tsinghua University — has completed and begun partially operating a data center of roughly one gigawatt that runs, per the reporting, entirely on Chinese-made accelerators. The facility reportedly houses multiple clusters, each with more than 10,000 domestic chips (国产芯片), and is being used to train the company's open-weight GLM model family on Huawei's Ascend (昇腾) silicon via Huawei's MindSpore (昇思) framework. The build followed Z.AI's January 2025 addition to the US Commerce Entity List, which cut off its Nvidia access.\n\nIf the details hold, the notable claim is not the wattage but the software layer. Chinese labs have run domestic chips for inference for some time; training a frontier-scale model end-to-end on Ascend plus MindSpore, without CUDA anywhere in the loop, is the harder problem, because the maturity of the training toolchain — not just peak FLOPs — is usually where domestic alternatives stumble. Z.AI separately says it reached its 2026 target of roughly $1 billion in annual recurring revenue in July. What remains unverified is efficiency: effective training FLOPs per watt and per dollar versus an equivalent Nvidia deployment, and how often jobs fail or stall.\n\nSet against the data-center rationing story, the two developments describe the same strategy from opposite ends: Beijing rationing compute from the top down while a leading private lab demonstrates a domestic-only training stack at gigawatt scale from the bottom up. For investors, the through-line is the domestic AI-accelerator and infrastructure complex — Ascend, MindSpore, and the memory and networking suppliers around them — which gains a marquee reference deployment regardless of the efficiency gap. The signal to watch is whether other frontier labs voluntarily move training onto the same stack.",
+        "takeaway": "A gigawatt-scale, all-domestic training cluster is a real reference win for the Huawei Ascend ecosystem — but self-sufficiency is not parity, and per-chip efficiency versus Nvidia remains unverified.",
+        "vocab": [
+          {
+            "zh": "智谱",
+            "en": "Zhipu / Z.AI (GLM developer)"
+          },
+          {
+            "zh": "国产芯片",
+            "en": "Domestic chips"
+          },
+          {
+            "zh": "昇腾",
+            "en": "Ascend (Huawei AI chips)"
+          },
+          {
+            "zh": "昇思",
+            "en": "MindSpore (Huawei AI framework)"
+          }
+        ],
+        "source": "Bloomberg / The Information / Tom's Hardware · AI & Tech / Chips · reported July 20, 2026"
+      },
+      {
+        "icon": "📊",
+        "title": "Record-Low Rates, Record-Low Credit: The Transmission Belt Between the PBOC and the Real Economy Is Slipping",
+        "tag": "macro",
+        "body": "The most consequential macro data point of the past week is the absence of a response to record-low rates. New RMB loans totaled ¥10.7 trillion in H1 2026 — down 17% year-on-year — and total social financing (社会融资规模), China's broadest credit gauge, grew just 7.4% year-on-year in June, its slowest pace on record and well below the roughly 13% pre-COVID average. This is happening while the PBOC (中国人民银行) has held the one- and five-year loan prime rates at record lows of 3.0% and 3.5% for a 14th consecutive month. When credit stalls despite record-low rates, the constraint is demand, not price.\n\nThe mechanism underneath is a bank-margin squeeze. Competition for a shrinking pool of creditworthy borrowers has compressed spreads so far that roughly 86% of listed Chinese banks now sit below the net interest margin (净息差) the industry treats as sustainable. Thin margins leave banks less able to absorb bad loans, and official asset-quality figures likely understate the problem — a reported NPL ratio near 1.5% against independent estimates closer to 10%. The PBOC frames the slowdown as a healthy shift toward direct financing (直接融资), yet roughly 83% of that is government bonds, about 70% of which sit on commercial-bank balance sheets.\n\nFor positioning, the signal is that rate cuts have lost much of their traction, which shifts the burden of any second-half growth support onto fiscal and quasi-fiscal channels rather than monetary easing. It reinforces a cautious stance on Chinese bank equities, where margin compression is structural rather than cyclical, and it argues for watching credit and TSF prints as a more honest read on domestic demand than headline GDP, which in Q2 leaned heavily on AI-related exports.",
+        "takeaway": "With monetary transmission slipping, second-half growth support falls to fiscal channels — and the structural bank-margin squeeze keeps the case for caution on Chinese bank equities intact.",
+        "vocab": [
+          {
+            "zh": "社会融资规模",
+            "en": "Total social financing (TSF)"
+          },
+          {
+            "zh": "净息差",
+            "en": "Net interest margin (NIM)"
+          },
+          {
+            "zh": "直接融资",
+            "en": "Direct financing"
+          },
+          {
+            "zh": "贷款市场报价利率",
+            "en": "Loan prime rate (LPR)"
+          }
+        ],
+        "source": "Caixin / PBOC data / USCC China Bulletin · Finance & Macro · H1 data, reported mid–late July 2026"
+      }
+    ]
+  },
+  {
     "issue": 67,
     "date": "2026-07-25",
     "title": "Humanoids hit the garment factory, White House names Moonshot over K3 distillation, MOF's H1 special-bond scorecard",
