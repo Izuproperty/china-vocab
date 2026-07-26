@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #56 · July 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+
+  .header { background:#1a1a2e; padding:24px 32px 22px; border-bottom:4px solid #3730a3; }
+  .back-link { color:#e8d5b0; font-size:11px; font-weight:600; text-decoration:none; letter-spacing:1px; border:1px solid #3a3a6e; padding:5px 12px; border-radius:3px; display:inline-block; margin-bottom:12px; }
+  .header-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:6px; }
+  .header-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#fff; }
+  .header-meta { margin-top:10px; font-size:12px; color:#8a9bb5; }
+
+  .tabs { display:flex; flex-wrap:wrap; gap:6px; background:#22223e; padding:12px 32px; }
+  .tab { background:transparent; border:1px solid #3a3a6e; color:#b8c0d8; font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:0.5px; padding:7px 14px; border-radius:3px; cursor:pointer; }
+  .tab:hover { border-color:#818cf8; color:#e0e7ff; }
+  .tab.active { background:#3730a3; border-color:#3730a3; color:#fff; }
+
+  .viz-panel { display:none; padding:32px; max-width:900px; margin:0 auto; }
+  .viz-panel.active { display:block; }
+
+  .panel-title { font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .panel-sub { font-size:12px; color:#7a7a8a; margin-bottom:24px; }
+
+  .signals { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:28px; }
+  .signal { background:#fff; border:1px solid #e2e4ec; border-top:3px solid #3730a3; border-radius:4px; padding:16px 18px; }
+  .signal-num { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#3730a3; line-height:1.1; }
+  .signal-label { font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:#8a8a9a; margin-top:6px; }
+  .signal-note { font-size:11.5px; color:#5a5a6a; margin-top:6px; line-height:1.45; }
+
+  .chart-box { background:#fff; border:1px solid #e2e4ec; border-radius:4px; padding:22px; margin-bottom:26px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:16px; }
+  .chart-box svg { width:100%; height:auto; display:block; }
+
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .annotation-card { background:#fff; border:1px solid #e2e4ec; border-left:3px solid #999; border-radius:0 4px 4px 0; padding:14px 16px; }
+  .annotation-card.red { border-left-color:#b91c1c; }
+  .annotation-card.amber { border-left-color:#b45309; }
+  .annotation-card.green { border-left-color:#15803d; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8a8a9a; margin-bottom:6px; }
+  .annotation-card-zh { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:12px; color:#4a4a5a; line-height:1.55; }
+
+  .footer { padding:22px 32px 30px; background:#1a1a2e; text-align:center; margin-top:20px; }
+  .footer-text { font-size:11px; color:#4a5a7a; }
+
+  @media (max-width:640px) {
+    .signals, .annotations { grid-template-columns:1fr; }
+    .viz-panel { padding:20px; }
+    .header, .tabs { padding-left:20px; padding-right:20px; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+
+<div class="header">
+  <a href="japan-brief.html" class="back-link">← Return to Japan Brief</a>
+  <div class="header-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+  <div class="header-title">Issue #56 · Data Appendix</div>
+  <div class="header-meta">Sunday, July 26, 2026 &nbsp;·&nbsp; 3 stories</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showViz('viz1', this)">AI Diplomacy Frameworks</button>
+  <button class="tab" onclick="showViz('viz2', this)">Rapidus Back-End Build</button>
+  <button class="tab" onclick="showViz('viz3', this)">Treasury FX Report and the Yen</button>
+</div>
+
+<!-- ══════════════ VIZ 1 ══════════════ -->
+<div class="viz-panel active" id="viz1">
+  <div class="panel-title">Tokyo's AI dialogue frameworks, April–July 2026</div>
+  <div class="panel-sub">Kyodo via SCMP, July 25, 2026 · timeline of bilateral AI arrangements</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-num">3</div>
+      <div class="signal-label">Named partners</div>
+      <div class="signal-note">India, France, Malaysia — plus broader Global South outreach.</div>
+    </div>
+    <div class="signal">
+      <div class="signal-num">2</div>
+      <div class="signal-label">Blocked US models</div>
+      <div class="signal-note">Anthropic's Fable and Mythos, restricted for foreign access — the trigger cited.</div>
+    </div>
+    <div class="signal">
+      <div class="signal-num">3</div>
+      <div class="signal-label">Domestic models in Gennai</div>
+      <div class="signal-note">tsuzumi 2 (NTT), Takane 32B (Fujitsu), PLaMo 2.0 Prime (PFN).</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Timeline · from framework launch to blind-test validation</div>
+    <svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <line x1="60" y1="150" x2="800" y2="150" stroke="#d8dae4" stroke-width="2"/>
+
+      <!-- April -->
+      <circle cx="90" cy="150" r="7" fill="#3730a3"/>
+      <text x="90" y="180" font-size="11" fill="#5a5a6a" text-anchor="middle">Apr 2026</text>
+      <text x="90" y="132" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Japan–India</text>
+      <text x="90" y="118" font-size="10" fill="#7a7a8a" text-anchor="middle">AI framework begins</text>
+
+      <!-- June: France -->
+      <circle cx="265" cy="150" r="7" fill="#3730a3"/>
+      <text x="265" y="180" font-size="11" fill="#5a5a6a" text-anchor="middle">Jun 2026</text>
+      <text x="265" y="132" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Japan–France, Paris</text>
+      <text x="265" y="118" font-size="10" fill="#7a7a8a" text-anchor="middle">SoftBank + Sakana AI attend</text>
+
+      <!-- Jul 2: Modi summit -->
+      <circle cx="440" cy="150" r="7" fill="#3730a3"/>
+      <text x="440" y="180" font-size="11" fill="#5a5a6a" text-anchor="middle">Jul 2</text>
+      <text x="440" y="205" font-size="10" fill="#7a7a8a" text-anchor="middle">Data centres + semis</text>
+      <text x="440" y="132" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Takaichi–Modi summit</text>
+
+      <!-- Jul 10: Gennai -->
+      <circle cx="610" cy="150" r="7" fill="#818cf8"/>
+      <text x="610" y="180" font-size="11" fill="#5a5a6a" text-anchor="middle">Jul 10</text>
+      <text x="610" y="132" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Gennai adopts</text>
+      <text x="610" y="118" font-size="10" fill="#7a7a8a" text-anchor="middle">3 domestic models</text>
+
+      <!-- Sep-Nov: blind test -->
+      <circle cx="780" cy="150" r="7" fill="#fff" stroke="#3730a3" stroke-width="2.5"/>
+      <text x="780" y="180" font-size="11" fill="#5a5a6a" text-anchor="middle">Sep–Nov</text>
+      <text x="780" y="205" font-size="10" fill="#7a7a8a" text-anchor="middle">~180k civil servants</text>
+      <text x="780" y="132" font-size="11" font-weight="600" fill="#b45309" text-anchor="middle">Blind-test trials</text>
+      <text x="780" y="118" font-size="10" fill="#7a7a8a" text-anchor="middle">the falsifiable test</text>
+
+      <text x="60" y="240" font-size="10" fill="#9a9aaa">Solid marker = completed · outlined marker = scheduled. Source: Kyodo/SCMP, Digital Agency.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">輸出規制<span class="annotation-card-en">yushutsu kisei · export controls</span></div>
+      <div class="annotation-card-body">The Anthropic access block showed that a foreign frontier model is a supply line another government can sever. Frameworks do not fix that; domestic capability does.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">枠組み<span class="annotation-card-en">wakugumi · framework</span></div>
+      <div class="annotation-card-body">Diplomacy is substituting for capability while Noetra, FRONTia and the domestic model stack mature. No 2026 earnings impact for any listed name.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Constructive</div>
+      <div class="annotation-card-zh">データセンター<span class="annotation-card-en">dēta sentā · data centre</span></div>
+      <div class="annotation-card-body">India is the substantive leg: data centres and semiconductors are where Japan has genuinely exportable assets — equipment, materials, EPC — rather than models.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ VIZ 2 ══════════════ -->
+<div class="viz-panel" id="viz2">
+  <div class="panel-title">Rapidus Chitose: front end plus back end</div>
+  <div class="panel-sub">DIGITIMES, July 24, 2026 · IIM-1 capability roadmap</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-num">2nm</div>
+      <div class="signal-label">Node target</div>
+      <div class="signal-note">Gate-all-around logic, process licensed from IBM, EUV tooling from ASML.</div>
+    </div>
+    <div class="signal">
+      <div class="signal-num">2027</div>
+      <div class="signal-label">Mass production target</div>
+      <div class="signal-note">Front-end pilot line running at Chitose today; volume ramp still ahead.</div>
+    </div>
+    <div class="signal">
+      <div class="signal-num">¥267.6bn</div>
+      <div class="signal-label">Feb 2026 funding round</div>
+      <div class="signal-note">Government plus private-sector shareholders, ahead of the ramp.</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">Capability roadmap · what Chitose can do, and when</div>
+    <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <!-- axes -->
+      <line x1="130" y1="40" x2="130" y2="245" stroke="#d8dae4" stroke-width="1.5"/>
+      <line x1="130" y1="245" x2="820" y2="245" stroke="#d8dae4" stroke-width="1.5"/>
+
+      <!-- x labels -->
+      <text x="220" y="265" font-size="11" fill="#7a7a8a" text-anchor="middle">2024</text>
+      <text x="360" y="265" font-size="11" fill="#7a7a8a" text-anchor="middle">2025</text>
+      <text x="500" y="265" font-size="11" fill="#7a7a8a" text-anchor="middle">2026</text>
+      <text x="640" y="265" font-size="11" fill="#7a7a8a" text-anchor="middle">2027</text>
+      <text x="780" y="265" font-size="11" fill="#7a7a8a" text-anchor="middle">2028</text>
+
+      <!-- Row 1: front-end pilot -->
+      <text x="122" y="80" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Front end (前工程)</text>
+      <rect x="290" y="66" width="290" height="20" rx="3" fill="#3730a3" opacity="0.85"/>
+      <text x="300" y="80" font-size="10.5" fill="#fff">Pilot line · 2nm GAA prototyping</text>
+      <rect x="580" y="66" width="240" height="20" rx="3" fill="#3730a3" opacity="0.35"/>
+      <text x="590" y="80" font-size="10.5" fill="#3730a3" font-weight="600">Volume ramp (target)</text>
+
+      <!-- Row 2: failure analysis -->
+      <text x="122" y="130" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Failure analysis</text>
+      <rect x="500" y="116" width="320" height="20" rx="3" fill="#be185d" opacity="0.75"/>
+      <text x="510" y="130" font-size="10.5" fill="#fff">Announced Jul 24, 2026 · compresses debug loop</text>
+
+      <!-- Row 3: advanced packaging -->
+      <text x="122" y="180" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Back end (後工程)</text>
+      <rect x="500" y="166" width="320" height="20" rx="3" fill="#be185d" opacity="0.75"/>
+      <text x="510" y="180" font-size="10.5" fill="#fff">Advanced packaging added at Chitose</text>
+
+      <!-- Row 4: customer -->
+      <text x="122" y="230" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Volume customer</text>
+      <rect x="290" y="216" width="530" height="20" rx="3" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="5,4"/>
+      <text x="300" y="230" font-size="10.5" fill="#b91c1c" font-weight="600">None publicly confirmed — the missing evidence</text>
+
+      <!-- today marker -->
+      <line x1="500" y1="40" x2="500" y2="245" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="4,4"/>
+      <text x="500" y="32" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">TODAY</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Missing</div>
+      <div class="annotation-card-zh">顧客<span class="annotation-card-en">kokyaku · customer</span></div>
+      <div class="annotation-card-body">No publicly confirmed volume customer. Until there is one, capability announcements are inputs, not evidence of demand.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">歩留まり<span class="annotation-card-en">budomari · yield</span></div>
+      <div class="annotation-card-body">The real constraint is not printing one 2nm transistor — it is characterising defects fast enough to climb a yield curve on a customer's schedule.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Rationale</div>
+      <div class="annotation-card-zh">後工程<span class="annotation-card-en">atokōtei · back-end process</span></div>
+      <div class="annotation-card-body">Advanced packaging is a capacity bottleneck for AI accelerators. Shipping wafers offshore for assembly means inheriting someone else's queue and yield learning.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ VIZ 3 ══════════════ -->
+<div class="viz-panel" id="viz3">
+  <div class="panel-title">The Treasury report, the policy rate and 164</div>
+  <div class="panel-sub">Reuters, July 24, 2026 · US Treasury semi-annual currency report and the BOJ path</div>
+
+  <div class="signals">
+    <div class="signal">
+      <div class="signal-num">−51%</div>
+      <div class="signal-label">Yen, end-2011 to end-Apr 2026</div>
+      <div class="signal-note">Against the dollar and in real effective terms — Treasury's basis for "substantial undervaluation."</div>
+    </div>
+    <div class="signal">
+      <div class="signal-num">1.00%</div>
+      <div class="signal-label">BOJ policy rate</div>
+      <div class="signal-note">Since the June 16, 2026 hike — a 31-year high, and still the lowest in the G7.</div>
+    </div>
+    <div class="signal">
+      <div class="signal-num">163.72</div>
+      <div class="signal-label">USD/JPY, Jul 24 low</div>
+      <div class="signal-note">Dipped on Katayama's warning, then steadied in the upper 163s.</div>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <div class="chart-title">BOJ policy rate vs. USD/JPY · Dec 2025 – Jul 2026</div>
+    <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg" font-family="Inter, sans-serif">
+      <!-- axes -->
+      <line x1="80" y1="35" x2="80" y2="250" stroke="#d8dae4" stroke-width="1.5"/>
+      <line x1="80" y1="250" x2="790" y2="250" stroke="#d8dae4" stroke-width="1.5"/>
+
+      <!-- left axis labels: policy rate -->
+      <text x="70" y="240" font-size="10" fill="#3730a3" text-anchor="end">0.50%</text>
+      <text x="70" y="180" font-size="10" fill="#3730a3" text-anchor="end">0.75%</text>
+      <text x="70" y="120" font-size="10" fill="#3730a3" text-anchor="end">1.00%</text>
+      <text x="70" y="60" font-size="10" fill="#3730a3" text-anchor="end">1.25%</text>
+
+      <!-- right axis labels: USDJPY -->
+      <text x="800" y="240" font-size="10" fill="#b45309">150</text>
+      <text x="800" y="185" font-size="10" fill="#b45309">155</text>
+      <text x="800" y="130" font-size="10" fill="#b45309">160</text>
+      <text x="800" y="75" font-size="10" fill="#b45309">165</text>
+
+      <!-- x labels -->
+      <text x="120" y="270" font-size="10" fill="#7a7a8a" text-anchor="middle">Dec 25</text>
+      <text x="240" y="270" font-size="10" fill="#7a7a8a" text-anchor="middle">Feb 26</text>
+      <text x="360" y="270" font-size="10" fill="#7a7a8a" text-anchor="middle">Apr 26</text>
+      <text x="480" y="270" font-size="10" fill="#7a7a8a" text-anchor="middle">Jun 16</text>
+      <text x="600" y="270" font-size="10" fill="#7a7a8a" text-anchor="middle">Jul 10</text>
+      <text x="740" y="270" font-size="10" fill="#7a7a8a" text-anchor="middle">Jul 24</text>
+
+      <!-- policy rate step line (0.75 -> 1.00 on Jun 16) -->
+      <polyline points="120,180 240,180 360,180 470,180 470,120 600,120 740,120"
+                fill="none" stroke="#3730a3" stroke-width="3"/>
+      <circle cx="470" cy="120" r="5" fill="#3730a3"/>
+      <text x="470" y="108" font-size="10" font-weight="700" fill="#3730a3" text-anchor="middle">Jun 16 hike</text>
+
+      <!-- USDJPY line -->
+      <polyline points="120,178 200,168 280,158 360,150 440,140 480,132 540,120 600,106 660,92 700,82 740,74"
+                fill="none" stroke="#b45309" stroke-width="2.5"/>
+      <circle cx="740" cy="74" r="5" fill="#b45309"/>
+      <text x="726" y="60" font-size="10" font-weight="700" fill="#b45309" text-anchor="end">163.7</text>
+
+      <!-- 164 danger line -->
+      <line x1="80" y1="66" x2="790" y2="66" stroke="#b91c1c" stroke-width="1.2" stroke-dasharray="6,4"/>
+      <text x="88" y="60" font-size="10" font-weight="600" fill="#b91c1c">164 — intervention watch</text>
+
+      <!-- legend -->
+      <text x="110" y="300" font-size="10.5" fill="#3730a3" font-weight="600">— BOJ policy rate (left)</text>
+      <text x="300" y="300" font-size="10.5" fill="#b45309" font-weight="600">— USD/JPY (right, inverted risk sense)</text>
+      <text x="560" y="300" font-size="10" fill="#9a9aaa">Schematic; levels indicative.</text>
+    </svg>
+  </div>
+
+  <div class="annotations">
+    <div class="annotation-card red">
+      <div class="annotation-card-label">Risk</div>
+      <div class="annotation-card-zh">円安<span class="annotation-card-en">en'yasu · weak yen</span></div>
+      <div class="annotation-card-body">If the BOJ holds at 1.0% on July 31 right after an explicit US endorsement of hiking, the 164 line gets tested and the MOF must choose between words and an operation.</div>
+    </div>
+    <div class="annotation-card amber">
+      <div class="annotation-card-label">Watch</div>
+      <div class="annotation-card-zh">為替介入<span class="annotation-card-en">kawase kainyū · FX intervention</span></div>
+      <div class="annotation-card-body">Authorised by the 財務省 (Zaimushō, MOF), executed by the BOJ as agent. Washington's alignment removes the usual objection — but markets still discount verbal warnings.</div>
+    </div>
+    <div class="annotation-card green">
+      <div class="annotation-card-label">Constructive</div>
+      <div class="annotation-card-zh">正常化<span class="annotation-card-en">seijōka · normalisation</span></div>
+      <div class="annotation-card-body">Hawkish statement language and an upgraded FY2026 GDP forecast (~0.8% from 0.5%) are the cheapest way for the BOJ to answer Washington without moving the rate.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-text">Japan Brief Issue #56 · July 26, 2026 · Not investment advice</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  var panels = document.querySelectorAll('.viz-panel');
+  for (var i = 0; i < panels.length; i++) { panels[i].classList.remove('active'); }
+  var tabs = document.querySelectorAll('.tab');
+  for (var j = 0; j < tabs.length; j++) { tabs[j].classList.remove('active'); }
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
