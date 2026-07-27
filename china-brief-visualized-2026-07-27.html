@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #69 · July 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0d0d1a; font-family:'Inter',sans-serif; color:#e8e8f0; min-height:100vh; }
+  .page { max-width:900px; margin:0 auto; padding:40px 24px; }
+  .masthead { text-align:center; margin-bottom:48px; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+
+  /* Three column grid */
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#131326; border:1px solid #1e1e3a; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#1a2a5e; color:#6a9fff; }
+  .tag-macro { background:#3a2000; color:#f0a030; }
+  .card-num { font-size:36px; font-weight:700; color:#fff; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#3a0d0d; color:#e05050; }
+  .delta-yellow { background:#2a2000; color:#e0a030; }
+  .delta-blue { background:#0a1a3a; color:#5090f0; }
+
+  /* Timeline / Sequence chart */
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#131326; border:1px solid #1e1e3a; border-radius:8px; padding:24px; margin-bottom:16px; }
+  .story-header { display:flex; align-items:flex-start; gap:16px; }
+  .story-icon { font-size:28px; flex-shrink:0; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#e8e8f0; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:12.5px; color:#7a8aaa; line-height:1.7; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#0a1020; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#8a9bb5; line-height:1.6; }
+  .story-takeaway strong { color:#e8c87a; }
+
+  /* Export control visualization */
+  .control-chart { background:#131326; border:1px solid #1e1e3a; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .control-title { font-size:13px; font-weight:600; color:#fff; margin-bottom:20px; }
+  .control-row { display:grid; grid-template-columns:140px 1fr 100px; gap:12px; align-items:center; padding:10px 0; border-bottom:1px solid #1a1a2e; font-size:12px; }
+  .control-row:last-child { border-bottom:none; }
+  .control-asset { color:#c8d8f0; font-weight:500; }
+  .control-bar-wrap { background:#0a0a18; border-radius:4px; height:20px; overflow:hidden; }
+  .control-bar { height:100%; border-radius:4px; display:flex; align-items:center; padding-left:8px; font-size:10px; font-weight:600; white-space:nowrap; }
+  .bar-open { background:linear-gradient(90deg, #1a4a8a, #2060c0); color:#a0c0ff; width:85%; }
+  .bar-api { background:linear-gradient(90deg, #3a1a00, #6a3000); color:#f0a060; width:55%; }
+  .bar-closed { background:linear-gradient(90deg, #3a0808, #6a1010); color:#f08080; width:30%; }
+  .control-status { font-size:10px; font-weight:700; letter-spacing:1px; text-align:right; }
+  .status-open { color:#50c050; }
+  .status-risk { color:#e09030; }
+  .status-blocked { color:#e05050; }
+  .control-header { display:grid; grid-template-columns:140px 1fr 100px; gap:12px; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3a4a6a; margin-bottom:6px; }
+
+  /* Policy timeline */
+  .timeline { padding:4px 0; }
+  .tl-item { display:grid; grid-template-columns:90px 1fr; gap:16px; padding:10px 0; border-bottom:1px solid #1a1a2e; }
+  .tl-item:last-child { border-bottom:none; }
+  .tl-date { font-size:11px; color:#5a6a8a; font-weight:500; }
+  .tl-event { font-size:12.5px; color:#c8d0e0; line-height:1.5; }
+  .tl-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:1px; padding:2px 6px; border-radius:2px; margin-right:6px; }
+  .tl-ai { background:#1a2a5e; color:#6a9fff; }
+  .tl-macro { background:#3a2000; color:#f0a030; }
+
+  /* MLF / PBOC chart */
+  .pboc-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .pboc-metric { background:#131326; border:1px solid #1e1e3a; border-radius:8px; padding:20px; }
+  .pboc-value { font-size:28px; font-weight:700; color:#fff; }
+  .pboc-label { font-size:11px; color:#5a6a8a; margin-top:4px; line-height:1.4; }
+  .pboc-note { font-size:10px; color:#3a5a8a; margin-top:8px; font-style:italic; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #1a1a2e; }
+  .footer-text { font-size:10px; color:#2a3a5a; letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="page">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #69 · July 27, 2026</div>
+    <div class="masthead-sub">USCC Snub · AI Export Controls · Politburo Week</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← Brief</a>
+      <a class="nav-btn" href="china-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="china-ai-landscape.html">Landscape</a>
+    </div>
+  </div>
+
+  <!-- Key numbers -->
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI · Diplomacy</div>
+      <div class="card-num">7<span class="card-num-unit">yrs</span></div>
+      <div class="card-label">Since last USCC visit to China — delegation met officials but no major tech firms</div>
+      <div class="card-delta delta-red">0 tech firm meetings</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI · Export Policy</div>
+      <div class="card-num">3<span class="card-num-unit">firms</span></div>
+      <div class="card-label">Alibaba · ByteDance · Z.AI in MOFCOM model-weight export control consultations</div>
+      <div class="card-delta delta-yellow">Proposed · No timeline</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro · PBOC</div>
+      <div class="card-num">¥527<span class="card-num-unit">B</span></div>
+      <div class="card-label">MLF injection ahead of Politburo mid-year review — largest in 5 months</div>
+      <div class="card-delta delta-blue">Goldman: 25bp RRR cut Q3</div>
+    </div>
+  </div>
+
+  <!-- Story 1 -->
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-icon">🚫</div>
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI / DIPLOMACY</span>
+          <span class="card-tag tag-ai" style="margin:0;">South China Morning Post</span>
+        </div>
+        <div class="story-headline">USCC delegation: seven years, zero tech company meetings</div>
+        <div class="story-insight">The USCC's first China visit since 2019 covered Beijing, Hangzhou, and Shanghai — all major AI hubs. Every major Chinese AI firm declined. The pattern aligns with MOFCOM's ongoing consultations on model-weight controls and Beijing's broader tech-sovereignty posture under the 15th Five-Year Plan. Engaging with foreign government delegations carries regulatory risk when export-control scrutiny (审查) is active.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Chinese AI due-diligence channels are narrowing. The premium on local-network access will rise as direct corporate engagement with foreign delegations becomes costly.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Story 2: Export control visualization -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-icon">🔒</div>
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · AI / EXPORT POLICY</span>
+          <span class="card-tag tag-ai" style="margin:0;">FT / Reuters</span>
+        </div>
+        <div class="story-headline">China's proposed AI asset control framework</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;">
+      <div class="control-chart">
+        <div class="control-title">Proposed restrictions on Chinese AI assets (enforcement status)</div>
+        <div class="control-header">
+          <div>Asset type</div>
+          <div>Current global accessibility</div>
+          <div>If enacted</div>
+        </div>
+        <div class="control-row">
+          <div class="control-asset">Open-weight models (Qwen, GLM)</div>
+          <div class="control-bar-wrap"><div class="control-bar bar-open">1B+ HF downloads · global</div></div>
+          <div class="control-status status-risk">HIGH RISK</div>
+        </div>
+        <div class="control-row">
+          <div class="control-asset">API-only frontier models</div>
+          <div class="control-bar-wrap"><div class="control-bar bar-api">Restricted · licensed access</div></div>
+          <div class="control-status status-risk">MODERATE</div>
+        </div>
+        <div class="control-row">
+          <div class="control-asset">Chip designs (Kirin, Ascend)</div>
+          <div class="control-bar-wrap"><div class="control-bar bar-closed">Restricted (TSMC)</div></div>
+          <div class="control-status status-blocked">TRACTABLE</div>
+        </div>
+      </div>
+      <div class="story-takeaway"><strong>Asymmetric enforceability:</strong> chip-design controls work via foundry licenses (TSMC, Samsung can be regulated). Open-weight model controls are nearly unenforceable once a model is released globally. Policy that bites on hardware IP but not on software weights would advantage domestic chip supply chains without slowing global spread of Chinese AI software.</div>
+    </div>
+  </div>
+
+  <!-- Story 3: Macro -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-icon">🏛️</div>
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO · PBOC</span>
+          <span class="card-tag tag-macro" style="margin:0;">Goldman / Bloomberg</span>
+        </div>
+        <div class="story-headline">Politburo week — what markets are watching</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <div class="pboc-grid">
+        <div class="pboc-metric">
+          <div class="pboc-value">4.3%</div>
+          <div class="pboc-label">Q2 2026 GDP (YoY) — below 4.5%–5.0% target</div>
+          <div class="pboc-note">14th month of record-low LPR (1yr: 3.00%)</div>
+        </div>
+        <div class="pboc-metric">
+          <div class="pboc-value">¥527B</div>
+          <div class="pboc-label">MLF injection — largest in 5 months</div>
+          <div class="pboc-note">Pre-emptive liquidity ahead of Politburo statement</div>
+        </div>
+        <div class="pboc-metric">
+          <div class="pboc-value">25bp</div>
+          <div class="pboc-label">Goldman forecast RRR cut — Q3 2026</div>
+          <div class="pboc-note">+ 10bp policy rate cut expected Q4</div>
+        </div>
+        <div class="pboc-metric">
+          <div class="pboc-value">15th</div>
+          <div class="pboc-label">First Politburo meeting under the Five-Year Plan</div>
+          <div class="pboc-note">Framing carries weight beyond 2026 growth target</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div class="section-title" style="margin-bottom:12px;">Policy Sequence · What to Watch</div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date">Jul 27–31</div>
+            <div class="tl-event"><span class="tl-tag tl-macro">MACRO</span>Politburo mid-year review convenes. Watch for "逆周期调节" (counter-cyclical adjustment) language — signals accommodation.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Q3 2026</div>
+            <div class="tl-event"><span class="tl-tag tl-macro">MACRO</span>Goldman forecasts 25bp RRR cut. Releases ~¥500B in long-term liquidity without cutting deposit or lending rates.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">Q4 2026</div>
+            <div class="tl-event"><span class="tl-tag tl-macro">MACRO</span>10bp policy rate cut expected. LPR would fall to 2.90% (1yr) — new record low.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date">TBD</div>
+            <div class="tl-event"><span class="tl-tag tl-ai">AI</span>MOFCOM finalizes (or drops) model-weight / chip-design export control framework. No timeline confirmed.</div>
+          </div>
+        </div>
+      </div>
+      <div class="story-takeaway"><strong>Downside risk:</strong> if the Politburo communiqué emphasizes structural adjustment over near-term support, Chinese equities face a reset on long positioning built since April's accommodative signals.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">中国简报 · CHINA BRIEF · ISSUE #69 · JULY 27, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
