@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #70 · July 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:840px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #c0392b; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2px; color:#8a9bb5; text-decoration:none; display:inline-block; margin-bottom:12px; }
+  .back-link:hover { color:#e8d5b0; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:26px; color:#fff; }
+  .header .sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#f0ede8; border-bottom:1px solid #e0d8d0; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a7a6a; cursor:pointer; border-bottom:3px solid transparent; transition:all .15s; }
+  .tab:hover { background:#e8e4dc; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+  .viz-panel { display:none; padding:32px 40px 40px; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; line-height:1.35; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:24px; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:28px; }
+  .signal { background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .signal .num { font-size:26px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal .lbl { font-size:11px; color:#7a6a5a; margin-top:6px; line-height:1.4; }
+  .chart-block { margin-bottom:28px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:12px; }
+  .chart-box { background:#fbf9f5; border:1px solid #eee6da; border-radius:8px; padding:18px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .annotation-card { border-radius:8px; padding:16px; font-size:12.5px; line-height:1.55; }
+  .annotation-card.red { background:#fdf0ee; border:1px solid #f2d5d0; }
+  .annotation-card.amber { background:#fdf7ea; border:1px solid #f0e2c0; }
+  .annotation-card.green { background:#eff7ef; border:1px solid #d2e6d2; }
+  .annotation-card .tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .annotation-card.red .tag { color:#c0392b; }
+  .annotation-card.amber .tag { color:#b45309; }
+  .annotation-card.green .tag { color:#2e7d32; }
+  .annotation-card-zh { font-size:16px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:6px; }
+  .annotation-card p { color:#3a3a3a; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} .viz-panel{padding:24px 20px;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <h1>China Brief Visualized · Issue #70</h1>
+    <div class="sub">Tuesday, July 28, 2026 · Three stories in charts and signals</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">DUV Breakthrough</div>
+    <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">Driverless Robotaxi</div>
+    <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">CXMT Debut</div>
+  </div>
+
+  <!-- ══════════ TAB 1: DUV LITHOGRAPHY ══════════ -->
+  <div class="viz-panel active" id="viz-1">
+    <div class="panel-headline">Five Machines, Not Fifty: China's First Homegrown DUV Lithography Tool Enters Production</div>
+    <div class="panel-source">The Information / Tom's Hardware / Reuters · July 27, 2026 · Shanghai Yuliangsheng Technology</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">5</div><div class="lbl">Immersion DUV units planned in 2026, rising to ~20 in 2027</div></div>
+      <div class="signal"><div class="num">131</div><div class="lbl">Immersion DUV systems ASML delivered globally in 2025 — the scale gap</div></div>
+      <div class="signal"><div class="num">28nm</div><div class="lbl">Target mature node; ~7nm reachable via multi-patterning, ~5nm at lower yield</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Annual Immersion DUV Output · Domestic vs. ASML (Units)</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="60" y1="170" x2="720" y2="170" stroke="#d8d0c4" stroke-width="1"/>
+          <line x1="60" y1="40" x2="720" y2="40" stroke="#eee6da" stroke-width="1"/><text x="52" y="44" font-size="10" fill="#9a8a7a" text-anchor="end">140</text>
+          <line x1="60" y1="105" x2="720" y2="105" stroke="#eee6da" stroke-width="1"/><text x="52" y="109" font-size="10" fill="#9a8a7a" text-anchor="end">70</text>
+          <text x="52" y="174" font-size="10" fill="#9a8a7a" text-anchor="end">0</text>
+          <!-- ASML 2025: 131 units -> height = 131/140*130 = 122 -->
+          <rect x="120" y="48" width="120" height="122" fill="#8a9bb5" rx="3"/>
+          <text x="180" y="40" font-size="14" font-weight="700" fill="#1a1a2e" text-anchor="middle">131</text>
+          <text x="180" y="192" font-size="11" fill="#5a5a5a" text-anchor="middle">ASML · 2025</text>
+          <!-- Yuliangsheng 2026: 5 units -->
+          <rect x="340" y="165" width="120" height="5" fill="#c0392b" rx="2"/>
+          <text x="400" y="158" font-size="14" font-weight="700" fill="#c0392b" text-anchor="middle">5</text>
+          <text x="400" y="192" font-size="11" fill="#5a5a5a" text-anchor="middle">Yuliangsheng · 2026</text>
+          <!-- Yuliangsheng 2027: 20 units -> height = 20/140*130 = 18.5 -->
+          <rect x="560" y="151.5" width="120" height="18.5" fill="#e0a030" rx="3"/>
+          <text x="620" y="144" font-size="14" font-weight="700" fill="#b45309" text-anchor="middle">~20</text>
+          <text x="620" y="192" font-size="11" fill="#5a5a5a" text-anchor="middle">Yuliangsheng · 2027E</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">卡脖子<span class="annotation-card-en">qiǎ bózi · chokepoint tech</span></div>
+        <p>Performance and reliability still trail ASML; some key parts remain imported from Japan, and local-supplier delays already slowed 2026 output. No independent verification of the claimed test results.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">《匹配法案》<span class="annotation-card-en">Match Act · US bill</span></div>
+        <p>A bipartisan bill in Congress would extend controls to immersion DUV tools and curb servicing of machines already inside Chinese fabs — a restriction that would only accelerate this substitution push if enacted.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">国产替代<span class="annotation-card-en">guóchǎn tìdài · domestic substitution</span></div>
+        <p>SMIC, Hua Hong, and CXMT are named 2026 customers — a committed demand pipeline, not just a lab prototype. Direct beneficiaries: NAURA and AMEC further up China's equipment-localization chain.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 2: CAOCAO ROBOTAXI ══════════ -->
+  <div class="viz-panel" id="viz-2">
+    <div class="panel-headline">From Safety Driver to No Driver: CaoCao's Hangzhou Test Marks the License Freeze's Sharpest Thaw</div>
+    <div class="panel-source">GlobeNewswire / CnEVPost / Bloomberg · July 27, 2026 · CaoCao Inc. (Geely)</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">0</div><div class="lbl">Safety drivers onboard in CaoCao's new Binjiang District test fleet</div></div>
+      <div class="signal"><div class="num">~100</div><div class="lbl">Robotaxis CaoCao already operates across Hangzhou</div></div>
+      <div class="signal"><div class="num">4 mo</div><div class="lbl">From nationwide permit freeze (late March) to CaoCao's driverless launch</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Four Months From Wuhan Stall to Hangzhou Driverless Test</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="50" y1="95" x2="710" y2="95" stroke="#d8d0c4" stroke-width="2"/>
+          <!-- Late Mar -->
+          <circle cx="100" cy="95" r="7" fill="#c0392b"/>
+          <text x="100" y="70" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Late Mar</text>
+          <text x="100" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Apollo Go mass</text>
+          <text x="100" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">stall, Wuhan</text>
+          <!-- April -->
+          <circle cx="260" cy="95" r="7" fill="#8a9bb5"/>
+          <text x="260" y="70" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">April</text>
+          <text x="260" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Nationwide permit</text>
+          <text x="260" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">freeze; safety review</text>
+          <!-- Late June -->
+          <circle cx="420" cy="95" r="7" fill="#8a9bb5"/>
+          <text x="420" y="70" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Late June</text>
+          <text x="420" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Industry-wide safety</text>
+          <text x="420" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">review completes</text>
+          <!-- Jul 21 -->
+          <circle cx="560" cy="95" r="7" fill="#b45309"/>
+          <text x="560" y="70" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Jul 21</text>
+          <text x="560" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Momenta gets</text>
+          <text x="560" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">Shenzhen permit</text>
+          <!-- Jul 27 -->
+          <circle cx="670" cy="95" r="8" fill="#2e7d32"/>
+          <text x="670" y="70" font-size="11" font-weight="700" fill="#2e7d32" text-anchor="middle">Jul 27</text>
+          <text x="670" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">CaoCao: driverless</text>
+          <text x="670" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">test, Hangzhou</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">无人化<span class="annotation-card-en">wúrénhuà · driverless-ization</span></div>
+        <p>Confined to a single geo-fenced district using station-triggered dispatch. Whether this reflects genuine technical confidence or a favorable home-province regulatory relationship isn't verifiable from the announcement alone.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">牌照<span class="annotation-card-en">páizhào · license / permit</span></div>
+        <p>Licensing is resuming city-by-city and operator-by-operator, not as a uniform national reopening. Apollo Go's Wuhan return still appears to involve safety drivers in some cases — track permit status per name, not by sector.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">安全员<span class="annotation-card-en">ānquányuán · safety operator</span></div>
+        <p>CaoCao is the first operator to move beyond safety-driver-present resumption to true driverless testing since the freeze — the most aggressive post-reset step, though Eva Cab's mass-production revenue case is still 2027.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 3: CXMT DEBUT ══════════ -->
+  <div class="viz-panel" id="viz-3">
+    <div class="panel-headline">Up ~470% on Day One: CXMT's Debut Turns China's DRAM Champion Into a ~$460B Company</div>
+    <div class="panel-source">Reuters / CNBC / Bloomberg · July 27, 2026 · ChangXin Memory Technologies (CXMT)</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">+470%</div><div class="lbl">Day-1 close vs. the ¥8.66 IPO price on Shanghai's STAR Market</div></div>
+      <div class="signal"><div class="num">¥3.28T</div><div class="lbl">Market cap at Day-1 close — roughly $460B</div></div>
+      <div class="signal"><div class="num">500x+</div><div class="lbl">Institutional demand vs. shares offered in the ¥57.9B ($8.6B) IPO</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">CXMT Valuation · IPO Pricing vs. Day-1 Close (¥ Trillion)</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <!-- reference scale: 3.28T = 620px, so 1T ≈ 189px -->
+          <text x="70" y="52" font-size="11" fill="#5a5a5a" text-anchor="end">IPO pricing</text>
+          <rect x="80" y="38" width="109" height="24" fill="#8a9bb5" rx="3"/>
+          <text x="200" y="55" font-size="11" font-weight="700" fill="#5a5a5a">¥0.58T (~$85B)</text>
+          <text x="70" y="112" font-size="11" fill="#5a5a5a" text-anchor="end">Day-1 close</text>
+          <rect x="80" y="98" width="620" height="24" fill="#c0392b" rx="3"/>
+          <text x="620" y="115" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">¥3.28T (~$460B) · +470%</text>
+          <text x="80" y="150" font-size="10" fill="#9a8a7a">Largest A-share semiconductor IPO ever; Asia's largest listing of 2026</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">超级周期<span class="annotation-card-en">chāojí zhōuqī · supercycle</span></div>
+        <p>A ~5x first-day move raises the question of how much reflects durable AI-driven DRAM earnings versus a retail scramble for scarce STAR Market supply. China listing pops have a history of mean-reverting after lock-ups.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàngbǎn · STAR Market</span></div>
+        <p>Lock-up expiries and future index-inclusion flows are the next durability test. CXMT remains on the US Entity List throughout — a persistent overhang on any Western institutional participation.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">存储芯片<span class="annotation-card-en">cúnchǔ xīnpiàn · memory chip</span></div>
+        <p>CXMT's capex ramp is a direct order book for NAURA and AMEC — and, per story one, for China's nascent domestic lithography supply chain. H1 net profit guided up 22x y/y on the same AI-demand wave.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">China Brief Issue #70 · July 28, 2026 · Not investment advice · Data sourced from public reporting</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
