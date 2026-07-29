@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #60 · July 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#3a4a6a; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#8a9bb5; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #60 · July 30, 2026</div>
+    <div class="masthead-sub">Hitachi × Claude Mythos · Advantest record Q1 · Yen near 40-year low as BOJ meets</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; Tech · Cybersecurity</div>
+      <div class="card-num">100<span class="card-num-unit">+ infra cases</span></div>
+      <div class="card-label">Hitachi vulnerability cases verified via Anthropic's Claude Mythos</div>
+      <div class="card-delta delta-indigo">Weeks → hours</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi &amp; Industrial · Earnings</div>
+      <div class="card-num">$1.51<span class="card-num-unit">EPS</span></div>
+      <div class="card-label">Advantest Q1 FY2026 — record profit, 33.2% net margin</div>
+      <div class="card-delta delta-red">Shares −1.22% on margin caution</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro &amp; BOJ · Currency</div>
+      <div class="card-num">163.7<span class="card-num-unit">¥/$</span></div>
+      <div class="card-label">USD/JPY near 40-year low as BOJ opens July 30–31 meeting</div>
+      <div class="card-delta delta-yellow">40yr JGB yield: 4.01%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI &amp; TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">IT Business Today</span>
+        </div>
+        <div class="story-headline">Hitachi cuts cybersecurity verification from weeks to hours using Anthropic's Claude Mythos</div>
+        <div class="story-insight">
+          <p>Under the June 2, 2026 "Project Glasswing" collaboration, Hitachi applied a preview version of Claude Mythos to 100+ social-infrastructure cases, mostly in the energy sector, automating the creation of proof-of-concept exploit code and detecting vulnerabilities across source trees spanning millions of lines.</p>
+          <p>It's Hitachi's third disclosed Anthropic milestone this year (Lumada 3.0 in May, Glasswing in June), and lands one day before NTT Data's own Claude-based Cyber Defense Center launches on July 31 — Japan's largest integrators are racing to be the reference case, not sharing a utility.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Speed gains are qualitative for now — watch whether Hitachi quantifies cost or headcount impact in coming earnings before treating this as a margin story.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Vulnerability Verification Time — Before vs. After Claude Mythos</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <!-- Before bar (weeks, scaled) -->
+        <rect x="180" y="30" width="90" height="110" fill="#c7d2fe" rx="3"/>
+        <text x="225" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">~3 weeks</text>
+        <text x="225" y="160" text-anchor="middle" font-size="11" fill="#5a6a8a">Manual verification</text>
+        <!-- After bar (hours, tiny) -->
+        <rect x="500" y="134" width="90" height="6" fill="#3730a3" rx="3"/>
+        <text x="545" y="124" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">Few hours</text>
+        <text x="545" y="160" text-anchor="middle" font-size="11" fill="#5a6a8a">Claude Mythos-assisted</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SPEED</div>
+        <div class="annotation-card-zh">検証<span class="annotation-card-en">kenshō · verification</span></div>
+        <div class="annotation-card-body">100+ infrastructure cases processed with high-precision vulnerability detection, mostly energy-sector systems.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DISCLOSURE</div>
+        <div class="annotation-card-zh">脆弱性<span class="annotation-card-en">zeijakusei · vulnerability</span></div>
+        <div class="annotation-card-body">No cost or headcount figures disclosed yet — the claim is currently speed-only, not an efficiency P&amp;L line.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · HUMAN GATE</div>
+        <div class="annotation-card-zh">人による最終判断<span class="annotation-card-en">ningen ni yoru saishū handan · human final call</span></div>
+        <div class="annotation-card-body">Hitachi explicitly states human experts remain required for final risk assessment — full automation is not yet the claim.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMI &amp; INDUSTRIAL</span>
+          <span class="card-tag tag-semi" style="margin:0;">Investing.com / Seeking Alpha</span>
+        </div>
+        <div class="story-headline">Advantest posts record Q1 profit on AI tester demand, but shares slip on margin caution</div>
+        <div class="story-insight">
+          <p>Record Q1 FY2026: EPS $1.51, 33.2% net margin, ~56% ROE, driven by CPU/GPU/ASIC/networking tester demand plus FX tailwind. Management raised its SoC tester market view and said capacity expansion is being pulled forward.</p>
+          <p>Shares still fell 1.22% to ¥25,200 — the market wants proof that pricing power holds as capacity scales, not just that revenue is growing. Advantest reports first in this week's equipment gauntlet, ahead of Tokyo Electron (Jul 30) and Kioxia (Jul 31).</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Record fundamentals didn't stop the sell-off — Tokyo Electron and Kioxia prints are the next test of whether July 28's CXMT-triggered rout was a durable repricing or an overreaction.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Semiconductor Equipment &amp; Memory Earnings Gauntlet — Week of July 28</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="780" y2="90" stroke="#dde0ec" stroke-width="2"/>
+        <!-- Advantest -->
+        <circle cx="180" cy="90" r="8" fill="#3730a3"/>
+        <text x="180" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Advantest</text>
+        <text x="180" y="76" text-anchor="middle" font-size="11" fill="#5a6a8a">Jul 29 · record Q1</text>
+        <text x="180" y="118" text-anchor="middle" font-size="11" fill="#b91c1c">shares −1.22%</text>
+        <!-- Tokyo Electron -->
+        <circle cx="420" cy="90" r="8" fill="#7c3aed"/>
+        <text x="420" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Tokyo Electron</text>
+        <text x="420" y="76" text-anchor="middle" font-size="11" fill="#5a6a8a">Jul 30 · reports today</text>
+        <text x="420" y="118" text-anchor="middle" font-size="11" fill="#b45309">-11.2% Jul 28</text>
+        <!-- Kioxia -->
+        <circle cx="660" cy="90" r="8" fill="#be185d"/>
+        <text x="660" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Kioxia</text>
+        <text x="660" y="76" text-anchor="middle" font-size="11" fill="#5a6a8a">Jul 31 · next up</text>
+        <text x="660" y="118" text-anchor="middle" font-size="11" fill="#b91c1c">-18.3% Jul 28</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND</div>
+        <div class="annotation-card-zh">最高益<span class="annotation-card-en">saikōeki · record profit</span></div>
+        <div class="annotation-card-body">Record Q1 profit driven by genuine AI-tester demand across CPU, GPU, ASIC and networking segments.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MARGINS</div>
+        <div class="annotation-card-zh">利益率<span class="annotation-card-en">rieki-ritsu · profit margin</span></div>
+        <div class="annotation-card-body">Cautious margin guidance drove the share-price decline even as capacity expansion is pulled forward.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SEQUENCING</div>
+        <div class="annotation-card-zh">決算の連鎖<span class="annotation-card-en">kessan no rensa · earnings chain</span></div>
+        <div class="annotation-card-body">Tokyo Electron and Kioxia report into a Nikkei already down over 7% in July — sentiment could override fundamentals again.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO &amp; BOJ</span>
+          <span class="card-tag tag-macro" style="margin:0;">Bloomberg / Reuters</span>
+        </div>
+        <div class="story-headline">Yen near a 40-year low, JGB yields near record as the BOJ opens its two-day policy meeting</div>
+        <div class="story-insight">
+          <p>USD/JPY traded near ¥163.7 on July 29, its worst week since May, as the BOJ opens its July 30–31 meeting. Consensus expects a hold at 1.00% with an FY2026 growth upgrade toward ~0.8%. Separately, the 40-year JGB yield climbed to 4.01% on July 24, nearing its May record of 4.355%.</p>
+          <p>Finance Minister Katayama's verbal-intervention warnings have done little to deter yen sellers. The decision itself is largely priced — Ueda's Friday 3:30pm press-conference language is the actual event to watch.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Hawkish language without a hike would likely support the yen; cautious language against this week's chip-sector volatility would read as the BOJ prioritizing financial stability over currency defense.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">USD/JPY and 40-Year JGB Yield — Approaching Watched Levels</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+        <!-- USD/JPY step line trending up toward 165 -->
+        <polyline points="80,110 220,102 360,90 500,78 640,68 760,60" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="760" cy="60" r="5" fill="#3730a3"/>
+        <text x="760" y="46" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">¥163.7</text>
+        <text x="80" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">Jul 1</text>
+        <text x="760" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">Jul 29</text>
+        <line x1="60" y1="55" x2="780" y2="55" stroke="#b45309" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="72" y="50" font-size="10" fill="#b45309">¥165 watch level</text>
+        <!-- JGB 40yr yield dashed record line -->
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#7c3aed" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="72" y="26" font-size="10" fill="#7c3aed">40yr JGB record: 4.355% (May)</text>
+        <polyline points="80,95 300,90 500,82 700,42" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="2,2"/>
+        <circle cx="700" cy="42" r="5" fill="#7c3aed"/>
+        <text x="700" y="34" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">4.01% (Jul 24)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GROWTH</div>
+        <div class="annotation-card-zh">成長率上方修正<span class="annotation-card-en">seichōritsu jōhō shūsei · growth upgrade</span></div>
+        <div class="annotation-card-body">FY2026 growth forecast expected to be revised up to ~0.8%, reflecting resilient AI/semiconductor-linked demand.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LANGUAGE</div>
+        <div class="annotation-card-zh">記者会見<span class="annotation-card-en">kisha kaiken · press conference</span></div>
+        <div class="annotation-card-body">Friday's Ueda press conference language matters more than the widely-priced hold decision itself.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CREDIBILITY</div>
+        <div class="annotation-card-zh">口先介入<span class="annotation-card-en">kuchisaki kainyū · verbal intervention</span></div>
+        <div class="annotation-card-body">Repeated verbal warnings without follow-through risk losing credibility with yen bears as ¥165 approaches.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #60 · JULY 30, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
