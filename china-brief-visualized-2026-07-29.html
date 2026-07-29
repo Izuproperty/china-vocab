@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #71 · July 29, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:840px; margin:0 auto; background:#fff; min-height:100vh; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .header { background:#1a1a2e; padding:28px 40px 22px; border-bottom:4px solid #c0392b; }
+  .back-link { font-size:10px; font-weight:700; letter-spacing:2px; color:#8a9bb5; text-decoration:none; display:inline-block; margin-bottom:12px; }
+  .back-link:hover { color:#e8d5b0; }
+  .header h1 { font-family:'Playfair Display',serif; font-size:26px; color:#fff; }
+  .header .sub { font-size:12px; color:#8a9bb5; margin-top:6px; }
+  .tabs { display:flex; background:#f0ede8; border-bottom:1px solid #e0d8d0; }
+  .tab { flex:1; padding:14px 10px; text-align:center; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:#8a7a6a; cursor:pointer; border-bottom:3px solid transparent; transition:all .15s; }
+  .tab:hover { background:#e8e4dc; }
+  .tab.active { color:#c0392b; border-bottom-color:#c0392b; background:#fff; }
+  .viz-panel { display:none; padding:32px 40px 40px; }
+  .viz-panel.active { display:block; }
+  .panel-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; line-height:1.35; margin-bottom:6px; }
+  .panel-source { font-size:11px; color:#9a8a7a; margin-bottom:24px; }
+  .signals { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:28px; }
+  .signal { background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 6px 6px 0; padding:14px 16px; }
+  .signal .num { font-size:26px; font-weight:700; color:#1a1a2e; line-height:1.1; }
+  .signal .lbl { font-size:11px; color:#7a6a5a; margin-top:6px; line-height:1.4; }
+  .chart-block { margin-bottom:28px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#8a7a6a; margin-bottom:12px; }
+  .chart-box { background:#fbf9f5; border:1px solid #eee6da; border-radius:8px; padding:18px; }
+  .annotations { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+  .annotation-card { border-radius:8px; padding:16px; font-size:12.5px; line-height:1.55; }
+  .annotation-card.red { background:#fdf0ee; border:1px solid #f2d5d0; }
+  .annotation-card.amber { background:#fdf7ea; border:1px solid #f0e2c0; }
+  .annotation-card.green { background:#eff7ef; border:1px solid #d2e6d2; }
+  .annotation-card .tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .annotation-card.red .tag { color:#c0392b; }
+  .annotation-card.amber .tag { color:#b45309; }
+  .annotation-card.green .tag { color:#2e7d32; }
+  .annotation-card-zh { font-size:16px; font-weight:700; color:#1a1a2e; margin-bottom:6px; }
+  .annotation-card-en { font-size:11px; font-weight:400; color:#7a6a5a; font-style:italic; margin-left:6px; }
+  .annotation-card p { color:#3a3a3a; }
+  .footer { padding:18px 40px 28px; background:#1a1a2e; text-align:center; font-size:11px; color:#4a5a7a; }
+  @media (max-width:640px){ .signals,.annotations{grid-template-columns:1fr;} .viz-panel{padding:24px 20px;} }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+  <div class="header">
+    <a class="back-link" href="brief.html">← CHINA BRIEF</a>
+    <h1>China Brief Visualized · Issue #71</h1>
+    <div class="sub">Wednesday, July 29, 2026 · Three stories in charts and signals</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-1" onclick="showViz('viz-1', this)">HK Driverless First</div>
+    <div class="tab" id="tab-2" onclick="showViz('viz-2', this)">AI Sanctions Standoff</div>
+    <div class="tab" id="tab-3" onclick="showViz('viz-3', this)">Chip Rout</div>
+  </div>
+
+  <!-- ══════════ TAB 1: HONG KONG DRIVERLESS ══════════ -->
+  <div class="viz-panel active" id="viz-1">
+    <div class="panel-headline">First in the World, Right-Hand Drive: Apollo Go Goes Fully Driverless on Hong Kong's Airport Island</div>
+    <div class="panel-source">Global Times / SCMP / CnEVPost · July 27, 2026 · Baidu Apollo Go</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">0</div><div class="lbl">Safety operators on board in the Airport Island trial fleet</div></div>
+      <div class="signal"><div class="num">240K+</div><div class="lbl">Kilometers logged by Apollo Go across Hong Kong to date</div></div>
+      <div class="signal"><div class="num">1st</div><div class="lbl">Fully driverless public-road test in a right-hand-drive, left-traffic system, anywhere</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Four Days, Two Cities: From HK Permit to a Second Right-Hand-Drive Market</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="60" y1="95" x2="700" y2="95" stroke="#d8d0c4" stroke-width="2"/>
+          <!-- Jul 23 -->
+          <circle cx="130" cy="95" r="7" fill="#8a9bb5"/>
+          <text x="130" y="70" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 23</text>
+          <text x="130" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">HK Transport Dept.</text>
+          <text x="130" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">grants driverless permit</text>
+          <!-- Jul 27 -->
+          <circle cx="380" cy="95" r="8" fill="#c0392b"/>
+          <text x="380" y="70" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Jul 27</text>
+          <text x="380" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Airport Island test —</text>
+          <text x="380" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">zero safety operators</text>
+          <!-- Jul 28 -->
+          <circle cx="630" cy="95" r="8" fill="#2e7d32"/>
+          <text x="630" y="70" font-size="11" font-weight="700" fill="#2e7d32" text-anchor="middle">Jul 28</text>
+          <text x="630" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">London testing begins</text>
+          <text x="630" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">(safety driver aboard)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">全无人<span class="annotation-card-en">quán wúrén · fully driverless</span></div>
+        <p>Confined to one geo-fenced district on Airport Island and not yet revenue-generating. A proof point, not evidence the model works at commercial scale in a new market.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">靠左行驶<span class="annotation-card-en">kào zuǒ xíngshǐ · right-hand-drive</span></div>
+        <p>London testing still carries a safety driver, and public UK rides depend on separate regulatory approval targeted for 2027 — each right-hand-drive market clears its own bar on its own timeline.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">出海<span class="annotation-card-en">chūhǎi · going overseas</span></div>
+        <p>Baidu says Hong Kong experience directly informs the London rollout — a template roughly a third of the world's countries (UK, Japan, Australia, much of Southeast Asia) share.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 2: AI SANCTIONS STANDOFF ══════════ -->
+  <div class="viz-panel" id="viz-2">
+    <div class="panel-headline">Beijing Draws a Line: MOFCOM Vows "All Necessary Measures" Against Threatened US AI Sanctions</div>
+    <div class="panel-source">Xinhua / Bloomberg / SCMP · July 27, 2026 · Ministry of Commerce (MOFCOM)</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">Jul 22</div><div class="lbl">White House OSTP names Moonshot AI, alleges Kimi K3 distillation</div></div>
+      <div class="signal"><div class="num">$30B+</div><div class="lbl">Reported valuation talk for Moonshot's planned HK IPO — now under sanctions overhang</div></div>
+      <div class="signal"><div class="num">Jul 27</div><div class="lbl">MOFCOM's first on-record response: "all necessary measures"</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">Five Days From Accusation to Formal Response</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <line x1="60" y1="95" x2="700" y2="95" stroke="#d8d0c4" stroke-width="2"/>
+          <!-- Jul 22 -->
+          <circle cx="130" cy="95" r="7" fill="#8a9bb5"/>
+          <text x="130" y="70" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 22</text>
+          <text x="130" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Kratsios accuses Moonshot;</text>
+          <text x="130" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">Bessent threatens sanctions</text>
+          <!-- Jul 24 -->
+          <circle cx="380" cy="95" r="7" fill="#b45309"/>
+          <text x="380" y="70" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Jul 24</text>
+          <text x="380" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">Beijing seeks clarity from</text>
+          <text x="380" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">Washington on AI talks</text>
+          <!-- Jul 27 -->
+          <circle cx="630" cy="95" r="8" fill="#c0392b"/>
+          <text x="630" y="70" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Jul 27</text>
+          <text x="630" y="125" font-size="10" fill="#5a5a5a" text-anchor="middle">MOFCOM: "all necessary</text>
+          <text x="630" y="139" font-size="10" fill="#5a5a5a" text-anchor="middle">measures" if sanctioned</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">霸权主义<span class="annotation-card-en">bàquán zhǔyì · hegemonism</span></div>
+        <p>"All necessary measures" is a rhetorical marker, not a disclosed retaliation mechanism — it remains unclear whether Beijing has identified specific tools (rare-earth or chip-material curbs) it would use.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">蒸馏<span class="annotation-card-en">zhēngliú · distillation</span></div>
+        <p>Independent researchers have publicly disputed the distillation allegation and no technical evidence has been published — the underlying IP claim itself remains contested.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">习特会<span class="annotation-card-en">Xí-Tè huì · Xi-Trump summit</span></div>
+        <p>The statement lands days ahead of the planned summit, where Beijing is also reported to be setting tariff boundaries — folding the AI dispute into a broader negotiating frame rather than an isolated issue.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB 3: CHIP ROUT ══════════ -->
+  <div class="viz-panel" id="viz-3">
+    <div class="panel-headline">AI Capex Doubts Meet China Competition Fears: Chip Rout Deepens, Shenzhen Hits a Four-Month Low</div>
+    <div class="panel-source">Bloomberg / CNBC / Reuters · July 28, 2026 · China semiconductor sector</div>
+
+    <div class="signals">
+      <div class="signal"><div class="num">-4.52%</div><div class="lbl">Shenzhen Component decline — lowest close since early April</div></div>
+      <div class="signal"><div class="num">-7.5%</div><div class="lbl">Peak intraday drop in Bloomberg's Asia semiconductor gauge</div></div>
+      <div class="signal"><div class="num">$750B</div><div class="lbl">Nvidia's announced AI infrastructure deals now under "circular funding" scrutiny</div></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="chart-title">July 28 Session · Selected China-Listed Semiconductor Declines</div>
+      <div class="chart-box">
+        <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <!-- scale: -17.13% = 560px max bar -->
+          <text x="150" y="30" font-size="11" fill="#5a5a5a" text-anchor="end">Eoptolink</text>
+          <rect x="160" y="18" width="480" height="20" fill="#c0392b" rx="3"/>
+          <text x="650" y="33" font-size="12" font-weight="700" fill="#c0392b">-17.13%</text>
+
+          <text x="150" y="66" font-size="11" fill="#5a5a5a" text-anchor="end">Zhongji Innolight</text>
+          <rect x="160" y="54" width="439" height="20" fill="#c0392b" rx="3"/>
+          <text x="609" y="69" font-size="12" font-weight="700" fill="#c0392b">-15.69%</text>
+
+          <text x="150" y="102" font-size="11" fill="#5a5a5a" text-anchor="end">GigaDevice</text>
+          <rect x="160" y="90" width="280" height="20" fill="#d9764a" rx="3"/>
+          <text x="450" y="105" font-size="12" font-weight="700" fill="#b45309">-10%</text>
+
+          <text x="150" y="138" font-size="11" fill="#5a5a5a" text-anchor="end">Cambricon</text>
+          <rect x="160" y="126" width="255" height="20" fill="#d9764a" rx="3"/>
+          <text x="425" y="141" font-size="12" font-weight="700" fill="#b45309">-9.11%</text>
+
+          <text x="150" y="174" font-size="11" fill="#5a5a5a" text-anchor="end">SMIC</text>
+          <rect x="160" y="162" width="138" height="20" fill="#e0a030" rx="3"/>
+          <text x="308" y="177" font-size="12" font-weight="700" fill="#b45309">-4.92%</text>
+
+          <text x="150" y="210" font-size="11" fill="#5a5a5a" text-anchor="end">Shenzhen Comp.</text>
+          <rect x="160" y="198" width="127" height="20" fill="#8a9bb5" rx="3"/>
+          <text x="297" y="213" font-size="12" font-weight="700" fill="#5a5a5a">-4.52%</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-card red">
+        <div class="tag">Risk</div>
+        <div class="annotation-card-zh">循环融资<span class="annotation-card-en">xúnhuán róngzī · circular funding</span></div>
+        <p>CDS spreads on debt from Oracle, SpaceX, Alphabet, Amazon, Meta, Broadcom and Nvidia hit record highs this week — credit markets pricing rising default risk tied to the AI infrastructure buildout.</p>
+      </div>
+      <div class="annotation-card amber">
+        <div class="tag">Watch</div>
+        <div class="annotation-card-zh">超级周期<span class="annotation-card-en">chāojí zhōuqī · supercycle</span></div>
+        <p>Domestic-substitution names (Cambricon, and by extension NAURA/AMEC) sold off alongside the incumbents they're meant to displace — a broad risk repricing, not a clean substitution trade, and hard to square with Monday's +470% CXMT debut.</p>
+      </div>
+      <div class="annotation-card green">
+        <div class="tag">Signal</div>
+        <div class="annotation-card-zh">政治局会议<span class="annotation-card-en">Zhèngzhìjú huìyì · Politburo meeting</span></div>
+        <p>This week's mid-year Politburo meeting could move sentiment independently via H2 fiscal signals — a separate catalyst from the AI-capex debate driving Tuesday's selloff.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">China Brief Issue #71 · July 29, 2026 · Not investment advice · Data sourced from public reporting</div>
+</div>
+
+<script>
+function showViz(id, tab) {
+  document.querySelectorAll('.viz-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+}
+</script>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
