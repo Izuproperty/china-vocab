@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #61 · July 31, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#3a4a6a; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#8a9bb5; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #61 · July 31, 2026</div>
+    <div class="masthead-sub">KDDI × Google AI Futures Fund · Kumamoto quake supply-chain check · BOJ holds, lifts GDP forecast</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; Tech · Startup Investment</div>
+      <div class="card-num">4<span class="card-num-unit">support pillars</span></div>
+      <div class="card-label">KDDI × Google AI Futures Fund program for Japanese AI startups</div>
+      <div class="card-delta delta-indigo">Applications opened Jul 28</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi &amp; Industrial · Supply Chain</div>
+      <div class="card-num">91<span class="card-num-unit">% global share</span></div>
+      <div class="card-label">Tokyo Electron Kyushu coater/developer share — plants halted Jul 29</div>
+      <div class="card-delta delta-red">M7.1 Kumamoto quake, Jul 28</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro &amp; BOJ · Policy</div>
+      <div class="card-num">0.8<span class="card-num-unit">% FY26 GDP</span></div>
+      <div class="card-label">Outlook Report upgrade, from April's 0.5% forecast</div>
+      <div class="card-delta delta-indigo">Rate held at 1.00% (Jul 31)</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI &amp; TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">KDDI Newsroom</span>
+        </div>
+        <div class="story-headline">KDDI and Google's AI Futures Fund open a joint funding program for Japanese AI startups</div>
+        <div class="story-insight">
+          <p>Announced July 28: joint equity funding from KDDI and Google AI Futures Fund, plus early access to Gemini, Nano Banana and Lyria, trial access to an on-premises "Gemini on GDC" instance hosted in KDDI's Osaka-Sakai data center, KDDI GPU Cloud, and direct technical support from both companies' engineering teams.</p>
+          <p>The sovereign-hosted Gemini option is the notable detail — it answers the data-sovereignty concerns Noetra's leadership has raised about foreign-hosted models, letting Google offer a frontier model that never leaves Japan, distributed through a domestic telecom rather than sold in directly.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Best read as Google building startup-ecosystem distribution ahead of any Noetra rollout, not a KDDI revenue event — watch uptake of the sovereign-Gemini option as a read on whether data sovereignty is a real adoption constraint.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">AI Startup Support Program — Four Pillars</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="780" y2="90" stroke="#dde0ec" stroke-width="2"/>
+        <circle cx="150" cy="90" r="8" fill="#3730a3"/>
+        <text x="150" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Joint Funding</text>
+        <text x="150" y="76" text-anchor="middle" font-size="11" fill="#5a6a8a">Direct equity</text>
+        <text x="150" y="118" text-anchor="middle" font-size="11" fill="#5a6a8a">KDDI + Google</text>
+        <circle cx="330" cy="90" r="8" fill="#4f46e5"/>
+        <text x="330" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Early Access</text>
+        <text x="330" y="76" text-anchor="middle" font-size="11" fill="#5a6a8a">Model access</text>
+        <text x="330" y="118" text-anchor="middle" font-size="11" fill="#5a6a8a">Gemini, Nano Banana, Lyria</text>
+        <circle cx="510" cy="90" r="8" fill="#7c3aed"/>
+        <text x="510" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">AI Infrastructure</text>
+        <text x="510" y="76" text-anchor="middle" font-size="11" fill="#5a6a8a">Compute</text>
+        <text x="510" y="118" text-anchor="middle" font-size="11" fill="#5a6a8a">Sovereign Gemini + GPU Cloud</text>
+        <circle cx="690" cy="90" r="8" fill="#818cf8"/>
+        <text x="690" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Expert Support</text>
+        <text x="690" y="76" text-anchor="middle" font-size="11" fill="#5a6a8a">Guidance</text>
+        <text x="690" y="118" text-anchor="middle" font-size="11" fill="#5a6a8a">Google + KDDI engineers</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SOVEREIGNTY</div>
+        <div class="annotation-card-zh">出資<span class="annotation-card-en">shusshi · equity investment</span></div>
+        <div class="annotation-card-body">On-premises "Gemini on GDC" via KDDI's Osaka-Sakai data center is a direct answer to Japan's data-sovereignty push.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · UPTAKE</div>
+        <div class="annotation-card-zh">提携<span class="annotation-card-en">teikei · partnership</span></div>
+        <div class="annotation-card-body">Whether startups actually choose the sovereign-Gemini option over standard cloud access will signal how binding sovereignty rules really are.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COMPETITION</div>
+        <div class="annotation-card-zh">分散<span class="annotation-card-en">bunsan · fragmentation</span></div>
+        <div class="annotation-card-body">Google's push mirrors Anthropic's NEC/Fujitsu distribution deals — Japan's AI-startup ecosystem risks fragmenting across competing foreign-model camps ahead of Noetra's own model.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMI &amp; INDUSTRIAL</span>
+          <span class="card-tag tag-semi" style="margin:0;">TrendForce / Nikkei</span>
+        </div>
+        <div class="story-headline">A 7.1 earthquake hits Kumamoto — TSMC's fab shrugs it off, but a near-monopoly equipment supplier does not</div>
+        <div class="story-insight">
+          <p>TSMC's JASM fab recorded a maximum seismic intensity of 5, evacuated staff, then confirmed no structural damage and resumed operations in stages; Kumamoto is under 3% of TSMC's global capacity, so fab-level risk was genuinely limited.</p>
+          <p>Tokyo Electron Kyushu — a ~91% global share holder in coater/developer equipment — suspended both Kumamoto plants on July 29 for precautionary inspection. Renesas, Sony, Mitsubishi Electric, Fujifilm and Honda also checked or paused Kumamoto sites.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> The equipment-side exposure is the one to watch — a sustained Tokyo Electron Kyushu stoppage would ripple further than TSMC's own limited fab exposure, given how concentrated global coater/developer supply is.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Kumamoto Exposure — Fab Capacity vs. Equipment Market Share</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <!-- TSMC bar: <3% -->
+        <rect x="200" y="134" width="90" height="6" fill="#c7d2fe" rx="3"/>
+        <text x="245" y="34" text-anchor="middle" font-size="20" font-weight="700" fill="#3730a3">&lt;3%</text>
+        <text x="245" y="56" text-anchor="middle" font-size="11" fill="#5a6a8a">of TSMC global</text>
+        <text x="245" y="70" text-anchor="middle" font-size="11" fill="#5a6a8a">wafer capacity</text>
+        <text x="245" y="160" text-anchor="middle" font-size="11" fill="#166534">JASM-1 resumed in stages</text>
+        <!-- TEL Kyushu bar: 91% -->
+        <rect x="480" y="36" width="90" height="104" fill="#3730a3" rx="3"/>
+        <text x="525" y="28" text-anchor="middle" font-size="20" font-weight="700" fill="#3730a3">91%</text>
+        <text x="525" y="160" text-anchor="middle" font-size="11" fill="#b91c1c">TEL Kyushu halted Jul 29</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · RESILIENCE</div>
+        <div class="annotation-card-zh">構造健全性<span class="annotation-card-en">kōzō kenzensei · structural safety</span></div>
+        <div class="annotation-card-body">TSMC's JASM-1 confirmed no structural damage and resumed operations within a day of the quake.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DURATION</div>
+        <div class="annotation-card-zh">供給網<span class="annotation-card-en">kyōkyūmō · supply chain</span></div>
+        <div class="annotation-card-body">Tokyo Electron Kyushu's precautionary halt is the figure to track — a near-monopoly position means any extension matters globally.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">一極集中<span class="annotation-card-en">ikkyoku shūchū · single-point concentration</span></div>
+        <div class="annotation-card-body">Kyushu clusters a near-monopoly equipment supplier and multiple materials makers in one seismically active prefecture.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO &amp; BOJ</span>
+          <span class="card-tag tag-macro" style="margin:0;">Bank of Japan / Bloomberg</span>
+        </div>
+        <div class="story-headline">BOJ holds at 1%, lifts its growth forecast — the real story is what Ueda says next</div>
+        <div class="story-insight">
+          <p>The BOJ held its policy rate at 1.00%, as all 52 Bloomberg-surveyed economists expected, and upgraded its FY2026 real GDP forecast to 0.8% from April's 0.5% in the quarterly Outlook Report, citing resilient AI/semiconductor-linked capex.</p>
+          <p>With the hold fully priced, Governor Ueda's afternoon press conference — and whether his language points to an autumn hike sooner than consensus assumes — is the actual market event, set against a yen near a 40-year low and a 10-year JGB yield close to its May record.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> A GDP upgrade paired with a hold preserves optionality for an October move without committing to it — an earlier hike would need further wage or price strength before the September meeting to become credible.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">BOJ Policy Rate Path &amp; FY2026 GDP Forecast Revision</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <!-- Rate step chart -->
+        <polyline points="80,110 220,110 220,90 380,90 380,60 560,60 560,60 760,60" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <text x="150" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">0.50%</text>
+        <text x="300" y="106" text-anchor="middle" font-size="10" fill="#5a6a8a">0.75%</text>
+        <text x="470" y="76" text-anchor="middle" font-size="10" fill="#5a6a8a">1.00% (Jun 16)</text>
+        <text x="760" y="46" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">Held Jul 31</text>
+        <circle cx="760" cy="60" r="5" fill="#3730a3"/>
+        <!-- GDP forecast bars, secondary -->
+        <rect x="640" y="122" width="24" height="18" fill="#c7d2fe" rx="2"/>
+        <text x="652" y="118" text-anchor="middle" font-size="9" fill="#5a6a8a">0.5%</text>
+        <rect x="675" y="112" width="24" height="28" fill="#166534" rx="2"/>
+        <text x="687" y="108" text-anchor="middle" font-size="9" fill="#166534">0.8%</text>
+        <text x="668" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">FY26 GDP: Apr → Jul forecast</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GROWTH</div>
+        <div class="annotation-card-zh">上方修正<span class="annotation-card-en">jōhō shūsei · upward revision</span></div>
+        <div class="annotation-card-body">FY2026 GDP forecast raised to 0.8% from 0.5%, reflecting resilient AI/semiconductor-linked capex.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LANGUAGE</div>
+        <div class="annotation-card-zh">記者会見<span class="annotation-card-en">kisha kaiken · press conference</span></div>
+        <div class="annotation-card-body">Ueda's press-conference tone on timing matters more than the fully-priced hold decision itself.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CURRENCY</div>
+        <div class="annotation-card-zh">円安<span class="annotation-card-en">en'yasu · yen weakness</span></div>
+        <div class="annotation-card-body">Yen near a 40-year low keeps pressure on the BOJ to sound hawkish even as it holds rates steady.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #61 · JULY 31, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
