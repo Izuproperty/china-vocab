@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #73 · July 31, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #73 · July 31, 2026</div>
+    <div class="masthead-sub">Kimi K3 Open Weights · Blue ADAS Light Ban · Politburo Fiscal Pledge</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · FOUNDATION MODELS</div>
+      <div class="card-num">2.8<span class="card-num-unit">trillion params</span></div>
+      <div class="card-label">Kimi K3's full weight set, released open — the largest open-weight model published to date</div>
+      <div class="card-delta delta-red">BIS probe reportedly opened</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · AV REGULATION</div>
+      <div class="card-num">4<span class="card-num-unit">years</span></div>
+      <div class="card-label">Gap between China's 2019 lighting standard and enforcement of the blue ADAS marker-lamp ban</div>
+      <div class="card-delta delta-amber">Enforced Jul 27–29</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · FISCAL POLICY</div>
+      <div class="card-num">4.7<span class="card-num-unit">% H1 y/y</span></div>
+      <div class="card-label">H1 2026 GDP growth — inside the 4.5–5.0% target band, but decelerating into Q2</div>
+      <div class="card-delta delta-amber">No rate cut announced</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">The License Is the Story: Moonshot Opens Kimi K3's 2.8 Trillion Parameters — With Strings Attached</div>
+    <div class="story-insight">
+      <p>Moonshot published Kimi K3's full weights on July 27, eleven days after its API debut — 2.8T parameters, 1M-token context, scoring 57 on Artificial Analysis's Intelligence Index (roughly on par with Claude Opus 4.8 and GPT-5.5). The license is near-MIT until revenue crosses $20M thresholds, at which point resellers need a separate commercial deal and large-scale products must display "Kimi K3" — a structure built to capture leverage as adoption scales, unlike DeepSeek's unrestricted release.</p>
+      <br>
+      <p>Washington's response has hardened in parallel: distillation and export-circumvention allegations from OSTP and Treasury reportedly triggered a BIS investigation, with no technical evidence published by either side. The public weights make independent verification possible for the first time — cutting both ways for Moonshot's pending Hong Kong IPO.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Open weights don't mean open-ended use — Moonshot's revenue-tiered license is a template worth watching as more Chinese labs open-source frontier models.</div>
+    <div class="chart-box">
+      <div class="chart-title">Intelligence Index: K3 vs. Frontier Models</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="220" y1="20" x2="220" y2="165" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="210" y="38" text-anchor="end" font-size="11" fill="#3a3a3a">Claude Opus 4.8</text>
+        <rect x="220" y="26" width="342" height="18" fill="#1a1a2e"/>
+        <text x="572" y="40" font-size="11" font-weight="700" fill="#1a1a2e">~57</text>
+        <text x="210" y="70" text-anchor="end" font-size="11" fill="#3a3a3a">GPT-5.5</text>
+        <rect x="220" y="58" width="336" height="18" fill="#3a3a6e"/>
+        <text x="566" y="72" font-size="11" font-weight="700" fill="#3a3a6e">~56</text>
+        <text x="210" y="102" text-anchor="end" font-size="11" fill="#c0392b" font-weight="700">Kimi K3 (open)</text>
+        <rect x="220" y="90" width="342" height="18" fill="#c0392b"/>
+        <text x="572" y="104" font-size="11" font-weight="700" fill="#c0392b">57</text>
+        <text x="210" y="134" text-anchor="end" font-size="11" fill="#3a3a3a">GLM-5.2 (open)</text>
+        <rect x="220" y="122" width="306" height="18" fill="#b45309"/>
+        <text x="536" y="136" font-size="11" font-weight="700" fill="#b45309">51</text>
+        <text x="210" y="166" text-anchor="end" font-size="11" fill="#3a3a3a">DeepSeek V4 Pro (open)</text>
+        <rect x="220" y="154" width="264" height="18" fill="#9a7a4a"/>
+        <text x="494" y="168" font-size="11" font-weight="700" fill="#9a7a4a">44</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · BENCHMARK</div>
+        <div class="annotation-card-zh">开源<span class="annotation-card-en">kāiyuán · open source</span></div>
+        <div class="annotation-card-body">K3 lands within a point of Claude Opus 4.8 and GPT-5.5 on Artificial Analysis's index — the strongest showing yet for an open-weight Chinese model.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LICENSE MODEL</div>
+        <div class="annotation-card-zh">收入分级许可<span class="annotation-card-en">shōurù fēnjí xǔkě · revenue-tiered license</span></div>
+        <div class="annotation-card-body">Free until $20M in revenue, then Moonshot wants a commercial agreement or in-app attribution — a structure other Chinese labs may copy.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SANCTIONS OVERHANG</div>
+        <div class="annotation-card-zh">蒸馏<span class="annotation-card-en">zhēngliú · distillation</span></div>
+        <div class="annotation-card-body">Unresolved BIS investigation into distillation and chip-circumvention claims clouds Moonshot's Hong Kong IPO plans, reportedly targeting $30B+.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / AUTONOMOUS DRIVING REGULATION</div>
+    <div class="story-headline">Four Years in a Grey Zone: MIIT Enforces the Ban on Blue ADAS Indicator Lights</div>
+    <div class="story-insight">
+      <p>MIIT is strictly enforcing the existing GB4785-2019 lighting standard — white, red, yellow, amber only — effectively banning the blue "Little Blue Light" that signals active driver assistance. New filings featuring the lamp are barred starting next month. Li Auto popularized the design on the 2022 L9; Aito, Xpeng, Nio and BYD followed, all technically out of compliance since the standard was finalized.</p>
+      <br>
+      <p>The more interesting fact is the four-year gap between rule and enforcement, not any single OEM's exposure. Remediation for cars already on the road — possibly an OTA fix — remains under study, an unbudgeted compliance cost as Beijing works toward broader L3/L4 safety rules due by July 2027.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Fast-moving EV design conventions can outrun China's formal standards process for years — and enforcement, when it lands, arrives abruptly rather than in phases.</div>
+    <div class="chart-box">
+      <div class="chart-title">Blue ADAS Light: Standard vs. Enforcement Timeline</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="85" x2="760" y2="85" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="140" cy="85" r="7" fill="#5a6a8a"/>
+        <text x="140" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">2019</text>
+        <text x="140" y="112" text-anchor="middle" font-size="10" fill="#5a6a8a">GB4785 standard</text>
+        <text x="140" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">finalized (4 colors only)</text>
+        <circle cx="330" cy="85" r="7" fill="#b45309"/>
+        <text x="330" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Aug 2022</text>
+        <text x="330" y="112" text-anchor="middle" font-size="10" fill="#5a6a8a">Li Auto L9 debuts</text>
+        <text x="330" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">the blue marker light</text>
+        <circle cx="530" cy="85" r="7" fill="#8a7a6a"/>
+        <text x="530" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">2023–25</text>
+        <text x="530" y="112" text-anchor="middle" font-size="10" fill="#5a6a8a">Aito, Xpeng, Nio, BYD</text>
+        <text x="530" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">adopt similar designs</text>
+        <circle cx="700" cy="85" r="8" fill="#c0392b"/>
+        <text x="700" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 27–29, 2026</text>
+        <text x="700" y="112" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">MIIT enforces ban —</text>
+        <text x="700" y="126" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">new filings barred</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ENFORCEMENT</div>
+        <div class="annotation-card-zh">国家标准<span class="annotation-card-en">guójiā biāozhǔn · national standard</span></div>
+        <div class="annotation-card-body">GB4785-2019 was already on the books — MIIT chose to enforce it now rather than draft a new rule, a faster and blunter path to compliance.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REMEDIATION</div>
+        <div class="annotation-card-zh">辅助驾驶标志灯<span class="annotation-card-en">fǔzhù jiàshǐ biāozhì dēng · ADAS marker lamp</span></div>
+        <div class="annotation-card-body">Whether OTA updates are accepted as compliant remediation for already-sold vehicles, or owners face a costlier physical fix.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SAFETY DEBATE UNRESOLVED</div>
+        <div class="annotation-card-zh">责任盾牌<span class="annotation-card-en">zérèn dùnpái · liability shield</span></div>
+        <div class="annotation-card-body">Whether the lights aid road-user awareness or encourage over-reliance on ADAS remains unsettled ahead of China's 2027 L3/L4 rules.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO / FISCAL POLICY</div>
+    <div class="story-headline">Incremental, Not Big-Bang: Politburo Pledges Faster Fiscal Spending, Sets October Plenum</div>
+    <div class="story-insight">
+      <p>The July 30 Politburo readout pledged to accelerate fiscal spending and bond-proceeds use under a "moderately accommodative" monetary stance, following Q2 GDP of 4.3% y/y — the slowest since late 2022, though H1's 4.7% held inside the 4.5–5.0% target band. October 2026 was set for the Fifth Plenum, notable a year ahead of the next Party Congress.</p>
+      <br>
+      <p>No explicit rate cut was announced, and specifics were thin — consistent with prior mid-year Politburo meetings that have historically disappointed big-stimulus bets. Markets barely reacted, overshadowed by a same-day tech selloff (STAR 50 -5.4%) driven by valuation concerns rather than the policy statement.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The more consequential policy signals — on growth-driver transition and actual fiscal acceleration — are more likely to show up in Q4 data than in this week's announcement.</div>
+    <div class="chart-box">
+      <div class="chart-title">Quarterly GDP Growth vs. Full-Year Target Band (y/y %)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <rect x="60" y="50" width="700" height="30" fill="#dcfce7" opacity="0.6"/>
+        <text x="770" y="70" text-anchor="end" font-size="10" fill="#166534">Target: 4.5–5.0%</text>
+        <line x1="60" y1="160" x2="760" y2="160" stroke="#e0d8d0" stroke-width="2"/>
+        <rect x="120" y="46" width="46" height="114" fill="#166534"/>
+        <text x="143" y="40" text-anchor="middle" font-size="11" font-weight="700" fill="#166534">5.0%</text>
+        <text x="143" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">Q1 2026</text>
+        <rect x="300" y="63" width="46" height="97" fill="#c0392b"/>
+        <text x="323" y="57" text-anchor="middle" font-size="11" font-weight="700" fill="#c0392b">4.3%</text>
+        <text x="323" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">Q2 2026</text>
+        <rect x="480" y="55" width="46" height="105" fill="#b45309"/>
+        <text x="503" y="49" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">4.7%</text>
+        <text x="503" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">H1 2026 avg</text>
+        <line x1="640" y1="30" x2="640" y2="160" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="640" y="20" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">Politburo · Jul 30</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FISCAL TILT</div>
+        <div class="annotation-card-zh">增量政策<span class="annotation-card-en">zēngliàng zhèngcè · incremental policies</span></div>
+        <div class="annotation-card-body">The pledge to accelerate fiscal spending and bond-proceeds use is the concrete lever pulled — even without a headline stimulus number.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · OCTOBER PLENUM</div>
+        <div class="annotation-card-zh">五中全会<span class="annotation-card-en">Wǔzhōng Quánhuì · Fifth Plenum</span></div>
+        <div class="annotation-card-body">A pre-Party-Congress session where leadership and longer-horizon growth-model signals could carry more weight than this week's readout.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MUTED MARKET REACTION</div>
+        <div class="annotation-card-zh">适度宽松<span class="annotation-card-en">shìdù kuānsōng · moderately accommodative</span></div>
+        <div class="annotation-card-body">No rate cut and thin specifics landed the same day as a valuation-driven tech selloff — investors may need more time to price the policy backdrop.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #73 · JULY 31, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
