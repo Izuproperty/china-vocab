@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #74 · August 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #74 · August 1, 2026</div>
+    <div class="masthead-sub">Vacuum Makers Caught in Robot Ban · DeepSeek's Cheaper Model Wins · July PMI Contracts</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">68<span class="card-num-unit">%</span></div>
+      <div class="card-label">Combined 2025 global robot-vacuum share now frozen out of new US model launches</div>
+      <div class="card-delta delta-red">Roborock, Ecovacs, Dreame, Xiaomi, Narwal</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · MODELS</div>
+      <div class="card-num">9/9<span class="card-num-unit">benchmarks</span></div>
+      <div class="card-label">V4-Flash-0731 beats DeepSeek's own larger V4-Pro flagship — same parameter count, retraining only</div>
+      <div class="card-delta delta-green">$0.14 / $0.28 per M tokens</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · PMI</div>
+      <div class="card-num">49.2<span class="card-num-unit">Jul PMI</span></div>
+      <div class="card-label">First sub-50 reading since February; new orders fell to lowest since 2023</div>
+      <div class="card-delta delta-red">vs. 50.3 in June</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH / ROBOTICS</div>
+    <div class="story-headline">The Ban Nobody Priced Into Vacuum Stocks: FCC's Robot Rule Freezes China's Cleaning-Robot Giants Out of New US Launches</div>
+    <div class="story-insight">
+      <p>The FCC's Covered List addition — read last week as a humanoid-robot measure aimed at Unitree — turns out to cover any foreign-made device over 2kg with locomotion, navigation and network connectivity. That definition sweeps in household robot vacuums, freezing new US model authorizations for the five Chinese brands that made up 68% of the 2025 global market.</p>
+      <br>
+      <p>Unlike humanoids, this is realized revenue, not a speculative market: Roborock alone posted ¥18.7B in 2025 sales (+56.5% y/y). The freeze hits new launches, not the installed base — existing units are grandfathered through at least 2029 — so the open question is substitution risk, and there are few non-Chinese alternatives at comparable price points.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A rule framed as industrial policy is, in practice, a consumer-electronics freeze in a category China already won outright.</div>
+    <div class="chart-box">
+      <div class="chart-title">2025 Global Robot Vacuum Market Share — Brands Now Frozen Out of New US Launches</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="170" x2="780" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <!-- bars: Roborock 27, Ecovacs 15, Dreame 12, Xiaomi 8, Narwal 6, Others(non-Chinese) 32 -->
+        <g font-size="11" fill="#5a6a8a">
+          <rect x="90" y="34" width="500" height="20" fill="#c0392b"/>
+          <text x="600" y="49">Roborock 27.0%</text>
+
+          <rect x="90" y="64" width="278" height="20" fill="#d9756a"/>
+          <text x="378" y="79">Ecovacs ~15%</text>
+
+          <rect x="90" y="94" width="222" height="20" fill="#e39d94"/>
+          <text x="322" y="109">Dreame ~12%</text>
+
+          <rect x="90" y="124" width="148" height="20" fill="#eec2bb"/>
+          <text x="248" y="139">Xiaomi ~8%</text>
+
+          <rect x="90" y="154" width="111" height="20" fill="#f4dcd8"/>
+          <text x="211" y="169" fill="#7a6a5a">Narwal ~6%</text>
+        </g>
+        <text x="60" y="14" font-size="10" fill="#9a8a7a">Combined five-brand share: 68% of global 2025 unit volume (illustrative split of the 68% total, Roborock exact at 27.0% RVC H2 2025)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · REVENUE BASE</div>
+        <div class="annotation-card-zh">出海<span class="annotation-card-en">chū hǎi · going overseas</span></div>
+        <div class="annotation-card-body">Overseas revenue is already >50% of Roborock's total and growing faster than domestic — the US freeze caps future growth in one market, not the broader overseas trajectory.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUBSTITUTION</div>
+        <div class="annotation-card-zh">替代品<span class="annotation-card-en">tìdàipǐn · substitute goods</span></div>
+        <div class="annotation-card-body">Whether US buyers shift to grandfathered older SKUs or defect to non-Chinese brands determines if this is a pricing-power story or a share-loss story.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · RETALIATION</div>
+        <div class="annotation-card-zh">反制措施<span class="annotation-card-en">fǎnzhì cuòshī · countermeasures</span></div>
+        <div class="annotation-card-body">Beijing has threatened countermeasures over the broader robot ban; no confirmation yet whether a response specifically targets consumer electronics.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">Same Size, Higher Score: DeepSeek's V4-Flash Beats Its Own Flagship Without Adding a Single Parameter</div>
+    <div class="story-insight">
+      <p>V4-Flash-0731 keeps the exact 284B/13B MoE architecture of the April preview — DeepSeek only re-ran post-training. The company's own results show it outscoring the larger V4-Pro-Preview flagship on all nine published agent/coding benchmarks, at unchanged pricing of $0.14/$0.28 per million tokens.</p>
+      <br>
+      <p>The read-through is sector-wide: if training technique substitutes for scale this reliably, the floor on "good enough" model pricing keeps falling — arriving two weeks after Moonshot's K3 pricing reset already pressured Zhipu and MiniMax valuations.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Capability gains without compute scale-up are a headwind for anyone underwriting durable model-layer margins.</div>
+    <div class="chart-box">
+      <div class="chart-title">Output Pricing Comparison — $ per Million Tokens (Chinese Open Models vs. US Frontier)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="10" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <g font-size="11" fill="#5a6a8a">
+          <rect x="90" y="24" width="8" height="20" fill="#c0392b"/>
+          <text x="105" y="39">DeepSeek V4-Flash-0731: $0.28</text>
+
+          <rect x="90" y="54" width="126" height="20" fill="#e39d94"/>
+          <text x="226" y="69">GLM-5.2: $4.40</text>
+
+          <rect x="90" y="84" width="690" height="20" fill="#8a9bb5"/>
+          <text x="70" y="99" text-anchor="end" fill="#3a3a3a">GPT-5.5: $30</text>
+        </g>
+        <text x="60" y="4" font-size="10" fill="#9a8a7a">Not to linear scale beyond GPT-5.5 bar; DeepSeek Flash bar shown at true relative width vs GLM-5.2</text>
+        <text x="60" y="168" font-size="10" fill="#9a8a7a">Sources: DeepSeek API docs; Zhipu AI GLM-5.2 pricing (Issue #59 landscape); public GPT-5.5 API pricing</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TRAINING &gt; SCALE</div>
+        <div class="annotation-card-zh">再训练<span class="annotation-card-en">zài xùnliàn · retraining</span></div>
+        <div class="annotation-card-body">Beating a larger flagship through post-training alone suggests capability gains are decoupling from raw compute spend, at least at the margin.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VERIFICATION</div>
+        <div class="annotation-card-zh">自评基准<span class="annotation-card-en">zì píng jīzhǔn · self-reported benchmark</span></div>
+        <div class="annotation-card-body">All nine benchmark wins are self-reported against DeepSeek's own published set — no independent third-party confirmation yet.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGIN COMPRESSION</div>
+        <div class="annotation-card-zh">价格战<span class="annotation-card-en">jiàgé zhàn · price war</span></div>
+        <div class="annotation-card-body">No serving-cost disclosure accompanies the pricing; if unit economics don't hold at this price, the "cheaper" claim is a sticker price, not a margin.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">The Number Behind the Politburo's Caution: July PMI Slips to 49.2, First Contraction Since February</div>
+    <div class="story-insight">
+      <p>Official manufacturing PMI fell to 49.2 in July from 50.3 in June, missing the 50.0 consensus and marking the first contraction reading since February. New orders — the more diagnostic sub-index — dropped to 48.5, the lowest since 2023.</p>
+      <br>
+      <p>The data landed the same day the Politburo pledged "incremental" H2 support — this reading is the evidence behind that language. A new-orders-led decline points to a demand problem rather than one-off noise, though July's typhoon disruption complicates a clean read this early.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch August new orders specifically — a headline bounce driven by restocking would be a weaker signal than genuine order recovery.</div>
+    <div class="chart-box">
+      <div class="chart-title">July vs. June 2026 — Manufacturing PMI and Sub-Indices</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="10" x2="60" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="170" x2="780" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="90" x2="780" y2="90" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="785" y="94" font-size="10" fill="#c0392b">50 (breakeven)</text>
+        <g font-size="11" fill="#5a6a8a">
+          <!-- Headline PMI -->
+          <rect x="100" y="86" width="46" height="8" fill="#8a9bb5"/>
+          <text x="100" y="80">Headline: Jun 50.3</text>
+          <rect x="100" y="94" width="42" height="8" fill="#c0392b"/>
+          <text x="100" y="118">Jul 49.2</text>
+
+          <!-- New Orders -->
+          <rect x="260" y="72" width="46" height="8" fill="#8a9bb5"/>
+          <text x="260" y="66">New Orders: Jun 51.2</text>
+          <rect x="260" y="94" width="42" height="26" fill="#c0392b"/>
+          <text x="260" y="134">Jul 48.5</text>
+
+          <!-- Production -->
+          <rect x="440" y="80" width="46" height="10" fill="#8a9bb5"/>
+          <text x="440" y="74">Production: Jun 51.4</text>
+          <rect x="440" y="94" width="42" height="10" fill="#c0392b"/>
+          <text x="440" y="118">Jul 49.9</text>
+
+          <!-- New Export Orders -->
+          <rect x="620" y="87" width="46" height="3" fill="#8a9bb5"/>
+          <text x="620" y="81">New Export Orders: Jun 50.1</text>
+          <rect x="620" y="94" width="42" height="4" fill="#c0392b"/>
+          <text x="620" y="112">Jul 49.0</text>
+        </g>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLICY BACKDROP</div>
+        <div class="annotation-card-zh">增量政策<span class="annotation-card-en">zēngliàng zhèngcè · incremental policy</span></div>
+        <div class="annotation-card-body">The Politburo's H2 support pledge landed the same day as this PMI miss — the data is the case for the policy tilt, not a coincidence.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · AUGUST ORDERS</div>
+        <div class="annotation-card-zh">新订单<span class="annotation-card-en">xīn dìngdān · new orders</span></div>
+        <div class="annotation-card-body">A genuine stabilization case needs new orders to recover specifically, not just the headline crossing back above 50 on inventory dynamics.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · ONE-OFF NOISE</div>
+        <div class="annotation-card-zh">台风扰动<span class="annotation-card-en">táifēng rǎodòng · typhoon disruption</span></div>
+        <div class="annotation-card-body">Coastal typhoon disruption is a genuine one-off factor layered on top of demand weakness, complicating trend-vs-noise reads this early.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #74 · AUGUST 1, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
