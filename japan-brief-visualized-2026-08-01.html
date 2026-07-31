@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #62 · August 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#3a4a6a; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#8a9bb5; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #62 · August 1, 2026</div>
+    <div class="masthead-sub">Sakana AI × NVIDIA Nemotron · Advantest guidance +35% · Suspected yen intervention</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; Tech · Orchestration</div>
+      <div class="card-num">3<span class="card-num-unit">specialist domains</span></div>
+      <div class="card-label">Nemotron joins Fugu for coding, tool-calling, instruction-following</div>
+      <div class="card-delta delta-indigo">Confirmed Jul 19</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi &amp; Industrial · Guidance</div>
+      <div class="card-num">70<span class="card-num-unit">% YoY op-profit</span></div>
+      <div class="card-label">Advantest's new FY2026 guide, up from a 26% prior forecast</div>
+      <div class="card-delta delta-green">Shares +10.9% intraday</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro &amp; FX · Intervention</div>
+      <div class="card-num">163<span class="card-num-unit">–165 ¥/$ zone</span></div>
+      <div class="card-label">Level Tokyo is suspected of defending ahead of the BOJ decision</div>
+      <div class="card-delta delta-red">Biggest $ drop vs yen since 2022</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI &amp; TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">The Decoder / Winbuzzer</span>
+        </div>
+        <div class="story-headline">Sakana AI opens its Fugu orchestrator to NVIDIA's open Nemotron models</div>
+        <div class="story-insight">
+          <p>Sakana AI confirmed it will route select subtasks — coding, tool-calling, instruction-following — from its Fugu multi-agent orchestrator to NVIDIA's open-weight Nemotron models, accessed alongside Sakana's own and other frontier models through a single OpenAI-compatible endpoint.</p>
+          <p>The move is grounded in two ICLR 2026 papers on learned orchestration (TRINITY, the Conductor) and is pitched as proof that a coordinated pool of open models can match a single proprietary frontier model — an anti-lock-in argument aimed at enterprise buyers, while giving NVIDIA a reason to stay central to the open-model stack even as it keeps selling the silicon underneath.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> One of the few homegrown Japanese AI products being adopted as working infrastructure rather than announced as strategy — watch whether enterprise customers pay for the routing layer itself, or whether it stays a research showcase.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Fugu Orchestrator — Model Pool After Nemotron Integration</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="410" y1="50" x2="410" y2="130" stroke="#dde0ec" stroke-width="2"/>
+        <circle cx="410" cy="40" r="22" fill="#3730a3"/>
+        <text x="410" y="45" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Fugu</text>
+        <text x="410" y="16" text-anchor="middle" font-size="10" fill="#5a6a8a">Single OpenAI-compatible endpoint</text>
+        <line x1="410" y1="60" x2="190" y2="120" stroke="#c7d2fe" stroke-width="2"/>
+        <line x1="410" y1="60" x2="410" y2="120" stroke="#c7d2fe" stroke-width="2"/>
+        <line x1="410" y1="60" x2="630" y2="120" stroke="#c7d2fe" stroke-width="2"/>
+        <circle cx="190" cy="130" r="9" fill="#818cf8"/>
+        <text x="190" y="150" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Sakana Native</text>
+        <text x="190" y="164" text-anchor="middle" font-size="10" fill="#5a6a8a">Evolutionary-merged models</text>
+        <circle cx="410" cy="130" r="9" fill="#7c3aed"/>
+        <text x="410" y="150" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Nemotron (new)</text>
+        <text x="410" y="164" text-anchor="middle" font-size="10" fill="#5a6a8a">Coding, tools, instructions</text>
+        <circle cx="630" cy="130" r="9" fill="#818cf8"/>
+        <text x="630" y="150" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Other Frontier</text>
+        <text x="630" y="164" text-anchor="middle" font-size="10" fill="#5a6a8a">Existing routed models</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ADOPTION</div>
+        <div class="annotation-card-zh">基盤モデル<span class="annotation-card-en">kiban moderu · foundation model</span></div>
+        <div class="annotation-card-body">Fugu is deployed as a working product with a public endpoint, not just a research demo — a rarer signal among Japan's AI names.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MONETIZATION</div>
+        <div class="annotation-card-zh">運用<span class="annotation-card-en">un'yō · operation, deployment</span></div>
+        <div class="annotation-card-body">No disclosed availability date for Nemotron routing — whether this converts to paying enterprise usage is the open question.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEPENDENCE</div>
+        <div class="annotation-card-zh">依存<span class="annotation-card-en">izon · dependence</span></div>
+        <div class="annotation-card-body">Leaning on NVIDIA's open-weight stack for core capability echoes a wider pattern of Japan's AI "winners" running on US silicon and software.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMI &amp; INDUSTRIAL</span>
+          <span class="card-tag tag-semi" style="margin:0;">Bloomberg / Digitimes</span>
+        </div>
+        <div class="story-headline">Advantest lifts FY2026 profit guidance 35% as AI chip-test demand outruns its own forecast</div>
+        <div class="story-insight">
+          <p>Advantest raised full-year operating-profit guidance to ¥846.0bn on ¥1.714tn revenue — about 70% YoY growth, up from a 26% prior forecast and above the roughly 42% analyst consensus — and lifted its view of the global tester market to $13.0–14.5bn, a record, citing AI-inference test demand that has outpaced April's assumptions.</p>
+          <p>Shares jumped as much as 10.9% intraday, reversing the cautious 1.22% dip that followed the July 29 earnings print itself, when investors had focused on margin commentary over the record top line.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Testers get bought before chips ship, making this one of the more direct reads on whether AI-inference demand is accelerating or just being repriced after July's correction — first of a three-day Advantest → Tokyo Electron → Kioxia earnings sequence.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">FY2026 Operating-Profit Growth Guidance — Prior vs. Raised</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <rect x="220" y="98" width="90" height="42" fill="#c7d2fe" rx="2"/>
+        <text x="265" y="90" text-anchor="middle" font-size="18" font-weight="700" fill="#5a6a8a">26%</text>
+        <text x="265" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">April forecast</text>
+        <rect x="380" y="80" width="90" height="60" fill="#a5b4fc" rx="2"/>
+        <text x="425" y="72" text-anchor="middle" font-size="18" font-weight="700" fill="#4f46e5">42%</text>
+        <text x="425" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Analyst consensus</text>
+        <rect x="540" y="30" width="90" height="110" fill="#3730a3" rx="2"/>
+        <text x="585" y="22" text-anchor="middle" font-size="20" font-weight="700" fill="#3730a3">70%</text>
+        <text x="585" y="158" text-anchor="middle" font-size="10" fill="#166534">Raised Jul 29-31</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND</div>
+        <div class="annotation-card-zh">通期予想<span class="annotation-card-en">tsūki yosō · full-year forecast</span></div>
+        <div class="annotation-card-body">Tester market view raised to $13.0-14.5bn, ~19% above April's estimate — a record for the category.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SEQUENCE</div>
+        <div class="annotation-card-zh">半導体検査装置<span class="annotation-card-en">handōtai kensa sōchi · test equipment</span></div>
+        <div class="annotation-card-body">Tokyo Electron and Kioxia report next in the same window — their commentary will confirm or complicate this read.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VOLATILITY</div>
+        <div class="annotation-card-zh">乱高下<span class="annotation-card-en">rankōge · sharp volatility</span></div>
+        <div class="annotation-card-body">The swing from a Jul 29 dip to a Jul 31 double-digit pop on largely the same underlying quarter shows how repriced this name already is.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO &amp; FX</span>
+          <span class="card-tag tag-macro" style="margin:0;">Bloomberg / CNBC</span>
+        </div>
+        <div class="story-headline">Tokyo suspected of ambush yen intervention hours ahead of the BOJ decision</div>
+        <div class="story-insight">
+          <p>The dollar posted its steepest single-session drop against the yen since 2022 during July 30 US trading, hitting all major yen pairs simultaneously. FX desks at BBVA, TJM and SBI FX Trade attributed the move to unconfirmed Ministry of Finance intervention — consistent with the ministry's pattern of unannounced "masked" (覆面介入) operations. MOF has not confirmed it, as is standard practice.</p>
+          <p>The timing, hours before the BOJ held its rate at 1.0% and lifted its GDP forecast, suggests Tokyo judged verbal warnings alone were no longer holding the ¥163-165 line Finance Minister Katayama had flagged on July 24.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> MOF spending reserves to defend a level while the BOJ's own rate path works against it reads as a stopgap, not a trend reversal — testable against the next MOF monthly disclosure and whether USD/JPY revisits 163 within weeks.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">USD/JPY — Suspected Intervention, July 30 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <polyline points="80,60 260,55 380,50 460,52 480,120 620,110 760,108" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="460" cy="52" r="5" fill="#b91c1c"/>
+        <text x="460" y="36" text-anchor="middle" font-size="12" font-weight="700" fill="#b91c1c">163.99</text>
+        <text x="460" y="20" text-anchor="middle" font-size="9" fill="#5a6a8a">40-yr low, Jul 29-30</text>
+        <circle cx="620" cy="110" r="5" fill="#166534"/>
+        <text x="620" y="98" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">159.6</text>
+        <text x="620" y="158" text-anchor="middle" font-size="9" fill="#166534">Suspected intervention, Jul 30</text>
+        <text x="760" y="98" text-anchor="middle" font-size="10" fill="#5a6a8a">159.6 (Asia, Jul 31)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ACTION</div>
+        <div class="annotation-card-zh">覆面介入<span class="annotation-card-en">fukumen kainyū · ambush intervention</span></div>
+        <div class="annotation-card-body">Synchronized move across all major yen pairs is the pattern FX desks read as official rather than speculative flow.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DISCLOSURE</div>
+        <div class="annotation-card-zh">財務省<span class="annotation-card-en">Zaimushō · Ministry of Finance</span></div>
+        <div class="annotation-card-body">MOF's monthly intervention report, released weeks later, is the only place this gets officially confirmed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POLICY MIX</div>
+        <div class="annotation-card-zh">政策金利<span class="annotation-card-en">seisaku kinri · policy rate</span></div>
+        <div class="annotation-card-body">A 1% policy rate held steady the same day works against intervention's effect — the two levers are being priced as substitutes, not complements.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #62 · AUGUST 1, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
