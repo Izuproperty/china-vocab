@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #72 · July 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #72 · July 30, 2026</div>
+    <div class="masthead-sub">Robot Import Ban · Rare Earth Export Controls · Industrial Profits</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">85<span class="card-num-unit">%</span></div>
+      <div class="card-label">China's estimated share of the global humanoid robot market — now facing a US import ban</div>
+      <div class="card-delta delta-red">FCC ban, Jul 29</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · EXPORT CONTROLS</div>
+      <div class="card-num">$6.5<span class="card-num-unit">trillion</span></div>
+      <div class="card-label">IEA estimate of downstream production at risk annually if China's rare-earth curbs are fully implemented</div>
+      <div class="card-delta delta-amber">14 EU entities added</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · INDUSTRIAL DATA</div>
+      <div class="card-num">18.7<span class="card-num-unit">% H1 y/y</span></div>
+      <div class="card-label">Industrial profit growth headline — driven almost entirely by electronics and computing gear</div>
+      <div class="card-delta delta-green">Computer mfg +689%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH / ROBOTICS POLICY</div>
+    <div class="story-headline">Washington Locks the Door: FCC Bans Foreign-Made Humanoid Robot Imports, Aimed Squarely at China</div>
+    <div class="story-insight">
+      <p>The FCC banned imports of foreign-made humanoid and quadruped robots on July 29, citing supply-chain and cybersecurity risk. Existing US-deployed units are grandfathered; the rule doesn't name China but targets a market it dominates with an estimated 85% share.</p>
+      <br>
+      <p>The timing lands mid-rollout for Unitree's first three-market commercial launch — Europe went live July 22, with North America originally planned for August 12. Analysts see limited near-term revenue impact given Unitree's existing Europe/Southeast Asia tilt, but flag the rule as a possible template for restricting market access ahead of commercial scale.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Chinese hard-tech exporters increasingly need non-US revenue diversification built in from launch, not added as a hedge later.</div>
+    <div class="chart-box">
+      <div class="chart-title">Unitree H1 Pro: Three-Market Launch Timeline</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#e0d8d0" stroke-width="2"/>
+        <!-- EU node -->
+        <circle cx="140" cy="90" r="8" fill="#166534"/>
+        <text x="140" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Europe</text>
+        <text x="140" y="76" text-anchor="middle" font-size="10" fill="#5a6a8a">Jul 22 — launched</text>
+        <text x="140" y="118" text-anchor="middle" font-size="10" fill="#166534" font-weight="600">✓ live</text>
+        <!-- Asia node -->
+        <circle cx="400" cy="90" r="8" fill="#b45309"/>
+        <text x="400" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">Asia</text>
+        <text x="400" y="76" text-anchor="middle" font-size="10" fill="#5a6a8a">Aug 5 — planned</text>
+        <text x="400" y="118" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">unaffected</text>
+        <!-- NA node -->
+        <circle cx="680" cy="90" r="8" fill="#c0392b"/>
+        <text x="680" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">North America</text>
+        <text x="680" y="76" text-anchor="middle" font-size="10" fill="#5a6a8a">Aug 12 — planned</text>
+        <text x="680" y="118" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="600">✗ blocked by FCC ban</text>
+        <!-- ban marker -->
+        <line x1="620" y1="40" x2="620" y2="140" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="620" y="155" text-anchor="middle" font-size="10" fill="#c0392b" font-weight="700">FCC ban · Jul 29</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MARKET SHARE</div>
+        <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+        <div class="annotation-card-body">China supplies ~85% of global humanoid robot shipments, leaving buyers outside the US with few non-Chinese alternatives regardless of the ban.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRECEDENT</div>
+        <div class="annotation-card-zh">进口禁令<span class="annotation-card-en">jìnkǒu jìnlìng · import ban</span></div>
+        <div class="annotation-card-body">Whether this becomes a template for restricting emerging hard-tech categories on national-security grounds before they scale commercially.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARKET ACCESS</div>
+        <div class="annotation-card-zh">宇树科技<span class="annotation-card-en">Yǔshù Kējì · Unitree Robotics</span></div>
+        <div class="annotation-card-body">Unitree's planned Aug 12 North America commercial debut is now in question, disrupting its first coordinated three-market rollout.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / EXPORT CONTROLS</div>
+    <div class="story-headline">Beijing Widens the Net: 14 EU Entities Added to China's Dual-Use Export Control List</div>
+    <div class="story-insight">
+      <p>MOFCOM added 14 EU entities to its export control list on July 24, barring Chinese exporters from supplying them dual-use items — including rare earths and permanent magnets — without special authorization. The move follows a June 22 action against two US rare-earth producers and a new July 1 whistleblower mechanism.</p>
+      <br>
+      <p>The IEA estimates $6.5 trillion in downstream production is at risk annually if the curbs are fully implemented, with the US and Europe accounting for nearly half the exposure. The pattern read is that MOFCOM is running its own entity-list playbook, modeled on Washington's chip-sector approach but extended to Europe.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Rising compliance cost for any Western firm with China-linked supply chains, independent of where the underlying trade dispute originated.</div>
+    <div class="chart-box">
+      <div class="chart-title">China's 2026 Rare-Earth / Dual-Use Control Actions</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="85" x2="760" y2="85" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="140" cy="85" r="7" fill="#b45309"/>
+        <text x="140" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jun 22</text>
+        <text x="140" y="112" text-anchor="middle" font-size="10" fill="#5a6a8a">MP Materials +</text>
+        <text x="140" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">USA Rare Earth (US)</text>
+        <circle cx="380" cy="85" r="7" fill="#166534"/>
+        <text x="380" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 1</text>
+        <text x="380" y="112" text-anchor="middle" font-size="10" fill="#5a6a8a">Whistleblower</text>
+        <text x="380" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">reward mechanism</text>
+        <circle cx="640" cy="85" r="7" fill="#c0392b"/>
+        <text x="640" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#1a1a2e">Jul 24–25</text>
+        <text x="640" y="112" text-anchor="middle" font-size="10" fill="#5a6a8a">14 EU entities</text>
+        <text x="640" y="126" text-anchor="middle" font-size="10" fill="#5a6a8a">added to list</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUPPLY CHAIN</div>
+        <div class="annotation-card-zh">稀土<span class="annotation-card-en">xītǔ · rare earth</span></div>
+        <div class="annotation-card-body">Rare earth magnets sit inside the humanoid robots and EVs China exports as well as the chips the controls target — a two-sided exposure.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SCOPE</div>
+        <div class="annotation-card-zh">两用物项<span class="annotation-card-en">liǎngyòng wùxiàng · dual-use items</span></div>
+        <div class="annotation-card-body">Whether the entity list keeps expanding beyond the US and EU to additional jurisdictions tied to Western supply chains.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUBSTITUTION LAG</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export control</span></div>
+        <div class="annotation-card-body">Western rare-earth and magnet-substitution capacity does not yet exist at scale, leaving downstream industries exposed in the near term.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO / INDUSTRIAL DATA</div>
+    <div class="story-headline">The AI Line Item: China's Industrial Profits Rise 18.7% in H1, but the Growth Is Concentrated in Computing Gear</div>
+    <div class="story-insight">
+      <p>NBS reported H1 2026 profits at above-scale industrial firms up 18.7% y/y to ¥3.95T, though June growth decelerated to 15.1% from May's 21.1%. Electronics profits jumped 96.9%, with computer manufacturing up 689.3% and peripherals up 305.8% — both disproportionate contributors to the headline. Auto manufacturing profits fell 19.5% as sales declined for a ninth straight month.</p>
+      <br>
+      <p>The pattern is consistent with the July 28 chip-sector selloff (Issue #71) from the other direction: a large share of industrial profit growth looks like AI-infrastructure capex rather than broad domestic demand recovery.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Industrial-profit headlines this year are more exposed to AI capex cycles than aggregate GDP or PMI data suggests.</div>
+    <div class="chart-box">
+      <div class="chart-title">H1 2026 Industrial Profit Growth by Sector (y/y %)</div>
+      <svg viewBox="0 0 820 210" xmlns="http://www.w3.org/2000/svg">
+        <!-- gridline -->
+        <line x1="220" y1="20" x2="220" y2="195" stroke="#e0d8d0" stroke-width="1"/>
+        <!-- Computer mfg +689.3% (capped bar, labeled) -->
+        <text x="210" y="38" text-anchor="end" font-size="11" fill="#3a3a3a">Computer mfg</text>
+        <rect x="220" y="26" width="480" height="18" fill="#166534"/>
+        <text x="710" y="40" font-size="11" font-weight="700" fill="#166534">+689.3%</text>
+        <!-- Computer peripherals +305.8% -->
+        <text x="210" y="70" text-anchor="end" font-size="11" fill="#3a3a3a">Computer peripherals</text>
+        <rect x="220" y="58" width="280" height="18" fill="#2f7d4f"/>
+        <text x="510" y="72" font-size="11" font-weight="700" fill="#2f7d4f">+305.8%</text>
+        <!-- Electronics sector +96.9% -->
+        <text x="210" y="102" text-anchor="end" font-size="11" fill="#3a3a3a">Electronics (sector)</text>
+        <rect x="220" y="90" width="140" height="18" fill="#4a9d6f"/>
+        <text x="370" y="104" font-size="11" font-weight="700" fill="#4a9d6f">+96.9%</text>
+        <!-- Raw materials +71.7% -->
+        <text x="210" y="134" text-anchor="end" font-size="11" fill="#3a3a3a">Raw materials</text>
+        <rect x="220" y="122" width="105" height="18" fill="#6ab88f"/>
+        <text x="335" y="136" font-size="11" font-weight="700" fill="#6ab88f">+71.7%</text>
+        <!-- Headline all-industry +18.7% -->
+        <text x="210" y="166" text-anchor="end" font-size="11" fill="#1a1a2e" font-weight="700">All industry (headline)</text>
+        <rect x="220" y="154" width="40" height="18" fill="#b45309"/>
+        <text x="270" y="168" font-size="11" font-weight="700" fill="#b45309">+18.7%</text>
+        <!-- Auto mfg -19.5% -->
+        <text x="210" y="198" text-anchor="end" font-size="11" fill="#3a3a3a">Auto manufacturing</text>
+        <rect x="180" y="186" width="40" height="18" fill="#c0392b"/>
+        <text x="170" y="200" text-anchor="end" font-size="11" font-weight="700" fill="#c0392b">-19.5%</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI CAPEX</div>
+        <div class="annotation-card-zh">利润<span class="annotation-card-en">lìrùn · profit</span></div>
+        <div class="annotation-card-body">Computer manufacturing and peripherals profit growth far outpaces the industrial-firm average, pointing to AI-infrastructure spending as the driver.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DECELERATION</div>
+        <div class="annotation-card-zh">规模以上工业企业<span class="annotation-card-en">guīmó yǐshàng gōngyè qǐyè · above-scale firms</span></div>
+        <div class="annotation-card-body">June's growth rate (15.1%) already slowed from May (21.1%) — whether the deceleration continues is the next data point to watch.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">汽车制造业<span class="annotation-card-en">qìchē zhìzào yè · auto manufacturing</span></div>
+        <div class="annotation-card-body">Auto profits fell 19.5% on a ninth straight month of declining sales — traditional manufacturing has no comparable offset if AI capex slows.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #72 · JULY 30, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+</body>
+</html>
