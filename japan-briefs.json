@@ -1,5 +1,51 @@
 [
   {
+    "issue": 63,
+    "date": "2026-08-02",
+    "title": "Japan's domestic AI builders all lean on NVIDIA's open Nemotron stack; Kioxia's record quarter brings an ¥800B buyback; June's trade balance swings to deficit as energy and chip imports outrun a weak yen",
+    "summary": "SB Intuitions, NTT Data, the Institute of Science Tokyo, and startup Stockmark all train their 'sovereign' Japanese-language models on NVIDIA's open Nemotron stack, even as METI procures 27,500 Rubin GPUs for the ¥1 trillion Noetra project. Kioxia swung from a brutal CXMT-driven selloff to a record, net-cash Q1 with an ¥800 billion buyback, while Japan's June trade balance flipped to a ¥409.9 billion deficit as energy and semiconductor imports outran a weak-yen export boom.",
+    "viz_url": "japan-brief-visualized-2026-08-02.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "Japan's \"sovereign\" AI builders all lean on the same foreign stack: NVIDIA's open Nemotron",
+        "tag": "ai",
+        "source": "BigGo Finance / NVIDIA Newsroom · July 20, 2026",
+        "body": "A pattern has become hard to miss across Japan's domestic AI developers: nearly every \"Japan-made\" language model now sits on top of NVIDIA Nemotron, NVIDIA's suite of open models, datasets, and training libraries. SoftBank subsidiary SB Intuitions trains its Sarashina model series using NVIDIA's NeMo RL post-training library and Megatron-LM, and recently combined Sarashina with the Nemotron stack to build a Large Telecom Model aimed at automating SoftBank's own network operations. NTT Data's domestic model, tsuzumi 2, was fine-tuned in part on Nemotron-Personas-Japan, a synthetic dataset built to reflect Japan's demographics and cultural context, which the company says measurably improved question-answering accuracy. The Institute of Science Tokyo used Nemotron datasets in both pre-training and post-training of its Swallow model, and METI-backed startup Stockmark built a Japanese-document-reading vision-language model directly on NVIDIA's Nemotron 3 Nano Omni.\n\nThe dependency runs deeper than model training. On July 16, METI and NVIDIA CEO Jensen Huang announced Japan would procure 27,500 next-generation Rubin GPUs — the largest national-level Rubin procurement disclosed anywhere — to power Noetra, the ¥1 trillion, 44-company sovereign physical-AI project anchored by SoftBank, NEC, Sony, and Honda. Huang framed the arrangement as Japan supplying manufacturing craftsmanship know-how while NVIDIA supplies the compute and open-model substrate underneath it — a division of labor, not independence from it.\n\nFor investors tracking Japan's AI-sovereignty push as a policy and equity theme, the practical distinction is narrower than the rhetoric suggests: Tokyo's models are increasingly sovereign over data provenance and deployment control — Japanese-language corpora, domestic hosting, FSA-compliant audit trails — rather than sovereign over the underlying compute and open-source tooling, which remains substantially American. Watch whether Rapidus's 2nm ramp, still targeting 2027, eventually supplies any of this stack domestically — that's the checkpoint that would actually change the dependency picture.",
+        "takeaway": "Japan's AI-sovereignty framing holds up as sovereignty over data and deployment surface, not over compute or open-source tooling — worth separating the two when pricing \"de-risking from US tech\" narratives around Noetra and its members.",
+        "vocab": [
+          { "ja": "基盤モデル", "en": "foundation model" },
+          { "ja": "AI主権", "en": "AI sovereignty" },
+          { "ja": "ものづくり", "en": "manufacturing craftsmanship" }
+        ]
+      },
+      {
+        "icon": "💾",
+        "title": "Kioxia swings from meltdown to record quarter, announces ¥800 billion buyback",
+        "tag": "semi",
+        "source": "Company results / Investing.com · July 31, 2026",
+        "body": "Three days after falling 18.3% on China's CXMT listing and roughly two weeks after a ~60% drawdown from its 2026 peak, Kioxia delivered the opposite of what the chart implied. Q1 FY2026 results released July 31 showed revenue of ¥1,767.1 billion — up 76.2% quarter-over-quarter and 415.5% year-over-year — with non-GAAP operating profit of ¥1,326.2 billion at a 75% margin. That single quarter's operating profit exceeded Kioxia's entire FY2025 operating profit.\n\nThe driver was pricing, not just volume: average NAND selling prices rose roughly 70% on AI-linked data-center and enterprise-SSD demand, with the SSD & Storage segment alone generating ¥1,174.7 billion (66% of revenue, +95.7% QoQ). Kioxia reached a net cash position and announced an ¥800 billion share buyback — a capital-return signal that would have looked incongruous during the mid-July selloff. Shares jumped 17.72% on the print.\n\nThe result functions as the AI-capex-durability read-through the market had been waiting for since the July 28 CXMT-triggered rout, and it's a genuinely strong data point against the memory-oversupply thesis that drove that selloff. It doesn't resolve the medium-term question, though: CXMT's rapid Shanghai listing ramp and reported progress on Chinese domestic DUV lithography are structural competitive risks that one blowout quarter doesn't retire, only postpones. The next checkpoint is whether pricing strength holds into Q2 guidance, or whether this quarter was a one-off clearing of AI-inference-driven backlog.",
+        "takeaway": "A genuinely strong data point against the memory-oversupply thesis, but CXMT's ramp and Chinese domestic DUV progress remain structural risks one quarter doesn't retire — the Q2 guide is the next test.",
+        "vocab": [
+          { "ja": "自社株買い", "en": "share buyback" },
+          { "ja": "純現金", "en": "net cash position" }
+        ]
+      },
+      {
+        "icon": "📊",
+        "title": "Japan's June trade balance swings to deficit as energy and chip imports outrun a weak-yen export boom",
+        "tag": "trade",
+        "source": "Ministry of Finance / Customs · July 30, 2026",
+        "body": "Ministry of Finance customs data released July 30 showed Japan's trade balance flipped to a deficit of ¥409.9 billion in June, reversing a ¥122.3 billion surplus in the same month last year and coming in far worse than the roughly ¥120 billion deficit consensus had expected. Exports rose 19.3% year-over-year to ¥10.93 trillion — a three-year high and the tenth straight month of export growth — helped by a weak yen (~¥163/USD) inflating yen-denominated receipts and by continued AI-linked semiconductor demand: semiconductor exports rose 53.8% and semiconductor-manufacturing-equipment exports rose 18.7%.\n\nImports rose faster, up 25.4% to ¥11.34 trillion. Mineral-fuel imports jumped 41.9% — petroleum up 59.3%, coal up 46.8% — an energy-price effect tied to the ongoing Iran conflict. Semiconductor imports also rose 49.2%, which is the detail worth sitting with: Japan is simultaneously a large net exporter and a large net importer of AI-linked chips, so the same AI-demand cycle is inflating both sides of the trade ledger at once, not just the export side investors usually focus on.\n\nThe read for positioning is that the weak yen is doing more to inflate the nominal export line than to improve Japan's underlying trade position, while the energy import bill is the actual swing factor pulling the balance negative. That strengthens the Ministry of Finance's case for continued currency intervention — a weak yen has a real, measurable cost, not just a headline \"exporters win\" upside — and it feeds into the BOJ's inflation calculus ahead of any autumn rate-hike decision. One month of data isn't a trend; the July and August prints, ideally against whatever yen level the recent suspected intervention leaves in place, are the next checkpoint.",
+        "takeaway": "Strengthens MOF's case for continued currency intervention and feeds the BOJ's inflation calculus ahead of any autumn hike — one month of data, so the July/August prints are the next checkpoint.",
+        "vocab": [
+          { "ja": "貿易赤字", "en": "trade deficit" },
+          { "ja": "鉱物性燃料", "en": "mineral fuels" }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 62,
     "date": "2026-08-01",
     "title": "Sakana AI opens its Fugu orchestrator to NVIDIA's Nemotron models; Advantest raises FY2026 profit guidance 35% on AI chip-test demand; Tokyo is suspected of ambush yen intervention ahead of the BOJ decision",

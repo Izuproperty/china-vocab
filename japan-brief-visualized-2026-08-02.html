@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #63 · August 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#3a4a6a; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#8a9bb5; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #63 · August 2, 2026</div>
+    <div class="masthead-sub">Japan's AI builders run on NVIDIA Nemotron · Kioxia's ¥800B buyback · June trade balance swings to deficit</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; Tech · Dependency</div>
+      <div class="card-num">5<span class="card-num-unit">domestic builders</span></div>
+      <div class="card-label">SB Intuitions, NTT Data, Sakana AI, Institute of Science Tokyo, Stockmark all train on NVIDIA Nemotron</div>
+      <div class="card-delta delta-indigo">27,500 Rubin GPUs secured Jul 16</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi &amp; Industrial · Earnings</div>
+      <div class="card-num">¥800<span class="card-num-unit">bn buyback</span></div>
+      <div class="card-label">Kioxia's capital return after a record, net-cash Q1 FY2026</div>
+      <div class="card-delta delta-green">Shares +17.72% on the print</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro &amp; Trade · Balance</div>
+      <div class="card-num">¥409.9<span class="card-num-unit">bn deficit</span></div>
+      <div class="card-label">June trade balance vs. a ¥122.3bn surplus a year earlier</div>
+      <div class="card-delta delta-red">Imports +25.4% outran exports +19.3%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI &amp; TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">BigGo Finance / NVIDIA Newsroom</span>
+        </div>
+        <div class="story-headline">Japan's "sovereign" AI builders all lean on the same foreign stack: NVIDIA's open Nemotron</div>
+        <div class="story-insight">
+          <p>SB Intuitions (Sarashina, plus a new Large Telecom Model), NTT Data (tsuzumi 2), the Institute of Science Tokyo (Swallow), and GENIAC-backed startup Stockmark (JapanDocReader) all build their "domestic" Japanese-language models on top of NVIDIA's open Nemotron models, datasets, and training libraries — the same open-source stack Sakana AI folded into Fugu last month.</p>
+          <p>The dependency extends to infrastructure: on July 16, METI and NVIDIA CEO Jensen Huang announced Japan would procure 27,500 next-generation Rubin GPUs — the largest disclosed national Rubin order anywhere — to power the ¥1 trillion Noetra physical-AI project.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Japan's AI-sovereignty framing holds up as sovereignty over data and deployment surface, not over compute or open-source tooling — worth separating the two when pricing "de-risking from US tech" narratives around Noetra and its members.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Japan's Domestic AI Models — Built on NVIDIA Nemotron</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="410" y1="60" x2="410" y2="130" stroke="#dde0ec" stroke-width="2"/>
+        <circle cx="410" cy="45" r="26" fill="#3730a3"/>
+        <text x="410" y="50" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Nemotron</text>
+        <text x="410" y="16" text-anchor="middle" font-size="10" fill="#5a6a8a">NVIDIA open models · datasets · libraries</text>
+        <line x1="410" y1="70" x2="90" y2="150" stroke="#c7d2fe" stroke-width="2"/>
+        <line x1="410" y1="70" x2="255" y2="150" stroke="#c7d2fe" stroke-width="2"/>
+        <line x1="410" y1="70" x2="410" y2="150" stroke="#c7d2fe" stroke-width="2"/>
+        <line x1="410" y1="70" x2="565" y2="150" stroke="#c7d2fe" stroke-width="2"/>
+        <line x1="410" y1="70" x2="730" y2="150" stroke="#c7d2fe" stroke-width="2"/>
+        <circle cx="90" cy="150" r="8" fill="#818cf8"/>
+        <text x="90" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">SB Intuitions</text>
+        <text x="90" y="183" text-anchor="middle" font-size="9" fill="#5a6a8a">Sarashina / LTM</text>
+        <circle cx="255" cy="150" r="8" fill="#818cf8"/>
+        <text x="255" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">NTT Data</text>
+        <text x="255" y="183" text-anchor="middle" font-size="9" fill="#5a6a8a">tsuzumi 2</text>
+        <circle cx="410" cy="150" r="8" fill="#818cf8"/>
+        <text x="410" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">Sakana AI</text>
+        <text x="410" y="183" text-anchor="middle" font-size="9" fill="#5a6a8a">Fugu</text>
+        <circle cx="565" cy="150" r="8" fill="#818cf8"/>
+        <text x="565" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">Inst. of Sci. Tokyo</text>
+        <text x="565" y="183" text-anchor="middle" font-size="9" fill="#5a6a8a">Swallow</text>
+        <circle cx="730" cy="150" r="8" fill="#818cf8"/>
+        <text x="730" y="170" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1a1a2e">Stockmark</text>
+        <text x="730" y="183" text-anchor="middle" font-size="9" fill="#5a6a8a">JapanDocReader</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCALE</div>
+        <div class="annotation-card-zh">基盤モデル<span class="annotation-card-en">kiban moderu · foundation model</span></div>
+        <div class="annotation-card-body">27,500 Rubin GPUs is the largest national-level procurement disclosed — Japan is buying compute scale, not building it domestically yet.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DEFINITION</div>
+        <div class="annotation-card-zh">AI主権<span class="annotation-card-en">AI shuken · AI sovereignty</span></div>
+        <div class="annotation-card-body">"Sovereignty" here means data provenance and deployment control, not independence from US silicon and open-source tooling.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">依存<span class="annotation-card-en">izon · dependence</span></div>
+        <div class="annotation-card-body">Every major domestic model shares the same upstream vendor — a single point of technology and pricing exposure across the whole ecosystem.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMI &amp; INDUSTRIAL</span>
+          <span class="card-tag tag-semi" style="margin:0;">Company results / Investing.com</span>
+        </div>
+        <div class="story-headline">Kioxia swings from meltdown to record quarter, announces ¥800 billion buyback</div>
+        <div class="story-insight">
+          <p>Q1 FY2026 revenue reached ¥1,767.1bn (+76.2% QoQ, +415.5% YoY) with non-GAAP operating profit of ¥1,326.2bn at a 75% margin — exceeding Kioxia's entire FY2025 operating profit in a single quarter, driven by a ~70% rise in average NAND selling prices and AI-linked SSD demand.</p>
+          <p>Kioxia reached a net cash position and announced an ¥800bn share buyback, three days after an 18.3% single-day drop tied to China's CXMT listing and roughly two weeks removed from a ~60% drawdown from its 2026 peak. Shares jumped 17.72% on the print.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> A genuinely strong data point against the memory-oversupply thesis, but CXMT's ramp and Chinese domestic DUV progress remain structural risks one quarter doesn't retire — the Q2 guide is the next test.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Kioxia Q1 FY2026 — Revenue and Operating Profit, QoQ</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <rect x="180" y="100" width="90" height="40" fill="#c7d2fe" rx="2"/>
+        <text x="225" y="92" text-anchor="middle" font-size="16" font-weight="700" fill="#5a6a8a">¥1,003bn</text>
+        <text x="225" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Q4 FY2025 revenue</text>
+        <rect x="360" y="35" width="90" height="105" fill="#3730a3" rx="2"/>
+        <text x="405" y="27" text-anchor="middle" font-size="16" font-weight="700" fill="#3730a3">¥1,767bn</text>
+        <text x="405" y="158" text-anchor="middle" font-size="10" fill="#166534">Q1 FY2026 revenue (+76.2%)</text>
+        <rect x="540" y="52" width="90" height="88" fill="#a5b4fc" rx="2"/>
+        <text x="585" y="44" text-anchor="middle" font-size="16" font-weight="700" fill="#4f46e5">¥1,326bn</text>
+        <text x="585" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Op. profit (75% margin)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL RETURN</div>
+        <div class="annotation-card-zh">自社株買い<span class="annotation-card-en">jishakabugai · share buyback</span></div>
+        <div class="annotation-card-body">¥800bn buyback announced from a fresh net-cash position — a confidence signal timed right after a brutal drawdown.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICING</div>
+        <div class="annotation-card-zh">平均販売価格<span class="annotation-card-en">heikin hanbai kakaku · average selling price</span></div>
+        <div class="annotation-card-body">~70% ASP growth drove the quarter — whether that holds into Q2 guidance separates a cycle peak from a new plateau.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLY</div>
+        <div class="annotation-card-zh">供給過剰<span class="annotation-card-en">kyōkyū kajō · oversupply</span></div>
+        <div class="annotation-card-body">CXMT's rapid ramp and Chinese domestic DUV progress are the medium-term overhang one record quarter doesn't resolve.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO &amp; TRADE</span>
+          <span class="card-tag tag-macro" style="margin:0;">Ministry of Finance / Customs</span>
+        </div>
+        <div class="story-headline">Japan's June trade balance swings to deficit as energy and chip imports outrun a weak-yen export boom</div>
+        <div class="story-insight">
+          <p>June's trade balance flipped to a ¥409.9bn deficit, reversing a ¥122.3bn surplus a year earlier. Exports rose 19.3% to a three-year high of ¥10.93tn — helped by the weak yen and AI-linked semiconductor demand (semiconductor exports +53.8%) — but imports rose faster, +25.4% to ¥11.34tn, led by mineral fuels (+41.9%) and semiconductor imports (+49.2%).</p>
+          <p>Japan is simultaneously a large net exporter and net importer of AI-linked chips, so the same demand cycle shows up on both sides of the ledger — while a weak yen inflates the nominal export line more than it improves the underlying trade position.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Strengthens MOF's case for continued currency intervention and feeds the BOJ's inflation calculus ahead of any autumn hike — one month of data, so the July/August prints are the next checkpoint.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Japan Trade Balance — June 2026 vs. June 2025</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <rect x="160" y="60" width="90" height="30" fill="#dcfce7" rx="2"/>
+        <text x="205" y="52" text-anchor="middle" font-size="15" font-weight="700" fill="#166534">+¥122.3bn</text>
+        <text x="205" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">June 2025 surplus</text>
+        <rect x="340" y="90" width="90" height="50" fill="#c7d2fe" rx="2"/>
+        <text x="385" y="82" text-anchor="middle" font-size="15" font-weight="700" fill="#4f46e5">+19.3%</text>
+        <text x="385" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Export growth YoY</text>
+        <rect x="520" y="70" width="90" height="70" fill="#a5b4fc" rx="2"/>
+        <text x="565" y="62" text-anchor="middle" font-size="15" font-weight="700" fill="#4f46e5">+25.4%</text>
+        <text x="565" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Import growth YoY</text>
+        <rect x="655" y="90" width="90" height="50" fill="#fee2e2" rx="2"/>
+        <text x="700" y="82" text-anchor="middle" font-size="15" font-weight="700" fill="#b91c1c">-¥409.9bn</text>
+        <text x="700" y="158" text-anchor="middle" font-size="10" fill="#b91c1c">June 2026 deficit</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EXPORTS</div>
+        <div class="annotation-card-zh">貿易赤字<span class="annotation-card-en">bōeki akaji · trade deficit</span></div>
+        <div class="annotation-card-body">Exports hit a three-year high on weak-yen receipts and chip demand — but couldn't outrun import growth.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ENERGY</div>
+        <div class="annotation-card-zh">鉱物性燃料<span class="annotation-card-en">kōbutsusei nenryō · mineral fuels</span></div>
+        <div class="annotation-card-body">+41.9% mineral-fuel imports, tied to the Iran conflict, is the single largest swing factor behind the deficit.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CURRENCY</div>
+        <div class="annotation-card-zh">為替介入<span class="annotation-card-en">kawase kainyū · FX intervention</span></div>
+        <div class="annotation-card-body">Adds to MOF's case for further intervention — a weak yen has real costs beyond the "exporters win" headline.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #63 · AUGUST 2, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+</body>
+</html>
