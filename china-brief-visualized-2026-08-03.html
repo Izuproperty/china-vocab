@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #76 · August 3, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #76 · August 3, 2026</div>
+    <div class="masthead-sub">BYD's Humanoid Debut · DeepSeek's Weaponized Guardrail Gap · PBOC's Loose-Not-Easing Signal</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">72<span class="card-num-unit">% ASP decline</span></div>
+      <div class="card-label">Humanoid robot average selling price, 2023→2025 (Unitree data) — the pricing gravity BYD enters</div>
+      <div class="card-delta delta-red">PRICE COMPRESSION</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SECURITY</div>
+      <div class="card-num">460<span class="card-num-unit">+ targets</span></div>
+      <div class="card-label">Internet-facing systems targeted by a DeepSeek-powered autonomous attack campaign (Unit 42)</div>
+      <div class="card-delta delta-red">3 CONFIRMED BREACHES</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · MONETARY POLICY</div>
+      <div class="card-num">14<span class="card-num-unit">mo. LPR hold</span></div>
+      <div class="card-label">Consecutive months China's benchmark lending rates have sat at record lows, unchanged</div>
+      <div class="card-delta delta-amber">NO RATE CUT SIGNALED</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH / ROBOTICS</div>
+    <div class="story-headline">From Four Wheels to Two Feet: BYD Confirms Its First Humanoid Robot Debuts This Week</div>
+    <div class="story-insight">
+      <p>BYD confirmed via a teaser at its Zhengzhou Di Space showroom that its first humanoid robot — reported name Xiao Di — debuts in early August, with EVP Stella Li targeting a retail use case: two to three robots per dealership, demonstrating products to showroom visitors. No specs, pricing, or production volume disclosed.</p>
+      <br>
+      <p>The more consequential variable isn't the robot itself but what a vertically integrated, well-capitalized EV maker entering humanoid robotics does to a supply chain already seeing sharp price compression — and BYD's presence on the Pentagon's 1260H list, alongside Alibaba and Unitree, adds a compliance overhang to any future export ambitions.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch whether BYD moves from showroom pilot to volume production — that's what would actually move the humanoid supply chain, not the debut itself.</div>
+    <div class="chart-box">
+      <div class="chart-title">Humanoid Robot Average Selling Price (¥, Unitree Data)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="20" x2="780" y2="20" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="2,4"/>
+        <line x1="60" y1="85" x2="780" y2="85" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="2,4"/>
+        <text x="20" y="24" font-size="10" fill="#5a6a8a">¥600K</text>
+        <text x="20" y="89" font-size="10" fill="#5a6a8a">¥300K</text>
+        <text x="30" y="154" font-size="10" fill="#5a6a8a">¥0</text>
+        <rect x="160" y="24" width="90" height="126" fill="#c0392b" opacity="0.85"/>
+        <text x="175" y="18" font-size="11" fill="#1a1a2e" font-weight="700">¥593.4K</text>
+        <text x="185" y="168" font-size="11" fill="#5a6a8a">2023</text>
+        <rect x="410" y="78" width="90" height="72" fill="#b45309" opacity="0.85"/>
+        <text x="425" y="72" font-size="11" fill="#1a1a2e" font-weight="700">¥~300K</text>
+        <text x="430" y="168" font-size="11" fill="#5a6a8a">2024 (est.)</text>
+        <rect x="660" y="115" width="90" height="35" fill="#166534" opacity="0.85"/>
+        <text x="675" y="109" font-size="11" fill="#1a1a2e" font-weight="700">¥166.4K</text>
+        <text x="680" y="168" font-size="11" fill="#5a6a8a">2025</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUPPLY CHAIN</div>
+        <div class="annotation-card-zh">量产<span class="annotation-card-en">liàngchǎn · mass production</span></div>
+        <div class="annotation-card-body">BYD's battery/motor vertical integration and factory scale could push ASPs down further if the showroom pilot scales — the same volume-over-price dynamic already visible in Unitree's prospectus.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRODUCT REALITY</div>
+        <div class="annotation-card-zh">展厅<span class="annotation-card-en">zhǎntīng · showroom</span></div>
+        <div class="annotation-card-body">No specs, pricing, or volume disclosed at debut. The described use case — greeting customers, demoing cars — reads closer to signage than functional automation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EXPORT COMPLIANCE</div>
+        <div class="annotation-card-zh">1260H名单<span class="annotation-card-en">1260H míngdān · 1260H list</span></div>
+        <div class="annotation-card-body">BYD sits on the Pentagon's Chinese Military Company list alongside Alibaba and Unitree — no direct sanctions, but a compliance layer for NDAA-constrained US investors and any future robotics exports.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH / SECURITY &amp; GOVERNANCE</div>
+    <div class="story-headline">The Guardrails It Didn't Have: DeepSeek Becomes the Engine Inside a 460-Target Autonomous Hacking Campaign</div>
+    <div class="story-insight">
+      <p>Unit 42 disclosed that a Zhuhai-based actor wired DeepSeek into the open-source Hermes Agent framework, directing it via Telegram to autonomously enumerate and attack 460+ targets — one recovered session showed zero operator input after the initial task. Three confirmed compromises; the operation surfaced only via an operator misconfiguration that leaked the attacker's logs.</p>
+      <br>
+      <p>Researchers say the actor chose DeepSeek specifically because Claude and OpenAI blocked offensive use through built-in guardrails, while DeepSeek did not — a governance gap, not a claim of DeepSeek's complicity, but a concrete data point regulators weighing open-weight model controls are likely to cite.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> This is one documented incident, not a systemic finding — but it's the clearest case yet of a Chinese open-weight model running as the reasoning engine inside a live intrusion campaign.</div>
+    <div class="chart-box">
+      <div class="chart-title">Attack Funnel: Targets → Attempts → Confirmed Breaches</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="60" y="40" font-size="11" fill="#5a6a8a">Targets attempted</text>
+        <rect x="60" y="48" width="700" height="26" fill="#c0392b" opacity="0.85"/>
+        <text x="770" y="66" font-size="12" fill="#1a1a2e" font-weight="700" text-anchor="end">460+</text>
+        <text x="60" y="94" font-size="11" fill="#5a6a8a">Techniques: autonomous + manual, GitHub-sourced exploits</text>
+        <rect x="60" y="102" width="260" height="26" fill="#b45309" opacity="0.85"/>
+        <text x="330" y="120" font-size="12" fill="#1a1a2e" font-weight="700">mixed</text>
+        <text x="60" y="148" font-size="11" fill="#5a6a8a">Confirmed compromises</text>
+        <rect x="60" y="130" width="6" height="20" fill="#166534" opacity="0.85"/>
+        <text x="76" y="146" font-size="12" fill="#1a1a2e" font-weight="700">3</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GOVERNANCE GAP</div>
+        <div class="annotation-card-zh">护栏<span class="annotation-card-en">hùlán · guardrails</span></div>
+        <div class="annotation-card-body">Reporting indicates the actor picked DeepSeek after Claude/OpenAI's safety controls blocked offensive use — a documented governance distinction between labs, not a claim about DeepSeek's intent.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SCOPE</div>
+        <div class="annotation-card-zh">孤立事件<span class="annotation-card-en">gūlì shìjiàn · isolated incident</span></div>
+        <div class="annotation-card-body">One actor, one incident, exposed by an operator's own misconfiguration. Whether this is a pattern or a one-off is unresolved — Unit 42 makes no systemic claim.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REGULATORY READ-THROUGH</div>
+        <div class="annotation-card-zh">开源模型管控<span class="annotation-card-en">kāiyuán móxíng guǎnkòng · open-model controls</span></div>
+        <div class="annotation-card-body">A concrete case strengthens the argument for tighter Western due diligence or controls on open-weight model adoption, independent of benchmark quality.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO / MONETARY POLICY</div>
+    <div class="story-headline">Loose, Not Easing: PBOC Pledges "Timely" Policy Tools but Skips the Rate Cut</div>
+    <div class="story-insight">
+      <p>The PBOC's August 1 work meeting, chaired by Governor Pan Gongsheng, pledged "timely" tool adjustment, an "appropriately loose" stance, and facilitation of panda bond issuance — but no explicit RRR or rate-cut commitment, following a Politburo call for faster fiscal spending after Q2 GDP slowed to 4.3%.</p>
+      <br>
+      <p>The pattern is consistent with 2026's shift away from telegraphed easing toward cautious, data-dependent language. The panda-bond push — easier to execute, less politically loaded than a rate move — may be the more concrete signal in this readout than anything on rates.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Fiscal acceleration plus a flexible monetary pledge reads as Beijing leaning on existing tools rather than announcing new stimulus — most economists have already pushed the next rate cut to 2027.</div>
+    <div class="chart-box">
+      <div class="chart-title">Benchmark Lending Rates Held at Record Lows (14 Consecutive Months)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="60" x2="780" y2="60" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="2,4"/>
+        <text x="10" y="64" font-size="10" fill="#5a6a8a">5.0%</text>
+        <text x="10" y="154" font-size="10" fill="#5a6a8a">0%</text>
+        <polyline points="80,60 780,60" stroke="#b45309" stroke-width="3" fill="none"/>
+        <text x="700" y="50" font-size="11" fill="#b45309" font-weight="700">5-yr LPR: 3.5%</text>
+        <polyline points="80,88 780,88" stroke="#c0392b" stroke-width="3" fill="none"/>
+        <text x="700" y="105" font-size="11" fill="#c0392b" font-weight="700">1-yr LPR: 3.0%</text>
+        <text x="60" y="168" font-size="10" fill="#5a6a8a">Jun 2025</text>
+        <text x="740" y="168" font-size="10" fill="#5a6a8a">Aug 2026</text>
+        <text x="380" y="30" font-size="10" fill="#5a6a8a">Both rates unchanged for 14 straight monthly fixings</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FINANCIAL OPENING</div>
+        <div class="annotation-card-zh">熊猫债<span class="annotation-card-en">xióngmāozhài · panda bonds</span></div>
+        <div class="annotation-card-body">PBOC's explicit push to facilitate more onshore yuan-bond issuance by overseas institutions is a concrete, executable step toward deeper RMB capital markets.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · GROWTH TARGET</div>
+        <div class="annotation-card-zh">适度宽松<span class="annotation-card-en">shìdù kuānsōng · appropriately loose</span></div>
+        <div class="annotation-card-body">Q2 GDP at 4.3% sits below the 4.5–5.0% full-year target. Whether fiscal acceleration alone closes that gap without monetary easing is unresolved.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CAUTIOUS SIGNALING</div>
+        <div class="annotation-card-zh">按兵不动<span class="annotation-card-en">àn bīng bù dòng · holding steady</span></div>
+        <div class="annotation-card-body">No RRR or rate-cut language in the readout. Consensus has already pushed the next cut into 2027 — policy support stays incremental, not aggressive.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #76 · AUGUST 3, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

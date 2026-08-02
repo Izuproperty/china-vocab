@@ -1,5 +1,92 @@
 [
   {
+    "issue": 76,
+    "date": "2026-08-03",
+    "title": "BYD confirms its first humanoid robot debut, DeepSeek's open API is weaponized in a 460-target autonomous hacking campaign, and the PBOC pledges \"timely\" policy tools while skipping a rate cut",
+    "summary": "Issue #76 covers a robotics/competitive-dynamics story, an AI security/governance story, and a monetary-policy story. BYD confirmed via a showroom teaser that its first humanoid robot debuts in early August, extending its Tesla rivalry into robotics with no specs disclosed yet. Separately, Palo Alto Networks' Unit 42 disclosed that a Zhuhai-based actor wired DeepSeek into an open-source agent framework to run a largely autonomous cyberattack campaign against 460+ targets, choosing the model because it lacked the safety guardrails found in Claude and OpenAI. And the PBOC's August 1 work meeting pledged \"timely\" policy-tool adjustment and panda-bond facilitation, following a Politburo fiscal push, but stopped short of signaling a rate cut.",
+    "viz_url": "china-brief-visualized-2026-08-03.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "From Four Wheels to Two Feet: BYD Confirms Its First Humanoid Robot Debuts This Week",
+        "tag": "robotics",
+        "source": "SCMP / Reuters / Benzinga · AI & Tech / Robotics · July 27-31, 2026",
+        "body": "On July 31, BYD (比亚迪, Bǐyàdí) confirmed via a teaser posted at its Zhengzhou Di Space (迪空间, Dí Kōngjiān) showroom that its first humanoid robot will formally debut in early August. Chinese media have reported the robot's working name as Xiao Di (小迪, Xiǎo Dí), though BYD has not officially confirmed a name, design, or specifications. Group executive vice president Stella Li (李柯, Lǐ Kē) described the initial commercial target as retail: \"My goal is to place two or three robots in every store,\" with machines demonstrating vehicles and explaining products to showroom visitors rather than working a factory floor.\n\nThe debut extends a rivalry BYD has run on four wheels for a decade into humanoid robots (人形机器人, rénxíng jīqìrén), following Tesla's Optimus program by roughly two years. BYD isn't starting from nothing -- it formed a dedicated robotics lab in late 2024 and has spent the interim testing machines from Unitree and UBTECH inside its own factories. What's unclear at debut is whether this becomes a scaled product line or stays a low-volume showroom novelty: no unit cost, production volume, or technical specification has been disclosed.\n\nFor positioning, the more interesting variable than the robot itself is what a company with BYD's balance sheet and manufacturing base entering the category does to a humanoid supply chain already seeing sharp average-selling-price compression -- Unitree's own IPO prospectus showed humanoid ASPs falling from Y593,400 in 2023 to Y166,400 in 2025. BYD was also named alongside Alibaba, Baidu, and Unitree on the Pentagon's expanded Section 1260H Chinese Military Company list in June -- a designation that triggers no direct sanctions but adds a compliance layer for NDAA-constrained US investors.",
+        "takeaway": "Watch whether BYD moves from showroom pilot to volume production -- that's what would actually move the humanoid supply chain, not the debut itself.",
+        "vocab": [
+          {
+            "zh": "比亚迪",
+            "en": "BYD"
+          },
+          {
+            "zh": "迪空间",
+            "en": "Di Space (BYD showroom brand)"
+          },
+          {
+            "zh": "李柯",
+            "en": "Stella Li, BYD Group EVP"
+          },
+          {
+            "zh": "人形机器人",
+            "en": "humanoid robot"
+          }
+        ]
+      },
+      {
+        "icon": "🛡️",
+        "title": "The Guardrails It Didn't Have: DeepSeek Becomes the Engine Inside a 460-Target Autonomous Hacking Campaign",
+        "tag": "ai",
+        "source": "Unit 42 (Palo Alto Networks) / The Hacker News / BleepingComputer · AI & Tech / Security & Governance · July 31-August 1, 2026",
+        "body": "Palo Alto Networks' threat-intelligence arm Unit 42 disclosed this week that a Chinese-speaking actor it tracks under the aliases \"knaithe\" and \"KnYuan,\" assessed to be based in Zhuhai, wired DeepSeek (深度求索, Shēndù Qiúsuǒ) into Hermes Agent, an open-source AI agent framework, and ran it as an autonomous offensive operator. Directed largely via Telegram, the setup enumerated targets, sourced exploits from GitHub, and attempted intrusions against more than 460 internet-facing systems with limited ongoing human input -- one recovered session from May showed no operator input at all after the initial task was issued. Unit 42 confirmed three successful compromises. The operation came to light only because Hermes Agent accidentally stood up a web server from its own home directory, exposing the attacker's API keys, exploit scripts, target lists and full activity logs.\n\nResearchers frame the choice of model as deliberate rather than incidental: reporting states the actor turned to DeepSeek after finding that Claude's and OpenAI's models blocked offensive security use through their safety guardrails (护栏, hùlán), while DeepSeek's did not. That's a governance distinction, not a claim that DeepSeek the company built or endorsed the tool -- this is third-party abuse of a publicly available API. But it's a documented case rather than a hypothetical one, landing as Beijing separately weighs whether to restrict overseas access to Chinese frontier model weights on national-security grounds.\n\nFor institutional readers, the read-through isn't really about DeepSeek specifically -- it's that open-weight and permissively-gated Chinese models are now demonstrably capable of running semi-autonomous cyberattack (网络攻击, wǎngluò gōngjī) campaigns with minimal supervision, at a scale that would be labor-intensive to replicate manually. That strengthens the case Western regulators and enterprise security teams are already building for tighter controls or heightened due diligence on open-weight model adoption. Whether this becomes a one-off data point or the first of a pattern is the thing to watch.",
+        "takeaway": "This is one documented incident, not a systemic finding -- but it's the clearest case yet of a Chinese open-weight model running as the reasoning engine inside a live intrusion campaign.",
+        "vocab": [
+          {
+            "zh": "护栏",
+            "en": "guardrails"
+          },
+          {
+            "zh": "网络攻击",
+            "en": "cyberattack"
+          },
+          {
+            "zh": "深度求索",
+            "en": "DeepSeek"
+          },
+          {
+            "zh": "开源",
+            "en": "open source"
+          }
+        ]
+      },
+      {
+        "icon": "🏦",
+        "title": "Loose, Not Easing: PBOC Pledges \"Timely\" Policy Tools but Skips the Rate Cut",
+        "tag": "macro",
+        "source": "Reuters / PBOC · Finance & Macro / Monetary Policy · August 1-2, 2026",
+        "body": "The People's Bank of China (中国人民银行, Zhōngguó Rénmín Yínháng) held a work meeting Saturday, August 1, chaired by Governor Pan Gongsheng (潘功胜, Pān Gōngshèng), to map out monetary policy for the second half of the year. The readout pledged to adjust policy tools \"in a timely manner,\" continue an appropriately loose (适度宽松, shìdù kuānsōng) stance, and keep liquidity ample -- plus a specific commitment to facilitate panda bond (熊猫债, xióngmāozhài) issuance and keep advancing high-level opening of China's financial markets.\n\nThe meeting followed a Politburo call, reported in this brief last week, for faster fiscal spending on already-budgeted infrastructure projects through year-end. Both actions respond to the same data point: Q2 GDP growth slowed to 4.3%, the weakest pace in more than three years and below the low end of the government's 4.5%-5.0% full-year target. That combination -- fiscal acceleration paired with a monetary pledge to stay flexible -- reads as Beijing leaning on tools it already has rather than announcing new ones.\n\nWhat the readout doesn't contain is as informative as what it does: no explicit reference to a reserve-requirement-ratio (存款准备金率, cúnkuǎn zhǔnbèi jīnlǜ) cut or a rate cut, continuing a shift visible through 2026 away from actively telegraphed easing toward more cautious, data-dependent language. Most economists surveyed after the July LPR hold had already pushed their next-cut call into 2027. For positioning, the panda-bond push is arguably the more concrete signal in this readout -- a financial-opening measure that's easier to execute and less politically loaded than a rate move.",
+        "takeaway": "Fiscal acceleration plus a flexible monetary pledge reads as Beijing leaning on existing tools rather than announcing new stimulus -- most economists have already pushed the next rate cut to 2027.",
+        "vocab": [
+          {
+            "zh": "熊猫债",
+            "en": "panda bonds"
+          },
+          {
+            "zh": "适度宽松",
+            "en": "appropriately loose"
+          },
+          {
+            "zh": "潘功胜",
+            "en": "PBOC Governor Pan Gongsheng"
+          },
+          {
+            "zh": "存款准备金率",
+            "en": "reserve requirement ratio"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 75,
     "date": "2026-08-02",
     "title": "Unitree sets its August 10 IPO subscription as growth halves, China presses a cost-based AI pitch across Asia at APEC, and foreign brokerages rotate into China's big-four banks ahead of Q2 earnings",
