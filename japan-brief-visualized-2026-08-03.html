@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #64 · August 3, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#3a4a6a; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#8a9bb5; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #64 · August 3, 2026</div>
+    <div class="masthead-sub">Sakura Internet's ¥26B Rubin bet · Tokyo Electron's record quarter &amp; stock split · Japan-US joint yen intervention</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; Tech · Infrastructure</div>
+      <div class="card-num">¥26<span class="card-num-unit">bn new bet</span></div>
+      <div class="card-label">Sakura Internet's debt-financed investment in NVIDIA Rubin GPU servers, delivery Jan 2027</div>
+      <div class="card-delta delta-indigo">Profit forecast raised 6.9x YoY</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi &amp; Industrial · Earnings</div>
+      <div class="card-num">¥732.3<span class="card-num-unit">bn revenue</span></div>
+      <div class="card-label">Tokyo Electron's record Q1 FY2027 quarter, on AI-linked WFE demand</div>
+      <div class="card-delta delta-green">5-for-1 stock split announced</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro &amp; Finance · FX</div>
+      <div class="card-num">$58.97<span class="card-num-unit">bn sold</span></div>
+      <div class="card-label">Japan-US joint intervention to defend the yen — first since 2011</div>
+      <div class="card-delta delta-red">Yen near a 40-year low</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI &amp; TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">BigGo Finance</span>
+        </div>
+        <div class="story-headline">Sakura Internet lifts its profit forecast 6.9-fold, then bets ¥26 billion more on NVIDIA's Rubin GPUs</div>
+        <div class="story-insight">
+          <p>Sakura Internet raised its FY2027 net profit forecast to ¥1.5bn — 6.9x the prior year — after Q1 (Apr–Jun) revenue jumped 49% YoY to ¥11.1bn and net profit swung to an ¥855m surplus from a ¥324m loss a year earlier. Alongside the guidance raise, the company unveiled a ¥26bn debt-financed investment in servers built around NVIDIA's next-generation Rubin GPU, delivery scheduled January 2027.</p>
+          <p>The ¥26bn outlay is not yet reflected in current guidance — the market is being asked to underwrite further capex ahead of confirmed revenue, financed entirely through bank borrowing rather than equity or cash on hand.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> A Government Cloud contract win gives Sakura Internet a recession-resistant revenue floor that most GPU-cloud peers lack, but the Rubin bet raises leverage into a demand cycle whose durability is still unproven.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Sakura Internet — Q1 Revenue &amp; Profit Swing, YoY</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <rect x="140" y="105" width="90" height="35" fill="#c7d2fe" rx="2"/>
+        <text x="185" y="97" text-anchor="middle" font-size="15" font-weight="700" fill="#5a6a8a">¥7.45bn</text>
+        <text x="185" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Q1 FY2026 revenue</text>
+        <rect x="290" y="80" width="90" height="60" fill="#3730a3" rx="2"/>
+        <text x="335" y="72" text-anchor="middle" font-size="15" font-weight="700" fill="#3730a3">¥11.1bn</text>
+        <text x="335" y="158" text-anchor="middle" font-size="10" fill="#166534">Q1 FY2027 revenue (+49%)</text>
+        <rect x="470" y="120" width="90" height="20" fill="#fee2e2" rx="2"/>
+        <text x="515" y="112" text-anchor="middle" font-size="14" font-weight="700" fill="#b91c1c">-¥324m</text>
+        <text x="515" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Q1 FY2026 net loss</text>
+        <rect x="620" y="118" width="90" height="22" fill="#dcfce7" rx="2"/>
+        <text x="665" y="110" text-anchor="middle" font-size="14" font-weight="700" fill="#166534">+¥855m</text>
+        <text x="665" y="158" text-anchor="middle" font-size="10" fill="#166534">Q1 FY2027 net profit</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STABILITY</div>
+        <div class="annotation-card-zh">政府共通クラウド<span class="annotation-card-en">seifu kyōtsū kuraudo · Government Cloud</span></div>
+        <div class="annotation-card-body">March 2026 Government Cloud selection brings long-duration public-sector orders that are largely insulated from the AI-demand cycle.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TIMING</div>
+        <div class="annotation-card-zh">ルービン<span class="annotation-card-en">Rūbin · Rubin (GPU)</span></div>
+        <div class="annotation-card-body">Rubin-equipped servers arrive January 2027 — the payoff window for the ¥26bn bet, and the next data point to track.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LEVERAGE</div>
+        <div class="annotation-card-zh">借入金<span class="annotation-card-en">kariiregaku · borrowings</span></div>
+        <div class="annotation-card-body">Debt-financed, not yet in guidance — return depends on generative-AI demand holding up as rival cloud operators also add capacity.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMI &amp; INDUSTRIAL</span>
+          <span class="card-tag tag-semi" style="margin:0;">BigGo Finance / earnings call</span>
+        </div>
+        <div class="story-headline">Tokyo Electron posts a record quarter, raises first-half guidance, and splits its stock 5-for-1</div>
+        <div class="story-insight">
+          <p>Q1 FY2027 revenue reached ¥732.3bn (+2.9% QoQ, +33.3% YoY) with record gross profit of ¥342.7bn, driven by AI-data-center-linked WFE demand — non-memory (logic) 57% of sales, DRAM 32% on HBM. First-half guidance was sharply raised to revenue of ¥1.62tn and operating profit of ¥458bn, both would-be half-year records.</p>
+          <p>Management reiterated FY2027 mid-term targets (revenue &gt;¥3tn, operating margin ≥35%) and added a fresh gross-margin-above-50%-within-two-years goal, alongside a 5-for-1 stock split (record date Sep 30) explicitly framed as broadening the individual-investor base.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> With TEL carrying ~10% price-weighted Nikkei 225 weight, this print argues the late-July AI-capex correction across Japanese chip-equipment names was a valuation reset, not an order-book concern.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Tokyo Electron — Q1 Revenue, YoY, and 1H Guidance</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <rect x="150" y="90" width="100" height="50" fill="#c7d2fe" rx="2"/>
+        <text x="200" y="82" text-anchor="middle" font-size="15" font-weight="700" fill="#5a6a8a">¥549bn</text>
+        <text x="200" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Q1 FY2026 revenue</text>
+        <rect x="330" y="55" width="100" height="85" fill="#3730a3" rx="2"/>
+        <text x="380" y="47" text-anchor="middle" font-size="15" font-weight="700" fill="#3730a3">¥732.3bn</text>
+        <text x="380" y="158" text-anchor="middle" font-size="10" fill="#166534">Q1 FY2027 revenue (+33.3%)</text>
+        <rect x="560" y="30" width="100" height="110" fill="#a5b4fc" rx="2"/>
+        <text x="610" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#4f46e5">¥1.62tn</text>
+        <text x="610" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">1H FY2027 revenue guide</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · RETURNS</div>
+        <div class="annotation-card-zh">株式分割<span class="annotation-card-en">kabushiki bunkatsu · stock split</span></div>
+        <div class="annotation-card-body">5-for-1 split plus a record ¥384/share interim dividend and ¥150bn buyback — management signaling confidence, not defending a weak share price.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MARGIN</div>
+        <div class="annotation-card-zh">粗利益率<span class="annotation-card-en">sorieki-ritsu · gross margin</span></div>
+        <div class="annotation-card-body">Gross margin at ~46.8% in Q1; management's new >50%-within-two-years goal is the target to track each quarter.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · GEOPOLITICS</div>
+        <div class="annotation-card-zh">地政学リスク<span class="annotation-card-en">chiseigaku risuku · geopolitical risk</span></div>
+        <div class="annotation-card-body">Management flagged no material impact yet from Middle East or US-China tensions — a standing risk to monitor each quarter.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO &amp; FINANCE</span>
+          <span class="card-tag tag-macro" style="margin:0;">Bloomberg / Reuters</span>
+        </div>
+        <div class="story-headline">Tokyo and Washington intervene jointly to defend the yen — the first coordinated action since 2011</div>
+        <div class="story-insight">
+          <p>Finance Minister Katayama announced Tokyo and Washington undertook joint action to arrest the yen's slide toward 40-year lows; BOJ data suggest Japan sold as much as $58.97bn for yen, in an operation Katayama said began in New York trading and remains ongoing. This is the first coordinated Japan-US intervention since 2011.</p>
+          <p>The move follows the BOJ's July 31 hold at 1.00%, at a meeting where Ueda's press conference was read as leaving room for a hike sooner than consensus assumed — pairing announced, coordinated FX defense with hawkish rate-path signaling for the first time this cycle.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> A materially higher-commitment signal than MOF's earlier unconfirmed "ambush" operations — durability depends on whether the US-Japan rate gap narrows enough to support the level being defended.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Japan FX Intervention Scale — 2026 Rounds Compared</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <rect x="200" y="65" width="110" height="75" fill="#c7d2fe" rx="2"/>
+        <text x="255" y="57" text-anchor="middle" font-size="15" font-weight="700" fill="#5a6a8a">~$74bn</text>
+        <text x="255" y="158" text-anchor="middle" font-size="10" fill="#5a6a8a">Apr–May 2026 (unilateral)</text>
+        <rect x="470" y="80" width="110" height="60" fill="#3730a3" rx="2"/>
+        <text x="525" y="72" text-anchor="middle" font-size="15" font-weight="700" fill="#3730a3">$58.97bn</text>
+        <text x="525" y="158" text-anchor="middle" font-size="10" fill="#166534">Aug 2, 2026 (joint, w/ US)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · COORDINATION</div>
+        <div class="annotation-card-zh">協調介入<span class="annotation-card-en">kyōchō kainyū · joint intervention</span></div>
+        <div class="annotation-card-body">First coordinated Japan-US action since 2011 — a materially stronger commitment signal than prior solo, unannounced operations.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RATES</div>
+        <div class="annotation-card-zh">日米金利差<span class="annotation-card-en">Nichibei kinrisa · US-Japan rate gap</span></div>
+        <div class="annotation-card-body">Intervention buys time; whether it holds depends on the rate differential narrowing enough to support the level being defended.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DURABILITY</div>
+        <div class="annotation-card-zh">40年ぶり<span class="annotation-card-en">yonjū-nen-buri · in 40 years</span></div>
+        <div class="annotation-card-body">Yen near its weakest level since 1986 — verbal warnings and solo intervention already failed to reverse the trend once this year.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #64 · AUGUST 3, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
