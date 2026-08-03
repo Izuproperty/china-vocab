@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #77 · August 4, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #77 · August 4, 2026</div>
+    <div class="masthead-sub">Qwen3.8-Max's Self-Scored Benchmarks · The Data-Capture Layer Behind China's Robots · NDRC's ¥800B Fiscal Push</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · FOUNDATION MODELS</div>
+      <div class="card-num">2.4T<span class="card-num-unit">/ 95B active</span></div>
+      <div class="card-label">Qwen3.8-Max total vs. activated parameters — third Chinese frontier release in a month</div>
+      <div class="card-delta delta-amber">SELF-REPORTED BENCHMARKS</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">400<span class="card-num-unit">+ humanoid models</span></div>
+      <div class="card-label">China-developed humanoid robot models tracked by MIIT — over half the global total</div>
+      <div class="card-delta delta-green">22–23% CAGR TO 2026</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · FISCAL POLICY</div>
+      <div class="card-num">¥800<span class="card-num-unit">B financing push</span></div>
+      <div class="card-label">Policy-backed financial instruments NDRC is fast-tracking through the Q3 construction peak</div>
+      <div class="card-delta delta-amber">ACCELERATION, NOT NEW MONEY</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">Third Frontier Release in Three Weeks: Alibaba Ships Qwen3.8-Max, Claims an Edge Over Fable 5 on Its Own Scorecard</div>
+    <div class="story-insight">
+      <p>Alibaba moved Qwen3.8-Max from preview to production on August 3: a 2.4T-parameter mixture-of-experts model activating ~95B params per request, multimodal, 1M-token context. Alibaba's own benchmark table shows it ahead of Claude Fable 5 on PaperBench and IFBench, and ahead of Fable 5 but behind GPT-5.6 Sol on Terminal-Bench 2.1.</p>
+      <br>
+      <p>Every comparison figure comes from Alibaba's own table — no third-party benchmark run was cited at launch, the same pattern as Kimi K3 and GLM-5.2 this cycle. Notably, at 2.4T total / ~95B active, it's smaller than Moonshot's 2.8T Kimi K3 — a signal Alibaba is competing on inference cost as much as raw scale.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Three Chinese labs have now shipped frontier-class models within a month. Price and efficiency are doing as much work as benchmark scores in determining adoption — watch for independent replication before treating any of these claims as settled.</div>
+    <div class="chart-box">
+      <div class="chart-title">Qwen3.8-Max vs. Fable 5 vs. GPT-5.6 Sol — Alibaba's Self-Reported Scores</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="20" x2="140" y2="175" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="140" y1="175" x2="780" y2="175" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="45" font-size="11" fill="#5a6a8a">PaperBench</text>
+        <rect x="140" y="32" width="446" height="16" fill="#c0392b" opacity="0.85"/>
+        <text x="592" y="45" font-size="11" fill="#1a1a2e" font-weight="700">93.0 (Qwen3.8-Max)</text>
+        <rect x="140" y="52" width="426" height="10" fill="#b45309" opacity="0.6"/>
+        <text x="572" y="61" font-size="10" fill="#5a6a8a">88.8 (Fable 5)</text>
+        <text x="10" y="98" font-size="11" fill="#5a6a8a">IFBench</text>
+        <rect x="140" y="85" width="397" height="16" fill="#c0392b" opacity="0.85"/>
+        <text x="543" y="98" font-size="11" fill="#1a1a2e" font-weight="700">82.8 (Qwen3.8-Max)</text>
+        <rect x="140" y="105" width="304" height="10" fill="#b45309" opacity="0.6"/>
+        <text x="450" y="114" font-size="10" fill="#5a6a8a">63.5 (Fable 5)</text>
+        <text x="10" y="151" font-size="11" fill="#5a6a8a">Terminal-Bench 2.1</text>
+        <rect x="140" y="138" width="416" height="16" fill="#c0392b" opacity="0.85"/>
+        <text x="562" y="151" font-size="11" fill="#1a1a2e" font-weight="700">86.6 (Qwen3.8-Max)</text>
+        <rect x="140" y="158" width="422" height="10" fill="#166534" opacity="0.5"/>
+        <text x="568" y="167" font-size="10" fill="#5a6a8a">88.8 (GPT-5.6 Sol, leads)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EFFICIENCY</div>
+        <div class="annotation-card-zh">混合专家<span class="annotation-card-en">hùnhé zhuānjiā · mixture-of-experts</span></div>
+        <div class="annotation-card-body">2.4T total / ~95B active params — smaller than Kimi K3's 2.8T. Reads as competing on cost-per-token, not just capability.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VERIFICATION</div>
+        <div class="annotation-card-zh">自评基准<span class="annotation-card-en">zìpíng jīzhǔn · self-reported benchmark</span></div>
+        <div class="annotation-card-body">All comparison figures are Alibaba's own table. No independent replication published at launch — the pattern across every Chinese frontier release this cycle.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CROWDING</div>
+        <div class="annotation-card-zh">价格战<span class="annotation-card-en">jiàgézhàn · price war</span></div>
+        <div class="annotation-card-body">Third frontier-class Chinese release in a month (after Kimi K3, GLM-5.2). Model-layer margin compression across the sector is now the more interesting story than any single benchmark table.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH / PHYSICAL AI &amp; ROBOTICS</div>
+    <div class="story-headline">From Craftsman's Hands to Training Data: Inside the Guangzhou Glove Teaching Robots to Feel</div>
+    <div class="story-insight">
+      <p>Xinhua profiled Guangzhou's Li-Gong Industrial, whose data-capture kit — binocular camera, wrist camera, 100+-point tactile glove — converts skilled-worker hand movements into robot-manipulation training data; orders booked through October. Separately, Shenzhen's 1024 Robotics runs autonomous logistics robots on Metro Line 16 via a local "scenario forest" siting policy.</p>
+      <br>
+      <p>MIIT data cited puts China at 400+ humanoid models (over half the global total) and ~70% of global quadruped sales; one industry estimate has the embodied-intelligence market growing from ¥213.3B (2018) to ¥1.09T (2026e), 22–23% CAGR. All vendor/association-sourced, standard for this stage — but the throughline is that manipulation-training infrastructure is becoming its own sub-industry, not a side effect of humanoid hardware.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The data/training-infrastructure layer (gloves, motion capture, siting policy) is a less crowded trade than humanoid hardware itself — worth tracking Tier 2 names like Li-Gong alongside Unitree and AgiBot.</div>
+    <div class="chart-box">
+      <div class="chart-title">China's Embodied Intelligence Market Size (¥, Industry Estimate)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="2,4"/>
+        <text x="10" y="34" font-size="10" fill="#5a6a8a">¥1.1T</text>
+        <text x="30" y="154" font-size="10" fill="#5a6a8a">¥0</text>
+        <rect x="120" y="142" width="90" height="8" fill="#166534" opacity="0.85"/>
+        <text x="130" y="136" font-size="11" fill="#1a1a2e" font-weight="700">¥213.3B</text>
+        <text x="140" y="168" font-size="11" fill="#5a6a8a">2018</text>
+        <rect x="580" y="34" width="90" height="116" fill="#c0392b" opacity="0.85"/>
+        <text x="580" y="28" font-size="11" fill="#1a1a2e" font-weight="700">¥1.09T (est.)</text>
+        <text x="595" y="168" font-size="11" fill="#5a6a8a">2026e</text>
+        <text x="330" y="90" font-size="10" fill="#5a6a8a">22–23% CAGR, industry-reported</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUB-INDUSTRY EMERGING</div>
+        <div class="annotation-card-zh">数据采集<span class="annotation-card-en">shùjù cǎijí · data capture</span></div>
+        <div class="annotation-card-body">Li-Gong's glove/camera kit is booked through October with South American, European and Southeast Asian demand — manipulation-training data is becoming a standalone product line.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · POLICY LEVER</div>
+        <div class="annotation-card-zh">场景森林<span class="annotation-card-en">chǎngjǐng sēnlín · "scenario forest"</span></div>
+        <div class="annotation-card-body">Local governments (Shenzhen's Pingshan district) actively connect startups to deployment sites — a replicable model worth watching as other regions compete for robotics investment.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · UNVERIFIED FIGURES</div>
+        <div class="annotation-card-zh">厂商披露<span class="annotation-card-en">chǎngshāng pīlù · vendor-disclosed</span></div>
+        <div class="annotation-card-body">Order counts, accuracy specs and market-size figures are company- and association-reported via state media — no independent audit trail.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO / FISCAL POLICY</div>
+    <div class="story-headline">Same Week, Different Lever: NDRC Fast-Tracks ¥800 Billion in Policy Financing a Day After the PBOC's Rate Hold</div>
+    <div class="story-insight">
+      <p>NDRC said July 31 it is accelerating ¥800B in policy-backed financial instruments through Q3, while drafting a domestic-demand strategy covering employment, smart-device consumption, private investment and infrastructure REITs — with computing-power buildout flagged as a private-investment lever worth an estimated ¥4T over the 15th Five-Year Plan.</p>
+      <br>
+      <p>This follows the July 30 Politburo's call to accelerate fiscal spending and lands one day after the PBOC's own "timely tools" pledge (Issue #76). Fiscal policy is the lever actually moving; monetary policy stays in a holding pattern. The ¥800B figure is faster disbursement of existing quota, not incremental stimulus.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch for Q3 disbursement data confirming the acceleration, and the full domestic-demand strategy once published — neither is available yet, so the announcement is a direction-of-travel signal, not a completed policy.</div>
+    <div class="chart-box">
+      <div class="chart-title">Policy Sequence: Politburo → NDRC → PBOC (July 30 – August 1, 2026)</div>
+      <svg viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="80" x2="760" y2="80" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="120" cy="80" r="8" fill="#c0392b"/>
+        <text x="90" y="60" font-size="11" fill="#1a1a2e" font-weight="700">Jul 30</text>
+        <text x="60" y="105" font-size="10" fill="#5a6a8a">Politburo: accelerate</text>
+        <text x="60" y="118" font-size="10" fill="#5a6a8a">fiscal spending</text>
+        <circle cx="400" cy="80" r="8" fill="#b45309"/>
+        <text x="365" y="60" font-size="11" fill="#1a1a2e" font-weight="700">Jul 31</text>
+        <text x="330" y="105" font-size="10" fill="#5a6a8a">NDRC: ¥800B policy</text>
+        <text x="330" y="118" font-size="10" fill="#5a6a8a">instruments accelerated</text>
+        <circle cx="680" cy="80" r="8" fill="#166534"/>
+        <text x="645" y="60" font-size="11" fill="#1a1a2e" font-weight="700">Aug 1</text>
+        <text x="610" y="105" font-size="10" fill="#5a6a8a">PBOC: "timely" tools,</text>
+        <text x="610" y="118" font-size="10" fill="#5a6a8a">no rate cut (Issue #76)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FISCAL IS THE ACTIVE LEVER</div>
+        <div class="annotation-card-zh">政策性金融工具<span class="annotation-card-en">zhèngcè xìng jīnróng gōngjù · policy financial instruments</span></div>
+        <div class="annotation-card-body">¥800B acceleration plus a compute-infrastructure investment estimate of ¥4T over the 15th Five-Year Plan — fiscal policy is moving while monetary policy holds.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DEMAND STRATEGY</div>
+        <div class="annotation-card-zh">扩内需<span class="annotation-card-en">kuò nèixū · expand domestic demand</span></div>
+        <div class="annotation-card-body">The medium-to-long-term consumption/private-investment strategy is still being drafted — specifics that would clarify scale and mechanism aren't public yet.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · HEADLINE VS. SUBSTANCE</div>
+        <div class="annotation-card-zh">存量加速<span class="annotation-card-en">cúnliàng jiāsù · acceleration of existing quota</span></div>
+        <div class="annotation-card-body">¥800B is faster deployment of already-budgeted instruments, not new money — Q3 disbursement data will show whether the acceleration is real.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #77 · AUGUST 4, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
