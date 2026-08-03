@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #65 · August 4, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#7c8cf8; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.75; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#3730a3; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #65 · August 4, 2026</div>
+    <div class="masthead-sub">Sakana Namazu API · Renesas v. Navitas · BOJ Intervention Data</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & Tech · LLM launch</div>
+      <div class="card-num">56.3<span class="card-num-unit">%</span></div>
+      <div class="card-label">Namazu's FairPoliticsQA neutrality score, up from Kimi K2.6 base</div>
+      <div class="card-delta delta-indigo">Base model: 34.1%</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi & Industrial · Litigation</div>
+      <div class="card-num">23<span class="card-num-unit">% YoY</span></div>
+      <div class="card-label">Renesas Q1 FY2026 revenue growth, cited as data-center driven</div>
+      <div class="card-delta delta-red">Navitas: AI revenue &gt;33% of sales by YE</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro & Finance · FX</div>
+      <div class="card-num">~$87<span class="card-num-unit">B</span></div>
+      <div class="card-label">Confirmed BOJ intervention, Thursday + Friday combined</div>
+      <div class="card-delta delta-indigo">Yen: ¥163 → ¥157/USD</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-meta">
+      <div class="story-tag-row">
+        <span class="story-num">STORY 1 · AI & TECH</span>
+        <span class="card-tag tag-ai" style="margin:0;">StartupHub.ai</span>
+      </div>
+      <div class="story-headline">Sakana AI opens Namazu, a commercial Japanese LLM API built on Moonshot's Kimi K2.6</div>
+      <div class="story-insight">
+        <p>Sakana AI's Namazu is a fine-tuned version of Moonshot AI's open-weight Kimi K2.6, adapted for Japanese business context and agentic tool use. The company reports the tuned model holds Kimi K2.6's general reasoning and coding scores (AIME26, MMLU-Pro, LiveCodeBench v6) while gaining sharply on Japan-specific tests — most notably a jump from 34.10% to 56.30% on FairPoliticsQA, an internal neutrality benchmark, alongside improvement on JFBench, a Japanese instruction-following test.</p>
+        <p>The commercial logic is narrower than a frontier-model play: Namazu targets the gap between expensive high-tier US APIs and untuned open-source models, in a market with few credible Japanese-language options at the professional tier. It is Sakana's second distinct monetization path alongside Fugu's open-model orchestration layer — both built on other labs' open weights rather than ground-up frontier training.</p>
+      </div>
+      <div class="story-takeaway"><strong>Investor read-through:</strong> Watch enterprise contract disclosures, not benchmark scores — that is what will validate the "narrower but defensible" niche strategy over the next 1-2 quarters.</div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Benchmark Shift: Kimi K2.6 Base → Namazu (Tuned)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="55" y="25" text-anchor="end" font-size="10" fill="#5a6a8a">60%</text>
+        <text x="55" y="87" text-anchor="end" font-size="10" fill="#5a6a8a">30%</text>
+        <text x="55" y="153" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+        <line x1="60" y1="86" x2="780" y2="86" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <rect x="220" y="77" width="110" height="73" fill="#c7cdf5" rx="3"/>
+        <text x="275" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">34.1%</text>
+        <text x="275" y="168" text-anchor="middle" font-size="11" fill="#3a4a6a">Kimi K2.6 base</text>
+
+        <rect x="470" y="31" width="110" height="119" fill="#3730a3" rx="3"/>
+        <text x="525" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">56.3%</text>
+        <text x="525" y="168" text-anchor="middle" font-size="11" fill="#3a4a6a">Namazu (tuned)</text>
+
+        <text x="410" y="16" text-anchor="middle" font-size="10" fill="#5a6a8a">FairPoliticsQA neutrality score</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · NICHE FOCUS</div>
+        <div class="annotation-card-zh">なまず<span class="annotation-card-en">Namazu · Sakana's LLM API</span></div>
+        <div class="annotation-card-body">Sakana bypasses the general-capability race, targeting professional Japanese-language use — a segment few frontier or open-source models serve well today.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ADOPTION</div>
+        <div class="annotation-card-zh">導入事例<span class="annotation-card-en">dōnyū jirei · adoption case studies</span></div>
+        <div class="annotation-card-body">Sakana is recruiting for enterprise deployment roles in Japan. First disclosed commercial contracts, not benchmarks, are the real validation checkpoint.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SELF-REPORTED SCORES</div>
+        <div class="annotation-card-zh">自己申告<span class="annotation-card-en">jiko shinkoku · self-reported</span></div>
+        <div class="annotation-card-body">Benchmark gains are company-disclosed, not independently verified — a recurring pattern in Sakana's releases that warrants third-party confirmation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-meta">
+      <div class="story-tag-row">
+        <span class="story-num">STORY 2 · SEMI & INDUSTRIAL</span>
+        <span class="card-tag tag-semi" style="margin:0;">Reuters</span>
+      </div>
+      <div class="story-headline">Renesas sues Navitas over stolen GaN trade secrets, sharpening the fight over AI data-center power chips</div>
+      <div class="story-insight">
+        <p>Renesas alleges that Navitas CEO Christopher Allexandre and executive Felicia Cheng, both former Renesas employees, took confidential presentations covering Renesas's gallium-nitride (GaN) chip roadmap before joining Navitas — and that Navitas's subsequent "2.0" strategy mirrors the same target customers and technologies. Renesas seeks damages and an injunction; Navitas has said it will contest the claims.</p>
+        <p>The dispute sits on top of the fastest-growing corner of power semiconductors: both firms are chasing the shift to 800-volt data-center architectures for AI accelerators, where GaN and SiC displace older silicon designs. Navitas has rebuilt around it — guiding AI-linked revenue above a third of sales by year-end — while Renesas's own data-center exposure is a stated driver behind last quarter's 23% revenue growth.</p>
+      </div>
+      <div class="story-takeaway"><strong>Investor read-through:</strong> Treat this as a signal of how contested AI-power design wins have become, not a near-term financial event — trade-secret suits typically run for years and rarely move share prices on the filing alone.</div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Timeline: From Departure to Filing</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#dde0ec" stroke-width="2"/>
+
+        <circle cx="110" cy="90" r="7" fill="#c7cdf5"/>
+        <text x="110" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Sep 2025</text>
+        <text x="110" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Allexandre joins</text>
+        <text x="110" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">Navitas as CEO</text>
+
+        <circle cx="310" cy="90" r="7" fill="#c7cdf5"/>
+        <text x="310" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Early 2026</text>
+        <text x="310" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Navitas unveils</text>
+        <text x="310" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">"2.0" strategy</text>
+
+        <circle cx="530" cy="90" r="7" fill="#7c3aed"/>
+        <text x="530" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">Jul 22, 2026</text>
+        <text x="530" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Reuters reports</text>
+        <text x="530" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">theft allegations</text>
+
+        <circle cx="710" cy="90" r="8" fill="#3730a3"/>
+        <text x="710" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 29, 2026</text>
+        <text x="710" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Suit filed,</text>
+        <text x="710" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">N.D. California</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MARKET GROWTH</div>
+        <div class="annotation-card-zh">窒化ガリウム<span class="annotation-card-en">chikka garyūmu · gallium nitride</span></div>
+        <div class="annotation-card-body">Both firms converging on 800V GaN/SiC architecture for AI data centers confirms this is a genuinely fast-growing, contested addressable market.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CASE TIMELINE</div>
+        <div class="annotation-card-zh">係争<span class="annotation-card-en">keisō · litigation</span></div>
+        <div class="annotation-card-body">Trade-secret suits commonly run one to three years. Early motions or a preliminary injunction ruling would be the next concrete milestone.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DESIGN-WIN CONTAGION</div>
+        <div class="annotation-card-zh">顧客基盤<span class="annotation-card-en">kokyaku kiban · customer base</span></div>
+        <div class="annotation-card-body">If allegations hold, Navitas may already have built customer relationships on Renesas's roadmap — a competitive cost independent of any damages award.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-meta">
+      <div class="story-tag-row">
+        <span class="story-num">STORY 3 · MACRO & FINANCE</span>
+        <span class="card-tag tag-macro" style="margin:0;">Bloomberg / CNBC</span>
+      </div>
+      <div class="story-headline">BOJ data confirm an ~$87 billion two-day intervention — and put a September rate hike back in play</div>
+      <div class="story-insight">
+        <p>BOJ data this week quantified last week's coordinated action: roughly $53 billion spent defending the yen on Thursday and a further $34 billion on Friday — the first joint US-Japan currency operation since 2011, lifting the yen from ¥163 to around ¥157/USD. The move has been unsteady since, swinging 1.4% intraday Monday before settling near ¥156.70, a pattern strategists read as consistent with further unconfirmed intervention.</p>
+        <p>Governor Ueda has flagged the September meeting as where an additional rate hike could land, warning that delaying policy action risks an inflation overshoot — read as mildly hawkish despite the July 31 hold at 1.00%. Intervention paired with a credible hike signal is a different policy mix than 2026's earlier solo operations, which failed to durably move the yen.</p>
+      </div>
+      <div class="story-takeaway"><strong>Investor read-through:</strong> The US-Japan rate differential, not intervention size, is the variable that decides whether ¥157 holds. Exporters and financials with unhedged dollar exposure are the direct readers of any follow-through.</div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Confirmed Intervention Size by Day ($ Billions)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="55" y="25" text-anchor="end" font-size="10" fill="#5a6a8a">$60B</text>
+        <text x="55" y="87" text-anchor="end" font-size="10" fill="#5a6a8a">$30B</text>
+        <text x="55" y="153" text-anchor="end" font-size="10" fill="#5a6a8a">$0</text>
+        <line x1="60" y1="86" x2="780" y2="86" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <rect x="200" y="27" width="110" height="123" fill="#3730a3" rx="3"/>
+        <text x="255" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">$53B</text>
+        <text x="255" y="168" text-anchor="middle" font-size="11" fill="#3a4a6a">Thursday</text>
+
+        <rect x="450" y="71" width="110" height="79" fill="#818cf8" rx="3"/>
+        <text x="505" y="64" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">$34B</text>
+        <text x="505" y="168" text-anchor="middle" font-size="11" fill="#3a4a6a">Friday</text>
+
+        <text x="410" y="16" text-anchor="middle" font-size="10" fill="#5a6a8a">BOJ-implied FX intervention, per Bloomberg</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLICY MIX SHIFT</div>
+        <div class="annotation-card-zh">協調介入<span class="annotation-card-en">kyōchō kainyū · coordinated intervention</span></div>
+        <div class="annotation-card-body">Pairing US-coordinated intervention with an explicit rate-hike signal is a materially different playbook than 2026's earlier solo, unconfirmed operations.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SEPTEMBER MEETING</div>
+        <div class="annotation-card-zh">追加利上げ<span class="annotation-card-en">tsuika riage · additional hike</span></div>
+        <div class="annotation-card-body">Ueda's language between now and the September policy meeting is the leading indicator for whether the hike consensus is pulled forward.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · RATE DIFFERENTIAL</div>
+        <div class="annotation-card-zh">金利差<span class="annotation-card-en">kinrisa · interest rate gap</span></div>
+        <div class="annotation-card-body">The US-Japan rate gap remains wide. Without further narrowing, analysts caution intervention gains could fade as they did earlier in 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #65 · AUGUST 4, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
