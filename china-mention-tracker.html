@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief · Entity Mention Tracker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#f4f1ec;font-family:'Inter',sans-serif;color:#1a1a2e;line-height:1.5;}
+
+  /* ── Masthead ── */
+  .masthead-band{background:#1a1a2e;border-bottom:4px solid #c0392b;padding:36px 32px 30px;}
+  .masthead{max-width:1100px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .masthead-left{}
+  .masthead-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#c0392b;margin-bottom:8px;}
+  .masthead-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:#fff;}
+  .masthead-sub{font-size:12px;color:#5a6a8a;margin-top:6px;}
+  .nav-row{display:flex;gap:10px;flex-wrap:wrap;}
+  .nav-btn{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:3px;text-decoration:none;border:1px solid #2a2a4e;color:#8a9bb5;}
+  .nav-btn:hover{border-color:#c0392b;color:#c0392b;}
+
+  /* ── Page body ── */
+  .page{max-width:1100px;margin:0 auto;padding:32px 24px 60px;}
+
+  /* ── Loading ── */
+  #loading{text-align:center;padding:80px 20px;color:#7a6a5a;font-size:14px;}
+  .spinner{display:inline-block;width:32px;height:32px;border:3px solid #e0d8d0;border-top-color:#c0392b;border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:16px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* ── Stat pills ── */
+  .stat-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
+  .stat-pill{background:#fff;border:1px solid #e0d8d0;border-radius:8px;padding:16px 22px;min-width:140px;}
+  .stat-num{font-size:28px;font-weight:700;color:#1a1a2e;}
+  .stat-label{font-size:11px;color:#7a6a5a;margin-top:2px;letter-spacing:0.5px;}
+
+  /* ── Section titles ── */
+  .section-head{display:flex;align-items:center;gap:14px;margin:36px 0 16px;}
+  .section-title{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b;white-space:nowrap;}
+  .section-line{flex:1;height:1px;background:#e0d8d0;}
+  .section-hint{font-size:11px;color:#9a8a7a;}
+
+  /* ── Category badges ── */
+  .cat{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:2px;}
+  .cat-foundation{background:#e0e7ff;color:#3730a3;}
+  .cat-gov{background:#fef3c7;color:#b45309;}
+  .cat-chips{background:#f3e8ff;color:#7c3aed;}
+  .cat-robotics{background:#dcfce7;color:#166534;}
+  .cat-cloud{background:#e0f2fe;color:#0369a1;}
+  .cat-auto{background:#fce7f3;color:#be185d;}
+  .cat-security{background:#fee2e2;color:#c0392b;}
+
+  /* ── Horizontal bar chart ── */
+  .bar-list{display:flex;flex-direction:column;gap:8px;}
+  .bar-row{display:grid;grid-template-columns:170px 1fr 44px;align-items:center;gap:10px;}
+  .bar-name{font-size:12px;font-weight:500;color:#1a1a2e;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .bar-track{background:#f0ede8;border-radius:3px;height:16px;position:relative;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:3px;background:#c0392b;transition:width 0.4s ease;}
+  .bar-count{font-size:11px;font-weight:600;color:#7a6a5a;text-align:right;}
+  .bar-cat-col{display:flex;align-items:center;justify-content:flex-end;gap:6px;}
+
+  /* ── Heatmap ── */
+  .heatmap-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .heatmap{display:grid;row-gap:3px;}
+  .hm-row{display:flex;align-items:center;gap:3px;}
+  .hm-label{font-size:11px;font-weight:500;color:#3a3a5a;min-width:140px;text-align:right;padding-right:8px;white-space:nowrap;flex-shrink:0;}
+  .hm-cell{width:18px;height:18px;border-radius:2px;flex-shrink:0;cursor:default;position:relative;}
+  .hm-cell:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 5px);left:50%;transform:translateX(-50%);background:#1a1a2e;color:#fff;font-size:10px;white-space:nowrap;padding:4px 8px;border-radius:3px;pointer-events:none;z-index:10;}
+  .hm-col-label{font-size:9px;color:#9a8a7a;width:18px;text-align:center;flex-shrink:0;line-height:1.2;}
+  .hm-header{display:flex;align-items:flex-end;gap:3px;margin-bottom:3px;padding-left:148px;}
+  .hm-legend{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:11px;color:#7a6a5a;}
+  .hm-leg-cell{width:14px;height:14px;border-radius:2px;}
+
+  /* ── Rising / Fading ── */
+  .trend-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .trend-card{background:#fff;border:1px solid #e0d8d0;border-radius:8px;padding:20px;}
+  .trend-card-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+  .title-rising{color:#166534;}
+  .title-fading{color:#c0392b;}
+  .trend-row{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f0ede8;}
+  .trend-row:last-child{border-bottom:none;}
+  .trend-name{font-size:12px;font-weight:500;color:#1a1a2e;}
+  .trend-delta{font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;}
+  .delta-up{background:#dcfce7;color:#166534;}
+  .delta-down{background:#fee2e2;color:#c0392b;}
+  .trend-detail{font-size:10px;color:#7a6a5a;margin-top:1px;}
+
+  /* ── Footer ── */
+  .tracker-footer{text-align:center;margin-top:52px;padding-top:20px;border-top:1px solid #e0d8d0;font-size:10px;color:#9a8a7a;letter-spacing:0.5px;}
+
+  @media(max-width:680px){
+    .trend-grid{grid-template-columns:1fr;}
+    .bar-row{grid-template-columns:120px 1fr 36px;}
+    .bar-name{font-size:11px;}
+    .masthead{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-left">
+      <div class="masthead-eyebrow">中国简报 · China Brief</div>
+      <div class="masthead-title">Entity Mention Tracker</div>
+      <div class="masthead-sub" id="sub-line">Loading data from all issues…</div>
+    </div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div id="loading">
+    <div class="spinner"></div><br>
+    Fetching briefs and entity data…
+  </div>
+  <div id="content" style="display:none;"></div>
+</div>
+
+<script>
+const REPO_BASE = 'https://raw.githubusercontent.com/Izuproperty/china-vocab/main';
+
+async function fetchJSON(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`HTTP ${r.status}: ${url}`);
+  return r.json();
+}
+
+function mentionCount(text, name, zh) {
+  let n = 0;
+  if (name && name.length > 3) {
+    const re = new RegExp(name.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), 'gi');
+    n += (text.match(re)||[]).length;
+  }
+  if (zh && zh.length > 1) {
+    n += (text.split(zh).length - 1);
+  }
+  return n;
+}
+
+function heatColor(v) {
+  if (v === 0) return '#f0ede8';
+  if (v <= 2)  return '#f7c5b8';
+  if (v <= 5)  return '#e07060';
+  return '#c0392b';
+}
+
+function catClass(cat) {
+  const m = {foundation:'cat-foundation',gov:'cat-gov',chips:'cat-chips',
+             robotics:'cat-robotics',cloud:'cat-cloud',auto:'cat-auto',security:'cat-security'};
+  return m[cat] || '';
+}
+
+function catLabel(cat) {
+  const m = {foundation:'Foundation AI',gov:'Government',chips:'Chips',
+             robotics:'Robotics',cloud:'Cloud',auto:'Auto',security:'Security'};
+  return m[cat] || cat;
+}
+
+async function build() {
+  const [briefs, landscape] = await Promise.all([
+    fetchJSON(`${REPO_BASE}/briefs.json`),
+    fetchJSON(`${REPO_BASE}/china-ai-landscape.json`)
+  ]);
+
+  const entities = landscape.entities || [];
+  const briefsSorted = [...briefs].sort((a,b) => a.issue - b.issue);
+  const issueNums = briefsSorted.map(b => b.issue);
+  const issueDates = {};
+  briefsSorted.forEach(b => { issueDates[b.issue] = b.date; });
+
+  // Build mention matrix
+  const matrix = {}; // entity name -> {issueNum: count}
+  entities.forEach(e => { matrix[e.name] = {}; });
+
+  briefsSorted.forEach(brief => {
+    const n = brief.issue;
+    const text = (brief.sections||[]).map(s =>
+      (s.body||'') + ' ' + (s.title||'') + ' ' + (s.takeaway||'')
+    ).join(' ');
+    entities.forEach(e => {
+      const c = mentionCount(text, e.name, e.zh);
+      if (c > 0) matrix[e.name][n] = c;
+    });
+  });
+
+  const totals = {};
+  entities.forEach(e => {
+    totals[e.name] = Object.values(matrix[e.name]||{}).reduce((a,b)=>a+b,0);
+  });
+
+  const top20 = entities
+    .map(e => ({...e, total: totals[e.name]||0}))
+    .sort((a,b) => b.total - a.total)
+    .slice(0,20);
+
+  const recentIssues = issueNums.slice(-40);
+  const totalMentions = Object.values(totals).reduce((a,b)=>a+b,0);
+
+  // Trending: last 10 vs prior 10
+  const last10  = issueNums.slice(-10);
+  const prior10 = issueNums.slice(-20,-10);
+  const trending = entities.map(e => {
+    const r = last10.reduce((a,i) => a + (matrix[e.name][i]||0), 0);
+    const p = prior10.reduce((a,i) => a + (matrix[e.name][i]||0), 0);
+    return {name: e.name, cat: e.cat, recent: r, prior: p, delta: r - p, total: totals[e.name]||0};
+  }).filter(t => t.total >= 5);
+  const rising = trending.filter(t => t.delta > 0).sort((a,b) => b.delta - a.delta).slice(0,6);
+  const fading = trending.filter(t => t.delta < 0 && t.prior > 2).sort((a,b) => a.delta - b.delta).slice(0,6);
+
+  // ── Render ──────────────────────────────────────────────────────────────────
+  const maxTotal = top20[0].total;
+  const latestIssue = issueNums[issueNums.length-1];
+  const latestDate = issueDates[latestIssue];
+
+  document.getElementById('sub-line').textContent =
+    `${briefs.length} issues · ${entities.length} entities tracked · through Issue #${latestIssue} (${latestDate})`;
+
+  // Stat pills
+  const statHtml = `
+    <div class="stat-row">
+      <div class="stat-pill"><div class="stat-num">${briefs.length}</div><div class="stat-label">Issues analysed</div></div>
+      <div class="stat-pill"><div class="stat-num">${entities.length}</div><div class="stat-label">Entities tracked</div></div>
+      <div class="stat-pill"><div class="stat-num">${totalMentions.toLocaleString()}</div><div class="stat-label">Total mentions</div></div>
+      <div class="stat-pill"><div class="stat-num">${top20[0].name.split(' ')[0]}</div><div class="stat-label">Most mentioned</div></div>
+    </div>`;
+
+  // Bar chart
+  const barRows = top20.map((e,i) => `
+    <div class="bar-row">
+      <div class="bar-cat-col">
+        <span class="cat ${catClass(e.cat)}">${catLabel(e.cat)}</span>
+        <span class="bar-name">${e.name}</span>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill" style="width:${Math.round(e.total/maxTotal*100)}%"></div>
+      </div>
+      <div class="bar-count">${e.total}</div>
+    </div>`).join('');
+
+  const barHtml = `
+    <div class="section-head">
+      <div class="section-title">Most Mentioned</div>
+      <div class="section-line"></div>
+      <div class="section-hint">Total across all ${briefs.length} issues</div>
+    </div>
+    <div class="bar-list">${barRows}</div>`;
+
+  // Heatmap
+  const colStep = Math.max(1, Math.floor(recentIssues.length / 8));
+  const headerCols = recentIssues.map((iss, i) => {
+    const label = (i % colStep === 0) ? `#${iss}` : '';
+    return `<div class="hm-col-label">${label}</div>`;
+  }).join('');
+
+  const hmRows = top20.map(e => {
+    const cells = recentIssues.map(iss => {
+      const v = matrix[e.name][iss] || 0;
+      const tip = v > 0 ? `${e.name} · Issue #${iss} (${issueDates[iss]||''}) · ${v} mention${v>1?'s':''}` : '';
+      return `<div class="hm-cell" style="background:${heatColor(v)}" ${tip?`data-tip="${tip}"`:''}></div>`;
+    }).join('');
+    return `<div class="hm-row"><div class="hm-label">${e.name}</div>${cells}</div>`;
+  }).join('');
+
+  const hmHtml = `
+    <div class="section-head">
+      <div class="section-title">Activity Timeline</div>
+      <div class="section-line"></div>
+      <div class="section-hint">Last 40 issues · hover cell for detail</div>
+    </div>
+    <div class="heatmap-wrap">
+      <div class="hm-header">${headerCols}</div>
+      <div class="heatmap">${hmRows}</div>
+      <div class="hm-legend">
+        <span>Mentions:</span>
+        <div class="hm-leg-cell" style="background:#f0ede8;border:1px solid #e0d8d0;"></div><span>0</span>
+        <div class="hm-leg-cell" style="background:#f7c5b8"></div><span>1–2</span>
+        <div class="hm-leg-cell" style="background:#e07060"></div><span>3–5</span>
+        <div class="hm-leg-cell" style="background:#c0392b"></div><span>6+</span>
+      </div>
+    </div>`;
+
+  // Trending
+  const risingRows = rising.map(t => `
+    <div class="trend-row">
+      <div>
+        <div class="trend-name">${t.name}</div>
+        <div class="trend-detail">${t.recent} recent · ${t.prior} prior · ${t.total} total</div>
+      </div>
+      <span class="trend-delta delta-up">+${t.delta}</span>
+    </div>`).join('');
+
+  const fadingRows = fading.map(t => `
+    <div class="trend-row">
+      <div>
+        <div class="trend-name">${t.name}</div>
+        <div class="trend-detail">${t.recent} recent · ${t.prior} prior · ${t.total} total</div>
+      </div>
+      <span class="trend-delta delta-down">${t.delta}</span>
+    </div>`).join('');
+
+  const trendHtml = `
+    <div class="section-head">
+      <div class="section-title">Trending</div>
+      <div class="section-line"></div>
+      <div class="section-hint">Last 10 issues vs prior 10</div>
+    </div>
+    <div class="trend-grid">
+      <div class="trend-card">
+        <div class="trend-card-title title-rising">↑ Rising</div>
+        ${risingRows}
+      </div>
+      <div class="trend-card">
+        <div class="trend-card-title title-fading">↓ Fading</div>
+        ${fadingRows}
+      </div>
+    </div>`;
+
+  const footer = `
+    <div class="tracker-footer">
+      CHINA BRIEF · ENTITY MENTION TRACKER · COMPUTED FROM ${briefs.length} ISSUES · DATA: BRIEFS.JSON + CHINA-AI-LANDSCAPE.JSON
+    </div>`;
+
+  document.getElementById('content').innerHTML =
+    statHtml + barHtml + hmHtml + trendHtml + footer;
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+}
+
+build().catch(err => {
+  document.getElementById('loading').innerHTML =
+    `<div style="color:#c0392b;font-size:13px;">Failed to load data: ${err.message}<br><br>
+    <small>This page requires network access to GitHub. Open from the China Brief web app.</small></div>`;
+});
+</script>
+</body>
+</html>
