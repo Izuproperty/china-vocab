@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #78 · August 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #78 · August 5, 2026</div>
+    <div class="masthead-sub">CXMT's Second Beijing Fab · Mandatory AV Safety Standard · HK's First Offshore CGB Futures</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">600K<span class="card-num-unit">wafers/mo</span></div>
+      <div class="card-label">CXMT's potential combined capacity across Hefei, Beijing &amp; Shanghai fabs once all planned plants run</div>
+      <div class="card-delta delta-amber">2nd Beijing fab in early talks</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · REGULATION</div>
+      <div class="card-num">Jul '27<span class="card-num-unit">effective date</span></div>
+      <div class="card-label">China's first mandatory national safety standard for L3/L4 autonomous driving systems</div>
+      <div class="card-delta delta-red">11-month compliance runway</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">¥3.2T<span class="card-num-unit">($474B)</span></div>
+      <div class="card-label">Foreign holdings of Chinese interbank bonds now hedgeable via HK's new offshore CGB futures</div>
+      <div class="card-delta delta-green">4x since 2017</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · CHIPS &amp; SEMICONDUCTORS</div>
+    <div class="story-headline">Cities Bid for the Next Fab: CXMT Weighs a Second Beijing Plant Weeks After Its Record IPO</div>
+    <div class="story-insight">
+      <p>Reuters reported CXMT is in early talks to build a second Beijing DRAM plant in the Yizhuang tech zone, seeking at least ¥60M in initial development-zone backing — a fraction of the $10B+ a leading-edge fab typically costs. The talks predate CXMT's $8.6B July 27 Shanghai IPO, the largest mainland semiconductor listing on record.</p>
+      <br>
+      <p>Beijing, Shanghai and Hefei are now competing to co-fund CXMT capacity — replaying the "Hefei model" of state-directed municipal capital nurturing national champions. CXMT's near-term lever may be domestic pricing power over capacity growth: it remains far behind Samsung, SK Hynix and Micron's combined ~90% global DRAM share.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch which cities actually commit capital, not the fab announcement itself — that's the tell for how centrally Beijing now prioritizes DRAM self-sufficiency.</div>
+    <div class="chart-box">
+      <div class="chart-title">CXMT DRAM Capacity: Current vs. Potential (Wafers/Month)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="160" x2="780" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="55" y="25" text-anchor="end" font-size="10" fill="#5a6a8a">600K</text>
+        <text x="55" y="95" text-anchor="end" font-size="10" fill="#5a6a8a">300K</text>
+        <text x="55" y="163" text-anchor="end" font-size="10" fill="#5a6a8a">0</text>
+        <line x1="60" y1="90" x2="780" y2="90" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <rect x="120" y="90" width="90" height="70" fill="#c0392b" opacity="0.85"/>
+        <text x="165" y="82" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">200K</text>
+        <text x="165" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">Hefei (2 fabs)</text>
+        <rect x="260" y="125" width="90" height="35" fill="#c0392b" opacity="0.55"/>
+        <text x="305" y="117" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">100K</text>
+        <text x="305" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">Beijing (1 fab)</text>
+        <rect x="400" y="30" width="90" height="130" fill="#b45309" opacity="0.75"/>
+        <text x="445" y="22" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">~300K+</text>
+        <text x="445" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">Shanghai/Hefei (under construction)</text>
+        <rect x="540" y="145" width="90" height="15" fill="#166534" opacity="0.4" stroke="#166534" stroke-dasharray="4,2"/>
+        <text x="585" y="137" text-anchor="middle" font-size="11" fill="#166534" font-weight="700">? (talks only)</text>
+        <text x="585" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">2nd Beijing fab (proposed)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CITY COMPETITION</div>
+        <div class="annotation-card-zh">合肥模式<span class="annotation-card-en">Héféi Móshì · "Hefei model"</span></div>
+        <div class="annotation-card-body">Beijing, Shanghai and Hefei are all co-financing CXMT capacity, replicating the state-directed municipal-capital playbook that first built the company.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EARLY STAGE</div>
+        <div class="annotation-card-zh">亦庄<span class="annotation-card-en">Yìzhuāng · Beijing tech zone</span></div>
+        <div class="annotation-card-body">The ¥60M figure is a fraction of a fab's $10B+ true cost — talks are preliminary and the funding structure is unconfirmed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · GLOBAL SHARE GAP</div>
+        <div class="annotation-card-zh">长鑫存储<span class="annotation-card-en">Chángxīn Cúnchǔ · CXMT</span></div>
+        <div class="annotation-card-body">CXMT is world #4 in DRAM, but Samsung, SK Hynix and Micron combined held ~90% share in Q1 — a gap new fabs alone won't quickly close.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AUTONOMOUS DRIVING &amp; REGULATION</div>
+    <div class="story-headline">The Override Becomes Compulsory: China Sets Its First National Safety Standard for Self-Driving Cars</div>
+    <div class="story-insight">
+      <p>MIIT's new mandatory standard for L3/L4 autonomous driving systems takes effect July 1, 2027, requiring lifecycle safety assurance, black-box-style data recorders, and continuous driver-readiness monitoring for L3 systems. It replaces a city-by-city pilot patchwork with one national compliance bar.</p>
+      <br>
+      <p>The timing lands as Goldman Sachs raises its 2026 China robotaxi fleet estimate to ~14,000 vehicles and 2030 forecast past 700,000. A unified standard favors scaled operators (Baidu, SAIC-Momenta) who can absorb fixed compliance costs over smaller rivals.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The 11-month runway to July 2027 is the window to watch for provincial enforcement clarity and re-validation of existing city pilot permits.</div>
+    <div class="chart-box">
+      <div class="chart-title">China Robotaxi Fleet: Goldman Sachs Estimates (Vehicles)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="160" x2="780" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="55" y="25" text-anchor="end" font-size="10" fill="#5a6a8a">705K</text>
+        <text x="55" y="90" text-anchor="end" font-size="10" fill="#5a6a8a">350K</text>
+        <text x="55" y="163" text-anchor="end" font-size="10" fill="#5a6a8a">0</text>
+        <rect x="150" y="157" width="140" height="3" fill="#c0392b"/>
+        <text x="220" y="145" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">~14,000</text>
+        <text x="220" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">2026E</text>
+        <rect x="480" y="25" width="140" height="135" fill="#b45309" opacity="0.8"/>
+        <text x="550" y="17" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">705,000</text>
+        <text x="550" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a">2030E</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MATURATION</div>
+        <div class="annotation-card-zh">强制性国家标准<span class="annotation-card-en">qiángzhìxìng guójiā biāozhǔn · mandatory national standard</span></div>
+        <div class="annotation-card-body">A single national bar replaces a dozen city-level pilot rules — a maturing signal for operators trying to scale across provinces.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ENFORCEMENT</div>
+        <div class="annotation-card-zh">智能网联汽车<span class="annotation-card-en">zhìnéng wǎnglián qìchē · intelligent connected vehicle</span></div>
+        <div class="annotation-card-body">MIIT says more market-access and testing rules are coming — this standard is a first step, not the finished framework.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COMPLIANCE COST</div>
+        <div class="annotation-card-zh">自动驾驶<span class="annotation-card-en">zìdòng jiàshǐ · autonomous driving</span></div>
+        <div class="annotation-card-body">Fixed compliance costs and lead times may squeeze smaller robotaxi operators relative to scaled players like Baidu and SAIC.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · CAPITAL MARKETS &amp; RMB INTERNATIONALIZATION</div>
+    <div class="story-headline">Closing a Nine-Year Gap: Hong Kong Lists the World's First Offshore Chinese Government Bond Future</div>
+    <div class="story-insight">
+      <p>HKEX listed a cash-settled, 5-year offshore CGB futures contract Monday — face value ¥500,000, position cap 22,000 contracts. CSRC chairman Wu Qing called it a "natural development" reinforcing Hong Kong's "bridgehead" role for offshore RMB.</p>
+      <br>
+      <p>Foreign holdings of Chinese interbank bonds have quadrupled since 2017 to ¥3.2 trillion, with no prior onshore-linked hedging tool. An earlier 2017 CGB futures attempt was shelved over regulatory immaturity — this closes a nine-year gap, though early volumes will determine actual uptake.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Track open interest and volume in the coming weeks — the cash-settlement design and position cap suggest a hedging tool, not a directional-trading vehicle.</div>
+    <div class="chart-box">
+      <div class="chart-title">Foreign Holdings of Chinese Interbank Bonds (¥ Trillion)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="55" y="25" text-anchor="end" font-size="10" fill="#5a6a8a">¥3.5T</text>
+        <text x="55" y="82" text-anchor="end" font-size="10" fill="#5a6a8a">¥1.75T</text>
+        <text x="55" y="143" text-anchor="end" font-size="10" fill="#5a6a8a">¥0</text>
+        <polyline points="100,132 300,110 500,60 720,26" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+        <circle cx="100" cy="132" r="4" fill="#c0392b"/>
+        <circle cx="300" cy="110" r="4" fill="#c0392b"/>
+        <circle cx="500" cy="60" r="4" fill="#c0392b"/>
+        <circle cx="720" cy="26" r="4" fill="#c0392b"/>
+        <text x="100" y="155" text-anchor="middle" font-size="10" fill="#5a6a8a">2017</text>
+        <text x="300" y="155" text-anchor="middle" font-size="10" fill="#5a6a8a">2020</text>
+        <text x="500" y="155" text-anchor="middle" font-size="10" fill="#5a6a8a">2023</text>
+        <text x="720" y="155" text-anchor="middle" font-size="10" fill="#5a6a8a">Mid-2026</text>
+        <text x="720" y="14" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">¥3.2T ($474B)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · HEDGING ACCESS</div>
+        <div class="annotation-card-zh">国债期货<span class="annotation-card-en">guózhài qīhuò · government bond futures</span></div>
+        <div class="annotation-card-body">A liquid offshore hedging instrument removes a standing objection foreign funds have cited against larger RMB fixed-income allocations.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ADOPTION</div>
+        <div class="annotation-card-zh">离岸人民币<span class="annotation-card-en">líàn rénmínbì · offshore RMB</span></div>
+        <div class="annotation-card-body">Whether the contract sees meaningful volume and open interest — not the listing ceremony — will show if global funds actually use it at scale.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SCOPE LIMITS</div>
+        <div class="annotation-card-zh">桥头堡<span class="annotation-card-en">qiáotóubǎo · "bridgehead"</span></div>
+        <div class="annotation-card-body">Cash settlement and a 22,000-contract cap mean the product is designed for hedging, not large directional bets — a narrower tool than a full liberalization.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #78 · AUGUST 5, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
