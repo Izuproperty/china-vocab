@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #66 · August 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#7c8cf8; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.75; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#3730a3; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #66 · August 5, 2026</div>
+    <div class="masthead-sub">JIJ's ¥840M Round · Kumamoto Fab Restart Race · BOJ Outlook Report</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & Tech · Funding</div>
+      <div class="card-num">¥840M<span class="card-num-unit"> ($5.2M)</span></div>
+      <div class="card-label">JIJ Inc.'s new round for its quantum + AI optimization platform</div>
+      <div class="card-delta delta-indigo">5 of 6 investors are corporate VCs</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi & Industrial · Recovery</div>
+      <div class="card-num">8<span class="card-num-unit"> days</span></div>
+      <div class="card-label">JASM Fab 1 still offline since the Jul 28 M7.1 quake</div>
+      <div class="card-delta delta-red">TEL, Sony, Renesas already restarted</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro & BOJ · Outlook</div>
+      <div class="card-num">0.8<span class="card-num-unit">% FY26 GDP</span></div>
+      <div class="card-label">Upgraded from April's 0.5% in the Aug 3 Outlook Report</div>
+      <div class="card-delta delta-yellow">Core CPI: "clearly above 2%" from H2</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-meta">
+      <div class="story-tag-row">
+        <span class="story-num">STORY 1 · AI & TECH</span>
+        <span class="card-tag tag-ai" style="margin:0;">FinSMEs</span>
+      </div>
+      <div class="story-headline">JIJ raises ¥840M as Japan's corporate venture arms back optimization software, not another foundation model</div>
+      <div class="story-insight">
+        <p>JIJ Inc., a Tokyo-based quantum- and AI-enabled optimization platform, raised ¥840 million ($5.2M) led by Global Brain and a Fujitsu Ventures fund, with KDDI, Mitsubishi Electric, ANA, and Yamato Holdings CVCs participating. Founded 2018, JIJ has 60+ documented optimization use cases across manufacturing, transport, telecom, energy, and logistics.</p>
+        <p>Five of six backers are corporate venture arms of firms already inside JIJ's customer base — a different capital pattern than the sovereign foundation-model consortiums dominating recent issues. This is corporate Japan capitalizing the application layer, not the model layer.</p>
+      </div>
+      <div class="story-takeaway"><strong>Investor read-through:</strong> A clean, small-scale read on where AI capex actually lands inside corporate Japan — infrastructure-adjacent and efficiency-focused rather than frontier-model prestige spending.</div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">JIJ Funding Timeline</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#dde0ec" stroke-width="2"/>
+
+        <circle cx="120" cy="90" r="7" fill="#c7cdf5"/>
+        <text x="120" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">2018</text>
+        <text x="120" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">JIJ founded</text>
+        <text x="120" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">in Tokyo</text>
+
+        <circle cx="380" cy="90" r="7" fill="#c7cdf5"/>
+        <text x="380" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">2023</text>
+        <text x="380" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Global Brain's</text>
+        <text x="380" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">initial investment</text>
+
+        <circle cx="700" cy="90" r="8" fill="#3730a3"/>
+        <text x="700" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Aug 4, 2026</text>
+        <text x="700" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">¥840M round:</text>
+        <text x="700" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">5 corporate VCs join</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · APPLICATION LAYER</div>
+        <div class="annotation-card-zh">数理最適化<span class="annotation-card-en">sūri saitekika · mathematical optimization</span></div>
+        <div class="annotation-card-body">Corporate Japan funding the optimization application layer, not a foundation model — a different capital pattern from Noetra-style consortiums.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ENTERPRISE DEPLOYMENT</div>
+        <div class="annotation-card-zh">事業会社系VC<span class="annotation-card-en">jigyō-gaisha-kei VC · corporate VC</span></div>
+        <div class="annotation-card-body">Each backer already sits inside JIJ's customer base — watch for disclosed production deployments at Fujitsu, KDDI, Mitsubishi Electric, ANA, or Yamato.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SMALL ROUND SIZE</div>
+        <div class="annotation-card-zh">量子コンピューティング<span class="annotation-card-en">ryōshi konpyūtingu · quantum computing</span></div>
+        <div class="annotation-card-body">$5.2M is a modest round for a platform spanning optimization, AI modeling, and gate-based quantum R&D — capital intensity of the quantum leg is the thing to track.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-meta">
+      <div class="story-tag-row">
+        <span class="story-num">STORY 2 · SEMI & INDUSTRIAL</span>
+        <span class="card-tag tag-semi" style="margin:0;">TrendForce</span>
+      </div>
+      <div class="story-headline">A week after the Kumamoto quake, TSMC's JASM Fab 1 is the last major site still down</div>
+      <div class="story-insight">
+        <p>A magnitude-7.1 quake hit Kumamoto on July 28. Tokyo Electron's Kyushu sites resumed Aug 3, Sony Semiconductor Solutions began a phased restart Aug 4, and Renesas's Kawajiri plant restarts Aug 5. TSMC's JASM Fab 1 remains under equipment inspection with no confirmed restart date.</p>
+        <p>Kumamoto is under 3% of TSMC's global capacity, so the read-through is regional fragility, not TSMC's P&L. TEL's near-monopoly in categories like EUV coaters means even undamaged facilities can bottleneck the whole cluster.</p>
+      </div>
+      <div class="story-takeaway"><strong>Investor read-through:</strong> If JASM Fab 1's inspection runs materially longer than peers', that's a live data point on how concentrated equipment dependencies amplify a single-site disruption across an entire regional cluster.</div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Kumamoto Restart Timeline, Post-M7.1 Quake</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#dde0ec" stroke-width="2"/>
+
+        <circle cx="90" cy="90" r="7" fill="#7c3aed"/>
+        <text x="90" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">Jul 28</text>
+        <text x="90" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">M7.1 quake</text>
+        <text x="90" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">strikes Kyushu</text>
+
+        <circle cx="255" cy="90" r="6" fill="#c7cdf5"/>
+        <text x="255" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 29</text>
+        <text x="255" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Renesas</text>
+        <text x="255" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">Nishiki restarts</text>
+
+        <circle cx="420" cy="90" r="6" fill="#c7cdf5"/>
+        <text x="420" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Aug 3</text>
+        <text x="420" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Tokyo Electron</text>
+        <text x="420" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">Kyushu resumes</text>
+
+        <circle cx="560" cy="90" r="6" fill="#c7cdf5"/>
+        <text x="560" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Aug 4</text>
+        <text x="560" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Sony Semi.</text>
+        <text x="560" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">phased restart</text>
+
+        <circle cx="700" cy="90" r="6" fill="#c7cdf5"/>
+        <text x="700" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Aug 5</text>
+        <text x="700" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Renesas</text>
+        <text x="700" y="128" text-anchor="middle" font-size="10" fill="#3a4a6a">Kawajiri restarts</text>
+
+        <rect x="640" y="40" width="120" height="20" rx="3" fill="#fee2e2"/>
+        <text x="700" y="54" text-anchor="middle" font-size="10" font-weight="700" fill="#b91c1c">JASM Fab 1: still down</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · REGIONAL RESILIENCE</div>
+        <div class="annotation-card-zh">熊本地震<span class="annotation-card-en">Kumamoto jishin · Kumamoto earthquake</span></div>
+        <div class="annotation-card-body">Four of five major Kumamoto sites restarted within a week — no structural damage reported anywhere in the cluster.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · JASM FAB 1 TIMELINE</div>
+        <div class="annotation-card-zh">再開<span class="annotation-card-en">saikai · restart</span></div>
+        <div class="annotation-card-body">TSMC has given no confirmed restart date for Fab 1 — the outlier of the cluster. A concrete date would be the next milestone.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EQUIPMENT BOTTLENECK</div>
+        <div class="annotation-card-zh">独占<span class="annotation-card-en">dokusen · monopoly</span></div>
+        <div class="annotation-card-body">Tokyo Electron's near-monopoly in categories like EUV coaters/developers means its facilities are a single point of regional fragility, independent of its own P&L.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-meta">
+      <div class="story-tag-row">
+        <span class="story-num">STORY 3 · MACRO & BOJ</span>
+        <span class="card-tag tag-macro" style="margin:0;">Bank of Japan</span>
+      </div>
+      <div class="story-headline">BOJ's full Outlook Report text sharpens the upside-inflation case the July decision only hinted at</div>
+      <div class="story-insight">
+        <p>The BOJ released the full-text Outlook Report on Aug 3, two days after holding its rate at 1.00% and lifting the FY2026 GDP forecast to 0.8% (from 0.5%). The text adds that core CPI should accelerate to "clearly above 2%" from H2 FY2026, with risks explicitly skewed to the upside.</p>
+        <p>The Board names three drivers: yen weakness, AI-linked chip/equipment demand feeding into consumer prices, and Middle East logistics costs — none reversible quickly. July CPI (Aug 21) and August CPI (Sep 18) are the next checkpoints for September/October policy.</p>
+      </div>
+      <div class="story-takeaway"><strong>Investor read-through:</strong> The upside-risk framing reads as the Board building a case for a faster hiking path than the "no clear timetable" language from the decision itself implied.</div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">FY2026 Real GDP Forecast: April vs. July Outlook Report</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="55" y="25" text-anchor="end" font-size="10" fill="#5a6a8a">1.0%</text>
+        <text x="55" y="87" text-anchor="end" font-size="10" fill="#5a6a8a">0.5%</text>
+        <text x="55" y="153" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+        <line x1="60" y1="86" x2="780" y2="86" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <rect x="220" y="86" width="110" height="64" fill="#c7cdf5" rx="3"/>
+        <text x="275" y="79" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">0.5%</text>
+        <text x="275" y="168" text-anchor="middle" font-size="11" fill="#3a4a6a">April forecast</text>
+
+        <rect x="470" y="46" width="110" height="104" fill="#3730a3" rx="3"/>
+        <text x="525" y="39" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">0.8%</text>
+        <text x="525" y="168" text-anchor="middle" font-size="11" fill="#3a4a6a">July Outlook (Aug 3 text)</text>
+
+        <text x="410" y="16" text-anchor="middle" font-size="10" fill="#5a6a8a">BOJ Outlook for Economic Activity and Prices</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GROWTH UPGRADE</div>
+        <div class="annotation-card-zh">展望レポート<span class="annotation-card-en">tenbō repōto · Outlook Report</span></div>
+        <div class="annotation-card-body">FY2026 GDP forecast raised to 0.8% from 0.5%, citing resilient AI/semiconductor-linked capex — the growth side of the ledger looks solid.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · JULY / AUGUST CPI</div>
+        <div class="annotation-card-zh">消費者物価指数<span class="annotation-card-en">shōhisha bukka shisū · CPI</span></div>
+        <div class="annotation-card-body">July CPI lands Aug 21, August CPI Sep 18 — the core reference data for whether September or October becomes a live hike meeting.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · UPSIDE INFLATION</div>
+        <div class="annotation-card-zh">上振れリスク<span class="annotation-card-en">uwaburi risuku · upside risk</span></div>
+        <div class="annotation-card-body">Weak yen, AI-linked chip demand, and Middle East logistics costs are all named as upside inflation drivers outside the BOJ's direct control.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #66 · AUGUST 5, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
