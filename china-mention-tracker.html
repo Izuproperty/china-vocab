@@ -168,7 +168,7 @@ async function build() {
     fetchJSON(`${REPO_BASE}/china-ai-landscape.json`)
   ]);
 
-  const entities = landscape.entities || [];
+  const entities = (landscape.entities || []).filter(e => e.cat !== 'gov');
   const briefsSorted = [...briefs].sort((a,b) => a.issue - b.issue);
   const issueNums = briefsSorted.map(b => b.issue);
   const issueDates = {};
@@ -327,7 +327,7 @@ async function build() {
     </div>`;
 
   document.getElementById('content').innerHTML =
-    statHtml + barHtml + hmHtml + trendHtml + footer;
+    statHtml + trendHtml + barHtml + hmHtml + footer;
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('content').style.display = 'block';
