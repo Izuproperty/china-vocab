@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #80 · August 7, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #80 · August 7, 2026</div>
+    <div class="masthead-sub">Goldman's China AI Revenue Upgrade · CXMT Chips Enter Global Laptops · Services PMI Slumps</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · REVENUE</div>
+      <div class="card-num">$13B<span class="card-num-unit">ARR forecast</span></div>
+      <div class="card-label">Goldman's upgraded year-end run-rate for China AI models, +30% from $10B</div>
+      <div class="card-delta delta-amber">Built on price cuts, not price power</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">11%<span class="card-num-unit">PC market contraction (IDC est.)</span></div>
+      <div class="card-label">Global PC shipment decline projected in 2026 as AI strains memory supply</div>
+      <div class="card-delta delta-red">Prices up 10-20% by year-end</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">50.4<span class="card-num-unit">services PMI, July</span></div>
+      <div class="card-label">Down from 54.1 in June; weakest since September 2024</div>
+      <div class="card-delta delta-red">Confidence at lowest since Feb 2020</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH · FOUNDATION MODELS</div>
+    <div class="story-headline">Not the Model, the Math: Goldman Lifts China's AI Revenue Forecast 30% on a MiniMax-DeepSeek Price War</div>
+    <div class="story-insight">
+      <p>Goldman Sachs raised its year-end ARR projection for mainland Chinese AI models 30%, to $13B, after MiniMax's Aug 1 open-weight H3 launch (priced 30-50% below incumbents) and DeepSeek's same-day V4 Flash API rollout. Goldman lifted Zhipu AI's ARR estimate to $2.5B and MiniMax's to $1B.</p>
+      <br>
+      <p>The forecast is built on intensifying price-performance competition, not pricing power — DeepSeek's V4 Flash ranks 8th globally in front-end coding on Arena AI, just behind Zhipu's GLM-5.2 at 7th. The open question for positioning: does revenue scale hold as token prices keep compressing, or is this extrapolating a moment where adoption is outrunning monetization?</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Three developers hit commercial milestones in a single 10-day window — a margin risk as much as a growth signal.</div>
+    <div class="chart-box">
+      <div class="chart-title">Goldman's China AI ARR Forecast, 2026 ($B)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="160" x2="780" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="45" font-size="10" fill="#5a6a8a" text-anchor="end">13</text>
+        <text x="30" y="165" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+        <!-- Prior forecast bar -->
+        <rect x="140" y="82" width="90" height="78" fill="#ddd8d0"/>
+        <text x="185" y="75" font-size="11" fill="#5a6a8a" text-anchor="middle">$10B</text>
+        <text x="185" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">Prior forecast</text>
+        <!-- Upgraded forecast bar -->
+        <rect x="290" y="30" width="90" height="130" fill="#c0392b"/>
+        <text x="335" y="23" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">$13B</text>
+        <text x="335" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">Upgraded (Aug 5)</text>
+        <!-- Zhipu bar -->
+        <rect x="470" y="135" width="70" height="25" fill="#1a56db" opacity="0.7"/>
+        <text x="505" y="128" font-size="10" fill="#1a1a2e" text-anchor="middle">$2.5B</text>
+        <text x="505" y="178" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Zhipu AI</text>
+        <!-- MiniMax bar -->
+        <rect x="600" y="150" width="70" height="10" fill="#b45309" opacity="0.7"/>
+        <text x="635" y="143" font-size="10" fill="#1a1a2e" text-anchor="middle">$1.0B</text>
+        <text x="635" y="178" font-size="9.5" fill="#5a6a8a" text-anchor="middle">MiniMax</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ADOPTION</div>
+        <div class="annotation-card-zh">性价比<span class="annotation-card-en">xìngjiàbǐ · price-performance ratio</span></div>
+        <div class="annotation-card-body">Chinese labs are competing explicitly on cost-adjusted capability. Goldman's upgrade shows real corporate adoption is accelerating, not just model benchmarks.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MARGIN</div>
+        <div class="annotation-card-zh">开源权重<span class="annotation-card-en">kāiyuán quánzhòng · open-weight</span></div>
+        <div class="annotation-card-body">MiniMax priced H3 at 30-50% of incumbent levels. Revenue growth built on price cuts raises the question of whether $13B run-rate is durable or a snapshot of a compressing market.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">营收预测<span class="annotation-card-en">yíngshōu yùcè · revenue forecast</span></div>
+        <div class="annotation-card-body">Forecast rests on a single research note and three companies' self-reported/estimated ARR. No independent verification of Zhipu's or MiniMax's actual revenue trajectory.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH · CHIPS & SEMICONDUCTORS</div>
+    <div class="story-headline">Small Amounts, Large Signal: HP, Asus and Acer Quietly Adopt Chinese Memory Chips as the Shortage Bites</div>
+    <div class="story-insight">
+      <p>HP, Asus and Acer have begun using small volumes of CXMT DRAM chips in select notebooks sold outside the US, per Nikkei Asia, amid an AI-driven global memory shortage. CXMT prioritizes domestic customers (Huawei chief among them), capping export volume; IDC projects an 11%+ PC market contraction in 2026 with prices up 10-20%.</p>
+      <br>
+      <p>The caution matters as much as the volume: PC makers are sourcing quietly to avoid unsettling incumbent suppliers Samsung, SK Hynix and Micron. CXMT remains on the US Entity List — a supplier still formally sanctioned by Washington is now inside Western laptops, a dynamic likely to draw scrutiny if volumes scale.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A shortage severe enough to override supply-chain politics isn't resolving on its own timeline.</div>
+    <div class="chart-box">
+      <div class="chart-title">Global Memory Shortage: PC Market Impact, 2026E</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="120" y="30" font-size="11" fill="#5a6a8a">PC market volume</text>
+        <rect x="120" y="45" width="220" height="16" fill="#ddd8d0"/>
+        <text x="345" y="57" font-size="10" fill="#c0392b">−11% (2026E)</text>
+        <text x="120" y="90" font-size="11" fill="#5a6a8a">Device prices (PC/tablet/phone)</text>
+        <rect x="120" y="105" width="340" height="16" fill="#c0392b"/>
+        <text x="465" y="117" font-size="10" fill="#c0392b">+10–20% by year-end</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUPPLY</div>
+        <div class="annotation-card-zh">存储芯片<span class="annotation-card-en">cúnchǔ xīnpiàn · memory chip</span></div>
+        <div class="annotation-card-body">First reported instance of major non-Chinese PC brands qualifying CXMT DRAM for shipping products — a real, if small, commercial validation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SCALE</div>
+        <div class="annotation-card-zh">内存短缺<span class="annotation-card-en">nèicún duǎnquē · memory shortage</span></div>
+        <div class="annotation-card-body">CXMT prioritizes domestic buyers first. Whether export volumes scale beyond token levels depends on capacity CXMT hasn't committed to foreign customers.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POLITICS</div>
+        <div class="annotation-card-zh">实体清单<span class="annotation-card-en">shítǐ qīngdān · Entity List</span></div>
+        <div class="annotation-card-body">CXMT remains on the US Entity List. Scaling adoption by US-market-facing brands risks political and incumbent-supplier friction well before it moves the revenue needle.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO · ECONOMIC DATA</div>
+    <div class="story-headline">Confidence Before Contraction: China's Services PMI Sinks to a 22-Month Low</div>
+    <div class="story-insight">
+      <p>The RatingDog China general services PMI fell to 50.4 in July from 54.1 in June, missing forecasts of 53.7 and marking the weakest reading since September 2024. Business activity and new orders moderated for a second straight month on softer domestic demand, while export business stayed resilient.</p>
+      <br>
+      <p>Business confidence fell to its lowest level since February 2020, even as the headline index stayed in expansion territory and hiring extended a third month. The gap between still-positive activity and deteriorating sentiment lands days after the PBOC's pledge to stay "appropriately loose" without a specific rate-cut commitment.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Sentiment is deteriorating faster than activity — a leading indicator policymakers haven't yet answered with a specific tool.</div>
+    <div class="chart-box">
+      <div class="chart-title">RatingDog China Services PMI, Jan–Jul 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="95" x2="780" y2="95" stroke="#b45309" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="785" y="99" font-size="9" fill="#b45309">50 (contraction line)</text>
+        <polyline points="100,55 200,50 300,45 400,48 500,52 600,60 700,88" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+        <circle cx="100" cy="55" r="3" fill="#c0392b"/>
+        <circle cx="200" cy="50" r="3" fill="#c0392b"/>
+        <circle cx="300" cy="45" r="3" fill="#c0392b"/>
+        <circle cx="400" cy="48" r="3" fill="#c0392b"/>
+        <circle cx="500" cy="52" r="3" fill="#c0392b"/>
+        <circle cx="600" cy="60" r="3" fill="#c0392b"/>
+        <circle cx="700" cy="88" r="4" fill="#1a1a2e"/>
+        <text x="700" y="75" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">50.4</text>
+        <text x="100" y="165" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Feb</text>
+        <text x="200" y="165" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Mar</text>
+        <text x="300" y="165" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Apr</text>
+        <text x="400" y="165" font-size="9.5" fill="#5a6a8a" text-anchor="middle">May</text>
+        <text x="500" y="165" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Jun*</text>
+        <text x="600" y="165" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Jun</text>
+        <text x="700" y="165" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Jul</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EXPORTS</div>
+        <div class="annotation-card-zh">内需<span class="annotation-card-en">nèixū · domestic demand</span></div>
+        <div class="annotation-card-body">Export-facing services stayed resilient even as domestic orders weakened — consistent with the export-led growth pattern seen in June trade data.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SENTIMENT</div>
+        <div class="annotation-card-zh">商业信心<span class="annotation-card-en">shāngyè xìnxīn · business confidence</span></div>
+        <div class="annotation-card-body">Confidence at a 5+ year low despite expansion-territory activity. A leading indicator worth tracking against August data before drawing conclusions on trend.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POLICY GAP</div>
+        <div class="annotation-card-zh">适度宽松<span class="annotation-card-en">shìdù kuānsōng · appropriately loose</span></div>
+        <div class="annotation-card-body">PBOC's Aug 1 pledge stopped short of a specific rate cut. If confidence keeps sliding faster than activity, the toolkit's current calibration may be tested.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #80 · AUGUST 7, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
