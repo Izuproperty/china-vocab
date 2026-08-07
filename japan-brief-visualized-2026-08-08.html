@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #69 · August 8, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #69 · August 8, 2026</div>
+    <div class="masthead-sub">NTT Data's ¥1.5T data center bet · Toyoda returns to Motomachi · IMF backs BOJ normalization</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & Tech · Infrastructure</div>
+      <div class="card-num">1<span class="card-num-unit">GW by FY2033</span></div>
+      <div class="card-label">NTT Data's target domestic data center capacity — roughly 4x current levels</div>
+      <div class="card-delta delta-indigo">¥1.5T ($9.6B) committed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Robotics & Industrial</div>
+      <div class="card-num">8<span class="card-num-unit">years at Woven</span></div>
+      <div class="card-label">Daisuke Toyoda's tenure leading Woven by Toyota before his Aug 1 return</div>
+      <div class="card-delta delta-indigo">Founding family, factory floor</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro & BOJ</div>
+      <div class="card-num">1.00<span class="card-num-unit">% policy rate</span></div>
+      <div class="card-label">BOJ rate since Jun 16; IMF's Katz backs continued normalization</div>
+      <div class="card-delta delta-yellow">September hike now widely discussed</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI & TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">Bloomberg / Japan Times</span>
+        </div>
+        <div class="story-headline">NTT Data commits ¥1.5T to roughly quadruple Japan data center capacity by 2033</div>
+        <div class="story-insight">
+          <p>NTT Data plans to add ~750MW of domestic data center capacity through FY2033, taking total capacity above 1GW — about four times current levels — with 42MW landing this year and a 100MW Tochigi facility breaking ground next year. Total data center capex is guided up ~33% to ~$3.3B this fiscal year, excluding AI accelerators.</p>
+          <p>As Japan's largest data center operator, NTT Data's multi-year commitment reads as a demand signal rather than a strategic pivot: computing infrastructure is the constraint enterprises most often cite when deploying generative AI domestically.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Watch for spillover into grid-capacity commitments (TEPCO, Chubu Electric) and the equipment supply chain (Tokyo Electron, Advantest), which benefit regardless of which foundation model wins share.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">NTT Data Capacity Build-Out Path (MW)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="110" x2="780" y2="110" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="70" x2="780" y2="70" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="154" text-anchor="end" font-size="10" fill="#5a6a8a">0</text>
+        <text x="50" y="74" text-anchor="end" font-size="10" fill="#5a6a8a">750</text>
+        <text x="50" y="34" text-anchor="end" font-size="10" fill="#5a6a8a">1000+</text>
+
+        <rect x="140" y="142" width="70" height="8" fill="#a5b4fc"/>
+        <text x="175" y="170" text-anchor="middle" font-size="11" fill="#3a4a6a">FY2026</text>
+        <text x="175" y="132" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">+42MW</text>
+
+        <rect x="330" y="118" width="70" height="32" fill="#818cf8"/>
+        <text x="365" y="170" text-anchor="middle" font-size="11" fill="#3a4a6a">FY2027</text>
+        <text x="365" y="108" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">+100MW Tochigi</text>
+
+        <rect x="520" y="38" width="70" height="112" fill="#3730a3"/>
+        <text x="555" y="170" text-anchor="middle" font-size="11" fill="#3a4a6a">FY2033</text>
+        <text x="555" y="28" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">1GW+ (~4x)</text>
+
+        <rect x="700" y="60" width="14" height="14" fill="#3730a3"/>
+        <text x="722" y="72" font-size="10" fill="#5a6a8a">¥1.5T total commitment</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCALE</div>
+        <div class="annotation-card-zh">計算基盤<span class="annotation-card-en">keisan kiban · computing infrastructure</span></div>
+        <div class="annotation-card-body">Japan's largest data center operator committing multi-year capex at this scale signals sustained utilization expectations, not a short AI-capex cycle.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · POWER</div>
+        <div class="annotation-card-zh">電力供給<span class="annotation-card-en">denryoku kyōkyū · power supply</span></div>
+        <div class="annotation-card-body">1GW of new capacity requires matching grid commitments. TEPCO and Chubu Electric supply-side announcements are the next checkpoint.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · UTILIZATION</div>
+        <div class="annotation-card-zh">稼働率<span class="annotation-card-en">kadōritsu · utilization rate</span></div>
+        <div class="annotation-card-body">Capacity built ahead of confirmed demand is a standard AI-infrastructure risk; NTT Data has not disclosed pre-lease or anchor-tenant commitments for the new capacity.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · ROBOTICS & INDUSTRIAL</span>
+          <span class="card-tag tag-semi" style="margin:0;">Automotive News</span>
+        </div>
+        <div class="story-headline">Toyota moves Woven City's AI and robotics onto the Motomachi assembly line</div>
+        <div class="story-insight">
+          <p>Daisuke Toyoda, 38, returned to Toyota Motor Corp. on August 1 after eight years leading Woven by Toyota, tasked with trialing Woven City's AI and robotics technologies — including its April-unveiled vision-language model — inside the Motomachi plant, Toyota's oldest passenger-car assembly facility and traditional proving ground for new production methods.</p>
+          <p>The move converts Woven City from a sandboxed research effort into something with a mandate to affect volume manufacturing, while placing a member of the founding family directly on a formative factory floor — a leadership-track signal as much as a technology one inside Toyota's culture.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> A useful data point on how fast Japan's largest industrial employer converts physical-AI research into production-line throughput, relevant to the broader Noetra/VTLA physical-AI buildout thesis.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">From Test Town to Factory Floor</div>
+      <svg viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#dde0ec" stroke-width="2"/>
+
+        <circle cx="120" cy="90" r="7" fill="#818cf8"/>
+        <text x="120" y="70" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">Sep 2025</text>
+        <text x="120" y="112" text-anchor="middle" font-size="10" fill="#3a4a6a">Woven City opens</text>
+
+        <circle cx="380" cy="90" r="7" fill="#818cf8"/>
+        <text x="380" y="70" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">Apr 2026</text>
+        <text x="380" y="112" text-anchor="middle" font-size="10" fill="#3a4a6a">AI Vision Engine unveiled</text>
+
+        <circle cx="660" cy="90" r="9" fill="#3730a3"/>
+        <text x="660" y="66" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">Aug 1, 2026</text>
+        <text x="660" y="115" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="600">Toyoda returns to Motomachi</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEPLOYMENT</div>
+        <div class="annotation-card-zh">生産技術<span class="annotation-card-en">seisan gijutsu · production engineering</span></div>
+        <div class="annotation-card-body">Woven City tech is being tested against a real production line, not just a demonstration town — a meaningfully harder bar to clear.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUCCESSION</div>
+        <div class="annotation-card-zh">創業家<span class="annotation-card-en">sōgyōka · founding family</span></div>
+        <div class="annotation-card-body">Placing founding-family leadership on the factory floor has historically preceded broader leadership moves at Toyota — worth tracking as a governance signal.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · TIMELINE</div>
+        <div class="annotation-card-zh">実用化<span class="annotation-card-en">jitsuyōka · practical implementation</span></div>
+        <div class="annotation-card-body">No disclosed timeline or KPI for the Motomachi trial; physical-AI pilots in manufacturing commonly take multiple quarters to show throughput results.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO & BOJ</span>
+          <span class="card-tag tag-macro" style="margin:0;">Bloomberg / BigGo Finance</span>
+        </div>
+        <div class="story-headline">IMF's Katz backs continued BOJ normalization, adding outside weight to a September move</div>
+        <div class="story-insight">
+          <p>IMF First Deputy Managing Director Dan Katz told Bloomberg TV that Japan's structural reforms are entering a "harvest period," giving the BOJ room to continue exiting nearly three decades of ultra-loose policy given inflation still modestly above target. The remarks came three days after the first joint US-Japan yen intervention in 15 years.</p>
+          <p>Bank of America, reacting to the same developments, cut its year-end USD/JPY forecast to 149 from 152 and argued a September hike would let the BOJ demonstrate resolve ahead of the July and August CPI prints.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> A coordinated IMF-Treasury-sell-side chorus around September raises the reputational cost of a BOJ hold if incoming data cooperates — relevant to the already-re-rated megabank trade (MUFG, Mizuho, SMBC).</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">BOJ Policy Rate Path</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="110" x2="780" y2="110" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="70" x2="780" y2="70" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="154" text-anchor="end" font-size="10" fill="#5a6a8a">0.50%</text>
+        <text x="50" y="114" text-anchor="end" font-size="10" fill="#5a6a8a">0.75%</text>
+        <text x="50" y="74" text-anchor="end" font-size="10" fill="#5a6a8a">1.00%</text>
+        <text x="50" y="34" text-anchor="end" font-size="10" fill="#5a6a8a">1.25%</text>
+
+        <path d="M 100 110 L 300 110 L 300 70 L 550 70 L 550 70 L 720 70" stroke="#3730a3" stroke-width="3" fill="none"/>
+        <path d="M 720 70 L 780 30" stroke="#3730a3" stroke-width="3" stroke-dasharray="6,5" fill="none"/>
+
+        <circle cx="100" cy="110" r="5" fill="#3730a3"/>
+        <text x="100" y="132" text-anchor="middle" font-size="10" fill="#3a4a6a">Apr 2026</text>
+        <text x="100" y="98" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">Hold 0.75%</text>
+
+        <circle cx="300" cy="70" r="5" fill="#3730a3"/>
+        <text x="300" y="132" text-anchor="middle" font-size="10" fill="#3a4a6a">Jun 16</text>
+        <text x="300" y="58" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">Hike to 1.00%</text>
+
+        <circle cx="550" cy="70" r="5" fill="#3730a3"/>
+        <text x="550" y="132" text-anchor="middle" font-size="10" fill="#3a4a6a">Jul 31</text>
+        <text x="550" y="58" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">Hold 1.00%</text>
+
+        <circle cx="720" cy="70" r="5" fill="#3730a3"/>
+        <text x="720" y="132" text-anchor="middle" font-size="10" fill="#3a4a6a">Aug 6</text>
+        <text x="720" y="58" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="700">IMF backs hikes</text>
+
+        <circle cx="780" cy="30" r="6" fill="none" stroke="#3730a3" stroke-width="2"/>
+        <text x="760" y="18" text-anchor="middle" font-size="10" fill="#7c3aed" font-weight="700">Sept? (projected)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · VALIDATION</div>
+        <div class="annotation-card-zh">政策正常化<span class="annotation-card-en">seisaku seijōka · policy normalization</span></div>
+        <div class="annotation-card-body">External IMF endorsement stacks on top of domestic wage and inflation data already building the case for a near-dated hike.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DATA</div>
+        <div class="annotation-card-zh">消費者物価指数<span class="annotation-card-en">shōhisha bukka shisū · CPI</span></div>
+        <div class="annotation-card-body">July CPI (Aug 21) and August CPI (Sep 18) are the hard checkpoints the BOJ will weigh against the September and October meetings.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CURRENCY</div>
+        <div class="annotation-card-zh">為替介入<span class="annotation-card-en">kawase kainyū · FX intervention</span></div>
+        <div class="annotation-card-body">Yen remains near ¥158/dollar despite joint intervention; a hold in September would test the credibility of the intervention itself.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #69 · AUGUST 8, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
