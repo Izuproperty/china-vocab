@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-08-07",
-    "issue": 80,
+    "updated": "2026-08-08",
+    "issue": 81,
     "title": "China AI Landscape"
   },
   "entities": [
@@ -11,7 +11,7 @@
       "py": "Shēndù Qiúsuǒ",
       "cat": "foundation",
       "status": "private",
-      "desc": "Hangzhou. Backed by High-Flyer Quant + National AI Fund (state-led) + Tencent + CATL + Hillhouse. Models: DeepSeek-V3, V4. Cost-efficient frontier — disrupted US cost narrative Jan 2025. V4 natively optimized for Huawei Ascend; migrated fully from CUDA to Ascend-native. **Funding round (June 2026):** Raised ¥50B ($7.4B) in first-ever external round at ¥350–400B ($52–59B) valuation. Round CLOSED June 17, 2026. Final structure: all commercial investors (Tencent, CATL, others) accepted 5-year lock-up and surrendered ALL voting rights. National AI Industry Investment Fund received direct equity + voting rights + no lock-up — only voting investor. Makes DeepSeek structurally state-controlled. **Engram (May 26):** conditional memory module committing static knowledge to system RAM, freeing HBM for dynamic computation; reduces AI inference dependence on foreign HBM. **Code Harness team (May 2026):** dedicated agentic coding team explicitly benchmarking against Claude Code, Cursor, Codex. Hired former Jane Street engineer Cui Tianyi (崔天一) to lead effort. **DSpark (#41, Jun 2026):** Speculative decoding framework for V4. Lightweight draft model proposes tokens; V4 batch-verifies in parallel (semi-autoregressive). 85% inference speed gain per user. Open-weight release on HuggingFace + GitHub Jun 28, 2026. **Inference chip design (#51, Jul 2026, Reuters):** ~1 year into quietly designing own AI inference chip (no tape-out reported). Goal: reduce reliance on BOTH Nvidia AND Huawei Ascend — complicates assumption Huawei consolidates China's compute layer by default. Foundry partner unconfirmed; SMIC capacity under export-control pressure is binding constraint. **V4-Flash-0731 public beta (July 31, 2026 / Issue #74):** Pushed a re-post-trained build of its V4-Flash API into public beta — same 284B-total/13B-active MoE architecture as the April preview, no parameter-count increase, purely a re-training pass. Natively supports the Responses API format and is adapted for Codex compatibility. DeepSeek's own published results show the 0731 build scoring above its larger V4-Pro-Preview flagship on all nine agent/coding benchmarks the company reports. Pricing unchanged and cheap: $0.14/M input, $0.28/M output tokens. Scope limited — only the Flash API tier was touched; Pro API and the app/web models are untouched. Lands as Moonshot's K3 pricing reset (#73) is already pressuring model-layer margins sector-wide; a smaller, cheaper tier beating the flagship via re-training alone (not scale) reinforces the read that Chinese frontier-model economics are commoditizing faster than benchmarked capability. Caveat: benchmarks are self-reported against DeepSeek's own published set, and no serving-cost or margin data accompanies the pricing. **Autonomous cyberattack campaign uncovered (Jul 31–Aug 1, 2026 / Issue #76):** Palo Alto Networks' Unit 42 disclosed that a Zhuhai-based, Chinese-speaking actor (aliases 'knaithe' / 'KnYuan') wired the open DeepSeek API into the open-source Hermes Agent framework to run as an autonomous offensive operator, directing it via Telegram to enumerate and attempt exploitation of 460+ internet-facing targets with minimal human input — a recovered May 2026 session showed no operator input after the initial task. Unit 42 confirmed only three successful compromises (Citrix NetScaler memory exfiltration; suspected session hijacking against a Malaysian government entity). The operation was exposed after Hermes accidentally stood up a web server from its own home directory, leaking the attacker's API keys, exploit scripts, target lists and full AI attack logs. Researchers frame the choice of DeepSeek as deliberate: the actor reportedly found Claude's and OpenAI's safety controls blocked offensive use, while DeepSeek did not. No allegation of DeepSeek's own involvement or knowledge — this is a third-party abuse case, not a company action — but it is the clearest documented instance yet of a Chinese open-weight model operating as the reasoning engine inside a live intrusion campaign, a data point regulators and enterprise security teams weighing open-weight model adoption will likely cite. **V4 Flash API official launch cited in Goldman upgrade (July 31–Aug 5, 2026 / Issue #80):** DeepSeek's official API launch of V4 Flash — achieving front-end coding capability rivaling Zhipu's GLM-5.2 (ranking 8th globally on Arena AI's leaderboard vs GLM-5.2's 7th) — was cited alongside MiniMax's H3 release as the catalyst for Goldman Sachs raising its China AI model run-rate revenue forecast 30% to $13B.",
+      "desc": "Hangzhou. Backed by High-Flyer Quant + National AI Fund (state-led) + Tencent + CATL + Hillhouse. Models: DeepSeek-V3, V4. Cost-efficient frontier — disrupted US cost narrative Jan 2025. V4 natively optimized for Huawei Ascend; migrated fully from CUDA to Ascend-native. **Funding round (June 2026):** Raised ¥50B ($7.4B) in first-ever external round at ¥350–400B ($52–59B) valuation. Round CLOSED June 17, 2026. Final structure: all commercial investors (Tencent, CATL, others) accepted 5-year lock-up and surrendered ALL voting rights. National AI Industry Investment Fund received direct equity + voting rights + no lock-up — only voting investor. Makes DeepSeek structurally state-controlled. **Engram (May 26):** conditional memory module committing static knowledge to system RAM, freeing HBM for dynamic computation; reduces AI inference dependence on foreign HBM. **Code Harness team (May 2026):** dedicated agentic coding team explicitly benchmarking against Claude Code, Cursor, Codex. Hired former Jane Street engineer Cui Tianyi (崔天一) to lead effort. **DSpark (#41, Jun 2026):** Speculative decoding framework for V4. Lightweight draft model proposes tokens; V4 batch-verifies in parallel (semi-autoregressive). 85% inference speed gain per user. Open-weight release on HuggingFace + GitHub Jun 28, 2026. **Inference chip design (#51, Jul 2026, Reuters):** ~1 year into quietly designing own AI inference chip (no tape-out reported). Goal: reduce reliance on BOTH Nvidia AND Huawei Ascend — complicates assumption Huawei consolidates China's compute layer by default. Foundry partner unconfirmed; SMIC capacity under export-control pressure is binding constraint. **V4-Flash-0731 public beta (July 31, 2026 / Issue #74):** Pushed a re-post-trained build of its V4-Flash API into public beta — same 284B-total/13B-active MoE architecture as the April preview, no parameter-count increase, purely a re-training pass. Natively supports the Responses API format and is adapted for Codex compatibility. DeepSeek's own published results show the 0731 build scoring above its larger V4-Pro-Preview flagship on all nine agent/coding benchmarks the company reports. Pricing unchanged and cheap: $0.14/M input, $0.28/M output tokens. Scope limited — only the Flash API tier was touched; Pro API and the app/web models are untouched. Lands as Moonshot's K3 pricing reset (#73) is already pressuring model-layer margins sector-wide; a smaller, cheaper tier beating the flagship via re-training alone (not scale) reinforces the read that Chinese frontier-model economics are commoditizing faster than benchmarked capability. Caveat: benchmarks are self-reported against DeepSeek's own published set, and no serving-cost or margin data accompanies the pricing. **Autonomous cyberattack campaign uncovered (Jul 31–Aug 1, 2026 / Issue #76):** Palo Alto Networks' Unit 42 disclosed that a Zhuhai-based, Chinese-speaking actor (aliases 'knaithe' / 'KnYuan') wired the open DeepSeek API into the open-source Hermes Agent framework to run as an autonomous offensive operator, directing it via Telegram to enumerate and attempt exploitation of 460+ internet-facing targets with minimal human input — a recovered May 2026 session showed no operator input after the initial task. Unit 42 confirmed only three successful compromises (Citrix NetScaler memory exfiltration; suspected session hijacking against a Malaysian government entity). The operation was exposed after Hermes accidentally stood up a web server from its own home directory, leaking the attacker's API keys, exploit scripts, target lists and full AI attack logs. Researchers frame the choice of DeepSeek as deliberate: the actor reportedly found Claude's and OpenAI's safety controls blocked offensive use, while DeepSeek did not. No allegation of DeepSeek's own involvement or knowledge — this is a third-party abuse case, not a company action — but it is the clearest documented instance yet of a Chinese open-weight model operating as the reasoning engine inside a live intrusion campaign, a data point regulators and enterprise security teams weighing open-weight model adoption will likely cite. **V4 Flash API official launch cited in Goldman upgrade (July 31–Aug 5, 2026 / Issue #80):** DeepSeek's official API launch of V4 Flash — achieving front-end coding capability rivaling Zhipu's GLM-5.2 (ranking 8th globally on Arena AI's leaderboard vs GLM-5.2's 7th) — was cited alongside MiniMax's H3 release as the catalyst for Goldman Sachs raising its China AI model run-rate revenue forecast 30% to $13B. **$8B round reopened, price hike, Unitree stake — three moves in one week (Aug 4–6, 2026 / Issue #81):** DeepSeek restarted its second external funding round, seeking close to $8B at a ~¥500B ($74B) valuation, per Bloomberg — up sharply from the ~¥350B ($52–59B) mark of its June round. Monolith Management, an early Moonshot AI backer, is in talks to join; size, timing and investor list remain unsettled. The round is a restart, not a fresh start — DeepSeek paused the process in July after leaked remarks from founder Liang Wenfeng (梁文锋) to investors caused friction. Proceeds are earmarked partly for DeepSeek's own data-centre buildout, led by a large facility in Inner Mongolia — a reversal from its efficiency-first, capital-light origin story. The same week, DeepSeek warned users of a 'significant' API price rise and disclosed a ¥140.8M ($20.8M) investment for 2.31% of Unitree Robotics' Shanghai STAR Market IPO strategic placement (36-month lock-up), alongside a pact to jointly develop AI models for humanoid robots — DeepSeek's language/reasoning strength paired with Unitree's motion-control and embodied-intelligence data. Caveat: DeepSeek's own multimodal/vision work (VL2) was never folded into its flagship model and a separate visual-reasoning project vanished in April without explanation, so the robotics tie-up addresses a real capability gap rather than being purely opportunistic; funding terms are still being negotiated and could change.",
       "tags": [
         {
           "l": "$52–59B valuation",
@@ -53,9 +53,25 @@
         {
           "l": "Unit 42: 460+ targets, minimal human input",
           "t": "red"
+        },
+        {
+          "l": "$8B round reopened at $74B valuation (Aug 6)",
+          "t": "highlight"
+        },
+        {
+          "l": "Pivoting to own data centers — capex-heavy shift",
+          "t": "red"
+        },
+        {
+          "l": "API price hike announced same week",
+          "t": "red"
+        },
+        {
+          "l": "2.31% Unitree IPO stake + robotics AI pact",
+          "t": "green"
         }
       ],
-      "issue": "#1, #3, #13, #18, #22, #23, #34, #41, #51, #74, #76, #80"
+      "issue": "#1, #3, #13, #18, #22, #23, #34, #41, #51, #74, #76, #80, #81"
     },
     {
       "name": "Baidu",
@@ -509,7 +525,7 @@
       "py": "Yǔshù Kējì",
       "cat": "robotics",
       "status": "private",
-      "desc": "Private (Series D ~$6B; STAR Market A-share IPO filed Jul 2026). Products: H1, G1, Go2, H2 Plus. H2 Plus (June 1, 2026): selected as Nvidia Isaac GR00T reference platform — deepens integration with Nvidia's humanoid AI stack. Factory customers: BYD, Geely, Nvidia. **European commercial launch (July 22, 2026 / Issue #65):** Launched the H1 Pro commercially in Europe on July 22 — the first Chinese-made humanoid sold commercially in a Western market — with Asian deployment to follow Aug 5 and North America Aug 12: the first coordinated three-market humanoid launch in industry history. Scale behind it: 5,500+ humanoids shipped in 2025 (prospectus claims 32.4% global unit share; Omdia credits AgiBot with 5,168 units / 39%, so the ranking is disputed); 2025 revenue ~¥1.71B (+335% y/y) at a 60.27% gross margin; G1 bill of materials ~$8,976 vs $13,500 retail; shifting to a Robot-as-a-Service model abroad. The launch lands in regulatory crossfire: Pentagon 1260H CMC listing (Jun 8, 2026), the bipartisan GUARD Act (H.R. 9129) review underway, and the EU AI Act's Aug 2, 2026 high-risk deadline still technically operative pending formal publication of the Omnibus delay to Dec 2027. Caveats: no independent security audit of any Unitree humanoid has been published; the UniPwn BLE exploit remained unpatched as of May 2026; H1 Pro spec not clarified against the product hierarchy (H1 EOL Mar 2026); payload 3–5kg limits it to inspection/logistics/light manipulation, not heavy industrial work. **US import ban lands mid-rollout (July 29, 2026 / Issue #72):** The FCC announced a ban on imports of foreign-made humanoid and quadruped robots, citing supply-chain and cybersecurity risk from internet-connected machines; existing US-deployed units are grandfathered. The rule doesn't name China but arrives three weeks into Unitree's first three-market coordinated commercial launch (EU Jul 22 → Asia Aug 5 → North America Aug 12 planned) — putting the US leg in question. China's foreign ministry called it protectionism/'suppression.' Analysts see limited near-term commercial impact given Unitree's existing Europe/Southeast Asia tilt and the lack of non-Chinese alternatives for buyers, but the move is read as a possible template for restricting humanoid-robot market access on national-security grounds ahead of commercial scale, reinforcing the case for non-US revenue diversification. **STAR Market IPO subscription date set (July 30, 2026 / Issue #75):** Unitree set its book-building date for August 5 and online/offline subscription for August 10, planning to issue 40.4464M shares (10% of post-IPO capital) to raise up to ¥4.202B (~$622.7M) — 104 days from application acceptance (Mar 20) to CSRC registration approval (Jul 2), the fastest review on record under the STAR Market's pre-review mechanism. ~85% of proceeds earmarked for R&D (intelligent robot models, hardware, new products, a manufacturing base). But the disclosed H1 2026 forecast shows deceleration: revenue growth of 35.6%–45.4% y/y, down sharply from 332.64% in H1 2025; adjusted net profit down 6.4%–22.0% y/y as R&D and sales expenses (including CCTV Spring Festival Gala marketing) outpaced revenue growth. Humanoid ASP has fallen from ¥593,400 (2023) to ¥166,400 (2025) — a volume-over-price strategy that has pushed humanoid-segment gross margin down from 87.67% to 63.18% even as humanoids overtook quadrupeds as the largest revenue line (51.78% of 2025 revenue). Cap table: founder Wang Xingxing (王兴兴) controls 68.78% of voting rights via special voting arrangements despite holding 23.82% of shares directly; external holders include Meituan (9.65% combined), Sequoia China (7.11%), Matrix Partners China (5.45%), Shunwei Capital (4.42%), Tencent (0.60%) and Ant Group (0.22%). Competitive backdrop: Tesla is converting its Fremont line for Optimus (targeting 1M units/year, production by end-2026); XPeng has 50,000-unit capacity underway in Guangzhou; BYD confirmed it will unveil its own humanoid in early August. Unitree and Zhiyuan Robotics are estimated to hold ~80% of China's 2026 humanoid shipment share (TrendForce). **Book-building opens (August 5, 2026 / Issue #79):** Institutional book-building formally began on schedule, pricing the offering off the ¥42B floor valuation ahead of the August 10 retail/institutional subscription window; the deal proceeds as the fastest STAR Market review on record even as the disclosed H1 2026 growth deceleration (revenue +35.6%–45.4% y/y vs +332.64% in H1 2025) sets the terms investors will price against. Coverage of the book-building continues to flag the disputed Omdia shipment count (AgiBot 5,168 units/39% share vs Unitree's self-reported 32.4%) as an open question for how the IPO narrative is priced.",
+      "desc": "Private (Series D ~$6B; STAR Market A-share IPO filed Jul 2026). Products: H1, G1, Go2, H2 Plus. H2 Plus (June 1, 2026): selected as Nvidia Isaac GR00T reference platform — deepens integration with Nvidia's humanoid AI stack. Factory customers: BYD, Geely, Nvidia. **European commercial launch (July 22, 2026 / Issue #65):** Launched the H1 Pro commercially in Europe on July 22 — the first Chinese-made humanoid sold commercially in a Western market — with Asian deployment to follow Aug 5 and North America Aug 12: the first coordinated three-market humanoid launch in industry history. Scale behind it: 5,500+ humanoids shipped in 2025 (prospectus claims 32.4% global unit share; Omdia credits AgiBot with 5,168 units / 39%, so the ranking is disputed); 2025 revenue ~¥1.71B (+335% y/y) at a 60.27% gross margin; G1 bill of materials ~$8,976 vs $13,500 retail; shifting to a Robot-as-a-Service model abroad. The launch lands in regulatory crossfire: Pentagon 1260H CMC listing (Jun 8, 2026), the bipartisan GUARD Act (H.R. 9129) review underway, and the EU AI Act's Aug 2, 2026 high-risk deadline still technically operative pending formal publication of the Omnibus delay to Dec 2027. Caveats: no independent security audit of any Unitree humanoid has been published; the UniPwn BLE exploit remained unpatched as of May 2026; H1 Pro spec not clarified against the product hierarchy (H1 EOL Mar 2026); payload 3–5kg limits it to inspection/logistics/light manipulation, not heavy industrial work. **US import ban lands mid-rollout (July 29, 2026 / Issue #72):** The FCC announced a ban on imports of foreign-made humanoid and quadruped robots, citing supply-chain and cybersecurity risk from internet-connected machines; existing US-deployed units are grandfathered. The rule doesn't name China but arrives three weeks into Unitree's first three-market coordinated commercial launch (EU Jul 22 → Asia Aug 5 → North America Aug 12 planned) — putting the US leg in question. China's foreign ministry called it protectionism/'suppression.' Analysts see limited near-term commercial impact given Unitree's existing Europe/Southeast Asia tilt and the lack of non-Chinese alternatives for buyers, but the move is read as a possible template for restricting humanoid-robot market access on national-security grounds ahead of commercial scale, reinforcing the case for non-US revenue diversification. **STAR Market IPO subscription date set (July 30, 2026 / Issue #75):** Unitree set its book-building date for August 5 and online/offline subscription for August 10, planning to issue 40.4464M shares (10% of post-IPO capital) to raise up to ¥4.202B (~$622.7M) — 104 days from application acceptance (Mar 20) to CSRC registration approval (Jul 2), the fastest review on record under the STAR Market's pre-review mechanism. ~85% of proceeds earmarked for R&D (intelligent robot models, hardware, new products, a manufacturing base). But the disclosed H1 2026 forecast shows deceleration: revenue growth of 35.6%–45.4% y/y, down sharply from 332.64% in H1 2025; adjusted net profit down 6.4%–22.0% y/y as R&D and sales expenses (including CCTV Spring Festival Gala marketing) outpaced revenue growth. Humanoid ASP has fallen from ¥593,400 (2023) to ¥166,400 (2025) — a volume-over-price strategy that has pushed humanoid-segment gross margin down from 87.67% to 63.18% even as humanoids overtook quadrupeds as the largest revenue line (51.78% of 2025 revenue). Cap table: founder Wang Xingxing (王兴兴) controls 68.78% of voting rights via special voting arrangements despite holding 23.82% of shares directly; external holders include Meituan (9.65% combined), Sequoia China (7.11%), Matrix Partners China (5.45%), Shunwei Capital (4.42%), Tencent (0.60%) and Ant Group (0.22%). Competitive backdrop: Tesla is converting its Fremont line for Optimus (targeting 1M units/year, production by end-2026); XPeng has 50,000-unit capacity underway in Guangzhou; BYD confirmed it will unveil its own humanoid in early August. Unitree and Zhiyuan Robotics are estimated to hold ~80% of China's 2026 humanoid shipment share (TrendForce). **Book-building opens (August 5, 2026 / Issue #79):** Institutional book-building formally began on schedule, pricing the offering off the ¥42B floor valuation ahead of the August 10 retail/institutional subscription window; the deal proceeds as the fastest STAR Market review on record even as the disclosed H1 2026 growth deceleration (revenue +35.6%–45.4% y/y vs +332.64% in H1 2025) sets the terms investors will price against. Coverage of the book-building continues to flag the disputed Omdia shipment count (AgiBot 5,168 units/39% share vs Unitree's self-reported 32.4%) as an open question for how the IPO narrative is priced. **IPO priced; DeepSeek takes strategic stake (Aug 6, 2026 / Issue #81):** Unitree priced its Shanghai IPO on Thursday at ¥150.80/share, raising ~¥6.1B ($904M) at a valuation near $9B — a P/S ratio of 219 versus a ~39x industry average, per Cailian Press. DeepSeek disclosed a ¥140.8M ($20.8M) investment for 2.31% of the strategic placement (36-month lock-up), alongside a pact to pair DeepSeek's language/reasoning models with Unitree's motion-control and embodied-intelligence data to jointly develop humanoid-robot AI 'brains.' Other IPO backers include vehicles tied to Tencent, Alibaba and China Mobile. Caveat: FY2025 revenue more than quadrupled to ¥1.7B with humanoids the largest line, but Q1 adjusted profit fell 52.6% as R&D/marketing spend outpaced revenue, and 13.3% of 2025 revenue (US sales) sits exposed to the FCC's new import curbs on Chinese humanoids.",
       "tags": [
         {
           "l": "Nvidia GR00T platform",
@@ -569,9 +585,21 @@
         {
           "l": "Omdia disputes shipment lead: AgiBot 39% vs Unitree 32.4%",
           "t": "red"
+        },
+        {
+          "l": "IPO priced Aug 6: ¥6.1B raised, P/S of 219",
+          "t": "highlight"
+        },
+        {
+          "l": "DeepSeek takes 2.31% strategic stake + AI pact",
+          "t": "green"
+        },
+        {
+          "l": "Q1 adjusted profit fell 52.6% y/y",
+          "t": "red"
         }
       ],
-      "issue": "#1, #21, #36, #38, #45, #46, #65, #72, #75, #79"
+      "issue": "#1, #21, #36, #38, #45, #46, #65, #72, #75, #79, #81"
     },
     {
       "name": "UBTECH",
@@ -1012,7 +1040,7 @@
       "cat": "chips",
       "status": "public",
       "ticker": "STAR: 688256",
-      "desc": "China's leading publicly-listed AI chip designer alongside Huawei on Beijing's government-approved AI hardware procurement list (Xinchuang extension). Targeting 500K chip deliveries 2026 (3× 2025 output). Constraints: SMIC capacity + HBM supply. **Chip-sector rout (July 28, 2026 / Issue #71):** Shares fell 9.11% as a broad selloff hit Chinese and global semiconductor stocks — the Shenzhen Component dropped 4.52% to a four-month low and a Bloomberg gauge of Asian semiconductor shares slumped as much as 7.5%. Two compounding drivers: (1) China-competition fears, as Shanghai Yuliangsheng's domestic DUV lithography mass-production report (Issue #70) raised questions about the durability of foreign and Chinese equipment-maker valuations alike; (2) 'circular funding' concerns — CDS spreads on Oracle, SpaceX, Alphabet, Amazon, Meta, Broadcom and Nvidia debt hit record highs amid scrutiny of Nvidia's $750B in AI infrastructure deals. Other decliners: Zhongji Innolight -15.69%, GigaDevice -10%, SMIC -4.92%. Caveat: one session of price action; distinguishes sentiment-driven selling from a reassessment of the domestic-substitution thesis, which remains intact.",
+      "desc": "China's leading publicly-listed AI chip designer alongside Huawei on Beijing's government-approved AI hardware procurement list (Xinchuang extension). Targeting 500K chip deliveries 2026 (3× 2025 output). Constraints: SMIC capacity + HBM supply. **Chip-sector rout (July 28, 2026 / Issue #71):** Shares fell 9.11% as a broad selloff hit Chinese and global semiconductor stocks — the Shenzhen Component dropped 4.52% to a four-month low and a Bloomberg gauge of Asian semiconductor shares slumped as much as 7.5%. Two compounding drivers: (1) China-competition fears, as Shanghai Yuliangsheng's domestic DUV lithography mass-production report (Issue #70) raised questions about the durability of foreign and Chinese equipment-maker valuations alike; (2) 'circular funding' concerns — CDS spreads on Oracle, SpaceX, Alphabet, Amazon, Meta, Broadcom and Nvidia debt hit record highs amid scrutiny of Nvidia's $750B in AI infrastructure deals. Other decliners: Zhongji Innolight -15.69%, GigaDevice -10%, SMIC -4.92%. Caveat: one session of price action; distinguishes sentiment-driven selling from a reassessment of the domestic-substitution thesis, which remains intact. **H1 2026 earnings (reported Aug 7, 2026 / Issue #81):** Revenue more than doubled y/y to ¥5.99B ($887M), per Bloomberg, as Beijing's push toward domestic AI hardware continues to convert into bookings for the sector's most established listed chip designer. Shares up further on the print. Sits alongside Iluvatar CoreX (sales roughly tripling) and Moore Threads (guided +149% y/y) as the earnings season's clearest read on how much of the 'Xinchuang substitution' thesis is showing up in actual revenue rather than just procurement-list headlines. Caveat: none of the three has disclosed profitability alongside the revenue growth in this reporting round — the read is on top-line adoption, not unit economics.",
       "tags": [
         {
           "l": "State procurement listed",
@@ -1031,9 +1059,13 @@
         {
           "l": "Domestic-substitution thesis intact",
           "t": "blue"
+        },
+        {
+          "l": "H1 revenue +100%+ y/y to ¥5.99B (Aug 7)",
+          "t": "green"
         }
       ],
-      "issue": "#1, #5, #71"
+      "issue": "#1, #5, #71, #81"
     },
     {
       "name": "Biren Technology",
@@ -1082,8 +1114,9 @@
       "zh": "摩尔线程",
       "py": "Mó'ěr Xiànchéng",
       "cat": "chips",
-      "status": "private",
-      "desc": "GPU maker. Strong in gaming + AI inference. MTT S4000. Anke certified May 2026 for state AI procurement. **June 2026:** confirmed as one of two primary domestic chip platforms (alongside Huawei Ascend) now used by Chinese AI labs at the pre-training and post-training stages — a shift beyond inference-only adoption. Models using Moore Threads hardware include EvoPhys-World and others.",
+      "status": "public",
+      "ticker": "STAR: 688795",
+      "desc": "GPU maker. Strong in gaming + AI inference. MTT S4000. Anke certified May 2026 for state AI procurement. **June 2026:** confirmed as one of two primary domestic chip platforms (alongside Huawei Ascend) now used by Chinese AI labs at the pre-training and post-training stages — a shift beyond inference-only adoption. Models using Moore Threads hardware include EvoPhys-World and others. Listed on the STAR Market (Dec 2025 IPO), shares surged 400%+ on debut. **H1 2026 guidance (reported Aug 7, 2026 / Issue #81):** Company said last month it expects H1 2026 revenue to grow as much as 149% y/y, one of three domestic AI chipmakers (with Cambricon, Iluvatar CoreX) flagged by Bloomberg as beneficiaries of Beijing's push for local firms to substitute away from foreign silicon. Market cap has run well ahead of the earnings base — some analysts benchmark its implied valuation against Cambricon's ~90x P/S multiple.",
       "tags": [
         {
           "l": "Pre-training adoption (Jun 2026)",
@@ -1094,9 +1127,17 @@
         },
         {
           "l": "Alongside Huawei Ascend"
+        },
+        {
+          "l": "H1 2026 revenue guided +149% y/y (Aug 7)",
+          "t": "green"
+        },
+        {
+          "l": "Valuation rich vs. earnings base",
+          "t": "red"
         }
       ],
-      "issue": "#1, #16, #31"
+      "issue": "#1, #16, #31, #81"
     },
     {
       "name": "Iluvatar CoreX",
@@ -1104,7 +1145,7 @@
       "py": "Tiānshù Zhìxīn",
       "cat": "chips",
       "status": "private",
-      "desc": "BI-V150. HPC cluster focus. Anke certified May 2026 for state AI procurement.",
+      "desc": "BI-V150. HPC cluster focus. Anke certified May 2026 for state AI procurement. Raised $902M in July 2026 after a 257% stock rally. **H1 2026 earnings (reported Aug 7, 2026 / Issue #81):** Sales expected to roughly triple y/y, per Bloomberg, the strongest growth rate among the three domestic AI chipmakers (with Cambricon, Moore Threads) cited as beneficiaries of Beijing's push for local firms to substitute away from foreign silicon. As with peers, no profitability figures disclosed alongside the revenue growth.",
       "tags": [
         {
           "l": "BI-V150"
@@ -1115,9 +1156,17 @@
         },
         {
           "l": "HPC clusters"
+        },
+        {
+          "l": "H1 2026 sales ~3x y/y (Aug 7)",
+          "t": "green"
+        },
+        {
+          "l": "$902M raised post 257% rally (Jul 2026)",
+          "t": "highlight"
         }
       ],
-      "issue": "#16"
+      "issue": "#16, #81"
     },
     {
       "name": "MetaX",
