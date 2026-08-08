@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-08-08",
-    "issue": 69,
+    "updated": "2026-08-09",
+    "issue": 70,
     "title": "Japan AI & Industrial Landscape"
   },
   "entities": [
@@ -199,7 +199,7 @@
       "cat": "semi",
       "status": "public",
       "ticker": "Taiwan: 2330 (TSMC parent)",
-      "desc": "TSMC-majority JV in Kumamoto, Kyushu. Partners: Sony Group, Toyota, Denso. JASM-1: 6–12nm, production ramping 2024. JASM-2: upgraded to 3nm (approved April 2026), $17B total investment, government covers ~50%. Production target: 2028. Positions Kyushu as Japan's high-end semiconductor cluster alongside Rapidus Hokkaido. Serves automotive AI chip demand (Toyota, Honda, Denso supply chain). **M7.1 Kumamoto earthquake (#61, Jul 28-29, 2026):** A magnitude-7.1 quake (max seismic intensity 5 at the JASM site) struck Kyushu on Jul 28; TSMC evacuated personnel under emergency procedure, then confirmed structural inspections found no damage and resumed JASM-1 operations in stages. JASM-2 (3nm) construction was unaffected structurally but some work was paused as an aftershock precaution. TSMC's Kumamoto output is under 3% of global capacity, so the read-through is more about regional supply-chain fragility than TSMC's own P&L — see Tokyo Electron for the equipment-side exposure. **Restart update, JASM-1 still the outlier (#66, Aug 3-5, 2026):** A week after the quake, JASM-1 remains the slowest of the Kumamoto cluster to restart — still under equipment inspection and calibration with no confirmed restart date, while neighboring suppliers have moved faster: Tokyo Electron Kyushu resumed Aug 3, Sony Semiconductor Solutions began a phased restart Aug 4 (targeting pre-quake output by mid-August), and Renesas' Kawajiri plant is scheduled to restart Aug 5. JASM-2 construction has resumed per Taiwan's Ministry of Economic Affairs. TSMC said on Jul 29 the strong shaking requires additional time for equipment recalibration before Fab 1 can resume — a longer tail than peers, worth watching for any read-through to the JASM ramp timeline.",
+      "desc": "TSMC-majority JV in Kumamoto, Kyushu. Partners: Sony Group, Toyota, Denso. JASM-1: 6–12nm, production ramping 2024. JASM-2: upgraded to 3nm (approved April 2026), $17B total investment, government covers ~50%. Production target: 2028. Positions Kyushu as Japan's high-end semiconductor cluster alongside Rapidus Hokkaido. Serves automotive AI chip demand (Toyota, Honda, Denso supply chain). **M7.1 Kumamoto earthquake (#61, Jul 28-29, 2026):** A magnitude-7.1 quake (max seismic intensity 5 at the JASM site) struck Kyushu on Jul 28; TSMC evacuated personnel under emergency procedure, then confirmed structural inspections found no damage and resumed JASM-1 operations in stages. JASM-2 (3nm) construction was unaffected structurally but some work was paused as an aftershock precaution. TSMC's Kumamoto output is under 3% of global capacity, so the read-through is more about regional supply-chain fragility than TSMC's own P&L — see Tokyo Electron for the equipment-side exposure. **Restart update, JASM-1 still the outlier (#66, Aug 3-5, 2026):** A week after the quake, JASM-1 remains the slowest of the Kumamoto cluster to restart — still under equipment inspection and calibration with no confirmed restart date, while neighboring suppliers have moved faster: Tokyo Electron Kyushu resumed Aug 3, Sony Semiconductor Solutions began a phased restart Aug 4 (targeting pre-quake output by mid-August), and Renesas' Kawajiri plant is scheduled to restart Aug 5. JASM-2 construction has resumed per Taiwan's Ministry of Economic Affairs. TSMC said on Jul 29 the strong shaking requires additional time for equipment recalibration before Fab 1 can resume — a longer tail than peers, worth watching for any read-through to the JASM ramp timeline. **Fab 1 back to full capacity (#70, Aug 4, 2026):** TSMC confirmed Fab 1 structural inspections came back clean, equipment recalibration was completed, and the line is running at full capacity again — closing out the outlier status flagged in #66 roughly one week after the Jul 28 quake. Recovery timeline (evacuation → inspection → full restart in ~1 week) compares favorably with the multi-month disruption after the 2016 Kumamoto earthquakes, which Japanese media attribute to stronger seismic-resistant facility design and post-2016 business-continuity planning across the cluster. With JASM-1, TEL Kyushu, Sony and Renesas' Nishiki/Kawajiri lines all back online, the read-through shifts from near-term supply risk to whether the aftershock-related pause at the JASM-2 (3nm) construction site adds any slippage to the 2028 production target.",
       "tags": [
         {
           "l": "3nm JASM-2 approved",
@@ -215,15 +215,15 @@
           "l": "Kyushu cluster anchor"
         },
         {
-          "l": "Fab 1 still under inspection (Aug 5)",
-          "t": "red"
+          "l": "Fab 1 back to full capacity (Aug 4)",
+          "t": "green"
         },
         {
           "l": "Peers (TEL, Sony, Renesas) restarting Aug 3-5",
           "t": "blue"
         }
       ],
-      "issue": "#2, #61, #66"
+      "issue": "#2, #61, #66, #70"
     },
     {
       "name": "Kioxia",
@@ -410,6 +410,33 @@
         }
       ],
       "issue": "#6"
+    },
+    {
+      "name": "ZEALS / Omakase Robotics",
+      "zh": "ZEALS（ジールス）／おまかせロボティクス",
+      "py": "Jīrusu / Omakase Robotikusu",
+      "cat": "robotics",
+      "status": "private",
+      "desc": "Tokyo conversational-AI company (founded 2014; CEO Masa Shimizu), originally known for chat-commerce AI agents deployed across 450+ enterprise clients. Omakase Robotics is its robotics division, building 'Omakase OS' — a software/systems stack for deploying humanoid robots into human-facing indoor service work. **D1 humanoid robot commercial launch (#70, Aug 5, 2026):** Launched the D1, marketed as Japan's first commercially available humanoid robot certified through a hospital proof-of-concept (completed at University of Tsukuba Hospital), opening sales and deployment consultations at ¥5,000,000 (~$32,000) per unit for hospitals, care facilities, hotels and logistics sites — handling reception, wayfinding, multilingual conversation, and two-arm item handoff/transport. **Supply-chain tension:** The D1 runs on a Unitree G1 chassis — the same Chinese-made hardware platform the US FCC added to its national-security Covered List (citing confirmed backdoors and China's mandatory intelligence-cooperation laws) roughly eight days before the D1's commercial debut. For Japanese hospitals signing deployment agreements, the episode raises a concrete question for the country's 'sovereign'/'quasi-domestic' robotics narrative: an AI/software layer built in Japan still sits on a production supply chain that flows through a Chinese manufacturer operating under Chinese law, at the exact moment Tokyo is trying to position humanoid robotics as a Noetra-adjacent domestic-security asset rather than an imported one.",
+      "tags": [
+        {
+          "l": "D1 humanoid launch: ¥5M/unit (Aug 5)",
+          "t": "highlight"
+        },
+        {
+          "l": "First hospital-certified humanoid in Japan",
+          "t": "green"
+        },
+        {
+          "l": "Runs on Unitree G1 (China) chassis",
+          "t": "red"
+        },
+        {
+          "l": "Unitree hit FCC Covered List days before launch",
+          "t": "red"
+        }
+      ],
+      "issue": "#70"
     },
     {
       "name": "Honda Motor",
@@ -1262,7 +1289,7 @@
       "py": "Naikakufu / Keizai Zaisei Shimon Kaigi",
       "cat": "gov",
       "status": "gov",
-      "desc": "Drafting body for the annual Basic Policy on Economic and Fiscal Management and Reform (骨太の方針). The Takaichi cabinet approved its first edition July 21, 2026: 'responsible and proactive fiscal policy,' ~¥370tn in public-private investment into strategic sectors including AI and semiconductors through FY2040, targets of >1% real and >3% nominal growth, and — notably — removal of the phrase 'fiscal consolidation' in favor of a stable-reduction anchor on the debt-to-GDP ratio. Bond market response was wary, with the long-term rate near 30-year highs and BOJ-independence questions unresolved ahead of the July 30 MPM. **Approval rating slide (#58, Jul 26-27 2026):** A Yomiuri poll fielded Jul 24-26 showed cabinet approval falling to 57% from 69% in June — the first sub-60% reading since Takaichi took office — with disapproval of cost-of-living policy rising to 71% from 56%. The government has delayed its pledged cut to the 8% food consumption-tax rate amid intra-LDP resistance and bond-market sensitivity, leaving the honebuto's ¥370tn growth pledge harder to square with near-term household relief.",
+      "desc": "Drafting body for the annual Basic Policy on Economic and Fiscal Management and Reform (骨太の方針). The Takaichi cabinet approved its first edition July 21, 2026: 'responsible and proactive fiscal policy,' ~¥370tn in public-private investment into strategic sectors including AI and semiconductors through FY2040, targets of >1% real and >3% nominal growth, and — notably — removal of the phrase 'fiscal consolidation' in favor of a stable-reduction anchor on the debt-to-GDP ratio. Bond market response was wary, with the long-term rate near 30-year highs and BOJ-independence questions unresolved ahead of the July 30 MPM. **Approval rating slide (#58, Jul 26-27 2026):** A Yomiuri poll fielded Jul 24-26 showed cabinet approval falling to 57% from 69% in June — the first sub-60% reading since Takaichi took office — with disapproval of cost-of-living policy rising to 71% from 56%. The government has delayed its pledged cut to the 8% food consumption-tax rate amid intra-LDP resistance and bond-market sensitivity, leaving the honebuto's ¥370tn growth pledge harder to square with near-term household relief. **FY2026 GDP forecast cut as Korea, Taiwan overtake Japan in exports (#70, Aug 7, 2026):** A Nikkei Asia analysis showed South Korea ($496.3bn) and Taiwan ($416.6bn) each surpassed Japan ($384.4bn) in total H1 2026 exports for the first time, as AI-chip demand drove South Korean semiconductor exports (including SSDs) up 162.6% YoY to $192.4bn — already exceeding all of 2025. Japan's exposure is concentrated in semiconductor materials and manufacturing equipment (Tokyo Electron, Shin-Etsu, SUMCO) rather than the AI logic/memory chips themselves (Samsung, SK Hynix, TSMC) capturing the demand surge. The Cabinet Office response: its FY2026 real GDP growth forecast was cut to 0.9% from an earlier 1.3%, even as South Korea raised its own 2026 growth forecast from 2.0% to 3.0% — a direct trade-competitiveness read-through for the honebuto's ¥370tn strategic-investment pledge, and a reminder that Noetra/Rapidus's payoff is still years from showing up in the export data.",
       "tags": [
         {
           "l": "First Takaichi honebuto — Jul 21",
@@ -1283,9 +1310,17 @@
         {
           "l": "Approval 57%, first sub-60% reading (Jul 27)",
           "t": "red"
+        },
+        {
+          "l": "FY26 GDP forecast cut to 0.9% from 1.3% (Aug 7)",
+          "t": "red"
+        },
+        {
+          "l": "Korea, Taiwan top Japan in H1 exports",
+          "t": "highlight"
         }
       ],
-      "issue": "#52, #58"
+      "issue": "#52, #58, #70"
     },
     {
       "name": "Sakana AI",
