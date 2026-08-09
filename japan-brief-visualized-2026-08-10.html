@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #71 · August 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-insight p { margin-bottom:10px; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:14px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #71 · August 10, 2026</div>
+    <div class="masthead-sub">MOJ rules on AI voice cloning · SUMCO's margin squeeze · BOJ's September/October hike signal</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & Tech · Governance</div>
+      <div class="card-num">0<span class="card-num-unit">new statutes</span></div>
+      <div class="card-label">MOJ: voice already protected under existing publicity + personality rights</div>
+      <div class="card-delta delta-red">"AI cover" content targeted; mimicry exempt</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semiconductor</div>
+      <div class="card-num">-¥6.4B<span class="card-num-unit">op. loss</span></div>
+      <div class="card-label">SUMCO Q2: operating loss despite record 300mm wafer shipments</div>
+      <div class="card-delta delta-yellow">Depreciation +¥11.6bn YoY outpaced pricing</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro & Rates</div>
+      <div class="card-num">8-1<span class="card-num-unit">vote to hold</span></div>
+      <div class="card-label">BOJ July Summary of Opinions: Takata alone sought 1.25%</div>
+      <div class="card-delta delta-indigo">Sept/Oct hike now the consensus read</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI & TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">ITmedia AI+ / Yahoo News Japan</span>
+        </div>
+        <div class="story-headline">Japan's justice ministry rules AI voice cloning can infringe existing "publicity rights" — no new law needed</div>
+        <div class="story-insight">
+          <p>The Ministry of Justice's August 7 report — the output of a five-session expert study group running since April — holds that publicity rights (パブリシティー権) and personality-rights protections already extend to voice, even without a dedicated statute. Posting an unauthorized AI-cloned "cover" of a singer's or voice actor's voice for profit can now be argued as a rights violation.</p>
+          <p>Ordinary human impressions and mimicry remain exempt. The guidance follows a string of voice-actor complaints since 2023, including voice actor Kenjiro Tsuda's November 2025 lawsuit over an unauthorized AI-cloned video of his voice.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Compliance cost, not existential risk — expect voice-synthesis vendors and UGC platforms operating in Japan to tighten consent/takedown workflows as this feeds into the AI Promotion Act's evolving liability architecture.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">What's Covered vs. What's Exempt</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <rect x="70" y="45" width="330" height="70" rx="4" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.5"/>
+        <text x="235" y="75" text-anchor="middle" font-size="12.5" fill="#b91c1c" font-weight="700">AIカバー — monetized AI voice clone</text>
+        <text x="235" y="95" text-anchor="middle" font-size="10.5" fill="#7a2020">Publicity-rights violation risk</text>
+
+        <rect x="420" y="45" width="330" height="70" rx="4" fill="#dcfce7" stroke="#166534" stroke-width="1.5"/>
+        <text x="585" y="75" text-anchor="middle" font-size="12.5" fill="#166534" font-weight="700">物真似 — human impression/mimicry</text>
+        <text x="585" y="95" text-anchor="middle" font-size="10.5" fill="#14532d">Generally not infringing</text>
+
+        <text x="410" y="140" text-anchor="middle" font-size="10" fill="#5a6a8a">Legal basis: パブリシティー権 (publicity right) + みだりに利用されない権利 (right not to be used without cause)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · LEGAL CLARITY</div>
+        <div class="annotation-card-zh">パブリシティー権<span class="annotation-card-en">paburishitī-ken · publicity right</span></div>
+        <div class="annotation-card-body">First time the ministry has formally extended existing IP-adjacent rights doctrine to cover voice — a citable theory where none existed before.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ENFORCEMENT</div>
+        <div class="annotation-card-zh">報告書<span class="annotation-card-en">hōkokusho · report</span></div>
+        <div class="annotation-card-body">Interpretive guidance, not legislation — no civil-remedy mechanism yet. Codification into statute is the next threshold to watch.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PLATFORMS</div>
+        <div class="annotation-card-zh">AIカバー<span class="annotation-card-en">AI kabā · AI cover</span></div>
+        <div class="annotation-card-body">UGC platforms and voice-synthesis vendors operating in Japan face fresh takedown and consent-workflow exposure.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMICONDUCTOR</span>
+          <span class="card-tag tag-semi" style="margin:0;">BigGo Finance / Nikkei</span>
+        </div>
+        <div class="story-headline">SUMCO swings to an operating loss on record wafer demand — a preview of Japan's AI-capex margin math</div>
+        <div class="story-insight">
+          <p>SUMCO's April–June results captured a paradox: 300mm wafer shipments for AI-linked logic and memory hit record levels, revenue rose 4.7% to ¥215.0bn, yet the company posted an operating loss of ¥6.4bn versus a ¥7.5bn profit a year earlier. Depreciation from new-plant ramp-up rose ~¥11.6bn YoY to ¥64.4bn, outrunning near-full utilization.</p>
+          <p>President Jiro Tatsuta said "5–10% price hikes won't come close to covering costs," declined to open long-term supply agreement renewals, and confirmed the Yoshino-Kari greenfield plant remains shelved indefinitely.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Strong AI demand isn't automatically translating into margin at the materials layer — echoes Fanuc's muted guidance raise despite a 37% order surge. Pricing power, not volume, is the variable to watch.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Revenue Up, Profit Down (¥bn, Apr–Jun)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="760" y2="150" stroke="#dde0ec" stroke-width="1"/>
+
+        <rect x="140" y="55" width="70" height="95" fill="#a5b4fc"/>
+        <text x="175" y="45" text-anchor="middle" font-size="11.5" fill="#3730a3" font-weight="700">¥205.3B</text>
+        <text x="175" y="168" text-anchor="middle" font-size="10.5" fill="#3a4a6a">Revenue FY25</text>
+
+        <rect x="250" y="45" width="70" height="105" fill="#3730a3"/>
+        <text x="285" y="35" text-anchor="middle" font-size="11.5" fill="#3730a3" font-weight="700">¥215.0B</text>
+        <text x="285" y="168" text-anchor="middle" font-size="10.5" fill="#1a1a2e" font-weight="700">Revenue FY26</text>
+
+        <rect x="420" y="150" width="70" height="0" fill="#166534"/>
+        <text x="455" y="140" text-anchor="middle" font-size="11.5" fill="#166534" font-weight="700">+¥7.5B</text>
+        <text x="455" y="168" text-anchor="middle" font-size="10.5" fill="#3a4a6a">Op. Profit FY25</text>
+        <rect x="420" y="150" width="70" height="42" fill="#dcfce7" stroke="#166534" stroke-width="1"/>
+
+        <rect x="530" y="150" width="70" height="34" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.5"/>
+        <text x="565" y="196" text-anchor="middle" font-size="11.5" fill="#b91c1c" font-weight="700">-¥6.4B</text>
+        <text x="565" y="140" text-anchor="middle" font-size="10.5" fill="#1a1a2e" font-weight="700">Op. Profit FY26</text>
+
+        <text x="700" y="60" font-size="10" fill="#b45309" font-weight="700">Depreciation</text>
+        <text x="700" y="74" font-size="10" fill="#b45309" font-weight="700">+¥11.6B YoY</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND</div>
+        <div class="annotation-card-zh">最高出荷<span class="annotation-card-en">saikō shukka · record shipments</span></div>
+        <div class="annotation-card-body">300mm wafer demand for AI logic and DRAM keeps setting records — the volume story is intact and customers want more.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICING</div>
+        <div class="annotation-card-zh">長期供給契約<span class="annotation-card-en">chōki kyōkyū keiyaku · LTA</span></div>
+        <div class="annotation-card-body">No new long-term supply agreement talks at current prices — SUMCO is holding out for "dramatic" hikes before committing capacity.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGIN</div>
+        <div class="annotation-card-zh">減価償却<span class="annotation-card-en">genka shōkyaku · depreciation</span></div>
+        <div class="annotation-card-body">Depreciation from capex is set to climb further into fiscal year-end, with a possible Q4 pullback once one-off production buildup fades.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO & RATES</span>
+          <span class="card-tag tag-macro" style="margin:0;">Bank of Japan / Bloomberg</span>
+        </div>
+        <div class="story-headline">BOJ's July summary shows a board leaning toward a September or October hike — but still divided on timing</div>
+        <div class="story-insight">
+          <p>The Summary of Opinions from the July 30–31 meeting, published August 10, shows the Board held at 1.00% by an 8–1 vote (Takata dissenting for 1.25%). Several members cited real rates near 25-year lows as room to hike further; others wanted more data. One opinion explicitly favored timely hikes to avoid rapid tightening later.</p>
+          <p>This lands alongside Ueda's "as soon as September" framing, the Aug 3 Outlook Report's upside inflation risk language, and a sixth straight month of real wage gains reported Aug 4–5.</p>
+        </div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Whether the BOJ hikes again is broadly priced — the live question is September vs. October. July CPI (Aug 21) and August CPI (Sep 18) are the hard checkpoints before the Sep 18–19 meeting.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Policy Rate Path, 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="760" y2="150" stroke="#dde0ec" stroke-width="1"/>
+
+        <line x1="90" y1="110" x2="280" y2="110" stroke="#818cf8" stroke-width="4"/>
+        <text x="90" y="95" font-size="10" fill="#3730a3" font-weight="700">0.75%</text>
+        <text x="90" y="168" font-size="10" fill="#3a4a6a">Jan–Jun</text>
+
+        <line x1="280" y1="110" x2="280" y2="80" stroke="#818cf8" stroke-width="2" stroke-dasharray="3,2"/>
+        <line x1="280" y1="80" x2="480" y2="80" stroke="#3730a3" stroke-width="4"/>
+        <text x="290" y="66" font-size="10" fill="#3730a3" font-weight="700">1.00% (Jun 16 hike)</text>
+        <text x="380" y="168" font-size="10" fill="#3a4a6a">Jun–Jul: hold, hold again Jul 31 (8-1 vote)</text>
+
+        <circle cx="480" cy="80" r="6" fill="#3730a3"/>
+        <text x="530" y="60" font-size="10" fill="#818cf8" font-weight="700">SOO published Aug 10 —</text>
+        <text x="530" y="74" font-size="10" fill="#818cf8" font-weight="700">hawkish tilt on timing</text>
+
+        <line x1="480" y1="80" x2="480" y2="50" stroke="#b91c1c" stroke-width="2" stroke-dasharray="4,3"/>
+        <line x1="480" y1="50" x2="720" y2="50" stroke="#b91c1c" stroke-width="4" stroke-dasharray="6,4"/>
+        <text x="600" y="36" text-anchor="middle" font-size="10.5" fill="#b91c1c" font-weight="700">~1.25%? Sept 18-19 or Oct meeting</text>
+
+        <text x="720" y="168" text-anchor="end" font-size="9.5" fill="#5a6a8a">Jul CPI Aug 21 · Aug CPI Sep 18</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · WAGES</div>
+        <div class="annotation-card-zh">実質賃金<span class="annotation-card-en">jisshitsu chingin · real wages</span></div>
+        <div class="annotation-card-body">Sixth straight month of real wage gains (longest since 2021) reinforces the BOJ's confidence in a durable 2% inflation path.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DATA</div>
+        <div class="annotation-card-zh">中立金利<span class="annotation-card-en">chūritsu kinri · neutral rate</span></div>
+        <div class="annotation-card-body">Members reference "at least around 1%" as the medium-term neutral-rate anchor — July and August CPI are the next hard gates.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DISSENT</div>
+        <div class="annotation-card-zh">実質金利<span class="annotation-card-en">jisshitsu kinri · real interest rate</span></div>
+        <div class="annotation-card-body">Takata's lone dissent for 1.25% shows the board isn't unified — a September move is not yet a done deal.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #71 · AUGUST 10, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
