@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #83 · August 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #83 · August 10, 2026</div>
+    <div class="masthead-sub">Unitree IPO Subscription · Qwen3.8-Max Open Weights · July CPI/PPI</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS IPO</div>
+      <div class="card-num">219<span class="card-num-unit">x P/S</span></div>
+      <div class="card-label">Unitree STAR Market offer price implies a price-to-sales multiple ~5-6x the ~39x industry average</div>
+      <div class="card-delta delta-red">Scarcity premium, not earnings support</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · OPEN WEIGHTS</div>
+      <div class="card-num">2.4<span class="card-num-unit">T params</span></div>
+      <div class="card-label">Qwen3.8-Max — first Max-class model Alibaba has open-sourced, weights due this week</div>
+      <div class="card-delta delta-amber">License terms still undisclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO · INFLATION</div>
+      <div class="card-num">3.5<span class="card-num-unit">% PPI y/y</span></div>
+      <div class="card-label">July factory-gate inflation, down from 4.1% in June and below the 3.8% consensus</div>
+      <div class="card-delta delta-red">Reflation signal not yet confirmed</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH / ROBOTICS CAPITAL MARKETS</div>
+    <div class="story-headline">A P/E North of 200: Unitree Opens Its STAR Market IPO Subscription</div>
+    <div class="story-insight">
+      <p>Unitree priced its Shanghai STAR Market listing at ¥150.80/share, implying a ~$9B valuation and a price-to-sales ratio above 219x against a roughly 39x industry average. Subscriptions opened today; strategic placement drew China's National Social Security Fund, CNPC, and a 2.31% stake from DeepSeek tied to a joint robotics-AI development pact.</p>
+      <br>
+      <p>Disclosed H1 2026 financials show growth decelerating sharply (35.6%-45.4% y/y vs 332.6% in H1 2025) even as the offering proceeds — the first public price-discovery event for humanoid robotics as an investable category.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The multiple the market assigns here will likely anchor valuation expectations for the entire unlisted humanoid-robotics peer group.</div>
+    <div class="chart-box">
+      <div class="chart-title">Valuation Multiple vs. Industry Average (P/S Ratio)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="30" x2="140" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="340" y1="30" x2="340" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="540" y1="30" x2="540" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="740" y1="30" x2="740" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="140" y="20" fill="#5a6a8a" font-size="10" text-anchor="middle">0x</text>
+        <text x="340" y="20" fill="#5a6a8a" font-size="10" text-anchor="middle">75x</text>
+        <text x="540" y="20" fill="#5a6a8a" font-size="10" text-anchor="middle">150x</text>
+        <text x="740" y="20" fill="#5a6a8a" font-size="10" text-anchor="middle">225x</text>
+        <text x="20" y="65" fill="#1a1a2e" font-size="12" font-weight="600">Unitree</text>
+        <rect x="140" y="50" width="586" height="24" rx="3" fill="#c0392b"/>
+        <text x="736" y="66" fill="#1a1a2e" font-size="12" font-weight="700">219x</text>
+        <text x="20" y="125" fill="#1a1a2e" font-size="12" font-weight="600">Industry avg.</text>
+        <rect x="140" y="110" width="104" height="24" rx="3" fill="#b45309"/>
+        <text x="254" y="126" fill="#1a1a2e" font-size="12" font-weight="700">39x</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · 战略配售</div>
+        <div class="annotation-card-zh">战略配售<span class="annotation-card-en">zhànlüè pèishòu · strategic placement</span></div>
+        <div class="annotation-card-body">DeepSeek, National Social Security Fund and CNPC anchor the strategic tranche — state and AI-sector capital both signaling conviction ahead of the Aug 19 listing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · 出货量</div>
+        <div class="annotation-card-zh">出货量<span class="annotation-card-en">chūhuò liàng · shipment volume</span></div>
+        <div class="annotation-card-body">Omdia disputes Unitree's self-reported 32.4% 2025 unit share, crediting AgiBot with a larger 39% — the underlying market-share story investors are pricing remains contested.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · 进口限制</div>
+        <div class="annotation-card-zh">进口限制<span class="annotation-card-en">jìnkǒu xiànzhì · import restriction</span></div>
+        <div class="annotation-card-body">The FCC's new ban on foreign humanoid-robot imports puts the ~13% of 2025 revenue from US sales at risk just as the company goes public.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">Alibaba Prepares to Give Away Its Flagship: Qwen3.8-Max Open Weights Land This Week</div>
+    <div class="story-insight">
+      <p>Alibaba will publish open weights for Qwen3.8-Max (2.4T total / 95B active parameters) and a smaller Qwen3.8-27B this week — the first time it has open-sourced a Max-class model. Alibaba's self-published benchmarks claim an edge over several rivals on coding and long-context tasks, though none are third-party verified.</p>
+      <br>
+      <p>License terms remain undisclosed. The strategy accelerates global distribution but sits awkwardly against Alibaba's inclusion in MOFCOM's proposed model-weight export-control consultations.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Open-sourcing frontier-scale models is now the norm among top Chinese labs, not the exception — a durable structural shift in how AI capability diffuses globally.</div>
+    <div class="chart-box">
+      <div class="chart-title">Qwen3.8-Max Self-Reported Benchmarks vs. Comparison Models</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="170" x2="800" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <!-- PaperBench -->
+        <text x="60" y="35" fill="#1a1a2e" font-size="11" font-weight="600">PaperBench</text>
+        <rect x="180" y="24" width="139.5" height="16" fill="#c0392b"/>
+        <text x="325" y="37" fill="#1a1a2e" font-size="11">93.0 Qwen3.8-Max</text>
+        <rect x="180" y="44" width="133.2" height="16" fill="#8a9bb5"/>
+        <text x="318" y="57" fill="#1a1a2e" font-size="11">88.8 Fable 5</text>
+        <!-- IFBench -->
+        <text x="60" y="90" fill="#1a1a2e" font-size="11" font-weight="600">IFBench</text>
+        <rect x="180" y="79" width="124.2" height="16" fill="#c0392b"/>
+        <text x="309" y="92" fill="#1a1a2e" font-size="11">82.8 Qwen3.8-Max</text>
+        <rect x="180" y="99" width="95.25" height="16" fill="#8a9bb5"/>
+        <text x="280" y="112" fill="#1a1a2e" font-size="11">63.5 Fable 5</text>
+        <!-- Terminal-Bench -->
+        <text x="60" y="145" fill="#1a1a2e" font-size="11" font-weight="600">Terminal-Bench 2.1</text>
+        <rect x="180" y="134" width="126.9" height="16" fill="#8a9bb5"/>
+        <text x="312" y="147" fill="#1a1a2e" font-size="11">84.6 Qwen3.8-Max</text>
+        <rect x="180" y="154" width="133.2" height="16" fill="#5a6a8a"/>
+        <text x="318" y="167" fill="#1a1a2e" font-size="11">88.8 GPT-5.6 Sol</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · 开源</div>
+        <div class="annotation-card-zh">开源<span class="annotation-card-en">kāiyuán · open-source</span></div>
+        <div class="annotation-card-body">Qwen is already the most-downloaded open model family on Hugging Face; a Max-class open release extends that lead into frontier-tier capability.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · 许可协议</div>
+        <div class="annotation-card-zh">许可协议<span class="annotation-card-en">xǔkě xiéyì · license agreement</span></div>
+        <div class="annotation-card-body">Undisclosed license terms leave open whether this is a permissive Apache-style release or a revenue-tiered structure like Moonshot's K3.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · 出口管制</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Alibaba is named in MOFCOM's consultations on adding model weights to an export catalogue — a policy shift that could constrain future open releases.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO / ECONOMIC DATA</div>
+    <div class="story-headline">Shallow and Slowing: July Inflation Data Undercuts the Reflation Case</div>
+    <div class="story-insight">
+      <p>July CPI rose 0.5% y/y (core +0.9%) but fell 0.1% m/m. PPI rose 3.5% y/y, decelerating from June's 4.1% and missing the 3.8% consensus, while falling 0.7% m/m. Weak energy prices and soft demand were the main drags.</p>
+      <br>
+      <p>The print lands just after PBOC's pledge to stay "appropriately loose" through 2H2026, and ahead of a Politburo meeting where markets expect more targeted stimulus. The PPI miss suggests Beijing's anti-involution campaign has not yet produced a durable reflation signal.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A sustained PPI reacceleration alongside credit growth is the condition to watch before pricing in a genuine reflation trade.</div>
+    <div class="chart-box">
+      <div class="chart-title">CPI vs. PPI, Year-on-Year (June → July 2026)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="40" y="154" fill="#5a6a8a" font-size="10" text-anchor="end">0%</text>
+        <text x="40" y="94" fill="#5a6a8a" font-size="10" text-anchor="end">2%</text>
+        <text x="40" y="34" fill="#5a6a8a" font-size="10" text-anchor="end">4%</text>
+        <!-- June PPI 4.1 -->
+        <rect x="130" y="42" width="60" height="108" fill="#8a9bb5"/>
+        <text x="160" y="35" fill="#1a1a2e" font-size="11" text-anchor="middle" font-weight="600">4.1%</text>
+        <text x="160" y="166" fill="#5a6a8a" font-size="10" text-anchor="middle">Jun PPI</text>
+        <!-- July PPI 3.5 -->
+        <rect x="220" y="63" width="60" height="87" fill="#c0392b"/>
+        <text x="250" y="56" fill="#1a1a2e" font-size="11" text-anchor="middle" font-weight="600">3.5%</text>
+        <text x="250" y="166" fill="#5a6a8a" font-size="10" text-anchor="middle">Jul PPI</text>
+        <!-- gap -->
+        <!-- June CPI ~0.3 (context) -->
+        <rect x="400" y="140" width="60" height="10" fill="#8a9bb5"/>
+        <text x="430" y="133" fill="#1a1a2e" font-size="11" text-anchor="middle" font-weight="600">n/a</text>
+        <text x="430" y="166" fill="#5a6a8a" font-size="10" text-anchor="middle">Jun CPI</text>
+        <!-- July CPI 0.5 -->
+        <rect x="490" y="137" width="60" height="13" fill="#b45309"/>
+        <text x="520" y="130" fill="#1a1a2e" font-size="11" text-anchor="middle" font-weight="600">0.5%</text>
+        <text x="520" y="166" fill="#5a6a8a" font-size="10" text-anchor="middle">Jul CPI</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · 核心CPI</div>
+        <div class="annotation-card-zh">核心CPI<span class="annotation-card-en">héxīn CPI · core CPI</span></div>
+        <div class="annotation-card-body">Core CPI (ex food/energy) rose 0.9% y/y — the steadier underlying reading, even as the headline figure stays soft.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · 政治局会议</div>
+        <div class="annotation-card-zh">政治局会议<span class="annotation-card-en">Zhèngzhìjú huìyì · Politburo meeting</span></div>
+        <div class="annotation-card-body">Investors are watching this month's Politburo session for targeted stimulus specifics beyond the PBOC's rhetorical "appropriately loose" stance.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · 通缩压力</div>
+        <div class="annotation-card-zh">通缩压力<span class="annotation-card-en">tōngsuō yālì · deflationary pressure</span></div>
+        <div class="annotation-card-body">PPI decelerating rather than reaccelerating undercuts the case that anti-involution measures are yet fixing factory-gate pricing power.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #83 · AUGUST 10, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
