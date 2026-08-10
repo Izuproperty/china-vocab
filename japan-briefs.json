@@ -1,5 +1,68 @@
 [
   {
+    "issue": 72,
+    "date": "2026-08-11",
+    "title": "Sakana AI shows its conductor model is base-model agnostic; Sony and TSMC commit ¥1 trillion to a Kumamoto image-sensor JV; the yen's intervention bounce fades on a surprise current-account deficit",
+    "summary": "Sakana AI published research showing the small orchestrator model at the heart of its Fugu system performs just as well retrained on Google's Gemma 4 as on its original Qwen base, extending its modularity pitch from the model pool to the conductor itself. Sony and TSMC confirmed a ¥1 trillion (60/40) joint venture to build a next-generation image-sensor plant in Kumamoto, targeting 2029 production for Apple's camera lineup and physical-AI applications. On the macro side, the yen weakened to ¥159.35 on August 10, erasing roughly half the gain from the July 31 US-Japan joint intervention, as Japan's current account unexpectedly swung to a June deficit.",
+    "viz_url": "japan-brief-visualized-2026-08-11.html",
+    "sections": [
+      {
+        "icon": "🎛️",
+        "title": "Sakana AI Decouples Fugu's Orchestrator From Its Original Base Model",
+        "tag": "AI & Tech",
+        "source": "Sakana AI · August 10, 2026",
+        "body": "On August 10, Tokyo-based サカナAI (Sakana Ē-Ai, Sakana AI) published research showing that the small \"conductor\" model at the heart of its Fugu (フグ) multi-agent orchestration system — its 指揮者モデル (shikisha moderu, conductor model) — can be retrained from scratch on Google's newly released Gemma 4 (Apache 2.0 license) in place of the Qwen base it has used since Fugu's June launch, without losing accuracy or its cost advantage over random model routing. The conductor's job is not to hold knowledge itself but to decide which model inside Fugu's swappable モデルプール (moderu pūru, model pool) — a roster that already includes several-hundred-billion-parameter frontier systems — should handle a given request, so its own footprint can stay small and cheap to retrain.\n\nThe result generalizes a modularity pitch Sakana has been building for months: first showing the model pool itself could swap in NVIDIA's open-weight Nemotron models alongside proprietary frontier systems (Issue #62), and now showing the orchestrator layer is equally interchangeable. Sakana says the next step is training conductors on its own in-house, pretrained-from-scratch models, letting enterprise and government customers select a domestically built orchestrator where data-residency or sovereignty requirements apply, while still routing into foreign frontier models inside the pool when performance calls for it. It's a smaller, more technical data point than Noetra's physical-AI consortium, but it addresses the same structural tension directly — continued access to the best foreign models, layered under defensible domestic infrastructure — without a policy announcement to back it. Sakana has not disclosed a timeline for the in-house conductor or named which customers are asking for it, so the sovereignty pitch remains a stated intention rather than a shipped product for now.",
+        "takeaway": "A technical, not a policy, data point for Japan's sovereign-AI narrative — credible because it ships as an architectural option rather than a slogan, though no timeline or named customer for the in-house conductor has been disclosed yet.",
+        "vocab": [
+          {
+            "ja": "指揮者モデル",
+            "en": "conductor model"
+          },
+          {
+            "ja": "モデルプール",
+            "en": "model pool"
+          }
+        ]
+      },
+      {
+        "icon": "📷",
+        "title": "Sony and TSMC to Build ¥1 Trillion Image-Sensor Joint Venture in Kumamoto",
+        "tag": "Semiconductor",
+        "source": "Nikkei Asia, Japan Times, Bloomberg · August 10, 2026",
+        "body": "ソニーグループ (Sonī Gurūpu, Sony Group) and TSMC confirmed plans for a new 合弁会社 (gōben-gaisha, joint venture) — Sony holding 60%, TSMC 40% — to build a next-generation CMOS 画像センサー (gazō sensā, image sensor) plant on the site of Sony Semiconductor Solutions' existing facility in Koshi, 熊本県 (Kumamoto-ken). The companies are targeting a combined investment of roughly ¥1 trillion ($6.4 billion) and mass production as early as 2029, with formal JV establishment and a final investment decision expected before the end of FY2026 (March 2027). Apple's iPhone camera lineup is the stated anchor customer, extending Sony's long-running sensor relationship with Cupertino, while both companies also point to a secondary push into higher-performance sensors for robots and autonomous vehicles under Japan's broader physical-AI framing.\n\nThis is a distinct project from the TSMC-majority JASM logic fab elsewhere in the Kumamoto cluster — Sony is the majority owner here, and the output is sensors rather than logic chips — but it deepens the same regional bet: Kyushu now hosts two separate Sony/TSMC-linked facilities operating side by side, reinforcing Kumamoto's position as Japan's leading-edge semiconductor hub alongside Rapidus's Hokkaido cluster. For investors, the near-term read-through is limited — first output is three years out — but the capital signal is not: a ¥1 trillion sensor investment, layered on top of JASM's $17 billion logic buildout and Sony's existing Kumamoto sensor base, suggests neither company is treating physical-AI-linked camera demand as a short cycle. The risk is the one attached to every multi-year Japanese semiconductor announcement this cycle: a 2029 timeline leaves ample room for cost inflation, competitive substitution, or a slower-than-expected physical-AI ramp before any of this becomes production revenue.",
+        "takeaway": "First output is three years out, so the near-term earnings impact is limited — the signal is capital commitment, layered on top of JASM's $17B logic buildout, reinforcing Kyushu as Japan's leading-edge semiconductor hub.",
+        "vocab": [
+          {
+            "ja": "画像センサー",
+            "en": "image sensor"
+          },
+          {
+            "ja": "合弁会社",
+            "en": "joint venture"
+          }
+        ]
+      },
+      {
+        "icon": "💴",
+        "title": "Yen's Intervention Bounce Erodes as Current Account Swings to Surprise Deficit",
+        "tag": "Macro",
+        "source": "Bloomberg, MUFG Research, Ministry of Finance · August 10, 2026",
+        "body": "The yen weakened as much as 1% to ¥159.35 against the dollar on August 10 — the worst performer among G-10 currencies that day — giving back roughly half the gain from the July 31 US-Japan joint 為替介入 (kawase kainyū, FX intervention), itself the first coordinated US-Japan action since 2011. The same day, 財務省 (Zaimushō, Ministry of Finance) data showed Japan's 経常収支 (keijō shūshi, current account) unexpectedly swung to a ¥92.3 billion deficit in June, adding a fundamentals-based headwind to a currency already under pressure from the roughly 300-basis-point US-Japan policy rate gap.\n\nFinance Minister Katayama has repeated that authorities \"will not hesitate\" to intervene again and has flagged plans to draw on the US Federal Reserve's FIMA Repo Facility — a signal aimed less at any specific defense level and more at dispelling doubts about Japan's capacity to keep intervening without depleting reserves. The harder question for positioning is whether the 日本銀行 (Nihon Ginkō, Bank of Japan) leans on the September or October meeting to back the currency case with a rate hike: real wages have now risen for six straight months, and the Board's own Summary of Opinions — published August 10, covering the July 30–31 meeting — showed a hawkish tilt, with one member already dissenting in favor of an immediate move to 1.25%. Until a hike actually lands, intervention functions as a signal rather than a fix; MUFG's latest weekly note expects JGBs to stay rangebound this week absent a fresh catalyst, with the initial FY2027 budget request process, due by late August, the next domestic fiscal-discipline test.",
+        "takeaway": "Intervention is a signal, not a fix. The Aug 10 Summary of Opinions showed a hawkish tilt alongside six straight months of real-wage gains — reinforcing, but not yet confirming, a September move.",
+        "vocab": [
+          {
+            "ja": "経常収支",
+            "en": "current account"
+          },
+          {
+            "ja": "為替介入",
+            "en": "FX intervention"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 71,
     "date": "2026-08-10",
     "title": "Japan's justice ministry rules on AI voice cloning; SUMCO swings to a loss despite record wafer demand; BOJ signals a September/October hike",
