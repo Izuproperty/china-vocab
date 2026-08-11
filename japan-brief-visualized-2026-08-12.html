@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #73 · August 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#818cf8; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:12.5px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#8a95ab; margin-top:10px; font-style:italic; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#8a95ab; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #73 · August 12, 2026</div>
+    <div class="masthead-sub">Sakana Fugu weighed for SDF command · Toyota's profit-margin gap · Yen tests ¥160</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & Tech · Defense</div>
+      <div class="card-num">1st<span class="card-num-unit">SDF AI integration</span></div>
+      <div class="card-label">Defense Ministry weighs Sakana Fugu as domestic core of new command-and-control system</div>
+      <div class="card-delta delta-indigo">Chinese models excluded, JP-only dev team</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Industrial & Auto</div>
+      <div class="card-num">+76%<span class="card-num-unit">net profit YoY</span></div>
+      <div class="card-label">Toyota Q1 FY2027 net profit ¥1.48T — but operating income fell YoY</div>
+      <div class="card-delta delta-red">Opex income -¥103bn on cost pressure</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro · FX</div>
+      <div class="card-num">¥159.4<span class="card-num-unit">/USD</span></div>
+      <div class="card-label">Yen erases ~half of Jul 31 intervention gain, nears ¥160 line</div>
+      <div class="card-delta delta-red">Tests Tokyo-Washington resolve again</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI & TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">Sakana AI · Defense Ministry</span>
+        </div>
+        <div class="story-headline">Defense Ministry Weighs Sakana AI's Fugu as Sovereign Core of a New SDF Command System</div>
+        <div class="story-insight">The Japan Times reports Japan's Defense Ministry is considering building the SDF's first AI-assisted command-and-control system around Sakana AI's Fugu orchestrator, which would arbitrate tasks and route them to allied foreign AI platforms (Palantir's Maven, Anduril's Lattice have both been evaluated separately). Sakana has committed to excluding any Chinese-origin model components from the defense build and staffing it with Japanese nationals only — explicit AI-sovereignty conditions a government official tied to managing data and systems domestically.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Still at the consideration stage — no contract signed — but the sovereignty carve-out is a template. Watch for similar domestic-preference procurement language spreading to other security-sensitive AI contracts as Noetra and other sovereign-AI efforts compete for government budget.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Fugu Defense Build: Sovereignty Conditions</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="770" y2="90" stroke="#dde0ec" stroke-width="2"/>
+
+        <circle cx="120" cy="90" r="7" fill="#3730a3"/>
+        <text x="120" y="65" font-size="10" fill="#1a1a2e" text-anchor="middle" font-weight="700">Domestic core</text>
+        <text x="120" y="115" font-size="9" fill="#5a6a8a" text-anchor="middle">Fugu arbitrates,</text>
+        <text x="120" y="128" font-size="9" fill="#5a6a8a" text-anchor="middle">routes to allies</text>
+
+        <circle cx="340" cy="90" r="7" fill="#3730a3"/>
+        <text x="340" y="65" font-size="10" fill="#1a1a2e" text-anchor="middle" font-weight="700">No Chinese models</text>
+        <text x="340" y="115" font-size="9" fill="#5a6a8a" text-anchor="middle">Excluded from</text>
+        <text x="340" y="128" font-size="9" fill="#5a6a8a" text-anchor="middle">defense build</text>
+
+        <circle cx="560" cy="90" r="7" fill="#3730a3"/>
+        <text x="560" y="65" font-size="10" fill="#1a1a2e" text-anchor="middle" font-weight="700">JP-nationals-only team</text>
+        <text x="560" y="115" font-size="9" fill="#5a6a8a" text-anchor="middle">Development team</text>
+        <text x="560" y="128" font-size="9" fill="#5a6a8a" text-anchor="middle">restricted by nationality</text>
+
+        <circle cx="720" cy="90" r="6" fill="#c7d2fe"/>
+        <text x="720" y="65" font-size="10" fill="#3a4a6a" text-anchor="middle" font-weight="600">Not yet</text>
+        <text x="720" y="115" font-size="9" fill="#5a6a8a" text-anchor="middle">No contract</text>
+        <text x="720" y="128" font-size="9" fill="#5a6a8a" text-anchor="middle">signed yet</text>
+      </svg>
+      <div class="chart-note">Conditions as reported by the Japan Times, Aug 11, 2026; concept still under consideration.</div>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SOVEREIGNTY POLICY</div>
+        <div class="annotation-card-zh">AI主権<span class="annotation-card-en">AI shuken · AI sovereignty</span></div>
+        <div class="annotation-card-body">First explicit case of a government official tying a specific AI-vendor selection to sovereignty policy — a template that could extend to other security-sensitive procurement.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PROCUREMENT TIMELINE</div>
+        <div class="annotation-card-zh">指揮統制<span class="annotation-card-en">shiki tōsei · command &amp; control</span></div>
+        <div class="annotation-card-body">No contract or budget line has been disclosed; conversion from "considering" to a funded program is the milestone to track.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · INTEROPERABILITY</div>
+        <div class="annotation-card-zh">自衛隊<span class="annotation-card-en">Jieitai · Self-Defense Forces</span></div>
+        <div class="annotation-card-body">A domestic orchestrator arbitrating between US platforms (Maven, Lattice) raises open questions about interoperability and data-sharing terms with US forces.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · INDUSTRIAL &amp; AUTO</span>
+          <span class="card-tag tag-semi" style="margin:0;">Toyota Motor</span>
+        </div>
+        <div class="story-headline">Toyota's Profit Nearly Doubles on Yen Gains — But Falling Operating Income Sends Shares Lower</div>
+        <div class="story-insight">Toyota's April-June net profit jumped 76% YoY to ¥1.48T on yen weakness and financial-income gains, even as vehicle sales dipped ~16,000 units and operating income fell to ¥1.063T from ¥1.166T. Investors sold the stock on the gap, not the headline. It's the same "strong print, weak margin" pattern already visible at Fanuc (guidance raise judged too small) and SUMCO (operating loss despite record wafer shipments) this reporting season — rising material, energy and labor costs eating into core profitability even as demand holds.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Headline EPS beats built on FX and financial gains rather than operating performance are increasingly getting discounted by the market this cycle — watch operating income, not net profit, for the real read on Japan Inc.'s cost pressure.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Toyota Q1 FY2027: Net Profit vs. Operating Income (YoY)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="20" x2="80" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="80" y1="150" x2="760" y2="150" stroke="#dde0ec" stroke-width="1"/>
+
+        <!-- Net profit bars -->
+        <rect x="150" y="90" width="60" height="60" fill="#c7d2fe" rx="3"/>
+        <text x="180" y="82" font-size="10" fill="#3a4a6a" text-anchor="middle">¥841bn</text>
+        <rect x="230" y="35" width="60" height="115" fill="#3730a3" rx="3"/>
+        <text x="260" y="27" font-size="10" fill="#3730a3" text-anchor="middle" font-weight="700">¥1.48T</text>
+        <text x="215" y="170" font-size="10" fill="#1a1a2e" text-anchor="middle" font-weight="600">Net Profit</text>
+        <text x="215" y="182" font-size="9" fill="#166534" text-anchor="middle">+76% YoY</text>
+
+        <!-- Operating income bars -->
+        <rect x="430" y="45" width="60" height="105" fill="#c7d2fe" rx="3"/>
+        <text x="460" y="37" font-size="10" fill="#3a4a6a" text-anchor="middle">¥1.166T</text>
+        <rect x="510" y="52" width="60" height="98" fill="#b91c1c" rx="3"/>
+        <text x="540" y="44" font-size="10" fill="#b91c1c" text-anchor="middle" font-weight="700">¥1.063T</text>
+        <text x="495" y="170" font-size="10" fill="#1a1a2e" text-anchor="middle" font-weight="600">Operating Income</text>
+        <text x="495" y="182" font-size="9" fill="#b91c1c" text-anchor="middle">-8.8% YoY</text>
+
+        <text x="180" y="163" font-size="8" fill="#8a95ab" text-anchor="middle">Q1 FY26</text>
+        <text x="260" y="163" font-size="8" fill="#8a95ab" text-anchor="middle">Q1 FY27</text>
+        <text x="460" y="163" font-size="8" fill="#8a95ab" text-anchor="middle">Q1 FY26</text>
+        <text x="540" y="163" font-size="8" fill="#8a95ab" text-anchor="middle">Q1 FY27</text>
+      </svg>
+      <div class="chart-note">April-June quarter YoY comparison from Toyota's Q1 FY2027 financial results (reported Aug 4, 2026).</div>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FX TAILWIND</div>
+        <div class="annotation-card-zh">為替差益<span class="annotation-card-en">kawase sai-eki · FX gain</span></div>
+        <div class="annotation-card-body">Yen weakness continues to inflate the yen value of Toyota's overseas earnings and financial income, supporting the full-year revenue guide raise to ¥54T.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · COST PRESSURE</div>
+        <div class="annotation-card-zh">営業利益<span class="annotation-card-en">eigyō rieki · operating profit</span></div>
+        <div class="annotation-card-body">Same margin-erosion pattern now visible at Fanuc and SUMCO — a broader Japan Inc. cost-pass-through problem worth tracking across the next reporting round.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VOLUME</div>
+        <div class="annotation-card-zh">販売台数<span class="annotation-card-en">hanbai daisū · unit sales</span></div>
+        <div class="annotation-card-body">Consolidated vehicle sales dipped ~16,000 units YoY even during a headline profit beat — a demand signal the FX story can mask.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO</span>
+          <span class="card-tag tag-macro" style="margin:0;">MoF · BOJ</span>
+        </div>
+        <div class="story-headline">Yen Slides Back Toward ¥160, Testing Whether Tokyo and Washington Intervene Again</div>
+        <div class="story-insight">The yen weakened to roughly ¥159.3-159.4/USD on Aug 11, erasing about half of the Jul 31 joint US-Japan intervention bounce and edging back toward the ¥160 line traders treat as a likely trigger point. The move follows the Aug 10 surprise ¥92.3bn June current-account deficit. Katayama says authorities "will not hesitate" to act again and has flagged the Fed's FIMA Repo Facility as extra firepower — signaling capacity rather than committing to a specific defense level.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> The more consequential variable than the spot rate is timing of the BOJ's next hike — Ueda has floated September, and the Aug 10 Summary of Opinions showed a hawkish tilt. July CPI (Aug 21) is the next hard checkpoint.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">USD/JPY: Intervention Rally and Renewed Fade</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#dde0ec" stroke-width="1"/>
+        <text x="15" y="30" font-size="9" fill="#5a6a8a">163</text>
+        <text x="15" y="80" font-size="9" fill="#5a6a8a">158</text>
+        <text x="15" y="144" font-size="9" fill="#5a6a8a">153</text>
+
+        <polyline points="90,35 220,40 300,120 400,95 480,92 560,88 660,72 750,60" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="90" cy="35" r="4" fill="#3730a3"/>
+        <circle cx="300" cy="120" r="5" fill="#166534"/>
+        <circle cx="660" cy="72" r="4" fill="#b91c1c"/>
+        <circle cx="750" cy="60" r="5" fill="#b91c1c"/>
+
+        <text x="90" y="20" font-size="9" fill="#3a4a6a" text-anchor="middle">Jul 3-4</text>
+        <text x="90" y="155" font-size="8" fill="#8a95ab" text-anchor="middle">¥162.8 (40-yr low)</text>
+
+        <text x="300" y="160" font-size="9" fill="#166534" text-anchor="middle" font-weight="700">Jul 31</text>
+        <text x="300" y="172" font-size="8" fill="#8a95ab" text-anchor="middle">Joint intervention</text>
+
+        <text x="660" y="58" font-size="8" fill="#8a95ab" text-anchor="middle">Aug 10: ¥159.35</text>
+        <text x="750" y="45" font-size="9" fill="#b91c1c" text-anchor="middle" font-weight="700">Aug 11: ¥159.4</text>
+        <text x="750" y="98" font-size="8" fill="#8a95ab" text-anchor="middle">nearing ¥160</text>
+      </svg>
+      <div class="chart-note">Approximate USD/JPY path from public reporting (Bloomberg, Japan Times); not tick-level data.</div>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FIREPOWER SIGNAL</div>
+        <div class="annotation-card-zh">為替介入<span class="annotation-card-en">kawase kainyū · currency intervention</span></div>
+        <div class="annotation-card-body">Katayama's FIMA Repo Facility reference is meant to dispel doubts about Japan's capacity to intervene repeatedly without depleting FX reserves outright.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SEPTEMBER MPM</div>
+        <div class="annotation-card-zh">利上げ<span class="annotation-card-en">riage · rate hike</span></div>
+        <div class="annotation-card-body">Ueda has floated a hike "as soon as September"; July CPI (Aug 21) and August CPI (Sep 18) are the next hard checkpoints before the meeting.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PSYCHOLOGICAL LEVEL</div>
+        <div class="annotation-card-zh">心理的節目<span class="annotation-card-en">shinriteki fushime · psychological threshold</span></div>
+        <div class="annotation-card-body">A close above ¥160 would be the first since the Jul 31 intervention — a level traders are watching as the next likely trigger for official action.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #73 · AUGUST 12, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
