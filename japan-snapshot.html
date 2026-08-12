@@ -91,6 +91,10 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 .pp-status { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
 .pp-bio { font-size: 11px; line-height: 1.55; color: #6a6a7a; font-style: italic; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 .pp-desc { font-size: 12px; line-height: 1.7; color: #3a3a4a; margin-bottom: 10px; }
+.pp-trend { display:inline-flex; align-items:center; gap:4px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; margin-left:8px; }
+.pp-trend.up { color:#16a34a; }
+.pp-trend.down { color:#dc2626; }
+.pp-trend.flat { color:#9ca3af; }
 .pp-issue { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
 
 /* ── Footer ── */
@@ -351,6 +355,8 @@ function showPopup(evt, name) {
   const rawDesc = e.desc || '';
   const shortDesc = rawDesc.length > 400 ? rawDesc.substring(0,400) + '…' : rawDesc;
   const descHtml = shortDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  const trendIcon = e.trend==='up' ? '↑' : e.trend==='down' ? '↓' : e.trend==='flat' ? '→' : '';
+  const trendHtml = trendIcon ? `<span class="pp-trend ${e.trend}">${trendIcon} ${e.trend}</span>` : '';
 
   popup.innerHTML = `
     <button class="pp-close" onclick="hidePopupNow()">×</button>
@@ -362,7 +368,7 @@ function showPopup(evt, name) {
       </div>
       <span class="pp-badge" style="background:${cat.color}">${cat.label}</span>
     </div>
-    <div class="pp-status">${statusLabel}</div>
+    <div class="pp-status">${statusLabel}${trendHtml}</div>
     ${bioHtml?`<div class="pp-bio">${bioHtml}</div>`:''}
     ${descHtml?`<div class="pp-desc">${descHtml}</div>`:''}
     ${e.issue?`<div class="pp-issue">Covered in ${e.issue}</div>`:''}
