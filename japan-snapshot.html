@@ -91,11 +91,6 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 .pp-status { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
 .pp-bio { font-size: 11px; line-height: 1.55; color: #6a6a7a; font-style: italic; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 .pp-desc { font-size: 12px; line-height: 1.7; color: #3a3a4a; margin-bottom: 10px; }
-.pp-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
-.ptag { font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 2px; letter-spacing: 0.3px; }
-.ptag-hi { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; }
-.ptag-gr { background: #f0faf4; color: #276749; border: 1px solid #b2e0c4; }
-.ptag-df { background: #f4f1ec; color: #5a5a6a; border: 1px solid var(--border); }
 .pp-issue { font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim); }
 
 /* ── Footer ── */
@@ -351,10 +346,6 @@ function showPopup(evt, name) {
   if (!e) return;
   const cat = CATS[e.cat] || CATS.ai;
   const statusLabel = e.status === 'public' ? (e.ticker || 'Public') : e.status === 'gov' ? 'Government' : 'Private';
-  const tagsHtml = (e.tags||[]).map(t => {
-    const cls = t.t==='highlight'?'ptag-hi':t.t==='green'?'ptag-gr':'ptag-df';
-    return `<span class="ptag ${cls}">${t.l}</span>`;
-  }).join('');
   const rawBio = e.bio || '';
   const bioHtml = rawBio.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
   const rawDesc = e.desc || '';
@@ -374,7 +365,6 @@ function showPopup(evt, name) {
     <div class="pp-status">${statusLabel}</div>
     ${bioHtml?`<div class="pp-bio">${bioHtml}</div>`:''}
     ${descHtml?`<div class="pp-desc">${descHtml}</div>`:''}
-    ${tagsHtml?`<div class="pp-tags">${tagsHtml}</div>`:''}
     ${e.issue?`<div class="pp-issue">Covered in ${e.issue}</div>`:''}
   `;
 
