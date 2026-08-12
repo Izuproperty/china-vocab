@@ -64,6 +64,13 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .cat-btn { padding:5px 13px; border:1px solid #dde0e8; border-radius:20px; font-size:11px; font-weight:600; cursor:pointer; background:#f5f6fa; color:#5a5a6a; white-space:nowrap; text-transform:uppercase; letter-spacing:0.5px; }
 .cat-btn:hover { border-color:#1a1a2e; color:#1a1a2e; }
 .cat-btn.active { background:#1a1a2e; color:#fff; border-color:#1a1a2e; }
+.sentiment-filters { display:flex; gap:6px; flex-wrap:wrap; flex-basis:100%; padding-top:2px; }
+.sent-btn { padding:5px 13px; border:1px solid #dde0e8; border-radius:20px; font-size:11px; font-weight:600; cursor:pointer; background:#f5f6fa; color:#5a5a6a; white-space:nowrap; text-transform:uppercase; letter-spacing:0.5px; }
+.sent-btn:hover { border-color:#1a1a2e; color:#1a1a2e; }
+.sent-btn.active { background:#1a1a2e; color:#fff; border-color:#1a1a2e; }
+.sent-btn.sent-up.active { background:#16a34a; border-color:#16a34a; }
+.sent-btn.sent-down.active { background:#dc2626; border-color:#dc2626; }
+.sent-btn.sent-flat.active { background:#6b7280; border-color:#6b7280; }
 .results-count { font-size:11px; color:#9a8a7a; white-space:nowrap; margin-left:auto; }
 
 .grid-wrap { padding:32px 56px 56px; }
@@ -150,6 +157,12 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
   </div>
   <div class="cat-filters" id="catFilters"></div>
   <span class="results-count" id="resultsCount"></span>
+  <div class="sentiment-filters">
+    <button class="sent-btn active" onclick="setSentiment('all',this)">All signals</button>
+    <button class="sent-btn sent-up" onclick="setSentiment('up',this)">↑ Bullish</button>
+    <button class="sent-btn sent-down" onclick="setSentiment('down',this)">↓ Bearish</button>
+    <button class="sent-btn sent-flat" onclick="setSentiment('flat',this)">→ Neutral</button>
+  </div>
 </div>
 
 <div class="grid-wrap" id="gridWrap">
@@ -174,6 +187,7 @@ document.getElementById('backLink').href = CFG.backLink;
 
 let allEntities = [];
 let currentCat = 'all';
+let currentTrend = 'all';
 
 fetch(CFG.dataFile + '?v=' + Date.now())
   .then(r => r.json())
@@ -184,7 +198,7 @@ fetch(CFG.dataFile + '?v=' + Date.now())
     document.getElementById('badgeDate').textContent = meta.updated;
     document.getElementById('footerBrand').textContent = CFG.titleLocal + ' · ' + CFG.title;
     document.getElementById('footerText').textContent =
-      'Living document · Updated by agent · Issue #' + meta.issue + ' · ' + meta.updated + ' · Not investment advice';
+      'Living document · Updated by agent · Issue #' + meta.issue + ' · ' + meta.updated + ' · ↑ bullish · ↓ bearish · → neutral = signal sentiment (editorial) · Not investment advice';
     buildStats(allEntities);
     buildFilters(allEntities);
     buildGrid(allEntities);
@@ -241,6 +255,7 @@ function buildGrid(entities) {
       const card = document.createElement('div');
       card.className = 'company-card';
       card.dataset.search = [e.name, e.zh, e.py, e.desc].join(' ').toLowerCase();
+      card.dataset.trend = e.trend || '';
       const statusClass = e.status === 'public' ? 'status-public' : e.status === 'gov' ? 'status-gov' : 'status-private';
       const statusLabel = e.status === 'public' ? (e.ticker || 'Public') : e.status === 'gov' ? 'Government' : 'Private';
       const rawBio = e.bio || '';
@@ -249,7 +264,7 @@ function buildGrid(entities) {
       const descHtml = rawDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
       const trendIcon = e.trend==='up' ? '↑' : e.trend==='down' ? '↓' : e.trend==='flat' ? '→' : '';
       const trendLabel = e.trend==='up' ? 'bullish' : e.trend==='down' ? 'bearish' : e.trend==='flat' ? 'neutral' : '';
-      const trendHtml = trendIcon ? `<span class="card-trend ${e.trend}" title="Signal sentiment: editor's judgment on recent momentum. ↑ bullish, ↓ bearish, → neutral.">${trendIcon} ${trendLabel}</span>` : '';
+      const trendHtml = trendIcon ? `<span class="card-trend ${e.trend}">${trendIcon} ${trendLabel}</span>` : '';
       card.innerHTML = `
         <div class="card-stripe" style="background:${catMeta.color}"></div>
         <div class="card-body">
@@ -279,6 +294,13 @@ function setCat(cat, btn) {
   filterCards();
 }
 
+function setSentiment(trend, btn) {
+  currentTrend = trend;
+  document.querySelectorAll('.sent-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
 function filterCards() {
   const q = document.getElementById('searchInput').value.toLowerCase().trim();
   let visible = 0;
@@ -286,7 +308,8 @@ function filterCards() {
     const catMatch = currentCat === 'all' || currentCat === section.dataset.cat;
     let sv = 0;
     section.querySelectorAll('.company-card').forEach(card => {
-      const show = catMatch && (q === '' || card.dataset.search.includes(q));
+      const trendMatch = currentTrend === 'all' || card.dataset.trend === currentTrend;
+      const show = catMatch && trendMatch && (q === '' || card.dataset.search.includes(q));
       card.classList.toggle('hidden', !show);
       if (show) { sv++; visible++; }
     });
