@@ -147,7 +147,7 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 
 <div class="footer">
   <div class="footer-brand">Japan AI Snapshot · 日本AIスナップショット</div>
-  <div class="footer-text">Updated automatically · <a href="japan-ai-landscape-viz.html">Full Landscape →</a></div>
+  <div class="footer-text">Updated automatically · ↑ bullish · ↓ bearish · → neutral = signal sentiment (editorial) · <a href="japan-ai-landscape-viz.html">Full Landscape →</a></div>
 </div>
 
 <!-- Hover popup -->
@@ -357,7 +357,7 @@ function showPopup(evt, name) {
   const descHtml = shortDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
   const trendIcon = e.trend==='up' ? '↑' : e.trend==='down' ? '↓' : e.trend==='flat' ? '→' : '';
   const trendLabel = e.trend==='up' ? 'bullish' : e.trend==='down' ? 'bearish' : e.trend==='flat' ? 'neutral' : '';
-  const trendHtml = trendIcon ? `<span class="pp-trend ${e.trend}" title="Signal sentiment: editor's judgment on recent momentum. ↑ bullish, ↓ bearish, → neutral.">${trendIcon} ${trendLabel}</span>` : '';
+  const trendHtml = trendIcon ? `<span class="pp-trend ${e.trend}">${trendIcon} ${trendLabel}</span>` : '';
 
   popup.innerHTML = `
     <button class="pp-close" onclick="hidePopupNow()">×</button>
