@@ -276,7 +276,8 @@ function buildGrid(entities) {
       const rawDesc = e.desc || '';
       const descHtml = rawDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
       const trendIcon = e.trend==='up' ? '↑' : e.trend==='down' ? '↓' : e.trend==='flat' ? '→' : '';
-      const trendHtml = trendIcon ? `<span class="card-trend ${e.trend}">${trendIcon} ${e.trend}</span>` : '';
+      const trendLabel = e.trend==='up' ? 'bullish' : e.trend==='down' ? 'bearish' : e.trend==='flat' ? 'neutral' : '';
+      const trendHtml = trendIcon ? `<span class="card-trend ${e.trend}" title="Signal sentiment: editor's judgment on recent momentum. ↑ bullish, ↓ bearish, → neutral.">${trendIcon} ${trendLabel}</span>` : '';
 
       card.innerHTML = `
         <div class="card-stripe" style="background:${catMeta.color}"></div>
