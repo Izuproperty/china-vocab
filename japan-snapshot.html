@@ -356,7 +356,8 @@ function showPopup(evt, name) {
   const shortDesc = rawDesc.length > 400 ? rawDesc.substring(0,400) + '…' : rawDesc;
   const descHtml = shortDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
   const trendIcon = e.trend==='up' ? '↑' : e.trend==='down' ? '↓' : e.trend==='flat' ? '→' : '';
-  const trendHtml = trendIcon ? `<span class="pp-trend ${e.trend}">${trendIcon} ${e.trend}</span>` : '';
+  const trendLabel = e.trend==='up' ? 'bullish' : e.trend==='down' ? 'bearish' : e.trend==='flat' ? 'neutral' : '';
+  const trendHtml = trendIcon ? `<span class="pp-trend ${e.trend}" title="Signal sentiment: editor's judgment on recent momentum. ↑ bullish, ↓ bearish, → neutral.">${trendIcon} ${trendLabel}</span>` : '';
 
   popup.innerHTML = `
     <button class="pp-close" onclick="hidePopupNow()">×</button>
