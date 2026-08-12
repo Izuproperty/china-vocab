@@ -89,6 +89,7 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 .pp-py { font-size: 10px; color: #b0a090; font-style: italic; margin-top: 1px; }
 .pp-badge { font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; color: #fff; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
 .pp-status { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.pp-bio { font-size: 11px; line-height: 1.55; color: #6a6a7a; font-style: italic; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 .pp-desc { font-size: 12px; line-height: 1.7; color: #3a3a4a; margin-bottom: 10px; }
 .pp-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
 .ptag { font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 2px; letter-spacing: 0.3px; }
@@ -385,8 +386,10 @@ function showPopup(evt, name) {
     const cls = t.t==='highlight'?'ptag-hi':t.t==='green'?'ptag-gr':'ptag-df';
     return `<span class="ptag ${cls}">${t.l}</span>`;
   }).join('');
+  const rawBio = e.bio || '';
+  const bioHtml = rawBio.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
   const rawDesc = e.desc || '';
-  const shortDesc = rawDesc.length > 280 ? rawDesc.substring(0,280) + '…' : rawDesc;
+  const shortDesc = rawDesc.length > 400 ? rawDesc.substring(0,400) + '…' : rawDesc;
   const descHtml = shortDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
 
   popup.innerHTML = `
@@ -400,6 +403,7 @@ function showPopup(evt, name) {
       <span class="pp-badge" style="background:${cat.color}">${cat.label}</span>
     </div>
     <div class="pp-status">${statusLabel}</div>
+    ${bioHtml?`<div class="pp-bio">${bioHtml}</div>`:''}
     ${descHtml?`<div class="pp-desc">${descHtml}</div>`:''}
     ${tagsHtml?`<div class="pp-tags">${tagsHtml}</div>`:''}
     ${e.issue?`<div class="pp-issue">Covered in ${e.issue}</div>`:''}
