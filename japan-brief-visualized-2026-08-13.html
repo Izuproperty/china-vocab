@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #74 · August 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#818cf8; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:12.5px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fb; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#3730a3; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #74 · August 13, 2026</div>
+    <div class="masthead-sub">Cyber Chief Confirms AI Export-Ban Fallout · Kioxia Split &amp; Buyback · TOPIX Record on Chip Rally</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & Tech · Cyber Policy</div>
+      <div class="card-num">49<span class="card-num-unit">days</span></div>
+      <div class="card-label">Until Japan's Active Cyber Defense Act takes effect (Oct 1)</div>
+      <div class="card-delta delta-indigo">Frontier AI integration called "inevitable"</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semiconductor · Kioxia</div>
+      <div class="card-num">415<span class="card-num-unit">% YoY</span></div>
+      <div class="card-label">Q1 revenue growth — record profit, still missed consensus</div>
+      <div class="card-delta delta-yellow">3-for-1 split + ¥800bn buyback (Aug 3)</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro · Equities</div>
+      <div class="card-num">4,139<span class="card-num-unit">TOPIX</span></div>
+      <div class="card-label">Record close, Aug 12 — first new high since Jul 6</div>
+      <div class="card-delta delta-green">Tankan sentiment +18, highest since March</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI & TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">Kyodo News · Aug 10</span>
+        </div>
+        <div class="story-headline">Japan's Cyber Chief Confirms a US AI Export Ban Disrupted Government Security Scanning</div>
+        <div class="story-insight">National Cyber Director Yoichi Iida confirmed the June 12 US export directive suspending Anthropic's Fable 5 and Mythos 5 disrupted Japan's own government vulnerability-scanning operations — the first public allied-government attribution of this kind. He called frontier-AI integration into preemptive cyber defense "inevitable," citing exploit windows compressed from weeks to roughly a day, with J.P. Morgan projecting near one minute by 2027. Japan's Active Cyber Defense Act takes effect October 1, authorizing preemptive neutralization of hostile infrastructure.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Multi-vendor AI procurement reduces single-company risk but not single-jurisdiction (US/ECRA) exposure — watch for accelerated budget flow toward sovereign AI options (Noetra, Sakana AI) in security-critical government and defense procurement.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Vulnerability-to-Exploit Window, Compressing</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+        <!-- 2024: weeks -->
+        <rect x="110" y="40" width="90" height="110" fill="#c7d2fe" rx="3"/>
+        <text x="155" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Weeks</text>
+        <text x="155" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">2024</text>
+        <!-- 2026: ~1 day -->
+        <rect x="360" y="120" width="90" height="30" fill="#818cf8" rx="3"/>
+        <text x="405" y="110" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">~1 day</text>
+        <text x="405" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">2026 (JPMorgan est.)</text>
+        <!-- 2027: ~1 minute -->
+        <rect x="610" y="147" width="90" height="3" fill="#3730a3" rx="1"/>
+        <text x="655" y="140" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">~1 minute</text>
+        <text x="655" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">2027 (projected)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SOVEREIGNTY</div>
+        <div class="annotation-card-zh">AI主権<span class="annotation-card-en">AI shuken · AI sovereignty</span></div>
+        <div class="annotation-card-body">Defense Ministry's parallel Sakana AI command-layer evaluation shows Tokyo building domestic-preference procurement templates for security-sensitive AI.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · IMPLEMENTATION</div>
+        <div class="annotation-card-zh">能動的サイバー防御<span class="annotation-card-en">Nōdōteki Saibā Bōgyo · Active cyber defense</span></div>
+        <div class="annotation-card-body">Oct 1 rollout must define how much automation is permitted while keeping a human in the loop for offensive decisions — unresolved with seven weeks left.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEPENDENCY</div>
+        <div class="annotation-card-zh">単一法域リスク<span class="annotation-card-en">Tan'itsu Hōiki Risuku · Single-jurisdiction risk</span></div>
+        <div class="annotation-card-body">Every leading frontier AI developer is US-headquartered and subject to ECRA — vendor diversification does not solve the structural exposure Iida flagged.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMICONDUCTOR</span>
+          <span class="card-tag tag-semi" style="margin:0;">Bloomberg · Aug 3</span>
+        </div>
+        <div class="story-headline">Kioxia Splits Its Stock 3-for-1, Launches a ¥800bn Buyback — After a Record Quarter That Missed Estimates</div>
+        <div class="story-insight">Q1 FY2026 operating profit hit a record ¥1.326tn on 415% YoY revenue growth to ¥1.767tn, yet both missed Bloomberg consensus. Alongside the print, Kioxia announced a 3-for-1 split (effective Oct 1) and an up-to-¥800bn buyback (Aug 3–Oct 30, ~5.5% of shares), part of a 50% total-shareholder-return pledge with dividends starting FY2028.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> The capital-return package reads as reassurance that even a moderating NAND price cycle still leaves ample free cash flow — but it follows the same headline-beats-hide-margin-pressure pattern seen at Toyota, Fanuc, and SUMCO this reporting season.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Kioxia Q1 Revenue: Prior Year vs. This Year</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+        <rect x="220" y="122" width="110" height="28" fill="#e9d5ff" rx="3"/>
+        <text x="275" y="112" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">¥0.343T</text>
+        <text x="275" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">Q1 FY2025</text>
+        <rect x="470" y="45" width="110" height="105" fill="#c084fc" rx="3"/>
+        <text x="525" y="35" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">¥1.767T</text>
+        <text x="525" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">Q1 FY2026 (+415% YoY)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL RETURN</div>
+        <div class="annotation-card-zh">総還元性向<span class="annotation-card-en">Sōkangen Seikō · TSR ratio</span></div>
+        <div class="annotation-card-body">50% total-shareholder-return commitment with dividends beginning FY2028 signals management confidence in sustained free cash flow.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICING CYCLE</div>
+        <div class="annotation-card-zh">NAND価格<span class="annotation-card-en">NAND Kakaku · NAND pricing</span></div>
+        <div class="annotation-card-body">Whether Samsung and Chinese suppliers (YMTC) erode pricing power faster than the buyback narrative implies is the key swing factor into next quarter.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · JV UNCERTAINTY</div>
+        <div class="annotation-card-zh">WD提携<span class="annotation-card-en">WD Teikei · WD partnership</span></div>
+        <div class="annotation-card-body">Western Digital's proposed Sandisk NAND spin-off leaves the terms of the Yokkaichi/Kitakami joint venture unresolved.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO</span>
+          <span class="card-tag tag-macro" style="margin:0;">Reuters · Aug 12</span>
+        </div>
+        <div class="story-headline">TOPIX Hits a Record, Nikkei Reclaims 67,500 on an AI-Chip Rally — and the Tankan Confirms It's Not Just Sentiment</div>
+        <div class="story-insight">TOPIX closed at a record 4,139.00 on Aug 12 (first new high since Jul 6); the Nikkei rose 553.84 points to 67,524.06, its best close since mid-July. Over 60% of TSE Prime issues advanced, led by AI/semiconductor names tracking a US chip rally. The same day, the Reuters Tankan showed manufacturer sentiment climbing to +18 from +13 — highest since March — on a jump in the chip-linked chemicals sub-index to +33 from +23.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Forward-looking equity pricing and a backward-looking manufacturer survey are pointing the same direction at once — a stronger signal than either alone that the rally has real order-book support, not just momentum.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Nikkei 225 Close, Aug 6–12</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+        <polyline points="80,110 220,118 360,105 500,88 640,60 760,45" fill="none" stroke="#3730a3" stroke-width="3"/>
+        <circle cx="80" cy="110" r="4" fill="#3730a3"/>
+        <circle cx="220" cy="118" r="4" fill="#3730a3"/>
+        <circle cx="360" cy="105" r="4" fill="#3730a3"/>
+        <circle cx="500" cy="88" r="4" fill="#3730a3"/>
+        <circle cx="640" cy="60" r="4" fill="#3730a3"/>
+        <circle cx="760" cy="45" r="5" fill="#818cf8"/>
+        <text x="80" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">Aug 6</text>
+        <text x="360" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">Aug 10</text>
+        <text x="640" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">Aug 11 (holiday)</text>
+        <text x="760" y="30" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">67,524 (Aug 12)</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CONFIRMATION</div>
+        <div class="annotation-card-zh">ロイター短観<span class="annotation-card-en">Roitā Tankan · Reuters Tankan</span></div>
+        <div class="annotation-card-body">Manufacturer sentiment at a 5-month high on chip demand corroborates the equity rally with real-economy survey data, not just price momentum.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · OIL & GEOPOLITICS</div>
+        <div class="annotation-card-zh">原油先物<span class="annotation-card-en">Gen'yu Sakimono · Crude oil futures</span></div>
+        <div class="annotation-card-body">Rising crude on Middle East uncertainty is already pressuring domestic-demand names (retailers, transport) even as chip names rally.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NARROW BREADTH</div>
+        <div class="annotation-card-zh">物色の偏り<span class="annotation-card-en">Busshoku no Katayori · Sector-concentrated buying</span></div>
+        <div class="annotation-card-body">The rally's dependence on AI/semiconductor names means upcoming US chip earnings and geopolitical headlines carry outsized influence on whether gains hold.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #74 · AUGUST 13, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
