@@ -84,9 +84,12 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .card-zh { font-size:13px; font-weight:600; margin-top:2px; letter-spacing:1px; }
 .card-py { font-size:11px; color:#7a6a5a; font-style:italic; margin-top:1px; }
 .card-ticker { font-size:10px; color:#9a8a9a; margin-top:2px; }
-.card-desc { font-size:12px; color:#4a4a5a; line-height:1.6; margin-top:10px; }
-.card-tags { margin-top:10px; display:flex; flex-wrap:wrap; gap:5px; }
-.tag { font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:2px; background:#eef0f5; color:#6a6a7a; }
+.card-bio { font-size:11px; color:#7a7a8a; font-style:italic; line-height:1.5; margin-top:8px; padding-bottom:8px; border-bottom:1px solid #f0ece6; }
+.card-desc { font-size:12px; color:#4a4a5a; line-height:1.6; margin-top:8px; }
+.card-trend { display:inline-flex; align-items:center; gap:3px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; margin-left:6px; }
+.card-trend.up { color:#16a34a; }
+.card-trend.down { color:#dc2626; }
+.card-trend.flat { color:#9ca3af; }
 .tag.highlight { background:#e0e7ff; color:#3730a3; }
 .tag.green { background:#f0faf4; color:#27ae60; }
 .tag.blue { background:#f0f4fe; color:#1a56db; }
@@ -115,7 +118,6 @@ body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 </style>
 </head>
 <body>
-<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">友達 · Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
 
 <div class="header">
   <div class="header-back">
@@ -238,10 +240,15 @@ function buildGrid(entities) {
     group.forEach(e => {
       const card = document.createElement('div');
       card.className = 'company-card';
-      card.dataset.search = [e.name, e.zh, e.py, e.desc, (e.tags||[]).map(t=>t.l).join(' ')].join(' ').toLowerCase();
+      card.dataset.search = [e.name, e.zh, e.py, e.desc].join(' ').toLowerCase();
       const statusClass = e.status === 'public' ? 'status-public' : e.status === 'gov' ? 'status-gov' : 'status-private';
       const statusLabel = e.status === 'public' ? (e.ticker || 'Public') : e.status === 'gov' ? 'Government' : 'Private';
-      const tagsHtml = (e.tags||[]).map(t => `<span class="tag ${t.t||''}">${t.l}</span>`).join('');
+      const rawBio = e.bio || '';
+      const bioHtml = rawBio.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      const rawDesc = e.desc || '';
+      const descHtml = rawDesc.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+      const trendIcon = e.trend==='up' ? '↑' : e.trend==='down' ? '↓' : e.trend==='flat' ? '→' : '';
+      const trendHtml = trendIcon ? `<span class="card-trend ${e.trend}">${trendIcon} ${e.trend}</span>` : '';
       card.innerHTML = `
         <div class="card-stripe" style="background:${catMeta.color}"></div>
         <div class="card-body">
@@ -249,12 +256,12 @@ function buildGrid(entities) {
           ${e.zh ? `<div class="card-zh" style="color:${catMeta.color}">${e.zh}</div>` : ''}
           ${e.py ? `<div class="card-py">${e.py}</div>` : ''}
           ${e.ticker ? `<div class="card-ticker">${e.ticker}</div>` : ''}
-          <div class="card-desc">${e.desc}</div>
-          ${tagsHtml ? `<div class="card-tags">${tagsHtml}</div>` : ''}
+          ${bioHtml ? `<div class="card-bio">${bioHtml}</div>` : ''}
+          ${descHtml ? `<div class="card-desc">${descHtml}</div>` : ''}
         </div>
         <div class="card-footer">
           <span class="card-issue">First seen ${e.issue}</span>
-          <span class="card-status ${statusClass}">${statusLabel}</span>
+          <span class="card-status ${statusClass}">${statusLabel}</span>${trendHtml}
         </div>
       `;
       grid.appendChild(card);
@@ -288,6 +295,5 @@ function filterCards() {
   document.getElementById('noResults').classList.toggle('show', visible === 0);
 }
 </script>
-<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
 </body>
 </html>
