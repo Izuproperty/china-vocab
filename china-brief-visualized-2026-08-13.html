@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #86 · August 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #86 · August 13, 2026</div>
+    <div class="masthead-sub">Tencent's AI Capex Squeeze · China's AI Video Leaderboard Sweep · PBOC's 2026-2030 Roadmap</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CAPEX</div>
+      <div class="card-num">176<span class="card-num-unit">% y/y</span></div>
+      <div class="card-label">Tencent Q2 2026 AI capital expenditure growth</div>
+      <div class="card-delta delta-red">FCF: –¥13.8B reported</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · VIDEO</div>
+      <div class="card-num">9<span class="card-num-unit">/ 10</span></div>
+      <div class="card-label">Chinese models on the global AI video leaderboard</div>
+      <div class="card-delta delta-green">Google: sole non-China entry</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · PBOC</div>
+      <div class="card-num">2030<span class="card-num-unit"></span></div>
+      <div class="card-label">Horizon of PBOC's new financial reform plan</div>
+      <div class="card-delta delta-amber">No new RRR/LPR move</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">–¥13.8 Billion: Tencent's AI Capex Push Turns Free Cash Flow Negative</div>
+    <div class="story-insight">
+      <p>Tencent's Q2 2026 revenue rose 11% y/y to ¥204.8B, beating estimates, but capex surged 176% y/y to ¥52.8B as the company builds out compute for its Hunyuan model family — pushing reported free cash flow to –¥13.8B, the first negative quarterly print in years.</p>
+      <br>
+      <p>Management says FCF would have been +¥37.6B excluding compute prepayments, and ex-AI operating profit still grew 19%. The market wasn't convinced either way: US shares fell ~4.3% on the print and are down ~26% YTD — a sign investors are discounting AI infrastructure spend rather than rewarding it until cash generation proves out.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Revenue growth and AI ambition alone no longer move the stock — the market is now pricing the capex-to-cash-flow bridge.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tencent Q2 2026: Capex vs. Free Cash Flow (¥ Billions)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="170" x2="780" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="120" x2="780" y2="120" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="30" y="124" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+        <!-- Q2 2025 capex -->
+        <rect x="110" y="101" width="70" height="19" fill="#e0d8d0"/>
+        <text x="145" y="95" font-size="11" fill="#5a6a8a" text-anchor="middle">¥19.1B</text>
+        <text x="145" y="185" font-size="10" fill="#5a6a8a" text-anchor="middle">Capex Q2'25</text>
+        <!-- Q2 2026 capex -->
+        <rect x="230" y="24" width="70" height="96" fill="#c0392b"/>
+        <text x="265" y="18" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">¥52.8B</text>
+        <text x="265" y="185" font-size="10" fill="#5a6a8a" text-anchor="middle">Capex Q2'26 (+176%)</text>
+        <!-- reported FCF -->
+        <rect x="410" y="120" width="70" height="16" fill="#b45309"/>
+        <text x="445" y="150" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">–¥13.8B</text>
+        <text x="445" y="185" font-size="10" fill="#5a6a8a" text-anchor="middle">Reported FCF</text>
+        <!-- adjusted FCF -->
+        <rect x="530" y="63" width="70" height="57" fill="#166534"/>
+        <text x="565" y="57" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">+¥37.6B</text>
+        <text x="565" y="185" font-size="10" fill="#5a6a8a" text-anchor="middle">Adj. FCF (ex-prepay)</text>
+        <!-- ex-AI op profit -->
+        <rect x="650" y="15" width="70" height="105" fill="#1a56db" opacity="0.85"/>
+        <text x="685" y="9" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">¥86.1B</text>
+        <text x="685" y="185" font-size="10" fill="#5a6a8a" text-anchor="middle">Ex-AI op. profit (+19%)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CORE BUSINESS</div>
+        <div class="annotation-card-zh">混元<span class="annotation-card-en">Hùnyuán · Tencent's AI model family</span></div>
+        <div class="annotation-card-body">Ex-AI operating profit still grew 19% to ¥86.1B — the underlying ad and gaming franchises remain healthy independent of the AI spending debate.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FCF DEFINITION</div>
+        <div class="annotation-card-zh">自由现金流<span class="annotation-card-en">zìyóu xiànjīnliú · free cash flow</span></div>
+        <div class="annotation-card-body">The ¥13.8B vs. ¥37.6B gap hinges entirely on how compute prepayments are treated — a definitional question investors will keep pressing on.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARKET SKEPTICISM</div>
+        <div class="annotation-card-zh">资本开支<span class="annotation-card-en">zīběn kāizhī · capital expenditure</span></div>
+        <div class="annotation-card-body">Shares down 4.3% on the print and 26% YTD despite a revenue beat — the market is not yet rewarding AI capex with a growth multiple.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">Nine of Ten: Chinese Labs Now Lead the Global AI Video Leaderboard</div>
+    <div class="story-insight">
+      <p>On Artificial Analysis's blind-rated text-to-video leaderboard, nine of the top ten models are Chinese-developed — ByteDance's Seedance 2.0 (即梦) leads, with Alibaba's Wan, Kuaishou's Kling, MiniMax's H3 and Skywork's SkyReels also placing. Google's Gemini Omni Flash is the sole non-Chinese entry near the top.</p>
+      <br>
+      <p>Video generation has clearer near-term monetization than chat — advertising creative, short-form content, film/TV pre-production — and ByteDance/Kuaishou's owned distribution (Douyin, Kuaishou app) gives them a data and adoption advantage. The open question is whether blind Elo scores on short clips translate into the longer-form, higher-control output professional production actually needs.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> China's AI lead is most concrete in categories — like video — where owned consumer distribution doubles as a training-data and adoption engine.</div>
+    <div class="chart-box">
+      <div class="chart-title">Text-to-Video Leaderboard: Top 10 by Origin</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="180" y1="15" x2="180" y2="175" stroke="#e0d8d0" stroke-width="1"/>
+        <!-- rank rows -->
+        <text x="170" y="30" font-size="11" fill="#5a6a8a" text-anchor="end">#1</text>
+        <rect x="190" y="19" width="560" height="14" fill="#c0392b"/>
+        <text x="760" y="30" font-size="10.5" fill="#1a1a2e">Seedance 2.0 (ByteDance, 中国)</text>
+
+        <text x="170" y="50" font-size="11" fill="#5a6a8a" text-anchor="end">#2</text>
+        <rect x="190" y="39" width="520" height="14" fill="#c0392b"/>
+        <text x="720" y="50" font-size="10.5" fill="#1a1a2e">Wan (Alibaba, 中国)</text>
+
+        <text x="170" y="70" font-size="11" fill="#5a6a8a" text-anchor="end">#3</text>
+        <rect x="190" y="59" width="500" height="14" fill="#1a56db"/>
+        <text x="700" y="70" font-size="10.5" fill="#1a1a2e">Gemini Omni Flash (Google, US)</text>
+
+        <text x="170" y="90" font-size="11" fill="#5a6a8a" text-anchor="end">#4</text>
+        <rect x="190" y="79" width="480" height="14" fill="#c0392b"/>
+        <text x="680" y="90" font-size="10.5" fill="#1a1a2e">Kling (Kuaishou, 中国)</text>
+
+        <text x="170" y="110" font-size="11" fill="#5a6a8a" text-anchor="end">#5</text>
+        <rect x="190" y="99" width="460" height="14" fill="#c0392b"/>
+        <text x="660" y="110" font-size="10.5" fill="#1a1a2e">H3 (MiniMax, 中国)</text>
+
+        <text x="170" y="130" font-size="11" fill="#5a6a8a" text-anchor="end">#6</text>
+        <rect x="190" y="119" width="440" height="14" fill="#c0392b"/>
+        <text x="640" y="130" font-size="10.5" fill="#1a1a2e">Kling variant (Kuaishou, 中国)</text>
+
+        <text x="170" y="150" font-size="11" fill="#5a6a8a" text-anchor="end">#7-8</text>
+        <rect x="190" y="139" width="420" height="14" fill="#c0392b"/>
+        <text x="620" y="150" font-size="10.5" fill="#1a1a2e">Wan variants (Alibaba, 中国)</text>
+
+        <text x="170" y="170" font-size="11" fill="#5a6a8a" text-anchor="end">#9-10</text>
+        <rect x="190" y="159" width="400" height="14" fill="#c0392b"/>
+        <text x="600" y="170" font-size="10.5" fill="#1a1a2e">SkyReels (Skywork, 中国)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DISTRIBUTION EDGE</div>
+        <div class="annotation-card-zh">即梦<span class="annotation-card-en">Jímèng · ByteDance's video AI brand</span></div>
+        <div class="annotation-card-body">Douyin-scale distribution lets ByteDance seed adoption and collect training data at a pace few non-Chinese labs can match.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EVAL METHOD</div>
+        <div class="annotation-card-zh">可灵<span class="annotation-card-en">Kělíng · Kling, Kuaishou's video model</span></div>
+        <div class="annotation-card-body">Blind Elo scores reward short-clip polish and prompt-following — not necessarily the longer-form control professional production needs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · WORKFLOW GAP</div>
+        <div class="annotation-card-zh">快手<span class="annotation-card-en">Kuàishǒu · Kuaishou</span></div>
+        <div class="annotation-card-body">Leaderboard dominance hasn't yet been shown to displace, rather than supplement, existing studio and agency production pipelines.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO & FINANCE</div>
+    <div class="story-headline">A Five-Year Roadmap, No New Rate Move: PBOC Sets Out Its 2026–2030 Reform Plan</div>
+    <div class="story-insight">
+      <p>The PBOC published a 2026–2030 reform plan on August 10, prioritizing "prudent" financial opening-up: expanded RMB use in cross-border trade, deeper two-way market access, Shanghai/Hong Kong's roles as financial centers, CIPS build-out, and "steady development" of the digital yuan.</p>
+      <br>
+      <p>No new RRR or LPR move accompanied the plan, consistent with the PBOC's 2026 pattern of favoring structural and quantity tools over headline rate cuts. It's a direction-of-travel document, not a market-moving one — the near-term investor relevance is procedural: incremental easing of friction for foreign participation in onshore RMB markets, on a timeline the plan itself doesn't specify.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The plan signals intent, not timing — "prudent" opening has historically moved slower than the framing suggests.</div>
+    <div class="chart-box">
+      <div class="chart-title">PBOC 2026-2030 Plan: Core Pillars</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="85" x2="780" y2="85" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="110" cy="85" r="7" fill="#c0392b"/>
+        <text x="110" y="65" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Financial</text>
+        <text x="110" y="78" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Opening-Up</text>
+        <text x="110" y="105" font-size="10" fill="#5a6a8a" text-anchor="middle">RMB cross-border</text>
+        <text x="110" y="117" font-size="10" fill="#5a6a8a" text-anchor="middle">trade &amp; investment use</text>
+
+        <circle cx="280" cy="85" r="7" fill="#1a56db"/>
+        <text x="280" y="65" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Two-Way Market</text>
+        <text x="280" y="78" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Access</text>
+        <text x="280" y="105" font-size="10" fill="#5a6a8a" text-anchor="middle">Deepened foreign</text>
+        <text x="280" y="117" font-size="10" fill="#5a6a8a" text-anchor="middle">participation channels</text>
+
+        <circle cx="450" cy="85" r="7" fill="#166534"/>
+        <text x="450" y="65" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Shanghai &amp; HK</text>
+        <text x="450" y="78" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">as Fin. Centers</text>
+        <text x="450" y="105" font-size="10" fill="#5a6a8a" text-anchor="middle">International financial</text>
+        <text x="450" y="117" font-size="10" fill="#5a6a8a" text-anchor="middle">center build-out</text>
+
+        <circle cx="620" cy="85" r="7" fill="#b45309"/>
+        <text x="620" y="65" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">CIPS &amp;</text>
+        <text x="620" y="78" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Offshore RMB</text>
+        <text x="620" y="105" font-size="10" fill="#5a6a8a" text-anchor="middle">Cross-border payment</text>
+        <text x="620" y="117" font-size="10" fill="#5a6a8a" text-anchor="middle">infrastructure</text>
+
+        <circle cx="720" cy="85" r="7" fill="#7a6a5a"/>
+        <text x="720" y="65" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Digital</text>
+        <text x="720" y="78" font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">Yuan</text>
+        <text x="720" y="105" font-size="10" fill="#5a6a8a" text-anchor="middle">"Steady</text>
+        <text x="720" y="117" font-size="10" fill="#5a6a8a" text-anchor="middle">development"</text>
+
+        <text x="40" y="145" font-size="10" fill="#9a7a6a">Aug 10, 2026 — plan issued</text>
+        <text x="700" y="145" font-size="10" fill="#9a7a6a" text-anchor="end">Horizon: 2030</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DIRECTION</div>
+        <div class="annotation-card-zh">金融开放<span class="annotation-card-en">jīnróng kāifàng · financial opening-up</span></div>
+        <div class="annotation-card-body">RMB internationalization and two-way market access remain the PBOC's stated multi-year priority, reaffirmed at the five-year-plan level.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · NO TIMELINE</div>
+        <div class="annotation-card-zh">金融强国<span class="annotation-card-en">jīnróng qiángguó · "financial power"</span></div>
+        <div class="annotation-card-body">No milestones or dates attached — "prudent" (审慎) opening has historically meant slower, more conditional execution than the framing implies.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NO NEAR-TERM EASING</div>
+        <div class="annotation-card-zh">存款准备金率<span class="annotation-card-en">cúnkuǎn zhǔnbèijīn lǜ · RRR</span></div>
+        <div class="annotation-card-body">No RRR or LPR move accompanied the plan — readers positioned for near-term easing get a structural roadmap instead.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #86 · AUGUST 13, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
