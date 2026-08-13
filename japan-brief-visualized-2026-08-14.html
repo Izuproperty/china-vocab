@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #75 · August 14, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#f3e8ff; color:#7c3aed; }
+  .tag-macro { background:#fef3c7; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-indigo { background:#e0e7ff; color:#3730a3; }
+  .delta-red    { background:#fee2e2; color:#b91c1c; }
+  .delta-yellow { background:#fef3c7; color:#b45309; }
+  .delta-green  { background:#dcfce7; color:#166534; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:16px; }
+  .story-meta { flex:1; }
+  .story-tag-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#818cf8; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:8px; }
+  .story-insight { font-size:12.5px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:12px; padding:10px 14px; background:#f5f6fa; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#3730a3; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#b91c1c; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #75 · August 14, 2026</div>
+    <div class="masthead-sub">AI-Led Dev by 2030 · Export Controls Round 3 · PPI Eases to 7.2%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">← Brief</a>
+      <a class="nav-btn" href="japan-snapshot.html">Snapshot</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">Landscape</a>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & Tech · Dev Shift</div>
+      <div class="card-num">2030<span class="card-num-unit">target</span></div>
+      <div class="card-label">Year Japan's top IT integrators aim to complete the shift to AI-led development</div>
+      <div class="card-delta delta-indigo">2 camps: OpenAI vs. Anthropic</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">Semi & Industrial · Export Controls</div>
+      <div class="card-num">3rd<span class="card-num-unit">round</span></div>
+      <div class="card-label">Round of chip-equipment export controls; first to cover the full advanced-packaging chain</div>
+      <div class="card-delta delta-red">Effective Aug 1, 2026</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">Macro & BOJ · Inflation</div>
+      <div class="card-num">7.2<span class="card-num-unit">% YoY</span></div>
+      <div class="card-label">July producer price growth — elevated but below the 7.4% consensus estimate</div>
+      <div class="card-delta delta-yellow">Sept BOJ hike still live</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 1 · AI & TECH</span>
+          <span class="card-tag tag-ai" style="margin:0;">Nikkei Asia</span>
+        </div>
+        <div class="story-headline">Japan's Top IT Integrators Set 2030 Target for AI-Led Development — Splitting Into Rival OpenAI and Anthropic Camps</div>
+        <div class="story-insight">Fujitsu, NEC, Hitachi, NTT Data, and SoftBank are converging on a 2030 target to shift from people-led to AI-led software development, using generative coding agents to compress the traditional build pipeline. The industry has split into two camps: NTT Data/SoftBank betting on OpenAI for scale, and Fujitsu/NEC/Hitachi betting on Anthropic for a security-first "Japanese-style AI" positioning aimed at regulated clients.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> This is a margin and headcount story more than a technology story — watch entry-level engineering hiring at Japan's largest IT employers, and whether FSA-regulated clients (banks, insurers, government) gravitate toward the Anthropic camp's reliability framing in RFPs.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">The Two Camps</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <text x="205" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">OPENAI CAMP · SCALE</text>
+        <text x="615" y="24" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">ANTHROPIC CAMP · RELIABILITY</text>
+        <line x1="410" y1="10" x2="410" y2="160" stroke="#dde0ec" stroke-width="1" stroke-dasharray="4 4"/>
+
+        <rect x="90" y="45" width="230" height="34" rx="4" fill="#e0e7ff"/>
+        <text x="205" y="66" text-anchor="middle" font-size="13" font-weight="600" fill="#3730a3">NTT Data</text>
+
+        <rect x="90" y="90" width="230" height="34" rx="4" fill="#e0e7ff"/>
+        <text x="205" y="111" text-anchor="middle" font-size="13" font-weight="600" fill="#3730a3">SoftBank</text>
+
+        <rect x="500" y="30" width="230" height="34" rx="4" fill="#f3e8ff"/>
+        <text x="615" y="51" text-anchor="middle" font-size="13" font-weight="600" fill="#7c3aed">Fujitsu</text>
+
+        <rect x="500" y="70" width="230" height="34" rx="4" fill="#f3e8ff"/>
+        <text x="615" y="91" text-anchor="middle" font-size="13" font-weight="600" fill="#7c3aed">NEC</text>
+
+        <rect x="500" y="110" width="230" height="34" rx="4" fill="#f3e8ff"/>
+        <text x="615" y="131" text-anchor="middle" font-size="13" font-weight="600" fill="#7c3aed">Hitachi</text>
+
+        <text x="205" y="150" text-anchor="middle" font-size="10" fill="#5a6a8a">Innovation / speed of adoption</text>
+        <text x="615" y="160" text-anchor="middle" font-size="10" fill="#5a6a8a">Security / government &amp; critical infra</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TARGET DATE</div>
+        <div class="annotation-card-zh">AI主導開発<span class="annotation-card-en">AI Shudō Kaihatsu · AI-led development</span></div>
+        <div class="annotation-card-body">A concrete 2030 date from five of Japan's largest integrators signals this is a funded roadmap, not aspirational messaging.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PROCUREMENT SPLIT</div>
+        <div class="annotation-card-zh">FSA準拠<span class="annotation-card-en">FSA Junkyo · FSA compliance</span></div>
+        <div class="annotation-card-body">Whether regulated-sector clients (banks, government) systematically favor the Anthropic camp's audit-trail framing over OpenAI-camp speed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · HEADCOUNT</div>
+        <div class="annotation-card-zh">新卒採用<span class="annotation-card-en">Shinsotsu Saiyō · new-grad hiring</span></div>
+        <div class="annotation-card-body">Entry-level engineering hiring is the traditional pipeline into Japan's largest IT employers; AI-led development compresses it directly.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 2 · SEMI &amp; INDUSTRIAL</span>
+          <span class="card-tag tag-semi" style="margin:0;">METI</span>
+        </div>
+        <div class="story-headline">Japan's Third Round of Chip-Equipment Export Controls Takes Effect, Closing the Advanced-Packaging Loophole</div>
+        <div class="story-insight">METI's May 29 revision to the FEFTA control list took effect August 1, extending export licensing to cover the full advanced-packaging equipment chain for the first time — closing a gap Chinese fabs had used to compensate for restricted front-end lithography access. Tokyo Electron, SCREEN Holdings, Disco, and Kokusai Electric are most exposed.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> China is still roughly a third of Tokyo Electron's revenue base; the first two rounds already cut combined China sales at TEL/SCREEN/Kokusai by close to 20% YoY. Watch Q3 China revenue disclosures for how much of the remaining business this round closes off.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Three Rounds of Export Controls</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#c7cbe0" stroke-width="2"/>
+
+        <circle cx="140" cy="90" r="7" fill="#a5b4fc"/>
+        <text x="140" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">Jul 2023</text>
+        <text x="140" y="76" text-anchor="middle" font-size="10" fill="#5a6a8a">Round 1</text>
+        <text x="140" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">23 categories,</text>
+        <text x="140" y="129" text-anchor="middle" font-size="10" fill="#3a4a6a">front-end equipment</text>
+
+        <circle cx="410" cy="90" r="7" fill="#818cf8"/>
+        <text x="410" y="60" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3">2025</text>
+        <text x="410" y="76" text-anchor="middle" font-size="10" fill="#5a6a8a">Round 2</text>
+        <text x="410" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Expanded list,</text>
+        <text x="410" y="129" text-anchor="middle" font-size="10" fill="#3a4a6a">tighter thresholds</text>
+
+        <circle cx="700" cy="90" r="9" fill="#3730a3"/>
+        <text x="700" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">Aug 1, 2026</text>
+        <text x="700" y="76" text-anchor="middle" font-size="10" fill="#5a6a8a">Round 3 · TODAY'S STORY</text>
+        <text x="700" y="115" text-anchor="middle" font-size="10" fill="#3a4a6a">Full advanced-packaging</text>
+        <text x="700" y="129" text-anchor="middle" font-size="10" fill="#3a4a6a">equipment chain added</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCOPE EXPANSION</div>
+        <div class="annotation-card-zh">先端パッケージング<span class="annotation-card-en">Sentan Pakkējingu · advanced packaging</span></div>
+        <div class="annotation-card-body">First round to target packaging rather than just front-end fabrication — closes a substitution channel China had been using.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CHINA REVENUE</div>
+        <div class="annotation-card-zh">中国売上比率<span class="annotation-card-en">Chūgoku Uriage Hiritsu · China revenue share</span></div>
+        <div class="annotation-card-body">China is roughly a third of Tokyo Electron's FY24 revenue; Q3 disclosures will show how much further this round erodes it.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · BACKFIRE NARRATIVE</div>
+        <div class="annotation-card-zh">国産化<span class="annotation-card-en">Kokusan-ka · domestic substitution</span></div>
+        <div class="annotation-card-body">Chinese commentary argues prior rounds accelerated domestic substitution rather than preventing it — the same risk applies here.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-header">
+      <div class="story-meta">
+        <div class="story-tag-row">
+          <span class="story-num">STORY 3 · MACRO &amp; BOJ</span>
+          <span class="card-tag tag-macro" style="margin:0;">Reuters / CNBC</span>
+        </div>
+        <div class="story-headline">Japan's Wholesale Inflation Eases to 7.2% But Stays Elevated, Keeping a September BOJ Hike Alive</div>
+        <div class="story-insight">July producer prices rose 7.2% YoY, undershooting the 7.4% consensus but still near a three-decade high, driven largely by electricity costs. The unusual part is the gap to consumer inflation (1.9% headline, 1.6–2.0% core) — attributed to Takaichi-cabinet energy subsidies shielding households from the wholesale pass-through.</div>
+        <div class="story-takeaway"><strong>Investor read-through:</strong> Elevated pipeline inflation keeps Ueda's "as soon as September" hike case alive, but the subsidy-suppressed CPI print gives the Board room to wait for the Aug 21 and Sep 18 CPI checkpoints before committing to a date.</div>
+      </div>
+    </div>
+
+    <div class="chart-box">
+      <div class="chart-title">Producer vs. Consumer Inflation, July 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="80" y1="150" x2="780" y2="150" stroke="#c7cbe0" stroke-width="1"/>
+        <line x1="80" y1="150" x2="80" y2="20" stroke="#c7cbe0" stroke-width="1"/>
+        <text x="60" y="34" text-anchor="end" font-size="10" fill="#5a6a8a">8%</text>
+        <line x1="80" y1="30" x2="780" y2="30" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="60" y="94" text-anchor="end" font-size="10" fill="#5a6a8a">4%</text>
+        <line x1="80" y1="90" x2="780" y2="90" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="60" y="150" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+
+        <rect x="180" y="36" width="90" height="114" fill="#3730a3" rx="3"/>
+        <text x="225" y="28" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">7.2%</text>
+        <text x="225" y="168" text-anchor="middle" font-size="10.5" fill="#3a4a6a">PPI (wholesale)</text>
+
+        <rect x="360" y="121" width="90" height="29" fill="#a5b4fc" rx="3"/>
+        <text x="405" y="113" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">1.9%</text>
+        <text x="405" y="168" text-anchor="middle" font-size="10.5" fill="#3a4a6a">CPI headline</text>
+
+        <rect x="540" y="126" width="90" height="24" fill="#c7d2fe" rx="3"/>
+        <text x="585" y="118" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3">1.6%</text>
+        <text x="585" y="168" text-anchor="middle" font-size="10.5" fill="#3a4a6a">CPI core</text>
+
+        <text x="700" y="60" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">Gap ≈ subsidy</text>
+        <text x="700" y="74" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">effect</text>
+      </svg>
+    </div>
+
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · UNDERSHOOT</div>
+        <div class="annotation-card-zh">企業物価指数<span class="annotation-card-en">Kigyō Bukka Shisū · producer price index</span></div>
+        <div class="annotation-card-body">7.2% YoY missed the 7.4% consensus and eased from June's 7.3% — the first small deceleration in the pipeline-inflation trend.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CPI CHECKPOINTS</div>
+        <div class="annotation-card-zh">補助金<span class="annotation-card-en">Hojokin · subsidy</span></div>
+        <div class="annotation-card-body">July CPI (Aug 21) and August CPI (Sep 18) are the hard data points that determine whether Ueda moves in September or waits.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEFERRED ADJUSTMENT</div>
+        <div class="annotation-card-zh">物価転嫁<span class="annotation-card-en">Bukka Tenka · cost pass-through</span></div>
+        <div class="annotation-card-body">Subsidies suppress CPI now but defer, rather than eliminate, the eventual pass-through of elevated wholesale costs to consumers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #75 · AUGUST 14, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
