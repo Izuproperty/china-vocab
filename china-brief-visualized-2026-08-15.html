@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #88 · Aug 15, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #88 · August 15, 2026</div>
+    <div class="masthead-sub">SMIC's AI Spillover Pricing · Apple Trains Its Own China Model With Alibaba · Week Ahead: July Activity Data</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">$3.0<span class="card-num-unit">B revenue</span></div>
+      <div class="card-label">SMIC record Q2, wafer ASP +5.7% q/q on AI "spillover" demand</div>
+      <div class="card-delta delta-red">"No chance" of price cuts, mgmt says</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · FOUNDATION MODELS</div>
+      <div class="card-num">1<span class="card-num-unit">st</span></div>
+      <div class="card-label">Foreign firm cleared to run a proprietary AI model in China (Apple, w/ Alibaba)</div>
+      <div class="card-delta delta-amber">Terms and rollout date undisclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · WEEK AHEAD</div>
+      <div class="card-num">4.8<span class="card-num-unit">% vs 5.3%</span></div>
+      <div class="card-label">Forecast July industrial output growth vs. June's pace</div>
+      <div class="card-delta delta-amber">Retail sales seen as the lone bright spot</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · CHIPS / CAPITAL MARKETS</div>
+    <div class="story-headline">$3.0 Billion and "No Chance" of Cuts: SMIC Says AI Demand Is Spilling Into Everyday Chips</div>
+    <div class="story-insight">
+      <p>SMIC reported record Q2 2026 revenue of $3.0B, wafer shipments +14% q/q to 2.9M 8-inch-equivalent units, and ASP +5.7% q/q. Management said there's "no chance" of price cuts in H2 despite soft phone/auto demand, citing AI-driven "spillover" tightness reaching peripheral and analog chips. HK shares rose as much as 6.4% on the print.</p>
+      <br>
+      <p>Distinct from CXMT's memory-specific rally last month: SMIC's claim is broader and less verifiable — a read on mature-node foundry capacity generally, not one company's product-market fit. SMIC remains concentrated in mature nodes; Huawei's Ascend line is still the more direct domestic Nvidia alternative.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch whether Hua Hong and other mature-node foundries echo the "spillover" language next earnings round before treating this as sector-wide.</div>
+    <div class="chart-box">
+      <div class="chart-title">SMIC Q2 2026: Quarter-on-Quarter Change</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="220" y1="20" x2="220" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="220" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="45" font-size="11" fill="#1a1a2e">Wafer shipments</text>
+        <rect x="220" y="30" width="392" height="26" fill="#c0392b" opacity="0.85"/>
+        <text x="620" y="48" font-size="11" fill="#1a1a2e" font-weight="700">+14.0%</text>
+        <text x="30" y="90" font-size="11" fill="#1a1a2e">Avg. selling price</text>
+        <rect x="220" y="75" width="160" height="26" fill="#b45309" opacity="0.85"/>
+        <text x="388" y="93" font-size="11" fill="#1a1a2e" font-weight="700">+5.7%</text>
+        <text x="30" y="135" font-size="11" fill="#1a1a2e">Revenue (record)</text>
+        <rect x="220" y="120" width="500" height="26" fill="#166534" opacity="0.7"/>
+        <text x="728" y="138" font-size="11" fill="#1a1a2e" font-weight="700">$3.0B</text>
+        <text x="220" y="168" font-size="10" fill="#5a6a8a">0%</text>
+        <text x="770" y="168" font-size="10" fill="#5a6a8a">q/q change</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICING POWER</div>
+        <div class="annotation-card-zh">外溢效应<span class="annotation-card-en">wàiyì xiàoyìng · spillover effect</span></div>
+        <div class="annotation-card-body">Management's refusal to cut prices despite phone/auto softness signals genuine capacity tightness from AI-adjacent demand, not just a favorable earnings narrative.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · BREADTH</div>
+        <div class="annotation-card-zh">晶圆<span class="annotation-card-en">jīngyuán · wafer</span></div>
+        <div class="annotation-card-body">Whether "spillover" is industry-wide or SMIC-specific will show up in Hua Hong and other mature-node foundries' next earnings — not yet confirmed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POSITIONING</div>
+        <div class="annotation-card-zh">中芯国际<span class="annotation-card-en">Zhōngxīn Guójì · SMIC</span></div>
+        <div class="annotation-card-body">SMIC's mature-node mix means it captures AI-adjacent demand, not the frontier accelerator race itself — a narrower read-through than the headline implies.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI / FOUNDATION MODELS</div>
+    <div class="story-headline">Apple Breaks From Its China Playbook, Trains Its Own Model — With Alibaba's Help</div>
+    <div class="story-insight">
+      <p>Apple trained its own LLM for the China version of Apple Intelligence with technical help from Alibaba, breaking from its earlier plan to license a domestic model outright. Framed as a "dual-track" strategy: China-specific model with a local partner, Apple's own models elsewhere. Apple is described as the first foreign firm cleared to offer a proprietary AI model in China; rollout expected in coming months.</p>
+      <br>
+      <p>No commercial terms, rollout date, or benchmarks disclosed. What it confirms: Alibaba's Qwen stack is credible enough for one of the world's most risk-averse hardware companies to build on — at the same moment Alibaba is the name most exposed to a potential MOFCOM model-weight export-control catalogue.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A distribution/market-access story before a capability one — the real signal arrives once China rollout details and performance data actually surface.</div>
+    <div class="chart-box">
+      <div class="chart-title">Apple's China AI Model Strategy: Then vs. Now</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="35" font-size="11" fill="#1a1a2e" font-weight="700">Prior approach</text>
+        <rect x="30" y="50" width="340" height="40" fill="#5a6a8a" opacity="0.75"/>
+        <text x="45" y="75" font-size="11" fill="#fff">License a domestic model outright</text>
+        <text x="440" y="35" font-size="11" fill="#1a1a2e" font-weight="700">Current approach (Aug 14)</text>
+        <rect x="440" y="50" width="340" height="40" fill="#c0392b" opacity="0.85"/>
+        <text x="455" y="75" font-size="11" fill="#fff">Own model, co-trained with Alibaba</text>
+        <rect x="30" y="110" width="340" height="30" fill="#f0ede8" stroke="#e0d8d0"/>
+        <text x="45" y="130" font-size="10" fill="#5a4a3a">Global model track, unchanged elsewhere</text>
+        <rect x="440" y="110" width="340" height="30" fill="#f0ede8" stroke="#e0d8d0"/>
+        <text x="455" y="130" font-size="10" fill="#5a4a3a">China-specific track, dual-track (双轨) strategy</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CREDIBILITY</div>
+        <div class="annotation-card-zh">通义千问<span class="annotation-card-en">Tōngyì Qiānwèn · Qwen</span></div>
+        <div class="annotation-card-body">Apple building on Alibaba's Qwen stack is a strong third-party validation of its enterprise-grade credibility, from a notoriously risk-averse partner.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DISCLOSURE GAP</div>
+        <div class="annotation-card-zh">双轨战略<span class="annotation-card-en">shuāngguǐ zhànlüè · dual-track strategy</span></div>
+        <div class="annotation-card-body">No commercial terms, timeline, or benchmarks published — treat as a positioning signal, not a demonstrated capability or revenue event.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REGULATORY OVERHANG</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Alibaba is the name most exposed to a possible MOFCOM model-weight export-control catalogue — the same openness that won Apple's business is a regulatory target elsewhere.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO / WEEK AHEAD</div>
+    <div class="story-headline">Week Ahead: China's July Activity Data Lands Monday — Economists Are Bracing for a Soft Print</div>
+    <div class="story-insight">
+      <p>NBS releases the full July batch Monday: industrial production (forecast 4.8% y/y, down from 5.3% in June), retail sales (forecast 1.4%, up from 1.0% — the lone bright spot), fixed-asset investment (expected to contract further), property prices, and July credit/TSF data (forecast ~RMB 980B, +7.4% y/y stock growth).</p>
+      <br>
+      <p>If the prints land near consensus, the more interesting question is whether it shifts the PBOC's calculus after last week's "appropriately loose" pledge with no specific rate move. A soft industrial/investment read alongside resilient retail would support the trade-in-subsidy narrative — pending Monday's actual numbers.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> This is a forecast preview, not a data release — treat directionally and revisit once Monday's NBS batch is in.</div>
+    <div class="chart-box">
+      <div class="chart-title">July 2026 Forecasts vs. June Actuals (y/y %)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="260" y1="20" x2="260" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="260" y1="160" x2="780" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="40" font-size="11" fill="#1a1a2e">Industrial production</text>
+        <rect x="260" y="28" width="212" height="20" fill="#5a6a8a" opacity="0.6"/>
+        <text x="478" y="43" font-size="10" fill="#1a1a2e">Jun: 5.3%</text>
+        <rect x="260" y="50" width="192" height="20" fill="#c0392b" opacity="0.85"/>
+        <text x="458" y="65" font-size="10" fill="#1a1a2e" font-weight="700">Jul (f): 4.8%</text>
+        <text x="30" y="100" font-size="11" fill="#1a1a2e">Retail sales</text>
+        <rect x="260" y="88" width="40" height="20" fill="#5a6a8a" opacity="0.6"/>
+        <text x="306" y="103" font-size="10" fill="#1a1a2e">Jun: 1.0%</text>
+        <rect x="260" y="110" width="56" height="20" fill="#166534" opacity="0.8"/>
+        <text x="322" y="125" font-size="10" fill="#1a1a2e" font-weight="700">Jul (f): 1.4%</text>
+        <text x="30" y="150" font-size="11" fill="#1a1a2e">TSF stock growth (Jul, f)</text>
+        <rect x="260" y="138" width="296" height="20" fill="#b45309" opacity="0.8"/>
+        <text x="562" y="153" font-size="10" fill="#1a1a2e" font-weight="700">~7.4%</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · RETAIL RESILIENCE</div>
+        <div class="annotation-card-zh">社会消费品零售总额<span class="annotation-card-en">shèhuì xiāofèipǐn língshòu zǒng'é · retail sales</span></div>
+        <div class="annotation-card-body">Retail sales are the forecast bright spot — a tentative sign that trade-in and consumption subsidies are doing some of their intended work.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · POLICY RESPONSE</div>
+        <div class="annotation-card-zh">适度宽松<span class="annotation-card-en">shìdù kuānsōng · appropriately loose</span></div>
+        <div class="annotation-card-body">A broad miss on industrial output and investment would test whether the PBOC's "appropriately loose" language converts into an actual rate or RRR move.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · INVESTMENT DRAG</div>
+        <div class="annotation-card-zh">固定资产投资<span class="annotation-card-en">gùdìng zīchǎn tóuzī · fixed-asset investment</span></div>
+        <div class="annotation-card-body">FAI is forecast to contract further year-to-date, with the property sector still the primary drag — the piece of the economy showing the least sign of stabilizing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #88 · AUGUST 15, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
