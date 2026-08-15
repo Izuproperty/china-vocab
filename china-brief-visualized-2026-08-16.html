@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #89 · Aug 16, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #89 · August 16, 2026</div>
+    <div class="masthead-sub">SiEngine's TianGong 100 Auto-Grade AI Chip · Pony.ai/Uber Expand to Europe &amp; the Middle East · Deutsche Bank Named Frankfurt RMB Clearing Bank</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">96<span class="card-num-unit">TOPS</span></div>
+      <div class="card-label">SiEngine's TianGong 100 auto-grade AI chip enters mass production</div>
+      <div class="card-delta delta-green">Claims ~50% lower deployment cost vs. AI-box rivals</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · AUTONOMOUS DRIVING</div>
+      <div class="card-num">2,000<span class="card-num-unit">+ robotaxis</span></div>
+      <div class="card-label">Pony.ai and Uber expand into Europe and the Middle East</div>
+      <div class="card-delta delta-amber">No cities or timeline named</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · MARKET ACCESS</div>
+      <div class="card-num">3.1<span class="card-num-unit">% payments share</span></div>
+      <div class="card-label">RMB hits 5th globally as Deutsche Bank named Frankfurt clearing bank</div>
+      <div class="card-delta delta-green">Up from 2.75% a month earlier</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · CHIPS / AUTONOMOUS DRIVING</div>
+    <div class="story-headline">96 TOPS, Half the Cost: Geely's Chip Unit Ships an AI Accelerator That Skips the Redesign</div>
+    <div class="story-insight">
+      <p>SiEngine, a Geely-affiliated chipmaker, began mass deliveries Aug 12 of the TianGong 100 (NNA100), a 7nm automotive-grade AI accelerator: 96 TOPS INT8, 102GB/s of LPDDR5 bandwidth, enough for 3B–7B parameter on-device models. AEC-Q100 Grade 3 / ISO 26262 ASIL-B certified, priced in the low-thousands-of-yuan range, and pitched as requiring no redesign of a vehicle's E/E architecture.</p>
+      <br>
+      <p>The competitive axis here is edge-inference economics, not headline compute — a mid-tier category between smartphone SoCs and datacenter accelerators. No independent OEM or Tier-1 order book has been disclosed; the mass-production and cost claims are company-sourced for now.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch for named automaker design wins before treating the cost-halving claim as validated rather than marketing.</div>
+    <div class="chart-box">
+      <div class="chart-title">TianGong 100 vs. Dual-Control AI-Box: Claimed Deployment Cost</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="260" y1="20" x2="260" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="260" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="45" font-size="11" fill="#1a1a2e">Dual-control AI-box (industry baseline)</text>
+        <rect x="260" y="30" width="500" height="30" fill="#5a6a8a" opacity="0.65"/>
+        <text x="770" y="50" font-size="11" fill="#1a1a2e" font-weight="700">100%</text>
+        <text x="30" y="105" font-size="11" fill="#1a1a2e">TianGong 100 (claimed, SiEngine)</text>
+        <rect x="260" y="90" width="250" height="30" fill="#c0392b" opacity="0.85"/>
+        <text x="520" y="110" font-size="11" fill="#1a1a2e" font-weight="700">~50%</text>
+        <text x="260" y="168" font-size="10" fill="#5a6a8a">0</text>
+        <text x="760" y="168" font-size="10" fill="#5a6a8a">relative deployment cost</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EDGE ECONOMICS</div>
+        <div class="annotation-card-zh">即插即用<span class="annotation-card-en">jí chā jí yòng · plug-and-play</span></div>
+        <div class="annotation-card-body">No E/E-architecture redesign needed lowers the integration barrier for automakers — a real differentiator if OEM adoption follows.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VERIFICATION</div>
+        <div class="annotation-card-zh">车规级<span class="annotation-card-en">chēguī jí · automotive-grade</span></div>
+        <div class="annotation-card-body">Mass-production status and the ~50% cost claim are both company-sourced; no third-party OEM or Tier-1 confirmation yet.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CROWDED FIELD</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · compute power</span></div>
+        <div class="annotation-card-body">Horizon Robotics, Huawei, and Nvidia all compete for the same in-cabin AI compute slot — SiEngine's edge is cost, not raw performance.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AUTONOMOUS DRIVING / CAPITAL MARKETS</div>
+    <div class="story-headline">2,000 Robotaxis, Zero Named Cities: Pony.ai and Uber Push Into Europe and the Middle East</div>
+    <div class="story-insight">
+      <p>Pony.ai (Nasdaq: PONY) and Uber said Aug 14 they'll expand beyond their existing Zagreb service — Europe's first commercial robotaxi launch — to four more European cities plus a Middle East rollout, targeting 2,000+ robotaxis. No cities or dates disclosed. Structure unchanged: Pony.ai's L4 stack, Uber's demand platform, a local fleet operator.</p>
+      <br>
+      <p>The asset-light model lets Pony.ai scale without fleet-ownership capex, and a listed Western partner sidesteps some trust/data friction Chinese AV exports face in the US. Without city-level detail, this is a strategic framework, not a committed operating plan.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Treat as TAM-expansion optionality, not modeled revenue, until specific cities and launch dates are confirmed.</div>
+    <div class="chart-box">
+      <div class="chart-title">Pony.ai × Uber: Live vs. Announced Footprint</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="260" y1="20" x2="260" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="260" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="45" font-size="11" fill="#1a1a2e">Live today (Zagreb only)</text>
+        <rect x="260" y="30" width="60" height="30" fill="#166534" opacity="0.8"/>
+        <text x="330" y="50" font-size="11" fill="#1a1a2e" font-weight="700">1 city</text>
+        <text x="30" y="105" font-size="11" fill="#1a1a2e">Announced (Aug 14, undated)</text>
+        <rect x="260" y="90" width="400" height="30" fill="#c0392b" opacity="0.75"/>
+        <text x="670" y="110" font-size="11" fill="#1a1a2e" font-weight="700">+4 EU cities + Middle East</text>
+        <text x="260" y="168" font-size="10" fill="#5a6a8a">scope of commitment</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DISTRIBUTION</div>
+        <div class="annotation-card-zh">轻资产模式<span class="annotation-card-en">qīng zīchǎn móshì · asset-light model</span></div>
+        <div class="annotation-card-body">Partnering with Uber gives Pony.ai a distribution channel that reduces the capex and trust barriers of solo international expansion.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SPECIFICITY</div>
+        <div class="annotation-card-zh">全无人驾驶<span class="annotation-card-en">quán wúrén jiàshǐ · fully driverless</span></div>
+        <div class="annotation-card-body">No named cities or launch dates — the announcement is a framework agreement, not a scheduled commercial rollout.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · US SCRUTINY</div>
+        <div class="annotation-card-zh">小马智行<span class="annotation-card-en">Xiǎomǎ Zhìxíng · Pony.ai</span></div>
+        <div class="annotation-card-body">Europe/Middle East expansion sidesteps US market friction but doesn't resolve it — Pony.ai's home listing venue still faces separate scrutiny.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO / MARKET ACCESS</div>
+    <div class="story-headline">First in Europe: Deutsche Bank Becomes Beijing's Frankfurt Clearing Bank as the Yuan's Payment Share Hits 3.1%</div>
+    <div class="story-insight">
+      <p>PBOC named Deutsche Bank the RMB clearing bank for Frankfurt on Aug 10 — the first such designation for a foreign bank in Europe — alongside its 2026-2030 reform plan. Same window: SWIFT data showed RMB's global payments share at 3.1% (5th-ranked, up from 2.75%) and CIPS daily settlement at ~¥830B, up from ~¥680B in 2025.</p>
+      <br>
+      <p>Reads as market access more than monetary policy — a continuation of Beijing's pattern of doling out financial access incrementally (see Citigroup's May securities license). Hong Kong still holds ~76% of offshore RMB activity, so this is deepening within hubs, not broad diversification.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Track which clearing hub or swap-line counterparty gets named next — that sequencing shows which financial relationships Beijing treats as durable.</div>
+    <div class="chart-box">
+      <div class="chart-title">RMB Global Payments Share &amp; CIPS Daily Settlement</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="260" y1="20" x2="260" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="260" y1="160" x2="780" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="40" font-size="11" fill="#1a1a2e">Payments share, May 2026</text>
+        <rect x="260" y="28" width="248" height="20" fill="#5a6a8a" opacity="0.6"/>
+        <text x="516" y="43" font-size="10" fill="#1a1a2e">2.75%</text>
+        <text x="30" y="72" font-size="11" fill="#1a1a2e">Payments share, Jun 2026</text>
+        <rect x="260" y="60" width="280" height="20" fill="#c0392b" opacity="0.85"/>
+        <text x="548" y="75" font-size="10" fill="#1a1a2e" font-weight="700">3.1% · 5th globally</text>
+        <text x="30" y="115" font-size="11" fill="#1a1a2e">CIPS daily settlement, 2025</text>
+        <rect x="260" y="103" width="330" height="20" fill="#5a6a8a" opacity="0.6"/>
+        <text x="598" y="118" font-size="10" fill="#1a1a2e">~¥680B</text>
+        <text x="30" y="147" font-size="11" fill="#1a1a2e">CIPS daily settlement, Jun 2026</text>
+        <rect x="260" y="135" width="400" height="20" fill="#b45309" opacity="0.85"/>
+        <text x="668" y="150" font-size="10" fill="#1a1a2e" font-weight="700">~¥830B</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · INFRASTRUCTURE WIN</div>
+        <div class="annotation-card-zh">清算行<span class="annotation-card-en">qīngsuàn háng · clearing bank</span></div>
+        <div class="annotation-card-body">A first-in-Europe designation gives Deutsche Bank a durable structural role in RMB settlement, not just a one-off transaction license.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CONCENTRATION</div>
+        <div class="annotation-card-zh">离岸人民币<span class="annotation-card-en">líàn rénmínbì · offshore renminbi</span></div>
+        <div class="annotation-card-body">Hong Kong still accounts for ~76% of offshore RMB activity — internationalization looks like hub-deepening more than diversification so far.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SCALE GAP</div>
+        <div class="annotation-card-zh">跨境支付系统<span class="annotation-card-en">kuàjìng zhīfù xìtǒng · CIPS</span></div>
+        <div class="annotation-card-body">A ~3% global payments share still trails RMB's ~13% share of world trade — the currency's use in settlement continues to lag its trade footprint.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #89 · AUGUST 16, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
