@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #90 · August 17, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #90 · August 17, 2026</div>
+    <div class="masthead-sub">Unitree's Debut Pricing · Moonshot's State Capital · July's Broad-Based Slowdown</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">170<span class="card-num-unit">% premium</span></div>
+      <div class="card-label">Gray-market bids on Unitree shares vs. ¥150.80 IPO price</div>
+      <div class="card-delta delta-red">Debut date still unconfirmed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CAPITAL</div>
+      <div class="card-num">51.8<span class="card-num-unit">% stake</span></div>
+      <div class="card-label">Yang Zhilin's control after Moonshot's state-capital restructuring</div>
+      <div class="card-delta delta-amber">HK listing may slip to 2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · ACTIVITY DATA</div>
+      <div class="card-num">3.7<span class="card-num-unit">% y/y</span></div>
+      <div class="card-label">July retail sales growth — weakest print of 2026</div>
+      <div class="card-delta delta-red">3rd straight soft data point</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · ROBOTICS / IPO</div>
+    <div class="story-headline">170% Before the Bell: Gray-Market Bids Are Already Pricing Unitree's Debut Pop</div>
+    <div class="story-insight">
+      <p>Unitree priced its STAR Market IPO at ¥150.80/share (~$9B valuation), with the retail tranche oversubscribed ~8,289x. Ahead of a confirmed trading date, scalpers are offering ¥410/share (+170%) and Hyperliquid perpetuals imply up to 4x upside — all before the stock has traded a single day.</p>
+      <br>
+      <p>That pricing sits atop a valuation already at ~219x trailing earnings, well above the ~35x sector average, on a company whose own prospectus concedes current humanoids can't yet reliably perform complex real-world tasks.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch the gap between speculative pre-listing pricing and disclosed product limitations once trading actually opens — not the headline pop.</div>
+    <div class="chart-box">
+      <div class="chart-title">Price Discovery Before the Bell: IPO vs. Gray Market vs. Derivatives-Implied</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="120" y1="40" x2="120" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="320" y1="40" x2="320" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="520" y1="40" x2="520" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="720" y1="40" x2="720" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="120" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">¥150.80</text>
+        <text x="320" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">¥300</text>
+        <text x="520" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">¥450</text>
+        <text x="720" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">¥600</text>
+        <rect x="120" y="55" width="10" height="18" fill="#5a6a8a"/>
+        <text x="10" y="68" fill="#1a1a2e" font-size="12" font-weight="600">IPO price</text>
+        <text x="140" y="68" fill="#5a6a8a" font-size="11">¥150.80</text>
+        <rect x="120" y="95" width="260" height="18" fill="#b45309"/>
+        <text x="10" y="108" fill="#1a1a2e" font-size="12" font-weight="600">Gray market</text>
+        <text x="390" y="108" fill="#b45309" font-size="11">¥410 (+170%)</text>
+        <rect x="120" y="135" width="480" height="18" fill="#c0392b"/>
+        <text x="10" y="148" fill="#1a1a2e" font-size="12" font-weight="600">Hyperliquid perps</text>
+        <text x="610" y="148" fill="#c0392b" font-size="11">up to 4x (~¥600+)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND</div>
+        <div class="annotation-card-zh">打新<span class="annotation-card-en">dǎxīn · IPO subscription</span></div>
+        <div class="annotation-card-body">Record 8,289x retail oversubscription and a 0.018% winning rate confirm this is the most sought-after STAR Market listing to date.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TIMING</div>
+        <div class="annotation-card-zh">上市<span class="annotation-card-en">shàngshì · listing / IPO</span></div>
+        <div class="annotation-card-body">Exact first-trading date within the Aug 17–21 window remains unconfirmed by the exchange as of publication.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VALUATION</div>
+        <div class="annotation-card-zh">市盈率<span class="annotation-card-en">shìyínglǜ · P/E ratio</span></div>
+        <div class="annotation-card-body">~219x trailing earnings against the prospectus's own admission that humanoids can't yet do complex real-world tasks reliably.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI / CAPITAL CONTROLS</div>
+    <div class="story-headline">51.8% and Holding: Moonshot Brings In the "National Team" to Clear Its Hong Kong Listing</div>
+    <div class="story-insight">
+      <p>Moonshot AI converted its domestic entity to a joint-stock company and began dismantling its red-chip structure, drawing in the National AI Industry Investment Fund, the National Social Security Fund, Shanghai/Guizhou guidance funds, and a People's Daily-linked vehicle. Yang Zhilin retains 51.8% control.</p>
+      <br>
+      <p>This operationalizes April's NDRC directive requiring Moonshot, ByteDance, and StepFun to reject US-origin capital without clearance — state capital in the pre-IPO cap table looks set to become standard for the HK listing pipeline, not a one-off.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Regulatory clearance for HK listings increasingly requires backfilling foreign-held structures with state-linked capital — a governance variable international investors haven't had to price before.</div>
+    <div class="chart-box">
+      <div class="chart-title">From Directive to Restructuring: Timeline of Capital Controls on Chinese AI Labs</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="100" cy="90" r="7" fill="#c0392b"/>
+        <text x="100" y="65" fill="#1a1a2e" font-size="11" font-weight="600" text-anchor="middle">Apr 2026</text>
+        <text x="100" y="115" fill="#5a6a8a" font-size="10" text-anchor="middle">NDRC orders Moonshot,</text>
+        <text x="100" y="128" fill="#5a6a8a" font-size="10" text-anchor="middle">ByteDance, StepFun to</text>
+        <text x="100" y="141" fill="#5a6a8a" font-size="10" text-anchor="middle">reject US-origin capital</text>
+        <circle cx="330" cy="90" r="7" fill="#b45309"/>
+        <text x="330" y="65" fill="#1a1a2e" font-size="11" font-weight="600" text-anchor="middle">Aug 8, 2026</text>
+        <text x="330" y="115" fill="#5a6a8a" font-size="10" text-anchor="middle">LLC → joint-stock;</text>
+        <text x="330" y="128" fill="#5a6a8a" font-size="10" text-anchor="middle">red-chip structure</text>
+        <text x="330" y="141" fill="#5a6a8a" font-size="10" text-anchor="middle">dismantling begins</text>
+        <circle cx="560" cy="90" r="7" fill="#1a56db"/>
+        <text x="560" y="65" fill="#1a1a2e" font-size="11" font-weight="600" text-anchor="middle">Aug 8–11, 2026</text>
+        <text x="560" y="115" fill="#5a6a8a" font-size="10" text-anchor="middle">National AI Fund, Social</text>
+        <text x="560" y="128" fill="#5a6a8a" font-size="10" text-anchor="middle">Security Fund, People's</text>
+        <text x="560" y="141" fill="#5a6a8a" font-size="10" text-anchor="middle">Daily vehicle join cap table</text>
+        <circle cx="720" cy="90" r="7" fill="#9a8a7a"/>
+        <text x="720" y="65" fill="#1a1a2e" font-size="11" font-weight="600" text-anchor="middle">2026–2027</text>
+        <text x="720" y="115" fill="#5a6a8a" font-size="10" text-anchor="middle">HK listing —</text>
+        <text x="720" y="128" fill="#5a6a8a" font-size="10" text-anchor="middle">FT: could slip</text>
+        <text x="720" y="141" fill="#5a6a8a" font-size="10" text-anchor="middle">into 2027</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CONTROL</div>
+        <div class="annotation-card-zh">控制权<span class="annotation-card-en">kòngzhìquán · controlling stake</span></div>
+        <div class="annotation-card-body">Yang Zhilin keeps 51.8% control despite the influx of state capital — founder governance is preserved even as the cap table shifts.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRECEDENT</div>
+        <div class="annotation-card-zh">阶跃星辰<span class="annotation-card-en">Jiēyuè Xīngchén · StepFun</span></div>
+        <div class="annotation-card-body">StepFun faces the same NDRC directive and HK listing ambitions — whether it follows Moonshot's restructuring playbook is the next data point.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · TIMELINE</div>
+        <div class="annotation-card-zh">推迟<span class="annotation-card-en">tuīchí · delay</span></div>
+        <div class="annotation-card-body">FT reports the restructuring complexity could push Moonshot's Hong Kong listing from 2026 into 2027.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO / DATA RELEASE</div>
+    <div class="story-headline">3.7%, 5.2%, -12%: China's July Data Confirms the Slowdown Wasn't a One-Quarter Blip</div>
+    <div class="story-insight">
+      <p>July activity data released Aug 17 showed industrial output at 5.7% y/y (vs. ~6% consensus), retail sales at 3.7% y/y (2026's weakest print), private FAI down 1.5% y/y ytd (steepest since 2020), and unemployment up to 5.2%.</p>
+      <br>
+      <p>Combined with the sub-50 manufacturing PMI and record-low construction PMI already reported this month, this is the third straight data point confirming a broad-based — not single-indicator — slowdown, raising the bar for what "incremental" H2 stimulus needs to deliver.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Three consecutive soft releases across production, consumption, investment, and employment leave less room to dismiss any one print as noise.</div>
+    <div class="chart-box">
+      <div class="chart-title">June vs. July: Growth Decelerating Across the Board (y/y %)</div>
+      <svg viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="180" x2="780" y2="180" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="130" x2="780" y2="130" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="45" y="184" fill="#5a6a8a" font-size="10" text-anchor="end">0%</text>
+        <text x="45" y="134" fill="#5a6a8a" font-size="10" text-anchor="end">3%</text>
+        <text x="45" y="84" fill="#5a6a8a" font-size="10" text-anchor="end">6%</text>
+        <text x="45" y="34" fill="#5a6a8a" font-size="10" text-anchor="end">9%</text>
+
+        <rect x="110" y="80" width="36" height="100" fill="#9a8a7a"/>
+        <rect x="150" y="88" width="36" height="92" fill="#c0392b"/>
+        <text x="148" y="200" fill="#1a1a2e" font-size="11" text-anchor="middle">Industrial output</text>
+        <text x="128" y="70" fill="#5a6a8a" font-size="10" text-anchor="middle">6.8</text>
+        <text x="168" y="78" fill="#c0392b" font-size="10" text-anchor="middle">5.7</text>
+
+        <rect x="290" y="123" width="36" height="57" fill="#9a8a7a"/>
+        <rect x="330" y="132" width="36" height="48" fill="#c0392b"/>
+        <text x="328" y="200" fill="#1a1a2e" font-size="11" text-anchor="middle">Retail sales</text>
+        <text x="308" y="113" fill="#5a6a8a" font-size="10" text-anchor="middle">4.8</text>
+        <text x="348" y="122" fill="#c0392b" font-size="10" text-anchor="middle">3.7</text>
+
+        <rect x="470" y="164" width="36" height="16" fill="#9a8a7a"/>
+        <rect x="510" y="164" width="36" height="16" fill="#c0392b"/>
+        <text x="508" y="200" fill="#1a1a2e" font-size="11" text-anchor="middle">Unemployment</text>
+        <text x="488" y="154" fill="#5a6a8a" font-size="10" text-anchor="middle">5.0</text>
+        <text x="528" y="154" fill="#c0392b" font-size="10" text-anchor="middle">5.2</text>
+
+        <text x="700" y="170" fill="#9a8a7a" font-size="10">■ June</text>
+        <text x="700" y="185" fill="#c0392b" font-size="10">■ July</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EXPORTS</div>
+        <div class="annotation-card-zh">出口<span class="annotation-card-en">chūkǒu · exports</span></div>
+        <div class="annotation-card-body">External demand has been the offsetting factor propping up industrial output even as domestic indicators soften — worth watching for signs of fading front-loading.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · STIMULUS</div>
+        <div class="annotation-card-zh">增量政策<span class="annotation-card-en">zēngliàng zhèngcè · incremental policy</span></div>
+        <div class="annotation-card-body">Politburo has signaled "incremental" H2 support without detailing scale or instruments — three straight soft prints raise the bar for what that needs to mean.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PROPERTY</div>
+        <div class="annotation-card-zh">房地产投资<span class="annotation-card-en">fángdìchǎn tóuzī · property investment</span></div>
+        <div class="annotation-card-body">Property investment down ~12% y/y over 7 months and private FAI at its weakest since 2020 — the investment channel shows no stabilization yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #90 · AUGUST 17, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
