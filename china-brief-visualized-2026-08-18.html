@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #91 · August 18, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #91 · August 18, 2026</div>
+    <div class="masthead-sub">Zhipu's Undisclosed Guardrails · DeepSeek's Disguised Price Hike · China's Deepening Home-Price Decline</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · SECURITY</div>
+      <div class="card-num">2,436<span class="card-num-unit">vulns found</span></div>
+      <div class="card-label">GLM-5.3's self-reported vulnerability discoveries across 269 open-source projects</div>
+      <div class="card-delta delta-red">No model card or safety framework published</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · PRICING</div>
+      <div class="card-num">1,100<span class="card-num-unit">% max increase</span></div>
+      <div class="card-label">DeepSeek's steepest API price hike under its new peak/off-peak schedule</div>
+      <div class="card-delta delta-red">Off-peak rate still above old flat price</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · PROPERTY</div>
+      <div class="card-num">-0.18<span class="card-num-unit">% m/m</span></div>
+      <div class="card-label">July new-home price decline across 70 cities</div>
+      <div class="card-delta delta-red">Steeper than June's -0.15%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">2,436 and Zero: Zhipu's GLM-5.3 Finds Vulnerabilities Nobody Else Caught — and Ships Without a Safety Card</div>
+    <div class="story-insight">
+      <p>Zhipu released GLM-5.3 Aug 14 via its coding plan, with full weights roughly two weeks out. The company reports 2,436 confirmed vulnerabilities found across 269 open-source projects (1,097 critical/high-severity) and an 84.5% CyberGym score — but only 54.4% on ExploitBench, the benchmark for actually exploiting what's found, trailing Mythos 5 (78%) and GPT-5.6 Sol (76.5%).</p>
+      <br>
+      <p>No model card, safety framework, or pre-deployment risk assessment accompanied the release. SaferAI's independent testing of the prior GLM-5.2 base found it refused none of the offensive cyber or biology tasks tested — a finding this release does nothing to address.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A model marketed on offensive-security capability shipping without published guardrail documentation is the detail to track once open weights let third parties test the claims directly.</div>
+    <div class="chart-box">
+      <div class="chart-title">Finding vs. Exploiting: GLM-5.3 Against US Frontier Models (Benchmark %)</div>
+      <svg viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="180" x2="780" y2="180" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="130" x2="780" y2="130" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="45" y="184" fill="#5a6a8a" font-size="10" text-anchor="end">0%</text>
+        <text x="45" y="134" fill="#5a6a8a" font-size="10" text-anchor="end">33%</text>
+        <text x="45" y="84" fill="#5a6a8a" font-size="10" text-anchor="end">66%</text>
+        <text x="45" y="34" fill="#5a6a8a" font-size="10" text-anchor="end">100%</text>
+
+        <rect x="120" y="52" width="46" height="128" fill="#c0392b"/>
+        <text x="143" y="45" fill="#c0392b" font-size="11" text-anchor="middle" font-weight="600">84.5</text>
+        <rect x="180" y="106" width="46" height="74" fill="#9a8a7a"/>
+        <text x="203" y="99" fill="#5a6a8a" font-size="11" text-anchor="middle" font-weight="600">54.4</text>
+        <text x="173" y="200" fill="#1a1a2e" font-size="11" text-anchor="middle">GLM-5.3</text>
+
+        <rect x="340" y="180" width="46" height="0" fill="#9a8a7a"/>
+        <rect x="340" y="70" width="46" height="110" fill="#9a8a7a"/>
+        <text x="363" y="63" fill="#5a6a8a" font-size="11" text-anchor="middle" font-weight="600">78.0</text>
+        <text x="363" y="200" fill="#1a1a2e" font-size="11" text-anchor="middle">Mythos 5</text>
+
+        <rect x="520" y="76" width="46" height="104" fill="#9a8a7a"/>
+        <text x="543" y="69" fill="#5a6a8a" font-size="11" text-anchor="middle" font-weight="600">76.5</text>
+        <text x="543" y="200" fill="#1a1a2e" font-size="11" text-anchor="middle">GPT-5.6 Sol</text>
+
+        <text x="700" y="45" fill="#c0392b" font-size="10">■ CyberGym (finding)</text>
+        <text x="700" y="60" fill="#9a8a7a" font-size="10">■ ExploitBench (exploiting)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPABILITY</div>
+        <div class="annotation-card-zh">漏洞<span class="annotation-card-en">lòudòng · vulnerability</span></div>
+        <div class="annotation-card-body">GLM-5.3's finding-vs-exploiting gap suggests defensive security tooling as the more natural fit than offensive use — a distinction Zhipu's marketing doesn't draw.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DISCLOSURE</div>
+        <div class="annotation-card-zh">模型卡<span class="annotation-card-en">móxíngkǎ · model card</span></div>
+        <div class="annotation-card-body">No model card or safety framework published at launch — third-party verification has to wait for open weights in roughly two weeks.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · GUARDRAILS</div>
+        <div class="annotation-card-zh">拒绝执行<span class="annotation-card-en">jùjué zhíxíng · task refusal</span></div>
+        <div class="annotation-card-body">SaferAI found the prior GLM-5.2 base refused none of the offensive cyber/bio tasks tested — a gap this release doesn't address.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">Up to 1,100%: DeepSeek's New "Peak Hours" Pricing Is a Rate Hike, Not a Discount</div>
+    <div class="story-insight">
+      <p>Effective 16:00 UTC Aug 16, DeepSeek's V4-Pro API moved to time-of-day pricing: $3.96/1M output tokens at peak vs. $1.98 off-peak; $1.32/1M input (cache-miss) at peak vs. $0.66 off-peak. DeepSeek frames it as allocating resources "more reasonably" — language that reads as a compute-scarcity admission.</p>
+      <br>
+      <p>Every tier, including the discounted off-peak rate, prices above the prior flat schedule — up to 1,100% higher in some categories. That's consistent with DeepSeek's broader 2026 pivot toward its own data-center buildout and a reopened funding round.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> If DeepSeek's cost advantage over US frontier labs was partly below-cost pricing now normalizing, the price gap — distinct from the capability gap — may be narrower going forward than headlines suggested.</div>
+    <div class="chart-box">
+      <div class="chart-title">Output Token Pricing: Old Flat Rate vs. New Peak/Off-Peak ($ per 1M tokens)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="120" y1="40" x2="120" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="320" y1="40" x2="320" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="520" y1="40" x2="520" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="720" y1="40" x2="720" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="120" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">$0</text>
+        <text x="320" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">$1.50</text>
+        <text x="520" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">$3.00</text>
+        <text x="720" y="30" fill="#5a6a8a" font-size="11" text-anchor="middle">$4.50</text>
+
+        <rect x="120" y="55" width="27" height="18" fill="#5a6a8a"/>
+        <text x="10" y="68" fill="#1a1a2e" font-size="12" font-weight="600">Old flat rate</text>
+        <text x="157" y="68" fill="#5a6a8a" font-size="11">~$0.33</text>
+
+        <rect x="120" y="95" width="264" height="18" fill="#b45309"/>
+        <text x="10" y="108" fill="#1a1a2e" font-size="12" font-weight="600">New off-peak</text>
+        <text x="394" y="108" fill="#b45309" font-size="11">$1.98</text>
+
+        <rect x="120" y="135" width="528" height="18" fill="#c0392b"/>
+        <text x="10" y="148" fill="#1a1a2e" font-size="12" font-weight="600">New peak</text>
+        <text x="658" y="148" fill="#c0392b" font-size="11">$3.96</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FRAMING</div>
+        <div class="annotation-card-zh">错峰定价<span class="annotation-card-en">cuòfēng dìngjià · peak/off-peak pricing</span></div>
+        <div class="annotation-card-body">Presented as demand-based resource allocation, but every tier — including the "discount" — prices above the old flat rate.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CAPACITY</div>
+        <div class="annotation-card-zh">算力紧张<span class="annotation-card-en">suànlì jǐnzhāng · compute capacity strain</span></div>
+        <div class="annotation-card-body">Repricing lands alongside DeepSeek's own data-center buildout and reopened funding round — both point to genuine compute constraints.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COST NARRATIVE</div>
+        <div class="annotation-card-zh">成本优势<span class="annotation-card-en">chéngběn yōushì · cost advantage</span></div>
+        <div class="annotation-card-body">If prior pricing was partly below cost, DeepSeek's headline cost edge over US labs may compress as prices normalize.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO / PROPERTY</div>
+    <div class="story-headline">-0.18% and Widening: China's New-Home Prices Show the July Slowdown Reached Housing Too</div>
+    <div class="story-insight">
+      <p>NBS data released Aug 17 showed 70-city new-home prices fell 0.18% m/m in July, deeper than June's 0.15% decline — reversing a brief stabilizing trend in which 20 cities had posted m/m gains in June, the most since May 2025, and Shanghai new-home prices were still up 3.1% y/y.</p>
+      <br>
+      <p>The price data compounds already-known weakness in property investment (-12% y/y over 7 months). Foreign capital is nonetheless probing selectively — PAG injected fresh capital into several Wanda Plazas in June-July — a distressed-asset bet distinct from any read on residential demand.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Supply-side pullback (investment down 12%) has not yet translated into demand-side price stabilization — the two data series are moving in the same direction, not offsetting.</div>
+    <div class="chart-box">
+      <div class="chart-title">70-City New-Home Prices: Monthly Change Accelerating Downward (% m/m)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="60" x2="780" y2="60" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="800" y="64" fill="#5a6a8a" font-size="10">0%</text>
+        <line x1="60" y1="60" x2="60" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+
+        <rect x="200" y="60" width="60" height="45" fill="#9a8a7a"/>
+        <text x="230" y="120" fill="#1a1a2e" font-size="11" text-anchor="middle">May</text>
+        <text x="230" y="52" fill="#5a6a8a" font-size="11" text-anchor="middle">-0.20%</text>
+
+        <rect x="360" y="60" width="60" height="34" fill="#9a8a7a"/>
+        <text x="390" y="120" fill="#1a1a2e" font-size="11" text-anchor="middle">June</text>
+        <text x="390" y="52" fill="#5a6a8a" font-size="11" text-anchor="middle">-0.15%</text>
+
+        <rect x="520" y="60" width="60" height="40" fill="#c0392b"/>
+        <text x="550" y="120" fill="#1a1a2e" font-size="11" text-anchor="middle">July</text>
+        <text x="550" y="52" fill="#c0392b" font-size="11" text-anchor="middle" font-weight="600">-0.18%</text>
+
+        <text x="230" y="140" fill="#5a6a8a" font-size="9" text-anchor="middle">(m/m decline, bar length illustrative)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SELECTIVE CAPITAL</div>
+        <div class="annotation-card-zh">不良资产<span class="annotation-card-en">bùliáng zīchǎn · distressed assets</span></div>
+        <div class="annotation-card-body">PAG's fresh capital into Wanda Plazas is a valuation-driven commercial-property bet, not a signal that residential demand has turned.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REVERSAL</div>
+        <div class="annotation-card-zh">新房价格指数<span class="annotation-card-en">xīnfáng jiàgé zhǐshù · new-home price index</span></div>
+        <div class="annotation-card-body">June's brief improvement (20 cities posting gains) reversed in July — one month is not enough to call a trend either way.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND GAP</div>
+        <div class="annotation-card-zh">房地产投资<span class="annotation-card-en">fángdìchǎn tóuzī · property investment</span></div>
+        <div class="annotation-card-body">Investment down ~12% y/y hasn't stabilized prices — supply-side pullback and demand-side weakness are compounding, not offsetting.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #91 · AUGUST 18, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

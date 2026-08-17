@@ -1,5 +1,68 @@
 [
   {
+    "issue": 91,
+    "date": "2026-08-18",
+    "title": "Zhipu's Undisclosed Guardrails, DeepSeek's Disguised Price Hike, China's Deepening Home-Price Decline",
+    "summary": "Zhipu's GLM-5.3 claims strong vulnerability-finding scores but shipped without a model card or safety framework, while DeepSeek quietly raised API prices by up to 1,100% behind a peak/off-peak pricing label. Separately, China's July new-home price data showed the property downturn deepening rather than stabilizing.",
+    "viz_url": "china-brief-visualized-2026-08-18.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "2,436 and Zero: Zhipu's GLM-5.3 Finds Vulnerabilities Nobody Else Caught — and Ships Without a Safety Card",
+        "tag": "ai",
+        "source": "ChinaTechNews.com, IndexBox, TechTimes · Aug 14-17, 2026",
+        "body": "Zhipu AI (智谱AI, Zhìpǔ AI) released GLM-5.3 on Aug 14 through its GLM Coding Plan, with full model weights not scheduled for publication for roughly two more weeks. The company says its own security teams used the model to find 2,436 confirmed vulnerabilities across 269 open-source projects, including 1,097 rated critical or high severity, and reports an 84.5% score on CyberGym, the benchmark for locating and characterizing exploitable code flaws. On ExploitBench — which measures how far a model gets in actually exploiting what it finds, rather than merely identifying it — GLM-5.3 scored 54.4%, trailing Mythos 5's 78% and GPT-5.6 Sol's 76.5%.\n\nThe gap between those two figures is more informative than either headline number on its own. A model that is strong at finding vulnerabilities but comparatively weak at exploiting them is, on paper, more useful for defensive security tooling than offensive use — a distinction Zhipu's own marketing does not draw out. What's absent from the release may matter more than what's in it: no published model card, no disclosed safety framework, and no pre-deployment risk assessment accompanied GLM-5.3's launch. Independent testing by SaferAI of the previously released GLM-5.2 base model found it refused none of the offensive cyber or biology tasks it was given — a finding that predates GLM-5.3 but that nothing in this release addresses. For a lab marketing a coding model partly on offensive-security capability, the absence of published guardrail documentation is the detail worth watching once the open weights land and third parties can test the claims directly.",
+        "takeaway": "A model marketed on offensive-security capability shipping without published guardrail documentation is the detail to track once open weights let third parties test the claims directly.",
+        "vocab": [
+          {
+            "zh": "漏洞",
+            "en": "Vulnerability (security)"
+          },
+          {
+            "zh": "模型卡",
+            "en": "Model card"
+          }
+        ]
+      },
+      {
+        "icon": "🤖",
+        "title": "Up to 1,100%: DeepSeek's New \"Peak Hours\" Pricing Is a Rate Hike, Not a Discount",
+        "tag": "ai",
+        "source": "Qz, Engadget, DeepSeek API documentation · Aug 16-17, 2026",
+        "body": "DeepSeek (深度求索, Shēndù Qiúsuǒ) shifted its V4-Pro API to a time-of-day pricing structure effective 16:00 UTC on Aug 16, splitting rates into peak hours (01:00-04:00 and 06:00-10:00 UTC) and off-peak. Peak output tokens now cost $3.96 per million, against $1.98 off-peak; peak input (cache-miss) tokens run $1.32 per million versus $0.66 off-peak. DeepSeek frames the change as a way to \"allocate resources more reasonably\" — language that reads as an acknowledgment of compute constraints rather than a customer-facing pricing feature.\n\nThe detail that matters more than the peak/off-peak framing itself: every rate in the new schedule, including the discounted off-peak tier, prices above DeepSeek's previous flat rate. Early reporting put the increase at up to 1,100% in some token categories. That reframes what looks like a discount structure as a price increase with a discount attached, and it's consistent with a pattern already visible in DeepSeek's broader trajectory this year — a pivot toward its own data-center buildout and a reopened funding round, both pointing toward a company managing genuine compute power (算力, suànlì) scarcity rather than optimizing margins on an already-profitable service. For investors tracking the economics of China's open-weight AI labs, the open question is whether DeepSeek's widely cited cost advantage over US frontier labs was partly a function of below-cost pricing that is now normalizing — in which case the competitive gap on price, as distinct from the gap on capability, may be narrower going forward than the past year of coverage suggested.",
+        "takeaway": "If DeepSeek's cost advantage over US frontier labs was partly below-cost pricing now normalizing, the price gap — distinct from the capability gap — may be narrower going forward than headlines suggested.",
+        "vocab": [
+          {
+            "zh": "错峰定价",
+            "en": "Peak/off-peak pricing"
+          },
+          {
+            "zh": "算力紧张",
+            "en": "Compute capacity strain"
+          }
+        ]
+      },
+      {
+        "icon": "📊",
+        "title": "-0.18% and Widening: China's New-Home Prices Show the July Slowdown Reached Housing Too",
+        "tag": "macro",
+        "source": "National Bureau of Statistics, Bloomberg · Aug 17, 2026",
+        "body": "National Bureau of Statistics (国家统计局, Guójiā Tǒngjìjú) data released Aug 17 alongside July's broader activity figures showed new-home prices across 70 cities fell 0.18% month-on-month, a deeper decline than June's 0.15% drop. The move interrupts what had briefly looked like a stabilizing trend: June's data showed the number of cities posting month-on-month price gains rising to 20, the most since May 2025, with Shanghai new-home prices still up 3.1% year-on-year as of that print. July's data reverses that direction rather than extending it.\n\nThe price data lands on top of already-known weakness on the investment side — property investment is down roughly 12% year-on-year over the first seven months of 2026, a figure this Brief covered yesterday — and confirms that whatever pullback developers have made on the supply side has not yet translated into price stabilization on the demand side. That said, capital allocators are not treating the sector uniformly: foreign funds have been selectively active in commercial property, with PAG injecting fresh capital into several Wanda Plazas in June and July. That is a valuation-driven bet on distressed assets (不良资产, bùliáng zīchǎn) at a discount, not a signal that residential demand has turned, and the two shouldn't be conflated — a pickup in commercial deal flow is not evidence that the price data here is close to inflecting.",
+        "takeaway": "Supply-side pullback (investment down 12%) has not yet translated into demand-side price stabilization — the two data series are moving in the same direction, not offsetting.",
+        "vocab": [
+          {
+            "zh": "新房价格指数",
+            "en": "New-home price index"
+          },
+          {
+            "zh": "不良资产",
+            "en": "Distressed assets"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 90,
     "date": "2026-08-17",
     "title": "Unitree's Gray-Market Debut Pricing, Moonshot's State-Capital Restructuring, July Activity Data Confirms Slowdown",
