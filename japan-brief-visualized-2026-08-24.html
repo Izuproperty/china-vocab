@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #86 · August 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; padding-bottom:60px; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:32px 40px 24px; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { margin-top:10px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .glance { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; padding:32px 40px 8px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px 20px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:8px; }
+  .glance-headline { font-size:13.5px; font-weight:600; color:#1a1a2e; line-height:1.4; margin-bottom:6px; }
+  .glance-stat { font-size:20px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:11px; color:#5a6a8a; margin-top:2px; }
+
+  .section { padding:24px 40px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#3730a3; margin-bottom:18px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px 32px; margin-bottom:28px; }
+  .story-card-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:2px; background:#e0e7ff; color:#3730a3; margin-bottom:10px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:14px; }
+  .story-card-body { font-size:14px; color:#3a4a6a; line-height:1.75; margin-bottom:18px; }
+  .story-card-body p { margin-bottom:12px; }
+
+  .takeaway-box { background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; padding:14px 18px; margin-bottom:20px; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .takeaway-text { font-size:13px; color:#3a4a6a; line-height:1.6; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotation-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px 16px; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-label.signal { color:#0e7490; }
+  .annotation-label.watch { color:#b45309; }
+  .annotation-label.risk { color:#be185d; }
+  .annotation-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { text-align:center; padding:30px 40px 10px; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:#8a9bb5; }
+
+  @media (max-width: 700px) {
+    .glance { grid-template-columns:1fr; }
+    .annotation-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">日本速報 · Issue #86</div>
+    <div class="masthead-meta">Monday, August 24, 2026 &nbsp;·&nbsp; 3 stories, charted</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="glance">
+    <div class="glance-card">
+      <div class="glance-tag">AI & Tech</div>
+      <div class="glance-headline">Sakana Translate upgrades to new-gen Namazu, built on Kimi K2.6 fine-tune</div>
+      <div class="glance-stat">&gt;50%</div>
+      <div class="glance-stat-label">preferred over rivals, 160 JA-EN tasks</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag">Industrial & Energy</div>
+      <div class="glance-headline">Mitsubishi Electric acquires PCI Energy Solutions, largest deal in company history</div>
+      <div class="glance-stat">$1.4B</div>
+      <div class="glance-stat-label">¥220B · ~60% of US power-gen volume</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag">Macro & Fiscal Policy</div>
+      <div class="glance-headline">Japan's FY2027 budget requests top ¥130 trillion for the first time</div>
+      <div class="glance-stat">¥130T+</div>
+      <div class="glance-stat-label">vs ¥83T projected tax revenue</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <span class="story-card-tag">STORY 1 · AI & TECH</span>
+      <div class="story-card-headline">Sakana AI's Translation Model Tops Rivals — Built by Fine-Tuning, Not Frontier Pretraining</div>
+      <div class="story-card-body">
+        <p>Sakana AI updated its free Sakana Translate service on August 21 to run on the newest generation of its Namazu model series — itself a post-training fine-tune of Moonshot AI's open-weight Kimi K2.6, not a model trained from scratch. The update specifically improved handling of culturally loaded Japanese expressions, and Sakana's own TransEvalnia benchmark found its output preferred over rival translation services more than half the time across 160 head-to-head Japanese-English tasks.</p>
+        <p>The release fits Sakana's broader strategy: rather than compete on frontier pretraining compute — the capital-intensive path Rapidus and the Noetra consortium are pursuing in chips and foundation models — Sakana builds defensibility through post-training and orchestration layered on other labs' open weights, a materially cheaper route to a product with a real moat in Japanese-language nuance.</p>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">Capital efficiency, not compute scale, is the variable to watch when comparing Sakana against Japan's larger, more heavily subsidized sovereign-AI bets. The enterprise roadmap (API, SSO, on-prem) signals a path to monetizing a free consumer tool.</div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">TransEvalnia head-to-head win rate — Sakana Translate vs. rival services (160 JA-EN tasks)</div>
+        <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="720" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="100" x2="720" y2="100" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="4 4"/>
+          <text x="30" y="184" font-size="10" fill="#5a6a8a" text-anchor="end">0%</text>
+          <text x="30" y="104" font-size="10" fill="#5a6a8a" text-anchor="end">50%</text>
+          <text x="30" y="24" font-size="10" fill="#5a6a8a" text-anchor="end">100%</text>
+
+          <rect x="110" y="70" width="70" height="110" fill="#3730a3"/>
+          <text x="145" y="60" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">58%</text>
+          <text x="145" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">Rival A</text>
+
+          <rect x="260" y="62" width="70" height="118" fill="#3730a3"/>
+          <text x="295" y="52" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">61%</text>
+          <text x="295" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">Rival B</text>
+
+          <rect x="410" y="78" width="70" height="102" fill="#3730a3"/>
+          <text x="445" y="68" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">55%</text>
+          <text x="445" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">Rival C</text>
+
+          <rect x="560" y="66" width="70" height="114" fill="#818cf8"/>
+          <text x="595" y="56" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">59%</text>
+          <text x="595" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">Rival D</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">Post-training on open weights (Kimi K2.6) beat larger general-purpose models on culturally specific Japanese text.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">Enterprise rollout — SSO, audit logs, on-prem, industry glossaries — as the monetization path for the free tool.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">Sakana depends on continued access to competitors' open-weight releases (Kimi, Gemma); a closed-weight shift upstream would strain the model.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <span class="story-card-tag">STORY 2 · INDUSTRIAL &amp; ENERGY</span>
+      <div class="story-card-headline">Mitsubishi Electric's Largest-Ever Deal Bets Grid Software Is AI's Next Bottleneck</div>
+      <div class="story-card-body">
+        <p>Mitsubishi Electric agreed on August 20 to acquire U.S. grid-software firm PCI Energy Solutions for $1.4 billion (¥220 billion) — the largest acquisition in the company's 100-plus-year history. PCI's platform handles power trading, generation and transmission scheduling, and settlement for roughly 60% of U.S. power-generation volume, giving Mitsubishi Electric a software foothold distinct from its traditional transformer and switchgear hardware business.</p>
+        <p>The deal lands on top of Japan's own AI power-demand story: data-center electricity consumption is projected to more than triple by 2034, and Tokyo-area grid-connection queues already stretch five to ten years. Mitsubishi Electric is targeting ¥200 billion in energy-solutions revenue and a 28% operating margin by fiscal 2030.</p>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">A distinct thesis from the fab-capex narrative (Rapidus, TSMC Kumamoto): the binding constraint on AI buildout may shift from chip supply to grid-scheduling software. Worth tracking against utility and grid-equipment names broadly.</div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Japan data-center electricity consumption — projected growth, 2024-2034 (TWh)</div>
+        <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="720" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="30" y="184" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+          <text x="30" y="104" font-size="10" fill="#5a6a8a" text-anchor="end">33</text>
+          <text x="30" y="28" font-size="10" fill="#5a6a8a" text-anchor="end">66</text>
+          <line x1="60" y1="100" x2="720" y2="100" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="4 4"/>
+
+          <polyline points="90,170 300,158 500,120 690,26" fill="none" stroke="#3730a3" stroke-width="3"/>
+          <circle cx="90" cy="170" r="5" fill="#3730a3"/>
+          <circle cx="300" cy="158" r="5" fill="#3730a3"/>
+          <circle cx="500" cy="120" r="5" fill="#3730a3"/>
+          <circle cx="690" cy="26" r="5" fill="#818cf8"/>
+
+          <text x="90" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">2024</text>
+          <text x="300" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">2027e</text>
+          <text x="500" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">2030e</text>
+          <text x="690" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">2034e</text>
+
+          <text x="90" y="158" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">19</text>
+          <text x="690" y="14" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">57-66</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">First major acquisition puts Mitsubishi Electric's energy segment squarely in AI-infrastructure demand, not just factory automation.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">Regulatory approval timeline and whether PCI's ~60% US power-gen footprint expands into Japan grid-planning tools.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">$1.4B is a large bet on a single US software asset; integration and customer-retention risk in an unfamiliar enterprise-software model.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <span class="story-card-tag">STORY 3 · MACRO &amp; FISCAL POLICY</span>
+      <div class="story-card-headline">Japan's FY2027 Budget Requests Top ¥130 Trillion for the First Time</div>
+      <div class="story-card-body">
+        <p>Japan's ministries are on track to submit budget requests exceeding ¥130 trillion for fiscal 2027, up from ¥122 trillion this year — a fourth consecutive record. The jump reflects PM Takaichi's removal of unified spending caps on priority items under a new "growth investment framework," plus folding previously off-cycle supplementary spending into the initial ask. Defense's ¥8.9 trillion request is itself a record.</p>
+        <p>Against projected tax revenue of about ¥83 trillion, the gap between requests and receipts nears ¥50 trillion — before the Finance Ministry's autumn trim and before still-unpriced defense "item requests" are counted.</p>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">More JGB issuance is the mechanical read, layered onto a market already pricing fiscal-discipline concern into yields. Watch whether the 17-sector growth framing offsets that discount through year-end.</div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">FY2027 budget requests vs. projected tax revenue (¥ trillion)</div>
+        <svg viewBox="0 0 760 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="720" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="30" y="184" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+          <text x="30" y="104" font-size="10" fill="#5a6a8a" text-anchor="end">65</text>
+          <text x="30" y="28" font-size="10" fill="#5a6a8a" text-anchor="end">130</text>
+          <line x1="60" y1="100" x2="720" y2="100" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="4 4"/>
+
+          <rect x="120" y="72" width="90" height="108" fill="#c7cdf0"/>
+          <text x="165" y="62" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">¥122T</text>
+          <text x="165" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">FY2026</text>
+
+          <rect x="290" y="26" width="90" height="154" fill="#3730a3"/>
+          <text x="335" y="16" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">¥130T+</text>
+          <text x="335" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">FY2027 request</text>
+
+          <rect x="460" y="129" width="90" height="51" fill="#818cf8"/>
+          <text x="505" y="119" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">¥83T</text>
+          <text x="505" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">Tax revenue (proj.)</text>
+
+          <line x1="560" y1="26" x2="680" y2="26" stroke="#be185d" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <line x1="680" y1="26" x2="680" y2="129" stroke="#be185d" stroke-width="1.5" stroke-dasharray="3 3"/>
+          <text x="690" y="80" font-size="11" font-weight="700" fill="#be185d">~¥50T gap</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">AI, semiconductors, and content are 3 of the 17 strategic sectors prioritized under the uncapped growth framework.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">MOF's autumn review and the year-end cabinet decision, where the ¥130T figure typically gets trimmed toward a final number.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">Rising JGB yields compound debt-servicing costs on a base already above 200% of GDP, a self-reinforcing fiscal-discipline concern.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">日本速報 · JAPAN BRIEF · ISSUE #86 · AUGUST 24, 2026 · NOT INVESTMENT ADVICE</div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
