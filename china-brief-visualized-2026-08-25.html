@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #98 · August 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #98 · August 25, 2026</div>
+    <div class="masthead-sub">Xring O3's Clock-Speed Bet · XPeng Robotics' $6.3B Round · Beijing's Delayed ¥800B Tool</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">4.35<span class="card-num-unit">GHz</span></div>
+      <div class="card-label">Xiaomi's Xring O3 prime-core clock speed — a mobile-chip first</div>
+      <div class="card-delta delta-amber">Still one node behind on 2nm</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS FUNDING</div>
+      <div class="card-num">$6.3<span class="card-num-unit">B</span></div>
+      <div class="card-label">XPeng Robotics post-money valuation after first external round</div>
+      <div class="card-delta delta-red">XPEV shares -7% same day</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">~5<span class="card-num-unit">months</span></div>
+      <div class="card-label">Gap between ¥800B financing tool's launch and opening for local bids</div>
+      <div class="card-delta delta-amber">Deployment still ~1 month out</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">4.35GHz, Not 2nm: Xiaomi's Xring O3 Wins on Clock Speed, Concedes the Node</div>
+    <div class="story-insight">
+      <p>Xiaomi's Xring O3, unveiled Aug 24, is a 3nm, 10-core SoC with a 4.35GHz prime core (a mobile-chip first) and the first mobile use of LPDDR6 memory. It debuts in the Xiaomi 18 Fold and Pad 9 Pro Max in September at a modest 200K-300K unit target.</p>
+      <br>
+      <p>Qualcomm's and MediaTek's next-gen flagships are both moving to TSMC's 2nm node — a full generation ahead of the O3's 3nm. The clock-speed record is real, but it's being used to paper over a density gap Xiaomi's own roadmap concedes.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Treat the O3 as a cost-exposure hedge after a memory-cost-driven profit miss, not yet a merchant-silicon substitution at scale.</div>
+    <div class="chart-box">
+      <div class="chart-title">FLAGSHIP MOBILE SOCs: PROCESS NODE VS. PEAK CLOCK SPEED</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="30" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="20" y="35" font-size="11" fill="#5a6a8a">4.5GHz</text>
+        <text x="20" y="93" font-size="11" fill="#5a6a8a">4.0GHz</text>
+        <text x="20" y="150" font-size="11" fill="#5a6a8a">3.5GHz</text>
+        <line x1="60" y1="35" x2="780" y2="35" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <line x1="60" y1="93" x2="780" y2="93" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <rect x="130" y="40" width="130" height="110" fill="#c0392b" opacity="0.8"/>
+        <text x="145" y="35" font-size="12" fill="#1a1a2e" font-weight="700">4.35GHz</text>
+        <text x="115" y="168" font-size="11" fill="#5a6a8a">Xring O3 (3nm)</text>
+        <rect x="370" y="60" width="130" height="90" fill="#1a1a2e" opacity="0.85"/>
+        <text x="385" y="55" font-size="12" fill="#1a1a2e" font-weight="700">~4.2GHz*</text>
+        <text x="345" y="168" font-size="11" fill="#5a6a8a">Snapdragon 8 Elite Gen 6 (2nm)</text>
+        <rect x="610" y="65" width="130" height="85" fill="#b45309" opacity="0.6"/>
+        <text x="625" y="60" font-size="12" fill="#1a1a2e" font-weight="700">~4.1GHz*</text>
+        <text x="590" y="168" font-size="11" fill="#5a6a8a">MediaTek next-gen (2nm)</text>
+        <text x="60" y="185" font-size="9" fill="#9a8a7a">*Rival figures are pre-launch estimates, not confirmed specs</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FIRST MOVER ON SPEC</div>
+        <div class="annotation-card-zh">玄戒<span class="annotation-card-en">Xuánjiè · Xring</span></div>
+        <div class="annotation-card-body">First production mobile chip past 4GHz and first on LPDDR6 — genuine spec firsts, even if narrowly scoped.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PROCESS GAP</div>
+        <div class="annotation-card-zh">制程<span class="annotation-card-en">zhìchéng · process node</span></div>
+        <div class="annotation-card-body">Rivals' 2nm parts arrive a generation ahead on density and likely efficiency — the clock-speed win doesn't erase that gap.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGIN PRESSURE</div>
+        <div class="annotation-card-zh">自研芯片<span class="annotation-card-en">zì yán xīnpiàn · self-developed chip</span></div>
+        <div class="annotation-card-body">Launch follows a Q2 where adjusted profit fell 42.6% on memory costs — in-house silicon is a hedge, not an immediate fix.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">$900M, -7% Same Day: XPeng's Robotics Unit Gets a Record Round the Stock Didn't Buy</div>
+    <div class="story-insight">
+      <p>XPeng Robotics (home of the Iron humanoid) raised $900M+ at a $6.3B post-money valuation on Aug 24 — the largest single private round yet in China's embodied-AI sector — led by IDG Capital with Tencent and Alibaba as strategic co-investors.</p>
+      <br>
+      <p>The same day, XPeng reported a Q2 earnings miss and XPEV shares fell ~7%. No unit economics, deployment volumes, or customer contracts accompanied the robotics valuation.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A hot subsidiary valuation didn't offset investor concern about the parent's core EV results — funding-market enthusiasm and public-market judgment diverged on the same day.</div>
+    <div class="chart-box">
+      <div class="chart-title">CHINA EMBODIED-AI VALUATIONS: SELECTED NAMES ($B, MOST RECENT MARK)</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <rect x="110" y="45" width="120" height="95" fill="#1a1a2e" opacity="0.85"/>
+        <text x="140" y="40" font-size="13" fill="#1a1a2e" font-weight="700">~$9B</text>
+        <text x="95" y="158" font-size="11" fill="#5a6a8a">Unitree (STAR, Aug IPO)</text>
+        <rect x="340" y="60" width="120" height="80" fill="#c0392b" opacity="0.8"/>
+        <text x="360" y="55" font-size="13" fill="#1a1a2e" font-weight="700">$6.3B</text>
+        <text x="320" y="158" font-size="11" fill="#5a6a8a">XPeng Robotics (Aug 24)</text>
+        <rect x="570" y="100" width="120" height="40" fill="#b45309" opacity="0.6"/>
+        <text x="595" y="95" font-size="13" fill="#1a1a2e" font-weight="700">~$3B</text>
+        <text x="565" y="158" font-size="11" fill="#5a6a8a">Galbot (Mar 2026 round)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STRATEGIC CAPITAL</div>
+        <div class="annotation-card-zh">战略投资者<span class="annotation-card-en">zhànlüè tóuzīzhě · strategic investor</span></div>
+        <div class="annotation-card-body">Tencent and Alibaba both backing the round shows capital concentrating around a small set of credentialed humanoid programs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DISCLOSURE GAP</div>
+        <div class="annotation-card-zh">铁甲<span class="annotation-card-en">Tiějiǎ · Iron</span></div>
+        <div class="annotation-card-body">No unit economics or deployment data disclosed alongside the round — the $6.3B mark is a funding signal, not yet a validated commercial one.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PARENT VS. SUBSIDIARY</div>
+        <div class="annotation-card-zh">主业</div>
+        <div class="annotation-card-body"><span style="font-size:10px;">(zhǔyè · core business)</span> XPEV fell ~7% on the same day despite the robotics news — the market weighted the EV miss over the spinout valuation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">¥800 Billion, Five Months Late: Beijing's Investment Lifeline Finally Opens for Bids</div>
+    <div class="story-insight">
+      <p>NDRC's ¥800B ($119B) New Policy-Backed Financing Instruments program, announced in spring 2026, has only now opened to project pitches from local governments. Caitong Securities estimates deployment is still "at least another month or so" away.</p>
+      <br>
+      <p>July data already shows the slowdown broadening (industrial output +4.5% y/y, retail sales +0.6%, FAI -6.7% Jan-Jul), while MOF's Liao Min says H2 fiscal-financial coordination policy is still being drafted, not launched.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Track disbursement data, not announcement size — this tool's headline scale is arriving well after the growth window it was meant to support.</div>
+    <div class="chart-box">
+      <div class="chart-title">¥800B POLICY FINANCING TOOL: ANNOUNCEMENT-TO-DEPLOYMENT TIMELINE</div>
+      <svg viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="780" y2="90" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="120" cy="90" r="8" fill="#1a1a2e"/>
+        <text x="80" y="70" font-size="12" fill="#1a1a2e" font-weight="700">Spring 2026</text>
+        <text x="70" y="115" font-size="11" fill="#5a6a8a">Program announced</text>
+        <circle cx="440" cy="90" r="8" fill="#c0392b"/>
+        <text x="380" y="70" font-size="12" fill="#1a1a2e" font-weight="700">Aug 24, 2026</text>
+        <text x="365" y="115" font-size="11" fill="#5a6a8a">Opened to local bids</text>
+        <circle cx="700" cy="90" r="8" fill="#b45309"/>
+        <text x="650" y="70" font-size="12" fill="#1a1a2e" font-weight="700">~Sept-Oct 2026</text>
+        <text x="640" y="115" font-size="11" fill="#5a6a8a">Est. first deployment</text>
+        <line x1="120" y1="90" x2="440" y2="90" stroke="#c0392b" stroke-width="4"/>
+        <text x="230" y="140" font-size="11" fill="#c0392b" font-weight="700">~5 months to open bidding</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCALE ON PAPER</div>
+        <div class="annotation-card-zh">政策性金融工具<span class="annotation-card-en">zhèngcèxìng jīnróng gōngjù · policy financial instrument</span></div>
+        <div class="annotation-card-body">¥800B is large enough to matter — NDRC ties it to a broader ¥4T private-investment lever over the 15th Five-Year Plan.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TRANSMISSION LAG</div>
+        <div class="annotation-card-zh">廖岷<span class="annotation-card-en">Liào Mín · Liao Min</span></div>
+        <div class="annotation-card-body">Vice Finance Minister says H2 fiscal-financial coordination is still being drafted — the policy-to-disbursement pipeline remains the bottleneck.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · WINDOW SLIPPING</div>
+        <div class="annotation-card-zh">传导滞后</div>
+        <div class="annotation-card-body"><span style="font-size:10px;">(chuándǎo zhìhòu · transmission lag)</span> July data shows the slowdown already broadening — support arriving 5+ months post-announcement narrows its near-term growth impact.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #98 · AUGUST 25, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
