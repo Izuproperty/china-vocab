@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #101 · Aug 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #101 · August 28, 2026</div>
+    <div class="masthead-sub">Zhipu's Stealth GLM-5.3-Flash · CXMT Closes DDR5 Gap · China Industrial Profits Cool</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · MODELS</div>
+      <div class="card-num">57<span class="card-num-unit">AA Index</span></div>
+      <div class="card-label">GLM-5.3-Flash score at $0.045/task, discounted</div>
+      <div class="card-delta delta-amber">Self/AA-sourced, not independently verified</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">&lt;1<span class="card-num-unit">% gap</span></div>
+      <div class="card-label">CXMT DDR5 vs. SK Hynix at 8,000 MT/s</div>
+      <div class="card-delta delta-amber">July testing flagged batch variance</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">11.2<span class="card-num-unit">% y/y</span></div>
+      <div class="card-label">July industrial profit growth — weakest of 2026</div>
+      <div class="card-delta delta-red">Down from 15.1% in June, 3rd straight slowdown</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">320 Billion Params, No Name Tag: Zhipu's Stealth Model Outs Itself as GLM-5.3-Flash</div>
+    <div class="story-insight">
+      <p>Zhipu AI (智谱AI) confirmed Aug 26 that "Ox Alpha," an unbranded model quietly running on OpenCode and OpenRouter, was GLM-5.3-Flash — a 320B-parameter MoE (18B active/token), natively multimodal, with a 1,048,576-token context window. Anonymous testing let Zhipu gather adoption signal before the branded reveal; the model scored 57 on the Artificial Analysis Intelligence Index at $0.045/task, a cost level AA says was previously ~10x higher.</p>
+      <br>
+      <p>The benchmark numbers are Zhipu/AA-sourced, not independently reproduced — the same caveat attached to nearly every Chinese frontier release this quarter. The more durable signal is the go-to-market mechanic itself: stealth-testing on public inference platforms before a named launch.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch whether the $0.045/task economics hold once GLM-5.3-Flash carries its own name and faces the pricing pressure that hit Zhipu shares after Kimi K3.</div>
+    <div class="chart-box">
+      <div class="chart-title">Terminal Bench 2.1 — Selected Model Comparison</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="160" x2="780" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="24" font-size="10" fill="#5a6a8a">100</text>
+        <text x="30" y="94" font-size="10" fill="#5a6a8a">50</text>
+        <text x="30" y="164" font-size="10" fill="#5a6a8a">0</text>
+        <line x1="60" y1="90" x2="780" y2="90" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <rect x="120" y="19.8" width="70" height="140.2" fill="#c0392b" opacity="0.85"/>
+        <text x="130" y="15" font-size="11" fill="#1a1a2e" font-weight="700">84.3</text>
+        <text x="110" y="178" font-size="10" fill="#5a6a8a">GLM-5.3-Flash</text>
+        <rect x="270" y="19" width="70" height="141" fill="#1a1a2e" opacity="0.85"/>
+        <text x="280" y="14" font-size="11" fill="#1a1a2e" font-weight="700">85.0</text>
+        <text x="265" y="178" font-size="10" fill="#5a6a8a">Claude Opus 4.8</text>
+        <rect x="420" y="45" width="70" height="115" fill="#b45309" opacity="0.75"/>
+        <text x="430" y="40" font-size="11" fill="#1a1a2e" font-weight="700">~68</text>
+        <text x="415" y="178" font-size="10" fill="#5a6a8a">DeepSeek V4-Vision</text>
+        <rect x="570" y="60" width="70" height="100" fill="#8a9bb5" opacity="0.6"/>
+        <text x="580" y="55" font-size="11" fill="#1a1a2e" font-weight="700">~57</text>
+        <text x="590" y="178" font-size="10" fill="#5a6a8a">Cost Index (AA)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GO-TO-MARKET</div>
+        <div class="annotation-card-zh">匿名测试<span class="annotation-card-en">nìmíng cèshì · anonymous testing</span></div>
+        <div class="annotation-card-body">Running an unbranded model on public platforms before a named launch let Zhipu gather usage data without pre-release hype — a repeatable pattern worth tracking across Chinese labs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICING DURABILITY</div>
+        <div class="annotation-card-zh">单位token成本<span class="annotation-card-en">dānwèi token chéngběn · cost-per-token</span></div>
+        <div class="annotation-card-body">The $0.045/task figure is discounted, self-reported pricing. Whether it holds once the model is fully commercial and branded is unresolved.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VERIFICATION GAP</div>
+        <div class="annotation-card-zh">自行发布的基准测试<span class="annotation-card-en">zìxíng fābù de jīzhǔn cèshì · self-published benchmarks</span></div>
+        <div class="annotation-card-body">Benchmark comparisons are Zhipu- and Artificial Analysis-sourced, not independently reproduced across the full evaluation suite.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / SEMICONDUCTORS</div>
+    <div class="story-headline">8,000 MT/s, Under 1%: China's CXMT Closes the DDR5 Gap With SK Hynix</div>
+    <div class="story-insight">
+      <p>New benchmark testing reported Aug 27 shows CXMT (长鑫存储) DDR5 memory running stably at 8,000 MT/s, within ~1% of SK Hynix's comparable M-die on mainstream platforms and 1–2% on more memory-sensitive AMD builds — the tightest published gap yet. That contrasts with mid-July overclocker testing that found CXMT dies resistant to voltage scaling, unable to tighten sub-timings, and inconsistent batch-to-batch.</p>
+      <br>
+      <p>CXMT priced China's largest-ever A-share semiconductor IPO in July (¥66.6B) and already supplies HP, Asus, and Acer for non-US notebook SKUs. A stock-speed benchmark match is a narrower claim than matching manufacturing yield or reliability.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The July batch-variance and voltage-scaling findings haven't been retested — the reliability question is separate from, and unresolved by, this benchmark result.</div>
+    <div class="chart-box">
+      <div class="chart-title">DDR5 Performance Gap vs. SK Hynix M-die (Selected Testing, 2026)</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="20" y="30" font-size="10" fill="#5a6a8a">Wide</text>
+        <text x="20" y="140" font-size="10" fill="#5a6a8a">0%</text>
+        <polyline points="100,40 260,60 420,95 580,120 740,135" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+        <circle cx="100" cy="40" r="4" fill="#c0392b"/><text x="80" y="30" font-size="10" fill="#5a6a8a">Mar</text>
+        <circle cx="260" cy="60" r="4" fill="#c0392b"/><text x="240" y="50" font-size="10" fill="#5a6a8a">May</text>
+        <circle cx="420" cy="95" r="4" fill="#c0392b"/><text x="400" y="112" font-size="10" fill="#5a6a8a">Jul (variance flagged)</text>
+        <circle cx="580" cy="120" r="4" fill="#c0392b"/><text x="560" y="137" font-size="10" fill="#5a6a8a"></text>
+        <circle cx="740" cy="135" r="5" fill="#1a1a2e"/><text x="700" y="120" font-size="11" fill="#1a1a2e" font-weight="700">Aug 27: &lt;1%</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PERFORMANCE</div>
+        <div class="annotation-card-zh">长鑫存储<span class="annotation-card-en">Chángxīn Cúnchǔ · CXMT</span></div>
+        <div class="annotation-card-body">DDR5-8000 stock-speed performance now within ~1% of SK Hynix's M-die — the narrowest gap yet published between a Chinese and Korean DRAM maker.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SCALE-UP</div>
+        <div class="annotation-card-zh">产能<span class="annotation-card-en">chǎnnéng · production capacity</span></div>
+        <div class="annotation-card-body">CXMT has reportedly targeted matching Micron's capacity by year-end. Whether performance holds at that scale is untested.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONSISTENCY</div>
+        <div class="annotation-card-zh">批次差异<span class="annotation-card-en">pīcì chāyì · batch-to-batch variance</span></div>
+        <div class="annotation-card-body">Mid-July testing found voltage-scaling weakness and inconsistent performance across production batches — not retested in this round.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO / INDUSTRIAL DATA</div>
+    <div class="story-headline">11.2% in July, Weakest All Year: China's Industrial Profit Growth Cools for a Third Month</div>
+    <div class="story-insight">
+      <p>NBS data released Aug 27 showed profits at large-scale industrial enterprises (规模以上工业企业) up 11.2% y/y in July, down from 15.1% in June — the third straight month of deceleration. Cumulative Jan–Jul profits reached ¥4.58 trillion, up 17.6% y/y, but electronics manufacturing alone (+110%) contributed 9.3 of those 17.6 percentage points.</p>
+      <br>
+      <p>Mining profits rose 34.9%, manufacturing 18.8%, while power/heat/gas/water fell 5.8%. The composition matters more than the headline: roughly half of year-to-date profit growth traces to one AI-hardware-linked sector.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A durable reacceleration needs growth to broaden beyond electronics into the sectors currently flat or contracting — not just a continuation of the AI-hardware trade.</div>
+    <div class="chart-box">
+      <div class="chart-title">Jan–Jul 2026 Industrial Profit Growth Contribution (Percentage Points)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="160" x2="780" y2="160" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="20" y="24" font-size="10" fill="#5a6a8a">18pt</text>
+        <text x="20" y="94" font-size="10" fill="#5a6a8a">9pt</text>
+        <text x="20" y="164" font-size="10" fill="#5a6a8a">0</text>
+        <rect x="120" y="88" width="90" height="72" fill="#c0392b" opacity="0.85"/>
+        <text x="130" y="82" font-size="11" fill="#1a1a2e" font-weight="700">9.3pt</text>
+        <text x="105" y="178" font-size="10" fill="#5a6a8a">Electronics</text>
+        <rect x="300" y="130" width="90" height="30" fill="#b45309" opacity="0.75"/>
+        <text x="310" y="124" font-size="11" fill="#1a1a2e" font-weight="700">~4pt</text>
+        <text x="290" y="178" font-size="10" fill="#5a6a8a">Mining</text>
+        <rect x="480" y="140" width="90" height="20" fill="#8a9bb5" opacity="0.7"/>
+        <text x="490" y="134" font-size="11" fill="#1a1a2e" font-weight="700">~4pt</text>
+        <text x="460" y="178" font-size="10" fill="#5a6a8a">Rest of Manufacturing</text>
+        <rect x="660" y="158" width="90" height="2" fill="#166534" opacity="0.6"/>
+        <text x="670" y="154" font-size="11" fill="#1a1a2e" font-weight="700">-0.3pt</text>
+        <text x="655" y="178" font-size="10" fill="#5a6a8a">Utilities (drag)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ELECTRONICS DEMAND</div>
+        <div class="annotation-card-zh">电子制造业<span class="annotation-card-en">diànzǐ zhìzàoyè · electronics manufacturing</span></div>
+        <div class="annotation-card-body">Profits surged 110% y/y, contributing more to headline growth than any other sector — a proxy for AI-linked chip and server demand.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CONCENTRATION</div>
+        <div class="annotation-card-zh">利润总额<span class="annotation-card-en">lìrùn zǒng é · total profits</span></div>
+        <div class="annotation-card-body">With growth this concentrated in one sector, the headline 17.6% cumulative figure is narrower and more cyclical than it appears.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · BROAD-BASE WEAKNESS</div>
+        <div class="annotation-card-zh">规模以上工业企业<span class="annotation-card-en">guīmó yǐshàng gōngyè qǐyè · large-scale industrial enterprises</span></div>
+        <div class="annotation-card-body">Utilities profits fell 5.8% y/y and the ex-electronics manufacturing base is growing far slower than the headline — three straight months of deceleration.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #101 · AUGUST 28, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
