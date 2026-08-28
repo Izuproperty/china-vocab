@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #102 · Aug 29, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #102 · August 29, 2026</div>
+    <div class="masthead-sub">DeepSeek's All-Domestic Pre-IPO Round · Ascend 910C's Memory Wall · August PMI Preview</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · FUNDING</div>
+      <div class="card-num">$74<span class="card-num-unit">B pre-money</span></div>
+      <div class="card-label">DeepSeek pre-IPO round valuation, ~$7.4B raise</div>
+      <div class="card-delta delta-amber">Every disclosed investor is mainland-based</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">300<span class="card-num-unit">K vs. 600K target</span></div>
+      <div class="card-label">Ascend 910C units CXMT's HBM supply can actually support</div>
+      <div class="card-delta delta-red">Memory, not wafers, is the binding constraint</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">49.2<span class="card-num-unit">July PMI</span></div>
+      <div class="card-label">Official manufacturing PMI, first sub-50 since Feb</div>
+      <div class="card-delta delta-amber">August reading due Monday, Aug 31</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">$7.4 Billion, Zero US Names: DeepSeek's Pre-IPO Round Closes Out the Foreign-Capital Question</div>
+    <div class="story-insight">
+      <p>DeepSeek (深度求索) is nearing a ~¥50B ($7.4B) round at a $74B pre-money valuation per WSJ/SCMP reporting Aug 28, closing by month-end ahead of a targeted 2027 STAR Market listing. Backers span existing holders Monolith, Shixiang Capital, and CATL alongside new entrants CPE, Legend Capital, Stony Creek Capital, and funds tied to GigaDevice and Hefei state investment vehicles — every disclosed name is mainland-based.</p>
+      <br>
+      <p>The round marks a shift from founder Liang Wenfeng's hedge-fund-financed model (via High-Flyer) toward outside capital, as DeepSeek adds ~1GW of compute and resets API pricing to a peak/off-peak structure priced above the old flat rate.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The all-domestic cap table says less about DeepSeek's capital-raising ability than about how fully its balance sheet, compute, and now funding run through state-aligned channels.</div>
+    <div class="chart-box">
+      <div class="chart-title">DeepSeek Financing Timeline, 2026</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="15" y="30" font-size="10" fill="#5a6a8a">$80B</text>
+        <text x="15" y="140" font-size="10" fill="#5a6a8a">$0</text>
+        <rect x="120" y="70" width="80" height="70" fill="#8a9bb5" opacity="0.6"/>
+        <text x="125" y="64" font-size="11" fill="#1a1a2e" font-weight="700">$52–59B</text>
+        <text x="115" y="158" font-size="10" fill="#5a6a8a">Jun 2026</text>
+        <rect x="330" y="45" width="80" height="95" fill="#b45309" opacity="0.75"/>
+        <text x="335" y="39" font-size="11" fill="#1a1a2e" font-weight="700">$74B</text>
+        <text x="325" y="158" font-size="10" fill="#5a6a8a">Aug 6 reopen</text>
+        <rect x="560" y="30" width="80" height="110" fill="#c0392b" opacity="0.85"/>
+        <text x="565" y="24" font-size="11" fill="#1a1a2e" font-weight="700">$74B pre-money</text>
+        <text x="555" y="158" font-size="10" fill="#5a6a8a">Aug 28: nearing close</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAP TABLE</div>
+        <div class="annotation-card-zh">境内资本<span class="annotation-card-en">jìngnèi zīběn · domestic capital</span></div>
+        <div class="annotation-card-body">Every disclosed backer in this round — old and new — is mainland-based, consistent with Beijing's April guidance steering strategic AI labs away from US-origin capital.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · IPO STRUCTURE</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàngbǎn · STAR Market</span></div>
+        <div class="annotation-card-body">Unclear whether a 2027 listing is a liquidity event for venture backers or a vehicle to formalize the state investment vehicles now on the cap table.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CAPITAL INTENSITY</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · compute power</span></div>
+        <div class="annotation-card-body">~1GW of new compute and a peak/off-peak API repricing (still above the old flat rate) show the efficiency-lab narrative meeting a capital-heavy buildout.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / SEMICONDUCTORS</div>
+    <div class="story-headline">600,000 Targeted, 300,000 Deliverable: Huawei's Ascend 910C Hits a Memory Wall</div>
+    <div class="story-insight">
+      <p>Huawei's Ascend 910C is sold out domestically (DIGITIMES, Aug 28) even as it trails Nvidia's H200 on compute and bandwidth — Chinese buyers are scaling cluster size rather than closing the per-chip gap. Huawei targets ~600,000 units in 2026 via SMIC's 7nm process, part of a 1.6M-die plan, roughly double 2025 volume.</p>
+      <br>
+      <p>CXMT, Huawei's main domestic HBM supplier, is projected to produce enough memory for only 250K–300K units next year at typical configurations — wafer capacity isn't the constraint; memory is.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Unless CXMT's HBM output scales faster than guided, the 600,000-unit target is a supply-chain aspiration, not a locked-in number.</div>
+    <div class="chart-box">
+      <div class="chart-title">Ascend 910C: 2026 Target vs. HBM-Constrained Supply</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="30" font-size="10" fill="#5a6a8a">600K</text>
+        <text x="10" y="140" font-size="10" fill="#5a6a8a">0</text>
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <text x="700" y="76" font-size="9" fill="#8a9bb5">300K</text>
+        <rect x="180" y="20" width="120" height="120" fill="#1a1a2e" opacity="0.85"/>
+        <text x="195" y="14" font-size="11" fill="#1a1a2e" font-weight="700">600,000</text>
+        <text x="185" y="158" font-size="10" fill="#5a6a8a">2026 Unit Target</text>
+        <rect x="480" y="80" width="120" height="60" fill="#c0392b" opacity="0.85"/>
+        <text x="490" y="74" font-size="11" fill="#1a1a2e" font-weight="700">250K–300K</text>
+        <text x="470" y="158" font-size="10" fill="#5a6a8a">HBM-Supported Ceiling</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND</div>
+        <div class="annotation-card-zh">售罄<span class="annotation-card-en">shòuqìng · sold out</span></div>
+        <div class="annotation-card-body">Domestic sellout at current volumes reflects the size of the compute deficit buyers are absorbing via cluster scale, not a closed performance gap with Nvidia.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MEMORY SUPPLY</div>
+        <div class="annotation-card-zh">高带宽存储器<span class="annotation-card-en">gāo dàikuān cúnchǔqì · HBM</span></div>
+        <div class="annotation-card-body">CXMT's ~2M HBM-stack 2026 guidance supports roughly half the chips Huawei is targeting — the real ceiling on Ascend volume.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PER-CHIP GAP</div>
+        <div class="annotation-card-zh">昇腾910C<span class="annotation-card-en">Shēngténg 910C · Ascend 910C</span></div>
+        <div class="annotation-card-body">The 910C still trails the H200 on raw compute and bandwidth per chip; scale-out compensates but doesn't close the underlying gap.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO / WEEK-AHEAD PREVIEW</div>
+    <div class="story-headline">49.2 in July, All Eyes Monday: China's August Factory PMI Tests Whether the Contraction Was a Blip</div>
+    <div class="story-insight">
+      <p>China's official manufacturing PMI is due Monday, Aug 31 — the week's first major release. July fell to 49.2 from 50.3, missing consensus (50.0) and marking the first sub-50 print since February; NBS cited softer domestic orders and typhoon disruption. Caixin's manufacturing PMI follows Sept 1, services Sept 3.</p>
+      <br>
+      <p>A second straight sub-50 official print would be harder to write off as seasonal, especially against July's industrial-profit deceleration and continued property weakness.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> PMI is a cleaner real-time read on momentum than last week's lagging profit data — watch for whether weakness broadens beyond electronics.</div>
+    <div class="chart-box">
+      <div class="chart-title">Official Manufacturing PMI, 2026 (50 = Expansion/Contraction Line)</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="15" y="30" font-size="10" fill="#5a6a8a">51</text>
+        <text x="15" y="82" font-size="10" fill="#5a6a8a">50</text>
+        <text x="15" y="134" font-size="10" fill="#5a6a8a">49</text>
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+        <polyline points="120,55 300,40 480,68 620,120" fill="none" stroke="#1a1a2e" stroke-width="2.5"/>
+        <circle cx="120" cy="55" r="4" fill="#1a1a2e"/><text x="105" y="45" font-size="10" fill="#5a6a8a">Apr</text>
+        <circle cx="300" cy="40" r="4" fill="#1a1a2e"/><text x="285" y="30" font-size="10" fill="#5a6a8a">May/Jun</text>
+        <circle cx="480" cy="68" r="4" fill="#1a1a2e"/><text x="465" y="58" font-size="10" fill="#5a6a8a">Jun: 50.3</text>
+        <circle cx="620" cy="120" r="5" fill="#c0392b"/><text x="600" y="112" font-size="11" fill="#1a1a2e" font-weight="700">Jul: 49.2</text>
+        <circle cx="740" cy="120" r="5" fill="#b45309" stroke="#b45309" stroke-width="2" stroke-dasharray="2,2" fill-opacity="0.3"/>
+        <text x="700" y="158" font-size="10" fill="#5a6a8a">Aug 31: TBD</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · WEEK-AHEAD</div>
+        <div class="annotation-card-zh">采购经理指数<span class="annotation-card-en">cǎigòu jīnglǐ zhǐshù · PMI</span></div>
+        <div class="annotation-card-body">Official PMI due Aug 31, Caixin manufacturing Sept 1, Caixin services Sept 3 — the week's key sentiment-setting data cluster.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TREND VS. NOISE</div>
+        <div class="annotation-card-zh">收缩<span class="annotation-card-en">shōusuō · contraction</span></div>
+        <div class="annotation-card-body">July's sub-50 print was pinned on typhoons and order timing. A second consecutive sub-50 reading would be harder to dismiss as one-off.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">国家统计局<span class="annotation-card-en">Guójiā Tǒngjìjú · NBS</span></div>
+        <div class="annotation-card-body">Even a PMI rebound wouldn't resolve the structural concern from July's profit data: strength concentrated in electronics/AI manufacturing, not broad demand.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #102 · AUGUST 29, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
