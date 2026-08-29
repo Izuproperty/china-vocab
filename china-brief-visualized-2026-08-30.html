@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #103 · Aug 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #103 · August 30, 2026</div>
+    <div class="masthead-sub">Enflame's IPO Subscription Opens · MiniMax Triples Its Alibaba Cloud Ceiling · Beijing's Property Financing Reopening</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">83.8<span class="card-num-unit">% of revenue</span></div>
+      <div class="card-label">Share of Enflame's 2025 revenue from single backer Tencent</div>
+      <div class="card-delta delta-red">IPO subscription opens Sept 2, ¥6B raise</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · COMPUTE</div>
+      <div class="card-num">220<span class="card-num-unit">% ceiling hike</span></div>
+      <div class="card-label">MiniMax's raised 3-year Alibaba Cloud spending cap, to $1.2B</div>
+      <div class="card-delta delta-amber">Already spent 2/3 of original budget by June</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">40<span class="card-num-unit">-yr mortgage cap</span></div>
+      <div class="card-label">New PBOC maximum term, up from 30 years</div>
+      <div class="card-delta delta-amber">Paired with CSRC support for developer fundraising</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH / SEMICONDUCTORS</div>
+    <div class="story-headline">¥6 Billion, 83.8% From One Client: Enflame's IPO Subscription Opens With a Concentration Problem</div>
+    <div class="story-insight">
+      <p>Enflame Technology (燧原科技), the Tencent-backed chipmaker among China's "four little GPU dragons," set September 2 as its STAR Market subscription date per TechNode/Reuters reporting the week of Aug 26 — 43.04M new shares, ¥6B ($892M) targeted, the last of the four dragons to clear listing approval.</p>
+      <br>
+      <p>Tencent, Enflame's largest shareholder at ~21%, supplied 83.8% of 2025 revenue. H1 2026 revenue is guided to more than triple y/y, but the company remains unprofitable with ¥4.29B in cumulative 3-year losses.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The question isn't whether Enflame can grow, but whether a listing priced on triple-digit growth adequately weighs a customer base concentrated in one relationship.</div>
+    <div class="chart-box">
+      <div class="chart-title">Enflame Revenue Concentration, 2025</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="15" y="30" font-size="10" fill="#5a6a8a">100%</text>
+        <text x="15" y="140" font-size="10" fill="#5a6a8a">0%</text>
+        <rect x="180" y="26" width="140" height="114" fill="#c0392b" opacity="0.85"/>
+        <text x="190" y="20" font-size="11" fill="#1a1a2e" font-weight="700">83.8%</text>
+        <text x="175" y="158" font-size="10" fill="#5a6a8a">Revenue from Tencent</text>
+        <rect x="460" y="118" width="140" height="22" fill="#8a9bb5" opacity="0.6"/>
+        <text x="470" y="112" font-size="11" fill="#1a1a2e" font-weight="700">16.2%</text>
+        <text x="450" y="158" font-size="10" fill="#5a6a8a">All Other Clients</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GROWTH</div>
+        <div class="annotation-card-zh">认购<span class="annotation-card-en">rèngòu · IPO subscription</span></div>
+        <div class="annotation-card-body">H1 2026 revenue guided to more than triple y/y to ¥10.6–11.5B, riding the same domestic-chip demand wave lifting Moore Threads and Iluvatar CoreX.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PROFITABILITY</div>
+        <div class="annotation-card-zh">四小龙<span class="annotation-card-en">sì xiǎo lóng · four little dragons</span></div>
+        <div class="annotation-card-body">Cumulative 3-year losses of ¥4.29B narrowed to only ¥1.2B in 2025 — still unprofitable despite the growth guidance.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">燧原科技<span class="annotation-card-en">Suìyuán Kējì · Enflame Technology</span></div>
+        <div class="annotation-card-body">83.8% customer concentration in Tencent, its own largest shareholder, leaves Enflame's revenue base exposed to a single counterparty's discretion.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / FOUNDATION MODELS</div>
+    <div class="story-headline">$1.2 Billion, Up 220%: MiniMax's Alibaba Cloud Ceiling Shows Compute Spending Outrunning the Plan</div>
+    <div class="story-insight">
+      <p>MiniMax's Aug 26 HKEX filings show its 3-year Alibaba Cloud purchase ceiling raised 220% to $1.2B through 2028. 2026's cap nearly tripled to $300M after MiniMax burned two-thirds of its original $115M budget by June; 2027/2028 caps jump to $400M/$500M.</p>
+      <br>
+      <p>A 220% revision less than eight months into the agreement suggests the original plan underestimated compute needs — a pattern also raising margin questions after Kimi K3's July pricing reset hit MiniMax shares.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Whether this reflects durable demand growth or one-time catch-up spending isn't disclosed — but it adds a new variable to an already-pressured margin picture.</div>
+    <div class="chart-box">
+      <div class="chart-title">MiniMax Alibaba Cloud Annual Spending Caps, 2026–2028</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="15" y="30" font-size="10" fill="#5a6a8a">$500M</text>
+        <text x="15" y="140" font-size="10" fill="#5a6a8a">$0</text>
+        <rect x="130" y="126" width="60" height="14" fill="#8a9bb5" opacity="0.5"/>
+        <rect x="130" y="112" width="60" height="14" fill="#c0392b" opacity="0.85"/>
+        <text x="115" y="106" font-size="11" fill="#1a1a2e" font-weight="700">$115M → $300M</text>
+        <text x="140" y="158" font-size="10" fill="#5a6a8a">2026</text>
+        <rect x="380" y="121" width="60" height="19" fill="#8a9bb5" opacity="0.5"/>
+        <rect x="380" y="82" width="60" height="39" fill="#c0392b" opacity="0.85"/>
+        <text x="365" y="76" font-size="11" fill="#1a1a2e" font-weight="700">$125M → $400M</text>
+        <text x="390" y="158" font-size="10" fill="#5a6a8a">2027</text>
+        <rect x="630" y="120" width="60" height="20" fill="#8a9bb5" opacity="0.5"/>
+        <rect x="630" y="65" width="60" height="55" fill="#c0392b" opacity="0.85"/>
+        <text x="615" y="59" font-size="11" fill="#1a1a2e" font-weight="700">$135M → $500M</text>
+        <text x="640" y="158" font-size="10" fill="#5a6a8a">2028</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCALE</div>
+        <div class="annotation-card-zh">阿里云<span class="annotation-card-en">Ālǐyún · Alibaba Cloud</span></div>
+        <div class="annotation-card-body">API service budget for 2026 rose more than tenfold, from $650K to $7.5M — a sharper jump than the base compute ceiling itself.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DRIVER UNKNOWN</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · compute power</span></div>
+        <div class="annotation-card-body">The filing doesn't disclose whether higher usage comes from new training runs, consumer inference demand, or both.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGIN PRESSURE</div>
+        <div class="annotation-card-zh">定价冲击<span class="annotation-card-en">dìngjià chōngjī · pricing shock</span></div>
+        <div class="annotation-card-body">Kimi K3's July pricing reset already compressed model-layer margin assumptions across MiniMax and peers; a tripled compute bill adds to that pressure.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO / PROPERTY POLICY</div>
+    <div class="story-headline">40 Years, Not Lower Rates: Beijing Pairs Longer Mortgages With a Developer Financing Reopening</div>
+    <div class="story-insight">
+      <p>PBOC said Friday Aug 28 it will extend maximum mortgage terms to 40 years from 30, paired with a CSRC statement supporting developer fundraising via equity and bond issuance. The sector's downturn is in its sixth year: investment -19.2% y/y, starts -24%, prices still under pressure (Bloomberg, Aug 28).</p>
+      <br>
+      <p>The mechanism lowers monthly payments without touching the LPR — consistent with PBOC's "fiscal over monetary" posture signaled Aug 2, where it declined further RRR/rate cuts.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A longer mortgage term only moves transaction volume if buyers believe prices have stopped falling — a belief this package doesn't directly address.</div>
+    <div class="chart-box">
+      <div class="chart-title">China Property Sector Indicators, YoY %</div>
+      <svg viewBox="0 0 820 170" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="140" x2="780" y2="140" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#c0392b" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="15" y="30" font-size="10" fill="#5a6a8a">+10%</text>
+        <text x="15" y="84" font-size="10" fill="#5a6a8a">0%</text>
+        <text x="15" y="138" font-size="10" fill="#5a6a8a">-30%</text>
+        <rect x="150" y="80" width="90" height="46" fill="#c0392b" opacity="0.85"/>
+        <text x="155" y="140" font-size="10" fill="#5a6a8a">Investment</text>
+        <text x="160" y="74" font-size="11" fill="#1a1a2e" font-weight="700">-19.2%</text>
+        <rect x="380" y="80" width="90" height="58" fill="#c0392b" opacity="0.85"/>
+        <text x="390" y="140" font-size="10" fill="#5a6a8a">Starts</text>
+        <text x="390" y="74" font-size="11" fill="#1a1a2e" font-weight="700">-24%</text>
+        <rect x="610" y="80" width="90" height="20" fill="#b45309" opacity="0.75"/>
+        <text x="590" y="140" font-size="10" fill="#5a6a8a">Vanke 2-yr loss</text>
+        <text x="595" y="74" font-size="11" fill="#1a1a2e" font-weight="700">¥130B+</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUPPLY SIDE</div>
+        <div class="annotation-card-zh">证监会<span class="annotation-card-en">Zhèngjiānhuì · CSRC</span></div>
+        <div class="annotation-card-body">Reopening developer equity and bond fundraising targets a liquidity constraint — whether capital reaches construction rather than debt service is unresolved.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RATES UNCHANGED</div>
+        <div class="annotation-card-zh">房贷<span class="annotation-card-en">fángdài · mortgage</span></div>
+        <div class="annotation-card-body">The 40-year term lowers monthly payments but leaves the LPR framework — at record lows for 14 straight months — untouched.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND GAP</div>
+        <div class="annotation-card-zh">六年<span class="annotation-card-en">liù nián · sixth year</span></div>
+        <div class="annotation-card-body">Nearly six years into the downturn, Beijing is still treating this as a financing problem — transaction volume ultimately depends on buyers believing prices have bottomed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #103 · AUGUST 30, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
