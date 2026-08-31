@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #93 · August 31, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:32px 40px 24px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { margin-top:10px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .section { padding:32px 40px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#3730a3; margin-bottom:18px; }
+
+  .glance-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .glance-tag.ai { color:#3730a3; }
+  .glance-tag.semi { color:#be185d; }
+  .glance-tag.macro { color:#b45309; }
+  .glance-headline { font-size:14px; font-weight:600; color:#1a1a2e; margin-bottom:8px; line-height:1.4; }
+  .glance-stat { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:11px; color:#5a6a8a; margin-top:2px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:10px; padding:28px; margin-bottom:28px; }
+  .story-card-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:12px; }
+  .story-card-tag.ai { background:#e0e7ff; color:#3730a3; }
+  .story-card-tag.semi { background:#fce7f3; color:#be185d; }
+  .story-card-tag.macro { background:#fef3e2; color:#b45309; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.3; }
+  .story-card-text { font-size:13.5px; color:#3a4a6a; line-height:1.75; margin-bottom:10px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:8px; padding:20px; margin:18px 0; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#5a6a8a; margin-bottom:12px; }
+  .annotation-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:18px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-label.signal { color:#0e7490; }
+  .annotation-label.watch { color:#b45309; }
+  .annotation-label.risk { color:#be185d; }
+  .annotation-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .takeaway { border-left:3px solid #3730a3; background:#f8f9fc; padding:12px 16px; margin-top:14px; font-size:13px; color:#1a1a2e; }
+  .takeaway strong { color:#3730a3; }
+
+  .footer { padding:24px 40px 32px; text-align:center; font-size:11px; color:#8a9bb5; }
+
+  @media (max-width: 640px) {
+    .glance-grid, .annotation-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">日本速報 Japan Brief · Visualized</div>
+    <div class="masthead-meta">Issue #93 · Monday, August 31, 2026</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">At a Glance</div>
+    <div class="glance-grid">
+      <div class="glance-card">
+        <div class="glance-tag ai">STORY 1 · AI & TECH</div>
+        <div class="glance-headline">Rakuten Securities launches agent-powered AI chat, Sept 2</div>
+        <div class="glance-stat">24/7</div>
+        <div class="glance-stat-label">colloquial-query support, advisory extension eyed</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-tag semi">STORY 2 · SEMICONDUCTORS</div>
+        <div class="glance-headline">Ajinomoto reportedly cuts ABF chip-film supply to China 30%</div>
+        <div class="glance-stat">&gt;95%</div>
+        <div class="glance-stat-label">Ajinomoto's global ABF market share</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-tag macro">STORY 3 · MACRO & BOJ</div>
+        <div class="glance-headline">July data split: record-low unemployment, weak output/spending</div>
+        <div class="glance-stat">2.3%</div>
+        <div class="glance-stat-label">unemployment, a post-pandemic low</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <span class="story-card-tag ai">AI & Tech · Story 1</span>
+      <div class="story-card-headline">Rakuten Securities Bets on Generative AI for Customer Support</div>
+      <p class="story-card-text">Rakuten Securities will launch an agent-powered generative-AI chat layer on September 2, capable of interpreting colloquial questions rather than fixed menu prompts — and has flagged interest in eventually extending into investment-advisory consultations, a regulated activity under FSA rules.</p>
+      <p class="story-card-text">The move follows Rakuten Group's first quarterly net profit in six years, aided by AI-powered commerce tools that already cut Ichiba's time-to-purchase 41% and lifted average order value 17%. Extending that toolkit into brokerage is a lower-risk trial before any move toward AI-driven advice.</p>
+
+      <div class="chart-box">
+        <div class="chart-title">Rakuten Ichiba AI Chat: Measured Impact (Q2 FY2026)</div>
+        <svg viewBox="0 0 560 180" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="150" x2="520" y2="150" stroke="#e8eaf2" stroke-width="1"/>
+          <!-- bar 1: time-to-purchase reduction -->
+          <rect x="120" y="150" width="80" height="90" fill="#3730a3" transform="translate(0,-90)"/>
+          <text x="160" y="55" text-anchor="middle" font-size="16" font-weight="700" fill="#3730a3">41%</text>
+          <text x="160" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">faster time-to-purchase</text>
+          <!-- bar 2: AOV lift -->
+          <rect x="320" y="150" width="80" height="40" fill="#818cf8" transform="translate(0,-40)"/>
+          <text x="360" y="105" text-anchor="middle" font-size="16" font-weight="700" fill="#3730a3">17%</text>
+          <text x="360" y="168" text-anchor="middle" font-size="10" fill="#5a6a8a">avg. order value lift</text>
+        </svg>
+      </div>
+
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">Financial-services AI chat is moving from marketing gimmick to measurable conversion tool at group scale.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">Whether Rakuten Securities pushes into "advisory consultations" and how the FSA treats that boundary.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">No compliance framework for AI-driven advisory has been disclosed — regulatory friction is the likely gating factor.</div>
+        </div>
+      </div>
+      <div class="takeaway"><strong>Investor takeaway:</strong> Brokerage AI chat itself is low-stakes; the real optionality is whether Japan's FSA lets AI agents cross into advisory territory, which would reshape retail brokerage cost structures.</div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <span class="story-card-tag semi">Semiconductors · Story 2</span>
+      <div class="story-card-headline">A Seasonings Company's Grip on a Critical Chip Material Turns Into Geopolitical Leverage</div>
+      <p class="story-card-text">Ajinomoto reportedly cut ABF chip-packaging film supply to China by 30%, prioritizing Japanese and overseas core accounts. Ajinomoto controls over 95% of the global ABF market; China's self-sufficiency sits below 5%.</p>
+      <p class="story-card-text">The move follows China's rare-earth export curbs on Japan-linked end users — a reversal of leverage in a material where Japan, not China, holds the chokepoint. Every account attributes the cut to AI-driven capacity allocation rather than policy.</p>
+
+      <div class="chart-box">
+        <div class="chart-title">Goldman Sachs: Global ABF Supply-Demand Gap Forecast</div>
+        <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="160" x2="520" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="30" y="164" font-size="10" fill="#5a6a8a">0%</text>
+          <text x="20" y="44" font-size="10" fill="#5a6a8a">42%</text>
+          <line x1="56" y1="40" x2="520" y2="40" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3,3"/>
+          <!-- points: 2H26=10%, 2027=21%, 2028=42% -->
+          <polyline points="140,146 300,109 460,40" fill="none" stroke="#be185d" stroke-width="2.5"/>
+          <circle cx="140" cy="146" r="5" fill="#be185d"/>
+          <circle cx="300" cy="109" r="5" fill="#be185d"/>
+          <circle cx="460" cy="40" r="5" fill="#be185d"/>
+          <text x="140" y="180" text-anchor="middle" font-size="11" fill="#3a4a6a">2H 2026</text>
+          <text x="140" y="132" text-anchor="middle" font-size="12" font-weight="700" fill="#be185d">10%</text>
+          <text x="300" y="180" text-anchor="middle" font-size="11" fill="#3a4a6a">2027</text>
+          <text x="300" y="95" text-anchor="middle" font-size="12" font-weight="700" fill="#be185d">21%</text>
+          <text x="460" y="180" text-anchor="middle" font-size="11" fill="#3a4a6a">2028</text>
+          <text x="460" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#be185d">42%</text>
+        </svg>
+      </div>
+
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">Japan holds an under-appreciated chokepoint (ABF film) in the same AI supply chain where China holds rare earths.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">Whether China's three domestic ABF alternatives (Huazheng, Newface, Hongchang) clear multi-year reliability qualification.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">The 30% volume-cut figure is unconfirmed, sourced only to supply-chain contacts; only the ~30% price hike is confirmed.</div>
+        </div>
+      </div>
+      <div class="takeaway"><strong>Investor takeaway:</strong> Every FC-BGA package under an Nvidia, AMD, or Intel accelerator runs through Ajinomoto's film — a widening structural supply gap through 2028 is a persistent input-cost tailwind for Ajinomoto and a cost headwind for chip packagers.</div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <span class="story-card-tag macro">Macro & BOJ · Story 3</span>
+      <div class="story-card-headline">Japan's July Data Delivers a Split Verdict</div>
+      <p class="story-card-text">Unemployment fell to a post-pandemic low of 2.3%, well below the 2.5% consensus. But industrial production (-1.6% m/m) and retail sales (-1.6%) both missed sharply, dragged by weak auto and chip-equipment output.</p>
+      <p class="story-card-text">The split lands alongside MoF's disclosure of a record ¥15.39tn FX intervention over July-August — the largest monthly total ever, pushing 2026's cumulative total above ¥27tn, already past 2024's full-year record.</p>
+
+      <div class="chart-box">
+        <div class="chart-title">July 2026: Actual vs. Consensus</div>
+        <svg viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="160" x2="520" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="100" x2="520" y2="100" stroke="#dde0ec" stroke-width="1"/>
+          <text x="30" y="104" font-size="9" fill="#5a6a8a">0</text>
+          <!-- Group 1: Unemployment (inverted scale - lower is better, show as positive beat) -->
+          <rect x="100" y="60" width="26" height="40" fill="#0e7490"/>
+          <rect x="130" y="70" width="26" height="30" fill="#a8c5cf"/>
+          <text x="128" y="182" text-anchor="middle" font-size="10" fill="#3a4a6a">Unemployment</text>
+          <text x="113" y="52" text-anchor="middle" font-size="10" font-weight="700" fill="#0e7490">2.3%</text>
+          <text x="143" y="62" text-anchor="middle" font-size="9" fill="#8a94a8">2.5% est</text>
+          <!-- Group 2: Industrial Production -->
+          <rect x="240" y="100" width="26" height="35" fill="#be185d"/>
+          <rect x="270" y="100" width="26" height="24" fill="#e8a8bd"/>
+          <text x="268" y="182" text-anchor="middle" font-size="10" fill="#3a4a6a">Ind. Production</text>
+          <text x="253" y="150" text-anchor="middle" font-size="10" font-weight="700" fill="#be185d">-1.6%</text>
+          <text x="283" y="139" text-anchor="middle" font-size="9" fill="#8a94a8">-1.1% est</text>
+          <!-- Group 3: Retail Sales -->
+          <rect x="380" y="100" width="26" height="35" fill="#be185d"/>
+          <rect x="410" y="100" width="26" height="5" fill="#e8a8bd"/>
+          <text x="408" y="182" text-anchor="middle" font-size="10" fill="#3a4a6a">Retail Sales</text>
+          <text x="393" y="150" text-anchor="middle" font-size="10" font-weight="700" fill="#be185d">-1.6%</text>
+          <text x="423" y="114" text-anchor="middle" font-size="9" fill="#8a94a8">-0.2% est</text>
+        </svg>
+      </div>
+
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">Tight labor market keeps the September hike case alive — Himino's Aug 27 speech left that door open.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">Whether MoF steps in with a third FX intervention before Sept 17-18, or lets a hawkish hike do the currency-support work.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">Weak output and spending give the Board's wait-for-more-data camp fresh ammunition against a September move.</div>
+        </div>
+      </div>
+      <div class="takeaway"><strong>Investor takeaway:</strong> September's decision has to reconcile a labor market that says "hike" with an output/spending picture that says "wait" — positioning around the meeting should account for both a hike and a hold scenario.</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    日本速報 · JAPAN BRIEF · ISSUE #93 · AUGUST 31, 2026 · NOT INVESTMENT ADVICE
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
