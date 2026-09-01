@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 · Japan Brief Visualized · Issue #95</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; background:#f2f4f7; }
+  .masthead { background:#1a1a2e; padding:32px 40px 24px; border-bottom:4px solid #3730a3; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { margin-top:10px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .glance { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; padding:28px 40px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:16px 18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .glance-tag.ai { color:#3730a3; }
+  .glance-tag.semi { color:#be185d; }
+  .glance-tag.macro { color:#b45309; }
+  .glance-headline { font-size:13.5px; font-weight:600; color:#1a1a2e; margin-bottom:6px; line-height:1.4; }
+  .glance-stat { font-size:20px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:11px; color:#5a6a8a; }
+  .section-title { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:#3730a3; padding:8px 40px 4px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; margin:16px 40px; padding:24px 28px; }
+  .story-card-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:10px; }
+  .story-card-tag.ai { background:#e0e7ff; color:#3730a3; }
+  .story-card-tag.semi { background:#fce7f3; color:#be185d; }
+  .story-card-tag.macro { background:#fef3e2; color:#b45309; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:12px; }
+  .story-card-body { font-size:13.5px; color:#3a4a6a; line-height:1.75; margin-bottom:16px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:18px 20px; margin-bottom:16px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#3730a3; margin-bottom:12px; }
+  .takeaway { background:#f8f9fc; border-left:3px solid #3730a3; padding:12px 16px; margin-bottom:16px; font-size:13px; color:#3a4a6a; border-radius:0 4px 4px 0; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .annotations { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-label.signal { color:#0e7490; }
+  .annotation-label.watch { color:#b45309; }
+  .annotation-label.risk { color:#be185d; }
+  .annotation-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .footer { padding:24px 40px 32px; text-align:center; font-size:10.5px; color:#5a6a8a; letter-spacing:0.5px; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized · Nihon Sokuhō</div>
+    <div class="masthead-title">日本速報 · Visualized</div>
+    <div class="masthead-meta">Issue #95 &nbsp;·&nbsp; September 2, 2026</div>
+  </div>
+  <div class="nav-row">
+    <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+    <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+    <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+  </div>
+
+  <div class="glance">
+    <div class="glance-card">
+      <div class="glance-tag ai">STORY 1 · AI & TECH</div>
+      <div class="glance-headline">Qualcomm launches a Japan Robotics Center, challenging Nvidia's physical AI coalition</div>
+      <div class="glance-stat">2nd</div>
+      <div class="glance-stat-label">major physical AI platform launched in Japan in 3 weeks</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag semi">STORY 2 · SEMICONDUCTORS</div>
+      <div class="glance-headline">Tokyo Electron and Advantest lead a Nikkei pullback as bond yields spike</div>
+      <div class="glance-stat">-3.4%</div>
+      <div class="glance-stat-label">Tokyo Electron, biggest Nikkei 225 drag (Sept 1)</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag macro">STORY 3 · MACRO & BOJ</div>
+      <div class="glance-headline">10-year JGB yield breaks 3% for the first time since 1996</div>
+      <div class="glance-stat">73%</div>
+      <div class="glance-stat-label">swaps-implied odds of a Sept 18 BOJ hike</div>
+    </div>
+  </div>
+
+  <div class="section-title">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <span class="story-card-tag ai">AI & TECH</span>
+    <div class="story-card-headline">Qualcomm Stakes a Claim in Japan's Physical AI Buildout</div>
+    <div class="story-card-body">
+      Qualcomm's Aug 26 announcement of a Japan Robotics Center puts it in direct proximity to Nvidia's Aug 13 physical AI platform launch — both initiatives share three named partners (Fanuc, Fujitsu, Kawasaki Heavy Industries), suggesting Japan's robot makers may end up running dual compute-platform strategies rather than consolidating around a single vendor. Qualcomm did not disclose an investment figure or opening timeline, a gap that separates a strategic announcement from a funded commitment.
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Physical AI Platform Timeline · 2026</div>
+      <svg viewBox="0 0 760 150" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+        <line x1="40" y1="90" x2="720" y2="90" stroke="#e8eaf2" stroke-width="2"/>
+        <!-- Aug 13 Nvidia -->
+        <circle cx="180" cy="90" r="7" fill="#3730a3"/>
+        <line x1="180" y1="90" x2="180" y2="50" stroke="#dde0ec" stroke-width="1"/>
+        <text x="180" y="40" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">Aug 13</text>
+        <text x="180" y="115" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Nvidia platform</text>
+        <text x="180" y="128" text-anchor="middle" font-size="10.5" fill="#5a6a8a">w/ Fujitsu, Fanuc,</text>
+        <text x="180" y="141" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Yaskawa, Kawasaki</text>
+        <!-- Aug 26 Qualcomm -->
+        <circle cx="460" cy="90" r="7" fill="#0e7490"/>
+        <line x1="460" y1="90" x2="460" y2="50" stroke="#dde0ec" stroke-width="1"/>
+        <text x="460" y="40" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">Aug 26</text>
+        <text x="460" y="115" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Qualcomm Robotics</text>
+        <text x="460" y="128" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Center w/ Fanuc,</text>
+        <text x="460" y="141" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Fujitsu, Kawasaki + 7</text>
+        <!-- Today -->
+        <circle cx="680" cy="90" r="6" fill="#b45309"/>
+        <text x="680" y="40" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="700">Sept 2</text>
+        <text x="680" y="115" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Today —</text>
+        <text x="680" y="128" text-anchor="middle" font-size="10.5" fill="#5a6a8a">no timeline yet</text>
+        <text x="680" y="141" text-anchor="middle" font-size="10.5" fill="#5a6a8a">for either center</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      Watch whether Fanuc, Fujitsu, and Kawasaki disclose how they're splitting workloads between the two platforms — that allocation, not either press release, is the real signal of which silicon vendor captures more of Japan's physical AI buildout.
+    </div>
+    <div class="annotations">
+      <div class="annotation-card">
+        <div class="annotation-label signal">SIGNAL</div>
+        <div class="annotation-text">Two competing full-ecosystem physical AI platforms launched in Japan within 13 days — a sign the market is being contested, not conceded.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label watch">WATCH</div>
+        <div class="annotation-text">Qualcomm Japan Robotics Center opening date and investment figure, once disclosed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label risk">RISK</div>
+        <div class="annotation-text">Overlapping coalitions could signal hedging by Japanese partners rather than genuine platform commitment from either side.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <span class="story-card-tag semi">SEMICONDUCTORS</span>
+    <div class="story-card-headline">Chip Equipment Names Lead a Nikkei Pullback as Bond Yields Bite</div>
+    <div class="story-card-body">
+      Tokyo Electron and Advantest sold off on Sept 1 in a near carbon-copy of their Aug 18 decline — both episodes driven by Middle East oil spikes pushing JGB yields higher, not by any change in chip-equipment demand. TEL's re-rating over 2026 has made it trade increasingly like a long-duration bond proxy, amplifying every yield move regardless of its relevance to actual order books.
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Two Selloffs, Same Mechanism · % Change</div>
+      <svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+        <line x1="60" y1="30" x2="60" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="140" x2="720" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <!-- Aug 18 bars -->
+        <rect x="120" y="140" width="46" height="58" fill="#be185d" opacity="0.85"/>
+        <text x="143" y="135" text-anchor="middle" font-size="11" fill="#be185d" font-weight="700">-2.9%</text>
+        <rect x="180" y="140" width="46" height="34" fill="#be185d" opacity="0.55"/>
+        <text x="203" y="135" text-anchor="middle" font-size="11" fill="#be185d" font-weight="700">-1.7%</text>
+        <text x="173" y="160" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Aug 18</text>
+        <!-- Sept 1 bars -->
+        <rect x="340" y="140" width="46" height="68" fill="#3730a3" opacity="0.9"/>
+        <text x="363" y="135" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">-3.4%</text>
+        <rect x="400" y="140" width="46" height="32" fill="#3730a3" opacity="0.55"/>
+        <text x="423" y="135" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">-1.6%</text>
+        <text x="393" y="160" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Sept 1</text>
+        <!-- Legend -->
+        <rect x="540" y="45" width="12" height="12" fill="#3730a3" opacity="0.9"/>
+        <text x="558" y="55" font-size="10.5" fill="#3a4a6a">Tokyo Electron</text>
+        <rect x="540" y="65" width="12" height="12" fill="#3730a3" opacity="0.55"/>
+        <text x="558" y="75" font-size="10.5" fill="#3a4a6a">Advantest</text>
+        <text x="540" y="100" font-size="10" fill="#5a6a8a">Both triggered by</text>
+        <text x="540" y="112" font-size="10" fill="#5a6a8a">oil-driven JGB</text>
+        <text x="540" y="124" font-size="10" fill="#5a6a8a">yield spikes</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      Treat these bond-driven pullbacks as valuation noise, not demand signals — TEL's Q1 FY2027 order guidance and the Aug 12 Tankan survey both point to intact underlying capex strength.
+    </div>
+    <div class="annotations">
+      <div class="annotation-card">
+        <div class="annotation-label signal">SIGNAL</div>
+        <div class="annotation-text">Second near-identical selloff in two weeks confirms a repeatable, tradeable pattern rather than a one-off shock.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label watch">WATCH</div>
+        <div class="annotation-text">Sept 17-18 BOJ decision — a "sell the rumor, buy the news" setup if the hike is as priced-in as swaps suggest.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label risk">RISK</div>
+        <div class="annotation-text">Repeated oil-driven shocks could compound into a genuine capex slowdown if energy costs stay elevated into 2027 budgets.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <span class="story-card-tag macro">MACRO & BOJ</span>
+    <div class="story-card-headline">Japan's 10-Year Yield Breaks a Three-Decade Ceiling</div>
+    <div class="story-card-body">
+      The 10-year JGB yield's push through 3% on Sept 1 caps a repricing that has run since mid-August, yet swaps-implied odds of a Sept 18 BOJ hike (73%) are essentially unchanged from late August — the market has largely finished pricing the hike itself and is now separately discounting a structurally higher-rate regime. Board member Takata's Sept 2 speech is the second of three pre-meeting addresses designed to remove surprise from the decision.
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">10-Year JGB Yield · Jul–Sept 2026</div>
+      <svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+        <line x1="50" y1="30" x2="50" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="50" y1="140" x2="720" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="30" y="45" font-size="10" fill="#5a6a8a" text-anchor="end">3.0%</text>
+        <line x1="50" y1="42" x2="720" y2="42" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="30" y="95" font-size="10" fill="#5a6a8a" text-anchor="end">2.85%</text>
+        <text x="30" y="140" font-size="10" fill="#5a6a8a" text-anchor="end">2.7%</text>
+        <polyline points="70,130 150,110 230,95 310,88 390,75 470,62 550,55 630,45 700,40"
+          fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="700" cy="40" r="5" fill="#b45309"/>
+        <text x="700" y="25" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">3.0%</text>
+        <text x="700" y="155" text-anchor="middle" font-size="10" fill="#5a6a8a">Sept 1</text>
+        <text x="70" y="155" text-anchor="middle" font-size="10" fill="#5a6a8a">Jul 2</text>
+        <text x="390" y="155" text-anchor="middle" font-size="10" fill="#5a6a8a">Aug 12</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      With the hike itself substantially priced, the higher-value question shifts from "does the BOJ move on Sept 18" to "does Ueda's language commit to a second hike before year-end" — that's the variable still capable of moving yields and the yen from here.
+    </div>
+    <div class="annotations">
+      <div class="annotation-card">
+        <div class="annotation-label signal">SIGNAL</div>
+        <div class="annotation-text">Three-speech telegraph (Himino Aug 27, Takata Sept 2, Masu Sept 10) leaves little room for a Sept 18 surprise.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label watch">WATCH</div>
+        <div class="annotation-text">Yen trajectory post-hike — a move back toward ¥160 despite a hike would signal rate differentials still dominate.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label risk">RISK</div>
+        <div class="annotation-text">A 3-decade-high JGB yield raises refinancing costs for Japan's already-elevated public debt load.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">日本速報 · JAPAN BRIEF · ISSUE #95 · SEPTEMBER 2, 2026 · NOT INVESTMENT ADVICE</div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
