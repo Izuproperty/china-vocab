@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #109 · September 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #109 · September 5, 2026</div>
+    <div class="masthead-sub">IFA Berlin Robot Runway · AI Content Crackdown Tally · Citi's China Brokerage Launch</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">932<span class="card-num-unit">exhibitors</span></div>
+      <div class="card-label">Chinese firms at IFA Berlin 2026's first robot runway</div>
+      <div class="card-delta delta-amber">Unitree stock down 50% from its post-IPO peak</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · GOVERNANCE</div>
+      <div class="card-num">5.61M<span class="card-num-unit">items removed</span></div>
+      <div class="card-label">CAC's four-month "Clear and Bright" AI crackdown tally</div>
+      <div class="card-delta delta-amber">49,000+ accounts, 2,400+ sites/apps actioned</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">~100<span class="card-num-unit">staff by year-end</span></div>
+      <div class="card-label">Citi's final go-ahead to launch its China brokerage business</div>
+      <div class="card-delta delta-green">Could land same week as Xi's Washington visit</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH · ROBOTICS</div>
+    <div class="story-headline">932 Exhibitors, One Runway: Chinese Humanoids Take Over IFA Berlin as Unitree's Stock Halves</div>
+    <div class="story-insight">
+      <p>IFA Berlin hosts "Robots on the Runway" today — the trade show's first robot catwalk in 102 years. Unitree's G1 shares the stage with AgiBot, EngineAI, DEEP Robotics, Astrall Dynamics, and AIMOGA, with Chinese firms accounting for 932 of this year's exhibitors. AgiBot led H1 2026 global shipments (8,400 units, 44% share) versus Unitree's 5,900 — a gap that matters less for today's spectacle than for the diverging capital paths behind it.</p>
+      <br>
+      <p>The showcase lands three days after Unitree's stock cut its post-listing gain in half — from a 629% intraday debut-day spike to roughly 3x issue price by September 2. A separate report that Unitree units could be accessed remotely from ~30 meters away adds a security question just as the hardware is on display in Europe, layered on top of existing US FCC and Pentagon restrictions.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> NDRC officials warned in late August that 150+ firms are now chasing humanoid demos — the gap between runway spectacle and investable unit economics is where scrutiny is headed next.</div>
+    <div class="chart-box">
+      <div class="chart-title">Unitree Share Price: IPO to Sept 2 (Yuan)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+
+        <text x="150" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">IPO Price (Aug 6)</text>
+        <rect x="120" y="140" width="60" height="10" fill="#5a6a8a"/>
+        <text x="150" y="132" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">¥150.80</text>
+
+        <text x="400" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Debut Intraday High</text>
+        <rect x="370" y="30" width="60" height="120" fill="#166534" opacity="0.75"/>
+        <text x="400" y="23" font-size="11" fill="#166534" text-anchor="middle" font-weight="700">¥1,100</text>
+
+        <text x="650" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Sept 2 Close</text>
+        <rect x="620" y="90" width="60" height="60" fill="#c0392b"/>
+        <text x="650" y="83" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">¥546.51</text>
+        <text x="650" y="180" font-size="9" fill="#9a8a7a" text-anchor="middle">Down 50%+ from peak, still 3.6x IPO price</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FIELD BREADTH</div>
+        <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+        <div class="annotation-card-body">932 Chinese exhibitors at IFA signals a deep bench beyond the two shipment leaders — but breadth also means most will not scale.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · UNIT ECONOMICS</div>
+        <div class="annotation-card-zh">宇树科技<span class="annotation-card-en">Yǔshù Kējì · Unitree Robotics</span></div>
+        <div class="annotation-card-body">The debut-day pop reflected constrained float and restricted short-selling as much as any considered repricing of 2025 revenue (¥1.7B).</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SECURITY & ACCESS</div>
+        <div class="annotation-card-zh">受限清单<span class="annotation-card-en">shòuxiàn qīngdān · covered/restricted list</span></div>
+        <div class="annotation-card-body">A reported 30-meter remote-access vulnerability, plus FCC Covered List and Pentagon designations, complicate Western enterprise and government sales regardless of hardware quality.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH · GOVERNANCE</div>
+    <div class="story-headline">5.61 Million Pieces, 49,000 Accounts: Beijing Tallies Its Four-Month AI Content Crackdown</div>
+    <div class="story-insight">
+      <p>CAC reported this week that its "Clear and Bright: Rectifying AI Application Chaos" campaign, running since late April, has removed 5.61 million pieces of unlawful or rule-violating content, penalized 49,000+ accounts, and actioned 2,400+ websites and apps — targeting AI-fabricated rumors, deepfake impersonation, "water army" astroturfing, and content harming minors across Douyin, Kuaishou, RedNote, and WeChat.</p>
+      <br>
+      <p>The more consequential signal is forward-looking: CAC officials describe pushing controls earlier in the pipeline — training-data review, output restrictions, app-store screening — before content reaches distribution, rather than relying mainly on after-the-fact removal.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A shift from moderate-and-remove to pre-clearance-style review would raise compliance costs and slow time-to-market for China-facing consumer AI apps if it moves from stated intent to implemented process.</div>
+    <div class="chart-box">
+      <div class="chart-title">"Clear and Bright" AI Campaign: Enforcement Tally (Apr–Sept 2026)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+
+        <text x="150" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Content Removed</text>
+        <rect x="110" y="30" width="80" height="120" fill="#c0392b"/>
+        <text x="150" y="23" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">5.61M pieces</text>
+
+        <text x="400" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Accounts Penalized</text>
+        <rect x="360" y="139" width="80" height="11" fill="#b45309"/>
+        <text x="400" y="131" font-size="11" fill="#b45309" text-anchor="middle" font-weight="700">49,000+</text>
+
+        <text x="650" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Sites / Apps Actioned</text>
+        <rect x="610" y="141" width="80" height="9" fill="#b45309" opacity="0.8"/>
+        <text x="650" y="133" font-size="11" fill="#b45309" text-anchor="middle" font-weight="700">2,400+</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ENFORCEMENT SCALE</div>
+        <div class="annotation-card-zh">清朗<span class="annotation-card-en">Qīnglǎng · Clear and Bright</span></div>
+        <div class="annotation-card-body">A recurring CAC campaign brand now extended specifically to generative AI misuse — enforcement sweeps like this are becoming a fixture of the regulatory calendar.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRE-CLEARANCE SHIFT</div>
+        <div class="annotation-card-zh">深度合成<span class="annotation-card-en">shēndù héchéng · deepfake / deep synthesis</span></div>
+        <div class="annotation-card-body">CAC's stated push toward training-data review and pre-distribution screening would be a materially higher compliance bar than current after-the-fact moderation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · METRIC MISREAD</div>
+        <div class="annotation-card-zh">执法力度<span class="annotation-card-en">zhífǎ lìdù · enforcement intensity</span></div>
+        <div class="annotation-card-body">The takedown count measures enforcement activity, not the underlying share of harmful AI content on these platforms — treat it as a regulatory-intensity signal, not a prevalence estimate.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO</div>
+    <div class="story-headline">Final Sign-Off Pending: Citi's China Brokerage Could Start Business the Same Week as Xi's Washington Trip</div>
+    <div class="story-insight">
+      <p>Citigroup expects the final regulatory sign-off to actually begin operating its wholly-owned China brokerage as soon as this month, per a Reuters exclusive — a distinct step from the CSRC's May 2026 approval to establish the entity, itself a four-year process from its December 2021 application. Citi aims to roughly double headcount to ~100 by year-end, with bankers relocating from Hong Kong. The operational green light could coincide with Xi Jinping's planned Washington visit later this month.</p>
+      <br>
+      <p>Citi would begin operating behind, not ahead of, Goldman Sachs, JPMorgan, and Morgan Stanley, all of which already run wholly-owned China securities units and posted sharp 2025 profit gains — gains that underscore the multi-year gap between legal establishment and franchise-level profitability Citi is only now starting to close.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The more useful test is whether Beijing keeps extending operating clearances to already-licensed banks on a predictable timeline, or whether the pace keeps clustering around politically convenient moments.</div>
+    <div class="chart-box">
+      <div class="chart-title">2025 Profit at Existing Wholly-Owned China Securities Units (RMB)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+
+        <text x="150" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Goldman Sachs</text>
+        <rect x="110" y="35" width="80" height="115" fill="#c0392b"/>
+        <text x="150" y="28" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">¥1.46B (~3x)</text>
+
+        <text x="400" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">JPMorgan</text>
+        <rect x="360" y="65" width="80" height="85" fill="#b45309"/>
+        <text x="400" y="58" font-size="11" fill="#b45309" text-anchor="middle" font-weight="700">¥984M (~4x)</text>
+
+        <text x="650" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Morgan Stanley</text>
+        <rect x="610" y="135" width="80" height="15" fill="#b45309" opacity="0.7"/>
+        <text x="650" y="128" font-size="11" fill="#b45309" text-anchor="middle" font-weight="700">¥138M (~7x)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MARKET ACCESS</div>
+        <div class="annotation-card-zh">独资<span class="annotation-card-en">dúzī · wholly foreign-owned</span></div>
+        <div class="annotation-card-body">A fourth major US bank reaching actual business launch would extend a liberalization trend already validated by three peers' profit growth.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · BUILDOUT LAG</div>
+        <div class="annotation-card-zh">证券公司<span class="annotation-card-en">zhèngquàn gōngsī · securities firm</span></div>
+        <div class="annotation-card-body">Entity establishment (May 2026) to actual business launch (pending) already took ~4 months; Citi's path to peer-level scale from there is the thing to track.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POLITICAL TIMING</div>
+        <div class="annotation-card-zh">时间窗口<span class="annotation-card-en">shíjiān chuāngkǒu · timing window</span></div>
+        <div class="annotation-card-body">Approval clustering around Xi's Washington visit raises the question of whether market access is being used as diplomatic choreography rather than steady-state policy.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #109 · SEPTEMBER 5, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
