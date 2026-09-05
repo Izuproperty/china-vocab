@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #110 · September 6, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #110 · September 6, 2026</div>
+    <div class="masthead-sub">US-China AI Safety Talks · China Declines Trump's H200 Offer · CATL's Battery Quality Warning</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · DIPLOMACY</div>
+      <div class="card-num">1st<span class="card-num-unit">AI-only dialogue</span></div>
+      <div class="card-label">US-China talks planned mid-September, ahead of the Sept 24 summit</div>
+      <div class="card-delta delta-amber">White House: no meeting confirmed yet</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">0<span class="card-num-unit">H200 chips bought</span></div>
+      <div class="card-label">China's response to Trump's offer to sell H200s and AMD-equivalents</div>
+      <div class="card-delta delta-red">Lutnick: controls unlikely at Xi summit</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">600+<span class="card-num-unit">new EV models in 2026</span></div>
+      <div class="card-label">CATL chairman's battery-quality warning at Yibin conference</div>
+      <div class="card-delta delta-amber">~3 launches per day</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH · DIPLOMACY</div>
+    <div class="story-headline">One Dialogue, Two Possible Envoys: Washington and Beijing Prepare Their First AI-Only Talks</div>
+    <div class="story-insight">
+      <p>Reuters reported this week that the US and China are preparing a bilateral AI safety dialogue for mid-September, ahead of the planned September 24 Trump-Xi summit. Treasury Secretary Scott Bessent is expected to lead the US side; Vice Premier He Lifeng — Bessent's existing trade counterpart — is the likely Chinese lead, with Politburo member Ding Xuexiang, who oversees tech/AI/chip policy, as an alternative. The talks build on a Track 1.5 dialogue held in Beijing the prior week with Kevin Rudd participating.</p>
+      <br>
+      <p>Reported scope is narrow — cyberattack monitoring and voluntary lab-to-lab information sharing — not the harder chip-export or capability-competition questions. A White House official told Reuters no meeting is confirmed yet.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Who leads China's delegation matters more than the meeting itself — He Lifeng keeps AI inside the existing economic/trade channel; Ding Xuexiang would signal a distinct technology-policy track.</div>
+    <div class="chart-box">
+      <div class="chart-title">Track Toward the Sept 24 Summit: Reported Sequence</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+
+        <circle cx="140" cy="150" r="7" fill="#5a6a8a"/>
+        <text x="140" y="130" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">Late Aug</text>
+        <text x="140" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">Track 1.5 dialogue,</text>
+        <text x="140" y="184" font-size="10" fill="#5a6a8a" text-anchor="middle">Beijing (Kevin Rudd)</text>
+
+        <circle cx="400" cy="150" r="9" fill="#c0392b"/>
+        <text x="400" y="125" font-size="11" fill="#c0392b" text-anchor="middle" font-weight="700">Mid-Sept (reported)</text>
+        <text x="400" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">Bessent-led AI safety</text>
+        <text x="400" y="184" font-size="10" fill="#5a6a8a" text-anchor="middle">dialogue — unconfirmed</text>
+
+        <circle cx="670" cy="150" r="9" fill="#166534"/>
+        <text x="670" y="125" font-size="11" fill="#166534" text-anchor="middle" font-weight="700">Sept 24</text>
+        <text x="670" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">Planned Trump-Xi</text>
+        <text x="670" y="184" font-size="10" fill="#5a6a8a" text-anchor="middle">Washington summit</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CHANNEL CHOICE</div>
+        <div class="annotation-card-zh">何立峰<span class="annotation-card-en">Hé Lìfēng · He Lifeng</span></div>
+        <div class="annotation-card-body">As Bessent's existing trade counterpart, a He Lifeng-led delegation would fold AI safety into the established economic dialogue rather than a standalone tech-policy track.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SCOPE CREEP</div>
+        <div class="annotation-card-zh">二轨对话<span class="annotation-card-en">èr guǐ duìhuà · Track 1.5 dialogue</span></div>
+        <div class="annotation-card-body">Reported topics — cyberattack monitoring, voluntary information-sharing — are narrow; whether the agenda expands to chips or capability limits is unresolved.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · UNCONFIRMED</div>
+        <div class="annotation-card-zh">尚未确认<span class="annotation-card-en">shàngwèi quèrèn · not yet confirmed</span></div>
+        <div class="annotation-card-body">A White House official disputed that any mid-September AI meeting is set — treat this as a reported plan, not a scheduled outcome.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH · CHIPS</div>
+    <div class="story-headline">"The Olive Branch Wasn't Taken Up": Lutnick Says China Passed on Trump's H200 Offer</div>
+    <div class="story-insight">
+      <p>Commerce Secretary Howard Lutnick said after the G20 Innovation Ministerial that China has not taken up Trump's offer to sell it H200 and AMD-equivalent chips, and doesn't expect export controls on the agenda at the Sept 24 summit as a result. He called enforcement "a bit of whack-a-mole" given offshore GPU-rental workarounds.</p>
+      <br>
+      <p>This is one official's characterization at a press conference, not a joint statement — Beijing hasn't confirmed its reasoning, which may reflect standing industrial policy favoring chip self-sufficiency as much as any specific objection.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Narrows near-term odds of eased US chip access via the summit, reinforcing the operating case for continued reliance on Huawei Ascend and other domestic accelerators.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Offer and the Response</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+
+        <text x="180" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Trump's Offer</text>
+        <rect x="120" y="60" width="120" height="90" fill="#5a6a8a"/>
+        <text x="180" y="53" font-size="11" fill="#5a6a8a" text-anchor="middle" font-weight="700">H200 + AMD-equiv.</text>
+
+        <text x="480" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">China's Uptake</text>
+        <rect x="420" y="146" width="120" height="4" fill="#c0392b"/>
+        <text x="480" y="138" font-size="12" fill="#c0392b" text-anchor="middle" font-weight="700">Zero purchases</text>
+
+        <text x="700" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Summit Outlook</text>
+        <rect x="640" y="120" width="120" height="30" fill="#b45309" opacity="0.85"/>
+        <text x="700" y="113" font-size="11" fill="#b45309" text-anchor="middle" font-weight="700">Controls "off the table"</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SELF-SUFFICIENCY</div>
+        <div class="annotation-card-zh">自主可控<span class="annotation-card-en">zìzhǔ kěkòng · self-sufficiency / controllability</span></div>
+        <div class="annotation-card-body">A pass on H200 is consistent with Beijing's year-long pattern of discouraging Nvidia purchases even when licensed, favoring domestic chip development.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ENFORCEMENT GAPS</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Lutnick's "whack-a-mole" comment concedes offshore GPU-rental structures are actively routing restricted compute around the rules.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SINGLE-SOURCE CLAIM</div>
+        <div class="annotation-card-zh">未经证实<span class="annotation-card-en">wèi jīng zhèngshí · unverified</span></div>
+        <div class="annotation-card-body">Beijing has not publicly confirmed why it declined — the "insulted, not interested" framing comes entirely from the US side.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO</div>
+    <div class="story-headline">600 New Models, One in a Billion: CATL's Chairman Flags a Battery Quality Risk</div>
+    <div class="story-insight">
+      <p>CATL chairman Robin Zeng told the 2026 World Power Battery Conference that 600+ new EV models launched in China this year — roughly three a day — have compressed validation cycles enough to contribute to batch-level battery failures at unnamed suppliers. He cited the "barrel effect" to argue PPM tolerances are inadequate; CATL says it holds a 1-per-billion internal defect target, 1,000x tighter than the 1-per-million industry norm.</p>
+      <br>
+      <p>The warning follows the Sunwoda-Geely settlement and CALB's "banana battery" complaints. Zeng named no brands — this is a risk flag from the dominant supplier during a price war, not a confirmed fleet-safety finding.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Chinese suppliers hold 70%+ of global battery installs, so even small defect-rate gaps compound at scale — a quality/reliability variable worth tracking across the EV supply chain, separate from the price-war narrative.</div>
+    <div class="chart-box">
+      <div class="chart-title">Defect Tolerance: Industry Norm vs. CATL's Internal Target</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+
+        <text x="220" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">Industry Norm (1 PPM)</text>
+        <rect x="160" y="30" width="120" height="120" fill="#b45309"/>
+        <text x="220" y="23" font-size="11" fill="#b45309" text-anchor="middle" font-weight="700">1,000 defects / 1B cells</text>
+
+        <text x="600" y="165" font-size="10.5" fill="#5a6a8a" text-anchor="middle">CATL Internal Target (1 PPB)</text>
+        <rect x="540" y="149" width="120" height="1.2" fill="#166534"/>
+        <text x="600" y="141" font-size="11" fill="#166534" text-anchor="middle" font-weight="700">1 defect / 1B cells</text>
+        <text x="600" y="180" font-size="9" fill="#9a8a7a" text-anchor="middle">Internal engineering target, not independently audited</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCALE OF EXPOSURE</div>
+        <div class="annotation-card-zh">宁德时代<span class="annotation-card-en">Níngdé Shídài · CATL</span></div>
+        <div class="annotation-card-body">Chinese suppliers hold 70%+ of global battery installs (608 GWh, H1 2026) — even small defect-rate differences translate into large absolute counts.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · COMPETITIVE FRAMING</div>
+        <div class="annotation-card-zh">木桶效应<span class="annotation-card-en">mùtǒng xiàoyìng · barrel effect</span></div>
+        <div class="annotation-card-body">The warning also flatters CATL's own quality positioning relative to smaller rivals absorbing the same launch-cycle pressure.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NO NAMED PARTIES</div>
+        <div class="annotation-card-zh">未点名<span class="annotation-card-en">wèi diǎnmíng · not named</span></div>
+        <div class="annotation-card-body">Zeng named no brands or suppliers; defective cells don't automatically become field failures given pack-level BMS and inspection controls.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #110 · SEPTEMBER 6, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
