@@ -115,6 +115,26 @@ body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .no-results.show { display:block; }
 .no-results-local { font-size:32px; color:#e0d8d0; margin-bottom:12px; }
 
+.gov-section { padding:8px 56px 40px; }
+.gov-headline { display:flex; align-items:center; gap:16px; margin-bottom:6px; }
+.gov-title { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:#1a1a2e; }
+.gov-title .local { font-size:14px; font-weight:400; color:#9a8a7a; margin-left:10px; }
+.gov-note { font-size:11.5px; color:#9a8a7a; line-height:1.6; margin-bottom:24px; max-width:640px; }
+.gov-subhead { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#c0392b; margin:28px 0 14px; padding-top:2px; border-top:1px solid #e8e0d4; }
+.gov-subhead:first-of-type { border-top:none; padding-top:0; }
+.gov-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px; }
+.gov-card { background:#fff; border-radius:6px; box-shadow:0 1px 8px rgba(0,0,0,.06); padding:14px 16px; transition:box-shadow .15s,transform .15s; }
+.gov-card:hover { box-shadow:0 4px 24px rgba(0,0,0,.12); transform:translateY(-2px); }
+.gov-card.psc { border-left:3px solid #c0392b; }
+.gov-name-row { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+.gov-zh { font-size:15px; font-weight:700; color:#1a1a2e; }
+.gov-py { font-size:11px; color:#7a6a5a; font-style:italic; }
+.gov-en { font-size:11.5px; color:#5a5a6a; margin-top:1px; }
+.gov-rank { display:inline-block; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; padding:2px 7px; border-radius:2px; margin-top:7px; }
+.gov-rank.psc { background:#fff0ee; color:#c0392b; }
+.gov-rank.member { background:#f4f1ec; color:#6a6a7a; }
+.gov-portfolio { font-size:11.5px; color:#4a4a5a; line-height:1.55; margin-top:8px; }
+
 .footer { background:#1a1a2e; padding:20px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
 .footer-brand { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#e8d5b0; }
 .footer-text { font-size:10px; color:#8899bb; }
@@ -175,6 +195,159 @@ body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 <div class="no-results" id="noResults">
   <div class="no-results-local" id="noResultsLocal">无结果</div>
   <div>No matches found. Try a different search term.</div>
+</div>
+
+<div class="gov-section">
+  <div class="gov-headline">
+    <div class="gov-title">CCP Politburo<span class="local">中央政治局</span></div>
+  </div>
+  <div class="gov-note">20th Politburo, elected October 2022 (term runs to the 21st Party Congress, expected late 2027) · 23 current members · He Weidong (CMC Vice Chairman) was expelled from the Party in October 2025 and has not been replaced.</div>
+
+  <div class="gov-subhead">Standing Committee · 中央政治局常务委员会 (7)</div>
+  <div class="gov-grid">
+    <div class="gov-card psc">
+      <div class="gov-name-row"><span class="gov-zh">习近平</span><span class="gov-py">Xí Jìnpíng</span></div>
+      <div class="gov-en">Xi Jinping</div>
+      <span class="gov-rank psc">Rank 1 · General Secretary</span>
+      <div class="gov-portfolio">President of the PRC; Chairman, Central Military Commission; chairs the party's National Security, Reform, Taiwan, Financial &amp; Economic, and Cyberspace leading groups.</div>
+    </div>
+    <div class="gov-card psc">
+      <div class="gov-name-row"><span class="gov-zh">李强</span><span class="gov-py">Lǐ Qiáng</span></div>
+      <div class="gov-en">Li Qiang</div>
+      <span class="gov-rank psc">Rank 2</span>
+      <div class="gov-portfolio">Premier of the State Council — head of the government bureaucracy and cabinet.</div>
+    </div>
+    <div class="gov-card psc">
+      <div class="gov-name-row"><span class="gov-zh">赵乐际</span><span class="gov-py">Zhào Lèjì</span></div>
+      <div class="gov-en">Zhao Leji</div>
+      <span class="gov-rank psc">Rank 3</span>
+      <div class="gov-portfolio">Chairman, Standing Committee of the National People's Congress — China's legislature.</div>
+    </div>
+    <div class="gov-card psc">
+      <div class="gov-name-row"><span class="gov-zh">王沪宁</span><span class="gov-py">Wáng Hùníng</span></div>
+      <div class="gov-en">Wang Huning</div>
+      <span class="gov-rank psc">Rank 4</span>
+      <div class="gov-portfolio">Chairman, CPPCC National Committee; the party's chief ideologist and United Front policy overseer, including Taiwan affairs framing.</div>
+    </div>
+    <div class="gov-card psc">
+      <div class="gov-name-row"><span class="gov-zh">蔡奇</span><span class="gov-py">Cài Qí</span></div>
+      <div class="gov-en">Cai Qi</div>
+      <span class="gov-rank psc">Rank 5</span>
+      <div class="gov-portfolio">First Secretary of the Secretariat; Director, CCP General Office — effectively Xi's chief of staff, controlling internal party administration.</div>
+    </div>
+    <div class="gov-card psc">
+      <div class="gov-name-row"><span class="gov-zh">丁薛祥</span><span class="gov-py">Dīng Xuěxiáng</span></div>
+      <div class="gov-en">Ding Xuexiang</div>
+      <span class="gov-rank psc">Rank 6 · Vice Premier</span>
+      <div class="gov-portfolio">Director, Central Science &amp; Technology Commission — top coordinator of China's AI, compute infrastructure, and semiconductor policy; also covers Hong Kong affairs. Youngest Standing Committee member.</div>
+    </div>
+    <div class="gov-card psc">
+      <div class="gov-name-row"><span class="gov-zh">李希</span><span class="gov-py">Lǐ Xī</span></div>
+      <div class="gov-en">Li Xi</div>
+      <span class="gov-rank psc">Rank 7</span>
+      <div class="gov-portfolio">Secretary, Central Commission for Discipline Inspection — the party's top anti-corruption body.</div>
+    </div>
+  </div>
+
+  <div class="gov-subhead">Politburo Members · 中央政治局委员 (16)</div>
+  <div class="gov-grid">
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">何立峰</span><span class="gov-py">Hé Lìfēng</span></div>
+      <div class="gov-en">He Lifeng</div>
+      <span class="gov-rank member">Vice Premier (2nd-ranked)</span>
+      <div class="gov-portfolio">Director, Office of the Central Financial &amp; Economic Affairs Commission — economic and financial policy; Treasury Secretary Bessent's protocol counterpart on trade.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">张国清</span><span class="gov-py">Zhāng Guóqīng</span></div>
+      <div class="gov-en">Zhang Guoqing</div>
+      <span class="gov-rank member">Vice Premier (3rd-ranked)</span>
+      <div class="gov-portfolio">Industrial and technology policy background (former MIIT minister); oversees industry and information technology within the State Council.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">刘国中</span><span class="gov-py">Liú Guózhōng</span></div>
+      <div class="gov-en">Liu Guozhong</div>
+      <span class="gov-rank member">Vice Premier (4th-ranked)</span>
+      <div class="gov-portfolio">State Council vice premier; agriculture, resources, and safety-production portfolio.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">王毅</span><span class="gov-py">Wáng Yì</span></div>
+      <div class="gov-en">Wang Yi</div>
+      <span class="gov-rank member">Foreign Affairs</span>
+      <div class="gov-portfolio">Minister of Foreign Affairs; Director, Office of the Central Foreign Affairs Commission — China's top diplomat.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">张又侠</span><span class="gov-py">Zhāng Yòuxiá</span></div>
+      <div class="gov-en">Zhang Youxia</div>
+      <span class="gov-rank member">Military</span>
+      <div class="gov-portfolio">First Vice Chairman, Central Military Commission — the PLA's top uniformed officer after Xi.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">陈文清</span><span class="gov-py">Chén Wénqīng</span></div>
+      <div class="gov-en">Chen Wenqing</div>
+      <span class="gov-rank member">Security</span>
+      <div class="gov-portfolio">Secretary, Central Political and Legal Affairs Commission — oversees police, courts, prosecutors, and state security; former Minister of State Security.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">李干杰</span><span class="gov-py">Lǐ Gānjié</span></div>
+      <div class="gov-en">Li Ganjie</div>
+      <span class="gov-rank member">Personnel</span>
+      <div class="gov-portfolio">Head, Organization Department of the Central Committee — controls appointments and personnel across the party-state.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">李书磊</span><span class="gov-py">Lǐ Shūlěi</span></div>
+      <div class="gov-en">Li Shulei</div>
+      <span class="gov-rank member">Propaganda</span>
+      <div class="gov-portfolio">Head, Publicity (Propaganda) Department of the Central Committee — controls media, ideology, and censorship policy.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">石泰峰</span><span class="gov-py">Shí Tàifēng</span></div>
+      <div class="gov-en">Shi Taifeng</div>
+      <span class="gov-rank member">United Front</span>
+      <div class="gov-portfolio">Head, United Front Work Department; Vice Chairman, CPPCC — manages relations with non-party elites, overseas Chinese, and Hong Kong/Taiwan/Tibet/Xinjiang-adjacent constituencies.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">李鸿忠</span><span class="gov-py">Lǐ Hóngzhōng</span></div>
+      <div class="gov-en">Li Hongzhong</div>
+      <span class="gov-rank member">Legislature</span>
+      <div class="gov-portfolio">First Vice Chairman, Standing Committee of the National People's Congress.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">陈吉宁</span><span class="gov-py">Chén Jíníng</span></div>
+      <div class="gov-en">Chen Jining</div>
+      <span class="gov-rank member">Shanghai</span>
+      <div class="gov-portfolio">Party Secretary, Shanghai — China's financial capital; former Minister of Ecology and Environment.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">尹力</span><span class="gov-py">Yǐn Lì</span></div>
+      <div class="gov-en">Yin Li</div>
+      <span class="gov-rank member">Beijing</span>
+      <div class="gov-portfolio">Party Secretary, Beijing Municipal Committee.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">陈敏尔</span><span class="gov-py">Chén Mǐn'ěr</span></div>
+      <div class="gov-en">Chen Min'er</div>
+      <span class="gov-rank member">Tianjin</span>
+      <div class="gov-portfolio">Party Secretary, Tianjin Municipal Committee.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">袁家军</span><span class="gov-py">Yuán Jiājūn</span></div>
+      <div class="gov-en">Yuan Jiajun</div>
+      <span class="gov-rank member">Chongqing</span>
+      <div class="gov-portfolio">Party Secretary, Chongqing Municipal Committee; aerospace-engineering background.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">黄坤明</span><span class="gov-py">Huáng Kūnmíng</span></div>
+      <div class="gov-en">Huang Kunming</div>
+      <span class="gov-rank member">Guangdong</span>
+      <div class="gov-portfolio">Party Secretary, Guangdong Provincial Committee — China's largest manufacturing and export economy, incl. Shenzhen.</div>
+    </div>
+    <div class="gov-card">
+      <div class="gov-name-row"><span class="gov-zh">马兴瑞</span><span class="gov-py">Mǎ Xīngruì</span></div>
+      <div class="gov-en">Ma Xingrui</div>
+      <span class="gov-rank member">Xinjiang</span>
+      <div class="gov-portfolio">Party Secretary, Xinjiang Uyghur Autonomous Region Committee; aerospace-engineering background.</div>
+    </div>
+  </div>
 </div>
 
 <div class="footer">
