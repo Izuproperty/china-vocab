@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #111 · Sept 7, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #111 · September 7, 2026</div>
+    <div class="masthead-sub">CXMT vs. Micron · Unitree's Robot Bubble Debate · Rare Earth Shipment Halt</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">874<span class="card-num-unit">% YoY</span></div>
+      <div class="card-label">CXMT H1 2026 revenue growth, vs. Micron's 203%</div>
+      <div class="card-delta delta-amber">Still 2-3 gens behind in DRAM tech</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">1,300<span class="card-num-unit">x P/E peak</span></div>
+      <div class="card-label">Unitree's IPO-day valuation multiple vs. ~124x STAR average</div>
+      <div class="card-delta delta-red">Stock down ~45% from peak</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · TRADE</div>
+      <div class="card-num">~50<span class="card-num-unit">% of 2024</span></div>
+      <div class="card-label">Yttrium exports to the US, despite rebounding shipments elsewhere</div>
+      <div class="card-delta delta-amber">On agenda for Xi's Sept 24 visit</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS</div>
+    <div class="story-headline">874% Revenue Growth, Two Generations Behind: CXMT Closes In on Micron's Margins</div>
+    <div class="story-insight">
+      <p>CXMT's H1 2026 revenue rose 874% YoY to ¥150.3B, with net margin recovering to 51.6% from negative a year prior. The report came a month after an IPO that briefly valued the company near $487B; S&amp;P now estimates market cap at $582.5B, putting CXMT above Tencent by some measures.</p>
+      <br>
+      <p>The growth is concentrated in lower-end DRAM — WSJ reports CXMT trails the DRAM leaders by two to three technology generations, so its entry into the higher-margin AI-driven HBM market (targeted for end-2026) is a catalyst, not yet a fact.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch for CXMT's first HBM yield data before crediting the stock's valuation with an AI-memory growth story that hasn't shipped yet.</div>
+    <div class="chart-box">
+      <div class="chart-title">Global DRAM Market Share (H1 2026, est.)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="20" x2="140" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="140" y1="150" x2="800" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="20" y="45" font-size="11" fill="#5a6a8a">Samsung</text>
+        <rect x="140" y="32" width="507" height="22" fill="#1a1a2e"/>
+        <text x="655" y="48" font-size="11" fill="#5a6a8a">39%</text>
+        <text x="20" y="77" font-size="11" fill="#5a6a8a">Micron</text>
+        <rect x="140" y="64" width="325" height="22" fill="#c0392b"/>
+        <text x="473" y="80" font-size="11" fill="#5a6a8a">25%</text>
+        <text x="20" y="109" font-size="11" fill="#5a6a8a">SK Hynix</text>
+        <rect x="140" y="96" width="338" height="22" fill="#b45309"/>
+        <text x="486" y="112" font-size="11" fill="#5a6a8a">26%</text>
+        <text x="20" y="141" font-size="11" fill="#5a6a8a">CXMT</text>
+        <rect x="140" y="128" width="143" height="22" fill="#7a6a5a"/>
+        <text x="291" y="144" font-size="11" fill="#5a6a8a">11%</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MARGIN RECOVERY</div>
+        <div class="annotation-card-zh">存储芯片<span class="annotation-card-en">cúnchǔ xīnpiàn · memory chip</span></div>
+        <div class="annotation-card-body">Net margin swung from negative to 51.6% in one year, closing on Micron's 63% — a real efficiency gain, not just a revenue story.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · HBM RAMP</div>
+        <div class="annotation-card-zh">高带宽内存<span class="annotation-card-en">gāo dàikuān nèicún · HBM</span></div>
+        <div class="annotation-card-body">End-2026 HBM production target is the bull thesis. No yield or customer data yet — the gap between announcement and shipment is where the risk sits.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · ENTITY LIST</div>
+        <div class="annotation-card-zh">泡沫<span class="annotation-card-en">pàomò · bubble risk</span></div>
+        <div class="annotation-card-body">US Entity List status caps CXMT's addressable market outside China; current growth also reflects a tight global DRAM supply cycle that may not persist.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">1,300x Earnings, No ChatGPT Moment Yet: What Unitree's IPO Swings Say About China's Robot Bet</div>
+    <div class="story-insight">
+      <p>Unitree's IPO-day P/E hit ~1,300x against a ~124x STAR Market average before the stock gave back roughly $30B in value, stabilizing ~45% below peak by Sept 1. Its own prospectus shows only ~9% of humanoid revenue comes from industrial customers — the rest from subsidized research buyers.</p>
+      <br>
+      <p>The industry's own "ChatGPT moment" benchmark — 80% task completion in unfamiliar settings from a voice command — is estimated by Unitree's own CEO at 2 to 10 years out, a range wide enough to span most institutional holding periods.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Production share (&gt;90% global) is not the same evidence as commercial demand (~9% of Unitree's own revenue) — track which one the market is actually pricing.</div>
+    <div class="chart-box">
+      <div class="chart-title">Unitree Revenue Mix, First 3 Quarters of 2025 (per IPO prospectus)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="20" x2="140" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="140" y1="150" x2="800" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="20" y="65" font-size="11" fill="#5a6a8a">Research /</text>
+        <text x="20" y="79" font-size="11" fill="#5a6a8a">universities</text>
+        <rect x="140" y="45" width="591" height="30" fill="#1a1a2e"/>
+        <text x="740" y="65" font-size="11" fill="#5a6a8a">~91%</text>
+        <text x="20" y="127" font-size="11" fill="#5a6a8a">Industrial</text>
+        <text x="20" y="141" font-size="11" fill="#5a6a8a">customers</text>
+        <rect x="140" y="107" width="58" height="30" fill="#c0392b"/>
+        <text x="205" y="127" font-size="11" fill="#5a6a8a">~9%</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SHIPMENT SHARE</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied intelligence</span></div>
+        <div class="annotation-card-body">Chinese makers held &gt;90% of global humanoid shipments in H1 2026 — a genuine, measurable manufacturing lead.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CHATGPT MOMENT</div>
+        <div class="annotation-card-zh">ChatGPT时刻<span class="annotation-card-en">ChatGPT shíkè · ChatGPT moment</span></div>
+        <div class="annotation-card-body">Defined as 80% task completion in unfamiliar settings from voice/text command. Industry estimates range 2-10 years out — wide enough to matter for underwriting.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REVENUE MIX</div>
+        <div class="annotation-card-zh">泡沫<span class="annotation-card-en">pàomò · bubble</span></div>
+        <div class="annotation-card-body">~91% of revenue from subsidized research/university buyers, per Unitree's own prospectus — a structure that resembles early-stage EV-industry demand support, not organic commercial pull.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO · TRADE</div>
+    <div class="story-headline">Sanctioned for Compliance: Chinese Rare Earth Suppliers Quietly Halt US Shipments Ahead of Xi's Washington Trip</div>
+    <div class="story-insight">
+      <p>Since early August, a handful of Chinese rare earth suppliers have stopped shipping to the US — not under a new export-control order, but out of fear that complying with the RBA's due-diligence standard (which Beijing sanctioned) would draw punishment. Yttrium exports to the US remain at roughly half 2024 levels.</p>
+      <br>
+      <p>The standoff is now on the US agenda ahead of Xi's Sept 24 Washington visit, tied to prior Busan-agreement commitments — making the summit outcome a more direct catalyst than the underlying export data itself.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> This is a compliance-risk story, not a tariff story — Chinese suppliers are now pricing regulatory risk into customer selection, independent of official export-control lists.</div>
+    <div class="chart-box">
+      <div class="chart-title">Yttrium Exports to the US vs. 2024 Baseline</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="140" y="170" font-size="11" fill="#5a6a8a">2024</text>
+        <rect x="110" y="40" width="60" height="110" fill="#1a1a2e"/>
+        <text x="120" y="35" font-size="11" fill="#5a6a8a">100%</text>
+        <text x="440" y="170" font-size="11" fill="#5a6a8a">2026 (YTD, to US)</text>
+        <rect x="410" y="95" width="60" height="55" fill="#c0392b"/>
+        <text x="420" y="90" font-size="11" fill="#5a6a8a">~50%</text>
+        <text x="620" y="170" font-size="11" fill="#5a6a8a">2026 (other markets)</text>
+        <rect x="620" y="55" width="60" height="95" fill="#166534"/>
+        <text x="625" y="50" font-size="11" fill="#5a6a8a">rebounding</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · NON-US REBOUND</div>
+        <div class="annotation-card-zh">稀土<span class="annotation-card-en">xītǔ · rare earth</span></div>
+        <div class="annotation-card-body">Shipments to non-US markets have largely rebounded since the 2025 restrictions — the shortfall is specific to the US, not a general capacity constraint.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SEPT 24 SUMMIT</div>
+        <div class="annotation-card-zh">尽职调查<span class="annotation-card-en">jǐnzhí diàochá · due diligence</span></div>
+        <div class="annotation-card-body">Xi's planned Washington visit is the near-term event that could clarify or extend the RBA sanction's practical scope.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PRICE PRESSURE</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Yttrium, indium phosphide, and tungsten prices remain near record highs on tight supply — a cost pressure for US aerospace, magnet, and chip manufacturers regardless of how the compliance dispute resolves.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #111 · SEPTEMBER 7, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
