@@ -225,6 +225,19 @@ const DOMAINS = {
   'Anyverse Dynamics':                    'anyverse.ai',
   'CaoCao Inc.':                          'caocaochuxing.com',
   'Dongfang Suanxin':                     'dfsx.ai',
+  // Fix for missing logos — wired into makeLogoHtml/logoFallback
+  'Huawei':                               'huawei.com',
+  'Xiaomi':                               'mi.com',
+  'CATL':                                 'catl.com',
+  'ACM Research':                         'acmr.com',
+  'Citi':                                 'citigroup.com',
+  'ICBC':                                 'icbc-ltd.com',
+  'PBOC':                                 'pbc.gov.cn',
+  'CSRC':                                 'csrc.gov.cn',
+  'Peking University':                    'pku.edu.cn',
+  'Tsinghua University':                  'tsinghua.edu.cn',
+  'USTC':                                 'ustc.edu.cn',
+  'China Rare Earth Group':               'regcc.cn',
 };
 
 // Logo overrides — GitHub org avatars + Wikimedia Commons PNG thumbnails
@@ -332,16 +345,24 @@ function logoFallback(img) {
     img.src = img.src.replace('.png', '.svg');
     return;
   }
-  // Step 2: LOGO_OVERRIDES fallback
+  // Step 2: LOGO_OVERRIDES fallback (GitHub org avatars / Wikimedia)
   const fb = img.dataset.fb;
   if (fb) {
     img.removeAttribute('data-fb');
-    img.onerror = function() { img.style.display='none'; img.nextElementSibling.style.display='flex'; };
     img.src = fb;
-  } else {
-    img.style.display = 'none';
-    img.nextElementSibling.style.display = 'flex';
+    return;
   }
+  // Step 3: Clearbit domain fallback (DOMAINS map)
+  const domain = img.dataset.domain;
+  if (domain) {
+    img.removeAttribute('data-domain');
+    img.onerror = function() { img.style.display='none'; img.nextElementSibling.style.display='flex'; };
+    img.src = `https://logo.clearbit.com/${domain}?size=128`;
+    return;
+  }
+  // Step 4: monogram
+  img.style.display = 'none';
+  img.nextElementSibling.style.display = 'flex';
 }
 
 function nameToSlug(name) {
@@ -354,13 +375,15 @@ function makeLogoHtml(entity, size = 56) {
   const monoHtml = `<div class="logo-monogram" style="background:${cat.color};width:${size}px;height:${size}px;border-radius:${Math.round(size*0.2)}px;display:flex;align-items:center;justify-content:center;"><span class="mono-zh" style="font-size:${Math.round(size*0.33)}px">${mono}</span></div>`;
 
   const s = nameToSlug(entity.name);
-  const localUrl  = `logos/${s}.png`;          // self-hosted — primary
+  const localUrl  = `logos/${s}.png`;            // self-hosted — primary
   const override  = LOGO_OVERRIDES[entity.name]; // GitHub/Wikimedia — fallback
+  const domain    = DOMAINS[entity.name];        // Clearbit — final fallback
 
-  // Load order: logos/{s}.png → logos/{s}.svg → LOGO_OVERRIDES URL → monogram
+  // Load order: logos/{s}.png → logos/{s}.svg → LOGO_OVERRIDES URL → Clearbit(domain) → monogram
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
     src="${localUrl}"
     data-fb="${override || ''}"
+    data-domain="${domain || ''}"
     onerror="logoFallback(this)"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
