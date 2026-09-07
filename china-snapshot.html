@@ -356,9 +356,14 @@ function logoFallback(img) {
   // Note: logo.clearbit.com was permanently shut down Dec 8, 2025 (HubSpot
   // retired it after acquiring Clearbit) — do not revert to that host, it
   // will never respond again. Using Google's favicon service instead.
+  // Google's endpoint never 404s — if it has no real favicon for a domain it
+  // still returns a tiny generic globe/blank icon with HTTP 200, so onerror
+  // alone can't catch that case. checkFaviconQuality() (below, wired via
+  // onload) catches it by checking the returned image's actual pixel size.
   const domain = img.dataset.domain;
   if (domain) {
     img.removeAttribute('data-domain');
+    img.dataset.isFavicon = '1';
     img.onerror = function() { img.style.display='none'; img.nextElementSibling.style.display='flex'; };
     img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
     return;
@@ -366,6 +371,18 @@ function logoFallback(img) {
   // Step 4: monogram
   img.style.display = 'none';
   img.nextElementSibling.style.display = 'flex';
+}
+
+function checkFaviconQuality(img) {
+  // Google's favicon service returns a generic ~16px globe/blank icon (HTTP
+  // 200, so onerror never fires) when it has no real favicon for the domain.
+  // We asked for sz=128, so a genuine favicon should come back much larger
+  // than that generic default — treat anything tiny as a miss and drop to
+  // the monogram instead of showing the ugly generic icon.
+  if (img.dataset.isFavicon && img.naturalWidth > 0 && img.naturalWidth < 32) {
+    img.style.display = 'none';
+    img.nextElementSibling.style.display = 'flex';
+  }
 }
 
 function nameToSlug(name) {
@@ -388,6 +405,7 @@ function makeLogoHtml(entity, size = 56) {
     data-fb="${override || ''}"
     data-domain="${domain || ''}"
     onerror="logoFallback(this)"
+    onload="checkFaviconQuality(this)"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
 }
