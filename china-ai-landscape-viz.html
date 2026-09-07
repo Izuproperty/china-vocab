@@ -94,6 +94,13 @@ body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a1a; min-he
 .card-ticker { font-size:10px; color:#9a8a9a; margin-top:2px; }
 .card-bio { font-size:11px; color:#7a7a8a; font-style:italic; line-height:1.5; margin-top:8px; padding-bottom:8px; border-bottom:1px solid #f0ece6; }
 .card-desc { font-size:12px; color:#4a4a5a; line-height:1.6; margin-top:8px; }
+.card-content-wrap { position:relative; max-height:190px; overflow:hidden; transition:max-height .2s ease; }
+.card-content-wrap.expanded { max-height:2000px; }
+.card-fade { position:absolute; left:0; right:0; bottom:0; height:34px; background:linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%); pointer-events:none; opacity:1; transition:opacity .15s; }
+.card-fade.hide { opacity:0; }
+.card-more-btn { display:block; width:100%; text-align:center; background:none; border:none; padding:7px 0 0; margin-top:2px; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent); cursor:pointer; }
+.card-more-btn:hover { text-decoration:underline; }
+.card-more-btn.hide { display:none; }
 .card-trend { display:inline-flex; align-items:center; gap:3px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; margin-left:6px; }
 .card-trend.up { color:#16a34a; }
 .card-trend.down { color:#dc2626; }
@@ -499,8 +506,12 @@ function buildGrid(entities) {
           ${e.zh ? `<div class="card-zh" style="color:${catMeta.color}">${e.zh}</div>` : ''}
           ${e.py ? `<div class="card-py">${e.py}</div>` : ''}
           ${e.ticker ? `<div class="card-ticker">${e.ticker}</div>` : ''}
-          ${bioHtml ? `<div class="card-bio">${bioHtml}</div>` : ''}
-          ${descHtml ? `<div class="card-desc">${descHtml}</div>` : ''}
+          <div class="card-content-wrap">
+            ${bioHtml ? `<div class="card-bio">${bioHtml}</div>` : ''}
+            ${descHtml ? `<div class="card-desc">${descHtml}</div>` : ''}
+            <div class="card-fade"></div>
+          </div>
+          <button class="card-more-btn" onclick="toggleCard(this)">More ▾</button>
         </div>
         <div class="card-footer">
           <span class="card-issue">First seen ${e.issue}</span>
@@ -513,7 +524,31 @@ function buildGrid(entities) {
     wrap.appendChild(section);
   });
 
+  initCardCollapse();
   filterCards();
+}
+
+// ── collapse/expand long cards ───────────────────────────────────────────────
+function initCardCollapse() {
+  document.querySelectorAll('.company-card').forEach(card => {
+    const contentWrap = card.querySelector('.card-content-wrap');
+    const fade = card.querySelector('.card-fade');
+    const btn = card.querySelector('.card-more-btn');
+    if (!contentWrap || !btn) return;
+    if (contentWrap.scrollHeight <= contentWrap.clientHeight + 4) {
+      fade.classList.add('hide');
+      btn.classList.add('hide');
+    }
+  });
+}
+
+function toggleCard(btn) {
+  const card = btn.closest('.company-card');
+  const contentWrap = card.querySelector('.card-content-wrap');
+  const fade = card.querySelector('.card-fade');
+  const expanded = contentWrap.classList.toggle('expanded');
+  fade.classList.toggle('hide', expanded);
+  btn.textContent = expanded ? 'Less ▴' : 'More ▾';
 }
 
 // ── filter ────────────────────────────────────────────────────────────────────
