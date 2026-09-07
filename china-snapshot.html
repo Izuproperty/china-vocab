@@ -352,12 +352,15 @@ function logoFallback(img) {
     img.src = fb;
     return;
   }
-  // Step 3: Clearbit domain fallback (DOMAINS map)
+  // Step 3: favicon domain fallback (DOMAINS map)
+  // Note: logo.clearbit.com was permanently shut down Dec 8, 2025 (HubSpot
+  // retired it after acquiring Clearbit) — do not revert to that host, it
+  // will never respond again. Using Google's favicon service instead.
   const domain = img.dataset.domain;
   if (domain) {
     img.removeAttribute('data-domain');
     img.onerror = function() { img.style.display='none'; img.nextElementSibling.style.display='flex'; };
-    img.src = `https://logo.clearbit.com/${domain}?size=128`;
+    img.src = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
     return;
   }
   // Step 4: monogram
