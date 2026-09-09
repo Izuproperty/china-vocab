@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #100</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; padding-bottom:40px; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:32px 40px 24px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { font-size:12px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .glance { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:28px 40px 8px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:16px 18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .glance-tag.ai { color:#3730a3; }
+  .glance-tag.semi { color:#be185d; }
+  .glance-tag.macro { color:#b45309; }
+  .glance-headline { font-size:13px; font-weight:600; color:#1a1a2e; line-height:1.4; margin-bottom:6px; }
+  .glance-stat { font-size:20px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:10.5px; color:#5a6a8a; margin-top:2px; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#3730a3; padding:24px 40px 4px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; margin:16px 40px; padding:24px 28px; }
+  .story-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a9aa8; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.35; }
+  .story-card p { font-size:13.5px; color:#3a4a6a; line-height:1.75; margin-bottom:10px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:16px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:10px; }
+  .takeaway { background:#f8f9fc; border-left:3px solid #3730a3; padding:12px 16px; margin:14px 0; border-radius:0 4px 4px 0; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#5a6a8a; margin-bottom:4px; }
+  .takeaway p { margin:0; font-size:13px; color:#2c2c3a; }
+
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+  .annot-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; }
+  .annot-label { font-size:9px; font-weight:700; letter-spacing:1.5px; margin-bottom:6px; }
+  .annot-label.signal { color:#0e7490; }
+  .annot-label.watch { color:#b45309; }
+  .annot-label.risk { color:#be185d; }
+  .annot-card p { font-size:12px; color:#3a4a6a; margin:0; line-height:1.5; }
+
+  .footer { text-align:center; padding:28px 40px 0; font-size:10.5px; letter-spacing:1px; color:#5a6a8a; text-transform:uppercase; }
+
+  @media (max-width: 700px) {
+    .glance, .annotations { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief — Issue #100, Visualized</div>
+    <div class="masthead-meta">Monday, September 7, 2026 · 3 stories, charted</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="glance">
+    <div class="glance-card">
+      <div class="glance-tag ai">STORY 1 · AI & TECH</div>
+      <div class="glance-headline">Digital Agency's GENAI guidelines v2.0 take effect</div>
+      <div class="glance-stat">180K</div>
+      <div class="glance-stat-label">Government employees in FY2026 pilot</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag semi">STORY 2 · SEMICONDUCTORS</div>
+      <div class="glance-headline">AI and chips to headline next $550B US pact tranche</div>
+      <div class="glance-stat">$109B</div>
+      <div class="glance-stat-label">Committed of $550B — none yet in AI/chips</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag macro">STORY 3 · MACRO & FINANCE</div>
+      <div class="glance-headline">Berkshire's Abel: Japan trading houses held "for decades"</div>
+      <div class="glance-stat">$42B</div>
+      <div class="glance-stat-label">Value of five sōgō shōsha stakes, Sept 2026</div>
+    </div>
+  </div>
+
+  <div class="section-title">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 1 · AI & TECH</div>
+    <div class="story-card-headline">Japan's Digital Agency Locks In AI Governance Rules as 180,000 Bureaucrats Get GENAI Access</div>
+    <p>Version 2.0 of the Digital Agency's generative-AI procurement guidelines entered into force Sept 1, six weeks after council approval. The update mandates a Chief AI Officer at every ministry and a structured high-risk review process reported to the Advanced AI Utilization Advisory Board — governance infrastructure layered onto a FY2026 pilot extending the Gennai platform to roughly 180,000 employees, with full rollout targeted FY2027.</p>
+    <p>The scale makes this one of the largest sovereign generative-AI deployments anywhere, and the audit-trail/explainability requirements echo the FSA's parallel financial-sector AI mandate — a sign Tokyo is converging on one governance template across sectors rather than writing bespoke rules per regulator.</p>
+    <div class="chart-box">
+      <div class="chart-title">GENAI Rollout Timeline</div>
+      <svg viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="100" x2="600" y2="100" stroke="#e8eaf2" stroke-width="2"/>
+        <circle cx="80" cy="100" r="5" fill="#818cf8"/>
+        <text x="80" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Jun 12</text>
+        <text x="80" y="125" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Council approves</text>
+        <text x="80" y="138" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Guidelines v2.0</text>
+
+        <circle cx="280" cy="100" r="6" fill="#3730a3"/>
+        <text x="280" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Sept 1</text>
+        <text x="280" y="125" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Guidelines in force</text>
+        <text x="280" y="138" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">CAIOs mandated</text>
+
+        <circle cx="440" cy="100" r="5" fill="#818cf8"/>
+        <text x="440" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">FY2026</text>
+        <text x="440" y="125" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">180K-employee</text>
+        <text x="440" y="138" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">pilot underway</text>
+
+        <circle cx="580" cy="100" r="5" fill="#be185d"/>
+        <text x="580" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="#be185d" font-family="Inter,sans-serif">FY2027</text>
+        <text x="580" y="125" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Full-scale</text>
+        <text x="580" y="138" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">rollout target</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>Watch which domestic model/platform vendors get pre-qualified during the FY2026 pilot — that positioning is likely to carry through to the FY2027 full-scale procurement wave.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>Mandatory Chief AI Officers signal Tokyo wants sustained governance ownership, not a one-time policy release.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>Which vendors (PLaMo, OpenAI's Gennai, others) get embedded during the FY2026 pilot phase.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>CAIO mandate could become a compliance formality rather than substantive oversight.</p></div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-card-headline">Tokyo Signals AI and Chips Will Anchor the Next Slice of Its $550 Billion US Investment Pact</div>
+    <p>Trade Minister Akazawa told reporters in Washington Sept 4 that AI and semiconductors will carry "very significant weight" in the pact's next funding round. Only $109bn of the $550bn total has been committed after more than a year — $36bn to US oil/gas/mineral projects, $73bn to a nuclear-and-gas buildout — with zero so far directed to AI or chips.</p>
+    <p>Equity covers just 1–2% of committed capital; the rest runs through loans and guarantees via Japan's state-backed lenders. An eventual AI/chip tranche would likely finance US-based capacity rather than hand Japanese firms direct stakes — a different exposure than METI's domestic Rapidus/Kioxia subsidy programs.</p>
+    <div class="chart-box">
+      <div class="chart-title">$550B Pact: Committed vs. Remaining</div>
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="600" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="164" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">$0</text>
+        <text x="50" y="92" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">$275B</text>
+        <text x="50" y="24" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">$550B</text>
+        <line x1="60" y1="92" x2="600" y2="92" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <rect x="140" y="153" width="70" height="7" fill="#3730a3"/>
+        <text x="175" y="145" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">$36B</text>
+        <text x="175" y="180" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Oil/gas/minerals</text>
+
+        <rect x="250" y="139" width="70" height="21" fill="#3730a3"/>
+        <text x="285" y="131" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">$73B</text>
+        <text x="285" y="180" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Nuclear + gas</text>
+
+        <rect x="360" y="20" width="70" height="140" fill="#f3f0ff" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="395" y="12" text-anchor="middle" font-size="11" font-weight="700" fill="#be185d" font-family="Inter,sans-serif">$441B</text>
+        <text x="395" y="180" text-anchor="middle" font-size="9.5" fill="#be185d" font-family="Inter,sans-serif">Uncommitted</text>
+        <text x="395" y="193" text-anchor="middle" font-size="9" fill="#9a9aa8" font-family="Inter,sans-serif">(AI/chips: TBD share)</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>This is financing plumbing for US capacity, not a direct capital injection into Japanese chip names — the earnings read-through depends entirely on offtake or technology-access terms Tokyo hasn't disclosed.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>AI/chips explicitly named as the priority category for the undeployed $441bn balance.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>Whether Japan secures offtake or tech-access terms in exchange for loan-guarantee financing.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>One year in, only 20% of the pact is committed and none of it to the category getting the most attention.</p></div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 3 · MACRO & FINANCE</div>
+    <div class="story-card-headline">Berkshire's Greg Abel Says Its Japan Trading House Bet Is a "Many Decades" Position</div>
+    <p>On his first Tokyo trip as CEO, Greg Abel told CNBC Berkshire's stakes in Mitsubishi, Mitsui, Itochu, Sumitomo, and Marubeni are a position it intends to hold "for many decades." All five stakes now exceed 10%, with Sumitomo and Marubeni crossing that line as recently as May. The combined position's value has risen from $35.4bn at end-2025 to roughly $42bn by early September.</p>
+    <p>Abel flagged expectations for continued dividend growth and buybacks, and said current JGB-yield pressure isn't a near-term constraint on the trading houses — a framing worth stress-testing given Berkshire's own incentive to talk its book heading into a September BOJ decision that's rattling other rate-sensitive Nikkei names.</p>
+    <div class="chart-box">
+      <div class="chart-title">Berkshire's Five Trading House Stakes, Value ($ Billions)</div>
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="600" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="164" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">$0</text>
+        <text x="50" y="92" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">$25B</text>
+        <text x="50" y="24" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">$50B</text>
+        <line x1="60" y1="92" x2="600" y2="92" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <rect x="180" y="65" width="100" height="95" fill="#c7d2fe"/>
+        <text x="230" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">$35.4B</text>
+        <text x="230" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">End of 2025</text>
+
+        <rect x="380" y="47" width="100" height="113" fill="#3730a3"/>
+        <text x="430" y="38" text-anchor="middle" font-size="13" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">~$42B</text>
+        <text x="430" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">Early Sept 2026</text>
+
+        <text x="430" y="192" text-anchor="middle" font-size="9" fill="#0e7490" font-family="Inter,sans-serif">All five stakes now &gt;10%</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>Abel's "decades" language and buyback/dividend expectations are a signal worth noting for sōgō shōsha positioning, but weigh it against Berkshire's own stake in talking the position up.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>Stake value up ~19% since year-end 2025 even before any further buying.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>Trading-house capital-allocation announcements for the dividend/buyback follow-through Abel flagged.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>Abel's comments are also a public case for holding a position Berkshire itself wants to keep buying.</p></div>
+    </div>
+  </div>
+
+  <div class="footer">日本速報 · JAPAN BRIEF · ISSUE #100 · SEPTEMBER 7, 2026 · NOT INVESTMENT ADVICE</div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
