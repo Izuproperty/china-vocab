@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #101</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; padding-bottom:40px; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:32px 40px 24px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { font-size:12px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .glance { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:28px 40px 8px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:16px 18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .glance-tag.ai { color:#3730a3; }
+  .glance-tag.semi { color:#be185d; }
+  .glance-tag.macro { color:#b45309; }
+  .glance-headline { font-size:13px; font-weight:600; color:#1a1a2e; line-height:1.4; margin-bottom:6px; }
+  .glance-stat { font-size:20px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:10.5px; color:#5a6a8a; margin-top:2px; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#3730a3; padding:24px 40px 4px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; margin:16px 40px; padding:24px 28px; }
+  .story-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a9aa8; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.35; }
+  .story-card p { font-size:13.5px; color:#3a4a6a; line-height:1.75; margin-bottom:10px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:16px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:10px; }
+  .takeaway { background:#f8f9fc; border-left:3px solid #3730a3; padding:12px 16px; margin:14px 0; border-radius:0 4px 4px 0; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#5a6a8a; margin-bottom:4px; }
+  .takeaway p { margin:0; font-size:13px; color:#2c2c3a; }
+
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+  .annot-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; }
+  .annot-label { font-size:9px; font-weight:700; letter-spacing:1.5px; margin-bottom:6px; }
+  .annot-label.signal { color:#0e7490; }
+  .annot-label.watch { color:#b45309; }
+  .annot-label.risk { color:#be185d; }
+  .annot-card p { font-size:12px; color:#3a4a6a; margin:0; line-height:1.5; }
+
+  .footer { text-align:center; padding:28px 40px 0; font-size:10.5px; letter-spacing:1px; color:#5a6a8a; text-transform:uppercase; }
+
+  @media (max-width: 700px) {
+    .glance, .annotations { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief — Issue #101, Visualized</div>
+    <div class="masthead-meta">Tuesday, September 8, 2026 · 3 stories, charted</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="glance">
+    <div class="glance-card">
+      <div class="glance-tag ai">STORY 1 · AI & TECH</div>
+      <div class="glance-headline">Toyota, Fanuc show Japan's AI edge is the factory floor</div>
+      <div class="glance-stat">5-10kW</div>
+      <div class="glance-stat-label">Edge compute per plant vs. hyperscale data centers</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag semi">STORY 2 · SEMICONDUCTORS</div>
+      <div class="glance-headline">Tokyo Electron's FY2027 guidance beats consensus by 33%</div>
+      <div class="glance-stat">¥1.57T</div>
+      <div class="glance-stat-label">H1 FY27 guide vs. ¥1.42T consensus</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag macro">STORY 3 · MACRO & BOJ</div>
+      <div class="glance-headline">Cabinet Office BCI logs 4th straight "Improving" month</div>
+      <div class="glance-stat">120.1</div>
+      <div class="glance-stat-label">Coincident index, July 2026 (+1.6pt)</div>
+    </div>
+  </div>
+
+  <div class="section-title">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 1 · AI & TECH</div>
+    <div class="story-card-headline">Toyota and Fanuc Show Japan's AI Edge Runs on the Factory Floor, Not the Data Center</div>
+    <p>At Toyota's Obu casting plant, an AI model reads ~40,000 data points per shot to predict defects before the metal cools. At Fanuc's Oshino plant, an edge model predicts motor failure from vibration data. Both run on one or two GPUs at 5-10kW inside the plant — not in a hyperscale data center. A Sept 7 Japan Times commentary used these to argue Japan's real AI edge is industrial deployment depth, not frontier-model training scale.</p>
+    <p>The framing flatters a different set of names than the sovereign-model headlines: Fanuc's Zero Down Time system (500K+ deployed robots) and Preferred Networks' MN-Core chips already embedded in Toyota's lines. The catch: there's no GPU-shipment-style data series for edge AI on a casting line, so this thesis shows up in margins over time, not in a single announcement.</p>
+    <div class="chart-box">
+      <div class="chart-title">Compute Scale: Edge Deployment vs. Sovereign Model Infrastructure</div>
+      <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="600" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="164" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">0</text>
+
+        <rect x="140" y="150" width="90" height="10" fill="#3730a3"/>
+        <text x="185" y="142" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">5-10 kW</text>
+        <text x="185" y="180" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Toyota / Fanuc</text>
+        <text x="185" y="193" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">edge AI (per plant)</text>
+
+        <rect x="360" y="25" width="90" height="135" fill="#f3f0ff" stroke="#818cf8" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <text x="405" y="17" text-anchor="middle" font-size="11" font-weight="700" fill="#be185d" font-family="Inter,sans-serif">27,500 GPUs</text>
+        <text x="405" y="180" text-anchor="middle" font-size="9.5" fill="#be185d" font-family="Inter,sans-serif">Noetra AI</text>
+        <text x="405" y="193" text-anchor="middle" font-size="9.5" fill="#be185d" font-family="Inter,sans-serif">infrastructure (planned)</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>Edge-AI deployment depth is a harder thesis to underwrite than capex tables, but it's a real second track alongside Japan's sovereign-model bets — watch industrial-automation margins, not GPU orders, for confirmation.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>Concrete, named plant-level deployments (Obu, Oshino) rather than a generic "Japan is investing in AI" narrative.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>Whether Fanuc, Yaskawa and PFN start disclosing edge-AI attach rates or margin impact explicitly.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>No standardized metric exists yet to size or verify this trend across the industrial base.</p></div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-card-headline">Tokyo Electron's Record Guidance Confirms the Equipment Supercycle Still Has Room to Run</div>
+    <p>TEL posted record FY2026 sales of ¥2.443T (25.6% margin) and guided H1 FY2027 to ¥1.57T — 33% above the prior year and well past the ¥1.42T consensus. It's backing that with ¥104bn for a new Miyagi production building (plasma etch, due 2027). Top five customers (TSMC, Samsung, Intel, SK Hynix, Micron) are ~55% of revenue; China has fallen to ~35% from a ~42% FY2024 peak.</p>
+    <p>The guidance beat is a hard order-book signal, not a forward promise. But TEL's ~90% EUV coater-developer share also makes the stock a high-beta proxy for JGB yields, not just chip demand — it fell 3.4% on Sept 1 purely on a bond-yield spike, no change to the order book.</p>
+    <div class="chart-box">
+      <div class="chart-title">TEL H1 Guidance vs. Analyst Consensus (¥ Trillions)</div>
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="600" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="164" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">¥0</text>
+        <text x="50" y="92" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">¥0.75T</text>
+        <text x="50" y="24" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">¥1.5T</text>
+        <line x1="60" y1="92" x2="600" y2="92" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3 3"/>
+
+        <rect x="180" y="34" width="90" height="126" fill="#c7d2fe"/>
+        <text x="225" y="26" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">¥1.18T</text>
+        <text x="225" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">H1 FY2026 (prior year)</text>
+
+        <rect x="360" y="18" width="90" height="142" fill="#3730a3"/>
+        <text x="405" y="10" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">¥1.57T</text>
+        <text x="405" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">H1 FY2027 guide</text>
+        <text x="405" y="191" text-anchor="middle" font-size="9" fill="#0e7490" font-family="Inter,sans-serif">vs. ¥1.42T consensus</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>The order-book strength looks durable near-term, but treat TEL's share-price moves as a blend of chip-cycle and JGB-yield signal — don't read every swing as demand news.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>H1 guidance beat consensus by ~10% and grew 33% YoY — a hard order-book confirmation of AI-linked capex.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>Whether China's revenue share keeps declining as the third round of export controls (Aug 1) takes hold.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>~90% EUV coater share cuts both ways — irreplaceable position, but also concentrated single-point exposure.</p></div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 3 · MACRO & BOJ</div>
+    <div class="story-card-headline">A Fourth Straight "Improving" Reading Sharpens the BOJ's September Dilemma</div>
+    <p>The Cabinet Office's preliminary July 2026 Business Conditions Index logged "Improving" for a fourth straight month — coincident index 120.1 (+1.6pt), leading index +1.7pt — driven largely by AI-linked semiconductor-equipment orders (see Story 2). JPMorgan's Ayako Fujita said delaying a September hike "would likely shake market stability" given how priced-in the move now is.</p>
+    <p>But the strength is narrower than four "Improving" months suggest: Q2 GDP (Aug 17) showed domestic demand -0.2% q/q, business equipment investment -1.2%, and consumption -0.1%. Growth is almost entirely external and AI-linked. A hike to 1.25% — Japan's most aggressive tightening step in a generation — would land on a domestic economy that hasn't confirmed it can carry higher rates on its own.</p>
+    <div class="chart-box">
+      <div class="chart-title">Cabinet Office BCI: Four Straight "Improving" Months vs. Domestic Demand</div>
+      <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="140" x2="600" y2="140" stroke="#e8eaf2" stroke-width="2"/>
+        <text x="60" y="20" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Coincident BCI Index</text>
+
+        <circle cx="140" cy="110" r="5" fill="#818cf8"/>
+        <text x="140" y="95" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Apr</text>
+        <text x="140" y="160" text-anchor="middle" font-size="9" fill="#5a6a8a" font-family="Inter,sans-serif">Improving</text>
+
+        <circle cx="260" cy="95" r="5" fill="#818cf8"/>
+        <text x="260" y="80" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">May</text>
+        <text x="260" y="160" text-anchor="middle" font-size="9" fill="#5a6a8a" font-family="Inter,sans-serif">Improving</text>
+
+        <circle cx="380" cy="78" r="5" fill="#818cf8"/>
+        <text x="380" y="63" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Jun</text>
+        <text x="380" y="160" text-anchor="middle" font-size="9" fill="#5a6a8a" font-family="Inter,sans-serif">Improving</text>
+
+        <circle cx="500" cy="55" r="6" fill="#3730a3"/>
+        <text x="500" y="38" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Jul: 120.1</text>
+        <text x="500" y="160" text-anchor="middle" font-size="9" fill="#3730a3" font-family="Inter,sans-serif">Improving (+1.6pt)</text>
+
+        <line x1="130" y1="185" x2="580" y2="185" stroke="#be185d" stroke-width="1.5" stroke-dasharray="4 2"/>
+        <text x="580" y="200" text-anchor="end" font-size="9" fill="#be185d" font-family="Inter,sans-serif">Domestic demand: -0.2% q/q (Q2 GDP)</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>Favor export/equipment-linked names over domestic-demand-sensitive ones into the Sept 17-18 meeting — the BCI strength and the GDP softness are describing two different parts of the economy.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>Longest "Improving" streak in years, directly traceable to AI-chip equipment demand.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>Aug 21 and Sep 18 CPI prints — the Board's own flagged checkpoints before the Sept 17-18 decision.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>A hike into soft domestic demand risks compounding the consumption weakness already showing in Q2 GDP.</p></div>
+    </div>
+  </div>
+
+  <div class="footer">日本速報 · JAPAN BRIEF · ISSUE #101 · SEPTEMBER 8, 2026 · NOT INVESTMENT ADVICE</div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
