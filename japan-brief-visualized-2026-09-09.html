@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #102</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; padding-bottom:40px; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:32px 40px 24px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { font-size:12px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .glance { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:28px 40px 8px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:16px 18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .glance-tag.ai { color:#3730a3; }
+  .glance-tag.semi { color:#be185d; }
+  .glance-tag.macro { color:#b45309; }
+  .glance-headline { font-size:13px; font-weight:600; color:#1a1a2e; line-height:1.4; margin-bottom:6px; }
+  .glance-stat { font-size:20px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:10.5px; color:#5a6a8a; margin-top:2px; }
+
+  .section-title { font-size:11px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:#3730a3; padding:24px 40px 4px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; margin:16px 40px; padding:24px 28px; }
+  .story-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#9a9aa8; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.35; }
+  .story-card p { font-size:13.5px; color:#3a4a6a; line-height:1.75; margin-bottom:10px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:16px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:10px; }
+  .takeaway { background:#f8f9fc; border-left:3px solid #3730a3; padding:12px 16px; margin:14px 0; border-radius:0 4px 4px 0; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#5a6a8a; margin-bottom:4px; }
+  .takeaway p { margin:0; font-size:13px; color:#2c2c3a; }
+
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+  .annot-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; }
+  .annot-label { font-size:9px; font-weight:700; letter-spacing:1.5px; margin-bottom:6px; }
+  .annot-label.signal { color:#0e7490; }
+  .annot-label.watch { color:#b45309; }
+  .annot-label.risk { color:#be185d; }
+  .annot-card p { font-size:12px; color:#3a4a6a; margin:0; line-height:1.5; }
+
+  .footer { text-align:center; padding:28px 40px 0; font-size:10.5px; letter-spacing:1px; color:#5a6a8a; text-transform:uppercase; }
+
+  @media (max-width: 700px) {
+    .glance, .annotations { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief — Issue #102, Visualized</div>
+    <div class="masthead-meta">Wednesday, September 9, 2026 · 3 stories, charted</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="glance">
+    <div class="glance-card">
+      <div class="glance-tag ai">STORY 1 · AI & TECH</div>
+      <div class="glance-headline">Preferred Networks targets an IPO to fund MN-Core mass production</div>
+      <div class="glance-stat">2028–2030</div>
+      <div class="glance-stat-label">Targeted listing window</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag semi">STORY 2 · SEMICONDUCTORS</div>
+      <div class="glance-headline">China deposits up to 99.2% on Japanese chip-gas exports</div>
+      <div class="glance-stat">99.2%</div>
+      <div class="glance-stat-label">Max anti-dumping deposit on Japanese DCS</div>
+    </div>
+    <div class="glance-card">
+      <div class="glance-tag macro">STORY 3 · MACRO & BOJ</div>
+      <div class="glance-headline">5-year JGB auction draws weakest demand in months</div>
+      <div class="glance-stat">3.42</div>
+      <div class="glance-stat-label">Bid-to-cover vs. 4.15 prior auction</div>
+    </div>
+  </div>
+
+  <div class="section-title">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 1 · AI & TECH</div>
+    <div class="story-card-headline">Preferred Networks Eyes a Public Listing to Fund Its AI Chip Ambitions</div>
+    <p>Bloomberg and The Japan Times reported PFN is targeting an IPO window of 2028–2030 to fund mass production of its MN-Core AI accelerator chips, which the company says can run generative-AI workloads up to 10x faster than comparable Nvidia GPUs on a cost basis. Chip samples reach customers in H1 2027; a commercial launch to corporate clients in Japan and abroad is slated for December 2027, with TSMC and Samsung handling fabrication.</p>
+    <p>PFN has operated since 2014 as one of Japan's few privately held, billion-dollar-plus tech companies, backed by Toyota, Fanuc, SBI Group and NTT rather than public markets. Needing IPO-scale capital to reach volume production signals that even Japan's most credible domestic chip-and-model lab has hit the point where corporate-venture backing alone can't fund foundry-scale manufacturing.</p>
+    <div class="chart-box">
+      <div class="chart-title">PFN MN-Core Roadmap: From Samples to Public Listing</div>
+      <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="120" x2="600" y2="120" stroke="#e8eaf2" stroke-width="2"/>
+
+        <circle cx="90" cy="120" r="6" fill="#818cf8"/>
+        <text x="90" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Sept 2026</text>
+        <text x="90" y="145" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">IPO plan</text>
+        <text x="90" y="157" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">disclosed</text>
+
+        <circle cx="260" cy="120" r="6" fill="#818cf8"/>
+        <text x="260" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">H1 2027</text>
+        <text x="260" y="145" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Chip samples</text>
+        <text x="260" y="157" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">to customers</text>
+
+        <circle cx="410" cy="120" r="6" fill="#818cf8"/>
+        <text x="410" y="100" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Dec 2027</text>
+        <text x="410" y="145" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Commercial</text>
+        <text x="410" y="157" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">launch</text>
+
+        <rect x="500" y="95" width="90" height="10" fill="#3730a3" rx="2"/>
+        <text x="545" y="87" text-anchor="middle" font-size="11" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">2028–2030</text>
+        <text x="545" y="145" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">IPO</text>
+        <text x="545" y="157" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">window</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>Treat this as a funding-strategy signal, not a near-term listing catalyst — the real test is whether PFN hits the 2027 sample and launch milestones before the capital question becomes urgent.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>A rare, closely held AI lab explicitly naming public markets as a future funding source for chip manufacturing.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>Whether H1 2027 sample shipments and the December 2027 commercial launch land on schedule.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>A 2028–2030 window is wide and non-binding — corporate-venture backers could still fund another private round instead.</p></div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-card-headline">China Hits Shin-Etsu's Chip Gas With Deposits Up to 99.2%, Opening a Second Front on Japanese Materials</div>
+    <p>China's Commerce Ministry imposed provisional anti-dumping deposits of 80.8%–99.2% on Japanese dichlorosilane (DCS) effective September 8, naming Shin-Etsu Chemical and Denal Silane. DCS is used in chemical-vapor-deposition steps for logic and memory chips, and Japan is the leading global producer of the ultrapure grade. Shin-Etsu shares fell 3.4% in Tokyo; Chinese rivals Tangshan Sunfar Silicon and Hubei Heyuan Gas both jumped their 10% daily limit.</p>
+    <p>The measure is provisional and Shin-Etsu says any revenue hit won't be material, but it stacks on top of an existing rare-earth supply squeeze already weighing on the company (dysprosium imports from China down 82% YoY as of mid-2026). Two separate China-directed pressure points on the same supplier is the more durable signal than either action alone.</p>
+    <div class="chart-box">
+      <div class="chart-title">Market Reaction: Shin-Etsu vs. Chinese DCS Rivals, September 8</div>
+      <svg viewBox="0 0 640 210" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="110" x2="600" y2="110" stroke="#e8eaf2" stroke-width="2"/>
+        <text x="60" y="30" font-size="10" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">Same-day share price move</text>
+
+        <rect x="140" y="110" width="90" height="42" fill="#be185d"/>
+        <text x="185" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#be185d" font-family="Inter,sans-serif">-3.4%</text>
+        <text x="185" y="184" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Shin-Etsu Chemical (Tokyo)</text>
+
+        <rect x="360" y="8" width="90" height="102" fill="#c7d2fe"/>
+        <text x="405" y="0" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif" dy="8">+10.0%</text>
+        <text x="405" y="126" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">Tangshan Sunfar / Hubei Heyuan</text>
+        <text x="405" y="139" text-anchor="middle" font-size="9.5" fill="#5a6a8a" font-family="Inter,sans-serif">(daily limit, China)</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>Near-term earnings impact on Shin-Etsu looks limited, but the pattern of stacked China trade actions on upstream Japanese materials suppliers argues for tracking policy risk alongside the wafer-duopoly pricing-power thesis, not instead of it.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>A specific, dated regulatory action with named companies and quantified deposit rates — not a generic tension narrative.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>The final anti-dumping ruling, and whether Beijing extends similar measures to other Japanese specialty-gas or materials exporters.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>Compounds an already-tightening rare-earth supply picture for the same company across two of its core business lines.</p></div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-card-label">STORY 3 · MACRO & BOJ</div>
+    <div class="story-card-headline">A Soft Bond Auction Adds a Fiscal Wrinkle to the BOJ's September Decision</div>
+    <p>MoF's September 8 sale of five-year JGBs drew a bid-to-cover ratio of 3.42, down from 4.15 at the prior auction and below the 3.44 twelve-month average, with the tail widening to 0.04 from 0.02 — the softest demand signal in months, just over a week before the BOJ's September 17–18 meeting, where a 25bp hike to 1.25% is nearly fully priced in.</p>
+    <p>The softness sits on top of a structural story: Takaichi's expansionary fiscal stance keeps issuance elevated even as the pool of steady domestic buyers thins. Separately, Takaichi economic adviser Takuji Aida — a reflationist historically skeptical of hikes — now expects a September move followed by another by January, pulling forward his own January 2027 forecast.</p>
+    <div class="chart-box">
+      <div class="chart-title">5-Year JGB Auction: Bid-to-Cover Ratio Trend</div>
+      <svg viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="600" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="164" text-anchor="end" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">0</text>
+
+        <rect x="130" y="46" width="90" height="114" fill="#c7d2fe"/>
+        <text x="175" y="38" text-anchor="middle" font-size="12" font-weight="700" fill="#3730a3" font-family="Inter,sans-serif">4.15</text>
+        <text x="175" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">Prior auction</text>
+
+        <rect x="280" y="66" width="90" height="94" fill="#dde0ec"/>
+        <text x="325" y="58" text-anchor="middle" font-size="12" font-weight="700" fill="#5a6a8a" font-family="Inter,sans-serif">3.44</text>
+        <text x="325" y="178" text-anchor="middle" font-size="10" fill="#5a6a8a" font-family="Inter,sans-serif">12-mo average</text>
+
+        <rect x="430" y="68" width="90" height="92" fill="#be185d"/>
+        <text x="475" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#be185d" font-family="Inter,sans-serif">3.42</text>
+        <text x="475" y="178" text-anchor="middle" font-size="10" fill="#be185d" font-family="Inter,sans-serif">Sept 8 auction</text>
+        <text x="475" y="191" text-anchor="middle" font-size="9" fill="#be185d" font-family="Inter,sans-serif">weakest in months</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <p>Treat the "hike is priced in" consensus with some caution — a central bank facing soft sponsorship for its own government's debt has less room to hold rates than the base case assumes, so a surprise either way could move the JGB curve and the yen more than expected.</p>
+    </div>
+    <div class="annotations">
+      <div class="annot-card"><div class="annot-label signal">SIGNAL</div><p>Bid-to-cover and tail both point the same direction: real, not noisy, deterioration in auction demand.</p></div>
+      <div class="annot-card"><div class="annot-label watch">WATCH</div><p>The Sept 17-18 BOJ decision itself, and whether Aida's pulled-forward hike timeline proves directionally right.</p></div>
+      <div class="annot-card"><div class="annot-label risk">RISK</div><p>Elevated issuance under Takaichi's fiscal agenda against a shrinking domestic buyer base is a structural, not one-off, pressure.</p></div>
+    </div>
+  </div>
+
+  <div class="footer">日本速報 · JAPAN BRIEF · ISSUE #102 · SEPTEMBER 9, 2026 · NOT INVESTMENT ADVICE</div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
