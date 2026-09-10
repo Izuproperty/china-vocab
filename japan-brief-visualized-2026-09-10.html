@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #103 · September 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#991b1b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#991b1b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #103 · September 10, 2026</div>
+    <div class="masthead-sub">Preferred Networks IPO · China Chip-Chemical Duties · BOJ Under Pressure</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CAPITAL MARKETS</div>
+      <div class="card-num">¥1<span class="card-num-unit">trillion govt. support (5yr)</span></div>
+      <div class="card-label">Preferred Networks seeks IPO to fund AI chip design, alongside METI-backed Noetra JV</div>
+      <div class="card-delta delta-amber">No listing timeline disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMICONDUCTORS & TRADE</div>
+      <div class="card-num">99.2<span class="card-num-unit">% anti-dumping deposit</span></div>
+      <div class="card-label">China's duty targets Shin-Etsu's dichlorosilane, a critical chip-fab chemical</div>
+      <div class="card-delta delta-red">Effective Sept 8, Tokyo protests</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO & BOJ</div>
+      <div class="card-num">¥153<span class="card-num-unit">/USD (strongest since Feb)</span></div>
+      <div class="card-label">Bessent's yen jawboning raises the bar for the BOJ's expected September hike</div>
+      <div class="card-delta delta-amber">Market pricing may outrun policy</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI CHIPS</div>
+    <div class="story-headline">Preferred Networks Seeks an IPO to Keep Up in Japan's AI Chip Race</div>
+    <div class="story-insight">
+      <p>PFN — one of Japan's few private billion-dollar-valuation companies — is preparing to seek a public listing, per Bloomberg (Sept 7), to fund custom AI-chip design and mass production. PFN also co-leads Noetra Corp. with SoftBank, Sony, and Honda, building a homegrown foundation model; METI has committed ~¥390B in FY2026, part of a ~¥1T five-year package.</p>
+      <br>
+      <p>A major shift for a company that stayed private since 2014 specifically to avoid short-term shareholder pressure. Signals that even well-capitalized, government-adjacent AI labs see private funding as insufficient at the scale Nvidia and Chinese rivals operate.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> No listing venue, timeline, or valuation disclosed yet — the eventual raise size will show whether this is a capital top-up or a bet on becoming a public AI-chip pure-play.</div>
+    <div class="chart-box">
+      <div class="chart-title">Noetra Consortium: Government Support Structure</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="15" y="25" font-size="10" fill="#5a6a8a">Funding (¥B)</text>
+        <rect x="130" y="110" width="110" height="40" fill="#e0e7ff" rx="2"/>
+        <text x="145" y="105" font-size="12" fill="#3730a3" font-weight="700">¥390B</text>
+        <text x="120" y="168" font-size="10" fill="#5a6a8a">FY2026 (METI → Noetra)</text>
+        <rect x="420" y="35" width="110" height="115" fill="#c7d2fe" rx="2"/>
+        <text x="435" y="30" font-size="12" fill="#3730a3" font-weight="700">~¥1T</text>
+        <text x="410" y="168" font-size="10" fill="#5a6a8a">Total, 5-yr package</text>
+        <text x="580" y="70" font-size="10" fill="#5a6a8a">Members: PFN, SoftBank,</text>
+        <text x="580" y="84" font-size="10" fill="#5a6a8a">Sony, Honda + others</text>
+        <text x="580" y="104" font-size="10" fill="#b45309">PFN now separately</text>
+        <text x="580" y="118" font-size="10" fill="#b45309">seeking its own IPO</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FUNDING SHIFT</div>
+        <div class="annotation-card-zh">新規株式公開<span class="annotation-card-en">shinki kabushiki kōkai · IPO</span></div>
+        <div class="annotation-card-body">PFN staying private since 2014 was a deliberate choice — seeking public capital now says private funding can't keep pace with AI chip design costs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RAISE SIZE</div>
+        <div class="annotation-card-zh">半導体設計<span class="annotation-card-en">handōtai sekkei · chip design</span></div>
+        <div class="annotation-card-body">No valuation or venue disclosed — the size of the eventual raise is the real signal of ambition here.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SCALE GAP</div>
+        <div class="annotation-card-zh">計算能力<span class="annotation-card-en">keisan nōryoku · compute capacity</span></div>
+        <div class="annotation-card-body">Competing on chip design against Nvidia and Chinese rivals at scale is the stated rationale — a high bar for a company PFN's size to clear via IPO alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · CHIP MATERIALS & TRADE</div>
+    <div class="story-headline">China Hits a Critical Japanese Chip Chemical With a 99.2% Anti-Dumping Deposit</div>
+    <div class="story-insight">
+      <p>China's Commerce Ministry imposed preliminary anti-dumping cash-deposit rates on Japanese dichlorosilane effective Sept 8: 99.2% for Shin-Etsu Chemical and other Japanese producers, 80.8% for Denal Silane. The chemical forms thin films in chip fabrication; Japan leads global supply of the ultra-high-purity grade, though Japanese imports were only ~33% of China's total (~$2.6M in July). Tokyo has formally protested.</p>
+      <br>
+      <p>China's domestic-harm rationale lands alongside its own upstream chip-materials buildout — reading as import-substitution policy as much as a narrow trade case. Dollar amounts are small; the signal for Japanese materials suppliers' exposure is what matters.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Japan's chip-materials suppliers remain exposed to further Chinese trade actions even as Japan's own semiconductor buildout (JASM, Rapidus) accelerates — the two countries' supply chains stay entangled even as policy postures diverge.</div>
+    <div class="chart-box">
+      <div class="chart-title">Anti-Dumping Cash-Deposit Rates by Producer</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">Deposit %</text>
+        <rect x="160" y="35" width="110" height="115" fill="#fbcfe8" rx="2"/>
+        <text x="170" y="30" font-size="12" fill="#be185d" font-weight="700">99.2%</text>
+        <text x="140" y="168" font-size="10" fill="#5a6a8a">Shin-Etsu Chemical</text>
+        <rect x="420" y="65" width="110" height="85" fill="#fce7f3" rx="2"/>
+        <text x="430" y="60" font-size="12" fill="#be185d" font-weight="700">80.8%</text>
+        <text x="415" y="168" font-size="10" fill="#5a6a8a">Denal Silane</text>
+        <text x="580" y="70" font-size="10" fill="#5a6a8a">Effective Sept 8, 2026</text>
+        <text x="580" y="84" font-size="10" fill="#5a6a8a">Preliminary ruling</text>
+        <text x="580" y="104" font-size="10" fill="#b45309">Investigation opened Jan 2026</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUPPLY CONCENTRATION</div>
+        <div class="annotation-card-zh">ジクロロシラン<span class="annotation-card-en">jikuroroshiran · dichlorosilane</span></div>
+        <div class="annotation-card-body">Japan's ultra-high-purity lead in this chemical is exactly the kind of chokepoint China's materials buildout is trying to substitute away from.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FINAL RULING</div>
+        <div class="annotation-card-zh">最終決定<span class="annotation-card-en">saishū kettei · final determination</span></div>
+        <div class="annotation-card-body">This is a preliminary rate — the final ruling could adjust these deposit levels, and Tokyo's protest may factor into the timeline.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLIER EXPOSURE</div>
+        <div class="annotation-card-zh">供給網<span class="annotation-card-en">kyōkyūmō · supply chain</span></div>
+        <div class="annotation-card-body">Japanese materials names (Shin-Etsu, and by extension Tokyo Electron's ecosystem) carry China trade-action risk even as their advanced-node exposure lies elsewhere.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · CURRENCY & BOJ</div>
+    <div class="story-headline">Bessent's Public Push for a Stronger Yen Is Raising the Bar the BOJ Now Has to Clear</div>
+    <div class="story-insight">
+      <p>Bessent's jawboning for yen strength is building expectations for a BOJ tightening campaign more aggressive than anything in a generation (Bloomberg, Sept 9) — risking disappointment if the BOJ can't match what's priced in. Yen strengthened toward ¥153/USD, strongest since February. Takata raised the chance of an outsized or back-to-back hike; Ueda flagged upside price risks. A Takaichi economic adviser expects a September hike, another by January.</p>
+      <br>
+      <p>The gap between political pressure and monetary reality is the thing to watch: Bessent's rhetoric doesn't move Japanese rates directly, and a BOJ delivering only the expected quarter point risks disappointing a market his comments helped push toward pricing more.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> An asymmetric setup — the yen's near-term direction depends less on what the BOJ actually decides than on whether it validates expectations someone else inflated.</div>
+    <div class="chart-box">
+      <div class="chart-title">USD/JPY: Yen Strengthens Toward February Levels (illustrative)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">USD/JPY</text>
+        <polyline points="80,50 200,60 320,70 440,85 560,100 680,112 740,118" fill="none" stroke="#3730a3" stroke-width="2"/>
+        <circle cx="740" cy="118" r="4" fill="#3730a3"/>
+        <text x="600" y="135" font-size="10" fill="#5a6a8a">This week: ~¥153</text>
+        <text x="80" y="45" font-size="10" fill="#5a6a8a">Feb 2026 level (ref.)</text>
+        <line x1="60" y1="50" x2="780" y2="50" stroke="#dde0ec" stroke-dasharray="3,3"/>
+        <text x="600" y="45" font-size="10" fill="#b45309">Strongest since Feb</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · HAWKISH TILT</div>
+        <div class="annotation-card-zh">追加利上げ<span class="annotation-card-en">tsuika riage · additional rate hike</span></div>
+        <div class="annotation-card-body">Takata's "back-to-back hike" comment and Ueda's price-risk framing both point toward September action being close to consensus, not a surprise.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EXPECTATIONS GAP</div>
+        <div class="annotation-card-zh">為替介入<span class="annotation-card-en">kawase kainyū · FX intervention</span></div>
+        <div class="annotation-card-body">If the September hike is only the expected quarter point, the yen's recent gains could partially reverse on a "priced-in" repricing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EXTERNAL PRESSURE</div>
+        <div class="annotation-card-zh">日米金利差<span class="annotation-card-en">Nichibei kinrisa · US-Japan rate differential</span></div>
+        <div class="annotation-card-body">A US Treasury Secretary publicly jawboning for yen strength is an unusual external input into what's normally a domestic BOJ decision.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #103 · SEPTEMBER 10, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
