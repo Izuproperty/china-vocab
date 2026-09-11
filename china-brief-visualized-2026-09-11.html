@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #115 · September 11, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-chips { background:#fff3e0; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #115 · September 11, 2026</div>
+    <div class="masthead-sub">DeepSeek's $75B IPO Push · Beijing Rejects Distillation Claims · World-First SiC Chip</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CAPITAL MARKETS</div>
+      <div class="card-num">$75<span class="card-num-unit">B pre-IPO valuation</span></div>
+      <div class="card-label">DeepSeek taps CITIC Securities for a STAR Market listing this year</div>
+      <div class="card-delta delta-amber">Up from ~$50B in June</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · POLICY</div>
+      <div class="card-num">6<span class="card-num-unit">labs, one rejection</span></div>
+      <div class="card-label">Beijing calls US distillation advisory "groundless," warns of countermeasures</div>
+      <div class="card-delta delta-red">Two weeks before Trump-Xi summit</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-chips">CHIPS & INDUSTRIAL</div>
+      <div class="card-num">1,635<span class="card-num-unit">V breakdown voltage</span></div>
+      <div class="card-label">Alkaidsemi claims world-first SiC superjunction MOSFET after 5-year program</div>
+      <div class="card-delta delta-amber">Yield/cost at scale unproven</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · CAPITAL MARKETS</div>
+    <div class="story-headline">$75 Billion and Rising: DeepSeek Taps CITIC Securities to Prepare a STAR Market IPO</div>
+    <div class="story-insight">
+      <p>DeepSeek appointed CITIC Securities to prepare a STAR Market IPO, aiming to start the process this year. A pre-IPO round is underway at a ¥500B (~$75B) valuation, up from ~$50B post-money in June, when Liang Wenfeng contributed ¥20B personally and Tencent/CATL became top external shareholders (¥10B/¥5B). Proceeds target compute, model development, and talent retention.</p>
+      <br>
+      <p>Pre-IPO valuation and eventual public pricing are different numbers — untested by public markets yet. Notably, this comes right after DeepSeek was named directly in the US distillation advisory, and the company is pressing ahead with a conventional capital raise regardless.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Would become the most closely watched Chinese AI IPO since Unitree — same open question of whether a public valuation holds once quarterly disclosure replaces private-round narrative.</div>
+    <div class="chart-box">
+      <div class="chart-title">DeepSeek Valuation Trajectory (Post-Money, $B)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">$B</text>
+        <rect x="160" y="90" width="110" height="60" fill="#ddd8d0" rx="2"/>
+        <text x="175" y="85" font-size="12" fill="#3a3a3a" font-weight="700">~$50B</text>
+        <text x="150" y="168" font-size="10" fill="#5a6a8a">June 2026 round</text>
+        <rect x="420" y="35" width="110" height="115" fill="#fee2e2" rx="2"/>
+        <text x="435" y="30" font-size="12" fill="#c0392b" font-weight="700">$75B</text>
+        <text x="410" y="168" font-size="10" fill="#5a6a8a">Sept 2026 (pre-IPO)</text>
+        <text x="580" y="70" font-size="10" fill="#5a6a8a">Key holders: Liang Wenfeng,</text>
+        <text x="580" y="84" font-size="10" fill="#5a6a8a">Tencent, CATL</text>
+        <text x="580" y="104" font-size="10" fill="#b45309">Public valuation untested</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL ACCESS</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">kēchuàngbǎn · STAR Market</span></div>
+        <div class="annotation-card-body">Pressing ahead with a conventional IPO path despite the distillation advisory suggests the allegations aren't slowing DeepSeek's fundraising momentum domestically.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · IPO TIMING</div>
+        <div class="annotation-card-zh">估值<span class="annotation-card-en">gūzhí · valuation</span></div>
+        <div class="annotation-card-body">No listing date or share structure confirmed — the pre-IPO round and public offering are separate pricing events.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PUBLIC SCRUTINY</div>
+        <div class="annotation-card-zh">季度披露<span class="annotation-card-en">jìdù pīlù · quarterly disclosure</span></div>
+        <div class="annotation-card-body">Unitree's post-IPO growth deceleration is the cautionary precedent — a private valuation narrative doesn't always survive public reporting requirements.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · US-CHINA AI POLICY</div>
+    <div class="story-headline">"Groundless": Beijing Rejects the US Distillation Advisory and Warns of Countermeasures</div>
+    <div class="story-insight">
+      <p>China's Commerce Ministry rejected the Sept 8 NSA/CISA/FBI advisory naming six Chinese AI labs, with spokesperson Mao Ning calling the claims "groundless" and citing "technological self-reliance." A separate spokesperson warned of "resolute countermeasures" if Washington acts against Chinese AI firms — while signaling openness to AI-specific talks with the US.</p>
+      <br>
+      <p>The open-to-talks-but-ready-to-retaliate framing is standard pre-negotiation posture, landing two weeks before the Sept 24 Trump-Xi summit where AI governance is expected on the agenda. Neither side has specified what a countermeasure would target.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch for concrete US action against the six named labs (API/cloud restrictions) — that would test how fast Beijing's rhetoric converts into an actual response.</div>
+    <div class="chart-box">
+      <div class="chart-title">Response Timeline: Advisory to Rejection</div>
+      <svg viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="140" cy="80" r="6" fill="#c0392b"/>
+        <text x="100" y="60" font-size="11" fill="#3a3a3a" font-weight="700">Sept 8</text>
+        <text x="80" y="105" font-size="10" fill="#5a6a8a">US advisory AA26-251A</text>
+        <circle cx="400" cy="80" r="6" fill="#ddd8d0"/>
+        <text x="360" y="60" font-size="11" fill="#3a3a3a" font-weight="700">Sept 9-10</text>
+        <text x="330" y="105" font-size="10" fill="#5a6a8a">MOFCOM rejects, threatens countermeasures</text>
+        <circle cx="700" cy="80" r="6" fill="#fee2e2" stroke="#c0392b" stroke-width="2"/>
+        <text x="650" y="60" font-size="11" fill="#c0392b" font-weight="700">Sept 24</text>
+        <text x="620" y="105" font-size="10" fill="#b45309">Trump-Xi summit (AI on agenda)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DUAL POSTURE</div>
+        <div class="annotation-card-zh">科技自立<span class="annotation-card-en">kēji zìlì · tech self-reliance</span></div>
+        <div class="annotation-card-body">Rejecting the claims while staying open to talks is a deliberate both-and stance ahead of a major summit, not a closed door.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUMMIT AGENDA</div>
+        <div class="annotation-card-zh">人工智能治理<span class="annotation-card-en">réngōng zhìnéng zhìlǐ · AI governance</span></div>
+        <div class="annotation-card-body">Whether AI governance gets a dedicated track at the Sept 24 summit, or stays folded into the broader trade/tech agenda, shapes how seriously to weight this exchange.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · UNDEFINED RETALIATION</div>
+        <div class="annotation-card-zh">反制措施<span class="annotation-card-en">fǎnzhì cuòshī · countermeasures</span></div>
+        <div class="annotation-card-body">No target specified for "resolute countermeasures" — the vagueness itself is a signal that Beijing is holding options open rather than committing to a specific response.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · POWER SEMICONDUCTORS</div>
+    <div class="story-headline">Five Years in the Lab, One Announcement in Shanghai: China Claims a World-First Power-Chip Design</div>
+    <div class="story-insight">
+      <p>Alkaidsemi (Shanghai) launched what it calls the world's first SiC superjunction MOSFET on Sept 7: 1,200V-class, 1,635V breakdown voltage, 1.27mΩ·cm² on-resistance at room temp (1.5mΩ·cm² at 175°C). Five-year joint effort with CAS academician Hao Yue's team at Xidian University; United Nova Technology (UNT) developed the fab process.</p>
+      <br>
+      <p>SiC superjunction is a genuinely hard manufacturing target — combining SiC's thermal/voltage advantages with a device architecture that's historically difficult to fabricate reliably at scale. If independently verified, a real technical marker, not just marketing.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The gap between a research milestone and a market-moving one is yield and cost at commercial volumes — power-chip pricing is already rising industry-wide.</div>
+    <div class="chart-box">
+      <div class="chart-title">Alkaidsemi SiC MOSFET: Key Specs</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">Value</text>
+        <rect x="140" y="35" width="90" height="115" fill="#fff3e0" rx="2"/>
+        <text x="145" y="30" font-size="12" fill="#b45309" font-weight="700">1,635V</text>
+        <text x="120" y="168" font-size="10" fill="#5a6a8a">Breakdown voltage</text>
+        <rect x="380" y="120" width="90" height="30" fill="#ddd8d0" rx="2"/>
+        <text x="385" y="115" font-size="12" fill="#3a3a3a" font-weight="700">1.27mΩ·cm²</text>
+        <text x="360" y="168" font-size="10" fill="#5a6a8a">On-resistance (25°C)</text>
+        <rect x="600" y="112" width="90" height="38" fill="#ddd8d0" rx="2"/>
+        <text x="605" y="107" font-size="12" fill="#3a3a3a" font-weight="700">1.5mΩ·cm²</text>
+        <text x="590" y="168" font-size="10" fill="#5a6a8a">On-resistance (175°C)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TECHNICAL MILESTONE</div>
+        <div class="annotation-card-zh">超级结<span class="annotation-card-en">chāojíjié · superjunction</span></div>
+        <div class="annotation-card-body">Superjunction-on-SiC has been a lab-to-fab challenge globally — a credible working device is a real R&D result, independent of commercialization timing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · INDEPENDENT VERIFICATION</div>
+        <div class="annotation-card-zh">良率<span class="annotation-card-en">liángshuài · yield</span></div>
+        <div class="annotation-card-body">"World-first" claims from a single company's press release warrant third-party benchmarking before treating the spec sheet as settled.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COST AT SCALE</div>
+        <div class="annotation-card-zh">功率半导体<span class="annotation-card-en">gōnglǜ bàndǎotǐ · power semiconductor</span></div>
+        <div class="annotation-card-body">Power-chip prices are rising industry-wide (Renesas' next hike lands Jan 2027) — the design needs a competitive cost curve, not just a spec sheet, to matter commercially.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #115 · SEPTEMBER 11, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
