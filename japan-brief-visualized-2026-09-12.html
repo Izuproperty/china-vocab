@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #105 · September 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:900px; margin:0 auto; background:#fff; box-shadow:0 2px 40px rgba(0,0,0,0.08); }
+  .masthead { background:#1a1a2e; padding:32px 48px 24px; border-bottom:4px solid #3730a3; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:#fff; }
+  .masthead-meta { margin-top:10px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .content { padding:36px 48px 48px; }
+  .glance-label { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:16px; }
+  .glance-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:44px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px; }
+  .glance-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:8px; }
+  .glance-card-headline { font-size:13.5px; font-weight:600; color:#1a1a2e; line-height:1.4; margin-bottom:8px; }
+  .glance-card-stat { font-size:22px; font-weight:700; color:#3730a3; font-family:'Playfair Display',serif; }
+  .glance-card-stat-label { font-size:11px; color:#5a6a8a; margin-top:2px; }
+  .section-divider { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin:0 0 24px; padding-top:8px; border-top:1px solid #dde0ec; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:32px; }
+  .story-card-number { font-size:10px; font-weight:700; letter-spacing:2px; color:#3730a3; margin-bottom:8px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:16px; }
+  .story-card-body { font-size:14px; color:#3a4a6a; line-height:1.8; margin-bottom:20px; }
+  .story-card-body p { margin-bottom:12px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin-bottom:20px; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .takeaway-box { background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px 18px; margin-bottom:20px; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .takeaway-text { font-size:13.5px; color:#3a4a6a; line-height:1.6; }
+  .annotation-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; }
+  .annotation-tag { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-tag.signal { color:#0e7490; }
+  .annotation-tag.watch { color:#b45309; }
+  .annotation-tag.risk { color:#be185d; }
+  .annotation-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .footer { padding:20px 48px 32px; background:#1a1a2e; text-align:center; }
+  .footer-text { font-size:10.5px; color:#4a5a7a; letter-spacing:1px; }
+  @media (max-width:640px) {
+    .glance-grid, .annotation-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">日本速報 · Issue #105 Data View</div>
+    <div class="masthead-meta">Saturday, September 12, 2026</div>
+  </div>
+  <div class="nav-row">
+    <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+    <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+    <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+  </div>
+
+  <div class="content">
+
+    <div class="glance-label">At a Glance</div>
+    <div class="glance-grid">
+      <div class="glance-card">
+        <div class="glance-card-tag">Story 1 · AI &amp; Tech</div>
+        <div class="glance-card-headline">SoftBank's record short book meets a $25.9B OpenAI repayment</div>
+        <div class="glance-card-stat">$3.9B</div>
+        <div class="glance-card-stat-label">notional short interest — highest since 2015</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-card-tag">Story 2 · Semiconductor</div>
+        <div class="glance-card-headline">Renesas raises prices for the second time in 2026</div>
+        <div class="glance-card-stat">2×</div>
+        <div class="glance-card-stat-label">price adjustments in a single year</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-card-tag">Story 3 · Macro &amp; Finance</div>
+        <div class="glance-card-headline">Aichi–San Ju San regional bank merger collapses</div>
+        <div class="glance-card-stat">¥11.6T</div>
+        <div class="glance-card-stat-label">combined assets that will not materialize</div>
+      </div>
+    </div>
+
+    <div class="section-divider">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY ONE · AI &amp; TECH</div>
+      <div class="story-card-headline">SoftBank's $25.9 Billion OpenAI Repayment Lands on a Record Short Book</div>
+      <div class="story-card-body">
+        <p>SoftBank Group must repay the $25.9 billion balance on its OpenAI bridge facility by September 15, even as short interest in its shares sits at the highest level since 2015 — a setup that could cut either way depending on how the refinancing is received.</p>
+        <p>Four separate fundraisings in five months (retail bond, bridge draw, prospective high-yield offering, margin lending) show how central borrowed capital has become to Son's AI buildout — a pace worth tracking as a leading indicator of credit-market appetite.</p>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">SoftBank's 2026 AI-Financing Timeline</div>
+        <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+          <line x1="40" y1="100" x2="740" y2="100" stroke="#dde0ec" stroke-width="2"/>
+          <!-- March: bridge draw -->
+          <circle cx="90" cy="100" r="6" fill="#3730a3"/>
+          <text x="90" y="75" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">Mar</text>
+          <text x="90" y="90" font-size="9" fill="#5a6a8a" text-anchor="middle">$30B drawn</text>
+          <text x="90" y="125" font-size="9" fill="#5a6a8a" text-anchor="middle">of $40B</text>
+          <text x="90" y="137" font-size="9" fill="#5a6a8a" text-anchor="middle">bridge facility</text>
+          <!-- Aug 20 retail bond announced -->
+          <circle cx="290" cy="100" r="6" fill="#3730a3"/>
+          <text x="290" y="75" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">Aug 20</text>
+          <text x="290" y="90" font-size="9" fill="#5a6a8a" text-anchor="middle">¥1T retail bond</text>
+          <text x="290" y="125" font-size="9" fill="#5a6a8a" text-anchor="middle">announced</text>
+          <!-- Sept 4 priced -->
+          <circle cx="440" cy="100" r="6" fill="#3730a3"/>
+          <text x="440" y="75" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">Sept 4</text>
+          <text x="440" y="90" font-size="9" fill="#5a6a8a" text-anchor="middle">Bond priced</text>
+          <!-- Sept 9 short interest peak -->
+          <circle cx="560" cy="100" r="7" fill="#be185d"/>
+          <text x="560" y="75" font-size="11" fill="#be185d" text-anchor="middle" font-weight="700">Sept 9</text>
+          <text x="560" y="90" font-size="9" fill="#5a6a8a" text-anchor="middle">Short interest</text>
+          <text x="560" y="125" font-size="9" fill="#5a6a8a" text-anchor="middle">2.27% of float</text>
+          <text x="560" y="137" font-size="9" fill="#5a6a8a" text-anchor="middle">($3.9B, record)</text>
+          <!-- Sept 15 repayment -->
+          <circle cx="690" cy="100" r="7" fill="#3730a3"/>
+          <text x="690" y="75" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">Sept 15</text>
+          <text x="690" y="90" font-size="9" fill="#5a6a8a" text-anchor="middle">$25.9B</text>
+          <text x="690" y="125" font-size="9" fill="#5a6a8a" text-anchor="middle">bridge loan</text>
+          <text x="690" y="137" font-size="9" fill="#5a6a8a" text-anchor="middle">due</text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">Pricing has cleared without apparent strain so far, but the pace of debt issuance is worth tracking as a leading indicator of whether credit markets keep underwriting SoftBank's AI capex at the same terms if sentiment turns.</div>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-tag signal">Signal</div>
+          <div class="annotation-text">Retail and institutional debt markets have absorbed four SoftBank raises in 2026 without a pricing failure.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-tag watch">Watch</div>
+          <div class="annotation-text">Whether the prospective $10-20B high-yield offering prices in line with guidance once bridge-loan repayment is confirmed.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-tag risk">Risk</div>
+          <div class="annotation-text">A record short book means any funding hiccup could amplify volatility in either direction.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY TWO · SEMICONDUCTOR</div>
+      <div class="story-card-headline">Renesas Raises Prices Again as Cost Inflation Persists Beneath an AI-Driven Upcycle</div>
+      <div class="story-card-body">
+        <p>Renesas notified customers of its second 2026 price increase, effective January 1, 2027, even as its own Q2 results beat margin guidance — evidence that upstream cost inflation across materials, energy, and packaging is being passed through rather than absorbed.</p>
+        <p>The move lands alongside record guidance from Tokyo Electron and a five-year-high Reuters Tankan electronics reading, underscoring how tight capacity has become across Japan's chip supply chain even as AI-linked demand outpaces plan.</p>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Renesas Q2 2026: Guidance vs. Actual</div>
+        <svg viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+          <line x1="60" y1="180" x2="740" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="140" x2="740" y2="140" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="100" x2="740" y2="100" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="60" x2="740" y2="60" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="20" x2="740" y2="20" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="50" y="184" font-size="9" fill="#5a6a8a" text-anchor="end">0%</text>
+          <text x="50" y="144" font-size="9" fill="#5a6a8a" text-anchor="end">10%</text>
+          <text x="50" y="104" font-size="9" fill="#5a6a8a" text-anchor="end">20%</text>
+          <text x="50" y="64" font-size="9" fill="#5a6a8a" text-anchor="end">30%</text>
+          <text x="50" y="24" font-size="9" fill="#5a6a8a" text-anchor="end">40%</text>
+          <!-- Revenue YoY growth -->
+          <rect x="140" y="80" width="70" height="100" fill="#3730a3" rx="3"/>
+          <text x="175" y="70" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="700">24.8%</text>
+          <text x="175" y="200" font-size="10" fill="#5a6a8a" text-anchor="middle">Revenue</text>
+          <text x="175" y="212" font-size="10" fill="#5a6a8a" text-anchor="middle">YoY growth</text>
+          <!-- Margin guide -->
+          <rect x="330" y="64" width="70" height="116" fill="#a5b4fc" rx="3"/>
+          <text x="365" y="54" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="700">29.0%</text>
+          <text x="365" y="200" font-size="10" fill="#5a6a8a" text-anchor="middle">Margin</text>
+          <text x="365" y="212" font-size="10" fill="#5a6a8a" text-anchor="middle">guidance</text>
+          <!-- Margin actual -->
+          <rect x="520" y="47" width="70" height="133" fill="#3730a3" rx="3"/>
+          <text x="555" y="37" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="700">32.7%</text>
+          <text x="555" y="200" font-size="10" fill="#5a6a8a" text-anchor="middle">Margin</text>
+          <text x="555" y="212" font-size="10" fill="#5a6a8a" text-anchor="middle">actual</text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">MCU input costs are unlikely to ease before 2027 — a data point worth modeling into next year's EV and ADAS bill-of-materials assumptions.</div>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-tag signal">Signal</div>
+          <div class="annotation-text">Renesas beat its own margin guidance by nearly 4 points even before the new price increase takes effect.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-tag watch">Watch</div>
+          <div class="annotation-text">Whether automotive customers push back publicly on a second increase within one calendar year.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-tag risk">Risk</div>
+          <div class="annotation-text">Persistent cost inflation could erode the pricing power Renesas has held so far if AI-linked demand cools.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY THREE · MACRO &amp; FINANCE</div>
+      <div class="story-card-headline">A Regional Bank Merger Collapses, a Setback for Central Japan's Consolidation Wave</div>
+      <div class="story-card-body">
+        <p>Aichi Financial Group and San Ju San Financial Group scrapped their planned merger after four months of negotiation, citing disagreement over governance of the combined holding company — even as rising rates strengthen the strategic case for regional-bank consolidation.</p>
+        <p>The episode is a counter-data point to the thesis that BOJ rate normalization mechanically accelerates bank M&amp;A: rate moves raise the incentive to consolidate but don't resolve who leads the combined entity or where the head office sits.</p>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Merger Timeline: Agreement to Cancellation</div>
+        <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+          <line x1="60" y1="100" x2="720" y2="100" stroke="#dde0ec" stroke-width="2"/>
+          <!-- May 2026: basic agreement -->
+          <circle cx="120" cy="100" r="6" fill="#3730a3"/>
+          <text x="120" y="75" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">May 2026</text>
+          <text x="120" y="90" font-size="9" fill="#5a6a8a" text-anchor="middle">Basic agreement</text>
+          <text x="120" y="125" font-size="9" fill="#5a6a8a" text-anchor="middle">signed</text>
+          <!-- dashed line to planned completion -->
+          <line x1="150" y1="100" x2="590" y2="100" stroke="#dde0ec" stroke-width="2" stroke-dasharray="4,4"/>
+          <!-- Sept 11 2026: cancelled -->
+          <circle cx="400" cy="100" r="8" fill="#be185d"/>
+          <text x="400" y="70" font-size="11" fill="#be185d" text-anchor="middle" font-weight="700">Sept 11, 2026</text>
+          <text x="400" y="85" font-size="9" fill="#5a6a8a" text-anchor="middle">Merger cancelled</text>
+          <text x="400" y="125" font-size="9" fill="#5a6a8a" text-anchor="middle">Governance dispute;</text>
+          <text x="400" y="137" font-size="9" fill="#5a6a8a" text-anchor="middle">both stocks fall</text>
+          <!-- April 2027: would-be completion, now moot -->
+          <circle cx="660" cy="100" r="6" fill="#c4c8d8"/>
+          <text x="660" y="75" font-size="11" fill="#9098ae" text-anchor="middle" font-weight="600">Apr 2027</text>
+          <text x="660" y="90" font-size="9" fill="#9098ae" text-anchor="middle">Planned completion</text>
+          <text x="660" y="125" font-size="9" fill="#9098ae" text-anchor="middle">(now moot)</text>
+          <text x="660" y="137" font-size="9" fill="#9098ae" text-anchor="middle">¥11.6T combined assets</text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">Whether this pairing revives under a different structure, or discourages other regional banks currently in talks, is worth watching into next week's BOJ decision and beyond.</div>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-tag signal">Signal</div>
+          <div class="annotation-text">Regional-bank consolidation pressure remains structurally intact regardless of this single deal's outcome.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-tag watch">Watch</div>
+          <div class="annotation-text">Whether other regional bank pairs currently in talks proceed or stall following this cancellation.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-tag risk">Risk</div>
+          <div class="annotation-text">Governance friction — not economics — killed this deal, suggesting similar tie-ups face the same execution risk.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #105 · SEPTEMBER 12, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
