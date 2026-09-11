@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #116 · September 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #116 · September 12, 2026</div>
+    <div class="masthead-sub">Enflame's 206% IPO Pop · HBM Shortage Lifts Chip Prices · Beijing's Property Reform Adds Teeth</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CAPITAL MARKETS</div>
+      <div class="card-num">206<span class="card-num-unit">% debut pop</span></div>
+      <div class="card-label">Enflame raises $911M on STAR Market, completing the "four little GPU dragons" IPO cycle</div>
+      <div class="card-delta delta-amber">Still unprofitable</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIP SUPPLY CHAIN</div>
+      <div class="card-num">20-60<span class="card-num-unit">% price hike</span></div>
+      <div class="card-label">HBM shortage pushes Huawei and Cambricon to raise Ascend/AI chip prices</div>
+      <div class="card-delta delta-red">Memory, not wafers, is the constraint</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO · PROPERTY</div>
+      <div class="card-num">30<span class="card-num-unit">% visit uptick (Shenzhen pilot)</span></div>
+      <div class="card-label">Beijing adds a "lead bank" layer to its presale-reform package</div>
+      <div class="card-delta delta-amber">Multi-quarter test, not a single data point</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · CAPITAL MARKETS</div>
+    <div class="story-headline">$911 Million Raised, 206% Pop: Enflame Closes Out China's "Four Little GPU Dragons" IPO Cycle</div>
+    <div class="story-insight">
+      <p>Enflame (燧原科技) began trading on Shanghai's STAR Market Sept 11, pricing ~43M new shares at ¥142.18 to raise ~¥6.12B ($911M). Shares closed up 206% — the strongest debut among the "four little GPU dragons" (Enflame, Moore Threads, MetaX, Biren Technology), all now public via the STAR Market's pre-profit "hard tech" exception. 2025 revenue was ~¥990M (up from ¥722M); the company remains unprofitable, with proceeds earmarked for 5th/6th-gen training chips.</p>
+      <br>
+      <p>The debut-day pop is unremarkable for a thinly floated, policy-favored STAR issuer. What matters more: all four companies carry meaningful customer concentration (Tencent alone was ~84% of Enflame's 2025 revenue) and none has closed the gap to profitability despite fast growth.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch post-lockup quarters for revenue diversification and loss trajectory — the real test of whether public capital translated into commercial scale.</div>
+    <div class="chart-box">
+      <div class="chart-title">"Four Little GPU Dragons": STAR Market Debut Pops</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">% pop</text>
+        <rect x="120" y="60" width="80" height="90" fill="#ddd8d0" rx="2"/>
+        <text x="125" y="55" font-size="12" fill="#3a3a3a" font-weight="700">~160%</text>
+        <text x="100" y="168" font-size="10" fill="#5a6a8a">Moore Threads</text>
+        <rect x="280" y="70" width="80" height="80" fill="#ddd8d0" rx="2"/>
+        <text x="285" y="65" font-size="12" fill="#3a3a3a" font-weight="700">~140%</text>
+        <text x="290" y="168" font-size="10" fill="#5a6a8a">MetaX</text>
+        <rect x="440" y="75" width="80" height="75" fill="#ddd8d0" rx="2"/>
+        <text x="445" y="70" font-size="12" fill="#3a3a3a" font-weight="700">~130%</text>
+        <text x="450" y="168" font-size="10" fill="#5a6a8a">Biren</text>
+        <rect x="600" y="30" width="80" height="120" fill="#fee2e2" rx="2"/>
+        <text x="605" y="25" font-size="12" fill="#c0392b" font-weight="700">206%</text>
+        <text x="615" y="168" font-size="10" fill="#5a6a8a">Enflame</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL ACCESS</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">kēchuàngbǎn · STAR Market</span></div>
+        <div class="annotation-card-body">All four loss-making accelerator makers have now cleared a listing bar normally reserved for profitable issuers, confirming the state's continued willingness to fund the sector via public markets.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CUSTOMER CONCENTRATION</div>
+        <div class="annotation-card-zh">客户集中度<span class="annotation-card-en">kèhù jízhōngdù · customer concentration</span></div>
+        <div class="annotation-card-body">Tencent's ~84% share of Enflame's 2025 revenue is the single largest disclosed risk — diversification progress (or its absence) will show up in post-IPO quarterly filings.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PATH TO PROFIT</div>
+        <div class="annotation-card-zh">未盈利<span class="annotation-card-en">wèi yínglì · not yet profitable</span></div>
+        <div class="annotation-card-body">Fast topline growth across all four issuers hasn't translated into narrowing losses — the sector's aggregate loss position is the metric to track, not any single quarter's revenue print.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · CHIP SUPPLY CHAIN</div>
+    <div class="story-headline">20 to 60 Percent: An HBM Shortage Pushes Huawei and Cambricon to Raise AI Chip Prices</div>
+    <div class="story-insight">
+      <p>Huawei and Cambricon have raised domestic AI accelerator prices over the past two months as an HBM (high-bandwidth memory) shortage works through China's chip supply chain, per a Reuters exclusive. Huawei's Ascend 950DT (Q4 shipment) is now above ¥250,000 (~$37,000), up 20-50% in two months; the 950PR is up ~30% to above ¥80,000; the older 910C is up from ~¥90,000 to above ¥110,000.</p>
+      <br>
+      <p>Chinese buyers already pay a multiple of what buyers elsewhere pay for HBM, so this compounds an existing cost disadvantage. Higher per-unit pricing helps near-term chip economics but raises input costs for hyperscalers and labs building compute clusters.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> HBM output from CXMT and other domestic memory makers — not wafer capacity — is now the binding constraint on China's Nvidia-substitution push.</div>
+    <div class="chart-box">
+      <div class="chart-title">Huawei Ascend Pricing: Two Months Ago vs. Now (¥)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">¥</text>
+        <rect x="120" y="118" width="50" height="32" fill="#ddd8d0" rx="2"/>
+        <text x="115" y="113" font-size="11" fill="#3a3a3a" font-weight="700">¥90K</text>
+        <rect x="185" y="105" width="50" height="45" fill="#fee2e2" rx="2"/>
+        <text x="180" y="100" font-size="11" fill="#c0392b" font-weight="700">¥110K+</text>
+        <text x="140" y="168" font-size="10" fill="#5a6a8a">910C</text>
+        <rect x="340" y="128" width="50" height="22" fill="#ddd8d0" rx="2"/>
+        <text x="335" y="123" font-size="11" fill="#3a3a3a" font-weight="700">¥60K</text>
+        <rect x="405" y="115" width="50" height="35" fill="#fee2e2" rx="2"/>
+        <text x="400" y="110" font-size="11" fill="#c0392b" font-weight="700">¥80K+</text>
+        <text x="365" y="168" font-size="10" fill="#5a6a8a">950PR</text>
+        <rect x="600" y="70" width="50" height="80" fill="#fee2e2" rx="2"/>
+        <text x="580" y="65" font-size="11" fill="#c0392b" font-weight="700">¥250K+</text>
+        <text x="590" y="168" font-size="10" fill="#5a6a8a">950DT (Q4)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICING POWER</div>
+        <div class="annotation-card-zh">昇腾<span class="annotation-card-en">Shēngténg · Ascend</span></div>
+        <div class="annotation-card-body">Higher realized prices across the Ascend line improve near-term unit economics for Huawei's chip business, independent of underlying demand strength.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MEMORY SUPPLY</div>
+        <div class="annotation-card-zh">高带宽内存<span class="annotation-card-en">gāo dàikuān nèicún · HBM</span></div>
+        <div class="annotation-card-body">CXMT's HBM ramp pace determines whether this is a temporary squeeze or a structural cap on Huawei's own stated 2026 shipment targets.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DOWNSTREAM COST</div>
+        <div class="annotation-card-zh">算力集群<span class="annotation-card-en">suànlì jíqún · compute cluster</span></div>
+        <div class="annotation-card-body">Rising accelerator costs for hyperscalers and AI labs could slow domestic adoption if imported or grey-market alternatives become relatively more attractive.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · PROPERTY & FINANCE</div>
+    <div class="story-headline">From Announcement to Implementation: Beijing's Property Overhaul Adds a "Lead Bank" Layer</div>
+    <div class="story-insight">
+      <p>A Sept 8 Xinhua Economic Watch dispatch detailed implementation of the Aug 28 property reform package: presale (预售) phase-out in favor of completed-home sales, supervised buyer-deposit accounts, and a new "lead bank" (牵头银行) system walling off project-level financing to curb cash-shifting between developments. CSRC is separately backing listed-developer M&A.</p>
+      <br>
+      <p>Pinpoint's Zhang Zhiwei called the package "stronger than expected"; Xinhua cited a Shenzhen pilot project's foot traffic up ~30% post-announcement. The reform is framed as implementing the 15th Five-Year Plan's "new development model" (新发展模式) — a multi-year structural shift, not a one-off stimulus.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The real test is whether lead-bank financing reduces cross-project cash commingling at distressed developers — that requires several quarters of completion data, not a single visit count.</div>
+    <div class="chart-box">
+      <div class="chart-title">Property Reform Package: Implementation Layers</div>
+      <svg viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="140" cy="80" r="6" fill="#ddd8d0"/>
+        <text x="95" y="60" font-size="11" fill="#3a3a3a" font-weight="700">Aug 28</text>
+        <text x="70" y="105" font-size="10" fill="#5a6a8a">Package unveiled</text>
+        <circle cx="400" cy="80" r="6" fill="#c0392b"/>
+        <text x="355" y="60" font-size="11" fill="#3a3a3a" font-weight="700">Sept 8</text>
+        <text x="300" y="105" font-size="10" fill="#5a6a8a">Xinhua details lead-bank system</text>
+        <circle cx="700" cy="80" r="6" fill="#fef3e2" stroke="#b45309" stroke-width="2"/>
+        <text x="630" y="60" font-size="11" fill="#b45309" font-weight="700">Coming quarters</text>
+        <text x="620" y="105" font-size="10" fill="#5a6a8a">Completion data will be the real test</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLICY DEPTH</div>
+        <div class="annotation-card-zh">牵头银行<span class="annotation-card-en">qiāntóu yínháng · lead bank</span></div>
+        <div class="annotation-card-body">Moving from a headline announcement to a specific financing-architecture fix suggests regulators are targeting the mechanism behind stalled deliveries, not just sentiment.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EARLY DEMAND DATA</div>
+        <div class="annotation-card-zh">预售<span class="annotation-card-en">yùshòu · presale</span></div>
+        <div class="annotation-card-body">A single Shenzhen project's 30% visit uptick is a thin sample — broader, multi-city demand data will tell whether buyer confidence is genuinely improving.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · IMPLEMENTATION LAG</div>
+        <div class="annotation-card-zh">新发展模式<span class="annotation-card-en">xīn fāzhǎn móshì · new development model</span></div>
+        <div class="annotation-card-body">Framed as a multi-year structural shift under the 15th Five-Year Plan — meaning developer balance-sheet effects will likely lag the policy announcement by several quarters.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #116 · SEPTEMBER 12, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
