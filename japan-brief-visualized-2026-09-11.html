@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #104 · September 11, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#991b1b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#991b1b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #104 · September 11, 2026</div>
+    <div class="masthead-sub">Sakana AI-Sumitomo-SCSK Partnership · Reuters Tankan 5-Yr High · Bessent's Yen Push</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ENTERPRISE DEPLOYMENT</div>
+      <div class="card-num">3<span class="card-num-unit">-way partnership</span></div>
+      <div class="card-label">Sakana AI, Sumitomo Corp, and SCSK team up on enterprise AI for finance and manufacturing</div>
+      <div class="card-delta delta-amber">Cybersecurity, overseas expansion flagged next</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMICONDUCTORS & INDUSTRIAL</div>
+      <div class="card-num">+21<span class="card-num-unit">Reuters Tankan index</span></div>
+      <div class="card-label">Manufacturer mood hits highest since Dec 2021; electronics sub-index surges to +39</div>
+      <div class="card-delta delta-green">AI/data-center demand the driver</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO & BOJ</div>
+      <div class="card-num">¥153<span class="card-num-unit">/USD (strongest since Feb)</span></div>
+      <div class="card-label">Bessent's jawboning + Takata's outsized-hike comment raise the bar for Sept 18</div>
+      <div class="card-delta delta-amber">Market pricing may outrun policy</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI DEPLOYMENT</div>
+    <div class="story-headline">Sakana AI Trades Pure Research for Distribution, Partnering With Sumitomo and SCSK</div>
+    <div class="story-insight">
+      <p>Sakana AI, trading house Sumitomo Corporation, and IT services firm SCSK announced a comprehensive business partnership on Sept 10 to accelerate enterprise AI deployment in Japan. The alliance combines Sakana's research and its Japan-developed orchestration model with Sumitomo's business-development reach and SCSK's systems-integration capability, initially targeting finance and manufacturing, with cybersecurity and overseas expansion flagged as follow-on areas.</p>
+      <br>
+      <p>A meaningful shift for a lab built on research output — evolutionary model merging, the AI Scientist paper, its own translation product — toward corporate distribution. Routing enterprise deployment through Sumitomo and SCSK is faster than building direct sales capacity, but raises the question of who captures the commercial upside.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The open question is economics — whether Sakana captures durable licensing/platform revenue, or whether the bulk of commercial value accrues to Sumitomo and SCSK as the customer-facing layer.</div>
+    <div class="chart-box">
+      <div class="chart-title">Partnership Structure: Research → Distribution → Customer</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <rect x="60" y="60" width="180" height="60" fill="#e0e7ff" rx="4"/>
+        <text x="90" y="85" font-size="13" fill="#3730a3" font-weight="700">Sakana AI</text>
+        <text x="80" y="103" font-size="10" fill="#5a6a8a">Research + orchestration model</text>
+        <line x1="240" y1="90" x2="330" y2="90" stroke="#818cf8" stroke-width="2"/>
+        <polygon points="330,85 330,95 340,90" fill="#818cf8"/>
+        <rect x="345" y="30" width="180" height="55" fill="#c7d2fe" rx="4"/>
+        <text x="375" y="53" font-size="12" fill="#3730a3" font-weight="700">Sumitomo Corp</text>
+        <text x="360" y="70" font-size="10" fill="#5a6a8a">Business development reach</text>
+        <rect x="345" y="95" width="180" height="55" fill="#c7d2fe" rx="4"/>
+        <text x="390" y="118" font-size="12" fill="#3730a3" font-weight="700">SCSK</text>
+        <text x="365" y="135" font-size="10" fill="#5a6a8a">Systems integration</text>
+        <line x1="525" y1="90" x2="615" y2="90" stroke="#818cf8" stroke-width="2"/>
+        <polygon points="615,85 615,95 625,90" fill="#818cf8"/>
+        <rect x="630" y="60" width="150" height="60" fill="#fef3e2" rx="4"/>
+        <text x="655" y="85" font-size="12" fill="#b45309" font-weight="700">Finance +</text>
+        <text x="655" y="102" font-size="12" fill="#b45309" font-weight="700">Manufacturing</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DISTRIBUTION SHIFT</div>
+        <div class="annotation-card-zh">業務提携<span class="annotation-card-en">gyōmu teikei · business partnership</span></div>
+        <div class="annotation-card-body">Sakana pairing with an established trading house and IT integrator is a faster route to enterprise customers than building its own sales org.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SCOPE EXPANSION</div>
+        <div class="annotation-card-zh">サイバーセキュリティ<span class="annotation-card-en">saibā sekyuriti · cybersecurity</span></div>
+        <div class="annotation-card-body">Cybersecurity and overseas expansion are flagged as follow-on areas — the initial finance/manufacturing scope may just be the opening phase.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VALUE CAPTURE</div>
+        <div class="annotation-card-zh">価値分配<span class="annotation-card-en">kachi bunpai · value distribution</span></div>
+        <div class="annotation-card-body">No terms disclosed — whether Sakana or its distribution partners capture the bulk of commercial upside remains an open question.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · MANUFACTURER SENTIMENT</div>
+    <div class="story-headline">Reuters Tankan: Manufacturer Mood at a Five-Year High, Electronics Sub-Index Leads</div>
+    <div class="story-insight">
+      <p>The Reuters Tankan survey showed manufacturer sentiment climbing to +21 in September from +18 in August — the highest since December 2021 — extending a steady recovery from +7 in April. The gain was driven overwhelmingly by electronics, whose sub-index surged to +39 from +24, as AI-linked semiconductor and data-center demand flows through to Japan's chip-equipment and materials suppliers. Non-manufacturer sentiment held roughly steady at +29.</p>
+      <br>
+      <p>This is the third consecutive monthly Reuters Tankan reading confirming the same order-flow strength Tokyo Electron cited in its own record FY2026 results and above-consensus FY2027 guidance (Sept 7) — independent validation rather than a new standalone signal.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The electronics sub-index's outsized jump relative to the broader index confirms the AI-capex recovery remains narrowly concentrated in semiconductor/electronics names rather than broadening across manufacturing.</div>
+    <div class="chart-box">
+      <div class="chart-title">Reuters Tankan: Manufacturer Sentiment, April–September 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">Index</text>
+        <polyline points="80,130 220,110 360,95 500,90 640,75 740,55" fill="none" stroke="#be185d" stroke-width="2"/>
+        <circle cx="80" cy="130" r="3" fill="#be185d"/>
+        <circle cx="220" cy="110" r="3" fill="#be185d"/>
+        <circle cx="360" cy="95" r="3" fill="#be185d"/>
+        <circle cx="500" cy="90" r="3" fill="#be185d"/>
+        <circle cx="640" cy="75" r="3" fill="#be185d"/>
+        <circle cx="740" cy="55" r="4" fill="#be185d"/>
+        <text x="60" y="168" font-size="10" fill="#5a6a8a">Apr +7</text>
+        <text x="330" y="168" font-size="10" fill="#5a6a8a">Jun/Jul</text>
+        <text x="600" y="168" font-size="10" fill="#5a6a8a">Aug +18</text>
+        <text x="700" y="45" font-size="11" fill="#be185d" font-weight="700">Sept +21</text>
+        <text x="580" y="30" font-size="10" fill="#b45309">Electronics sub-index: +39 (from +24)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI DEMAND PASS-THROUGH</div>
+        <div class="annotation-card-zh">短観<span class="annotation-card-en">tankan · sentiment survey</span></div>
+        <div class="annotation-card-body">The electronics sub-index jump directly reflects AI-linked chip and data-center demand reaching Japan's equipment and materials suppliers.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · BREADTH</div>
+        <div class="annotation-card-zh">非製造業<span class="annotation-card-en">hi-seizōgyō · non-manufacturers</span></div>
+        <div class="annotation-card-body">Non-manufacturer sentiment stayed roughly flat at +29 — the recovery remains concentrated in electronics rather than broad-based.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">電子部品<span class="annotation-card-en">denshi buhin · electronic components</span></div>
+        <div class="annotation-card-body">A narrow, AI-capex-driven recovery is more exposed to a slowdown in global AI infrastructure spending than a broad-based manufacturing upturn would be.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · CURRENCY & BOJ</div>
+    <div class="story-headline">Bessent's Jawboning Pushes the Yen Higher, and Takata Raises the Prospect of an Outsized Hike</div>
+    <div class="story-insight">
+      <p>US Treasury Secretary Scott Bessent's continued public commentary pushing for yen strength helped drive the currency toward ¥153/dollar this week — its strongest level since February — after gaining more than 2% the prior week. Board member Hajime Takata raised the explicit possibility of an outsized or back-to-back additional hike at the confirmed Sept 18 meeting, while Governor Ueda reiterated the Board needs to watch upside price risks closely.</p>
+      <br>
+      <p>Markets are now pricing a tightening path more aggressive than the BOJ may actually deliver. A Treasury Secretary jawboning for currency strength doesn't itself move Japanese rates — the meeting itself is the only event that can validate or disappoint the expectations built up over the past week.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> An asymmetric setup — if the Board delivers only the widely-expected quarter point instead of Takata's outsized alternative, the yen's Bessent-driven gains could reverse quickly.</div>
+    <div class="chart-box">
+      <div class="chart-title">USD/JPY: Yen Extends Gains Toward February Levels (illustrative)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">USD/JPY</text>
+        <polyline points="80,50 200,60 320,70 440,85 560,100 660,110 740,112" fill="none" stroke="#3730a3" stroke-width="2"/>
+        <circle cx="740" cy="112" r="4" fill="#3730a3"/>
+        <text x="600" y="130" font-size="10" fill="#5a6a8a">This week: ~¥153</text>
+        <text x="80" y="45" font-size="10" fill="#5a6a8a">Feb 2026 level (ref.)</text>
+        <line x1="60" y1="50" x2="780" y2="50" stroke="#dde0ec" stroke-dasharray="3,3"/>
+        <text x="600" y="45" font-size="10" fill="#b45309">Strongest since Feb</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · HAWKISH TILT</div>
+        <div class="annotation-card-zh">追加利上げ<span class="annotation-card-en">tsuika riage · additional rate hike</span></div>
+        <div class="annotation-card-body">Takata's outsized/back-to-back hike comment and Ueda's price-risk framing both point toward Sept 18 action being close to consensus.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EXPECTATIONS GAP</div>
+        <div class="annotation-card-zh">口先介入<span class="annotation-card-en">kuchisaki kainyū · jawboning</span></div>
+        <div class="annotation-card-body">If the September hike is only the expected quarter point, the yen's recent gains could partially reverse on a "priced-in" repricing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EXTERNAL PRESSURE</div>
+        <div class="annotation-card-zh">日米金利差<span class="annotation-card-en">Nichibei kinrisa · US-Japan rate differential</span></div>
+        <div class="annotation-card-body">A US Treasury Secretary publicly jawboning for yen strength remains an unusual external input into a normally domestic BOJ decision.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #104 · SEPTEMBER 11, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
