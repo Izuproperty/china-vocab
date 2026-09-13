@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #106 · September 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#e0e7ff; color:#3730a3; }
+  .tag-semi  { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#991b1b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#991b1b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#5a6a8a; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #106 · September 13, 2026</div>
+    <div class="masthead-sub">Sakana's Fugu Ultra v2 · TSMC's Record Month · Yen Breaks Corporate FX Forecasts</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ORCHESTRATION</div>
+      <div class="card-num">5<span class="card-num-unit">of 8 benchmarks won</span></div>
+      <div class="card-label">Sakana's Fugu Ultra v2 excludes 3 top rivals from its pool, still claims wins</div>
+      <div class="card-delta delta-amber">All figures vendor-reported, unverified</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMICONDUCTORS & INDUSTRIAL</div>
+      <div class="card-num">+53.3<span class="card-num-unit">% TSMC Aug revenue, y/y</span></div>
+      <div class="card-label">2nd straight record month is the demand backdrop for JASM's next fab decision</div>
+      <div class="card-delta delta-green">Orders outpacing TSMC's own capacity build</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO & BOJ</div>
+      <div class="card-num">¥50B<span class="card-num-unit">Toyota profit per ¥1 yen move</span></div>
+      <div class="card-label">150 of 360 major firms' FY forecasts already below actual yen level</div>
+      <div class="card-delta delta-red">Structural earnings risk, distinct from BOJ jawboning</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI ORCHESTRATION</div>
+    <div class="story-headline">Sakana AI Drops Its Three Strongest Rivals From the Model Pool — and Claims to Still Beat Them</div>
+    <div class="story-insight">
+      <p>Sakana shipped Fugu Ultra v2 (Sept 11) plus a cheaper sibling, Fugu Max. Fugu is a multi-agent orchestrator delivered as one API: a trained coordinator routes pieces of a request across an underlying model pool and synthesizes results. The news is the pool change — Sakana excluded Claude Fable 5, Fable 5.1, and GPT-6 Astra, then still claims best-or-joint-best on 5 of 8 benchmarks, including a 21-point vendor-reported gap over Claude Opus 5 on visual reasoning.</p>
+      <br>
+      <p>Every number is vendor-reported; no evaluation harness, per-task breakdown, or routing disclosure exists. Sakana's own FAQ says which models answered a query "is not exposed by design."</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Excluding the three strongest available systems from the comparison pool tests whether coordination beats raw capability — a legitimate question, but not the head-to-head the scoreboard implies at a glance.</div>
+    <div class="chart-box">
+      <div class="chart-title">Fugu Ultra v2: Benchmark Placement (Sakana-reported, Sept 11)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">Score</text>
+        <rect x="140" y="45" width="90" height="105" fill="#e0e7ff" rx="2"/>
+        <text x="150" y="40" font-size="12" fill="#3730a3" font-weight="700">48.3</text>
+        <text x="120" y="168" font-size="10" fill="#5a6a8a">Fugu Ultra v2</text>
+        <rect x="320" y="95" width="90" height="55" fill="#c7d2fe" rx="2"/>
+        <text x="335" y="90" font-size="12" fill="#3730a3" font-weight="700">27.3</text>
+        <text x="300" y="168" font-size="10" fill="#5a6a8a">Claude Opus 5</text>
+        <rect x="500" y="90" width="90" height="60" fill="#c7d2fe" rx="2"/>
+        <text x="515" y="85" font-size="12" fill="#3730a3" font-weight="700">29.5</text>
+        <text x="490" y="168" font-size="10" fill="#5a6a8a">Fable 5 (excluded)</text>
+        <text x="640" y="60" font-size="9" fill="#9a8a7a">Chartography benchmark.</text>
+        <text x="640" y="74" font-size="9" fill="#9a8a7a">Fable 5 shown for reference —</text>
+        <text x="640" y="88" font-size="9" fill="#9a8a7a">not in Fugu's callable pool.</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · RESILIENCE PITCH</div>
+        <div class="annotation-card-zh">複数AI連携<span class="annotation-card-en">fukusū AI renkei · multi-model orchestration</span></div>
+        <div class="annotation-card-body">Excluding top rivals and still scoring well is Sakana's pitch that coordination, not access to any one frontier model, is the product.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · INDEPENDENT VERIFICATION</div>
+        <div class="annotation-card-zh">検証<span class="annotation-card-en">kenshō · verification</span></div>
+        <div class="annotation-card-body">No Artificial Analysis or LMArena entry exists yet for any Fugu model — the 21-point Chartography gap is unconfirmed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · OPACITY</div>
+        <div class="annotation-card-zh">不透明性<span class="annotation-card-en">futōmeisei · opacity</span></div>
+        <div class="annotation-card-body">Routing decisions are undisclosed by design, so buyers can't audit which single points of failure they're accepting.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · FOUNDRY DEMAND</div>
+    <div class="story-headline">A Second Straight Record Month at TSMC Is the Demand Backdrop Behind JASM Kumamoto's Next Fab Decision</div>
+    <div class="story-insight">
+      <p>TSMC's August revenue hit a record NT$514.8B, +53.3% y/y and +10.1% over July's already-record figure — the second consecutive all-time high. Jan-Aug cumulative revenue is up 39.3% y/y; management guides Q3 growth of 46.8% and record FY capex of $60-64B. Orders tied to AI-infrastructure buildout are reportedly outpacing TSMC's own capacity construction.</p>
+      <br>
+      <p>TSMC itself isn't a Japan story, but Kumamoto subsidiary JASM is — and a parent running above its own capacity-build pace is the demand backdrop for JASM's Fab 2 (6nm, 2027 target) and any Fab 3 decision, reinforcing the case for the equipment cluster (Tokyo Electron, Sony, "Silicon Island Kyushu") built around it.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A parent foundry under-capacity relative to its own order book is one that keeps regional fab investments on schedule rather than deferring them — a leading indicator for JASM's ramp, not a lagging one.</div>
+    <div class="chart-box">
+      <div class="chart-title">TSMC Monthly Revenue: Two Consecutive Records</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">NT$B</text>
+        <rect x="200" y="60" width="140" height="90" fill="#fce7f3" rx="2"/>
+        <text x="215" y="55" font-size="12" fill="#be185d" font-weight="700">NT$467.6B</text>
+        <text x="230" y="168" font-size="10" fill="#5a6a8a">July (record)</text>
+        <rect x="450" y="40" width="140" height="110" fill="#fbcfe8" rx="2"/>
+        <text x="465" y="35" font-size="12" fill="#be185d" font-weight="700">NT$514.8B</text>
+        <text x="470" y="168" font-size="10" fill="#5a6a8a">August (record)</text>
+        <text x="640" y="70" font-size="10" fill="#5a6a8a">+53.3% y/y</text>
+        <text x="640" y="84" font-size="10" fill="#5a6a8a">+10.1% m/m</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ORDER STRENGTH</div>
+        <div class="annotation-card-zh">受託製造<span class="annotation-card-en">jutaku seizō · contract manufacturing</span></div>
+        <div class="annotation-card-body">Orders outpacing capacity construction is an unusually strong signal from a company that builds years ahead of demand.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · JASM FAB 2/3</div>
+        <div class="annotation-card-zh">熊本工場<span class="annotation-card-en">Kumamoto kōjō · Kumamoto fab</span></div>
+        <div class="annotation-card-body">Parent demand strength is the backdrop for whether JASM's 6nm Fab 2 timeline holds and any Fab 3 decision advances.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONCENTRATION</div>
+        <div class="annotation-card-zh">半導体装置<span class="annotation-card-en">handōtai sōchi · semiconductor equipment</span></div>
+        <div class="annotation-card-body">Japan's equipment-maker upside is now heavily geared to a single external demand driver: global AI-infrastructure capex.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · CORPORATE FX RISK</div>
+    <div class="story-headline">One Yen, Fifty Billion Yen: The Currency Move Nobody's FY Forecast Priced In</div>
+    <div class="story-insight">
+      <p>Of 360 major Japanese companies disclosing FY2026 exchange-rate assumptions, 150 built plans on ¥155-159/dollar and 35 on ¥160-164 — the yen has since strengthened to ~¥153-154, below every band. Toyota estimates each ¥1 gain cuts annual operating profit ~¥50bn; Daiwa's Kenji Abe calculated a ¥1 gain cuts aggregate listed-company pretax profit ~0.3%. The yen has gained ~¥10 since the late-July US-Japan intervention.</p>
+      <br>
+      <p>This is the earnings-mechanics flip side of the jawboning/hike-timing story tracked elsewhere in this Brief — concrete, not speculative, and it compounds if the Sept 17-18 BOJ meeting delivers a larger-than-expected hike.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The weak-yen tailwind that inflated overseas-subsidiary profits and export margins for two years is now running in reverse — a structural earnings risk distinct from the hike-timing debate.</div>
+    <div class="chart-box">
+      <div class="chart-title">Corporate FX Assumptions vs. Actual Yen Rate</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#dde0ec" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">USD/JPY</text>
+        <rect x="130" y="40" width="180" height="20" fill="#fef3e2" rx="2"/>
+        <text x="140" y="35" font-size="11" fill="#b45309" font-weight="700">150 firms: ¥155-159</text>
+        <rect x="130" y="70" width="180" height="20" fill="#fde68a" rx="2"/>
+        <text x="140" y="65" font-size="11" fill="#b45309" font-weight="700">35 firms: ¥160-164</text>
+        <line x1="130" y1="120" x2="500" y2="120" stroke="#991b1b" stroke-width="3"/>
+        <circle cx="500" cy="120" r="6" fill="#991b1b"/>
+        <text x="510" y="124" font-size="12" fill="#991b1b" font-weight="700">Actual: ~¥153-154</text>
+        <text x="130" y="145" font-size="10" fill="#5a6a8a">Below every disclosed FY2026 assumption band</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · BROAD EXPOSURE</div>
+        <div class="annotation-card-zh">想定レート<span class="annotation-card-en">sōtei rēto · assumed exchange rate</span></div>
+        <div class="annotation-card-body">185 of 360 surveyed firms' FX assumptions are already stale — this is a sector-wide, not company-specific, earnings risk.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SEPT 17-18 MEETING</div>
+        <div class="annotation-card-zh">日本銀行<span class="annotation-card-en">Nihon Ginkō · Bank of Japan</span></div>
+        <div class="annotation-card-body">A larger-than-expected hike this week would compound the yen-strength earnings hit rather than offset it.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGIN REVERSAL</div>
+        <div class="annotation-card-zh">円高<span class="annotation-card-en">endaka · yen appreciation</span></div>
+        <div class="annotation-card-body">Two years of weak-yen tailwind to overseas-subsidiary profits and export margins is now reversing at the same time.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #106 · SEPTEMBER 13, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

@@ -1,5 +1,68 @@
 [
   {
+    "issue": 106,
+    "date": "2026-09-13",
+    "title": "Sakana AI Ships Fugu Ultra v2 Without Its Strongest Rivals in the Pool, TSMC Posts a Second Record Month, and the Yen Breaks Corporate Japan's FY Forecasts",
+    "summary": "Sakana AI shipped Fugu Ultra v2, a multi-agent orchestration model that explicitly excludes Claude Fable 5, Fable 5.1, and GPT-6 Astra from its pool yet still claims to beat all three on several benchmarks -- all figures vendor-reported and unverified. Separately, TSMC posted a second consecutive record revenue month, up 53.3% year-on-year, a demand signal that carries direct read-through for its Kumamoto subsidiary JASM's next fab decisions. And Nikkei reported that 185 of 360 major Japanese companies have already been overtaken by yen strength relative to their FY2026 currency assumptions, with Toyota estimating a roughly Y50 billion operating-profit hit per Y1 of yen appreciation.",
+    "viz_url": "japan-brief-visualized-2026-09-13.html",
+    "sections": [
+      {
+        "icon": "🐡",
+        "title": "Sakana AI Drops Its Three Strongest Rivals From the Model Pool -- and Claims to Still Beat Them",
+        "tag": "AI & Tech",
+        "source": "Sakana AI · Industry Trade Press · September 11, 2026",
+        "body": "Sakana AI (サカナAI, Sakana E-Ai) shipped Fugu Ultra v2 on September 11, alongside a cheaper sibling called Fugu Max. Fugu is a 複数AI連携 (fukusu AI renkei, multi-model orchestration) system delivered as a single API: a trained coordinator decomposes a request, routes pieces of it to models in an underlying pool, and synthesizes the result. The pool composition change is the actual news here -- Sakana explicitly excluded three of the strongest models now shipping (Claude Fable 5, Claude Fable 5.1, and GPT-6 Astra) and still reports best-or-joint-best placement on 5 of 8 benchmarks, including a 21-point gap over Claude Opus 5 on a visual-reasoning benchmark called Chartography.\n\nEvery figure in that claim is vendor-reported. Sakana has published no evaluation harness, no per-task score breakdown, and states plainly that which models answered a given query \"is not exposed by design\" -- and because the pool composition can vary per request, independent reproduction is harder than for a normal model release. The company's own framing is that this proves its coordination architecture doesn't depend on access to any single frontier model, which matters for buyers worried about vendor lock-in or export-control exposure. But excluding the three strongest available systems from the comparison pool means the benchmark race is being run against models the orchestrator couldn't have called even if it wanted to -- a legitimate test of whether coordination beats raw capability, but not the head-to-head the scoreboard implies at first glance. Pricing is unchanged from the June launch, and the product remains unavailable in the EU/EEA pending GDPR compliance work.",
+        "takeaway": "Excluding the three strongest available systems from the comparison pool tests whether coordination beats raw capability -- a legitimate question, but not the head-to-head the scoreboard implies at a glance.",
+        "vocab": [
+          {
+            "ja": "複数AI連携",
+            "en": "Multi-model orchestration"
+          },
+          {
+            "ja": "サカナAI",
+            "en": "Sakana AI"
+          }
+        ]
+      },
+      {
+        "icon": "🏭",
+        "title": "A Second Straight Record Month at TSMC Is the Demand Backdrop Behind JASM Kumamoto's Next Fab Decision",
+        "tag": "Semiconductors & Industrial",
+        "source": "TSMC filing · Seoul Economic Daily · September 10-11, 2026",
+        "body": "TSMC's August revenue hit a record NT$514.8 billion, up 53.3% year-on-year and 10.1% above July's already-record figure -- the second consecutive all-time monthly high, with January-through-August cumulative revenue up 39.3% y/y. Management guides third-quarter growth of 46.8% and record fiscal-year capital expenditure of $60-64 billion, and orders tied to AI-infrastructure buildout are reportedly outpacing the company's own construction of new capacity -- an unusual admission from a company that has spent years building ahead of demand rather than behind it.\n\nTSMC itself isn't a Japan story, but its Kumamoto subsidiary JASM (Japan Advanced Semiconductor Manufacturing, 受託製造, jutaku seizo, contract manufacturing) is, and a parent running above its own capacity-build pace is the demand backdrop against which JASM's Fab 2 (6nm, targeted 2027) and any Fab 3 decision get made. It also reinforces the case for the equipment-and-materials cluster that has grown up around Kumamoto -- Tokyo Electron, Sony's image-sensor JV, and the \"Silicon Island Kyushu\" supply chain more broadly -- since a parent company under-capacity relative to orders is one that keeps its regional fab investments on schedule rather than deferring them.",
+        "takeaway": "A parent foundry under-capacity relative to its own order book is one that keeps regional fab investments on schedule rather than deferring them -- a leading indicator for JASM's ramp, not a lagging one.",
+        "vocab": [
+          {
+            "ja": "受託製造",
+            "en": "Contract manufacturing (foundry)"
+          },
+          {
+            "ja": "半導体装置",
+            "en": "Semiconductor equipment"
+          }
+        ]
+      },
+      {
+        "icon": "💴",
+        "title": "One Yen, Fifty Billion Yen: The Currency Move Nobody's FY Forecast Priced In",
+        "tag": "Macro & BOJ",
+        "source": "Nikkei (via QUICK data) · September 12, 2026",
+        "body": "Of 360 major Japanese companies that disclosed exchange-rate assumptions (想定レート, sotei reto) for the fiscal year ending March 2027, Nikkei reported that 150 built their plans on Y155-159 to the dollar and 35 on Y160-164 -- and the yen has since strengthened to roughly Y153-154, below every one of those bands. Toyota Motor estimates that each Y1 gain against the dollar cuts its annual consolidated operating profit by about Y50 billion; Daiwa Securities' chief strategist Kenji Abe calculated that a Y1 gain reduces aggregate pretax profit across Japan's listed companies by roughly 0.3%. The yen has gained about Y10 against the dollar since the joint US-Japan currency intervention in late July.\n\nThis is the flip side of the jawboning-and-hike-timing story this Brief has tracked through Bessent's public comments and the run-up to the September 17-18 BOJ meeting: rather than speculation about what the Bank might do, this is the concrete earnings mechanics of what a stronger yen (円高, endaka, yen appreciation) already does to companies that spent two years building financial plans around a weak-yen tailwind. That tailwind -- inflated yen-value profits from overseas subsidiaries, improved export margins -- is now working in reverse, and it compounds rather than offsets if the Board delivers a larger-than-expected hike this week.",
+        "takeaway": "The weak-yen tailwind that inflated overseas-subsidiary profits and export margins for two years is now running in reverse -- a structural earnings risk distinct from the hike-timing debate.",
+        "vocab": [
+          {
+            "ja": "想定レート",
+            "en": "Assumed exchange rate"
+          },
+          {
+            "ja": "円高",
+            "en": "Yen appreciation"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 105,
     "date": "2026-09-12",
     "title": "SoftBank's $25.9 Billion OpenAI Repayment Meets a Record Short Book, Renesas Raises Prices for the Second Time in 2026, and a Regional Bank Merger Collapses in Central Japan",
