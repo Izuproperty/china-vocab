@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #107</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; background:#f2f4f7; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:32px 40px 24px; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-title .jp { color:#d4d8f0; font-size:16px; font-weight:400; letter-spacing:4px; margin-left:12px; }
+  .masthead-meta { margin-top:10px; font-size:12px; color:#8a9bb5; letter-spacing:1px; text-transform:uppercase; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .glance { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:28px 40px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:10px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .glance-headline { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:#1a1a2e; line-height:1.35; margin-bottom:8px; }
+  .glance-stat { font-size:22px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:11px; color:#5a6a8a; margin-top:2px; }
+
+  .section-title { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; padding:0 40px; margin:8px 0 16px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; margin:0 40px 28px; padding:28px; }
+  .story-card-number { font-size:10px; font-weight:700; letter-spacing:2px; color:#3730a3; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#1a1a2e; line-height:1.3; margin-bottom:6px; }
+  .story-card-source { font-size:11px; color:#5a6a8a; margin-bottom:16px; }
+  .story-card-body { font-size:14px; color:#3a4a6a; line-height:1.75; }
+  .story-card-body p { margin-bottom:12px; }
+  .takeaway { background:#f8f9fc; border-left:3px solid #3730a3; padding:12px 16px; margin:16px 0; border-radius:0 4px 4px 0; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .takeaway-text { font-size:13.5px; color:#2c2c2c; }
+
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+
+  .annotations { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+  .annotation-card { border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; background:#f8f9fc; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:1.5px; margin-bottom:6px; }
+  .annotation-signal .annotation-label { color:#0e7490; }
+  .annotation-watch .annotation-label { color:#b45309; }
+  .annotation-risk .annotation-label { color:#be185d; }
+  .annotation-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+
+  .footer { padding:24px 40px 36px; text-align:center; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#8a9bb5; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief<span class="jp">日本速報</span></div>
+    <div class="masthead-meta">Issue #107 · September 14, 2026</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="glance">
+    <div class="glance-card">
+      <span class="glance-tag tag-ai">AI & Tech</span>
+      <div class="glance-headline">Hitachi's HMAX Expansion</div>
+      <div class="glance-stat">4</div>
+      <div class="glance-stat-label">New physical-AI modules launched Sept 3</div>
+    </div>
+    <div class="glance-card">
+      <span class="glance-tag tag-semi">Semiconductors</span>
+      <div class="glance-headline">Kioxia Snubs SK Hynix</div>
+      <div class="glance-stat">$31bn</div>
+      <div class="glance-stat-label">Kioxia's Japan capacity plan through 2032</div>
+    </div>
+    <div class="glance-card">
+      <span class="glance-tag tag-macro">Macro & BOJ</span>
+      <div class="glance-headline">August PPI Tops Forecast</div>
+      <div class="glance-stat">7.6%</div>
+      <div class="glance-stat-label">YoY producer price growth, vs 7.4% consensus</div>
+    </div>
+  </div>
+
+  <div class="section-title">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-card-number">STORY 1 · AI & TECH</div>
+    <div class="story-card-headline">Hitachi's HMAX Push Turns AI Infrastructure Upkeep Into a Product Line</div>
+    <div class="story-card-source">Hitachi, Ltd. · September 3, 2026</div>
+    <div class="story-card-body">
+      <p>Hitachi expanded HMAX, its physical-AI platform for social infrastructure, with four new pieces: HMAX Data Center (autonomous monitoring and optimization of power, IT, and cooling systems), HMAX Cyber (an Identify/Manage/Recover resilience service), HMAX Data Fabric (a knowledge graph that converts field data and veteran-operator know-how into AI-usable form), and HMAX AI Operations to run it all.</p>
+      <p>The pitch is explicitly about a shrinking skilled-labor pool, not new data-center capacity — which puts Hitachi on the operations-and-maintenance side of Japan's AI infrastructure buildout, distinct from the capacity announcements out of NTT, Blackstone, and Microsoft.</p>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Japan AI Data Center Capacity, 2025 → 2033</div>
+      <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="180" x2="600" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="130" x2="600" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="80" x2="600" y2="80" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="30" x2="600" y2="30" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="184" text-anchor="end" font-size="10" fill="#5a6a8a">0</text>
+        <text x="50" y="134" text-anchor="end" font-size="10" fill="#5a6a8a">1.6GW</text>
+        <text x="50" y="84" text-anchor="end" font-size="10" fill="#5a6a8a">3.3GW</text>
+        <text x="50" y="34" text-anchor="end" font-size="10" fill="#5a6a8a">4.9GW</text>
+        <rect x="140" y="169" width="90" height="11" fill="#818cf8"/>
+        <text x="185" y="164" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">1.1 GW</text>
+        <text x="185" y="200" text-anchor="middle" font-size="10" fill="#5a6a8a">End 2025</text>
+        <rect x="410" y="30" width="90" height="150" fill="#3730a3"/>
+        <text x="455" y="24" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">4.9 GW</text>
+        <text x="455" y="200" text-anchor="middle" font-size="10" fill="#5a6a8a">2033 (est.)</text>
+        <text x="320" y="110" text-anchor="middle" font-size="10" fill="#5a6a8a">~$60bn build cost</text>
+        <line x1="230" y1="110" x2="410" y2="110" stroke="#5a6a8a" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <div class="takeaway-text">HMAX is a small revenue line against Hitachi's ¥10.6tn FY2025 base today, but it targets the higher-margin operations layer of a buildout others are financing — worth tracking in Lumada-segment disclosure as capacity comes online.</div>
+    </div>
+    <div class="annotations">
+      <div class="annotation-card annotation-signal">
+        <div class="annotation-label">SIGNAL</div>
+        <div class="annotation-text">Four modules launched together signals a platform bet, not a single-product trial.</div>
+      </div>
+      <div class="annotation-card annotation-watch">
+        <div class="annotation-label">WATCH</div>
+        <div class="annotation-text">Early customer wins for HMAX Data Center as Japan's data-center build-out accelerates.</div>
+      </div>
+      <div class="annotation-card annotation-risk">
+        <div class="annotation-label">RISK</div>
+        <div class="annotation-text">Hyperscalers' in-house tooling could bypass third-party O&M platforms entirely.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-card-number">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-card-headline">Kioxia's CEO Draws a Line Under SK Hynix, Vows to Keep NAND Prices in Check</div>
+    <div class="story-card-source">Bloomberg · September 9, 2026</div>
+    <div class="story-card-body">
+      <p>Kioxia's chief executive dismissed a deeper tie-up with shareholder SK Hynix while pledging to manage further NAND price increases so they don't choke off the AI-linked demand driving them — a demand-side message distinct from the company's Aug 27 supply-side commitments.</p>
+      <p>Those Aug 27 announcements — a $31bn Japan investment plan through 2032 and a ¥1tn third fab at Kitakami — remain the larger capital story; this week's comments are about managing the pricing environment those investments are chasing.</p>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Kioxia's Japan Capacity Commitments, 2025–2029</div>
+      <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="180" x2="600" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="130" x2="600" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="80" x2="600" y2="80" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="30" x2="600" y2="30" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="184" text-anchor="end" font-size="10" fill="#5a6a8a">$0</text>
+        <text x="50" y="134" text-anchor="end" font-size="10" fill="#5a6a8a">$10bn</text>
+        <text x="50" y="84" text-anchor="end" font-size="10" fill="#5a6a8a">$20bn</text>
+        <text x="50" y="34" text-anchor="end" font-size="10" fill="#5a6a8a">$31bn</text>
+        <rect x="110" y="130" width="70" height="50" fill="#818cf8"/>
+        <text x="145" y="124" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">$6.3bn</text>
+        <text x="145" y="200" text-anchor="middle" font-size="10" fill="#5a6a8a">Fab3, Kitakami</text>
+        <text x="145" y="212" text-anchor="middle" font-size="9" fill="#5a6a8a">target FY2029</text>
+        <rect x="420" y="30" width="70" height="150" fill="#3730a3"/>
+        <text x="455" y="24" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">$31bn</text>
+        <text x="455" y="200" text-anchor="middle" font-size="10" fill="#5a6a8a">Combined Japan plan</text>
+        <text x="455" y="212" text-anchor="middle" font-size="9" fill="#5a6a8a">through 2032</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <div class="takeaway-text">Watch Kioxia's next quarterly print for realized ASPs — whether "managing" prices shows up as moderation or stays rhetorical once 2027 utilization tightens further.</div>
+    </div>
+    <div class="annotations">
+      <div class="annotation-card annotation-signal">
+        <div class="annotation-label">SIGNAL</div>
+        <div class="annotation-text">Muted share-price reaction suggests the market read this as expected positioning.</div>
+      </div>
+      <div class="annotation-card annotation-watch">
+        <div class="annotation-label">WATCH</div>
+        <div class="annotation-text">Next quarterly ASP trend versus the CEO's price-management pledge.</div>
+      </div>
+      <div class="annotation-card annotation-risk">
+        <div class="annotation-label">RISK</div>
+        <div class="annotation-text">Ruling out SK Hynix closes off one path to supply-side pricing discipline.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-card-number">STORY 3 · MACRO & BOJ</div>
+    <div class="story-card-headline">August Producer Prices Give the BOJ One More Reason to Hike</div>
+    <div class="story-card-source">The Japan Times / Bloomberg · September 11, 2026</div>
+    <div class="story-card-body">
+      <p>Japan's producer price index rose 7.6% y/y in August, ahead of the 7.4% consensus and near a three-and-a-half-year high, led by oil and coal products, chemicals, ICT equipment, and nonferrous metals as firms keep passing through energy, shipping, and wage costs.</p>
+      <p>A Reuters poll found all 52 surveyed BOJ watchers expecting a hike to 1.25% at the Sept 17–18 meeting, with a growing share pencilling in a follow-up move to 1.75% as early as Q2 2027 — a cost-push signal distinct from the yen and JGB threads dominating recent coverage.</p>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Japan Producer Price Index, YoY % Change</div>
+      <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="180" x2="600" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="130" x2="600" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="80" x2="600" y2="80" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="30" x2="600" y2="30" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="50" y="184" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+        <text x="50" y="134" text-anchor="end" font-size="10" fill="#5a6a8a">3%</text>
+        <text x="50" y="84" text-anchor="end" font-size="10" fill="#5a6a8a">6%</text>
+        <text x="50" y="34" text-anchor="end" font-size="10" fill="#5a6a8a">9%</text>
+        <polyline points="100,90 220,84 340,72 460,68 580,72" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="100" cy="90" r="4" fill="#3730a3"/>
+        <circle cx="220" cy="84" r="4" fill="#3730a3"/>
+        <circle cx="340" cy="72" r="4" fill="#3730a3"/>
+        <circle cx="460" cy="68" r="4" fill="#3730a3"/>
+        <circle cx="580" cy="68" r="5" fill="#818cf8"/>
+        <text x="100" y="200" text-anchor="middle" font-size="9" fill="#5a6a8a">Apr</text>
+        <text x="220" y="200" text-anchor="middle" font-size="9" fill="#5a6a8a">Jun</text>
+        <text x="340" y="200" text-anchor="middle" font-size="9" fill="#5a6a8a">Jul (rev.)</text>
+        <text x="460" y="200" text-anchor="middle" font-size="9" fill="#5a6a8a">Aug</text>
+        <text x="580" y="52" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">7.6%</text>
+      </svg>
+    </div>
+    <div class="takeaway">
+      <div class="takeaway-label">Investor Takeaway</div>
+      <div class="takeaway-text">Three independent pillars — yen weakness, soft JGB auctions, and now producer-level inflation — leave the BOJ little cover to pause on Sept 17–18.</div>
+    </div>
+    <div class="annotations">
+      <div class="annotation-card annotation-signal">
+        <div class="annotation-label">SIGNAL</div>
+        <div class="annotation-text">All 52 Reuters-polled BOJ watchers expect a hike to 1.25% next week.</div>
+      </div>
+      <div class="annotation-card annotation-watch">
+        <div class="annotation-label">WATCH</div>
+        <div class="annotation-text">Whether a follow-up hike to 1.75% gets pulled forward to Q2 2027.</div>
+      </div>
+      <div class="annotation-card annotation-risk">
+        <div class="annotation-label">RISK</div>
+        <div class="annotation-text">Persistent cost-push inflation could squeeze margins at firms unable to pass through prices.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">日本速報 · JAPAN BRIEF · ISSUE #107 · SEPTEMBER 14, 2026 · NOT INVESTMENT ADVICE</div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
