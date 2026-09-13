@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #117 · September 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #117 · September 13, 2026</div>
+    <div class="masthead-sub">Anthropic's 151M-Exchange Distillation Report · CXMT's 82% Margin · Xi's Washington Delegation</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · DISTILLATION</div>
+      <div class="card-num">151M<span class="card-num-unit">Claude exchanges (Alibaba)</span></div>
+      <div class="card-label">Anthropic names 7 China-based labs with itemized distillation figures</div>
+      <div class="card-delta delta-red">Largest campaign Anthropic has documented</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · MEMORY CHIPS</div>
+      <div class="card-num">82<span class="card-num-unit">% Q2 EBIT margin</span></div>
+      <div class="card-label">CXMT tops SK Hynix (76%) and Samsung (70%) on commodity DRAM</div>
+      <div class="card-delta delta-green">HBM production still the unresolved gap</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">11<span class="card-num-unit">days to Sept 24 summit</span></div>
+      <div class="card-label">China lines up tech/EV/aerospace CEOs for Xi's Washington trip</div>
+      <div class="card-delta delta-amber">Truce extension "almost certain," breakthrough unlikely</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI DISTILLATION</div>
+    <div class="story-headline">151 Million and Counting: Anthropic Names Seven Chinese Labs in Its Largest Documented Distillation Operation</div>
+    <div class="story-insight">
+      <p>Anthropic's Sept 10 threat-intelligence report itemized what last week's US government advisory described only in general terms. Alibaba's Qwen team: 151M exchanges (May-July), the largest campaign ever documented, via 3,500 accounts extracting chain-of-thought traces. Moonshot: ~300K Kimi requests relayed to Claude over 10 days via 5,380 accounts, then served back to users as Kimi's own answers. DeepSeek: 12.1M exchanges over 14 days. Zhipu: 3.4M via 273 accounts. Xiaomi: 400K via coding tools. SenseTime: purchased transcripts from data vendors rather than live relay.</p>
+      <br>
+      <p>China's government has already rejected the underlying allegation as "groundless." What's new is the level of detail — exchange counts, account numbers, time windows — that turns a general accusation into claims a reader can evaluate lab by lab.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The open question isn't whether distillation occurred across six independently-documented campaigns — it's whether it materially explains the labs' benchmark gains, or is one input among genuine architectural gains. Neither Anthropic nor the named labs have published that counterfactual.</div>
+    <div class="chart-box">
+      <div class="chart-title">Documented Exchange Volume by Lab (Anthropic, Sept 10 report)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="20" x2="140" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="140" y1="170" x2="780" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">Exchanges</text>
+        <rect x="150" y="30" width="600" height="18" fill="#fecaca" rx="2"/>
+        <text x="760" y="43" font-size="11" fill="#c0392b" font-weight="700">151M</text>
+        <text x="10" y="43" font-size="10" fill="#5a6a8a">Alibaba</text>
+        <rect x="150" y="60" width="48" height="18" fill="#fecaca" rx="2"/>
+        <text x="205" y="73" font-size="11" fill="#c0392b" font-weight="700">12.1M</text>
+        <text x="10" y="73" font-size="10" fill="#5a6a8a">DeepSeek</text>
+        <rect x="150" y="90" width="14" height="18" fill="#fecaca" rx="2"/>
+        <text x="170" y="103" font-size="11" fill="#c0392b" font-weight="700">3.4M</text>
+        <text x="10" y="103" font-size="10" fill="#5a6a8a">Zhipu</text>
+        <rect x="150" y="120" width="3" height="18" fill="#fecaca" rx="2"/>
+        <text x="160" y="133" font-size="11" fill="#c0392b" font-weight="700">0.3M</text>
+        <text x="10" y="133" font-size="10" fill="#5a6a8a">Moonshot</text>
+        <rect x="150" y="150" width="2" height="18" fill="#fecaca" rx="2"/>
+        <text x="158" y="163" font-size="11" fill="#c0392b" font-weight="700">0.4M</text>
+        <text x="10" y="163" font-size="10" fill="#5a6a8a">Xiaomi</text>
+        <text x="580" y="190" font-size="9" fill="#9a8a7a">Bar widths log-scaled for readability. MiniMax/SenseTime: no volume disclosed.</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SPECIFICITY</div>
+        <div class="annotation-card-zh">模型蒸馏<span class="annotation-card-en">móxíng zhēngliú · model distillation</span></div>
+        <div class="annotation-card-body">Itemized per-lab figures replace a general accusation with claims that can be checked and compared lab by lab.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · COUNTERFACTUAL</div>
+        <div class="annotation-card-zh">思维链<span class="annotation-card-en">sīwéiliàn · chain-of-thought</span></div>
+        <div class="annotation-card-body">Neither Anthropic nor the named labs have quantified how much of the labs' benchmark progress the distillation actually explains.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POLICY ESCALATION</div>
+        <div class="annotation-card-zh">反制措施<span class="annotation-card-en">fǎnzhì cuòshī · countermeasures</span></div>
+        <div class="annotation-card-body">Six corroborated campaigns make Beijing's "groundless" rejection harder to sustain diplomatically ahead of the Sept 24 summit.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · MEMORY CHIPS</div>
+    <div class="story-headline">82 Percent: CXMT's Commodity-DRAM Bet Posts the Highest Margin in Global Memory</div>
+    <div class="story-insight">
+      <p>CXMT's Q2 2026 EBIT margin hit 82%, ahead of SK Hynix (76%) and Samsung's semiconductor unit (70%) — the highest quarterly margin any major memory maker posted in the period. The advantage traces to a gap Korean makers opened themselves: redirecting output toward higher-margin HBM for AI accelerators pulled them back from commodity DRAM, and CXMT filled the shortage, lifting its DRAM share to ~10% from ~4% a year earlier as DDR5 prices rose.</p>
+      <br>
+      <p>The figure reinforces CXMT's Sept 5 earnings (H1 revenue +874% y/y) — genuine profitability, not just a supercycle echo. It doesn't resolve whether CXMT can produce HBM at volume, the segment Huawei's Ascend line depends on.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A margin lead in commodity DRAM funds R&D and capacity, but isn't itself evidence the HBM gap is closing — that remains the metric to watch into CXMT's stated end-2026 HBM target.</div>
+    <div class="chart-box">
+      <div class="chart-title">Q2 2026 Memory-Maker EBIT Margins</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">EBIT %</text>
+        <rect x="130" y="35" width="110" height="115" fill="#fecaca" rx="2"/>
+        <text x="145" y="30" font-size="12" fill="#c0392b" font-weight="700">82%</text>
+        <text x="120" y="168" font-size="10" fill="#5a6a8a">CXMT</text>
+        <rect x="330" y="55" width="110" height="95" fill="#fde8e8" rx="2"/>
+        <text x="345" y="50" font-size="12" fill="#c0392b" font-weight="700">76%</text>
+        <text x="320" y="168" font-size="10" fill="#5a6a8a">SK Hynix</text>
+        <rect x="530" y="70" width="110" height="80" fill="#fde8e8" rx="2"/>
+        <text x="545" y="65" font-size="12" fill="#c0392b" font-weight="700">70%</text>
+        <text x="520" y="168" font-size="10" fill="#5a6a8a">Samsung</text>
+        <text x="670" y="90" font-size="10" fill="#5a6a8a">CXMT DRAM share:</text>
+        <text x="670" y="104" font-size="10" fill="#166534">~4% → ~10% YoY</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUPPLY GAP</div>
+        <div class="annotation-card-zh">经营利润率<span class="annotation-card-en">jīngyíng lìrùnlǜ · operating margin</span></div>
+        <div class="annotation-card-body">Korean makers' own pivot to HBM opened the commodity-DRAM gap CXMT is now monetizing at scale.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · HBM TIMELINE</div>
+        <div class="annotation-card-zh">高带宽内存<span class="annotation-card-en">gāo dàikuān nèicún · HBM</span></div>
+        <div class="annotation-card-body">CXMT's stated end-2026 HBM production target is the metric that determines whether this margin lead extends into AI-linked memory.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PROCESS GAP</div>
+        <div class="annotation-card-zh">制程差距<span class="annotation-card-en">zhìchéng chājù · process gap</span></div>
+        <div class="annotation-card-body">Analysts still put CXMT two to three process generations behind Samsung/SK Hynix/Micron in core DRAM technology.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · SUMMIT PREP</div>
+    <div class="story-headline">Eleven Days Out: Beijing Lines Up a Tech, EV, and Aerospace Delegation for Xi's Washington Trip</div>
+    <div class="story-insight">
+      <p>China is assembling a business delegation of tech, EV, and aerospace executives to accompany Xi to Washington for the Sept 24 summit, benchmarked against the Tesla/Apple/Nvidia/Boeing delegation that joined Trump's May Beijing trip. Separately, Vice Premier He Lifeng and Treasury Secretary Bessent are arranging a pre-summit meeting on AI dialogue and trade-investment consultative bodies, mirroring their May Seoul session.</p>
+      <br>
+      <p>Sources describe the visit as largely symbolic rather than deal-focused, with low expectations for breakthrough given ongoing AI/semiconductor friction (see Story One). The more concrete near-term item is an extension of the Busan trade truce, described as "almost certain."</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The real signal is less any single announcement than whether the truce extension and delegation optics hold through Sept 24 without a fresh AI or export-control flare-up in the eleven days between now and then.</div>
+    <div class="chart-box">
+      <div class="chart-title">Countdown to the Sept 24 Trump-Xi Summit</div>
+      <svg viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="90" x2="760" y2="90" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="80" cy="90" r="6" fill="#c0392b"/>
+        <text x="55" y="115" font-size="10" fill="#5a6a8a">Sept 13</text>
+        <text x="45" y="70" font-size="10" fill="#5a6a8a">Today</text>
+        <circle cx="380" cy="90" r="6" fill="#b45309"/>
+        <text x="330" y="115" font-size="10" fill="#5a6a8a">He Lifeng–Bessent meeting</text>
+        <text x="345" y="70" font-size="10" fill="#b45309">pre-summit</text>
+        <circle cx="740" cy="90" r="7" fill="#1a1a2e"/>
+        <text x="690" y="115" font-size="10" fill="#5a6a8a">Sept 24</text>
+        <text x="670" y="70" font-size="11" fill="#1a1a2e" font-weight="700">Trump-Xi summit</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · RECIPROCITY</div>
+        <div class="annotation-card-zh">商务代表团<span class="annotation-card-en">shāngwù dàibiǎotuán · business delegation</span></div>
+        <div class="annotation-card-body">Benchmarking the delegation against Trump's May guest list signals China wants the optics of parity, not necessarily new deals.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TRUCE EXTENSION</div>
+        <div class="annotation-card-zh">休战协议<span class="annotation-card-en">xiūzhàn xiéyì · truce agreement</span></div>
+        <div class="annotation-card-body">An extension of the Busan truce is the most concrete deliverable in play — described as "almost certain" but not yet confirmed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · AI FRICTION</div>
+        <div class="annotation-card-zh">中美元首会晤<span class="annotation-card-en">Zhōngměi yuánshǒu huìwù · leaders' summit</span></div>
+        <div class="annotation-card-body">The distillation dispute (Story One) and export controls remain live friction points that could still disrupt the summit's tone before Sept 24.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">中国简报 · CHINA BRIEF · ISSUE #117 · SEPTEMBER 13, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
