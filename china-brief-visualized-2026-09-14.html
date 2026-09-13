@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #118 · September 14, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #118 · September 14, 2026</div>
+    <div class="masthead-sub">Humanoid Robot Economics · Domestic DUV Lithography Testing · China's PPI Breaks Out of Deflation</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">1,079<span class="card-num-unit">units</span></div>
+      <div class="card-label">UBTech 2025 humanoid shipments</div>
+      <div class="card-delta delta-green">¥1.4B order backlog</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">12<span class="card-num-unit">systems</span></div>
+      <div class="card-label">Yuliangsheng DUV units targeted by end-2026</div>
+      <div class="card-delta delta-amber">Up from 5-unit July plan</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE & MACRO</div>
+      <div class="card-num">3.8<span class="card-num-unit">% YoY</span></div>
+      <div class="card-label">August PPI — strongest print of the cycle</div>
+      <div class="card-delta delta-green">vs. 3.6% consensus</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH · ROBOTICS</div>
+    <div class="story-headline">1,079 Units, ¥1.4 Billion Backlog: China's Humanoid Robots Start Answering the Revenue Question</div>
+    <div class="story-insight">
+      <p>UBTech's cumulative 2025 humanoid shipments reached 1,079 units against an order backlog above ¥1.4B from Foxconn, BYD, Geely, and Airbus, alongside 2026-27 capacity targets of 5,000 and 10,000 units and a 40-43% gross-margin goal. Unitree and AgiBot together are separately targeting 75,000+ units of combined annual capacity — more than the rest of the world's announced supply combined.</p>
+      <br>
+      <p>The investor-relevant shift is from shipment-growth headlines toward whether backlogs convert into recognized revenue at the margins promised, and whether industrial customers are placing repeat orders rather than one-off pilot purchases.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Order-book disclosure, not shipment counts, is now the metric that separates a commercializing sector from a demo-stage one.</div>
+    <div class="chart-box">
+      <div class="chart-title">Announced Annual Humanoid Capacity Targets (Units)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="180" y1="20" x2="180" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="180" y1="170" x2="780" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="175" y="40" text-anchor="end" font-size="11" fill="#5a6a8a">UBTech 2026</text>
+        <rect x="185" y="30" width="40" height="20" fill="#fee2e2"/>
+        <text x="230" y="45" font-size="11" fill="#1a1a2e">5,000</text>
+        <text x="175" y="75" text-anchor="end" font-size="11" fill="#5a6a8a">UBTech 2027</text>
+        <rect x="185" y="65" width="80" height="20" fill="#fee2e2"/>
+        <text x="270" y="80" font-size="11" fill="#1a1a2e">10,000</text>
+        <text x="175" y="110" text-anchor="end" font-size="11" fill="#5a6a8a">Unitree + AgiBot</text>
+        <rect x="185" y="100" width="580" height="20" fill="#c0392b"/>
+        <text x="770" y="115" text-anchor="end" font-size="11" fill="#fff">75,000+</text>
+        <text x="175" y="145" text-anchor="end" font-size="11" fill="#5a6a8a">Global H1 2026 Shipped</text>
+        <rect x="185" y="135" width="170" height="20" fill="#f5c6c0"/>
+        <text x="360" y="150" font-size="11" fill="#1a1a2e">~19,000-22,000</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ORDERS</div>
+        <div class="annotation-card-zh">订单<span class="annotation-card-en">dìngdān · order book</span></div>
+        <div class="annotation-card-body">UBTech's ¥1.4B backlog from named industrial customers is the first order-book disclosure sizable enough to model against its stated 2026-27 revenue and margin targets.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REPEAT ORDERS</div>
+        <div class="annotation-card-zh">复购率<span class="annotation-card-en">fùgòulǜ · repeat-order rate</span></div>
+        <div class="annotation-card-body">Whether Foxconn, BYD, and Geely place second and third orders is the actual test of operational utility versus one-off pilot purchases.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · OVERCAPACITY</div>
+        <div class="annotation-card-zh">产能过剩<span class="annotation-card-en">chǎnnéng guòshèng · overcapacity</span></div>
+        <div class="annotation-card-body">A combined 75,000-unit target from Unitree and AgiBot may reflect aspirational build-out in a market that shipped only ~20,000 units globally in H1 2026.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH · CHIPS</div>
+    <div class="story-headline">Twelve by Year-End: A Huawei-Linked Startup's Domestic DUV Scanner Enters Testing at SMIC</div>
+    <div class="story-insight">
+      <p>Yuliangsheng, a Shanghai state-backed startup affiliated with Shenzhen's SiCarrier, is testing a domestic immersion DUV lithography scanner at SMIC and on Huawei's own production lines, with a revised end-2026 target of ~12 systems, up from 5. The tool targets 28nm-class output, reaching toward 7nm via multi-patterning.</p>
+      <br>
+      <p>This addresses supply security at mature nodes, not leading-edge competitiveness — key components including Zeiss projection lenses reportedly remain sourced indirectly, and prior domestic DUV timelines have slipped before.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Yield and throughput data from SMIC's testing phase will matter more than the announcement or the revised unit count.</div>
+    <div class="chart-box">
+      <div class="chart-title">Yuliangsheng DUV Unit Targets vs. Global Scale (Systems)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="220" y1="20" x2="220" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="220" y1="170" x2="780" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="215" y="40" text-anchor="end" font-size="11" fill="#5a6a8a">Jul 2026 Plan</text>
+        <rect x="225" y="30" width="20" height="20" fill="#fef3e2"/>
+        <text x="255" y="45" font-size="11" fill="#1a1a2e">5</text>
+        <text x="215" y="75" text-anchor="end" font-size="11" fill="#5a6a8a">Sep 2026 Revised</text>
+        <rect x="225" y="65" width="48" height="20" fill="#c0392b"/>
+        <text x="285" y="80" font-size="11" fill="#1a1a2e">12</text>
+        <text x="215" y="110" text-anchor="end" font-size="11" fill="#5a6a8a">2027 Plan</text>
+        <rect x="225" y="100" width="80" height="20" fill="#fee2e2"/>
+        <text x="315" y="115" font-size="11" fill="#1a1a2e">~20</text>
+        <text x="215" y="145" text-anchor="end" font-size="11" fill="#5a6a8a">ASML Global (2025)</text>
+        <rect x="225" y="135" width="524" height="20" fill="#f5c6c0"/>
+        <text x="760" y="150" text-anchor="end" font-size="11" fill="#1a1a2e">131</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · IMMERSION DUV</div>
+        <div class="annotation-card-zh">浸没式光刻<span class="annotation-card-en">jìnmòshì guāngkè · immersion lithography</span></div>
+        <div class="annotation-card-body">Testing at SMIC and on Huawei's own lines is the most concrete evidence yet of a working domestic DUV alternative for mature-node supply security.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · YIELD RATE</div>
+        <div class="annotation-card-zh">良率<span class="annotation-card-en">liángshuài · yield rate</span></div>
+        <div class="annotation-card-body">Undisclosed yield and throughput figures from the SMIC testing phase are the real test of whether the revised 12-unit target ships on schedule.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COMPONENT DEPENDENCE</div>
+        <div class="annotation-card-zh">核心部件依赖<span class="annotation-card-en">héxīn bùjiàn yīlài · key-component dependence</span></div>
+        <div class="annotation-card-body">Zeiss projection lenses are reportedly still sourced through indirect channels, meaning full domestic sourcing has not yet been achieved.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">3.8% and Climbing: China's Factory-Gate Prices Post Their Strongest Gain of the Cycle</div>
+    <div class="story-insight">
+      <p>August PPI rose 3.8% year-on-year, beating the 3.6% consensus and accelerating from July's 3.5% — the strongest print of the current cycle, following a factory-gate deflationary stretch that persisted for much of the past three years. CPI also accelerated to 0.8% from 0.5%, with core CPI up 1.0%.</p>
+      <br>
+      <p>A sustained rebound would ease industrial-margin pressure but narrow the PBOC's room to ease further. One month of data doesn't establish a trend, and the sharp jump in transport costs suggests part of the move reflects energy pass-through rather than broad demand strength.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> September and October prints, plus the PBOC's next policy communication, will show whether this is durable reflation or another false start.</div>
+    <div class="chart-box">
+      <div class="chart-title">PPI &amp; CPI, Year-on-Year (%)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="170" x2="780" y2="170" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="55" y="35" text-anchor="end" font-size="10" fill="#5a6a8a">4%</text>
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <text x="55" y="103" text-anchor="end" font-size="10" fill="#5a6a8a">2%</text>
+        <line x1="60" y1="100" x2="780" y2="100" stroke="#e0d8d0" stroke-width="0.5" stroke-dasharray="3,3"/>
+        <text x="55" y="167" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+
+        <text x="180" y="185" text-anchor="middle" font-size="11" fill="#5a6a8a">July 2026</text>
+        <rect x="130" y="145" width="30" height="25" fill="#f5c6c0"/>
+        <text x="145" y="140" text-anchor="middle" font-size="10" fill="#1a1a2e">3.5%</text>
+        <rect x="200" y="156" width="30" height="14" fill="#fde3b0"/>
+        <text x="215" y="151" text-anchor="middle" font-size="10" fill="#1a1a2e">0.5%</text>
+
+        <text x="500" y="185" text-anchor="middle" font-size="11" fill="#5a6a8a">August 2026</text>
+        <rect x="450" y="140" width="30" height="30" fill="#c0392b"/>
+        <text x="465" y="135" text-anchor="middle" font-size="10" fill="#1a1a2e">3.8%</text>
+        <rect x="520" y="154" width="30" height="16" fill="#b45309"/>
+        <text x="535" y="149" text-anchor="middle" font-size="10" fill="#1a1a2e">0.8%</text>
+
+        <rect x="600" y="30" width="12" height="12" fill="#c0392b"/>
+        <text x="618" y="40" font-size="10" fill="#5a6a8a">PPI YoY</text>
+        <rect x="600" y="48" width="12" height="12" fill="#b45309"/>
+        <text x="618" y="58" font-size="10" fill="#5a6a8a">CPI YoY</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICE RECOVERY</div>
+        <div class="annotation-card-zh">出厂价格回暖<span class="annotation-card-en">chūchǎng jiàgé huínuǎn · factory-gate price recovery</span></div>
+        <div class="annotation-card-body">The fastest PPI print of the cycle would, if sustained, ease years of industrial-sector margin pressure tied to factory-gate deflation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PASS-THROUGH</div>
+        <div class="annotation-card-zh">传导效应<span class="annotation-card-en">chuándǎo xiàoyìng · pass-through effect</span></div>
+        <div class="annotation-card-body">Transport costs rose 2.5% versus 0.4% in July, suggesting part of the PPI move reflects energy price pass-through rather than broad-based demand strength.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NARROWING POLICY ROOM</div>
+        <div class="annotation-card-zh">政策空间收窄<span class="annotation-card-en">zhèngcè kōngjiān shōuzhǎi · narrowing policy room</span></div>
+        <div class="annotation-card-body">A genuine reflation trend would reduce the case for further PBOC rate or RRR cuts, complicating support for still-weak domestic demand.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #118 · SEPTEMBER 14, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
