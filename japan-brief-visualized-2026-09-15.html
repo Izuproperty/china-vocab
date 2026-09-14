@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 · Japan Brief Visualized · Issue #108</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:900px; margin:0 auto; background:#fff; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:36px 48px 28px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; }
+  .masthead-title .jp { color:#d4d8f0; font-size:18px; font-weight:400; display:block; margin-top:4px; letter-spacing:5px; }
+  .masthead-meta { margin-top:12px; font-size:11px; color:#8a9bb5; letter-spacing:1px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .section { padding:36px 48px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .glance-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px; }
+  .glance-card .tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; }
+  .tag-ai { color:#3730a3; } .tag-semi { color:#be185d; } .tag-macro { color:#b45309; }
+  .glance-card .headline { font-size:13px; font-weight:600; color:#1a1a2e; line-height:1.5; margin-bottom:10px; }
+  .glance-card .stat { font-size:22px; font-weight:700; color:#3730a3; }
+  .glance-card .stat-label { font-size:10.5px; color:#5a6a8a; margin-top:2px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:28px; margin-bottom:28px; }
+  .story-card-number { font-size:10px; font-weight:700; letter-spacing:2px; color:#3730a3; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.35; }
+  .story-card p { font-size:13.5px; color:#3a4a6a; margin-bottom:12px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:12px; }
+  .annotation-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card .label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .label-signal { color:#0e7490; } .label-watch { color:#b45309; } .label-risk { color:#b91c1c; }
+  .annotation-card .text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .takeaway { border-left:3px solid #3730a3; background:#f8f9fc; padding:12px 16px; margin-top:16px; font-size:13px; color:#2c2c2c; border-radius:0 4px 4px 0; }
+  .takeaway .label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .footer { padding:24px 48px 36px; background:#1a1a2e; text-align:center; }
+  .footer-text { font-size:10.5px; color:#4a5a7a; letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief<span class="jp">日本速報</span></div>
+    <div class="masthead-meta">SEPTEMBER 15, 2026 · ISSUE #108</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">At A Glance</div>
+    <div class="glance-grid">
+      <div class="glance-card">
+        <div class="tag tag-ai">STORY 1 · AI & TECH</div>
+        <div class="headline">SoftBank slides into its own $25.9bn bridge-loan repayment day</div>
+        <div class="stat">-13% / -10.7%</div>
+        <div class="stat-label">2-day intraday moves, Mon–Tue</div>
+      </div>
+      <div class="glance-card">
+        <div class="tag tag-semi">STORY 2 · SEMICONDUCTORS</div>
+        <div class="headline">Chip-equipment and memory names sell off as one AI-sentiment basket</div>
+        <div class="stat">-8.6%</div>
+        <div class="stat-label">Kioxia, steepest single-day drop</div>
+      </div>
+      <div class="glance-card">
+        <div class="tag tag-macro">STORY 3 · MACRO</div>
+        <div class="headline">GPIF's in-band room to rotate out of Treasuries</div>
+        <div class="stat">$62bn</div>
+        <div class="stat-label">Santander estimate, no policy change needed</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-title">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 1 · AI &amp; TECH</div>
+      <div class="story-card-headline">SoftBank's two-day rout collides with its $25.9bn OpenAI bridge-loan repayment</div>
+      <p>Anthropic's Dario Amodei and OpenAI's Sam Altman calling for a deliberate slowdown in frontier AI development triggered a two-session slide in SoftBank Group shares — down as much as 13% Monday and a further 10.7% intraday Tuesday — landing on the exact day SoftBank owes $25.9bn on the bridge loan that funded its OpenAI stake.</p>
+      <div class="chart-box">
+        <div class="chart-title">SoftBank Group vs. Nikkei 225 — Two-Session Move (Sept 14–15)</div>
+        <svg viewBox="0 0 780 260" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="220" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="220" x2="750" y2="220" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="55" y="30" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+          <text x="55" y="90" text-anchor="end" font-size="10" fill="#5a6a8a">-5%</text>
+          <text x="55" y="150" text-anchor="end" font-size="10" fill="#5a6a8a">-10%</text>
+          <text x="55" y="210" text-anchor="end" font-size="10" fill="#5a6a8a">-15%</text>
+          <line x1="60" y1="30" x2="750" y2="30" stroke="#eef0f7" stroke-width="1"/>
+          <line x1="60" y1="90" x2="750" y2="90" stroke="#eef0f7" stroke-width="1"/>
+          <line x1="60" y1="150" x2="750" y2="150" stroke="#eef0f7" stroke-width="1"/>
+          <!-- SoftBank line -->
+          <polyline points="100,30 260,178 420,178 580,196 700,196" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+          <circle cx="100" cy="30" r="4" fill="#3730a3"/>
+          <circle cx="260" cy="178" r="4" fill="#3730a3"/>
+          <circle cx="700" cy="196" r="4" fill="#3730a3"/>
+          <!-- Nikkei line -->
+          <polyline points="100,30 260,68 420,68 580,84 700,84" fill="none" stroke="#818cf8" stroke-width="2" stroke-dasharray="5,4"/>
+          <circle cx="700" cy="84" r="4" fill="#818cf8"/>
+          <text x="260" y="20" text-anchor="middle" font-size="10" fill="#5a6a8a">Sept 12 (weekend essay)</text>
+          <text x="420" y="20" text-anchor="middle" font-size="10" fill="#5a6a8a">Sept 14 close</text>
+          <text x="700" y="20" text-anchor="middle" font-size="10" fill="#5a6a8a">Sept 15 (today)</text>
+          <text x="620" y="192" font-size="11" fill="#3730a3" font-weight="600">SoftBank -10.7% intraday</text>
+          <text x="620" y="80" font-size="11" fill="#818cf8" font-weight="600">Nikkei -0.9% to 63,492</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">A single weekend essay on AI-safety pacing moved a $60bn+ equity in two sessions — a reminder of how thin the fundamental buffer is around AI-linked valuations right now.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether SoftBank successfully refinances the $25.9bn OpenAI bridge balance into the planned $10-20bn high-yield bond at reasonable spreads this week.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">Record short interest (2.27% of float, Sept 9) plus a hard repayment deadline raises the odds of a disorderly move in either direction.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        SoftBank's near-term equity path is now more a function of AI-safety-policy sentiment and debt-market appetite than of company-specific news — watch the bond, not just the stock.
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 2 · SEMICONDUCTORS</div>
+      <div class="story-card-headline">Chip-equipment and memory stocks trade as a single AI-sentiment basket</div>
+      <p>Kioxia, Advantest, Tokyo Electron, Disco and Lasertec all declined over two sessions, led by Kioxia's 8.6% Monday drop — a sentiment-driven move layered on top of, not reflecting a change in, this week's otherwise-strong order-book data.</p>
+      <div class="chart-box">
+        <div class="chart-title">Two-Session Decline by Name (Sept 14–15, cumulative %)</div>
+        <svg viewBox="0 0 780 240" xmlns="http://www.w3.org/2000/svg">
+          <line x1="140" y1="20" x2="140" y2="210" stroke="#e8eaf2" stroke-width="1"/>
+          <!-- bars: Kioxia -8.6-ish cumulative, Advantest ~-6.5, TEL ~-3.6, Disco >-1, Lasertec >-1 -->
+          <text x="130" y="45" text-anchor="end" font-size="11" fill="#3a4a6a">Kioxia</text>
+          <rect x="140" y="34" width="430" height="20" fill="#b91c1c"/>
+          <text x="580" y="49" font-size="11" fill="#b91c1c" font-weight="600">-8.6%</text>
+
+          <text x="130" y="85" text-anchor="end" font-size="11" fill="#3a4a6a">Advantest</text>
+          <rect x="140" y="74" width="325" height="20" fill="#c2410c"/>
+          <text x="475" y="89" font-size="11" fill="#c2410c" font-weight="600">-6.5%*</text>
+
+          <text x="130" y="125" text-anchor="end" font-size="11" fill="#3a4a6a">Tokyo Electron</text>
+          <rect x="140" y="114" width="180" height="20" fill="#be185d"/>
+          <text x="330" y="129" font-size="11" fill="#be185d" font-weight="600">-3.6%*</text>
+
+          <text x="130" y="165" text-anchor="end" font-size="11" fill="#3a4a6a">Disco</text>
+          <rect x="140" y="154" width="70" height="20" fill="#9d174d"/>
+          <text x="220" y="169" font-size="11" fill="#9d174d" font-weight="600">&gt;-1%</text>
+
+          <text x="130" y="205" text-anchor="end" font-size="11" fill="#3a4a6a">Lasertec</text>
+          <rect x="140" y="194" width="70" height="20" fill="#9d174d"/>
+          <text x="220" y="209" font-size="11" fill="#9d174d" font-weight="600">&gt;-1%</text>
+        </svg>
+        <div style="font-size:10px; color:#9a8a7a; margin-top:6px;">*Advantest and Tokyo Electron figures are approximate cumulative two-session moves (4.5%+2%+ and 2.6%+1% respectively).</div>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">Kioxia's outsized drop confirms its role as the most AI-sentiment-sensitive name in the group — memory pricing is directly tied to AI server/data-center demand expectations.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether Tokyo Electron's Sept 7 guidance beat (FY27 H1 +33% YoY) holds up as a floor once sentiment stabilizes, or gets revised on any real demand signal.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">Oil-driven JGB yield pressure (Saudi pipeline shutdown) compounds the AI-sentiment hit — a two-front valuation squeeze into the Sept 17-18 BOJ meeting.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        Nothing in the underlying order books changed this week — the move is a sentiment/discount-rate repricing, not a demand-cycle break, but it shows how correlated this basket has become.
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 3 · MACRO &amp; FINANCE</div>
+      <div class="story-card-headline">GPIF's quiet allocation math: $62bn of Treasuries could move without a policy change</div>
+      <p>Santander estimates the world's largest pension fund could shift up to $62bn out of US Treasuries purely within its existing target band — no formal policy overhaul required — as its domestic-bond allocation already sits above benchmark.</p>
+      <div class="chart-box">
+        <div class="chart-title">GPIF Bond Allocation — Current vs. In-Band Scenario</div>
+        <svg viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg">
+          <text x="60" y="30" font-size="11" fill="#3a4a6a" font-weight="600">Current (end-March)</text>
+          <rect x="60" y="45" width="270" height="28" fill="#3730a3"/>
+          <text x="180" y="64" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">Domestic 27%</text>
+          <rect x="330" y="45" width="230" height="28" fill="#818cf8"/>
+          <text x="440" y="64" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">Foreign ~23%</text>
+
+          <text x="60" y="110" font-size="11" fill="#3a4a6a" font-weight="600">Santander In-Band Scenario</text>
+          <rect x="60" y="125" width="330" height="28" fill="#3730a3"/>
+          <text x="220" y="144" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">Domestic ~33%</text>
+          <rect x="390" y="125" width="200" height="28" fill="#818cf8"/>
+          <text x="490" y="144" text-anchor="middle" font-size="11" fill="#fff" font-weight="600">Foreign 20%</text>
+
+          <line x1="330" y1="45" x2="390" y2="125" stroke="#b45309" stroke-width="1.5" stroke-dasharray="3,3"/>
+          <text x="620" y="140" font-size="12" fill="#b45309" font-weight="700">up to $62bn</text>
+          <text x="620" y="155" font-size="10" fill="#5a6a8a">of Treasuries sellable</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">GPIF's Aug 21 meeting — its first in an August month in seven years — is itself a data point; the fund doesn't convene off-cycle without reason.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether the health minister's "still considering" framing (Sept 8) firms into an actual announced review, or the fund simply drifts toward the in-band tilt without ever formalizing it.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">A $62bn incremental Treasury seller lands at a moment when US yields are already sensitive to foreign demand — a second-order channel from Japan's own rate normalization into US rates markets.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        No formal decision has been made — but GPIF doesn't need one to move tens of billions of dollars. The in-band math alone makes this worth tracking ahead of the Sept 17-18 BOJ meeting.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #108 · SEPTEMBER 15, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
