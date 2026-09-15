@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 · Japan Brief Visualized · Issue #109</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:900px; margin:0 auto; background:#fff; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:36px 48px 28px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; }
+  .masthead-title .jp { color:#d4d8f0; font-size:18px; font-weight:400; display:block; margin-top:4px; letter-spacing:5px; }
+  .masthead-meta { margin-top:12px; font-size:11px; color:#8a9bb5; letter-spacing:1px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .section { padding:36px 48px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .glance-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px; }
+  .glance-card .tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; }
+  .tag-ai { color:#3730a3; } .tag-semi { color:#be185d; } .tag-macro { color:#b45309; }
+  .glance-card .headline { font-size:13px; font-weight:600; color:#1a1a2e; line-height:1.5; margin-bottom:10px; }
+  .glance-card .stat { font-size:22px; font-weight:700; color:#3730a3; }
+  .glance-card .stat-label { font-size:10.5px; color:#5a6a8a; margin-top:2px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:28px; margin-bottom:28px; }
+  .story-card-number { font-size:10px; font-weight:700; letter-spacing:2px; color:#3730a3; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.35; }
+  .story-card p { font-size:13.5px; color:#3a4a6a; margin-bottom:12px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:12px; }
+  .annotation-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card .label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .label-signal { color:#0e7490; } .label-watch { color:#b45309; } .label-risk { color:#b91c1c; }
+  .annotation-card .text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .takeaway { border-left:3px solid #3730a3; background:#f8f9fc; padding:12px 16px; margin-top:16px; font-size:13px; color:#2c2c2c; border-radius:0 4px 4px 0; }
+  .takeaway .label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .footer { padding:24px 48px 36px; background:#1a1a2e; text-align:center; }
+  .footer-text { font-size:10.5px; color:#4a5a7a; letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief<span class="jp">日本速報</span></div>
+    <div class="masthead-meta">SEPTEMBER 16, 2026 · ISSUE #109</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">At A Glance</div>
+    <div class="glance-grid">
+      <div class="glance-card">
+        <div class="tag tag-ai">STORY 1 · AI & TECH</div>
+        <div class="headline">Sakana AI tops H1 2026 funding table as Japan's VC investors turn selective</div>
+        <div class="stat">44%</div>
+        <div class="stat-label">Deep-tech/AI share of ¥377.9bn raised</div>
+      </div>
+      <div class="glance-card">
+        <div class="tag tag-semi">STORY 2 · SEMICONDUCTORS</div>
+        <div class="headline">Samsung opens Yokohama packaging lab, METI funds over half</div>
+        <div class="stat">¥40bn</div>
+        <div class="stat-label">Total APL investment, opened Sept 8</div>
+      </div>
+      <div class="glance-card">
+        <div class="tag tag-macro">STORY 3 · MACRO</div>
+        <div class="headline">BOJ nears its fastest hike pace since 1990, with Bessent pushing from outside</div>
+        <div class="stat">3rd hike / 10mo</div>
+        <div class="stat-label">Expected Sept 17–18, per Bloomberg/Japan Times</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-title">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 1 · AI &amp; TECH</div>
+      <div class="story-card-headline">As Japan's startup investors turn choosier, Sakana AI and Turing are the ones getting funded</div>
+      <p>Japanese startups raised ¥377.9bn in H1 2026, up 12% year-on-year — but research-intensive deep-tech and AI companies absorbed 44% of that pool, with Sakana AI topping the Nikkei/Kepple funding ranking and autonomous-driving startup Turing named among the other winners.</p>
+      <div class="chart-box">
+        <div class="chart-title">H1 2026 Japan Startup Funding — ¥377.9bn Total, by Category</div>
+        <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg">
+          <text x="60" y="35" font-size="11" fill="#3a4a6a" font-weight="600">Deep tech / AI / robotics</text>
+          <rect x="60" y="45" width="298" height="30" fill="#3730a3"/>
+          <text x="200" y="65" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">¥167.5bn · 44%</text>
+
+          <text x="60" y="115" font-size="11" fill="#3a4a6a" font-weight="600">All other sectors</text>
+          <rect x="60" y="125" width="380" height="30" fill="#818cf8"/>
+          <text x="250" y="145" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">¥210.4bn · 56%</text>
+
+          <text x="480" y="65" font-size="11" fill="#5a6a8a">Sakana AI: #1 in ranking</text>
+          <text x="480" y="85" font-size="11" fill="#5a6a8a">Turing: named top-tier winner</text>
+          <text x="60" y="185" font-size="10" fill="#9a8a7a">Total funding +12% YoY (Nikkei, Kepple Group data)</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">A disproportionate 44% share going to deep tech/AI — a category with longer paths to revenue — signals investors are paying up for technical credibility plus commercial traction, not spreading bets.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether Sakana's Sept 10 Sumitomo/SCSK distribution deal and Turing's US-expansion, $10bn IPO ambition are read as validating this round's backers or as pressure to keep raising at pace.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">Concentration cuts both ways: capital funneling to a handful of names likely means a harder road for earlier-stage, pre-product-market-fit Japanese AI startups.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        The durable signal is capital concentration, not the individual raises — watch H2 2026 data for whether this "flight to quality" broadens or narrows further.
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 2 · SEMICONDUCTORS</div>
+      <div class="story-card-headline">Samsung's new Yokohama packaging lab is a bet that Japan's back-end materials edge matters as much as anyone's fabs</div>
+      <p>Samsung's Advanced Package Lab in Yokohama — ¥40bn total, with METI covering more than half — targets HBM and GPU packaging technology, deepening ties with the 50+ Japanese materials and equipment firms Samsung already works with.</p>
+      <div class="chart-box">
+        <div class="chart-title">Yokohama Advanced Package Lab — ¥40bn Funding Sources</div>
+        <svg viewBox="0 0 780 160" xmlns="http://www.w3.org/2000/svg">
+          <rect x="60" y="60" width="337.5" height="40" fill="#818cf8"/>
+          <text x="228" y="85" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="600">Samsung ¥15bn (37.5%)</text>
+          <rect x="397.5" y="60" width="337.5" height="40" fill="#3730a3"/>
+          <text x="565" y="85" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">METI ¥22.5bn (56.25%)</text>
+          <rect x="60" y="110" width="37.5" height="18" fill="#be185d"/>
+          <text x="105" y="123" font-size="11" fill="#be185d" font-weight="600">+ Yokohama City ¥2.5bn (6.25%)</text>
+          <text x="60" y="35" font-size="11" fill="#5a6a8a">95 researchers · HBM &amp; GPU packaging focus · opened Sept 8, 2026</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">METI funding over half the cost of a Korean chipmaker's R&D lab underscores how central back-end packaging has become to Japan's own semiconductor industrial policy.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether Samsung's local-prototype-then-Korea-mass-production model accelerates its HBM/packaging roadmap fast enough to matter against SK Hynix's current lead.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">None of this adds new logic-fab capacity in Japan — it's a materials/back-end play, so the read-through to TEL and Ibiden is indirect, via order flow rather than ownership.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        This is an equipment-and-materials demand event for Tokyo Electron, Ibiden, and Japan's specialty-chemicals names — independent of which chipmaker ultimately wins the leading-edge logic race.
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 3 · MACRO &amp; FINANCE</div>
+      <div class="story-card-headline">Japan is about to post its fastest rate-hike pace since 1990 — with Washington publicly pushing from outside</div>
+      <p>The BOJ meets Sept 17–18 and is widely expected to deliver a third hike in under ten months, the fastest tightening pace since 1990 — a cycle now shadowed by US Treasury Secretary Scott Bessent's public pressure campaign and a 10-year JGB yield already at levels last seen in 1996.</p>
+      <div class="chart-box">
+        <div class="chart-title">BOJ Policy Rate Path — Three Hikes in Under 10 Months</div>
+        <svg viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="750" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="55" y="170" text-anchor="end" font-size="10" fill="#5a6a8a">0.5%</text>
+          <text x="55" y="110" text-anchor="end" font-size="10" fill="#5a6a8a">0.9%</text>
+          <text x="55" y="50" text-anchor="end" font-size="10" fill="#5a6a8a">1.3%</text>
+          <polyline points="90,165 260,165 260,120 420,120 420,95 580,95 580,45 730,45" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+          <circle cx="260" cy="120" r="4" fill="#3730a3"/>
+          <circle cx="420" cy="95" r="4" fill="#3730a3"/>
+          <circle cx="580" cy="45" r="4" fill="#b45309"/>
+          <text x="260" y="200" text-anchor="middle" font-size="10" fill="#5a6a8a">Late 2025 hike</text>
+          <text x="420" y="200" text-anchor="middle" font-size="10" fill="#5a6a8a">Jun 17, 2026: 1.25%</text>
+          <text x="580" y="200" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">Sept 17-18 (expected)</text>
+          <text x="560" y="30" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">Fastest pace since 1990</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">Markets have priced a Sept hike as near-certain for weeks; the 10-year JGB yield's move to ~3% (first since 1996) shows the bond market positioning ahead of the decision.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">How Governor Ueda frames the decision — a hike that reads as bowing to Bessent's public pressure carries different market-credibility implications than one framed as purely data-driven.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">Bloomberg's "no-win situation" framing: hike too readily and risk looking reactive to Washington; fail to hike and risk a yen selloff given how fully a move is priced in.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        Whether the BOJ hikes Friday is close to settled — the more useful watch is how orderly the yen and JGB markets stay through the announcement, distinct from this week's equity-market AI-sentiment volatility.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #109 · SEPTEMBER 16, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
