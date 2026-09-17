@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 · Japan Brief Visualized · Issue #110</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:900px; margin:0 auto; background:#fff; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:36px 48px 28px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; }
+  .masthead-title .jp { color:#d4d8f0; font-size:18px; font-weight:400; display:block; margin-top:4px; letter-spacing:5px; }
+  .masthead-meta { margin-top:12px; font-size:11px; color:#8a9bb5; letter-spacing:1px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .section { padding:36px 48px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .glance-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px; }
+  .glance-card .tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; }
+  .tag-ai { color:#3730a3; } .tag-semi { color:#be185d; } .tag-macro { color:#b45309; }
+  .glance-card .headline { font-size:13px; font-weight:600; color:#1a1a2e; line-height:1.5; margin-bottom:10px; }
+  .glance-card .stat { font-size:22px; font-weight:700; color:#3730a3; }
+  .glance-card .stat-label { font-size:10.5px; color:#5a6a8a; margin-top:2px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:28px; margin-bottom:28px; }
+  .story-card-number { font-size:10px; font-weight:700; letter-spacing:2px; color:#3730a3; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.35; }
+  .story-card p { font-size:13.5px; color:#3a4a6a; margin-bottom:12px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:12px; }
+  .annotation-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card .label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .label-signal { color:#0e7490; } .label-watch { color:#b45309; } .label-risk { color:#b91c1c; }
+  .annotation-card .text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .takeaway { border-left:3px solid #3730a3; background:#f8f9fc; padding:12px 16px; margin-top:16px; font-size:13px; color:#2c2c2c; border-radius:0 4px 4px 0; }
+  .takeaway .label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .footer { padding:24px 48px 36px; background:#1a1a2e; text-align:center; }
+  .footer-text { font-size:10.5px; color:#4a5a7a; letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief<span class="jp">日本速報</span></div>
+    <div class="masthead-meta">SEPTEMBER 17, 2026 · ISSUE #110</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">At A Glance</div>
+    <div class="glance-grid">
+      <div class="glance-card">
+        <div class="tag tag-ai">STORY 1 · AI & TECH</div>
+        <div class="headline">Fujitsu's MONAKA CPU goes to global sales, framed as "sovereign AI infrastructure"</div>
+        <div class="stat">+5.01%</div>
+        <div class="stat-label">Fujitsu shares on the Sept 14 announcement</div>
+      </div>
+      <div class="glance-card">
+        <div class="tag tag-semi">STORY 2 · SEMICONDUCTORS</div>
+        <div class="headline">Renesas launches two edge-AI MPUs, then raises prices a day later</div>
+        <div class="stat">2nd</div>
+        <div class="stat-label">Renesas price hike of 2026, eff. Jan 1, 2027</div>
+      </div>
+      <div class="glance-card">
+        <div class="tag tag-macro">STORY 3 · MACRO</div>
+        <div class="headline">Chinese arrivals to Japan fall 59% in August, 9th straight monthly decline</div>
+        <div class="stat">−59.0%</div>
+        <div class="stat-label">China arrivals YoY, August 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="section-title">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 1 · AI &amp; TECH</div>
+      <div class="story-card-headline">Fujitsu's MONAKA chip turns "sovereign AI" from slogan into a shipping product</div>
+      <p>Fujitsu announced Sept 14 that standalone global sales of its FUJITSU-MONAKA CPU begin November 2026, alongside a server line rated to cut cooling power by up to 80% — a staged rollout to financial, telecom, and manufacturing customers running through April 2027, with production still outsourced to TSMC despite the sovereign-AI framing.</p>
+      <div class="chart-box">
+        <div class="chart-title">MONAKA Rollout Timeline — Nov 2026 to Apr 2027</div>
+        <svg viewBox="0 0 780 200" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="110" x2="730" y2="110" stroke="#dde0ec" stroke-width="2"/>
+          <circle cx="100" cy="110" r="6" fill="#3730a3"/>
+          <text x="100" y="90" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">Sept 14, 2026</text>
+          <text x="100" y="135" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Announcement</text>
+          <text x="100" y="150" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Shares +5.01%</text>
+
+          <circle cx="320" cy="110" r="6" fill="#818cf8"/>
+          <text x="320" y="90" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">Nov 2026</text>
+          <text x="320" y="135" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Standalone CPU</text>
+          <text x="320" y="150" text-anchor="middle" font-size="10.5" fill="#5a6a8a">sales begin</text>
+
+          <circle cx="520" cy="110" r="6" fill="#818cf8"/>
+          <text x="520" y="90" text-anchor="middle" font-size="11" fill="#3730a3" font-weight="700">H2 FY2026</text>
+          <text x="520" y="135" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Server to select</text>
+          <text x="520" y="150" text-anchor="middle" font-size="10.5" fill="#5a6a8a">FSI/telecom clients</text>
+
+          <circle cx="700" cy="110" r="6" fill="#b45309"/>
+          <text x="700" y="90" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">Apr 2027</text>
+          <text x="700" y="135" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Broad shipments,</text>
+          <text x="700" y="150" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Japan + Europe</text>
+
+          <text x="60" y="185" font-size="10" fill="#9a8a7a">Fab: TSMC today · Rapidus flagged as future domestic source</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">A staged, multi-quarter rollout to regulated buyers (finance, telecom, manufacturing) before broad distribution suggests Fujitsu is selling an enterprise platform, not a one-off hardware launch.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether Rapidus actually becomes a qualified MONAKA fab source once Chitose reaches volume — the clearest test yet of Rapidus landing a domestic anchor customer.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">"Sovereign AI infrastructure" is a marketing and policy narrative; today's chips are still TSMC-fabricated, so the domestic-supply-chain story is aspirational, not current fact.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        MONAKA's real differentiator is power efficiency and traceability, not raw speed — watch the Nov/Apr 2027 rollout for confirmed enterprise wins rather than the spec sheet.
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 2 · SEMICONDUCTORS</div>
+      <div class="story-card-headline">Renesas adds two edge-AI MPUs to its lineup, a day before its second price hike of the year</div>
+      <p>Renesas launched the RZ/G3L and RZ/G3SE industrial-IoT microprocessors on Sept 10, then issued its second 2026 pricing notice on Sept 11 citing materials, energy, packaging, and logistics inflation — a launch-then-price-hike sequence that reads as confidence in demand, not discounting into a new product cycle.</p>
+      <div class="chart-box">
+        <div class="chart-title">Two Announcements, One Week Apart — Sept 10 to Sept 11, 2026</div>
+        <svg viewBox="0 0 780 190" xmlns="http://www.w3.org/2000/svg">
+          <text x="60" y="30" font-size="11" fill="#3a4a6a" font-weight="600">Sept 10 — RZ/G3L / RZ/G3SE launch</text>
+          <rect x="60" y="40" width="620" height="34" fill="#3730a3"/>
+          <text x="370" y="62" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">Edge-AI MPUs: Cortex-A55 ×4, PCIe / TSN Gigabit Ethernet / USB</text>
+
+          <text x="60" y="110" font-size="11" fill="#3a4a6a" font-weight="600">Sept 11 — Pricing notice, effective Jan 1, 2027</text>
+          <rect x="60" y="120" width="620" height="34" fill="#be185d"/>
+          <text x="370" y="142" text-anchor="middle" font-size="12" fill="#fff" font-weight="600">2nd 2026 price increase: materials, energy, packaging, logistics</text>
+
+          <text x="60" y="180" font-size="10" fill="#9a8a7a">Aug 3, 2026 print: Q2 revenue +24.8% YoY, margin 32.7% vs. 29% guide</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">Pushing a price increase through one day after a new product launch suggests order books are firm enough across both legacy MCU and edge-AI lines to absorb it.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether the Jan 1, 2027 increase holds through the next quarterly print without customer pushback or share loss to Chinese automotive-chip entrants.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">Two price hikes in a single year signal persistent cost inflation Renesas has not been able to engineer out — a margin risk if AI-linked demand cools before costs do.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        The sequence is the signal, not either announcement alone — pricing power into a new launch is a cleaner real-time demand read than the product spec sheet itself.
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY 3 · MACRO &amp; FINANCE</div>
+      <div class="story-card-headline">Japan's tourism data is now a China-diplomacy gauge, and August's reading was ugly</div>
+      <p>Chinese arrivals to Japan fell 59.0% year-on-year in August to 418,000 — a ninth consecutive monthly decline driven by Beijing's travel advisory after PM Takaichi's Taiwan remarks and typhoon-driven flight cancellations, even as overall per-visitor spending kept setting records on strength from Italy, Spain, South Korea, and Taiwan.</p>
+      <div class="chart-box">
+        <div class="chart-title">China Arrivals to Japan — Nine Straight Months of YoY Decline</div>
+        <svg viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="170" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="170" x2="750" y2="170" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="55" y="30" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+          <text x="55" y="100" text-anchor="end" font-size="10" fill="#5a6a8a">−30%</text>
+          <text x="55" y="165" text-anchor="end" font-size="10" fill="#5a6a8a">−60%</text>
+          <polyline points="90,25 220,55 350,70 480,90 610,110 710,160" fill="none" stroke="#b91c1c" stroke-width="2.5"/>
+          <circle cx="90" cy="25" r="4" fill="#5a6a8a"/>
+          <circle cx="710" cy="160" r="5" fill="#b91c1c"/>
+          <text x="90" y="190" text-anchor="middle" font-size="10" fill="#5a6a8a">Dec 2025</text>
+          <text x="710" y="190" text-anchor="middle" font-size="10" fill="#b91c1c" font-weight="600">Aug 2026: −59.0%</text>
+          <text x="500" y="45" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">9th consecutive month of YoY decline</text>
+        </svg>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="label label-signal">SIGNAL</div>
+          <div class="text">Nine straight months of decline, spanning both a diplomatic advisory and unrelated typhoon disruptions, marks this as a structural trend rather than a weather-driven blip.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-watch">WATCH</div>
+          <div class="text">Whether per-visitor spending records from Italy, Spain, South Korea, and Taiwan continue to offset China's volume loss, or whether that substitution effect starts to fade.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="label label-risk">RISK</div>
+          <div class="text">Group-tour and duty-free spending from Chinese visitors is not replicated by individual leisure travelers from other markets — concentrated exposure for department stores and drugstore chains.</div>
+        </div>
+      </div>
+      <div class="takeaway">
+        <div class="label">Investor Takeaway</div>
+        The cleaner read for retail exposure is duty-free and department-store data, not the headline visitor count, which record per-visitor spending can mask — and it's a risk distinct from this week's BOJ meeting.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #110 · SEPTEMBER 17, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
