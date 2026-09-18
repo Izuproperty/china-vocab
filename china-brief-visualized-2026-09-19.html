@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #123 · September 19, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #123 · September 19, 2026</div>
+    <div class="masthead-sub">Qwen3.8-Omni-Flash · Beijing vs. Amodei on Chip Controls · PBOC's Credit-Era Call</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · MODEL RELEASE</div>
+      <div class="card-num">89<span class="card-num-unit">% cost cut</span></div>
+      <div class="card-label">Qwen3.8-Omni-Flash video-input cost vs. Qwen3.5-Omni-Plus (Alibaba figures)</div>
+      <div class="card-delta delta-amber">Self-reported, unverified</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · GOVERNANCE</div>
+      <div class="card-num">5<span class="card-num-unit">days out</span></div>
+      <div class="card-label">Until the Sept 24 Trump-Xi meeting, where AI governance and export controls are on the agenda</div>
+      <div class="card-delta delta-red">Beijing calls Amodei "fearmongering"</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CREDIT</div>
+      <div class="card-num">50.3<span class="card-num-unit">% of TSF</span></div>
+      <div class="card-label">Share of Jan-Aug 2026 social-financing growth from bonds/equity, not bank loans</div>
+      <div class="card-delta delta-green">First time market financing tops loans</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">89% Cheaper, No Open Weights: Alibaba's Qwen3.8-Omni-Flash Doubles Down on Agentic Video</div>
+    <div class="story-insight">
+      <p>Alibaba's Qwen team released Qwen3.8-Omni-Flash on Sept 18 — its first model built around agentic multimodal workflows, combining native audio-video understanding, reasoning and tool use with a 1M-token context window. Unlike much of Alibaba's 2026 lineup, it carries no open weights and ships API-only.</p>
+      <br>
+      <p>Alibaba's own numbers claim a 26%+ average benchmark gain over Qwen3.5-Omni-Plus and an ~89% cut to video-input cost, with audiovisual performance said to approach Gemini 3.8 Flash — self-published figures that, per Alibaba's own recent release pattern, have not yet been independently verified.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The API-only, agentic-first packaging — after a run of open-weight releases — signals Alibaba is testing whether hosted agentic access monetizes better than the open downloads that built Qwen's adoption lead.</div>
+    <div class="chart-box">
+      <div class="chart-title">Qwen3.8-Omni-Flash vs. Qwen3.5-Omni-Plus (Alibaba-reported)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="95" x2="780" y2="95" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="20" y="24" font-size="10" fill="#5a6a8a">100%</text>
+        <text x="20" y="99" font-size="10" fill="#5a6a8a">50%</text>
+        <text x="20" y="154" font-size="10" fill="#5a6a8a">0%</text>
+
+        <rect x="140" y="123" width="90" height="27" fill="#c0392b" opacity="0.75"/>
+        <text x="185" y="115" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="600">+26%</text>
+        <text x="185" y="168" font-size="10" fill="#5a6a8a" text-anchor="middle">Avg benchmark gain</text>
+
+        <rect x="330" y="24" width="90" height="126" fill="#b45309" opacity="0.75"/>
+        <text x="375" y="18" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="600">-89%</text>
+        <text x="375" y="168" font-size="10" fill="#5a6a8a" text-anchor="middle">Video-input cost</text>
+
+        <rect x="520" y="20" width="90" height="130" fill="#1a56db" opacity="0.55"/>
+        <text x="565" y="14" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="600">1M tokens</text>
+        <text x="565" y="168" font-size="10" fill="#5a6a8a" text-anchor="middle">Context window</text>
+
+        <rect x="640" y="150" width="90" height="0" fill="#5a6a8a"/>
+        <text x="685" y="168" font-size="10" fill="#5a6a8a" text-anchor="middle">Open weights: none</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · RELEASE CADENCE</div>
+        <div class="annotation-card-zh">通义千问<span class="annotation-card-en">Tōngyì Qiānwèn · Qwen</span></div>
+        <div class="annotation-card-body">Alibaba has shipped a major Qwen update roughly every 2-3 weeks since July — a distribution and monetization test as much as a model launch.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VERIFICATION</div>
+        <div class="annotation-card-zh">自评基准<span class="annotation-card-en">zì píng jīzhǔn · self-reported benchmarks</span></div>
+        <div class="annotation-card-body">Alibaba's 26%/89% figures are self-published; prior Qwen releases this quarter have taken weeks for outside benchmarks to catch up.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CAPEX GAP</div>
+        <div class="annotation-card-zh">资本支出<span class="annotation-card-en">zīběn zhīchū · capital expenditure</span></div>
+        <div class="annotation-card-body">Q1 FY2026 capex ran ahead of Alibaba's stated 3-year AI-infra budget while profit fell 76% y/y — monetization of releases like this one is the open question.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH / GOVERNANCE</div>
+    <div class="story-headline">Five Days Before Trump-Xi: Beijing Calls Anthropic's Amodei "Fearmongering" Over Chip Controls</div>
+    <div class="story-insight">
+      <p>Amodei's Sept 12 essay called for a coordinated AI slowdown, continued chip export restrictions on China, and a crackdown on distillation — and drew fast public alignment from OpenAI, xAI and Google DeepMind. Two days later, MOFA spokesperson Guo Jiakun rebuked the essay directly at a Beijing briefing.</p>
+      <br>
+      <p>What's new isn't the substance — both sides have held these positions for months — it's the level: China's foreign ministry, not a company or state-media commentary, is now the one answering a US lab CEO, five days ahead of the Trump-Xi meeting.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Watch whether the US-lab consensus behind Amodei's essay shows up in a harder US negotiating line at the summit, or stays rhetoric — that's the read-through for chip-adjacent names.</div>
+    <div class="chart-box">
+      <div class="chart-title">Timeline: Essay to Summit</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="100" x2="760" y2="100" stroke="#e0d8d0" stroke-width="2"/>
+
+        <circle cx="120" cy="100" r="7" fill="#1a56db"/>
+        <text x="120" y="80" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">Sep 12</text>
+        <text x="120" y="125" font-size="10" fill="#5a6a8a" text-anchor="middle">Amodei essay</text>
+        <text x="120" y="139" font-size="10" fill="#5a6a8a" text-anchor="middle">"Pace the Frontier"</text>
+
+        <circle cx="300" cy="100" r="7" fill="#c0392b"/>
+        <text x="300" y="80" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="600">Sep 14</text>
+        <text x="300" y="125" font-size="10" fill="#5a6a8a" text-anchor="middle">Guo Jiakun rebuts:</text>
+        <text x="300" y="139" font-size="10" fill="#5a6a8a" text-anchor="middle">"fearmongering"</text>
+
+        <circle cx="480" cy="100" r="9" fill="#b45309"/>
+        <text x="480" y="76" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">Sep 19</text>
+        <text x="480" y="125" font-size="10" fill="#5a6a8a" text-anchor="middle">Today</text>
+
+        <circle cx="700" cy="100" r="9" fill="#166534"/>
+        <text x="700" y="76" font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">Sep 24</text>
+        <text x="700" y="125" font-size="10" fill="#5a6a8a" text-anchor="middle">Trump-Xi meeting,</text>
+        <text x="700" y="139" font-size="10" fill="#5a6a8a" text-anchor="middle">Washington DC</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · INDUSTRY ALIGNMENT</div>
+        <div class="annotation-card-zh">蒸馏<span class="annotation-card-en">zhēngliú · distillation</span></div>
+        <div class="annotation-card-body">OpenAI, xAI and Google DeepMind executives echoed Amodei's core argument within hours — a rare, fast show of US frontier-lab consensus on China chip policy.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUMMIT AGENDA</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Whether Trump's actual negotiating posture on Sept 24 hardens toward Amodei's position, or diverges from it as it has before, is unresolved.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · STATE-LEVEL ESCALATION</div>
+        <div class="annotation-card-zh">外交部<span class="annotation-card-en">Wàijiāobù · Foreign Ministry</span></div>
+        <div class="annotation-card-body">A lab-to-lab distillation dispute has become a state-level rebuttal — a marker of how contested the export-control question remains ahead of the summit.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">One Qiushi Essay: PBOC's Pan Gongsheng Declares China's Credit-Growth Era Over</div>
+    <div class="story-insight">
+      <p>In a Sept 16 Qiushi article, Governor Pan Gongsheng framed China's slowing credit growth as structural — shrinking property and LGFV demand outpacing what new industries can absorb — rather than a problem requiring stimulus, days after August loan data badly missed forecasts.</p>
+      <br>
+      <p>The article previews a shift toward price-based regulation over loan-volume targets, and a crackdown on "involution-style" competition among lenders — consistent with bond/equity financing now exceeding bank loans as a share of total social financing for the first time this cycle.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The framing pre-commits the PBOC away from a stimulus-driven credit rebound into year-end — a data point against expectations of an imminent RRR cut resolving the August lending miss.</div>
+    <div class="chart-box">
+      <div class="chart-title">Total Social Financing Growth, Jan-Aug 2026: Source of New Credit</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="20" y="24" font-size="10" fill="#5a6a8a">100%</text>
+        <text x="20" y="87" font-size="10" fill="#5a6a8a">50%</text>
+        <text x="20" y="154" font-size="10" fill="#5a6a8a">0%</text>
+        <line x1="60" y1="85" x2="780" y2="85" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <rect x="220" y="84" width="120" height="66" fill="#5a6a8a" opacity="0.55"/>
+        <text x="280" y="76" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="600">49.7%</text>
+        <text x="280" y="168" font-size="10" fill="#5a6a8a" text-anchor="middle">Bank loans</text>
+
+        <rect x="440" y="83" width="120" height="67" fill="#166534" opacity="0.75"/>
+        <text x="500" y="75" font-size="12" fill="#1a1a2e" text-anchor="middle" font-weight="600">50.3%</text>
+        <text x="500" y="168" font-size="10" fill="#5a6a8a" text-anchor="middle">Bond / equity financing</text>
+        <text x="500" y="181" font-size="9" fill="#166534" text-anchor="middle" font-weight="600">First time &gt; loans</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MARKET FINANCING</div>
+        <div class="annotation-card-zh">社会融资规模<span class="annotation-card-en">shèhuì róngzī guīmó · TSF</span></div>
+        <div class="annotation-card-body">Bond and equity issuance edged past bank loans as a share of new credit for the first time this cycle — a structural shift, not a one-month blip per Pan's framing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · POLICY TOOLS</div>
+        <div class="annotation-card-zh">价格型调控<span class="annotation-card-en">jiàgé xíng tiáokòng · price-based regulation</span></div>
+        <div class="annotation-card-body">A shift from loan-volume targets to rate-transmission tools would change how markets should read future PBOC signaling — worth tracking at the next policy meeting.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PROPERTY DRAG</div>
+        <div class="annotation-card-zh">地方政府融资平台<span class="annotation-card-en">LGFV</span></div>
+        <div class="annotation-card-body">Pan attributes the slowdown partly to shrinking LGFV and property credit demand — a drag that price-based tools alone may not offset if it doesn't stabilize.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #123 · SEPTEMBER 19, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
