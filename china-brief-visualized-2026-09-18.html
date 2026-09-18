@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #122 · September 18, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #122 · September 18, 2026</div>
+    <div class="masthead-sub">AI Stock Selloff · Enterprise-Agent Race · Trump-Xi Summit Preview</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · MARKETS</div>
+      <div class="card-num">$33<span class="card-num-unit">B erased</span></div>
+      <div class="card-label">Combined market value lost by Z.AI and MiniMax in September</div>
+      <div class="card-delta delta-red">Both shares down 30%+</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ENTERPRISE</div>
+      <div class="card-num">¥332<span class="card-num-unit">B by 2029</span></div>
+      <div class="card-label">IDC's projected size of China's enterprise AI-agent market</div>
+      <div class="card-delta delta-amber">4 platforms launched in 7 days</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · SUMMIT</div>
+      <div class="card-num">6<span class="card-num-unit">days out</span></div>
+      <div class="card-label">Until the Sept 24 Trump-Xi meeting in Washington</div>
+      <div class="card-delta delta-amber">Rare-earth suspension expires Nov 10</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">$33 Billion Wiped in a Month: Z.AI and MiniMax Slide as Washington Weighs Cutting Off Chinese Labs' Model Access</div>
+    <div class="story-insight">
+      <p>Shares of Z.AI and MiniMax — two Hong Kong-listed foundation-model developers that led China's AI rally earlier this year — have each fallen more than 30% in September, erasing a combined $33 billion in market value. The trigger: a push by Anthropic and other US developers urging Washington to restrict Chinese labs' access to frontier models, after both companies were named this month in a joint NSA/CISA/FBI advisory and Anthropic's own threat-intelligence report alleging industrial-scale distillation.</p>
+      <br>
+      <p>Model access and training-data provenance are now a policy variable, not just a competitive one. If restrictions take effect, labs dependent on cheaper synthetic training data face a real cost-structure shock on top of existing cash-burn concerns; if they stall like earlier export-control pushes, the selloff may be a re-pricing of a narrower risk rather than a re-rating of the sector.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Nothing has actually been restricted yet — the entire selloff is priced on the probability of a policy action that remains proposed, not enacted.</div>
+    <div class="chart-box">
+      <div class="chart-title">September Share-Price Decline (through Sept 17)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="20" x2="140" y2="155" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="140" y1="155" x2="780" y2="155" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="145" y="35" fill="#5a6a8a" font-size="10">0%</text>
+        <text x="325" y="35" fill="#5a6a8a" font-size="10">-15%</text>
+        <text x="500" y="35" fill="#5a6a8a" font-size="10">-30%</text>
+        <line x1="325" y1="30" x2="325" y2="150" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="500" y1="30" x2="500" y2="150" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="20" y="65" fill="#1a1a2e" font-size="12" font-weight="600">Z.AI</text>
+        <rect x="140" y="50" width="370" height="26" fill="#c0392b" opacity="0.85" rx="2"/>
+        <text x="518" y="67" fill="#c0392b" font-size="11" font-weight="700">-31%</text>
+        <text x="20" y="120" fill="#1a1a2e" font-size="12" font-weight="600">MiniMax</text>
+        <rect x="140" y="105" width="360" height="26" fill="#c0392b" opacity="0.7" rx="2"/>
+        <text x="508" y="122" fill="#c0392b" font-size="11" font-weight="700">-30%</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SPECIFICITY</div>
+        <div class="annotation-card-zh">蒸馏<span class="annotation-card-en">zhēngliú · distillation</span></div>
+        <div class="annotation-card-body">Anthropic's report gave Z.AI a specific mechanism — 3.4M chain-of-thought exchanges via 273 rotating accounts — a level of detail that raises the odds this becomes an enforceable case, not just rhetoric.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REPRICING</div>
+        <div class="annotation-card-zh">估值重置<span class="annotation-card-en">gūzhí chóngzhì · valuation reset</span></div>
+        <div class="annotation-card-body">Whether the slide is a lasting repricing of distillation risk or a temporary overreaction hinges on whether the US actually restricts access — nothing has been implemented, only proposed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CASH BURN</div>
+        <div class="annotation-card-zh">现金消耗<span class="annotation-card-en">xiànjīn xiāohào · cash burn</span></div>
+        <div class="annotation-card-body">Both companies already faced investor scrutiny over spending before the distillation story broke; a formal restriction would compound an existing balance-sheet concern, not create a new one.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">Four Platforms, Seven Days: ByteDance Brings AI Agents to Feishu as China's Enterprise-Agent Land Grab Accelerates</div>
+    <div class="story-insight">
+      <p>ByteDance added AI agents to Feishu, linking the feature to Doubao Work — the latest in a compressed run of launches that included Tencent opening WorkBuddy to 100+ partners (Sept 2), Alibaba consolidating three tools into QwenWork, and Baidu's Dazi posting 1,000%+ month-on-month user growth. IDC projects the market at RMB 332B by 2029.</p>
+      <br>
+      <p>The metric on display is monthly active users, not revenue. None of the four has disclosed agent-specific unit economics, so the launch wave reads as a distribution contest fought inside existing ecosystems rather than evidence of enterprise customers paying at scale.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> User-growth numbers are being showcased in place of monetization data — the business model for these platforms is still unproven, not just unannounced.</div>
+    <div class="chart-box">
+      <div class="chart-title">Enterprise-Agent Launch Cadence, Sept 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="40" y="170" fill="#5a6a8a" font-size="10">Aug 25</text>
+        <text x="270" y="170" fill="#5a6a8a" font-size="10">Sept 2</text>
+        <text x="500" y="170" fill="#5a6a8a" font-size="10">Sept 9</text>
+        <text x="730" y="170" fill="#5a6a8a" font-size="10">Sept 16</text>
+        <circle cx="60" cy="150" r="6" fill="#1a56db"/>
+        <text x="30" y="100" fill="#1a1a2e" font-size="11" font-weight="600">ByteDance</text>
+        <text x="30" y="115" fill="#5a6a8a" font-size="10">Doubao Work launch</text>
+        <line x1="60" y1="145" x2="60" y2="118" stroke="#e0d8d0" stroke-width="1"/>
+        <circle cx="280" cy="150" r="6" fill="#1a56db"/>
+        <text x="230" y="70" fill="#1a1a2e" font-size="11" font-weight="600">Tencent</text>
+        <text x="215" y="85" fill="#5a6a8a" font-size="10">WorkBuddy opens, 100+ partners</text>
+        <line x1="280" y1="145" x2="280" y2="88" stroke="#e0d8d0" stroke-width="1"/>
+        <circle cx="500" cy="150" r="6" fill="#1a56db"/>
+        <text x="450" y="100" fill="#1a1a2e" font-size="11" font-weight="600">Alibaba</text>
+        <text x="440" y="115" fill="#5a6a8a" font-size="10">QwenWork consolidation</text>
+        <line x1="500" y1="145" x2="500" y2="118" stroke="#e0d8d0" stroke-width="1"/>
+        <circle cx="740" cy="150" r="6" fill="#c0392b"/>
+        <text x="660" y="70" fill="#1a1a2e" font-size="11" font-weight="600">ByteDance</text>
+        <text x="650" y="85" fill="#5a6a8a" font-size="10">Feishu adds AI agents</text>
+        <line x1="740" y1="145" x2="740" y2="88" stroke="#e0d8d0" stroke-width="1"/>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · REACH</div>
+        <div class="annotation-card-zh">月活用户<span class="annotation-card-en">yuèhuó yònghù · monthly active users</span></div>
+        <div class="annotation-card-body">The one metric all four platforms disclose; WorkBuddy's MAU more than doubled March-to-June, showing real distribution reach inside existing ecosystems.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MONETIZATION</div>
+        <div class="annotation-card-zh">变现路径<span class="annotation-card-en">biànxiàn lùjìng · monetization path</span></div>
+        <div class="annotation-card-body">None of the four has published agent-specific revenue or retention data — the RMB 332B 2029 figure is a market forecast, not a company disclosure.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COMMODITIZATION</div>
+        <div class="annotation-card-zh">同质化竞争<span class="annotation-card-en">tóngzhìhuà jìngzhēng · homogeneous competition</span></div>
+        <div class="annotation-card-body">Four large platforms launching similar workplace-agent products within a week raises the risk of a feature race that compresses pricing power before any player builds a durable lead.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">Six Days Out: What's Actually on the Table for the September 24 Trump-Xi Summit</div>
+    <div class="story-insight">
+      <p>Xi Jinping is confirmed to arrive in Washington September 23 for a White House meeting September 24, skipping the UN General Assembly. Two mechanisms matter more than the atmospherics: China's rare-earth export-control suspension expires November 10, and the two governments are consulting on a tariff-reduction framework covering roughly $30B of goods on each side.</p>
+      <br>
+      <p>The May summit's record — ag purchases, a Boeing order, selective tariff cuts, but no movement on Taiwan, semiconductors, or export controls — suggests the base case is another partial outcome. The rare-earth deadline is the more consequential thread: a lapse would tighten a supply chain global manufacturers depend on; a renewal extends a status quo markets have already partly priced in.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The Nov 10 rare-earth deadline is a harder, more dated trigger than the summit itself — watch that date regardless of what the Sept 24 meeting produces.</div>
+    <div class="chart-box">
+      <div class="chart-title">Timeline: May Summit → Sept 24 Summit → Nov 10 Deadline</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="100" x2="780" y2="100" stroke="#e0d8d0" stroke-width="2"/>
+        <circle cx="80" cy="100" r="7" fill="#5a6a8a"/>
+        <text x="35" y="80" fill="#1a1a2e" font-size="11" font-weight="600">May 2026</text>
+        <text x="20" y="130" fill="#5a6a8a" font-size="10">Beijing summit:</text>
+        <text x="15" y="144" fill="#5a6a8a" font-size="10">rare-earth suspension agreed</text>
+        <circle cx="420" cy="100" r="8" fill="#b45309"/>
+        <text x="365" y="75" fill="#1a1a2e" font-size="11" font-weight="700">Sept 24, 2026</text>
+        <text x="345" y="130" fill="#5a6a8a" font-size="10">Trump-Xi Washington summit</text>
+        <text x="370" y="144" fill="#5a6a8a" font-size="10">(6 days from today)</text>
+        <circle cx="740" cy="100" r="8" fill="#c0392b"/>
+        <text x="685" y="75" fill="#1a1a2e" font-size="11" font-weight="700">Nov 10, 2026</text>
+        <text x="650" y="130" fill="#5a6a8a" font-size="10">Rare-earth suspension</text>
+        <text x="670" y="144" fill="#5a6a8a" font-size="10">expires</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · HARD DEADLINE</div>
+        <div class="annotation-card-zh">稀土暂停<span class="annotation-card-en">xītǔ zàntíng · rare-earth suspension</span></div>
+        <div class="annotation-card-body">The Nov 10 expiry is a known, dated trigger — unlike most US-China friction points, this one forces a decision one way or the other by a fixed date.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SCOPE</div>
+        <div class="annotation-card-zh">部分协议<span class="annotation-card-en">bùfen xiéyì · partial agreement</span></div>
+        <div class="annotation-card-body">The May pattern — ag purchases, one Boeing order, narrow tariff cuts — is the base case again; a comprehensive deal on Taiwan, semiconductors, or export controls remains unlikely on the current record.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLY DISRUPTION</div>
+        <div class="annotation-card-zh">稀土断供<span class="annotation-card-en">xītǔ duàngōng · rare-earth supply disruption</span></div>
+        <div class="annotation-card-body">A lapse or narrowing of the suspension would tighten a supply chain global manufacturers — not just Chinese exporters — depend on; the tail risk with the most direct industrial and auto read-through.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #122 · SEPTEMBER 18, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
