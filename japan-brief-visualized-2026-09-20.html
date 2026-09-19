@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 · Japan Brief Visualized · Issue #113</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; background:#fff; }
+  .masthead { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:32px 40px 24px; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { margin-top:10px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .section { padding:32px 40px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#3730a3; margin-bottom:18px; }
+  .glance-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:16px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:10px; }
+  .glance-tag.ai { background:#e0e7ff; color:#3730a3; }
+  .glance-tag.semi { background:#fce7f3; color:#be185d; }
+  .glance-tag.macro { background:#fef3e2; color:#b45309; }
+  .glance-headline { font-size:13px; font-weight:600; color:#1a1a2e; margin-bottom:8px; line-height:1.4; }
+  .glance-stat { font-size:22px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:11px; color:#5a6a8a; margin-top:2px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; margin-bottom:24px; }
+  .story-card-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; }
+  .insight-p { font-size:13.5px; color:#3a4a6a; margin-bottom:10px; line-height:1.7; }
+  .takeaway-box { background:#f8f9fc; border-left:3px solid #3730a3; border:1px solid #dde0ec; border-left-width:3px; padding:12px 16px; margin:16px 0; border-radius:0 4px 4px 0; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .takeaway-text { font-size:13px; color:#3a4a6a; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:16px; margin:16px 0; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#5a6a8a; margin-bottom:12px; }
+  .annot-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:16px; }
+  .annot-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px; }
+  .annot-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annot-label.signal { color:#0e7490; }
+  .annot-label.watch { color:#b45309; }
+  .annot-label.risk { color:#be185d; }
+  .annot-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .footer { padding:24px 40px; background:#1a1a2e; text-align:center; }
+  .footer-text { font-size:10px; letter-spacing:1px; color:#4a5a7a; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">日本速報 · Issue #113</div>
+    <div class="masthead-meta">Sunday, September 20, 2026 · 3 Stories Analyzed</div>
+  </div>
+  <div class="nav-row">
+    <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+    <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+    <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+  </div>
+
+  <div class="section">
+    <div class="section-title">At a Glance</div>
+    <div class="glance-grid">
+      <div class="glance-card">
+        <span class="glance-tag ai">STORY 1 · AI & TECH</span>
+        <div class="glance-headline">Physical AI Summit — Tokyo, Sept 16</div>
+        <div class="glance-stat">0%</div>
+        <div class="glance-stat-label">of demoed robots ran autonomously — all teleoperated</div>
+      </div>
+      <div class="glance-card">
+        <span class="glance-tag semi">STORY 2 · SEMI & INDUSTRIAL</span>
+        <div class="glance-headline">Japan Deepens India Chip Supply Chain</div>
+        <div class="glance-stat">4</div>
+        <div class="glance-stat-label">Japanese firms announced India moves in one week</div>
+      </div>
+      <div class="glance-card">
+        <span class="glance-tag macro">STORY 3 · MACRO & FINANCE</span>
+        <div class="glance-headline">FSA's 2026 On-Chain Finance Priorities</div>
+        <div class="glance-stat">2027</div>
+        <div class="glance-stat-label">earliest target for a tokenized JGB/equity development plan</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <div class="story-card-label">STORY 1 · AI & TECH</div>
+      <div class="story-card-headline">Teleoperated Robots Take Center Stage at Tokyo's Physical AI Summit</div>
+      <p class="insight-p">Five Japanese robotics developers — THK, ugo, Nachi, HatsuMuv, and others — demonstrated machines handling objects, drilling, and hammering nails at Tokyo's Physical AI Summit on September 16. Every demonstration ran under human remote control, not autonomy.</p>
+      <p class="insight-p">Ugo's ugo Nova, a semi-humanoid with two seven-axis arms plus head and waist joints, doubles as a data-collection platform: each teleoperated task generates real-world manipulation data that Ugo feeds back into training its own physical-AI models — a hardware-first path to the same goal that SoftBank, Sony, and Honda are pursuing through Noetra's foundation-model-first, 27,500-GPU compute buildout.</p>
+      <div class="chart-box">
+        <div class="chart-title">Robot Control Mode at the Summit</div>
+        <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="130" x2="560" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+          <rect x="100" y="30" width="80" height="100" fill="#3730a3"/>
+          <text x="140" y="145" text-anchor="middle" font-size="11" fill="#5a6a8a">Teleoperated</text>
+          <text x="140" y="25" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="700">5 / 5</text>
+          <rect x="380" y="128" width="80" height="2" fill="#c9cfe0"/>
+          <text x="420" y="145" text-anchor="middle" font-size="11" fill="#5a6a8a">Autonomous</text>
+          <text x="420" y="122" text-anchor="middle" font-size="12" fill="#9aa4bc" font-weight="700">0 / 5</text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">The summit is a progress checkpoint for Japan's physical-AI hardware makers, not a near-term investment catalyst. They remain at the teleoperation-plus-data-collection stage, and the gap to the autonomous operation priced into longer-term roadmaps is wide and unquantified.</div>
+      </div>
+      <div class="annot-grid">
+        <div class="annot-card">
+          <div class="annot-label signal">SIGNAL</div>
+          <div class="annot-text">Smaller robotics firms are using teleoperation as a data-generation strategy to compete with foundation-model-first entrants.</div>
+        </div>
+        <div class="annot-card">
+          <div class="annot-label watch">WATCH</div>
+          <div class="annot-text">Whether any exhibitor demonstrates autonomous (non-teleoperated) task completion at the next physical-AI showcase.</div>
+        </div>
+        <div class="annot-card">
+          <div class="annot-label risk">RISK</div>
+          <div class="annot-text">Investment narratives around "physical AI" outrunning the actual state of autonomy in deployed hardware.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <div class="story-card-label">STORY 2 · SEMI & INDUSTRIAL</div>
+      <div class="story-card-headline">Fujifilm and Sumitomo Chemical Lock In India's Chip Supply Chain</div>
+      <p class="insight-p">At Semicon India 2026, Fujifilm committed ₹800 crore ($83M) to a new semiconductor-materials plant and an MoU to supply Tata Electronics' Dholera fab. Sumitomo Chemical signed a parallel materials MoU with Tata Electronics. Tokyo Electron is opening a Bengaluru software site; Hirata Corporation is bringing wafer-handling automation into India via its ATS India subsidiary.</p>
+      <p class="insight-p">The scale of each individual commitment is modest next to Japan's domestic chip-equipment cycle — Fujifilm's $83 million compares with Tokyo Electron's own ¥104 billion ($667M) Miyagi production-building expansion. What stands out is that materials, chemicals, automation hardware, and equipment R&D all arrived in India in the same week, the pattern typical of a supply chain build once government fab announcements start converting into production timelines.</p>
+      <div class="chart-box">
+        <div class="chart-title">Scale Comparison: India Entry vs. Domestic Expansion (USD)</div>
+        <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="130" x2="560" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+          <rect x="110" y="118" width="70" height="12" fill="#be185d"/>
+          <text x="145" y="145" text-anchor="middle" font-size="11" fill="#5a6a8a">Fujifilm India</text>
+          <text x="145" y="112" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="700">$83M</text>
+          <rect x="380" y="30" width="70" height="100" fill="#3730a3"/>
+          <text x="415" y="145" text-anchor="middle" font-size="11" fill="#5a6a8a">TEL Miyagi (Japan)</text>
+          <text x="415" y="25" text-anchor="middle" font-size="12" fill="#1a1a2e" font-weight="700">$667M</text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">India is an incremental growth market layered on top of the domestic Rapidus/TSMC-JASM cycle for Japanese equipment and materials names, not a substitute for it. Tokyo Electron's Bengaluru site is R&D and simulation work, separate from its Japan capacity plans.</div>
+      </div>
+      <div class="annot-grid">
+        <div class="annot-card">
+          <div class="annot-label signal">SIGNAL</div>
+          <div class="annot-text">Four Japanese firms across materials, chemicals, automation, and equipment R&D entered India in the same week — a coordinated ecosystem move, not an isolated announcement.</div>
+        </div>
+        <div class="annot-card">
+          <div class="annot-label watch">WATCH</div>
+          <div class="annot-text">Fujifilm Phase 1 groundbreaking (targeted FY2026) and whether commercial production stays on track for FY2028.</div>
+        </div>
+        <div class="annot-card">
+          <div class="annot-label risk">RISK</div>
+          <div class="annot-text">India's fab ecosystem build depends on Tata Electronics' Dholera fab timeline holding; delays there would ripple through every MoU tied to it.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <div class="story-card-label">STORY 3 · MACRO & FINANCE</div>
+      <div class="story-card-headline">FSA Puts On-Chain Finance at the Center of Its 2026 Agenda</div>
+      <p class="insight-p">Japan's FSA published its 2026 Strategic Priorities on September 15, naming on-chain finance a top policy category across payments, securities settlement, tokenization, and cross-border transfers, and launching an "On-Chain Finance Forum for the AI Era." The move operationalizes the Cabinet's July growth-investment strategy, which set blockchain-based settlement as one of four pillars for redirecting household savings into productive investment.</p>
+      <p class="insight-p">Parts of this are already live: four MUFG group companies began testing JGB repo transactions on the Canton Network in August, and MUFG, SMBC, and Mizuho are building a joint stablecoin framework targeted for fiscal 2026. The FSA's own roadmap is conservative — an initial tokenized-settlement development plan isn't due until early 2027, with any operational system pushed into the 2030s.</p>
+      <div class="chart-box">
+        <div class="chart-title">On-Chain Finance Policy Timeline, 2026</div>
+        <svg viewBox="0 0 600 130" xmlns="http://www.w3.org/2000/svg">
+          <line x1="40" y1="70" x2="560" y2="70" stroke="#dde0ec" stroke-width="2"/>
+          <circle cx="80" cy="70" r="5" fill="#3730a3"/>
+          <text x="80" y="55" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="600">Jul</text>
+          <text x="80" y="95" text-anchor="middle" font-size="9" fill="#5a6a8a">Growth strategy</text>
+          <circle cx="220" cy="70" r="5" fill="#3730a3"/>
+          <text x="220" y="55" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="600">Aug</text>
+          <text x="220" y="95" text-anchor="middle" font-size="9" fill="#5a6a8a">Crypto division + Canton test</text>
+          <circle cx="360" cy="70" r="6" fill="#be185d"/>
+          <text x="360" y="55" text-anchor="middle" font-size="10" fill="#1a1a2e" font-weight="700">Sep 15</text>
+          <text x="360" y="95" text-anchor="middle" font-size="9" fill="#5a6a8a">2026 priorities published</text>
+          <circle cx="480" cy="70" r="5" fill="#c9cfe0"/>
+          <text x="480" y="55" text-anchor="middle" font-size="10" fill="#5a6a8a">Early '27</text>
+          <text x="480" y="95" text-anchor="middle" font-size="9" fill="#5a6a8a">Dev. plan due</text>
+          <circle cx="540" cy="70" r="5" fill="#c9cfe0"/>
+          <text x="540" y="55" text-anchor="middle" font-size="10" fill="#5a6a8a">2030s</text>
+          <text x="540" y="95" text-anchor="middle" font-size="9" fill="#5a6a8a">Operational</text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">This is a settlement-infrastructure story. If JGB repo settlement compresses toward same-day cycles, collateral velocity and funding costs shift across the entire Japanese repo market. The FSA's own timeline pushes an operational system into the 2030s, so track it through pilot results, not as a near-term re-rating catalyst.</div>
+      </div>
+      <div class="annot-grid">
+        <div class="annot-card">
+          <div class="annot-label signal">SIGNAL</div>
+          <div class="annot-text">All three megabanks (MUFG, SMBC, Mizuho) are moving in parallel on stablecoin infrastructure targeted for live use within fiscal 2026.</div>
+        </div>
+        <div class="annot-card">
+          <div class="annot-label watch">WATCH</div>
+          <div class="annot-text">Results from MUFG's Canton Network JGB repo pilot and whether the FSA's early-2027 tokenization development plan stays on schedule.</div>
+        </div>
+        <div class="annot-card">
+          <div class="annot-label risk">RISK</div>
+          <div class="annot-text">A multi-decade implementation horizon (2030s for full operation) means near-term equity narratives around "Japan on-chain finance" may outrun the regulatory timeline.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #113 · SEPTEMBER 20, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
