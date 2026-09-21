@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #126 · Sept 22, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:14px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:20px 18px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai      { background:#e8f0fe; color:#1a56db; }
+  .tag-macro   { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#fdeaea; color:#c0392b; }
+  .card-num { font-size:30px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:13px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:10.5px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #126 · September 22, 2026</div>
+    <div class="masthead-sub">US-China AI Dialogue · Naive AI's $1.42B Stealth Bet · Hygon Goes Physical · Stamp Duty Up 82%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-tag tag-special">SPECIAL · AI DIALOGUE</div>
+      <div class="card-num">~2<span class="card-num-unit">months</span></div>
+      <div class="card-label">Until first US-China "incident line" working session, in Shenzhen</div>
+      <div class="card-delta delta-amber">Notification only, not restriction</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · FUNDING</div>
+      <div class="card-num">$1.42<span class="card-num-unit">B</span></div>
+      <div class="card-label">Naive AI valuation — before shipping any product</div>
+      <div class="card-delta delta-red">$400M raised, zero models released</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">CPU1000</div>
+      <div class="card-label">Hygon's new embedded/robotics chip line, launched Sept 22 in Shenzhen</div>
+      <div class="card-delta delta-amber">No specs or pricing disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · MARKETS</div>
+      <div class="card-num">+82<span class="card-num-unit">% YoY</span></div>
+      <div class="card-label">China stock stamp duty take, Jan–Aug 2026, on AI-driven turnover</div>
+      <div class="card-delta delta-green">STAR 50 +23% YTD vs CSI 300 flat</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- SPECIAL EDITION -->
+  <div class="story-card">
+    <div class="story-num">SPECIAL EDITION · US-CHINA</div>
+    <div class="story-headline">Before the Handshake: Washington and Beijing Set Up an AI "Incident Line" Ahead of the Trump-Xi Summit</div>
+    <div class="story-insight">
+      <p>Bessent and Vice Premier He Lifeng closed weekend talks in New York agreeing to a standing USA-China AI Dialogue — a notification channel for AI incidents that reach national-security concern, with a first working session slated for Shenzhen in about two months. The arrangement goes to Trump and Xi at their September 23–25 Washington summit, Xi's first visit to the US capital in over a decade.</p>
+      <br>
+      <p>The mechanism commits both sides to talk when something alarming happens. It does not touch model development, compute buildout, or the chip export and outbound-investment controls that remain unresolved on separate tracks — and Bessent framed primary policing responsibility as resting with companies, not governments.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A notification channel is a lower bar than "AI safety talks" implied — it's communication infrastructure, not a governance regime, and leaves the harder export/investment constraints untouched.</div>
+    <div class="chart-box">
+      <div class="chart-title">WHAT'S RESOLVED VS. UNRESOLVED HEADING INTO THE SUMMIT</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="30" x2="780" y2="30" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="80" x2="780" y2="80" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="130" x2="780" y2="130" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="60" y="20" font-size="10" fill="#5a6a8a">TRACK</text>
+        <rect x="200" y="12" width="380" height="24" fill="#dcfce7" rx="3"/>
+        <text x="210" y="29" font-size="11" fill="#166534" font-weight="700">RESOLVED — AI incident notification mechanism (Sept 20-21)</text>
+        <rect x="200" y="62" width="260" height="24" fill="#fef3e2" rx="3"/>
+        <text x="210" y="79" font-size="11" fill="#b45309" font-weight="700">UNRESOLVED — Chip export controls</text>
+        <rect x="200" y="112" width="300" height="24" fill="#fee2e2" rx="3"/>
+        <text x="210" y="129" font-size="11" fill="#c0392b" font-weight="700">UNRESOLVED — Outbound AI investment / NDRC LP rules</text>
+        <text x="60" y="160" font-size="10" fill="#5a6a8a">Summit: Sept 23–25, 2026, Washington DC</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · COMMUNICATION</div>
+        <div class="annotation-card-zh">通报机制<span class="annotation-card-en">tōngbào jīzhì · notification mechanism</span></div>
+        <div class="annotation-card-body">First standing AI-specific channel between the two governments. Modest in scope but establishes a template for narrower, incident-driven coordination rather than broad negotiation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUMMIT OUTCOME</div>
+        <div class="annotation-card-zh">中美峰会<span class="annotation-card-en">Zhōng-Měi fēnghuì · US-China summit</span></div>
+        <div class="annotation-card-body">Sept 23-25 summit could add substance beyond notification, or could simply ratify what was already agreed this weekend — the joint statement is the thing to read closely.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · UNCHANGED CONSTRAINTS</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Chip export rules and NDRC's outbound-investment clearance regime for Chinese AI startups remain untouched — the mechanisms that most directly constrain cross-border capital and hardware flows.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">$400 Million, No Model Shipped Yet: Tencent Backs a Stealth Tsinghua Startup at $1.42B</div>
+    <div class="story-insight">
+      <p>Tsinghua professor Dai Jifeng's seven-month-old Naive AI closed a third round, taking cumulative funding to $400M and valuation to $1.42B, led by Tencent. No product has shipped; a first open-weight model is due by month-end. The bet: modifying an existing open-weight Chinese model via post-training and RL, rather than pretraining from scratch, is materially cheaper — and investors are pricing that methodology before seeing a single benchmark score.</p>
+      <br>
+      <p>Risk that's specific to this model: depending on someone else's base model creates a licensing dependency that from-scratch labs like DeepSeek or Alibaba's Qwen team don't carry.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The September model release is the first real test — it needs to show post-training competes with frontier open-weight releases, not just that it's cheaper to build.</div>
+    <div class="chart-box">
+      <div class="chart-title">PRETRAINING VS. POST-TRAINING: COST AND RISK TRADEOFF</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="30" font-size="10" fill="#5a6a8a">HIGH</text>
+        <text x="10" y="150" font-size="10" fill="#5a6a8a">LOW</text>
+        <text x="70" y="165" font-size="10" fill="#5a6a8a">DeepSeek/Qwen (pretrain)</text>
+        <text x="500" y="165" font-size="10" fill="#5a6a8a">Naive AI (post-train)</text>
+        <rect x="150" y="35" width="60" height="115" fill="#1a56db" opacity="0.8" rx="2"/>
+        <text x="155" y="30" font-size="10" fill="#1a56db" font-weight="700">Compute cost</text>
+        <rect x="580" y="110" width="60" height="40" fill="#1a56db" opacity="0.5" rx="2"/>
+        <rect x="250" y="130" width="60" height="20" fill="#c0392b" opacity="0.6" rx="2"/>
+        <text x="255" y="125" font-size="10" fill="#c0392b" font-weight="700">Base-model dependency risk</text>
+        <rect x="680" y="70" width="60" height="80" fill="#c0392b" opacity="0.85" rx="2"/>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · METHODOLOGY BET</div>
+        <div class="annotation-card-zh">后训练<span class="annotation-card-en">hòu xùnliàn · post-training</span></div>
+        <div class="annotation-card-body">Cheaper than pretraining from scratch. Tencent's participation buys a second architecture bet without funding a full training run.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SEPTEMBER RELEASE</div>
+        <div class="annotation-card-zh">开源权重<span class="annotation-card-en">kāiyuán quánzhòng · open weights</span></div>
+        <div class="annotation-card-body">First model due by month-end. Needs to compete with Qwen/GLM on benchmarks, not just cost, to validate the valuation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEPENDENCY</div>
+        <div class="annotation-card-zh">授权风险<span class="annotation-card-en">shòuquán fēngxiǎn · licensing risk</span></div>
+        <div class="annotation-card-body">Modifying another lab's open-weight model means Naive AI needs that base model to stay available and licensable — a risk from-scratch labs don't carry.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">"Let Computing Power Reach the Physical World": Hygon Moves Its Server-Chip Line Into Robotics</div>
+    <div class="story-insight">
+      <p>Hygon, the STAR-listed chipmaker built on licensed AMD Zen architecture, launched a new CPU1000-series chip today in Shenzhen aimed at robotics, machine vision, and intelligent manufacturing — its first move beyond data-center CPUs since founding in 2014. The pivot follows D-Robotics, Cambricon and others extending from data-center silicon into embedded physical-AI compute, and addresses a structural problem: Hygon's 2016-licensed AMD baseline ages every year without a renewal or independent architecture.</p>
+      <br>
+      <p>No specs, pricing, or design partners disclosed — there's no way yet to benchmark this against D-Robotics' Sunrise line or Cambricon's embedded parts.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Translating server-CPU design experience into competitive low-power edge silicon is a different engineering discipline — Hygon has no public track record here yet.</div>
+    <div class="chart-box">
+      <div class="chart-title">CHINA AI CHIPMAKERS EXTENDING INTO PHYSICAL AI, 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="70" y="168" font-size="10" fill="#5a6a8a">D-Robotics</text>
+        <text x="240" y="168" font-size="10" fill="#5a6a8a">Cambricon</text>
+        <text x="410" y="168" font-size="10" fill="#5a6a8a">Hygon (new)</text>
+        <text x="590" y="168" font-size="10" fill="#5a6a8a">Horizon Robotics</text>
+        <rect x="80" y="50" width="55" height="100" fill="#1a56db" opacity="0.85" rx="2"/>
+        <text x="80" y="45" font-size="9" fill="#1a56db">Est. core biz</text>
+        <rect x="250" y="70" width="55" height="80" fill="#1a56db" opacity="0.6" rx="2"/>
+        <rect x="420" y="130" width="55" height="20" fill="#c0392b" opacity="0.85" rx="2"/>
+        <text x="415" y="125" font-size="9" fill="#c0392b" font-weight="700">Day 1, unproven</text>
+        <rect x="600" y="90" width="55" height="60" fill="#1a56db" opacity="0.7" rx="2"/>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SECTOR TREND</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied intelligence</span></div>
+        <div class="annotation-card-body">China's 15th Five-Year Plan prioritizes humanoid robotics, creating embedded-compute demand data-center architectures aren't built for.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · AGING CORE BUSINESS</div>
+        <div class="annotation-card-zh">授权架构<span class="annotation-card-en">shòuquán jiàgòu · licensed architecture</span></div>
+        <div class="annotation-card-body">Hygon's 2016 AMD Zen license ages without renewal. Robotics is a diversification play away from a shrinking-shelf-life core.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NO TRACK RECORD</div>
+        <div class="annotation-card-zh">边缘计算<span class="annotation-card-en">biānyuán jìsuàn · edge computing</span></div>
+        <div class="annotation-card-body">Server-CPU design and low-power edge-chip design are different disciplines. Zero public specs or partners disclosed as of launch.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">$32.3 Billion and Rising: China's Stock Stamp Duty Take Jumps 82% as AI Trading Drives Turnover</div>
+    <div class="story-insight">
+      <p>China collected ¥216B ($32.3B) in stock stamp duty Jan-Aug 2026, up 82% YoY, as average daily trading value rose 72%. The chip- and AI-heavy STAR Market 50 Index is up 23% YTD while the broader CSI 300 has traded flat — a gap between flat headline returns and sharply higher turnover consistent with rotation into and out of AI-linked names rather than broad-based gains.</p>
+      <br>
+      <p>Beijing halved the stamp duty in 2023 specifically to stimulate trading; a sustained multiple of that year's volume now raises the opposite question about whether current activity is healthy liquidity or the kind of speculative concentration that has preceded intervention before. Nothing in the release signals a policy response.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Stamp duty is a turnover tax, not a price indicator — the 82% jump says trading volume is up sharply, not that returns are.</div>
+    <div class="chart-box">
+      <div class="chart-title">STAR MARKET 50 VS. CSI 300, YTD 2026</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="30" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="35" font-size="10" fill="#5a6a8a">+25%</text>
+        <text x="10" y="90" font-size="10" fill="#5a6a8a">0%</text>
+        <line x1="60" y1="90" x2="780" y2="90" stroke="#e0d8d0" stroke-width="1" stroke-dasharray="4,4"/>
+        <polyline points="60,88 200,80 340,60 480,45 620,38 760,40" fill="none" stroke="#c0392b" stroke-width="2.5"/>
+        <text x="600" y="30" font-size="10" fill="#c0392b" font-weight="700">STAR 50 (+23% YTD)</text>
+        <polyline points="60,90 200,92 340,88 480,91 620,89 760,90" fill="none" stroke="#5a6a8a" stroke-width="2"/>
+        <text x="600" y="110" font-size="10" fill="#5a6a8a" font-weight="700">CSI 300 (flat)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TURNOVER DATA</div>
+        <div class="annotation-card-zh">印花税<span class="annotation-card-en">yìnhuāshuì · stamp duty</span></div>
+        <div class="annotation-card-body">Fixed 0.05% sell-side tax. ¥216B collected Jan-Aug, +82% YoY — a direct, hard-to-fake readout of trading activity.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CONCENTRATION</div>
+        <div class="annotation-card-zh">科创50指数<span class="annotation-card-en">Kēchuàng Wǔshí Zhǐshù · STAR 50 Index</span></div>
+        <div class="annotation-card-body">+23% YTD vs. CSI 300 flat. Gains concentrated in a narrow AI/chip segment rather than broad-based.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REGULATORY PRECEDENT</div>
+        <div class="annotation-card-zh">投机性集中<span class="annotation-card-en">tóujī xìng jízhōng · speculative concentration</span></div>
+        <div class="annotation-card-body">2023's stamp-duty halving was a deliberate stimulus. No signal yet this volume level triggers the opposite response.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #126 · SEPTEMBER 22, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
