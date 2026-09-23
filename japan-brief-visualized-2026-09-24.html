@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief · Visualized · Issue #117</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:900px; margin:0 auto; background:#fff; }
+  .masthead { background:#1a1a2e; padding:36px 48px 28px; border-bottom:4px solid #3730a3; text-align:center; }
+  .masthead-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; }
+  .masthead-japanese { color:#d4d8f0; font-size:18px; font-weight:400; display:block; margin-top:4px; letter-spacing:6px; }
+  .masthead-meta { margin-top:14px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .content { padding:36px 48px 48px; }
+  .glance-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:44px; }
+  .glance-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; }
+  .glance-tag.ai { color:#3730a3; }
+  .glance-tag.robotics { color:#0e7490; }
+  .glance-tag.macro { color:#b45309; }
+  .glance-headline { font-size:13.5px; font-weight:600; color:#1a1a2e; line-height:1.4; margin-bottom:8px; }
+  .glance-stat { font-size:22px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:10.5px; color:#5a6a8a; margin-top:2px; }
+  .section-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:#1a1a2e; margin:44px 0 20px; border-left:4px solid #3730a3; padding-left:14px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:32px; }
+  .story-card-tag { display:inline-block; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border-radius:2px; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; margin-bottom:14px; line-height:1.35; }
+  .story-card-body { font-size:13.5px; color:#3a4a6a; line-height:1.75; margin-bottom:18px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin-bottom:18px; }
+  .chart-box-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#5a6a8a; margin-bottom:12px; }
+  .takeaway-box { background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 6px 6px 0; padding:14px 18px; margin-bottom:18px; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .takeaway-text { font-size:13px; color:#2c2c2c; line-height:1.6; }
+  .annotation-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:1.5px; margin-bottom:6px; }
+  .annotation-label.signal { color:#0e7490; }
+  .annotation-label.watch { color:#3730a3; }
+  .annotation-label.risk { color:#b45309; }
+  .annotation-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+  .footer { padding:24px 48px; background:#1a1a2e; text-align:center; }
+  .footer-text { font-size:10.5px; color:#4a5a7a; letter-spacing:1px; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">Japan Brief<span class="masthead-japanese">日本速報</span></div>
+    <div class="masthead-meta">Issue #117 &nbsp;·&nbsp; September 24, 2026</div>
+  </div>
+  <div class="nav-row">
+    <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+    <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+    <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+  </div>
+
+  <div class="content">
+
+    <div class="glance-grid">
+      <div class="glance-card">
+        <div class="glance-tag ai">AI & Tech</div>
+        <div class="glance-headline">CADDi raises $114M Series D, hits unicorn status with Toyota's Woven Capital on board</div>
+        <div class="glance-stat">$1.2B</div>
+        <div class="glance-stat-label">CADDi valuation, up from private rounds totaling $234M raised to date</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-tag robotics">Robotics & Industrial</div>
+        <div class="glance-headline">Panasonic Energy opens 500-person battery R&D hub in Osaka, eyes 2x efficiency by FY2031</div>
+        <div class="glance-stat">~800</div>
+        <div class="glance-stat-label">Combined staff across Energy Innovation Square + Suminoe site</div>
+      </div>
+      <div class="glance-card">
+        <div class="glance-tag macro">Macro & Finance</div>
+        <div class="glance-headline">Tokyo markets reopen after Silver Week into a weak yen and intervention watch</div>
+        <div class="glance-stat">¥157-158</div>
+        <div class="glance-stat-label">Yen/dollar level entering the reopen, softest in months</div>
+      </div>
+    </div>
+
+    <div class="section-title">Story Analysis</div>
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <span class="story-card-tag tag-ai">STORY 1 · AI & TECH</span>
+      <div class="story-card-headline">CADDi Becomes a Manufacturing-AI Unicorn With Toyota's Venture Arm at the Table</div>
+      <div class="story-card-body">
+        CADDi raised $114 million (¥17.7 billion) on September 16, lifting its valuation to $1.2 billion. New investors Moore Strategic Ventures, Coreline Ventures, Salesforce Ventures, and Toyota's Woven Capital joined returning backers Atomico, Globis Capital Partners, and Japan Post Asset Management, bringing total funding to $234 million. The platform reads engineering drawings and structures manufacturing data so factories can search designs by shape instead of filename.
+      </div>
+      <div class="chart-box">
+        <div class="chart-box-label">Funding Trajectory to Unicorn Status</div>
+        <svg viewBox="0 0 780 220" width="100%" height="220">
+          <line x1="60" y1="180" x2="740" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="130" x2="740" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="80" x2="740" y2="80" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="30" x2="740" y2="30" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="45" y="184" text-anchor="end" font-size="10" fill="#5a6a8a">$0</text>
+          <text x="45" y="134" text-anchor="end" font-size="10" fill="#5a6a8a">$0.4B</text>
+          <text x="45" y="84" text-anchor="end" font-size="10" fill="#5a6a8a">$0.8B</text>
+          <text x="45" y="34" text-anchor="end" font-size="10" fill="#5a6a8a">$1.2B</text>
+
+          <rect x="120" y="168" width="70" height="12" fill="#c7d2fe"/>
+          <text x="155" y="200" text-anchor="middle" font-size="11" fill="#5a6a8a">Seed-B</text>
+          <text x="155" y="160" text-anchor="middle" font-size="10.5" fill="#3730a3" font-weight="600">$40M</text>
+
+          <rect x="280" y="130" width="70" height="50" fill="#a5b4fc"/>
+          <text x="315" y="200" text-anchor="middle" font-size="11" fill="#5a6a8a">Series C</text>
+          <text x="315" y="122" text-anchor="middle" font-size="10.5" fill="#3730a3" font-weight="600">$80M cum.</text>
+
+          <rect x="440" y="30" width="70" height="150" fill="#3730a3"/>
+          <text x="475" y="200" text-anchor="middle" font-size="11" fill="#5a6a8a">Series D</text>
+          <text x="475" y="22" text-anchor="middle" font-size="10.5" fill="#3730a3" font-weight="600">$234M cum.</text>
+
+          <rect x="600" y="30" width="90" height="0" fill="none"/>
+          <text x="645" y="105" text-anchor="middle" font-size="24" font-weight="700" fill="#3730a3">$1.2B</text>
+          <text x="645" y="125" text-anchor="middle" font-size="10.5" fill="#5a6a8a">valuation</text>
+          <line x1="600" y1="30" x2="690" y2="30" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="3,3"/>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">Toyota's venture arm invests to fix its own problems, not to chase returns. The next proof point is a disclosed Toyota production deployment, not another funding headline.</div>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">Woven Capital's presence suggests CADDi's platform is being tested inside Toyota's own supplier network.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">Whether CADDi discloses a live production deployment at Toyota or a supplier, not just funding news.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">A domestic product built around Japanese manufacturing conventions may not translate directly to US factories.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <span class="story-card-tag tag-robotics">STORY 2 · ROBOTICS & INDUSTRIAL</span>
+      <div class="story-card-headline">Panasonic Opens a 500-Person Battery Lab Built for Robots as Much as Cars</div>
+      <div class="story-card-body">
+        Panasonic Energy opened Energy Innovation Square in Kadoma, Osaka on September 16, staffed by roughly 500 researchers and paired with the adjacent Suminoe production site for about 800 combined staff. The company's stated goal is to double development efficiency by FY2031 versus FY2024. Automotive and data-center batteries are today's priority; drones, robotaxis, and humanoid robots are named as future demand.
+      </div>
+      <div class="chart-box">
+        <div class="chart-box-label">Priority Ranking: Today vs. Future Battery Demand</div>
+        <svg viewBox="0 0 780 220" width="100%" height="220">
+          <text x="60" y="30" font-size="11" fill="#5a6a8a" font-weight="600">TODAY'S PRIORITY</text>
+          <rect x="60" y="45" width="620" height="26" fill="#3730a3"/>
+          <text x="70" y="63" font-size="12" fill="#fff" font-weight="600">Automotive batteries</text>
+          <rect x="60" y="80" width="500" height="26" fill="#5b52c7"/>
+          <text x="70" y="98" font-size="12" fill="#fff" font-weight="600">Data-center batteries</text>
+
+          <text x="60" y="135" font-size="11" fill="#5a6a8a" font-weight="600">FUTURE DEMAND (named, not yet built for)</text>
+          <rect x="60" y="150" width="260" height="22" fill="#c7d2fe"/>
+          <text x="70" y="166" font-size="11.5" fill="#3730a3" font-weight="600">Humanoid robots</text>
+          <rect x="60" y="178" width="220" height="22" fill="#dde3fb"/>
+          <text x="70" y="194" font-size="11.5" fill="#3730a3" font-weight="600">Robotaxis</text>
+          <rect x="330" y="178" width="150" height="22" fill="#dde3fb"/>
+          <text x="340" y="194" font-size="11.5" fill="#3730a3" font-weight="600">Drones</text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">Panasonic prioritized automotive and data-center batteries today and named robotics as future demand. A real capacity commitment for robotics-grade cells -- not just this R&D lab -- would mark the shift from watching that market to building for it.</div>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">Consolidating materials, cell design, and prototyping under one roof is a speed-to-market bet, not a capacity expansion.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">A follow-on capacity announcement specifically earmarked for robotics-grade cells.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">EV demand growth has slowed relative to earlier forecasts, the core market this lab is built to defend.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <span class="story-card-tag tag-macro">STORY 3 · MACRO & FINANCE</span>
+      <div class="story-card-headline">Japan's Markets Reopen Into a Weak Yen and a Live Intervention Threat</div>
+      <div class="story-card-body">
+        Tokyo's cash equity market reopened September 24 after a five-day Silver Week closure, the longest in 11 years. Nikkei futures traded through the holiday priced about 2.5% above the September 18 close of 65,018.95. The yen weakened to ¥157-158/$ during the closure despite the BOJ's September 18 rate hike to 1.25%, as a 7-2 dissenting vote left traders skeptical further hikes will come easily.
+      </div>
+      <div class="chart-box">
+        <div class="chart-box-label">Yen vs. Dollar: Rate Hike, Then Reopen</div>
+        <svg viewBox="0 0 780 220" width="100%" height="220">
+          <line x1="60" y1="30" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="740" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="45" y="40" text-anchor="end" font-size="10" fill="#5a6a8a">160</text>
+          <text x="45" y="90" text-anchor="end" font-size="10" fill="#5a6a8a">158</text>
+          <text x="45" y="140" text-anchor="end" font-size="10" fill="#5a6a8a">156</text>
+          <text x="45" y="180" text-anchor="end" font-size="10" fill="#5a6a8a">154</text>
+
+          <polyline points="90,110 220,60 350,55 480,75 610,95 710,90" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+          <circle cx="220" cy="60" r="4" fill="#3730a3"/>
+          <text x="220" y="45" text-anchor="middle" font-size="10" fill="#3730a3" font-weight="600">Sep 18: BOJ hikes to 1.25%</text>
+          <circle cx="480" cy="75" r="4" fill="#b45309"/>
+          <text x="480" y="215" text-anchor="middle" font-size="10" fill="#b45309" font-weight="600">Sep 21-23: Silver Week (no trading)</text>
+          <circle cx="710" cy="90" r="4" fill="#0e7490"/>
+          <text x="700" y="105" text-anchor="end" font-size="10" fill="#0e7490" font-weight="600">Sep 24: reopen, ¥157-158</text>
+
+          <text x="90" y="200" text-anchor="middle" font-size="9.5" fill="#5a6a8a">Sep 15</text>
+          <text x="350" y="200" text-anchor="middle" font-size="9.5" fill="#5a6a8a">Sep 18</text>
+          <text x="710" y="130" text-anchor="middle" font-size="9.5" fill="#5a6a8a"></text>
+        </svg>
+      </div>
+      <div class="takeaway-box">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <div class="takeaway-text">A 25bp hike that doesn't stabilize the yen shifts the burden onto intervention, which cost ¥15.4 trillion last time for a temporary effect. Position for continued yen weakness until the currency itself turns, not just the policy rate.</div>
+      </div>
+      <div class="annotation-grid">
+        <div class="annotation-card">
+          <div class="annotation-label signal">SIGNAL</div>
+          <div class="annotation-text">Rate checks reported by traders typically precede intervention -- authorities are already testing the water.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label watch">WATCH</div>
+          <div class="annotation-text">Whether the Trump-Xi summit this week shifts chip-equipment demand expectations for Tokyo Electron and Advantest.</div>
+        </div>
+        <div class="annotation-card">
+          <div class="annotation-label risk">RISK</div>
+          <div class="annotation-text">The 7-2 BOJ dissent caps how much further tightening markets expect, limiting rate policy's ability to support the yen.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #117 · SEPTEMBER 24, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
