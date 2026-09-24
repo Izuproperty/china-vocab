@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #118 · September 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .wrapper { max-width:900px; margin:0 auto; padding-bottom:40px; }
+  .masthead { background:#1a1a2e; padding:32px 40px 24px; border-bottom:4px solid #3730a3; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-title .jp { color:#c7cdf5; font-size:16px; font-weight:400; margin-left:12px; letter-spacing:4px; }
+  .masthead-meta { margin-top:12px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+
+  .glance { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; padding:28px 40px 8px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px 18px 16px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:8px; display:inline-block; padding:3px 8px; border-radius:2px; }
+  .glance-tag.ai { background:#e0e7ff; color:#3730a3; }
+  .glance-tag.semi { background:#fce7f3; color:#be185d; }
+  .glance-tag.macro { background:#fef3e2; color:#b45309; }
+  .glance-headline { font-family:'Playfair Display',serif; font-size:15.5px; font-weight:700; color:#1a1a2e; line-height:1.35; margin-bottom:8px; }
+  .glance-stat { font-size:22px; font-weight:700; color:#3730a3; }
+  .glance-stat-label { font-size:11px; color:#5a6a8a; margin-top:2px; }
+
+  .section-title { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#3730a3; padding:36px 40px 4px; }
+
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; margin:16px 40px; padding:24px 28px; }
+  .story-card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 9px; border-radius:2px; display:inline-block; margin-bottom:10px; }
+  .story-card-headline { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#1a1a2e; line-height:1.35; margin-bottom:6px; }
+  .story-card-source { font-size:11px; color:#9a8a7a; margin-bottom:16px; }
+  .story-card-body { font-size:13.5px; color:#3a4a6a; line-height:1.75; margin-bottom:18px; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:16px; margin-bottom:18px; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:10px; }
+  .annotations { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:12px 14px; }
+  .annotation-label { font-size:9px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+  .annotation-label.signal { color:#3730a3; }
+  .annotation-label.watch { color:#b45309; }
+  .annotation-label.risk { color:#be185d; }
+  .annotation-text { font-size:12px; color:#3a4a6a; line-height:1.5; }
+
+  .investor-takeaway { border-left:3px solid #3730a3; background:#f8f9fc; padding:12px 16px; margin-bottom:18px; font-size:13px; color:#2c2c2c; line-height:1.65; }
+  .investor-takeaway .label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; display:block; margin-bottom:6px; }
+
+  .footer { padding:32px 40px; text-align:center; font-size:11px; color:#8a9bb5; }
+
+  @media (max-width: 640px) {
+    .glance { grid-template-columns:1fr; }
+    .annotations { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">日本速報<span class="jp">JAPAN BRIEF · VISUALIZED</span></div>
+    <div class="masthead-meta">Friday, September 25, 2026 &nbsp;·&nbsp; Issue #118</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+      <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+
+  <div class="glance">
+    <div class="glance-card">
+      <span class="glance-tag ai">AI & Tech</span>
+      <div class="glance-headline">Sakana AI launches Frontier Intelligence Group</div>
+      <div class="glance-stat">5</div>
+      <div class="glance-stat-label">research projects betting against pure Transformer scaling</div>
+    </div>
+    <div class="glance-card">
+      <span class="glance-tag semi">Semiconductors</span>
+      <div class="glance-headline">UBS: wafer prices need +40–50% to unlock capacity</div>
+      <div class="glance-stat">84%→99%</div>
+      <div class="glance-stat-label">projected wafer utilization, 2026 to 2028</div>
+    </div>
+    <div class="glance-card">
+      <span class="glance-tag macro">Macro</span>
+      <div class="glance-headline">Japan's trade deficit nearly quadruples in August</div>
+      <div class="glance-stat">+275.9%</div>
+      <div class="glance-stat-label">YoY deficit growth to ¥1.106 trillion</div>
+    </div>
+  </div>
+
+  <div class="section-title">Story Analysis</div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <span class="glance-tag ai">AI & Tech · Story 1</span>
+    <div class="story-card-headline">Sakana AI Bets Beyond the Transformer With a New In-House Research Wing</div>
+    <div class="story-card-source">Sakana AI / AlphaSignal · September 18, 2026</div>
+    <div class="story-card-body">
+      Sakana AI's new Frontier Intelligence Group formalizes five speculative research bets, including a backpropagation-free training method (PC-ALM) that lands within about two points of standard backprop accuracy on deep test networks — a research-stage result, not a production one.
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">Test Accuracy: PC-ALM vs. Backprop vs. Standard Predictive Coding</div>
+      <svg viewBox="0 0 560 200" width="100%" height="200" role="img" aria-label="Bar chart comparing test accuracy of backpropagation, standard predictive coding, and PC-ALM">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="520" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="52" y="24" text-anchor="end" font-size="10" fill="#5a6a8a">100%</text>
+        <text x="52" y="92" text-anchor="end" font-size="10" fill="#5a6a8a">50%</text>
+        <text x="52" y="160" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+        <line x1="60" y1="90" x2="520" y2="90" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="2,3"/>
+
+        <rect x="120" y="49.9" width="70" height="110.1" fill="#3730a3"/>
+        <text x="155" y="42" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">78.7%</text>
+        <text x="155" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Backprop</text>
+
+        <rect x="260" y="69.6" width="70" height="90.4" fill="#c7cdf5"/>
+        <text x="295" y="62" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">68.1%</text>
+        <text x="295" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Standard PC</text>
+
+        <rect x="400" y="51.1" width="70" height="108.9" fill="#818cf8"/>
+        <text x="435" y="43" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">77.75%</text>
+        <text x="435" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">PC-ALM</text>
+      </svg>
+    </div>
+    <div class="investor-takeaway">
+      <span class="label">Investor Takeaway</span>
+      Only the Nvidia sparse-Transformer project has a near-term commercial path; the rest — PC-ALM included — is optionality and a recruiting signal, not a product roadmap, and shouldn't be priced as either.
+    </div>
+    <div class="annotations">
+      <div class="annotation-card">
+        <div class="annotation-label signal">Signal</div>
+        <div class="annotation-text">Sakana is formally hedging against transformer-scaling fatigue rather than trying to out-compute frontier labs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label watch">Watch</div>
+        <div class="annotation-text">Whether the Nvidia sparse-Transformer work ships into a customer product before the other four projects mature.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label risk">Risk</div>
+        <div class="annotation-text">All benchmark results are on small image datasets; none has been tested at the scale of a real production model.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <span class="glance-tag semi">Semiconductors · Story 2</span>
+    <div class="story-card-headline">UBS Puts a Number on the Wafer Squeeze: 40–50% Price Increases Needed</div>
+    <div class="story-card-source">UBS research note (via TechFlowPost) · September 22, 2026</div>
+    <div class="story-card-body">
+      Wafer-maker margins (12.3%) sit well below the 2017–2022 average (18.3%), leaving little incentive to expand capacity even as utilization is projected to climb toward full capacity by 2028.
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">12-Inch Wafer Utilization Forecast, 2026–2028</div>
+      <svg viewBox="0 0 560 200" width="100%" height="200" role="img" aria-label="Line chart showing wafer utilization rising from 84% in 2026 to 99% in 2028">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="520" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="52" y="24" text-anchor="end" font-size="10" fill="#5a6a8a">100%</text>
+        <text x="52" y="92" text-anchor="end" font-size="10" fill="#5a6a8a">75%</text>
+        <text x="52" y="160" text-anchor="end" font-size="10" fill="#5a6a8a">50%</text>
+        <line x1="60" y1="92" x2="520" y2="92" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="2,3"/>
+
+        <polyline points="120,63.2 300,44.8 480,23.2" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+        <circle cx="120" cy="63.2" r="4.5" fill="#3730a3"/>
+        <circle cx="300" cy="44.8" r="4.5" fill="#3730a3"/>
+        <circle cx="480" cy="23.2" r="4.5" fill="#3730a3"/>
+
+        <text x="120" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">84%</text>
+        <text x="120" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">2026</text>
+        <text x="300" y="34" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">~92%</text>
+        <text x="300" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">2027</text>
+        <text x="480" y="14" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">99%</text>
+        <text x="480" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">2028</text>
+      </svg>
+    </div>
+    <div class="investor-takeaway">
+      <span class="label">Investor Takeaway</span>
+      SUMCO and Shin-Etsu control over half the global wafer market and the strongest position in the 300mm epitaxial segment AI demand needs most — margin re-rating looks more likely than new supply reaching the market before 2028.
+    </div>
+    <div class="annotations">
+      <div class="annotation-card">
+        <div class="annotation-label signal">Signal</div>
+        <div class="annotation-text">SUMCO's president already said 5–10% price increases "would not have a meaningful impact" — UBS's 40–50% figure quantifies that stance.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label watch">Watch</div>
+        <div class="annotation-text">Whether either company announces a formal price increase or new capacity commitment following this report.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label risk">Risk</div>
+        <div class="annotation-text">A demand slowdown in AI-linked capex would leave both companies under-earning on a supply base already built for a downcycle.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <span class="glance-tag macro">Macro · Story 3</span>
+    <div class="story-card-headline">Japan's Trade Deficit Nearly Quadruples as Energy Imports Swamp a Strong Export Month</div>
+    <div class="story-card-source">Ministry of Finance trade statistics · September 16, 2026</div>
+    <div class="story-card-body">
+      Exports grew a healthy 19.3% in August, but a 28.0% jump in imports — mostly energy — pushed the trade deficit to ¥1.106 trillion, up 275.9% year-over-year.
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">August 2026 Trade Flows (¥ trillion)</div>
+      <svg viewBox="0 0 560 200" width="100%" height="200" role="img" aria-label="Bar chart comparing Japan's August exports, imports, and trade deficit">
+        <line x1="60" y1="20" x2="60" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <line x1="60" y1="160" x2="520" y2="160" stroke="#e8eaf2" stroke-width="1"/>
+        <text x="52" y="24" text-anchor="end" font-size="10" fill="#5a6a8a">¥12T</text>
+        <text x="52" y="92" text-anchor="end" font-size="10" fill="#5a6a8a">¥6T</text>
+        <text x="52" y="160" text-anchor="end" font-size="10" fill="#5a6a8a">¥0</text>
+
+        <rect x="100" y="76.4" width="90" height="83.6" fill="#818cf8"/>
+        <text x="145" y="68" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">¥10.05T</text>
+        <text x="145" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Exports (+19.3%)</text>
+
+        <rect x="245" y="68.7" width="90" height="91.3" fill="#3730a3"/>
+        <text x="290" y="60" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">¥11.15T</text>
+        <text x="290" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Imports (+28.0%)</text>
+
+        <rect x="390" y="151.2" width="90" height="8.8" fill="#be185d"/>
+        <text x="435" y="143" text-anchor="middle" font-size="12" font-weight="700" fill="#1a1a2e">¥1.11T</text>
+        <text x="435" y="178" text-anchor="middle" font-size="10.5" fill="#5a6a8a">Deficit (+275.9%)</text>
+      </svg>
+    </div>
+    <div class="investor-takeaway">
+      <span class="label">Investor Takeaway</span>
+      Semiconductor imports (+82.1%) and exports (+52.3%) both surged in the same month — Japan is buying and selling deeper into AI-linked chip supply chains simultaneously, not gaining or losing a single position in them.
+    </div>
+    <div class="annotations">
+      <div class="annotation-card">
+        <div class="annotation-label signal">Signal</div>
+        <div class="annotation-text">Energy costs (petroleum +58.7%, LNG +29.7%), not a demand slowdown, drove the deficit — exports stayed healthy.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label watch">Watch</div>
+        <div class="annotation-text">Whether September data shows the same energy-driven pattern or a moderation as global crude prices move.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-label risk">Risk</div>
+        <div class="annotation-text">An import-cost-driven trade gap complicates the read on yen weakness that BOJ rate policy alone cannot fully offset.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">日本速報 · JAPAN BRIEF · ISSUE #118 · SEPTEMBER 25, 2026 · NOT INVESTMENT ADVICE</div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
