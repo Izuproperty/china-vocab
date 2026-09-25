@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #130 · Sept 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  text { font-family:'Inter',sans-serif; }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #130 · September 26, 2026</div>
+    <div class="masthead-sub">DeepSeek's $1B Run Rate · Xiaomi's Open RL Bet · China's Bond Issuance Gap</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · REVENUE</div>
+      <div class="card-num">$1<span class="card-num-unit">billion run rate</span></div>
+      <div class="card-label">DeepSeek's annualized revenue, up from under $500M</div>
+      <div class="card-delta delta-amber">Driven partly by a 2.3–4.5x price hike</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · TRAINING COST</div>
+      <div class="card-num">$2.62<span class="card-num-unit">million</span></div>
+      <div class="card-label">Xiaomi's disclosed cost to train MiMo-V2.6-Pro (1.02T params)</div>
+      <div class="card-delta delta-green">30 RL steps, under 6 days</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOND ISSUANCE</div>
+      <div class="card-num">¥229.4<span class="card-num-unit">billion / week</span></div>
+      <div class="card-label">Local special bond issuance, week of Sept 21–27</div>
+      <div class="card-delta delta-amber">Spending fell faster than issuance rose in August</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 01 · AI & TECH</div>
+    <div class="story-headline">$1 Billion Run Rate, Built on a Price Hike: DeepSeek's Numbers Land Days Into a CAC Probe</div>
+    <div class="story-insight">
+      <p>DeepSeek's annualized revenue run rate doubled to $1 billion, per CEO Liang Wenfeng, helped by an API price restructuring that raised effective prices 2.3–4.5x without shrinking the customer base, he says. The disclosure lands as the company finalizes a ~$7.4B round and preps a Shanghai STAR Market IPO targeting a $68.8B valuation.</p>
+      <br>
+      <p>Liang separately called Huawei Ascend training chips "one of the company's biggest bets," with Q4 2026 deliveries expected — a supply dependency that matters more once DeepSeek answers to public shareholders. The revenue story also lands the same week China's Cyberspace Administration opened a data-security probe into the company.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Revenue growth driven substantially by pricing rather than disclosed usage growth, with an unresolved chip-supply dependency and an active regulatory probe both landing in the same week as the IPO prep.</div>
+    <div class="chart-box">
+      <div class="chart-title">DeepSeek Annualized Revenue Run Rate</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="30" y="30" font-size="10" fill="#5a6a8a">$1.0B</text>
+        <text x="30" y="90" font-size="10" fill="#5a6a8a">$0.5B</text>
+        <text x="30" y="150" font-size="10" fill="#5a6a8a">$0</text>
+        <rect x="150" y="90" width="140" height="60" fill="#e8d5b0"/>
+        <text x="170" y="80" font-size="11" fill="#1a1a2e">Jun 2026: &lt;$500M</text>
+        <rect x="500" y="25" width="140" height="125" fill="#c0392b"/>
+        <text x="520" y="15" font-size="11" fill="#1a1a2e">Sept 2026: $1.0B</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GROWTH</div>
+        <div class="annotation-card-zh">营收规模<span class="annotation-card-en">yíngshōu guīmó · revenue run rate</span></div>
+        <div class="annotation-card-body">Run rate doubled in months — a concrete, disclosed figure ahead of an onshore IPO, which is unusual transparency for a private Chinese AI lab.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MIX</div>
+        <div class="annotation-card-zh">涨价<span class="annotation-card-en">zhǎngjià · price increase</span></div>
+        <div class="annotation-card-body">The price-vs-volume split behind the doubling isn't disclosed. A price-driven number is less durable than a usage-driven one if competitors undercut again.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLY & REGULATORY</div>
+        <div class="annotation-card-zh">昇腾<span class="annotation-card-en">Shēngténg · Huawei Ascend</span></div>
+        <div class="annotation-card-body">Q4 chip delivery dependency plus an active CAC data-security investigation are both live variables an IPO prospectus will have to address.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 02 · AI & TECH</div>
+    <div class="story-headline">7,000 Environments, One Training Run: Xiaomi Open-Sources Its Bet on Reinforcement Learning</div>
+    <div class="story-insight">
+      <p>Xiaomi open-sourced MiMo-V2.6-Pro-RL (1.02T total / 42B active params) and Flash-RL (309B / 15B), plus 7,000+ RL environments and the training pipeline behind them, trained in a single mixed run across coding, agentic, vision, and cybersecurity tasks rather than domain-by-domain.</p>
+      <br>
+      <p>Xiaomi disclosed training costs directly — $2.62M for Pro, $850K for Flash, under six days. Its own benchmark puts Pro at 46 on the Artificial Analysis Intelligence Index versus Kimi K3's 44 and GLM-5.3's 45, though closed frontier models still score around 53.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The disclosed sub-$3M training cost for a trillion-parameter-class model says more about falling domestic RL infrastructure costs than the self-reported benchmark ranking does.</div>
+    <div class="chart-box">
+      <div class="chart-title">Artificial Analysis Intelligence Index — Open-Weight Models (Xiaomi's Citation)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">53</text>
+        <text x="10" y="150" font-size="10" fill="#5a6a8a">0</text>
+        <rect x="120" y="55" width="90" height="95" fill="#c0392b"/>
+        <text x="110" y="45" font-size="11" fill="#1a1a2e">MiMo-V2.6 Pro: 46</text>
+        <rect x="280" y="63" width="90" height="87" fill="#e8d5b0"/>
+        <text x="280" y="45" font-size="11" fill="#1a1a2e">GLM-5.3: 45</text>
+        <rect x="440" y="67" width="90" height="83" fill="#e8d5b0"/>
+        <text x="440" y="45" font-size="11" fill="#1a1a2e">Kimi K3: 44</text>
+        <rect x="600" y="17" width="90" height="133" fill="#1a1a2e"/>
+        <text x="580" y="10" font-size="11" fill="#1a1a2e">Closed frontier: ~53</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · COST</div>
+        <div class="annotation-card-zh">强化学习<span class="annotation-card-en">qiánghuà xuéxí · reinforcement learning</span></div>
+        <div class="annotation-card-body">Sub-$3M to train a trillion-parameter-class model to a competitive open benchmark — a concrete data point on falling RL training costs in China.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VERIFICATION</div>
+        <div class="annotation-card-zh">基准测试<span class="annotation-card-en">jīzhǔn cèshì · benchmark</span></div>
+        <div class="annotation-card-body">The 46-point score is Xiaomi's own citation. It hasn't yet been independently reproduced on the public leaderboard.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COMMODITIZATION</div>
+        <div class="annotation-card-zh">开源<span class="annotation-card-en">kāiyuán · open source</span></div>
+        <div class="annotation-card-body">A sixth major Chinese lab shipping frontier-adjacent open weights keeps compressing the price ceiling for foundation-model licensing generally.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 03 · MACRO</div>
+    <div class="story-headline">¥229.4 Billion in a Week: Local Bond Issuance Outpaces China's Own Spending</div>
+    <div class="story-insight">
+      <p>Local government special bond issuance hit RMB 229.4 billion for the week of September 21–27, up RMB 126.1 billion week-on-week; September's RMB 438.1 billion total runs at 104% of plan, with 2026 cumulative issuance progress at 76.5%. Construction-earmarked proceeds rose to 47.9% of the total.</p>
+      <br>
+      <p>The pickup follows an NDRC pledge to accelerate policy-based financing tools, but it sits next to an earlier data point showing August fiscal spending fell faster than July's. Issuance is accelerating while disbursement appears to be slowing — a gap that could resolve either as normal lag or as a project-pipeline shortfall.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> October spending data measured against September's issuance pace will show whether this is a timing lag or a genuine execution problem for Q4 infrastructure support.</div>
+    <div class="chart-box">
+      <div class="chart-title">Weekly Local Special Bond Issuance (RMB Billion)</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="20" x2="60" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <line x1="60" y1="150" x2="780" y2="150" stroke="#e0d8d0" stroke-width="1"/>
+        <text x="10" y="25" font-size="10" fill="#5a6a8a">250</text>
+        <text x="10" y="150" font-size="10" fill="#5a6a8a">0</text>
+        <rect x="150" y="112" width="120" height="38" fill="#e8d5b0"/>
+        <text x="140" y="102" font-size="11" fill="#1a1a2e">Prior week: ¥103.3B</text>
+        <rect x="450" y="20" width="120" height="130" fill="#b45309"/>
+        <text x="440" y="10" font-size="11" fill="#1a1a2e">Sept 21–27: ¥229.4B</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ALLOCATION</div>
+        <div class="annotation-card-zh">专项债券<span class="annotation-card-en">zhuānxiàng zhàiquàn · special bonds</span></div>
+        <div class="annotation-card-body">47.9% of proceeds now earmarked directly for construction — a firmer forward indicator than the headline issuance total alone.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EXECUTION LAG</div>
+        <div class="annotation-card-zh">财政支出<span class="annotation-card-en">cáizhèng zhīchū · fiscal spending</span></div>
+        <div class="annotation-card-body">August spending fell faster than July's even as issuance accelerated — a timing gap, not yet a confirmed execution problem.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PROJECT PIPELINE</div>
+        <div class="annotation-card-zh">发改委<span class="annotation-card-en">Fāgǎiwěi · NDRC</span></div>
+        <div class="annotation-card-body">If local governments lack shovel-ready projects to absorb proceeds, faster issuance won't translate into Q4 growth support.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #130 · SEPTEMBER 26, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
