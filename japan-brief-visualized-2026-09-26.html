@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #119 · September 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a1a; line-height:1.7; }
+  .wrapper { max-width:900px; margin:0 auto; }
+  .masthead { background:#1a1a2e; padding:36px 40px 24px; border-bottom:4px solid #3730a3; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#818cf8; margin-bottom:8px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:#fff; }
+  .masthead-meta { margin-top:10px; font-size:12px; color:#8a9bb5; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .section { padding:32px 40px; }
+  .glance-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:16px; }
+  .glance-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; }
+  .glance-card { background:#fff; border:1px solid #dde0ec; border-radius:6px; padding:18px; }
+  .glance-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:10px; }
+  .glance-card h3 { font-family:'Playfair Display',serif; font-size:15px; color:#1a1a2e; margin-bottom:8px; line-height:1.35; }
+  .glance-card p { font-size:12.5px; color:#5a6a8a; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-card-number { font-size:11px; font-weight:700; letter-spacing:1px; color:#3730a3; margin-bottom:6px; }
+  .story-card h2 { font-family:'Playfair Display',serif; font-size:22px; color:#1a1a2e; margin-bottom:14px; line-height:1.3; }
+  .insight { font-size:14px; color:#3a4a6a; margin-bottom:12px; line-height:1.75; }
+  .takeaway { background:#f8f9fc; border-left:3px solid #3730a3; border:1px solid #dde0ec; border-left:3px solid #3730a3; padding:14px 18px; margin:16px 0; border-radius:0 4px 4px 0; }
+  .takeaway-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:6px; }
+  .takeaway p { font-size:13.5px; color:#3a4a6a; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:18px 0; }
+  .chart-title { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annot-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:16px; }
+  .annot-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annot-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .annot-signal .annot-label { color:#3730a3; }
+  .annot-watch .annot-label { color:#b45309; }
+  .annot-risk .annot-label { color:#be185d; }
+  .annot-card p { font-size:12px; color:#5a6a8a; line-height:1.5; }
+  .footer { padding:24px 40px 40px; text-align:center; }
+  .footer-text { font-size:10.5px; color:#8a9bb5; letter-spacing:0.5px; }
+  @media (max-width: 640px) {
+    .glance-grid { grid-template-columns:1fr; }
+    .annot-grid { grid-template-columns:1fr; }
+    .section { padding:24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="wrapper">
+
+  <div class="masthead">
+    <div class="masthead-eyebrow">友達 Tomodachi · Japan Brief Visualized</div>
+    <div class="masthead-title">日本速報 · Issue #119</div>
+    <div class="masthead-meta">Saturday, September 26, 2026 &nbsp;·&nbsp; AI & Tech · Semiconductors · Macro & Fiscal</div>
+  </div>
+  <div class="nav-row">
+    <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+    <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+    <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+  </div>
+
+  <div class="section">
+    <div class="glance-label">At a Glance</div>
+    <div class="glance-grid">
+      <div class="glance-card">
+        <span class="glance-tag" style="background:#e0e7ff;color:#3730a3;">STORY 1 · AI & TECH</span>
+        <h3>Woven City Turns One</h3>
+        <p>31 Inventor partners, 1,000+ household-robot tasks logged, AI Vision Engine 2.0 due by year-end.</p>
+      </div>
+      <div class="glance-card">
+        <span class="glance-tag" style="background:#fce7f3;color:#be185d;">STORY 2 · SEMICONDUCTORS</span>
+        <h3>Kioxia Caps Its Own Prices</h3>
+        <p>CEO halts data-center price hikes after NAND surged 100%+ in Q1, 70% in Q2; $10bn+ US listing in prep.</p>
+      </div>
+      <div class="glance-card">
+        <span class="glance-tag" style="background:#fef3e2;color:#b45309;">STORY 3 · MACRO & FISCAL</span>
+        <h3>An Unfunded Tax Cut Meets the Diet</h3>
+        <p>10Y JGB yield near 3%, interest bill +¥3.5tn; funding fight opens October 5.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+
+    <!-- STORY 1 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY ONE · AI & TECH</div>
+      <h2>Woven City Turns One: An AI That Can Reason About What It Sees</h2>
+      <p class="insight">Toyota's Woven City experimental town in Susono marked one year of live testing on September 25, with roughly 30 proof-of-concept trials running across 80 households and 160 resident "Weavers." Seven new corporate partners joined as "Inventors," bringing the total to 31, and Toyota confirmed an AI Vision Engine 2.0 update due by year-end that adds natural-language reasoning on top of a system already at world-leading levels on vision-language benchmarks.</p>
+      <p class="insight">The Toyota AI Robot Association has placed household robots in 11 residences and logged over 1,000 completed tasks — real usage data rather than a lab demo. Phase 2 construction began this month, targeting roughly 600 residents by November 2028, with public visitor reservations opening October 1.</p>
+      <div class="takeaway">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <p>Woven City is where Toyota's embodied-AI bet gets tested at small scale before it reaches production lines. The Vision Engine's reasoning upgrade and the Robot Association's task count are the closest public read available on how fast that work is actually maturing — a second data point alongside Toyota's ¥1 trillion-a-year, 400,000-robot factory-automation estimate flagged two issues ago.</p>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Woven City · One Year In</div>
+        <svg viewBox="0 0 760 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="720" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <!-- bars: Inventors 31, Households 80, Residents 160, Tasks (scaled /10) 100, Robot homes 11 -->
+          <g>
+            <rect x="90" y="152" width="70" height="28" fill="#3730a3"/>
+            <text x="125" y="145" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">31</text>
+            <text x="125" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Inventors</text>
+
+            <rect x="200" y="136" width="70" height="44" fill="#4c46c9"/>
+            <text x="235" y="129" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">80</text>
+            <text x="235" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Households</text>
+
+            <rect x="310" y="88" width="70" height="92" fill="#6a63e0"/>
+            <text x="345" y="81" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">160</text>
+            <text x="345" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Weavers</text>
+
+            <rect x="420" y="20" width="70" height="160" fill="#818cf8"/>
+            <text x="455" y="13" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">1,000+</text>
+            <text x="455" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Robot tasks</text>
+
+            <rect x="530" y="164" width="70" height="16" fill="#a5b4fc"/>
+            <text x="565" y="157" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">11</text>
+            <text x="565" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Robot homes</text>
+
+            <rect x="630" y="164" width="70" height="16" fill="#c7d2fe"/>
+            <text x="665" y="157" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">30</text>
+            <text x="665" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Active POCs</text>
+          </g>
+        </svg>
+      </div>
+      <div class="annot-grid">
+        <div class="annot-card annot-signal">
+          <div class="annot-label">Signal</div>
+          <p>1,000+ logged robot tasks is real deployment data, not a pilot announcement.</p>
+        </div>
+        <div class="annot-card annot-watch">
+          <div class="annot-label">Watch</div>
+          <p>AI Vision Engine 2.0's year-end release — the reasoning upgrade is the harder capability to ship.</p>
+        </div>
+        <div class="annot-card annot-risk">
+          <div class="annot-label">Risk</div>
+          <p>Phase 2 (600 residents, 2028) is a multi-year capex commitment layered on top of Toyota's already-uncommitted ¥1tn/year automation estimate.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY TWO · SEMICONDUCTORS</div>
+      <h2>Kioxia's CEO Tells His Own Sales Team to Stop Raising Prices</h2>
+      <p class="insight">Kioxia CEO Hiroo Ota told his sales team this week to stop pushing further NAND price increases on data-center customers, telling Bloomberg that "cloud budgets are not infinite." NAND flash prices have already risen more than 100% in Q1 2026 and another 70% in Q2, and Kioxia's operating margin sits at 40.66% without any further increases.</p>
+      <p class="insight">The restraint arrives alongside two capital-markets moves: a 3-for-1 stock split, and a US listing Kioxia confirmed on September 15 it is preparing, without committing to timing or structure — Bloomberg has reported a target above $10 billion via American Depositary Shares as early as spring 2027.</p>
+      <div class="takeaway">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <p>Ota is capping prices while Kioxia's stock trades up 475% year-to-date — a bet that a durable customer base matters more than squeezing the current cycle for every yen. SK Hynix and Micron are still pushing prices higher into the same shortage; Kioxia's restraint is a test of whether the NAND run holds up once one of its three major suppliers stops driving it.</p>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">NAND Price Growth by Quarter, 2026</div>
+        <svg viewBox="0 0 760 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="720" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="55" y="24" text-anchor="end" font-size="10" fill="#5a6a8a">100%</text>
+          <text x="55" y="102" text-anchor="end" font-size="10" fill="#5a6a8a">50%</text>
+          <text x="55" y="180" text-anchor="end" font-size="10" fill="#5a6a8a">0%</text>
+          <line x1="60" y1="20" x2="720" y2="20" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="60" y1="100" x2="720" y2="100" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3,3"/>
+
+          <rect x="140" y="20" width="120" height="160" fill="#3730a3"/>
+          <text x="200" y="13" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">+100%+</text>
+          <text x="200" y="198" text-anchor="middle" font-size="11" fill="#5a6a8a">Q1 2026</text>
+
+          <rect x="340" y="68" width="120" height="112" fill="#818cf8"/>
+          <text x="400" y="61" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">+70%</text>
+          <text x="400" y="198" text-anchor="middle" font-size="11" fill="#5a6a8a">Q2 2026</text>
+
+          <rect x="540" y="108" width="120" height="72" fill="#c7d2fe"/>
+          <text x="600" y="101" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1a2e">40.66%</text>
+          <text x="600" y="198" text-anchor="middle" font-size="11" fill="#5a6a8a">Op. margin</text>
+        </svg>
+      </div>
+      <div class="annot-grid">
+        <div class="annot-card annot-signal">
+          <div class="annot-label">Signal</div>
+          <p>A supplier voluntarily capping prices at the peak of a supercycle is unusual — margin discipline over maximum extraction.</p>
+        </div>
+        <div class="annot-card annot-watch">
+          <div class="annot-label">Watch</div>
+          <p>The $10bn+ ADR listing timeline — Kioxia says spring 2027 is possible but nothing is confirmed.</p>
+        </div>
+        <div class="annot-card annot-risk">
+          <div class="annot-label">Risk</div>
+          <p>SK Hynix and Micron keep raising prices regardless — Kioxia's restraint could just mean ceding share of the current cycle's upside.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card">
+      <div class="story-card-number">STORY THREE · MACRO & FISCAL</div>
+      <h2>Takaichi's Unfunded Tax Cut Heads Into an October 5 Diet Fight</h2>
+      <p class="insight">PM Takaichi's cabinet-approved cut to the consumption tax on food, from 8% to 1%, still has no identified funding source six weeks after approval. It costs roughly ¥5 trillion ($32 billion) a year; only 3 of about 120 expiring special tax measures are set to be abolished, an FX-fund surplus is already earmarked for defense, and business lobbies oppose a corporate tax hike. Takaichi said September 23 she is eager to pass the bill; an extraordinary Diet session convenes October 5.</p>
+      <p class="insight">Bond markets are not waiting. The 10-year JGB yield has climbed from roughly 1.6% to near 3% since the cut was floated, and FY2027 interest payments are now projected at ¥16.59 trillion — up ¥3.5 trillion from FY2026.</p>
+      <div class="takeaway">
+        <div class="takeaway-label">Investor Takeaway</div>
+        <p>Takaichi has ruled out deficit-financing bonds, which leaves spending cuts or a new revenue source as the only paths that don't require reversing the tax cut. Yields near 3% already price in more borrowing than the government has admitted to; October 5 determines whether Takaichi proves the bond market wrong or confirms it.</p>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">10-Year JGB Yield, Since the Tax Cut Was Floated</div>
+        <svg viewBox="0 0 760 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="20" x2="60" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <line x1="60" y1="180" x2="720" y2="180" stroke="#e8eaf2" stroke-width="1"/>
+          <text x="55" y="24" text-anchor="end" font-size="10" fill="#5a6a8a">3.0%</text>
+          <text x="55" y="102" text-anchor="end" font-size="10" fill="#5a6a8a">2.3%</text>
+          <text x="55" y="180" text-anchor="end" font-size="10" fill="#5a6a8a">1.6%</text>
+          <line x1="60" y1="20" x2="720" y2="20" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3,3"/>
+          <line x1="60" y1="100" x2="720" y2="100" stroke="#e8eaf2" stroke-width="1" stroke-dasharray="3,3"/>
+
+          <polyline points="90,178 220,150 350,118 480,80 610,44 690,22" fill="none" stroke="#b45309" stroke-width="3"/>
+          <circle cx="90" cy="178" r="4" fill="#b45309"/>
+          <circle cx="690" cy="22" r="5" fill="#b45309"/>
+          <text x="90" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Aug (floated)</text>
+          <text x="690" y="198" text-anchor="middle" font-size="10" fill="#5a6a8a">Sept 23</text>
+          <text x="690" y="12" text-anchor="middle" font-size="12" font-weight="700" fill="#b45309">~3.0%</text>
+        </svg>
+      </div>
+      <div class="annot-grid">
+        <div class="annot-card annot-signal">
+          <div class="annot-label">Signal</div>
+          <p>¥3.5 trillion increase in FY2027 interest payments alone — before the tax cut's own ¥5tn cost is even funded.</p>
+        </div>
+        <div class="annot-card annot-watch">
+          <div class="annot-label">Watch</div>
+          <p>October 5 extraordinary Diet session — the funding source is the fight, not the tax cut itself.</p>
+        </div>
+        <div class="annot-card annot-risk">
+          <div class="annot-label">Risk</div>
+          <p>Takaichi has ruled out deficit bonds; without a credible alternative, the bill either stalls or the fiscal math gets worse.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #119 · SEPTEMBER 26, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
