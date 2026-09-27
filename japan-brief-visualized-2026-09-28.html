@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #121 · September 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #121 · September 28, 2026</div>
+    <div class="masthead-sub">SoftBank's 9.75% OpenAI Bond · Mitsubishi Chemical 6-Inch GaN · US Backs a Stronger Yen</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · SOFTBANK</div>
+      <div class="card-num">9.75<span class="card-num-unit">%</span></div>
+      <div class="card-label">Coupon on SoftBank's $4.5bn 2034 dollar bond, part of a record ¥1.76tn high-yield sale</div>
+      <div class="card-delta delta-red">CDS above 400bp</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMI · MITSUBISHI CHEMICAL</div>
+      <div class="card-num">6<span class="card-num-unit">inch</span></div>
+      <div class="card-label">GaN substrate samples for power chips, due by March 2027</div>
+      <div class="card-delta delta-green">8-inch in development</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · YEN & TANKAN</div>
+      <div class="card-num">¥158</div>
+      <div class="card-label">USD/JPY after Katayama disclosed Trump's yen concern (from ¥158.60)</div>
+      <div class="card-delta delta-amber">Tankan Oct 1: +26 expected</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">SoftBank Pays Up to 9.75% to Fund Its Last OpenAI Check, and the Money Moves This Week</div>
+    <div class="story-insight">
+      <p>SoftBank priced $10bn of dollar notes and €1bn of euro notes on September 24, the largest high-yield corporate deal on record. The bonds settle September 29 and fund the final OpenAI tranche due October 1, taking the total commitment to $64.6bn for about 13%.</p>
+      <br>
+      <p>The company has issued $14.6bn of high-yield debt this year, 63% of the Asia-Pacific and Japan total. Its CDS rose above 400bp from about 280bp in June, and the shares fell 3.2% on September 25 as the Nikkei rose.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The OpenAI stake now has to compound faster than 9 to 10% a year to add to net asset value; loan-to-value at the next results is the number to watch.</div>
+    <div class="chart-box">
+      <div class="chart-title">SoftBank Bond Coupons by Tranche (%)</div>
+      <svg viewBox="0 0 820 230" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e8eaf2"><line x1="230" y1="15" x2="230" y2="200"/><line x1="340" y1="15" x2="340" y2="200"/><line x1="450" y1="15" x2="450" y2="200"/><line x1="560" y1="15" x2="560" y2="200"/><line x1="670" y1="15" x2="670" y2="200"/><line x1="780" y1="15" x2="780" y2="200"/></g>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle"><text x="230" y="218">0</text><text x="340" y="218">2</text><text x="450" y="218">4</text><text x="560" y="218">6</text><text x="670" y="218">8</text><text x="780" y="218">10</text></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="220" y="37">$1.0bn · 2030</text><text x="220" y="72">$4.5bn · 2032</text><text x="220" y="107">$4.5bn · 2034</text><text x="220" y="147">€0.5bn · 2030</text><text x="220" y="182">€0.5bn · 2032</text>
+        </g>
+        <rect x="230" y="24" width="474" height="18" fill="#818cf8"/><text x="712" y="38" font-size="11" font-weight="700" fill="#3730a3">8.625</text>
+        <rect x="230" y="59" width="509" height="18" fill="#3730a3"/><text x="747" y="73" font-size="11" font-weight="700" fill="#3730a3">9.25</text>
+        <rect x="230" y="94" width="536" height="18" fill="#1a1a2e"/><text x="774" y="108" font-size="11" font-weight="700" fill="#1a1a2e">9.75</text>
+        <rect x="230" y="134" width="392" height="18" fill="#c7cbe8"/><text x="630" y="148" font-size="11" font-weight="700" fill="#5a6a8a">7.125</text>
+        <rect x="230" y="169" width="440" height="18" fill="#a5acd8"/><text x="678" y="183" font-size="11" font-weight="700" fill="#5a6a8a">8.0</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND HELD</div>
+        <div class="annotation-card-ja">高利回り債<span class="annotation-card-en">kōrimawari-sai · high-yield bond</span></div>
+        <div class="annotation-card-body">Investors absorbed a record-size junk deal, so the October 1 payment is funded and the bridge loan can be cancelled.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LOAN-TO-VALUE</div>
+        <div class="annotation-card-ja">ソフトバンクグループ<span class="annotation-card-en">Sofutobanku Gurūpu · SoftBank Group</span></div>
+        <div class="annotation-card-body">The next quarterly results will show how far the OpenAI payment and new debt pushed the LTV ratio.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NO PUBLIC MARK</div>
+        <div class="annotation-card-ja">ブリッジローン<span class="annotation-card-en">burijji rōn · bridge loan</span></div>
+        <div class="annotation-card-body">With OpenAI's listing delayed, SoftBank pays 9%-plus interest on a stake it cannot yet value at a market price.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Mitsubishi Chemical Moves to 6-Inch GaN Substrates as AI Data Centers Hunt for Power Efficiency</div>
+    <div class="story-insight">
+      <p>Mitsubishi Chemical will sample 6-inch gallium nitride substrates for power chips by March 2027. It mass-produces 4-inch substrates at Tsukuba, runs a crystal pilot line with Japan Steel Works in Muroran, and is developing 8-inch.</p>
+      <br>
+      <p>Native GaN substrates let power chips handle higher voltages in a smaller area than GaN-on-silicon, which suits AI server power supplies and EV drivetrains. A 6-inch size fits many existing power-chip lines.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A small line inside a large chemicals group; a capex decision and a named device customer are the milestones that would matter for the stock.</div>
+    <div class="chart-box">
+      <div class="chart-title">Mitsubishi Chemical GaN Substrate Roadmap</div>
+      <svg viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="70" x2="780" y2="70" stroke="#1a1a2e" stroke-width="2"/>
+        <g font-size="11" text-anchor="middle" fill="#5a6a8a">
+          <circle cx="120" cy="70" r="9" fill="#3730a3"/><text x="120" y="45" font-weight="700" fill="#1a1a2e">Today</text><text x="120" y="98">4-inch mass production</text><text x="120" y="113">Tsukuba, Ibaraki</text>
+          <circle cx="330" cy="70" r="7" fill="#818cf8"/><text x="330" y="45" font-weight="700" fill="#1a1a2e">Now</text><text x="330" y="98">6-inch samples prepared</text><text x="330" y="113">Muroran pilot line with JSW</text>
+          <circle cx="540" cy="70" r="7" fill="#818cf8"/><text x="540" y="45" font-weight="700" fill="#1a1a2e">By Mar 2027</text><text x="540" y="98">6-inch customer samples</text>
+          <circle cx="730" cy="70" r="7" fill="#be185d"/><text x="730" y="45" font-weight="700" fill="#1a1a2e">Undated</text><text x="730" y="98">8-inch development,</text><text x="730" y="113">site and capex decision</text>
+        </g>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI POWER DEMAND</div>
+        <div class="annotation-card-ja">パワー半導体<span class="annotation-card-en">pawā handōtai · power semiconductor</span></div>
+        <div class="annotation-card-body">Data center power losses are now a cost line, which pulls efficient GaN switching into server power supplies.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CAPACITY DECISION</div>
+        <div class="annotation-card-ja">大口径化<span class="annotation-card-en">daikōkeika · larger diameter</span></div>
+        <div class="annotation-card-body">The company is weighing where and when to build large-diameter capacity; subsidy support would speed it up.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COST AND TIMING</div>
+        <div class="annotation-card-ja">窒化ガリウム<span class="annotation-card-en">chikka gariumu · gallium nitride</span></div>
+        <div class="annotation-card-body">GaN-on-silicon is cheaper and already shipping. If native substrates stay costly, device makers may not switch.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO & BOJ</div>
+    <div class="story-headline">Trump and Bessent Say the Yen Is Too Weak, With the Tankan Due Thursday</div>
+    <div class="story-insight">
+      <p>Katayama said Trump raised the yen's weakness at the September 22 Takaichi summit, and Bessent said the two finance chiefs discussed "the desirability of a strong yen." USD/JPY eased from ¥158.60 to about ¥158, and the 10-year JGB touched 3.115%.</p>
+      <br>
+      <p>The October 1 Tankan is expected to show large manufacturers at +26 (up 4) and large non-manufacturers at +36 (down 1). August output and retail sales arrive Wednesday.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> US backing makes intervention near ¥160 easier and gives the BOJ cover to hike again in late October; a firm Tankan adds to that case and weighs on yen-driven exporter upgrades.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tankan Large-Manufacturer DI: Consensus for Q3 2026</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e8eaf2"><line x1="80" y1="30" x2="780" y2="30"/><line x1="80" y1="80" x2="780" y2="80"/><line x1="80" y1="130" x2="780" y2="130"/><line x1="80" y1="170" x2="780" y2="170"/></g>
+        <g font-size="10" fill="#5a6a8a" text-anchor="end"><text x="70" y="34">+40</text><text x="70" y="84">+30</text><text x="70" y="134">+20</text><text x="70" y="174">+12</text></g>
+        <rect x="160" y="120" width="110" height="50" fill="#c7cbe8"/><text x="215" y="190" font-size="11" fill="#5a6a8a" text-anchor="middle">Q2 mfr (Jul 1)</text><text x="215" y="112" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="middle">+22</text>
+        <rect x="300" y="100" width="110" height="70" fill="#3730a3"/><text x="355" y="190" font-size="11" fill="#5a6a8a" text-anchor="middle">Q3 mfr, consensus</text><text x="355" y="92" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">+26</text>
+        <rect x="490" y="45" width="110" height="125" fill="#fcd9a8"/><text x="545" y="190" font-size="11" fill="#5a6a8a" text-anchor="middle">Q2 non-mfr</text><text x="545" y="37" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">+37</text>
+        <rect x="630" y="50" width="110" height="120" fill="#b45309"/><text x="685" y="190" font-size="11" fill="#5a6a8a" text-anchor="middle">Q3 non-mfr, consensus</text><text x="685" y="42" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">+36</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · US ALIGNMENT</div>
+        <div class="annotation-card-ja">円の過小評価<span class="annotation-card-en">en no kashō hyōka · undervalued yen</span></div>
+        <div class="annotation-card-body">Both governments now say the yen is too weak, which removes the main political obstacle to intervention.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · OCT 1 TANKAN</div>
+        <div class="annotation-card-ja">業況判断指数<span class="annotation-card-en">gyōkyō handan shisū · business DI</span></div>
+        <div class="annotation-card-body">A manufacturing reading at or above +26 would be a sixth straight gain on AI and chip demand.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EXPORTERS</div>
+        <div class="annotation-card-ja">為替介入<span class="annotation-card-en">kawase kainyū · FX intervention</span></div>
+        <div class="annotation-card-body">A sharp yen rebound would cut the currency gains built into exporters' earnings forecasts.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #121 · SEPTEMBER 28, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
