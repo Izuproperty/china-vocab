@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #131 · September 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #131 · September 27, 2026</div>
+    <div class="masthead-sub">Summit Wrap · Chinese Model Share · ZCode Data Fix · Consumer Discount</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-special">SPECIAL · SUMMIT</div>
+      <div class="card-num">$30<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Reciprocal tariff cuts on non-sensitive goods, each direction</div>
+      <div class="card-delta delta-amber">Chip controls unchanged</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ADOPTION</div>
+      <div class="card-num">57–67<span class="card-num-unit">%</span></div>
+      <div class="card-label">Chinese share of OpenRouter tokens, week of Sept 14</div>
+      <div class="card-delta delta-green">vs 6–13% in February</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CONSUMER</div>
+      <div class="card-num">11<span class="card-num-unit">x</span></div>
+      <div class="card-label">Forward P/E, MSCI China consumer discretionary (IT: 21x)</div>
+      <div class="card-delta delta-red">Sub-indexes −18% in 6 months</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <!-- SPECIAL EDITION -->
+  <div class="story-card">
+    <div class="story-num">SPECIAL EDITION · SUMMIT WRAP</div>
+    <div class="story-headline">Summit Closes With an AI Incident Channel and a $30 Billion Tariff Carve-Out. Chip Controls Stay Where They Were.</div>
+    <div class="story-insight">
+      <p>Xi Jinping's three-day Washington visit ended September 26 with a confirmed AI incident channel, reciprocal tariff cuts on about $30 billion of goods each way, and a Chinese commitment to import 10 million tonnes of US coal in 2027–28. US officials said export controls were not on the table.</p>
+      <br>
+      <p>The trade truce now runs to January 10, 2027, and the next two leader meetings are APEC in Shenzhen in November and the G20 in Miami in December. Those dates, not this summit, are where compute access could move.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Tail risk is lower through January, but the chip regime that shapes Chinese AI capex is untouched.</div>
+    <div class="chart-box">
+      <div class="chart-title">US-China Calendar After the Summit</div>
+      <svg viewBox="0 0 820 180" xmlns="http://www.w3.org/2000/svg">
+        <line x1="40" y1="90" x2="790" y2="90" stroke="#1a1a2e" stroke-width="2"/>
+        <g font-size="11" fill="#5a6a8a" text-anchor="middle">
+          <circle cx="70" cy="90" r="7" fill="#b45309"/><text x="70" y="65" font-weight="700" fill="#1a1a2e">Sept 22</text><text x="70" y="120">AI dialogue agreed</text><text x="70" y="135">in New York</text>
+          <circle cx="210" cy="90" r="7" fill="#b45309"/><text x="210" y="65" font-weight="700" fill="#1a1a2e">Sept 23</text><text x="210" y="120">Xi arrives</text>
+          <circle cx="350" cy="90" r="9" fill="#c0392b"/><text x="350" y="65" font-weight="700" fill="#1a1a2e">Sept 25–26</text><text x="350" y="120">Summit: AI channel,</text><text x="350" y="135">$30bn carve-out, coal</text>
+          <circle cx="500" cy="90" r="7" fill="#1a56db"/><text x="500" y="65" font-weight="700" fill="#1a1a2e">November</text><text x="500" y="120">APEC, Shenzhen</text>
+          <circle cx="630" cy="90" r="7" fill="#1a56db"/><text x="630" y="65" font-weight="700" fill="#1a1a2e">December</text><text x="630" y="120">G20, Miami</text>
+          <circle cx="760" cy="90" r="7" fill="#166534"/><text x="760" y="65" font-weight="700" fill="#1a1a2e">Jan 10, 2027</text><text x="760" y="120">Truce expiry</text>
+        </g>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DE-ESCALATION</div>
+        <div class="annotation-card-zh">沟通渠道<span class="annotation-card-en">gōutōng qúdào · communication channel</span></div>
+        <div class="annotation-card-body">A standing AI incident line plus two more leader meetings this year reduces the odds of a surprise escalation before January.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · APEC SHENZHEN</div>
+        <div class="annotation-card-zh">亚太经合组织<span class="annotation-card-en">Yàtài Jīnghé Zǔzhī · APEC</span></div>
+        <div class="annotation-card-body">Beijing hosts in November. A second meeting on home ground is the likeliest venue for any movement on chips or rare earths.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CHIPS</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Controls were explicitly excluded. Chinese AI capex stays dependent on Huawei and Cambricon supply ramps.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 1 -->
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">Chinese Models Now Handle Most Developer Traffic on OpenRouter, and Two House Committees Want to Know Why</div>
+    <div class="story-insight">
+      <p>Chinese models took 57–67% of OpenRouter tokens in the week of September 14, up from 6–13% in February. On Vercel the share hit 55% in August from 11% in January. DeepSeek, Z.ai and Alibaba's Qwen lead, and platform executives cite price as the deciding factor.</p>
+      <br>
+      <p>Volume at this scale lets Chinese labs raise prices without losing share, which supports IPO valuations. Two House committee inquiries into export-control gaps, remote chip access and distillation are the main threat to that trajectory.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Chinese labs have pricing power abroad now; the risk has shifted from demand to US regulatory access.</div>
+    <div class="chart-box">
+      <div class="chart-title">Chinese Model Share of Developer Platform Usage</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <line x1="180" y1="20" x2="180" y2="170" stroke="#e0d8d0"/>
+        <g stroke="#e0d8d0"><line x1="330" y1="20" x2="330" y2="170"/><line x1="480" y1="20" x2="480" y2="170"/><line x1="630" y1="20" x2="630" y2="170"/><line x1="780" y1="20" x2="780" y2="170"/></g>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle"><text x="180" y="188">0%</text><text x="330" y="188">25%</text><text x="480" y="188">50%</text><text x="630" y="188">75%</text><text x="780" y="188">100%</text></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="170" y="42">OpenRouter · Feb</text><text x="170" y="77">OpenRouter · Sept</text><text x="170" y="122">Vercel · Jan</text><text x="170" y="157">Vercel · Aug</text>
+        </g>
+        <rect x="180" y="30" width="36" height="18" fill="#e8d5b0"/><rect x="216" y="30" width="42" height="18" fill="#e8d5b0" opacity="0.5"/>
+        <text x="266" y="44" font-size="11" fill="#5a6a8a">6–13%</text>
+        <rect x="180" y="65" width="342" height="18" fill="#c0392b"/><rect x="522" y="65" width="60" height="18" fill="#c0392b" opacity="0.45"/>
+        <text x="590" y="79" font-size="11" font-weight="700" fill="#c0392b">57–67%</text>
+        <rect x="180" y="110" width="66" height="18" fill="#e8d5b0"/>
+        <text x="254" y="124" font-size="11" fill="#5a6a8a">11%</text>
+        <rect x="180" y="145" width="330" height="18" fill="#c0392b"/>
+        <text x="518" y="159" font-size="11" font-weight="700" fill="#c0392b">55%</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICING POWER</div>
+        <div class="annotation-card-zh">性价比<span class="annotation-card-en">xìngjiàbǐ · price-performance</span></div>
+        <div class="annotation-card-body">Share gains held through DeepSeek's 2.3–4.5x API price rise, which points to sticky usage rather than pure price arbitrage.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · GLOBAL SOUTH</div>
+        <div class="annotation-card-zh">词元<span class="annotation-card-en">cíyuán · token</span></div>
+        <div class="annotation-card-body">67% of Global South tokens on OpenRouter run on Chinese models. That base is outside the reach of US restrictions.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONGRESS</div>
+        <div class="annotation-card-zh">模型蒸馏<span class="annotation-card-en">móxíng zhēngliú · distillation</span></div>
+        <div class="annotation-card-body">US users produce about half of OpenRouter tokens. Limits on US enterprise use would hit the largest single slice of demand.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 2 -->
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">Zhipu Strips Repository Uploads From ZCode After Users Found Their Code in a Cloud Bucket</div>
+    <div class="story-insight">
+      <p>ZCode 3.14.0 removes RepoWiki and the snapshot-upload paths. CAICT found the Alibaba Cloud OSS bucket empty and NSFOCUS confirmed deletion. The client is now open source under Apache-2.0.</p>
+      <br>
+      <p>No full audit or access logs have been published. Coding agents drive Chinese model adoption abroad, so a data-handling incident in exactly that category gives enterprise buyers a concrete reason to slow procurement.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Data handling in coding agents is becoming a procurement gate for Chinese models, on top of the CAC probes already open.</div>
+    <div class="chart-box">
+      <div class="chart-title">How Zhipu Responded</div>
+      <svg viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+        <g font-size="11" text-anchor="middle">
+          <rect x="20" y="30" width="170" height="80" rx="6" fill="#fee2e2" stroke="#c0392b"/>
+          <text x="105" y="60" font-weight="700" fill="#c0392b">Issue found</text><text x="105" y="78" fill="#3a4a6a">Repo snapshots sent</text><text x="105" y="94" fill="#3a4a6a">to Alibaba Cloud OSS</text>
+          <rect x="220" y="30" width="170" height="80" rx="6" fill="#fff" stroke="#e0d8d0"/>
+          <text x="305" y="60" font-weight="700" fill="#1a1a2e">ZCode 3.14.0</text><text x="305" y="78" fill="#3a4a6a">RepoWiki and upload</text><text x="305" y="94" fill="#3a4a6a">paths removed</text>
+          <rect x="420" y="30" width="170" height="80" rx="6" fill="#fff" stroke="#e0d8d0"/>
+          <text x="505" y="60" font-weight="700" fill="#1a1a2e">Third-party checks</text><text x="505" y="78" fill="#3a4a6a">CAICT: bucket empty</text><text x="505" y="94" fill="#3a4a6a">NSFOCUS: deleted</text>
+          <rect x="620" y="30" width="180" height="80" rx="6" fill="#fef3e2" stroke="#b45309"/>
+          <text x="710" y="60" font-weight="700" fill="#b45309">Still open</text><text x="710" y="78" fill="#3a4a6a">No audit report or</text><text x="710" y="94" fill="#3a4a6a">access logs released</text>
+        </g>
+        <g stroke="#5a6a8a" stroke-width="2"><line x1="192" y1="70" x2="216" y2="70"/><line x1="392" y1="70" x2="416" y2="70"/><line x1="592" y1="70" x2="616" y2="70"/></g>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FAST FIX</div>
+        <div class="annotation-card-zh">开源<span class="annotation-card-en">kāiyuán · open source</span></div>
+        <div class="annotation-card-body">Open-sourcing the client lets outside developers verify the upload paths are gone, which is a stronger remedy than a statement.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REGULATOR</div>
+        <div class="annotation-card-zh">网信办<span class="annotation-card-en">Wǎngxìnbàn · CAC</span></div>
+        <div class="annotation-card-body">With DeepSeek and Moonshot already under review, Zhipu is a natural next candidate if the CAC widens its sweep.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · ENTERPRISE TRUST</div>
+        <div class="annotation-card-zh">数据安全<span class="annotation-card-en">shùjù ānquán · data security</span></div>
+        <div class="annotation-card-body">Without logs, customers cannot confirm what left their machines. That uncertainty slows enterprise deals abroad.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STORY 3 -->
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">Consumer Stocks Sit Near Ten-Year Lows Going Into Golden Week, With PMIs Due Tuesday</div>
+    <div class="story-insight">
+      <p>MSCI China consumer sub-indexes are down about 18% in six months. Staples missed profit forecasts by nearly 50% and discretionary by about 10%. August retail sales grew 0.4%.</p>
+      <br>
+      <p>Industrial profits land Monday and September PMIs on Tuesday, then mainland markets close October 1–7. A firm PMI and strong holiday spending could narrow the valuation gap when trading resumes October 8.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The consumer discount is earnings-driven, so it needs a demand catalyst, not just a cheap multiple, to close.</div>
+    <div class="chart-box">
+      <div class="chart-title">MSCI China Forward P/E by Sector</div>
+      <svg viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e0d8d0"><line x1="200" y1="15" x2="200" y2="130"/><line x1="350" y1="15" x2="350" y2="130"/><line x1="500" y1="15" x2="500" y2="130"/><line x1="650" y1="15" x2="650" y2="130"/></g>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle"><text x="200" y="148">0x</text><text x="350" y="148">8x</text><text x="500" y="148">16x</text><text x="650" y="148">24x</text></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end"><text x="190" y="37">Consumer discretionary</text><text x="190" y="72">Consumer staples</text><text x="190" y="107">Information technology</text></g>
+        <rect x="200" y="24" width="206" height="18" fill="#b45309"/><text x="414" y="38" font-size="11" font-weight="700" fill="#b45309">~11x</text>
+        <rect x="200" y="59" width="244" height="18" fill="#b45309" opacity="0.75"/><text x="452" y="73" font-size="11" font-weight="700" fill="#b45309">~13x</text>
+        <rect x="200" y="94" width="394" height="18" fill="#1a56db"/><text x="602" y="108" font-size="11" font-weight="700" fill="#1a56db">21x</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PMI MOMENTUM</div>
+        <div class="annotation-card-zh">采购经理指数<span class="annotation-card-en">cǎigòu jīnglǐ zhǐshù · PMI</span></div>
+        <div class="annotation-card-body">The emerging-industries index rose 4.5 points to 52.3, and September PMIs have risen month-on-month in seven of the last ten years.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · HOLIDAY DATA</div>
+        <div class="annotation-card-zh">国庆黄金周<span class="annotation-card-en">Guóqìng Huángjīnzhōu · Golden Week</span></div>
+        <div class="annotation-card-body">Travel and spending data arrive while mainland markets are shut and Stock Connect is suspended. Hong Kong trades it first.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EARNINGS</div>
+        <div class="annotation-card-zh">深度调整<span class="annotation-card-en">shēndù tiáozhěng · deep adjustment</span></div>
+        <div class="annotation-card-body">A near-50% staples earnings miss means the multiple may still be too high if baijiu and department-store traffic keep falling.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #131 · SEPTEMBER 27, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
