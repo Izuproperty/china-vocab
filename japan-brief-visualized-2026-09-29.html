@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #122 · September 29, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #122 · September 29, 2026</div>
+    <div class="masthead-sub">Fujitsu's Cyber Defense Service · Sakai Chemical's MLCC Powder Squeeze · A 10-to-15-Year Defense Clock</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · FUJITSU</div>
+      <div class="card-num">Oct 1</div>
+      <div class="card-label">Police and SDF neutralization powers start under the active cyber defense law</div>
+      <div class="card-delta delta-green">Fujitsu service live Sept 25</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMI · SAKAI CHEMICAL</div>
+      <div class="card-num">1.5<span class="card-num-unit">x</span></div>
+      <div class="card-label">Barium titanate capacity increase peer Nippon Chemical plans for FY2027</div>
+      <div class="card-delta delta-amber">Sakai capacity filling</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · DEFENSE & JGBS</div>
+      <div class="card-num">3.5<span class="card-num-unit">% GDP</span></div>
+      <div class="card-label">Defense level under discussion, from about 2% now, over 10 to 15 years per Aida</div>
+      <div class="card-delta delta-red">10y JGB above 3%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">Fujitsu Packages Cyber Defense for Infrastructure Operators as Japan's Neutralization Powers Start Thursday</div>
+    <div class="story-insight">
+      <p>Fujitsu launched a service on September 25 that combines dark-web monitoring using KELA intelligence, continuous mapping of internet-facing systems, and threat hunting by its red-team consultants. It will feed into Fujitsu's AI-based Cyber Security Nerve Center, which opens in October.</p>
+      <br>
+      <p>On October 1 the active cyber defense law lets police and the SDF access and disable attack servers. Reporting and information-sharing duties for core infrastructure operators phase in through November 2027, and those operators need outside help to detect compromises quickly.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Regulation is turning security monitoring into a recurring compliance purchase for infrastructure operators; Fujitsu's late-October results will show whether security orders are big enough to break out.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japan's Active Cyber Defense Rollout and Fujitsu's Timing</div>
+      <svg viewBox="0 0 820 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="50" y1="70" x2="790" y2="70" stroke="#1a1a2e" stroke-width="2"/>
+        <g font-size="11" text-anchor="middle" fill="#5a6a8a">
+          <circle cx="90" cy="70" r="7" fill="#c7cbe8"/><text x="90" y="45" font-weight="700" fill="#1a1a2e">May 2025</text><text x="90" y="98">Law enacted</text>
+          <circle cx="225" cy="70" r="7" fill="#818cf8"/><text x="225" y="45" font-weight="700" fill="#1a1a2e">Mar 17, 2026</text><text x="225" y="98">Cabinet ordinance</text><text x="225" y="113">sets Oct 1 start</text>
+          <circle cx="360" cy="70" r="7" fill="#818cf8"/><text x="360" y="45" font-weight="700" fill="#1a1a2e">Aug 26</text><text x="360" y="98">Fujitsu AI-era</text><text x="360" y="113">security strategy</text>
+          <circle cx="490" cy="70" r="9" fill="#3730a3"/><text x="490" y="45" font-weight="700" fill="#3730a3">Sept 25</text><text x="490" y="98">Service launch</text><text x="490" y="113">(KELA, ASM, hunting)</text>
+          <circle cx="620" cy="70" r="9" fill="#be185d"/><text x="620" y="45" font-weight="700" fill="#be185d">Oct 1</text><text x="620" y="98">Neutralization starts;</text><text x="620" y="113">Nerve Center in Oct</text>
+          <circle cx="750" cy="70" r="7" fill="#c7cbe8"/><text x="750" y="45" font-weight="700" fill="#1a1a2e">Nov 2027</text><text x="750" y="98">Full phase-in</text>
+        </g>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MANDATED DEMAND</div>
+        <div class="annotation-card-ja">能動的サイバー防御<span class="annotation-card-en">nōdōteki saibā bōgyo · active cyber defense</span></div>
+        <div class="annotation-card-body">The law's operational start gives infrastructure operators a deadline to upgrade monitoring.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · Q2 RESULTS</div>
+        <div class="annotation-card-ja">富士通<span class="annotation-card-en">Fujitsu · Fujitsu</span></div>
+        <div class="annotation-card-body">Late-October results: any disclosure of security orders or Nerve Center customers.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PARTNER DEPENDENCE</div>
+        <div class="annotation-card-ja">ダークウェブ監視<span class="annotation-card-en">dāku webu kanshi · dark web monitoring</span></div>
+        <div class="annotation-card-body">The intelligence layer is licensed from KELA, so margins rest on Fujitsu's own automation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Sakai Chemical's Capacitor Powder Is Running Short as AI Servers Soak Up MLCCs</div>
+    <div class="story-insight">
+      <p>Bloomberg reported on September 27 that Sakai Chemical's capacity for barium titanate, the dielectric powder in multilayer ceramic capacitors, is filling quickly on AI data center demand. Its hydrothermal process makes the fine particles needed for thin, high-capacitance layers.</p>
+      <br>
+      <p>AI servers use far more MLCCs per rack than conventional servers. Peer Nippon Chemical Industrial plans a 1.5x capacity increase for fiscal 2027; Sakai has not announced one yet.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Tight powder supply gives Sakai room to raise prices or lock in contracts with capacitor makers; a capacity or pricing announcement is what would move segment earnings.</div>
+    <div class="chart-box">
+      <div class="chart-title">Where the Squeeze Sits in the AI Server Capacitor Chain</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5a6a8a"/></marker></defs>
+        <rect x="20" y="40" width="180" height="100" rx="6" fill="#fff" stroke="#be185d" stroke-width="2"/>
+        <text x="110" y="66" font-size="12" font-weight="700" fill="#be185d" text-anchor="middle">Barium titanate powder</text>
+        <text x="110" y="88" font-size="11" fill="#3a4a6a" text-anchor="middle">Sakai Chemical</text>
+        <text x="110" y="104" font-size="11" fill="#3a4a6a" text-anchor="middle">Nippon Chemical (+1.5x FY27)</text>
+        <text x="110" y="120" font-size="11" fill="#3a4a6a" text-anchor="middle">Murata (in-house)</text>
+        <text x="110" y="160" font-size="10" font-weight="700" fill="#b91c1c" text-anchor="middle">CAPACITY FILLING</text>
+        <line x1="205" y1="90" x2="255" y2="90" stroke="#5a6a8a" stroke-width="2" marker-end="url(#ar)"/>
+        <rect x="260" y="40" width="170" height="100" rx="6" fill="#fff" stroke="#dde0ec"/>
+        <text x="345" y="66" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">MLCC makers</text>
+        <text x="345" y="88" font-size="11" fill="#3a4a6a" text-anchor="middle">Murata · Taiyo Yuden</text>
+        <text x="345" y="104" font-size="11" fill="#3a4a6a" text-anchor="middle">TDK · Samsung EM</text>
+        <line x1="435" y1="90" x2="485" y2="90" stroke="#5a6a8a" stroke-width="2" marker-end="url(#ar)"/>
+        <rect x="490" y="40" width="150" height="100" rx="6" fill="#fff" stroke="#dde0ec"/>
+        <text x="565" y="66" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">GPU boards</text>
+        <text x="565" y="88" font-size="11" fill="#3a4a6a" text-anchor="middle">Power smoothing</text>
+        <text x="565" y="104" font-size="11" fill="#3a4a6a" text-anchor="middle">near the chip</text>
+        <line x1="645" y1="90" x2="690" y2="90" stroke="#5a6a8a" stroke-width="2" marker-end="url(#ar)"/>
+        <rect x="695" y="40" width="110" height="100" rx="6" fill="#3730a3"/>
+        <text x="750" y="72" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">AI racks</text>
+        <text x="750" y="94" font-size="10" fill="#e0e7ff" text-anchor="middle">Hundreds of</text>
+        <text x="750" y="108" font-size="10" fill="#e0e7ff" text-anchor="middle">thousands of</text>
+        <text x="750" y="122" font-size="10" fill="#e0e7ff" text-anchor="middle">MLCCs (est.)</text>
+      </svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · UPSTREAM TIGHTNESS</div>
+        <div class="annotation-card-ja">チタン酸バリウム<span class="annotation-card-en">chitan-san bariumu · barium titanate</span></div>
+        <div class="annotation-card-body">Powder, not capacitor assembly, is now the limiting input for AI-grade MLCCs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CAPACITY DECISION</div>
+        <div class="annotation-card-ja">堺化学工業<span class="annotation-card-en">Sakai Kagaku Kōgyō · Sakai Chemical</span></div>
+        <div class="annotation-card-body">A new line or price increase at the November results would show how much demand it can capture.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · IN-HOUSE SUPPLY</div>
+        <div class="annotation-card-ja">積層セラミックコンデンサ<span class="annotation-card-en">sekisō seramikku kondensa · MLCC</span></div>
+        <div class="annotation-card-body">Large capacitor makers can expand their own powder output and cut merchant volumes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO & FISCAL</div>
+    <div class="story-headline">A Takaichi Adviser Puts a 10-to-15-Year Clock on a 3.5% Defense Budget</div>
+    <div class="story-insight">
+      <p>Takuji Aida, a member of Takaichi's growth panel, said on September 28 that lifting defense spending toward 3.5% of GDP would be a 10-to-15-year goal and that dual-use programs in the ¥370 trillion investment plan could count toward it. He expects the next BOJ hike in January.</p>
+      <br>
+      <p>At nominal GDP near ¥630 trillion, the gap from 2% to 3.5% is roughly ¥9 to 10 trillion a year at the end state, more than the whole ¥8.9 trillion FY2027 request. Phased over 10 to 15 years, each year adds ¥0.6 to 1 trillion.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A long timeline shrinks the annual step, but JGB supply depends on whether the year-end security documents fund it with taxes or bonds.</div>
+    <div class="chart-box">
+      <div class="chart-title">Extra Annual Defense Outlay to Reach 3.5% of GDP (¥ trillion)</div>
+      <svg viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e8eaf2"><line x1="260" y1="15" x2="260" y2="180"/><line x1="370" y1="15" x2="370" y2="180"/><line x1="480" y1="15" x2="480" y2="180"/><line x1="590" y1="15" x2="590" y2="180"/><line x1="700" y1="15" x2="700" y2="180"/></g>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle"><text x="260" y="198">0</text><text x="370" y="198">2.5</text><text x="480" y="198">5</text><text x="590" y="198">7.5</text><text x="700" y="198">10</text></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="250" y="42">FY2027 total request</text>
+          <text x="250" y="82">Full gap, 2% → 3.5%</text>
+          <text x="250" y="122">Yearly step over 10 yrs</text>
+          <text x="250" y="162">Yearly step over 15 yrs</text>
+        </g>
+        <rect x="260" y="28" width="392" height="20" fill="#c7cbe8"/><text x="660" y="43" font-size="11" font-weight="700" fill="#5a6a8a">8.9</text>
+        <rect x="260" y="68" width="418" height="20" fill="#b45309"/><text x="686" y="83" font-size="11" font-weight="700" fill="#b45309">~9.5</text>
+        <rect x="260" y="108" width="42" height="20" fill="#3730a3"/><text x="310" y="123" font-size="11" font-weight="700" fill="#3730a3">~0.95</text>
+        <rect x="260" y="148" width="28" height="20" fill="#818cf8"/><text x="296" y="163" font-size="11" font-weight="700" fill="#3730a3">~0.63</text>
+      </svg>
+      <div class="chart-note">Newsletter arithmetic at nominal GDP of about ¥630 trillion; the 2% baseline uses Japan's broad defense-related definition, so the budget request is not directly comparable.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SLOWER PATH</div>
+        <div class="annotation-card-ja">防衛費<span class="annotation-card-en">bōeihi · defense spending</span></div>
+        <div class="annotation-card-body">An adviser inside the growth panel is framing 3.5% as a decade-plus goal, which caps the yearly increment.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · YEAR-END DOCUMENTS</div>
+        <div class="annotation-card-ja">安全保障関連3文書<span class="annotation-card-en">anzen hoshō kanren san-bunsho · security documents</span></div>
+        <div class="annotation-card-body">The revision sets the target and the funding mix between taxes and bonds.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · JGB SUPPLY</div>
+        <div class="annotation-card-ja">国債<span class="annotation-card-en">kokusai · JGB</span></div>
+        <div class="annotation-card-body">With the 10-year above 3% and an unfunded tax cut pending, bond-financed defense would add to supply pressure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #122 · SEPTEMBER 29, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
