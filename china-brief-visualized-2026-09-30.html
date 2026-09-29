@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #134 · September 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #134 · September 30, 2026</div>
+    <div class="masthead-sub">AI Travel Curbs Reach Families · Kling 4.0 vs Kuaishou's Market Value · PSL Cut and Mortgage Subsidy</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · POLICY</div>
+      <div class="card-num">3<span class="card-num-unit">steps</span></div>
+      <div class="card-label">Travel controls on AI talent in 2026: staff approvals (May), exit regulation (Sept 15), families (Sept 28)</div>
+      <div class="card-delta delta-red">Scope and criteria unpublished</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · VIDEO</div>
+      <div class="card-num">$18<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Kling's July valuation, above Kuaishou's ~$17bn market value</div>
+      <div class="card-delta delta-amber">Growth slowed to ~200% in Q2</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · PBOC</div>
+      <div class="card-num">1.5<span class="card-num-unit">%</span></div>
+      <div class="card-label">One-year PSL rate after a 25bp cut, plus ¥700bn in new relending quota</div>
+      <div class="card-delta delta-green">First-home mortgage subsidy from Oct 1</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">Spouses and Children Now Need Approval Too: Beijing Extends AI Travel Curbs to Executives' Families</div>
+    <div class="story-insight">
+      <p>Families of selected AI and chip executives at private firms now need approval to travel abroad, Bloomberg reported on September 28. Senior staff at companies including Alibaba and DeepSeek have needed it since May.</p>
+      <br>
+      <p>A State Council exit regulation effective September 15 allows outright bans in export-control and technology-trade cases, and Manus's co-founders were barred from leaving during Meta's failed $2 billion deal. The family rule gives officials leverage over executives with no case opened.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing now controls who travels at leading AI labs as well as who invests and what code leaves. Key-person risk in Chinese AI now includes whether founders can travel for roadshows and partner meetings.</div>
+    <div class="chart-box">
+      <div class="chart-title">Escalation of Travel Controls on AI and Chip Talent, 2026</div>
+      <svg viewBox="0 0 820 230" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="110" x2="780" y2="110" stroke="#1a1a2e" stroke-width="2"/>
+<text x="60" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Jan</text>
+<text x="140" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Feb</text>
+<text x="220" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Mar</text>
+<text x="300" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Apr</text>
+<text x="380" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">May</text>
+<text x="460" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Jun</text>
+<text x="540" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Jul</text>
+<text x="620" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Aug</text>
+<text x="700" y="135" font-size="10" fill="#5a6a8a" text-anchor="middle">Sep</text>
+<circle cx="380" cy="110" r="9" fill="#b45309"/>
+<line x1="380" y1="100" x2="380" y2="50" stroke="#b45309"/>
+<text x="380" y="28" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">May: senior AI staff</text>
+<text x="380" y="44" font-size="11" fill="#1a1a2e" text-anchor="middle">need approval for trips abroad</text>
+<circle cx="737" cy="110" r="9" fill="#1a56db"/>
+<line x1="737" y1="120" x2="737" y2="160" stroke="#1a56db"/>
+<text x="700" y="178" font-size="12" font-weight="700" fill="#1a56db" text-anchor="end">Sept 15: State Council exit regulation</text>
+<text x="700" y="194" font-size="11" fill="#1a1a2e" text-anchor="end">bans possible in export-control and tech-trade cases</text>
+<line x1="700" y1="174" x2="737" y2="160" stroke="#1a56db"/>
+<circle cx="774" cy="110" r="11" fill="#c0392b"/>
+<line x1="774" y1="98" x2="774" y2="50" stroke="#c0392b"/>
+<text x="780" y="28" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end">Sept 28: spouses and children</text>
+<text x="780" y="44" font-size="11" fill="#1a1a2e" text-anchor="end">of selected executives need approval</text>
+<text x="60" y="222" font-size="10" fill="#5a6a8a">Source: Bloomberg reporting (May, Sept 28), State Council regulation. Covered companies and approving office not published.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · WIDER NET</div>
+        <div class="annotation-card-zh">家属<span class="annotation-card-en">jiāshǔ · family members</span></div>
+        <div class="annotation-card-body">Controls now reach people with no role at the company, which gives officials leverage without a legal case.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FORMAL LIST</div>
+        <div class="annotation-card-zh">审批<span class="annotation-card-en">shěnpī · approval</span></div>
+        <div class="annotation-card-body">A published list of covered firms or an extension to mid-level researchers would make the regime priceable.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · HIRING</div>
+        <div class="annotation-card-zh">人才外流<span class="annotation-card-en">réncái wàiliú · brain drain</span></div>
+        <div class="annotation-card-body">Returnees with families abroad may avoid top labs, cutting the talent pool the curbs aim to protect.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">30-Second Clips and an $18 Billion Mark: Kling 4.0 Arrives While Kuaishou Trades Below Its Own Video Unit</div>
+    <div class="story-insight">
+      <p>Kling 4.0 Flash opened to paying members on September 28, with the full model due in October. Clips run to 30 seconds, extendable to two minutes, with 10 keyframes, 15 reference inputs and 4K HDR output.</p>
+      <br>
+      <p>Kling's annualized revenue passed $500 million in March, but Q2 growth slowed to about 200% from about 300%. The July round valued the unit near $18 billion, while Kuaishou, down more than 60% in a year, is worth about $17 billion.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Kuaishou's share price gives its core short-video business almost no value next to Kling's private mark. Kling's Q3 revenue in November decides which side moves.</div>
+    <div class="chart-box">
+      <div class="chart-title">Kling Revenue Run Rate and Valuation vs Kuaishou Market Value (US$)</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="16" font-size="11" font-weight="700" fill="#5a6a8a">ANNUALIZED REVENUE (scale: $600M)</text>
+<text x="290" y="46" font-size="12" fill="#1a1a2e" text-anchor="end">Kling, Dec 2025</text><rect x="300" y="32" width="184" height="20" fill="#c9c1b6"/><text x="492" y="47" font-size="11" font-weight="700" fill="#5a6a8a">$240M</text>
+<text x="290" y="80" font-size="12" fill="#1a1a2e" text-anchor="end">Kling, Mar 2026</text><rect x="300" y="66" width="383.3" height="20" fill="#c0392b"/><text x="691" y="81" font-size="11" font-weight="700" fill="#c0392b">$500M+</text>
+<line x1="30" y1="112" x2="790" y2="112" stroke="#e0d8d0"/>
+<text x="30" y="134" font-size="11" font-weight="700" fill="#5a6a8a">VALUE (scale: $20B)</text>
+<text x="290" y="164" font-size="12" fill="#1a1a2e" text-anchor="end">Kling valuation, July round</text><rect x="300" y="150" width="414" height="20" fill="#c0392b"/><text x="722" y="165" font-size="11" font-weight="700" fill="#c0392b">~$18B</text>
+<text x="290" y="198" font-size="12" fill="#1a1a2e" text-anchor="end">Kuaishou market value, late Sept</text><rect x="300" y="184" width="391" height="20" fill="#1a56db"/><text x="699" y="199" font-size="11" font-weight="700" fill="#1a56db">~$17B</text>
+<text x="30" y="240" font-size="10" fill="#5a6a8a">Kling is under 3% of Kuaishou revenue. Q2 Kling revenue: over ¥850M, +~200% y/y. Sources: Bloomberg, Tiger Brokers, company data.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRODUCT</div>
+        <div class="annotation-card-zh">关键帧<span class="annotation-card-en">guānjiànzhēn · keyframe</span></div>
+        <div class="annotation-card-body">Ten keyframes and 30-second native clips target professional ad and short-drama work, where per-clip spending is highest.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SPIN-OFF</div>
+        <div class="annotation-card-zh">分拆上市<span class="annotation-card-en">fēnchāi shàngshì · spin-off listing</span></div>
+        <div class="annotation-card-body">A Hong Kong listing, possibly in 2027, needs growth to hold near current rates to clear $18 billion.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COMPETITION</div>
+        <div class="annotation-card-zh">视频生成<span class="annotation-card-en">shìpín shēngchéng · video generation</span></div>
+        <div class="annotation-card-body">Seedance 2.5 leads with creators and Alibaba and MiniMax cut prices, while longer clips raise compute cost.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">PSL Cut to 1.5%, ¥700 Billion More in Relending, and the First Central Subsidy on Mortgage Interest</div>
+    <div class="story-insight">
+      <p>The PBOC cut the one-year PSL rate 25bp to 1.5% on September 29 and opened PSL to six infrastructure networks including computing power. Technology relending rose to ¥1.4 trillion and small-business and farm relending to ¥4.85 trillion.</p>
+      <br>
+      <p>From October 1 the central budget pays 1 point a year for up to five years on first-home mortgages up to ¥1 million, for homes up to 120 sqm and ¥1.5 million. The 7-day rate and LPR did not move.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Easing is flowing to policy banks and targeted loans, and the mortgage subsidy aims at lower-tier starter homes. October mortgage issuance will show whether six months of household deleveraging ends.</div>
+    <div class="chart-box">
+      <div class="chart-title">PBOC Relending Quotas Before and After Sept 29 (¥ trillion)</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+<line x1="300" y1="12" x2="300" y2="200" stroke="#1a1a2e"/><text x="300" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="392" y1="12" x2="392" y2="200" stroke="#e0d8d0"/><text x="392" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">1</text>
+<line x1="484" y1="12" x2="484" y2="200" stroke="#e0d8d0"/><text x="484" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">2</text>
+<line x1="576" y1="12" x2="576" y2="200" stroke="#e0d8d0"/><text x="576" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">3</text>
+<line x1="668" y1="12" x2="668" y2="200" stroke="#e0d8d0"/><text x="668" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">4</text>
+<line x1="760" y1="12" x2="760" y2="200" stroke="#e0d8d0"/><text x="760" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">5</text>
+<text x="290" y="30" font-size="12" fill="#1a1a2e" text-anchor="end">Tech innovation, before</text><rect x="300" y="16" width="110.4" height="18" fill="#c9c1b6"/><text x="418" y="30" font-size="11" font-weight="700" fill="#5a6a8a">1.2</text>
+<text x="290" y="54" font-size="12" fill="#1a1a2e" text-anchor="end">Tech innovation, after</text><rect x="300" y="40" width="128.8" height="18" fill="#c0392b"/><text x="437" y="54" font-size="11" font-weight="700" fill="#c0392b">1.4 (+0.2)</text>
+<text x="290" y="92" font-size="12" fill="#1a1a2e" text-anchor="end">Farm &amp; small business, before</text><rect x="300" y="78" width="400.2" height="18" fill="#c9c1b6"/><text x="708" y="92" font-size="11" font-weight="700" fill="#5a6a8a">4.35</text>
+<text x="290" y="116" font-size="12" fill="#1a1a2e" text-anchor="end">Farm &amp; small business, after</text><rect x="300" y="102" width="446.2" height="18" fill="#b45309"/><text x="754" y="116" font-size="11" font-weight="700" fill="#b45309">4.85</text>
+<text x="290" y="154" font-size="12" fill="#1a1a2e" text-anchor="end">of which private firms, before</text><rect x="300" y="140" width="92" height="18" fill="#c9c1b6"/><text x="400" y="154" font-size="11" font-weight="700" fill="#5a6a8a">1.0</text>
+<text x="290" y="178" font-size="12" fill="#1a1a2e" text-anchor="end">of which private firms, after</text><rect x="300" y="164" width="119.6" height="18" fill="#1a56db"/><text x="428" y="178" font-size="11" font-weight="700" fill="#1a56db">1.3 (+0.3)</text>
+<text x="30" y="240" font-size="10" fill="#5a6a8a">PSL one-year rate: 1.75% → 1.5%. Tech relending now funds 100% of eligible loans (was 60%). Source: PBOC, 21st Century Business Herald.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FIRST</div>
+        <div class="annotation-card-zh">贴息<span class="annotation-card-en">tiēxī · interest subsidy</span></div>
+        <div class="annotation-card-body">The central budget is paying household mortgage interest for the first time, with no cap on total spending.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CREDIT</div>
+        <div class="annotation-card-zh">首套房<span class="annotation-card-en">shǒutàofáng · first home</span></div>
+        <div class="annotation-card-body">Golden Week sales and October mortgage data will show whether household lending stops contracting.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REACH</div>
+        <div class="annotation-card-zh">抵押补充贷款<span class="annotation-card-en">dǐyā bǔchōng dàikuǎn · PSL</span></div>
+        <div class="annotation-card-body">PSL funds policy-bank projects, so household borrowing costs stay where they were outside the subsidy.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #134 · SEPTEMBER 30, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
