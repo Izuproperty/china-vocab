@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #133 · September 29, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #133 · September 29, 2026</div>
+    <div class="masthead-sub">RTX Pro 5500 Approval Signal · Kyland's Domestic Robot Stack · August Industrial Profits</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">29<span class="card-num-unit">%</span></div>
+      <div class="card-label">RTX Pro 5500 memory bandwidth as a share of the H200's</div>
+      <div class="card-delta delta-amber">MIIT signals approval, no volume</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">3<span class="card-num-unit">layers</span></div>
+      <div class="card-label">Kyland OS, bus and tools replacing Linux/ROS and EtherCAT in one robot</div>
+      <div class="card-delta delta-red">No customer or price disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · PROFITS</div>
+      <div class="card-num">4.2<span class="card-num-unit">%</span></div>
+      <div class="card-label">August industrial profit growth, weakest month of 2026</div>
+      <div class="card-delta delta-red">July was +11.2%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">Beijing Asks ByteDance and Alibaba How Many Nvidia RTX Pro 5500s They Want, and Signals It Will Approve</div>
+    <div class="story-insight">
+      <p>MIIT asked ByteDance and Alibaba for purchase plans for Nvidia's RTX Pro 5500 and signalled approval, The Information reported on September 27. No volume, timing or official confirmation followed.</p>
+      <br>
+      <p>The Blackwell workstation card carries 84GB of GDDR7 and about 1.4 TB/s of bandwidth, enough for inference but well short of the H200 for training. A year ago Beijing told the same two firms to cancel RTX Pro 6000D orders.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing is opening imports for inference-grade parts only. The cleared volume decides whether Nvidia or Cambricon and Huawei gain inference share.</div>
+    <div class="chart-box">
+      <div class="chart-title">RTX Pro 5500 vs H200 (H200 = 100%)</div>
+      <svg viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="320" y1="12" x2="320" y2="162" stroke="#1a1a2e"/><text x="320" y="180" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="435" y1="12" x2="435" y2="162" stroke="#e0d8d0"/><text x="435" y="180" font-size="10" fill="#5a6a8a" text-anchor="middle">25%</text>
+<line x1="550" y1="12" x2="550" y2="162" stroke="#e0d8d0"/><text x="550" y="180" font-size="10" fill="#5a6a8a" text-anchor="middle">50%</text>
+<line x1="665" y1="12" x2="665" y2="162" stroke="#e0d8d0"/><text x="665" y="180" font-size="10" fill="#5a6a8a" text-anchor="middle">75%</text>
+<line x1="780" y1="12" x2="780" y2="162" stroke="#e0d8d0"/><text x="780" y="180" font-size="10" fill="#5a6a8a" text-anchor="middle">100%</text>
+<text x="310" y="34" font-size="12" fill="#1a1a2e" text-anchor="end">H200 GPU memory (141GB HBM3e)</text><rect x="320" y="20" width="460" height="20" fill="#c9c1b6"/>
+<text x="310" y="68" font-size="12" fill="#1a1a2e" text-anchor="end">RTX Pro 5500 GPU memory (84GB GDDR7)</text><rect x="320" y="54" width="276" height="20" fill="#c0392b"/><text x="604" y="69" font-size="11" font-weight="700" fill="#c0392b">~60%</text>
+<text x="310" y="112" font-size="12" fill="#1a1a2e" text-anchor="end">H200 memory bandwidth (4.8 TB/s)</text><rect x="320" y="98" width="460" height="20" fill="#c9c1b6"/>
+<text x="310" y="146" font-size="12" fill="#1a1a2e" text-anchor="end">RTX Pro 5500 bandwidth (~1.4 TB/s)</text><rect x="320" y="132" width="133" height="20" fill="#c0392b"/><text x="461" y="147" font-size="11" font-weight="700" fill="#c0392b">~29%</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · IMPORT CHANNEL</div>
+        <div class="annotation-card-zh">采购计划<span class="annotation-card-en">cǎigòu jìhuà · purchase plan</span></div>
+        <div class="annotation-card-body">A ministry request for purchase plans is the first step toward licensed imports after a year of refusals and rationing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VOLUME</div>
+        <div class="annotation-card-zh">推理<span class="annotation-card-en">tuīlǐ · inference</span></div>
+        <div class="annotation-card-body">A large allocation would cut into domestic inference demand; a token one would read as post-summit bargaining.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · US RECLASSIFICATION</div>
+        <div class="annotation-card-zh">工作站<span class="annotation-card-en">gōngzuòzhàn · workstation</span></div>
+        <div class="annotation-card-body">Washington could pull workstation cards into data-center controls if Chinese orders grow large.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">Kyland Swaps Out Linux, ROS and EtherCAT Inside a Robot, Then Lets a State Lab Try to Break It</div>
+    <div class="story-insight">
+      <p>Kyland Technology showed an embodied AI robot in Yichang on September 28 running its Intewell real-time OS, AUTBUS network bus and MaVIEW tools with an unnamed domestic AI chip.</p>
+      <br>
+      <p>An MIIT-affiliated security lab hit it and a conventional robot with joint damage, network attacks and virus injection; state media said only Kyland's kept running. China already buys 59% of the world's industrial robots, and domestic brands hold 55% of that market.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Localization in robotics is moving from motors and reducers to the control software and buses. A named humanoid customer is still missing.</div>
+    <div class="chart-box">
+      <div class="chart-title">Industrial Robot Installations, 2025 (IFR World Robotics 2026)</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+<line x1="230" y1="12" x2="230" y2="156" stroke="#1a1a2e"/><text x="230" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="367.5" y1="12" x2="367.5" y2="156" stroke="#e0d8d0"/><text x="367.5" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">100k</text>
+<line x1="505" y1="12" x2="505" y2="156" stroke="#e0d8d0"/><text x="505" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">200k</text>
+<line x1="642.5" y1="12" x2="642.5" y2="156" stroke="#e0d8d0"/><text x="642.5" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">300k</text>
+<line x1="780" y1="12" x2="780" y2="156" stroke="#e0d8d0"/><text x="780" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">400k</text>
+<text x="220" y="34" font-size="12" fill="#1a1a2e" text-anchor="end">China</text><rect x="230" y="20" width="486.8" height="20" fill="#c0392b"/><text x="724" y="35" font-size="11" font-weight="700" fill="#c0392b">354,000</text>
+<text x="220" y="70" font-size="12" fill="#1a1a2e" text-anchor="end">European Union</text><rect x="230" y="56" width="83.2" height="20" fill="#1a56db"/><text x="321" y="71" font-size="11" font-weight="700" fill="#1a56db">60,500</text>
+<text x="220" y="106" font-size="12" fill="#1a1a2e" text-anchor="end">United States</text><rect x="230" y="92" width="52.8" height="20" fill="#1a56db"/><text x="291" y="107" font-size="11" font-weight="700" fill="#1a56db">38,400</text>
+<text x="220" y="142" font-size="12" fill="#1a1a2e" text-anchor="end">Japan</text><rect x="230" y="128" width="49.8" height="20" fill="#1a56db"/><text x="288" y="143" font-size="11" font-weight="700" fill="#1a56db">36,219</text>
+<text x="220" y="212" font-size="12" fill="#1a1a2e" text-anchor="end">China market by supplier</text>
+<rect x="230" y="198" width="302.5" height="22" fill="#c0392b"/><text x="381" y="213" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">Domestic brands 55%</text>
+<rect x="532.5" y="198" width="247.5" height="22" fill="#c9c1b6"/><text x="656" y="213" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Foreign brands 45%</text>
+<text x="230" y="240" font-size="10" fill="#5a6a8a">China = 59% of 603,000 global installations. Kyland targets the control layer beneath these machines.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STACK DEPTH</div>
+        <div class="annotation-card-zh">电子架构<span class="annotation-card-en">diànzǐ jiàgòu · electronic architecture</span></div>
+        <div class="annotation-card-body">Substitution now reaches the OS and field bus, which open-source and European standards have supplied.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ADOPTION</div>
+        <div class="annotation-card-zh">实时操作系统<span class="annotation-card-en">shíshí cāozuò xìtǒng · real-time OS</span></div>
+        <div class="annotation-card-body">Look for Unitree, UBTech or a state-grid buyer to name Intewell and AUTBUS in a product.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · STAGED TEST</div>
+        <div class="annotation-card-zh">国产化<span class="annotation-card-en">guóchǎnhuà · localization</span></div>
+        <div class="annotation-card-body">The vendor and a state lab ran the test against an unnamed rival, and no protocol was published.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">August Industrial Profits Rise 4.2%, the Weakest Month of 2026, and Electronics Supplies 62% of the Year's Gain</div>
+    <div class="story-insight">
+      <p>Profits at above-size industrial firms rose 4.2% in August after 11.2% in July. January to August profits reached ¥5.27 trillion, up 15.7%, with a 5.66% margin.</p>
+      <br>
+      <p>Electronics profits rose 110% and supplied 62% of the increase. Metals, coal and chemicals rode prices, utilities fell 12%, and foreign-invested firms grew just 2.3%. August 2025's 20.4% jump set a high base.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The profit recovery is an AI-hardware and commodity story. Consumer-facing industry has not joined, and September PMIs land before Golden Week.</div>
+    <div class="chart-box">
+      <div class="chart-title">Industrial Profit Growth, Year on Year (Jan–Aug unless noted)</div>
+      <svg viewBox="0 0 820 390" xmlns="http://www.w3.org/2000/svg">
+<line x1="300" y1="8" x2="300" y2="364" stroke="#e0d8d0"/><text x="300" y="380" font-size="10" fill="#5a6a8a" text-anchor="middle">-20%</text>
+<line x1="366" y1="8" x2="366" y2="364" stroke="#1a1a2e"/><text x="366" y="380" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="497" y1="8" x2="497" y2="364" stroke="#e0d8d0"/><text x="497" y="380" font-size="10" fill="#5a6a8a" text-anchor="middle">+40%</text>
+<line x1="629" y1="8" x2="629" y2="364" stroke="#e0d8d0"/><text x="629" y="380" font-size="10" fill="#5a6a8a" text-anchor="middle">+80%</text>
+<line x1="760" y1="8" x2="760" y2="364" stroke="#e0d8d0"/><text x="760" y="380" font-size="10" fill="#5a6a8a" text-anchor="middle">+120%</text>
+<text x="290" y="27" font-size="12" fill="#1a1a2e" text-anchor="end">Computers & electronics</text><rect x="365.7" y="12" width="361.4" height="20" fill="#c0392b"/><text x="735.1" y="27" font-size="11" font-weight="700" fill="#c0392b" text-anchor="start">+110.0%</text>
+<text x="290" y="59" font-size="12" fill="#1a1a2e" text-anchor="end">Non-ferrous metals</text><rect x="365.7" y="44" width="272.4" height="20" fill="#b45309"/><text x="646.1" y="59" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">+82.9%</text>
+<text x="290" y="91" font-size="12" fill="#1a1a2e" text-anchor="end">High-tech manufacturing</text><rect x="365.7" y="76" width="179.7" height="20" fill="#c0392b"/><text x="553.4" y="91" font-size="11" font-weight="700" fill="#c0392b" text-anchor="start">+54.7%</text>
+<text x="290" y="123" font-size="12" fill="#1a1a2e" text-anchor="end">Semiconductors</text><rect x="365.7" y="108" width="170.2" height="20" fill="#c0392b"/><text x="543.9" y="123" font-size="11" font-weight="700" fill="#c0392b" text-anchor="start">+51.8%</text>
+<text x="290" y="155" font-size="12" fill="#1a1a2e" text-anchor="end">Coal mining</text><rect x="365.7" y="140" width="169.5" height="20" fill="#b45309"/><text x="543.3" y="155" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">+51.6%</text>
+<text x="290" y="187" font-size="12" fill="#1a1a2e" text-anchor="end">Chemicals</text><rect x="365.7" y="172" width="167.6" height="20" fill="#b45309"/><text x="541.3" y="187" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">+51.0%</text>
+<text x="290" y="219" font-size="12" fill="#1a1a2e" text-anchor="end">All industry, Jan–Aug</text><rect x="365.7" y="204" width="51.6" height="20" fill="#1a1a2e"/><text x="425.3" y="219" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+15.7%</text>
+<text x="290" y="251" font-size="12" fill="#1a1a2e" text-anchor="end">July, single month</text><rect x="365.7" y="236" width="36.8" height="20" fill="#1a56db"/><text x="410.5" y="251" font-size="11" font-weight="700" fill="#1a56db" text-anchor="start">+11.2%</text>
+<text x="290" y="283" font-size="12" fill="#1a1a2e" text-anchor="end">August, single month</text><rect x="365.7" y="268" width="13.8" height="20" fill="#1a56db"/><text x="387.5" y="283" font-size="11" font-weight="700" fill="#1a56db" text-anchor="start">+4.2%</text>
+<text x="290" y="315" font-size="12" fill="#1a1a2e" text-anchor="end">Foreign-invested firms</text><rect x="365.7" y="300" width="7.6" height="20" fill="#5a6a8a"/><text x="381.3" y="315" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="start">+2.3%</text>
+<text x="290" y="347" font-size="12" fill="#1a1a2e" text-anchor="end">Utilities</text><rect x="326.3" y="332" width="39.4" height="20" fill="#5a6a8a"/><text x="371.7" y="347" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="start">-12.0%</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI HARDWARE</div>
+        <div class="annotation-card-zh">高技术制造业<span class="annotation-card-en">gāojìshù zhìzàoyè · high-tech manufacturing</span></div>
+        <div class="annotation-card-body">High-tech manufacturing profits up 54.7% show AI server and chip demand reaching factory earnings.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICES</div>
+        <div class="annotation-card-zh">有色金属<span class="annotation-card-en">yǒusè jīnshǔ · non-ferrous metals</span></div>
+        <div class="annotation-card-body">Metals and coal gains depend on commodity prices that can reverse without any change in demand.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND</div>
+        <div class="annotation-card-zh">内需<span class="annotation-card-en">nèixū · domestic demand</span></div>
+        <div class="annotation-card-body">Weak household demand leaves the headline exposed if the electronics cycle cools.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #133 · SEPTEMBER 29, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
