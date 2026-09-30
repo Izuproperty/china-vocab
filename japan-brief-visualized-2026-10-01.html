@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #124 · October 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #124 · October 1, 2026</div>
+    <div class="masthead-sub">OpenAI's $1.4T Ask Lifts SoftBank · TDK and Taiyo Yuden Talk Alliance · August Output Falls Before the Tankan</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · SOFTBANK</div>
+      <div class="card-num">$1.4<span class="card-num-unit">T</span></div>
+      <div class="card-label">OpenAI's target pre-money valuation for a $30B+ round, up from $852B in March</div>
+      <div class="card-delta delta-green">SBG +6.2% on Sept 30</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMI · TDK + TAIYO YUDEN</div>
+      <div class="card-num">MOU</div>
+      <div class="card-label">Joint MLCC and inductor development for AI servers; capital alliance under consideration</div>
+      <div class="card-delta delta-amber">No terms or timeline</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · OUTPUT</div>
+      <div class="card-num">-1.7<span class="card-num-unit">%</span></div>
+      <div class="card-label">August industrial production, month on month, against a forecast rise of 1.7%</div>
+      <div class="card-delta delta-red">Autos -6.8%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">OpenAI Seeks a $1.4 Trillion Valuation on the Day SoftBank's Last $10 Billion Goes In</div>
+    <div class="story-insight">
+      <p>OpenAI opened talks on a raise of at least $30 billion at about $1.4 trillion pre-money, after putting its IPO on hold. The March round was priced at $852 billion post-money. SoftBank Group rose 6.2% on September 30.</p>
+      <br>
+      <p>SoftBank's final $10 billion tranche is due today, funded by a record high-yield bond with dollar coupons up to 9.75%. That brings its commitment to about $64.6 billion for roughly 13%, worth about $180 billion at the new price before dilution.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A higher OpenAI mark widens SoftBank's borrowing room under its loan-to-value ceiling, but the gain is unrealized while its coupons are paid in cash; the round's closing price and SoftBank's November results are the checkpoints.</div>
+    <div class="chart-box">
+      <div class="chart-title">OpenAI Valuation and SoftBank's Stake ($ billions)</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+        <text x="20" y="20" font-size="11" font-weight="700" fill="#3730a3">OPENAI VALUATION</text>
+        <g stroke="#e8eaf2"><line x1="240" y1="30" x2="240" y2="105"/><line x1="427" y1="30" x2="427" y2="105"/><line x1="613" y1="30" x2="613" y2="105"/><line x1="800" y1="30" x2="800" y2="105"/></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="230" y="54">March 2026 (post-money)</text>
+          <text x="230" y="92">Sept target (pre-money)</text>
+        </g>
+        <rect x="240" y="40" width="318" height="20" fill="#c7cbe8"/><text x="566" y="55" font-size="11" font-weight="700" fill="#5a6a8a">852</text>
+        <rect x="240" y="78" width="523" height="20" fill="#3730a3"/><text x="771" y="93" font-size="11" font-weight="700" fill="#3730a3">1,400</text>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle"><text x="240" y="120">0</text><text x="427" y="120">500</text><text x="613" y="120">1,000</text><text x="800" y="120">1,500</text></g>
+        <text x="20" y="150" font-size="11" font-weight="700" fill="#3730a3">SOFTBANK'S ~13% STAKE</text>
+        <g stroke="#e8eaf2"><line x1="240" y1="160" x2="240" y2="235"/><line x1="380" y1="160" x2="380" y2="235"/><line x1="520" y1="160" x2="520" y2="235"/><line x1="660" y1="160" x2="660" y2="235"/><line x1="800" y1="160" x2="800" y2="235"/></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="230" y="184">Total committed cost</text>
+          <text x="230" y="222">Value at $1.4T (pre-dilution)</text>
+        </g>
+        <rect x="240" y="170" width="181" height="20" fill="#818cf8"/><text x="429" y="185" font-size="11" font-weight="700" fill="#3730a3">64.6</text>
+        <rect x="240" y="208" width="510" height="20" fill="#3730a3"/><text x="758" y="223" font-size="11" font-weight="700" fill="#3730a3">~180</text>
+      </svg>
+      <div class="chart-note">Stake value is an estimate (13% x $1.4T) and ignores dilution from the new round. Stake axis runs 0 to 200.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · MARK-UP</div>
+        <div class="annotation-card-ja">評価額<span class="annotation-card-en">hyōkagaku · valuation</span></div>
+        <div class="annotation-card-body">A 64% step-up from March lands the same day SoftBank's last tranche is paid.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CLOSING PRICE</div>
+        <div class="annotation-card-ja">含み益<span class="annotation-card-en">fukumi-eki · unrealized gain</span></div>
+        <div class="annotation-card-body">Whether the round closes near $1.4T, then the mark in SoftBank's November results.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CASH VS PAPER</div>
+        <div class="annotation-card-ja">上場延期<span class="annotation-card-en">jōjō enki · IPO postponement</span></div>
+        <div class="annotation-card-body">OpenAI and SB Energy have both delayed listings, while bond coupons up to 9.75% are paid in cash.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS & COMPONENTS</div>
+    <div class="story-headline">TDK and Taiyo Yuden Open Alliance Talks to Build Capacitors for AI Servers Together</div>
+    <div class="story-insight">
+      <p>The two signed an MOU on September 29 covering joint development of high-capacitance MLCCs and inductors for AI data centers and physical AI, cooperation in manufacturing and procurement, and a possible capital alliance. They may seek joint METI approval under the Economic Security Promotion Act.</p>
+      <br>
+      <p>AI accelerators need dense banks of capacitors and inductors to keep power stable, and the high-capacitance parts are the hardest to make. Murata and Samsung Electro-Mechanics lead the high end; Chinese makers are growing in standard grades.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Pooled procurement and R&D help the number three and four players keep pace on AI-grade parts; a capital tie-up with a figure attached would make them a combined challenger to Murata, and nothing in the MOU commits them to one.</div>
+    <div class="chart-box">
+      <div class="chart-title">Passive-Component Stocks on Sept 30 (% change)</div>
+      <svg viewBox="0 0 820 150" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e8eaf2"><line x1="250" y1="10" x2="250" y2="120"/><line x1="350" y1="10" x2="350" y2="120"/><line x1="550" y1="10" x2="550" y2="120"/><line x1="650" y1="10" x2="650" y2="120"/></g>
+        <line x1="450" y1="10" x2="450" y2="120" stroke="#1a1a2e" stroke-width="1.5"/>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle"><text x="250" y="136">-4%</text><text x="350" y="136">-2%</text><text x="450" y="136">0</text><text x="550" y="136">+2%</text><text x="650" y="136">+4%</text></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="200" y="34">Taiyo Yuden (6976)</text>
+          <text x="200" y="69">TDK (6762)</text>
+          <text x="200" y="104">Murata (6981)</text>
+        </g>
+        <rect x="450" y="20" width="190" height="20" fill="#be185d"/><text x="648" y="35" font-size="11" font-weight="700" fill="#be185d">+3.8%</text>
+        <rect x="450" y="55" width="65" height="20" fill="#be185d" opacity="0.7"/><text x="523" y="70" font-size="11" font-weight="700" fill="#be185d">+1.3%</text>
+        <rect x="315" y="90" width="135" height="20" fill="#9aa3c0"/><text x="307" y="105" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="end">-2.7%</text>
+      </svg>
+      <div class="chart-note">Source: Reuters Tokyo market close, September 30, 2026. Intraday gains were reported at different levels.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI POWER PARTS</div>
+        <div class="annotation-card-ja">積層セラミックコンデンサ<span class="annotation-card-en">sekisō seramikku kondensa · MLCC</span></div>
+        <div class="annotation-card-body">AI boards need several times the MLCC count of standard servers, mostly in scarce high-capacitance grades.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EQUITY TIE-UP</div>
+        <div class="annotation-card-ja">資本提携<span class="annotation-card-en">shihon teikei · capital alliance</span></div>
+        <div class="annotation-card-body">A stake size or named joint product in first-half results from late October.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · STALL</div>
+        <div class="annotation-card-ja">太陽誘電<span class="annotation-card-en">Taiyō Yūden · Taiyo Yuden</span></div>
+        <div class="annotation-card-body">An MOU binds neither side; Japanese component alliances often stop at the talks stage.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO & BOJ</div>
+    <div class="story-headline">Factory Output Drops 1.7% in August as Car Production Slides, With the Tankan Out This Morning</div>
+    <div class="story-insight">
+      <p>METI's preliminary industrial production fell 1.7% in August against a forecast 1.7% rise, the second straight decline. Motor vehicles fell 6.8%. Retail sales rose 2.7% year on year, below the roughly 3.3% expected.</p>
+      <br>
+      <p>Manufacturers project gains of 3.2% in September and 3.1% in October. The Tankan is out at 8:50 JST today, with 12 think tanks expecting the large-manufacturer index at +26, up from +22 in June on AI and chip demand.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A Tankan at or above +26 would let the BOJ read August as an auto-led blip; a miss on top of this data would cut October hike odds, already put at 20% to 30%, and weigh on bank stocks.</div>
+    <div class="chart-box">
+      <div class="chart-title">Industrial Production, Month on Month (%)</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e8eaf2"><line x1="60" y1="30" x2="800" y2="30"/><line x1="60" y1="70" x2="800" y2="70"/><line x1="60" y1="150" x2="800" y2="150"/></g>
+        <line x1="60" y1="110" x2="800" y2="110" stroke="#1a1a2e" stroke-width="1.5"/>
+        <g font-size="10" fill="#5a6a8a" text-anchor="end"><text x="52" y="34">+4</text><text x="52" y="74">+2</text><text x="52" y="114">0</text><text x="52" y="154">-2</text></g>
+        <rect x="110" y="110" width="80" height="4" fill="#9aa3c0"/><text x="150" y="104" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">-0.2</text>
+        <rect x="250" y="76" width="80" height="34" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="5,4"/><text x="290" y="70" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">+1.7</text>
+        <rect x="390" y="110" width="80" height="34" fill="#b91c1c"/><text x="430" y="158" font-size="11" font-weight="700" fill="#b91c1c" text-anchor="middle">-1.7</text>
+        <rect x="530" y="46" width="80" height="64" fill="#c7cbe8"/><text x="570" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">+3.2</text>
+        <rect x="670" y="48" width="80" height="62" fill="#c7cbe8"/><text x="710" y="42" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">+3.1</text>
+        <g font-size="11" fill="#1a1a2e" text-anchor="middle">
+          <text x="150" y="180">July (revised)</text>
+          <text x="290" y="180">Aug forecast</text>
+          <text x="430" y="180">Aug actual</text>
+          <text x="570" y="180">Sept (firms' plan)</text>
+          <text x="710" y="180">Oct (firms' plan)</text>
+        </g>
+      </svg>
+      <div class="chart-note">Source: METI preliminary data, September 30, 2026. Dashed bar is the economists' consensus; light bars are manufacturers' own projections.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CHIP SENTIMENT</div>
+        <div class="annotation-card-ja">日銀短観<span class="annotation-card-en">Nichigin Tankan · BOJ Tankan</span></div>
+        <div class="annotation-card-body">Consensus +26 for large manufacturers rests on AI and semiconductor demand.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · 8:50 JST TODAY</div>
+        <div class="annotation-card-ja">鉱工業生産<span class="annotation-card-en">kōkōgyō seisan · industrial production</span></div>
+        <div class="annotation-card-body">Tankan capex plans and the auto sector's reading against August's 6.8% car output drop.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · HIKE ODDS</div>
+        <div class="annotation-card-ja">一進一退<span class="annotation-card-en">ikkin ittai · no clear direction</span></div>
+        <div class="annotation-card-body">A Tankan miss plus weak output would push the next BOJ move past October.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #124 · OCTOBER 1, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
