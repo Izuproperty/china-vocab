@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #135 · October 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #135 · October 1, 2026</div>
+    <div class="masthead-sub">DeepSeek's Ascend Toolkit · 700 Million AI Users, Slower Adds · September PMI Back at 50.1</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">128<span class="card-num-unit">chips</span></div>
+      <div class="card-label">Ascend 950 supernode used to tune DeepSeek's open-source TileLang toolkit</div>
+      <div class="card-delta delta-amber">Adoption outside DeepSeek untested</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ADOPTION</div>
+      <div class="card-num">700<span class="card-num-unit">m+</span></div>
+      <div class="card-label">Generative AI users in China at end-June 2026, above 50% penetration</div>
+      <div class="card-delta delta-red">Monthly adds down ~two-thirds</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · PMI</div>
+      <div class="card-num">50.1</div>
+      <div class="card-label">Official manufacturing PMI for September, up from 49.8</div>
+      <div class="card-delta delta-green">Non-manufacturing 50.2 vs 49.3 expected</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">DeepSeek Open-Sources a CUDA Substitute Tuned on a 128-Chip Ascend 950 Supernode</div>
+    <div class="story-insight">
+      <p>DeepSeek released TileLang, a kernel programming language, plus Ascend ports of DeepGEMM, FlashMLA, DeepEP, TileKernels and DeepSelect on September 30. Huawei supported the work, which was tuned on a 128-chip Ascend 950 supernode.</p>
+      <br>
+      <p>Rewriting CUDA kernels is the main cost of leaving Nvidia. Free, working Ascend kernels cut that cost for every Chinese buyer, and DeepSeek needs them itself for an Inner Mongolia site designed for at least 160,000 Ascend chips.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The software reason to stay on Nvidia is getting weaker in China. Chip supply and per-chip performance now set how fast Ascend can replace it.</div>
+    <div class="chart-box">
+      <div class="chart-title">DeepSeek's Ascend Stack: What Was Released and What It Runs On</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="14" width="760" height="44" rx="4" fill="#c0392b"/>
+<text x="410" y="36" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">TileLang · kernel programming language (CUDA alternative)</text>
+<text x="410" y="51" font-size="10" fill="#fde2e2" text-anchor="middle">open source, released Sept 30, 2026</text>
+<rect x="30" y="72" width="118" height="54" rx="4" fill="#fff" stroke="#c0392b"/><text x="89" y="96" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">DeepGEMM</text><text x="89" y="113" font-size="10" fill="#5a6a8a" text-anchor="middle">matrix math</text>
+<rect x="158" y="72" width="118" height="54" rx="4" fill="#fff" stroke="#c0392b"/><text x="217" y="96" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">FlashMLA</text><text x="217" y="113" font-size="10" fill="#5a6a8a" text-anchor="middle">long-context attention</text>
+<rect x="286" y="72" width="118" height="54" rx="4" fill="#fff" stroke="#c0392b"/><text x="345" y="96" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">DeepEP</text><text x="345" y="113" font-size="10" fill="#5a6a8a" text-anchor="middle">chip-to-chip comms</text>
+<rect x="414" y="72" width="118" height="54" rx="4" fill="#fff" stroke="#c0392b"/><text x="473" y="96" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">TileKernels</text><text x="473" y="113" font-size="10" fill="#5a6a8a" text-anchor="middle">vector compute</text>
+<rect x="542" y="72" width="118" height="54" rx="4" fill="#fff" stroke="#c0392b"/><text x="601" y="96" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">DeepSelect</text><text x="601" y="113" font-size="10" fill="#5a6a8a" text-anchor="middle">data filtering</text>
+<rect x="670" y="72" width="120" height="54" rx="4" fill="#fff" stroke="#c0392b"/><text x="730" y="96" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Benchmarks</text><text x="730" y="113" font-size="10" fill="#5a6a8a" text-anchor="middle">kernel testing</text>
+<rect x="30" y="140" width="760" height="44" rx="4" fill="#1a1a2e"/>
+<text x="410" y="162" font-size="14" font-weight="700" fill="#e8d5b0" text-anchor="middle">Huawei Ascend 950 supernode · 128 accelerators</text>
+<text x="410" y="177" font-size="10" fill="#8a9bb5" text-anchor="middle">jointly tuned by DeepSeek and Huawei</text>
+<text x="30" y="214" font-size="11" font-weight="700" fill="#5a6a8a">KEY FIGURES</text>
+<text x="30" y="236" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#c0392b">160,000+</tspan> Ascend chips planned for DeepSeek's Inner Mongolia data center</text>
+<text x="30" y="256" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#b45309">~60%</tspan> Ascend 910C inference throughput vs Nvidia H100 (one estimate)</text>
+<text x="30" y="276" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#1a56db">+20% to +60%</tspan> Ascend price increases in September on memory shortages</text>
+<text x="30" y="296" font-size="10" fill="#5a6a8a">Sources: Bloomberg, DeepSeek WeChat, Reuters (pricing), Startup Fortune.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SWITCHING COST</div>
+        <div class="annotation-card-zh">算子<span class="annotation-card-en">suànzǐ · operator / kernel</span></div>
+        <div class="annotation-card-body">Free, tested Ascend kernels remove months of porting work for Chinese labs weighing a move off Nvidia.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ADOPTION</div>
+        <div class="annotation-card-zh">开源<span class="annotation-card-en">kāiyuán · open source</span></div>
+        <div class="annotation-card-body">Contributions from ByteDance, Alibaba and Tencent engineers, and how Huawei's CANN stack absorbs TileLang.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLY</div>
+        <div class="annotation-card-zh">昇腾<span class="annotation-card-en">Shēngténg · Huawei Ascend</span></div>
+        <div class="annotation-card-body">Memory shortages already lifted Ascend prices up to 60%. Better software cannot add chips that are not shipped.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">China Passes 700 Million Generative AI Users, but New Sign-Ups Have Slowed by About Two-Thirds</div>
+    <div class="story-insight">
+      <p>CNNIC counted more than 700 million generative AI users at end-June 2026, above 50% penetration. A year earlier it counted 515 million and 36.5%, after the user base doubled in six months.</p>
+      <br>
+      <p>Roughly 266 million users joined in the first half of 2025 and about 185 million in the following twelve months. Assistant usage frequency more than doubled and compute capacity rose 177%, so growth has moved from new users to heavier use.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> User counts are nearing saturation. Revenue growth now depends on pricing per user and enterprise API sales, which favors usage-billed firms over free consumer chatbots.</div>
+    <div class="chart-box">
+      <div class="chart-title">Generative AI Users in China (millions) and Average Monthly Additions</div>
+      <svg viewBox="0 0 820 270" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="200" x2="470" y2="200" stroke="#1a1a2e"/>
+<line x1="60" y1="200" x2="60" y2="20" stroke="#e0d8d0"/>
+<line x1="60" y1="140" x2="470" y2="140" stroke="#e0d8d0"/><text x="52" y="144" font-size="10" fill="#5a6a8a" text-anchor="end">250</text>
+<line x1="60" y1="80" x2="470" y2="80" stroke="#e0d8d0"/><text x="52" y="84" font-size="10" fill="#5a6a8a" text-anchor="end">500</text>
+<line x1="60" y1="20" x2="470" y2="20" stroke="#e0d8d0"/><text x="52" y="24" font-size="10" fill="#5a6a8a" text-anchor="end">750</text>
+<text x="52" y="204" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+<rect x="90" y="140.2" width="80" height="59.8" fill="#c9c1b6"/><text x="130" y="133" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="middle">~249</text><text x="130" y="218" font-size="11" fill="#1a1a2e" text-anchor="middle">Dec 2024</text>
+<rect x="220" y="76.4" width="80" height="123.6" fill="#b45309"/><text x="260" y="69" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">515</text><text x="260" y="218" font-size="11" fill="#1a1a2e" text-anchor="middle">Jun 2025</text>
+<rect x="350" y="32" width="80" height="168" fill="#c0392b"/><text x="390" y="25" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">700+</text><text x="390" y="218" font-size="11" fill="#1a1a2e" text-anchor="middle">Jun 2026</text>
+<text x="130" y="234" font-size="10" fill="#5a6a8a" text-anchor="middle">(implied)</text><text x="260" y="234" font-size="10" fill="#5a6a8a" text-anchor="middle">36.5% penetration</text><text x="390" y="234" font-size="10" fill="#5a6a8a" text-anchor="middle">50%+ penetration</text>
+<text x="530" y="30" font-size="11" font-weight="700" fill="#5a6a8a">NEW USERS PER MONTH (millions)</text>
+<text x="530" y="62" font-size="12" fill="#1a1a2e">H1 2025</text>
+<rect x="530" y="70" width="250" height="22" fill="#b45309"/><text x="772" y="86" font-size="12" font-weight="700" fill="#fff" text-anchor="end">~44</text>
+<text x="530" y="122" font-size="12" fill="#1a1a2e">Jul 2025 to Jun 2026</text>
+<rect x="530" y="130" width="87.5" height="22" fill="#c0392b"/><text x="625" y="146" font-size="12" font-weight="700" fill="#c0392b">~15</text>
+<text x="530" y="182" font-size="11" fill="#1a1a2e">Assistant usage frequency: <tspan font-weight="700">&gt;+100% y/y</tspan></text>
+<text x="530" y="200" font-size="11" fill="#1a1a2e">Compute capacity: <tspan font-weight="700">2,185 EFLOPS, +177%</tspan></text>
+<text x="30" y="262" font-size="10" fill="#5a6a8a">Dec 2024 implied from CNNIC's statement that users doubled in H1 2025. Monthly adds computed from CNNIC totals. Source: CNNIC via Xinhua, China News Service.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · INTENSITY</div>
+        <div class="annotation-card-zh">普及率<span class="annotation-card-en">pǔjílǜ · penetration rate</span></div>
+        <div class="annotation-card-body">Past 50% penetration, usage per person is rising far faster than the user count, which supports usage-based billing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MONETIZATION</div>
+        <div class="annotation-card-zh">用户规模<span class="annotation-card-en">yònghù guīmó · user base</span></div>
+        <div class="annotation-card-body">November results from Alibaba, Tencent and Baidu, and any paid-subscription numbers they disclose.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CAPITAL</div>
+        <div class="annotation-card-zh">生成式人工智能<span class="annotation-card-en">shēngchéngshì réngōng zhìnéng · generative AI</span></div>
+        <div class="annotation-card-body">¥250bn raised in H1 alone, 182% of 2025, while most consumer chatbots remain free to use.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">Factory PMI Climbs Back to 50.1 on Output, While Services and Construction Beat Forecasts</div>
+    <div class="story-insight">
+      <p>The official manufacturing PMI rose to 50.1 from 49.8, ending two months of contraction. Production rose 1.3 points to 51.7 while new orders eased to 50.5, and small firms stayed below 50 at 48.9.</p>
+      <br>
+      <p>Non-manufacturing rose to 50.2 against a 49.3 forecast, with construction at 50.3. The PBOC's PSL cut and mortgage subsidy landed a day before the release, so easing arrived as activity stabilized.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Supply recovered and demand did not. Broad rate cuts look less likely this quarter unless October weakens, and Golden Week spending is the next read.</div>
+    <div class="chart-box">
+      <div class="chart-title">September 2026 PMI Readings vs August (50 = boom-bust line)</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+<line x1="260" y1="10" x2="260" y2="262" stroke="#e0d8d0"/><text x="260" y="278" font-size="10" fill="#5a6a8a" text-anchor="middle">47</text>
+<line x1="512" y1="10" x2="512" y2="262" stroke="#1a1a2e" stroke-width="2"/><text x="512" y="278" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">50</text>
+<line x1="680" y1="10" x2="680" y2="262" stroke="#e0d8d0"/><text x="680" y="278" font-size="10" fill="#5a6a8a" text-anchor="middle">52</text>
+<text x="250" y="31" font-size="12" fill="#1a1a2e" text-anchor="end">Manufacturing PMI</text><circle cx="495.2" cy="27" r="5" fill="#c9c1b6"/><circle cx="520.4" cy="27" r="7" fill="#c0392b"/><text x="534" y="31" font-size="11" font-weight="700" fill="#c0392b">50.1</text>
+<text x="250" y="61" font-size="12" fill="#1a1a2e" text-anchor="end">Production</text><circle cx="545.6" cy="57" r="5" fill="#c9c1b6"/><circle cx="654.8" cy="57" r="7" fill="#c0392b"/><text x="668" y="61" font-size="11" font-weight="700" fill="#c0392b">51.7</text>
+<text x="250" y="91" font-size="12" fill="#1a1a2e" text-anchor="end">New orders</text><circle cx="562.4" cy="87" r="5" fill="#c9c1b6"/><circle cx="554" cy="87" r="7" fill="#b45309"/><text x="576" y="91" font-size="11" font-weight="700" fill="#b45309">50.5</text>
+<text x="250" y="121" font-size="12" fill="#1a1a2e" text-anchor="end">Large firms</text><circle cx="562.4" cy="117" r="7" fill="#1a56db"/><text x="576" y="121" font-size="11" font-weight="700" fill="#1a56db">50.6 (flat)</text>
+<text x="250" y="151" font-size="12" fill="#1a1a2e" text-anchor="end">Medium firms</text><circle cx="461.6" cy="147" r="5" fill="#c9c1b6"/><circle cx="486.8" cy="147" r="7" fill="#b45309"/><text x="424" y="151" font-size="11" font-weight="700" fill="#b45309" text-anchor="end">49.7</text>
+<text x="250" y="181" font-size="12" fill="#1a1a2e" text-anchor="end">Small firms</text><circle cx="335.6" cy="177" r="5" fill="#c9c1b6"/><circle cx="419.6" cy="177" r="7" fill="#b45309"/><text x="322" y="181" font-size="11" font-weight="700" fill="#b45309" text-anchor="end">48.9</text>
+<text x="250" y="211" font-size="12" fill="#1a1a2e" text-anchor="end">Non-manufacturing</text><circle cx="428" cy="207" r="5" fill="#c9c1b6"/><circle cx="528.8" cy="207" r="7" fill="#c0392b"/><text x="542" y="211" font-size="11" font-weight="700" fill="#c0392b">50.2</text>
+<text x="250" y="241" font-size="12" fill="#1a1a2e" text-anchor="end">Composite output</text><circle cx="570.8" cy="237" r="7" fill="#c0392b"/><text x="584" y="241" font-size="11" font-weight="700" fill="#c0392b">50.7</text>
+<text x="250" y="259" font-size="12" fill="#1a1a2e" text-anchor="end">RatingDog mfg (private)</text><circle cx="638" cy="255" r="5" fill="#c9c1b6"/><circle cx="688.4" cy="255" r="7" fill="#1a56db"/><text x="702" y="259" font-size="11" font-weight="700" fill="#1a56db">52.1</text>
+<text x="30" y="296" font-size="10" fill="#5a6a8a">Grey dot = August, colored dot = September. Construction 50.3. Source: National Bureau of Statistics, SMM, Reuters.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ABOVE 50</div>
+        <div class="annotation-card-zh">荣枯线<span class="annotation-card-en">róngkū xiàn · boom-bust line</span></div>
+        <div class="annotation-card-body">Manufacturing, services and construction all expanded in September, the first time since the summer contraction.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CONSUMPTION</div>
+        <div class="annotation-card-zh">黄金周<span class="annotation-card-en">Huángjīn Zhōu · Golden Week</span></div>
+        <div class="annotation-card-body">Holiday travel and spending data arrive before markets reopen, then the October PMI on October 31.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND</div>
+        <div class="annotation-card-zh">采购经理指数<span class="annotation-card-en">cǎigòu jīnglǐ zhǐshù · PMI</span></div>
+        <div class="annotation-card-body">New orders fell as output rose, employment weakened and small firms stayed at 48.9.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #135 · OCTOBER 1, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
