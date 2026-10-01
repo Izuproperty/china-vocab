@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #125 · October 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #125 · October 2, 2026</div>
+    <div class="masthead-sub">Takaichi Orders a Year-End AI Plan · Kioxia Joins Applied's Memory Lab · Tankan Splits Factories From Services</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · GROWTH COUNCIL</div>
+      <div class="card-num">¥101.6<span class="card-num-unit">T</span></div>
+      <div class="card-label">AI and semiconductors' share of the ¥370T+ public-private roadmap to FY2040</div>
+      <div class="card-delta delta-amber">AI action plan due by year-end</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMI · KIOXIA</div>
+      <div class="card-num">4<span class="card-num-unit">of 4</span></div>
+      <div class="card-label">Major memory makers now inside Applied Materials' $5B EPIC Center, with Kioxia the last to join</div>
+      <div class="card-delta delta-green">Kioxia +5.55% on Oct 1</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · TANKAN</div>
+      <div class="card-num">+24</div>
+      <div class="card-label">Large-manufacturer business conditions index, up 2 points; forecasts were +25 to +26</div>
+      <div class="card-delta delta-red">Large non-mfrs -2 to +35</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">Takaichi Orders a Year-End AI Action Plan as Her Growth Council Puts ¥101.6 Trillion Behind AI and Chips</div>
+    <div class="story-insight">
+      <p>Takaichi told the Japan Growth Strategy Council on October 1 that a plan to spread high-performance AI through the economy, including shifts in industrial structure, will be compiled by year-end. The council set FY2027 to FY2031 as the concentrated investment period for its 17 strategic sectors.</p>
+      <br>
+      <p>AI and semiconductors account for ¥101.6 trillion of the ¥370 trillion-plus roadmap to FY2040. Council member Matsuo Yutaka proposed a fully domestic supply chain from chips to robots, packaged with education and governance for export.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The first year of concentrated spending is funded in the budget drafted in December, alongside the AI plan. Deployment-focused integrators and domestic compute providers benefit most, and the split between public money and assumed private spending in that budget will show how much of the ¥101.6 trillion is real.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Roadmap and the Timetable</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+        <text x="20" y="20" font-size="11" font-weight="700" fill="#3730a3">PUBLIC-PRIVATE INVESTMENT TO FY2040 (¥ TRILLION)</text>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="230" y="49">All 17 strategic sectors</text>
+          <text x="230" y="84">AI and semiconductors</text>
+        </g>
+        <rect x="240" y="34" width="540" height="20" fill="#c7cbe8"/><text x="772" y="49" font-size="11" font-weight="700" fill="#3730a3" text-anchor="end">370+</text>
+        <rect x="240" y="69" width="148" height="20" fill="#3730a3"/><text x="396" y="84" font-size="11" font-weight="700" fill="#3730a3">101.6 (27%)</text>
+        <text x="20" y="130" font-size="11" font-weight="700" fill="#3730a3">TIMETABLE</text>
+        <line x1="60" y1="170" x2="780" y2="170" stroke="#5a6a8a" stroke-width="2"/>
+        <rect x="320" y="162" width="300" height="16" fill="#e0e7ff"/>
+        <text x="470" y="158" font-size="10" font-weight="700" fill="#3730a3" text-anchor="middle">CONCENTRATED INVESTMENT PERIOD</text>
+        <g fill="#3730a3"><circle cx="80" cy="170" r="6"/><circle cx="200" cy="170" r="6"/><circle cx="320" cy="170" r="6"/><circle cx="620" cy="170" r="6"/><circle cx="760" cy="170" r="6"/></g>
+        <g font-size="11" fill="#1a1a2e" text-anchor="middle" font-weight="700">
+          <text x="80" y="198">Oct 1, 2026</text><text x="200" y="198">Dec 2026</text><text x="320" y="198">Apr 2027</text><text x="620" y="198">Mar 2032</text><text x="760" y="198">FY2040</text>
+        </g>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle">
+          <text x="80" y="214">Plan ordered</text><text x="200" y="214">AI plan + FY27 budget</text><text x="320" y="214">FY2027 begins</text><text x="620" y="214">FY2031 ends</text><text x="760" y="214">¥370T target</text>
+        </g>
+      </svg>
+      <div class="chart-note">Sources: Japan Growth Strategy Council (Oct 1, 2026), public-private investment roadmap (June 2026). Timeline is not to scale.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEPLOYMENT</div>
+        <div class="annotation-card-ja">高性能AI<span class="annotation-card-en">kōseinō AI · high-performance AI</span></div>
+        <div class="annotation-card-body">The plan targets use across industry, which favors integrators such as Fujitsu, NEC and NTT Data.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DECEMBER</div>
+        <div class="annotation-card-ja">行動計画<span class="annotation-card-en">kōdō keikaku · action plan</span></div>
+        <div class="annotation-card-body">The AI plan, the growth execution plan and the FY2027 budget all land in the same month.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · FUNDING</div>
+        <div class="annotation-card-ja">集中投資期間<span class="annotation-card-en">shūchū tōshi kikan · concentrated investment period</span></div>
+        <div class="annotation-card-body">An unfunded tax cut and high long-end yields limit how much public money the window can carry.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Kioxia Joins Applied Materials' $5 Billion Lab to Push 3D NAND Past Its Layer Limit</div>
+    <div class="story-insight">
+      <p>Kioxia joined Applied Materials' EPIC Center on September 29, after Samsung, SK hynix and Micron. Work covers stacked-die memory architectures, multi-die interconnect and materials for volume production.</p>
+      <br>
+      <p>Leading 3D NAND has about 332 layers with roughly 40nm between word lines, where cell interference and deep-hole etching limit further stacking. Reaching 500+ layers needs new films, metal fills and etch chemistry from tool and materials suppliers.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Co-development inside Applied's lab gives Kioxia early access to next-generation process tools its rivals already had. Tokyo Electron competes with Applied in NAND etch and deposition, so the tie-up could shift tool orders at the margin as Kioxia equips its next Iwate fab.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo Chip Stocks After Micron's Results, Oct 1 (% change)</div>
+      <svg viewBox="0 0 820 210" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e8eaf2"><line x1="313" y1="10" x2="313" y2="180"/><line x1="407" y1="10" x2="407" y2="180"/><line x1="500" y1="10" x2="500" y2="180"/><line x1="593" y1="10" x2="593" y2="180"/><line x1="687" y1="10" x2="687" y2="180"/><line x1="780" y1="10" x2="780" y2="180"/></g>
+        <line x1="220" y1="10" x2="220" y2="180" stroke="#1a1a2e" stroke-width="1.5"/>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle"><text x="220" y="196">0</text><text x="313" y="196">2</text><text x="407" y="196">4</text><text x="500" y="196">6</text><text x="593" y="196">8</text><text x="687" y="196">10</text><text x="780" y="196">12</text></g>
+        <g font-size="12" fill="#1a1a2e" text-anchor="end">
+          <text x="210" y="31">Lasertec (6920)</text>
+          <text x="210" y="65">Advantest (6857)</text>
+          <text x="210" y="99">Tokyo Electron (8035)</text>
+          <text x="210" y="133" font-weight="700">Kioxia (285A)</text>
+          <text x="210" y="167">Nikkei 225</text>
+        </g>
+        <rect x="220" y="17" width="520" height="20" fill="#be185d" opacity="0.55"/><text x="748" y="32" font-size="11" font-weight="700" fill="#be185d">+11.1</text>
+        <rect x="220" y="51" width="456" height="20" fill="#be185d" opacity="0.55"/><text x="684" y="66" font-size="11" font-weight="700" fill="#be185d">+9.8</text>
+        <rect x="220" y="85" width="302" height="20" fill="#be185d" opacity="0.55"/><text x="530" y="100" font-size="11" font-weight="700" fill="#be185d">+6.5</text>
+        <rect x="220" y="119" width="259" height="20" fill="#be185d"/><text x="487" y="134" font-size="11" font-weight="700" fill="#be185d">+5.55</text>
+        <rect x="220" y="153" width="131" height="20" fill="#9aa3c0"/><text x="359" y="168" font-size="11" font-weight="700" fill="#5a6a8a">+2.8</text>
+      </svg>
+      <div class="chart-note">Source: Investing.com market report, October 1, 2026. Kioxia's move came on its first trading day after a 3-for-1 stock split.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI MEMORY DEMAND</div>
+        <div class="annotation-card-ja">研究開発拠点<span class="annotation-card-en">kenkyū kaihatsu kyoten · R&amp;D hub</span></div>
+        <div class="annotation-card-body">Micron's long-term supply deals rose to $32B from $22B in June, and the whole Tokyo chip complex rallied.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LAYER ROADMAP</div>
+        <div class="annotation-card-ja">積層数<span class="annotation-card-en">sekisōsū · layer count</span></div>
+        <div class="annotation-card-body">Kioxia's next layer target and Iwate tooling plans in November results; buyback window ends Oct 30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LATE ENTRANT</div>
+        <div class="annotation-card-ja">貼り合わせ<span class="annotation-card-en">hariawase · wafer bonding</span></div>
+        <div class="annotation-card-body">Samsung, SK hynix and Micron joined months earlier and outspend Kioxia on capex.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO & BOJ</div>
+    <div class="story-headline">Big Manufacturers' Mood Rises for a Sixth Quarter While Service Firms Slip, Giving the BOJ Room to Wait</div>
+    <div class="story-insight">
+      <p>The September Tankan put large manufacturers at +24, up two points but below forecasts of +25 to +26. Large non-manufacturers fell two points to +35, their first drop in five quarters. Both groups expect worse conditions by December.</p>
+      <br>
+      <p>Large firms plan 11% higher capex and assume ¥154.23 per dollar, against a market rate near ¥157. One-year inflation expectations eased to 2.6% from 2.7%. The BOJ raised its rate to 1.25% on September 18.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Soft services sentiment and flat inflation expectations take pressure off an October hike. Exporters gain because a ¥157 yen is weaker than the ¥154 in their plans, which half-year results from late October will show; banks lose some rate support.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tankan Business Conditions Index (Diffusion Index)</div>
+      <svg viewBox="0 0 820 230" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#e8eaf2"><line x1="60" y1="20" x2="800" y2="20"/><line x1="60" y1="60" x2="800" y2="60"/><line x1="60" y1="100" x2="800" y2="100"/><line x1="60" y1="140" x2="800" y2="140"/></g>
+        <line x1="60" y1="180" x2="800" y2="180" stroke="#1a1a2e" stroke-width="1.5"/>
+        <g font-size="10" fill="#5a6a8a" text-anchor="end"><text x="52" y="24">+40</text><text x="52" y="64">+30</text><text x="52" y="104">+20</text><text x="52" y="144">+10</text><text x="52" y="184">0</text></g>
+        <rect x="90" y="92" width="70" height="88" fill="#c7cbe8"/><text x="125" y="86" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">+22</text>
+        <rect x="170" y="84" width="70" height="96" fill="#b45309"/><text x="205" y="78" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">+24</text>
+        <rect x="250" y="96" width="70" height="84" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="5,4"/><text x="285" y="90" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">+21</text>
+        <rect x="400" y="32" width="70" height="148" fill="#c7cbe8"/><text x="435" y="26" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">+37</text>
+        <rect x="480" y="40" width="70" height="140" fill="#b45309"/><text x="515" y="34" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">+35</text>
+        <rect x="660" y="124" width="70" height="56" fill="#b45309" opacity="0.7"/><text x="695" y="118" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">+14</text>
+        <g font-size="10" fill="#5a6a8a" text-anchor="middle">
+          <text x="125" y="196">June</text><text x="205" y="196">Sept</text><text x="285" y="196">Dec fcst</text>
+          <text x="435" y="196">June</text><text x="515" y="196">Sept</text>
+          <text x="695" y="196">Sept</text>
+        </g>
+        <g font-size="11" fill="#1a1a2e" font-weight="700" text-anchor="middle">
+          <text x="205" y="218">Large manufacturers</text><text x="475" y="218">Large non-manufacturers</text><text x="695" y="218">Small manufacturers</text>
+        </g>
+      </svg>
+      <div class="chart-note">Source: Bank of Japan Tankan, October 1, 2026. Dashed bar is the firms' own December forecast. Small manufacturers beat a +11 forecast.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI-LED FACTORIES</div>
+        <div class="annotation-card-ja">業況判断指数<span class="annotation-card-en">gyōkyō handan shisū · business conditions DI</span></div>
+        <div class="annotation-card-body">Sixth straight gain for big manufacturers, with sales seen up 7.6% and exports up 10.3%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · YEN GAP</div>
+        <div class="annotation-card-ja">想定為替レート<span class="annotation-card-en">sōtei kawase rēto · assumed exchange rate</span></div>
+        <div class="annotation-card-body">Firms plan on ¥154.23; every yen of extra weakness flows into exporters' half-year results.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SERVICES SQUEEZE</div>
+        <div class="annotation-card-ja">設備投資計画<span class="annotation-card-en">setsubi tōshi keikaku · capex plan</span></div>
+        <div class="annotation-card-body">Small firms plan a 5% capex cut as costs rise and consumers resist higher prices.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #125 · OCTOBER 2, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
