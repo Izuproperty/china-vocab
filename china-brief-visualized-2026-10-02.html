@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #136 · October 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #136 · October 2, 2026</div>
+    <div class="masthead-sub">OpenAI Names Moonshot · 25,000 Humanoids, Mostly to Labs · Hong Kong's Record IPO Run</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · DISTILLATION</div>
+      <div class="card-num">16,000<span class="card-num-unit">requests</span></div>
+      <div class="card-label">Spike in Moonshot-linked requests to OpenAI on July 24-25, disclosed Sept 30</div>
+      <div class="card-delta delta-red">Second US lab to name Moonshot</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">25,000<span class="card-num-unit">units</span></div>
+      <div class="card-label">Humanoid robots shipped worldwide in H1 2026, +432.1% y/y (IDC)</div>
+      <div class="card-delta delta-amber">69% to labs, schools, showrooms</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MARKETS · IPO</div>
+      <div class="card-num">$48.4<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Hong Kong IPO proceeds Jan-Sep 2026, highest nine months since 1980</div>
+      <div class="card-delta delta-red">5 of 7 Sept debuts broke issue</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">OpenAI Names Moonshot in a Distillation Campaign: 16,000 Requests in Two Days Aimed at Its Hidden Reasoning</div>
+    <div class="story-insight">
+      <p>OpenAI said on September 30 that a July campaign to extract its models' encrypted reasoning came from a core cluster of people associated with Moonshot AI. The two-day spike ran to about 16,000 requests from more than 4,000 users, across 15,000+ accounts in total.</p>
+      <br>
+      <p>Moonshot now faces distillation claims from OpenAI, Anthropic and the White House, plus a CAC data-security probe at home. If Kimi trained partly on US reasoning traces, its cost advantage is smaller than its benchmarks suggest.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Two US labs have now documented the case Washington would need for API or export restrictions on Moonshot. Neither step has been taken, and the evidence so far is OpenAI's own account.</div>
+    <div class="chart-box">
+      <div class="chart-title">Moonshot Distillation Claims: Timeline and Scale</div>
+      <svg viewBox="0 0 820 310" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="18" font-size="11" font-weight="700" fill="#5a6a8a">TIMELINE, 2026</text>
+<line x1="50" y1="70" x2="790" y2="70" stroke="#1a1a2e" stroke-width="2"/>
+<circle cx="60" cy="70" r="6" fill="#c9c1b6"/><text x="60" y="48" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 1</text><text x="60" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">campaign starts</text>
+<circle cx="180" cy="70" r="9" fill="#c0392b"/><text x="180" y="48" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Jul 24-25</text><text x="180" y="92" font-size="10" fill="#c0392b" text-anchor="middle">~16,000 requests</text><text x="180" y="105" font-size="10" fill="#c0392b" text-anchor="middle">4,000+ users</text>
+<circle cx="290" cy="70" r="6" fill="#1a1a2e"/><text x="290" y="48" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 28</text><text x="290" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">OpenAI shuts it down</text>
+<circle cx="400" cy="70" r="6" fill="#b45309"/><text x="400" y="48" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Late Jul</text><text x="400" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">Kratsios: K3 distilled</text><text x="400" y="105" font-size="10" fill="#5a6a8a" text-anchor="middle">from Anthropic</text>
+<circle cx="530" cy="70" r="6" fill="#b45309"/><text x="530" y="48" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Sep 10</text><text x="530" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">Anthropic report</text>
+<circle cx="650" cy="70" r="6" fill="#1a56db"/><text x="650" y="48" font-size="11" font-weight="700" fill="#1a56db" text-anchor="middle">Late Sep</text><text x="650" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">CAC data-security probe</text>
+<circle cx="770" cy="70" r="9" fill="#c0392b"/><text x="770" y="48" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Sep 30</text><text x="770" y="92" font-size="10" fill="#c0392b" text-anchor="middle">OpenAI names</text><text x="770" y="105" font-size="10" fill="#c0392b" text-anchor="middle">Moonshot</text>
+<text x="30" y="148" font-size="11" font-weight="700" fill="#5a6a8a">WHAT EACH LAB REPORTED</text>
+<text x="30" y="176" font-size="12" fill="#1a1a2e">Requests cited</text>
+<text x="160" y="176" font-size="10" fill="#5a6a8a">Anthropic</text><rect x="230" y="164" width="300" height="16" fill="#b45309"/><text x="538" y="177" font-size="11" font-weight="700" fill="#b45309">~300,000 relayed Kimi requests</text>
+<text x="160" y="200" font-size="10" fill="#5a6a8a">OpenAI</text><rect x="230" y="188" width="16" height="16" fill="#c0392b"/><text x="254" y="201" font-size="11" font-weight="700" fill="#c0392b">~16,000 (two-day spike, attempts)</text>
+<text x="30" y="238" font-size="12" fill="#1a1a2e">Accounts involved</text>
+<text x="160" y="238" font-size="10" fill="#5a6a8a">Anthropic</text><rect x="230" y="226" width="107.6" height="16" fill="#b45309"/><text x="345" y="239" font-size="11" font-weight="700" fill="#b45309">5,380</text>
+<text x="160" y="262" font-size="10" fill="#5a6a8a">OpenAI</text><rect x="230" y="250" width="300" height="16" fill="#c0392b"/><text x="538" y="263" font-size="11" font-weight="700" fill="#c0392b">15,000+</text>
+<text x="30" y="298" font-size="10" fill="#5a6a8a">Bars scaled within each group. Sources: OpenAI disclosure via CNBC, Wccftech, Resultsense; Anthropic Sept 10 report; prior China Brief coverage.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ATTRIBUTION</div>
+        <div class="annotation-card-zh">对抗性蒸馏<span class="annotation-card-en">duìkàngxìng zhēngliú · adversarial distillation</span></div>
+        <div class="annotation-card-body">US labs have moved from anonymous policy violations to naming the Chinese lab they say is responsible.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · POLICY</div>
+        <div class="annotation-card-zh">月之暗面<span class="annotation-card-en">Yuèzhī Ànmiàn · Moonshot AI</span></div>
+        <div class="annotation-card-body">A Moonshot rebuttal, and whether Commerce or congressional committees cite OpenAI's report.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VALUATION</div>
+        <div class="annotation-card-zh">思维链<span class="annotation-card-en">sīwéi liàn · chain of thought</span></div>
+        <div class="annotation-card-body">Closing the replay route could slow Kimi's reasoning gains if traces from US models fed its training.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">25,000 Humanoids Shipped in Six Months, and IDC Finds 69% Went to Labs, Classrooms and Showrooms</div>
+    <div class="story-insight">
+      <p>IDC counted nearly 25,000 humanoid robots shipped worldwide in H1 2026, up 432.1%. AgiBot led with 8,600+ units and Unitree followed with about 5,000; Chinese vendors supplied about 95% of the total.</p>
+      <br>
+      <p>69% of units went to research, education, exhibition and government data-collection buyers, down from 83.8%. Average prices fell from about $37,000 to under $30,000, so revenue grew more slowly than units.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Volume favors China's leaders, but commercial buyers take only about a third of shipments. Unitree's and AgiBot's valuations need that share to keep climbing.</div>
+    <div class="chart-box">
+      <div class="chart-title">Humanoid Robots, H1 2026: Vendors, Buyers and Prices</div>
+      <svg viewBox="0 0 820 310" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">H1 2026 GLOBAL SHIPMENTS BY VENDOR (~25,000 UNITS, IDC)</text>
+<rect x="40" y="32" width="254.6" height="34" fill="#c0392b"/><text x="167" y="54" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">AgiBot 8,600+</text>
+<rect x="294.6" y="32" width="148" height="34" fill="#b45309"/><text x="368.6" y="54" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Unitree ~5,000</text>
+<rect x="442.6" y="32" width="337.4" height="34" fill="#c9c1b6"/><text x="611" y="54" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">All others ~11,400</text>
+<text x="40" y="84" font-size="10" fill="#5a6a8a">Chinese vendors ~95% of supply · Chinese buyers 77.9% of demand · +432.1% y/y</text>
+<text x="30" y="118" font-size="11" font-weight="700" fill="#5a6a8a">WHO BUYS THEM (SHARE OF UNITS)</text>
+<text x="100" y="146" font-size="12" fill="#1a1a2e" text-anchor="end">Year earlier</text>
+<rect x="110" y="132" width="452.5" height="22" fill="#1a56db"/><text x="120" y="148" font-size="11" font-weight="700" fill="#fff">Research, education, exhibition 83.8%</text>
+<rect x="562.5" y="132" width="87.5" height="22" fill="#166534"/><text x="606" y="148" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">16.2%</text>
+<text x="100" y="182" font-size="12" fill="#1a1a2e" text-anchor="end">H1 2026</text>
+<rect x="110" y="168" width="372.6" height="22" fill="#1a56db"/><text x="120" y="184" font-size="11" font-weight="700" fill="#fff">Research, education, exhibition 69%</text>
+<rect x="482.6" y="168" width="167.4" height="22" fill="#166534"/><text x="566" y="184" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">Commercial 31%</text>
+<text x="30" y="226" font-size="11" font-weight="700" fill="#5a6a8a">KEY FIGURES</text>
+<text x="30" y="248" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#c0392b">~$37,000 to under $30,000</tspan> average selling price per unit</text>
+<text x="30" y="268" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#b45309">$740M+</tspan> H1 market value, +323% · SAG count lower at ~19,100 units</text>
+<text x="30" y="288" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#1a56db">750,000+</tspan> units a year by 2030, IDC's raised forecast</text>
+<text x="30" y="306" font-size="10" fill="#5a6a8a">Source: IDC via Caixin, ChainCatcher, John Koetsier; Smart Analytics Global. Vendor bar widths proportional to units.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCALE</div>
+        <div class="annotation-card-zh">出货量<span class="annotation-card-en">chūhuòliàng · shipments</span></div>
+        <div class="annotation-card-body">Shipments up more than fivefold and the commercial share up from 16% to 31% in a year.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICING</div>
+        <div class="annotation-card-zh">均价<span class="annotation-card-en">jūnjià · average price</span></div>
+        <div class="annotation-card-body">Unitree's Q3 selling price and AgiBot's prospectus customer breakdown.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND</div>
+        <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+        <div class="annotation-card-body">Many buyers are state-funded labs and showrooms, and trackers differ by about 30% on market size.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">Hong Kong Posts Its Biggest Nine Months of IPOs Since 1980, While Five of September's Seven Debuts Broke Issue</div>
+    <div class="story-insight">
+      <p>Hong Kong raised US$48.4 billion from 112 main-board IPOs in the first nine months, a record since 1980. Deloitte now forecasts HK$480 billion for the year, above the 2010 record of HK$449.5 billion.</p>
+      <br>
+      <p>Five of seven September debuts closed below their offer price as the Fed resumed rate increases. Dongshan Precision's US$2-3 billion PCB listing, approved by the CSRC, is the next large test.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The pipeline is deep, with 510 applications, but September's broken deals point to wider discounts. Southbound Connect stays shut until mainland markets reopen after October 8.</div>
+    <div class="chart-box">
+      <div class="chart-title">Hong Kong IPOs: Record Haul, Weak September Debuts</div>
+      <svg viewBox="0 0 820 310" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">IPO FUNDS RAISED, JAN-SEP 2026 (US$BN)</text>
+<text x="140" y="48" font-size="12" fill="#1a1a2e" text-anchor="end">Hong Kong</text>
+<rect x="150" y="34" width="121" height="22" fill="#c0392b"/><text x="279" y="50" font-size="12" font-weight="700" fill="#c0392b">48.4 (record since 1980)</text>
+<text x="140" y="86" font-size="12" fill="#1a1a2e" text-anchor="end">Nasdaq</text>
+<rect x="150" y="72" width="144.5" height="22" fill="#b45309"/><text x="222" y="88" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">57.8 ex-SpaceX</text>
+<rect x="294.5" y="72" width="215.5" height="22" fill="#c9c1b6"/><text x="402" y="88" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">SpaceX 86.2</text><text x="518" y="88" font-size="12" font-weight="700" fill="#b45309">144</text>
+<text x="30" y="132" font-size="11" font-weight="700" fill="#5a6a8a">HONG KONG FULL-YEAR PATH (HK$BN, DELOITTE)</text>
+<rect x="150" y="146" width="360" height="24" fill="#e8e0d4"/>
+<rect x="150" y="146" width="290.9" height="24" fill="#c0392b"/><text x="160" y="163" font-size="11" font-weight="700" fill="#fff">387.9 raised so far</text>
+<line x1="487.1" y1="140" x2="487.1" y2="176" stroke="#1a1a2e" stroke-width="2"/><text x="487.1" y="190" font-size="10" fill="#1a1a2e" text-anchor="middle">2010 record 449.5</text>
+<text x="516" y="163" font-size="11" font-weight="700" fill="#b45309">480 forecast</text>
+<text x="140" y="163" font-size="12" fill="#1a1a2e" text-anchor="end">2026</text>
+<text x="30" y="232" font-size="11" font-weight="700" fill="#5a6a8a">SEPTEMBER DEBUTS: FIRST-DAY CLOSE VS OFFER</text>
+<circle cx="162" cy="260" r="12" fill="#c0392b"/><circle cx="198" cy="260" r="12" fill="#c0392b"/><circle cx="234" cy="260" r="12" fill="#c0392b"/><circle cx="270" cy="260" r="12" fill="#c0392b"/><circle cx="306" cy="260" r="12" fill="#c0392b"/><circle cx="342" cy="260" r="12" fill="#166534"/><circle cx="378" cy="260" r="12" fill="#166534"/>
+<text x="400" y="257" font-size="11" font-weight="700" fill="#c0392b">5 broke issue</text><text x="400" y="272" font-size="11" font-weight="700" fill="#166534">2 held</text>
+<text x="600" y="40" font-size="11" font-weight="700" fill="#5a6a8a">PIPELINE</text>
+<text x="600" y="64" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#c0392b">510</tspan> active applications</text>
+<text x="600" y="86" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#b45309">445</tspan> filed in 2026</text>
+<text x="600" y="108" font-size="12" fill="#1a1a2e"><tspan font-weight="700" fill="#1a56db">~70%</tspan> of capital from large deals</text>
+<text x="600" y="232" font-size="11" font-weight="700" fill="#5a6a8a">NEXT UP</text>
+<text x="600" y="256" font-size="12" fill="#1a1a2e"><tspan font-weight="700">Dongshan Precision</tspan></text>
+<text x="600" y="274" font-size="11" fill="#5a6a8a">US$2-3bn PCB listing, CSRC-approved</text>
+<text x="30" y="304" font-size="10" fill="#5a6a8a">Sources: LSEG via SCMP (Sept 30), Deloitte via Caixin Global, Bloomberg via The Standard. Bar widths proportional within each panel.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · VOLUME</div>
+        <div class="annotation-card-zh">募资<span class="annotation-card-en">mùzī · fundraising</span></div>
+        <div class="annotation-card-body">Best nine months on record, and Deloitte expects three or four HK$10bn+ deals in Q4.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICING</div>
+        <div class="annotation-card-zh">港交所<span class="annotation-card-en">Gǎngjiāosuǒ · HKEX</span></div>
+        <div class="annotation-card-body">Dongshan Precision's H-share discount to its A-shares and its first-day trade.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · AFTERMARKET</div>
+        <div class="annotation-card-zh">破发<span class="annotation-card-en">pòfā · break issue</span></div>
+        <div class="annotation-card-body">Five of seven September debuts fell below offer. More breaks would push issuers to delay or cut size.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #136 · OCTOBER 2, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
