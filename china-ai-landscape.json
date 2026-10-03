@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-10-02",
-    "issue": 136,
+    "updated": "2026-10-03",
+    "issue": 137,
     "title": "China AI Landscape"
   },
   "entities": [
@@ -1753,8 +1753,16 @@
       "py": "Huáwéi Shēngténg",
       "cat": "chips",
       "status": "private",
-      "desc": "China's dominant domestic AI chip ecosystem, built around the Ascend (昇腾) accelerator line. **Ascend 910C — volume inference, HBM-constrained:** Mass shipments began May 2026, targeting roughly 600,000 units in 2026 (1.6M Ascend dies overall, ~2x 2025 volume) on SMIC's enhanced 7nm process — at roughly 1/3 of Nvidia H100 BF16 throughput but favored for supply-chain sovereignty; Beijing directed major cloud providers to defer Nvidia H200 deployment to protect the Huawei ecosystem. DIGITIMES reported the 910C sold out domestically by Aug 28 despite still trailing the H200 per-chip, with buyers absorbing the gap via larger clusters. CXMT's projected 2026 HBM output (~2M stacks) supports only an estimated 250,000-300,000 units at typical configurations, making HBM supply — not SMIC wafer capacity — the binding constraint on the stated 600K target. Reuters reported Huawei raised Ascend prices 20-60% over two months as the HBM shortage bit (Sept 10): the 910C rose from ~¥90,000 to above ¥110,000, the 950PR ~30% to above ¥80,000, and the 950DT to above ¥250,000 (~$37,000); Cambricon raised prices similarly.\n\n**Ascend 950 — frontier training, ByteDance's largest chip order:** DeepSeek's V4 was natively optimized for the 950, cementing Huawei as the default domestic training platform and triggering a $5.6B ByteDance order — the largest known single AI chip purchase in China — against a 750,000-unit 2026 target. The 950 sits alongside the 910C in a roughly $12B 2026 Huawei AI chip revenue target: 950 for frontier training, 910C for volume inference deployment.\n\n**Ascend 960 roadmap accelerated three quarters (Sept 16-17):** At Huawei Connect 2026, Huawei pulled the next-gen Ascend 960DT forward from 2027 to Q1 2027 and the 960PR to Q3 2027, specifying 2x the compute, bandwidth, memory capacity, and interconnect ports of the 950 generation, built around a new 'super node' interconnect meant to rival Nvidia's NVLink at rack scale; Huawei says it will hold a one-generation-per-year cadence through the 970 (2028) and 980 (2029).\n\n**LogicFolding/Tau Scaling Law (May 2026, ISCAS):** Proprietary architecture theory targeting 1.4nm-equivalent density by 2031 using 3D chip stacking on domestic processes — a longer-horizon bet distinct from the near-term 910C/950/960 shipment story.\n\n**DeepSeek releases Ascend software stack (Sept 30, 2026):** DeepSeek open-sourced TileLang and Ascend-ready kernel and communication libraries, tuned with Huawei on a 128-chip Ascend 950 supernode. It targets CUDA switching costs, Nvidia's main lock-in in China; Huawei says Ascend will carry real training workloads in 2027. How TileLang fits with Huawei's own CANN stack is not yet clear.",
+      "desc": "China's dominant domestic AI chip ecosystem, built around the Ascend (昇腾) accelerator line. **Ascend 910C — volume inference, HBM-constrained:** Mass shipments began May 2026, targeting roughly 600,000 units in 2026 (1.6M Ascend dies overall, ~2x 2025 volume) on SMIC's enhanced 7nm process — at roughly 1/3 of Nvidia H100 BF16 throughput but favored for supply-chain sovereignty; Beijing directed major cloud providers to defer Nvidia H200 deployment to protect the Huawei ecosystem. DIGITIMES reported the 910C sold out domestically by Aug 28 despite still trailing the H200 per-chip, with buyers absorbing the gap via larger clusters. CXMT's projected 2026 HBM output (~2M stacks) supports only an estimated 250,000-300,000 units at typical configurations, making HBM supply — not SMIC wafer capacity — the binding constraint on the stated 600K target. Reuters reported Huawei raised Ascend prices 20-60% over two months as the HBM shortage bit (Sept 10): the 910C rose from ~¥90,000 to above ¥110,000, the 950PR ~30% to above ¥80,000, and the 950DT to above ¥250,000 (~$37,000); Cambricon raised prices similarly.\n\n**Ascend 950 — frontier training, ByteDance's largest chip order:** DeepSeek's V4 was natively optimized for the 950, cementing Huawei as the default domestic training platform and triggering a $5.6B ByteDance order — the largest known single AI chip purchase in China — against a 750,000-unit 2026 target. The 950 sits alongside the 910C in a roughly $12B 2026 Huawei AI chip revenue target: 950 for frontier training, 910C for volume inference deployment.\n\n**Ascend 960 roadmap accelerated three quarters (Sept 16-17):** At Huawei Connect 2026, Huawei pulled the next-gen Ascend 960DT forward from 2027 to Q1 2027 and the 960PR to Q3 2027, specifying 2x the compute, bandwidth, memory capacity, and interconnect ports of the 950 generation, built around a new 'super node' interconnect meant to rival Nvidia's NVLink at rack scale; Huawei says it will hold a one-generation-per-year cadence through the 970 (2028) and 980 (2029).\n\n**LogicFolding/Tau Scaling Law (May 2026, ISCAS):** Proprietary architecture theory targeting 1.4nm-equivalent density by 2031 using 3D chip stacking on domestic processes — a longer-horizon bet distinct from the near-term 910C/950/960 shipment story.\n\n**DeepSeek releases Ascend software stack (Sept 30, 2026):** DeepSeek open-sourced TileLang and Ascend-ready kernel and communication libraries, tuned with Huawei on a 128-chip Ascend 950 supernode. It targets CUDA switching costs, Nvidia's main lock-in in China; Huawei says Ascend will carry real training workloads in 2027. How TileLang fits with Huawei's own CANN stack is not yet clear.\n\n**Kirin 9050 Pro ships in Mate 90; Richard Yu says advanced capacity is limited (Oct 1, 2026):** The Mate 90 series went on sale on National Day (5,999 to 12,999 yuan). Premium models use the Kirin 9050 Pro, the second commercial LogicFolding chip after the Mate XT 2, at a claimed 238M transistors/mm² with 31% higher system performance and 140% higher NPU throughput on LLMs; node undisclosed, analysts place it on SMIC N+2/N+3 (7nm-class). Yu said China's advanced semiconductor capacity 'remains very limited' and called LogicFolding a workaround for restricted technology access. Kirin and Ascend draw on the same scarce SMIC advanced wafers, so phone demand competes directly with 910C/950 output. Huawei domestic phone shipments +13% Jan-Aug vs market -7%.",
       "tags": [
+        {
+          "l": "Kirin 9050 Pro LogicFolding chip in Mate 90, 238M transistors/mm² (Oct 1)",
+          "t": "highlight"
+        },
+        {
+          "l": "Yu: advanced chip capacity 'very limited'; phones and Ascend share SMIC wafers",
+          "t": "red"
+        },
         {
           "l": "DeepSeek open-sources TileLang CUDA alternative for Ascend 950 (Sept 30)",
           "t": "highlight"
@@ -1795,7 +1803,7 @@
           "t": "green"
         }
       ],
-      "issue": "#1, #4, #13, #102, #116, #121, #135",
+      "issue": "#1, #4, #13, #102, #116, #121, #135, #137",
       "bio": "Huawei (华为, founded 1987, Shenzhen, by Ren Zhengfei 任正非) is China's largest tech company and primary domestic alternative to Nvidia for AI chips following its 2019 US Entity List designation. The Ascend (昇腾) accelerator line is designed by Huawei and manufactured at SMIC's enhanced 7nm process. Entirely employee-owned.",
       "trend": "up"
     },
@@ -4201,8 +4209,16 @@
       "cat": "chips",
       "status": "public",
       "ticker": "NASDAQ: NVDA",
-      "desc": "Referenced in China AI landscape as the global benchmark domestic Chinese chips must match. Key dynamics: US export controls (Oct 2022, Oct 2023, May 2024, Jan 2025) have progressively restricted H100+ sales to China; 'China-specific' compliant chips (H20, L20) can still be sold at lower specs. Beijing directs major AI firms to defer Nvidia H200 deployment to protect the Huawei Ascend ecosystem. Despite controls, Chinese labs still prefer Nvidia hardware where available — domestic chip gaps in HBM and training efficiency are real. Isaac GR00T (Nvidia's humanoid AI platform) is a strategic anchor for Chinese humanoid OEMs like Unitree and AgiBot despite the chip controls. **Open-weight counter-push (Aug 12):** Released Nemotron 3.5 Lightning, an open-weight model, alongside Meta's Muse Glimmer — part of a 20+ company US industry push to contest a category Chinese labs (DeepSeek, Qwen, Kimi) currently dominate on adoption and benchmark share. Notably, OpenAI and Anthropic — whose revenue depends on closed, API-sold frontier models — did not sign the coalition letter, underscoring that the open-weight push is as much a hardware-and-distribution play for Nvidia as a model-quality contest. **'Physical AI' push deepens China robotics dependency (Aug 29-31, 2026):** WSJ reported Nvidia is investing heavily in robots, autonomous vehicles, and drones under the 'physical AI' banner, with Chinese firms among its important customers. The strategy mirrors Nvidia's LLM-era playbook — bundle chips with free open-weight software (GR00T, Cosmos) that robot developers can download and customize, building dependency on the combined hardware-software stack rather than the chip alone. Unitree is a flagship customer: the first robotics system Nvidia sells to outside researchers is a Unitree humanoid running a Blackwell chip. China's domestic AI chips reportedly reached ~52% share of the domestic AI chip market in H1 2026, but that share is concentrated in LLM training/inference, not the robotics stack — where Nvidia's free software layer looks stickier than the silicon itself. **China declines Trump's H200 offer (Sept 2-3, 2026):** Commerce Secretary Howard Lutnick told reporters after the G20 Innovation Ministerial in Chapel Hill, NC, that Beijing has not taken up Trump's offer to sell it H200 chips (and AMD-equivalent parts), and that he does not expect chip export controls to be discussed at the planned Sept 24 Trump-Xi summit as a result. Lutnick called the offer an 'olive branch' that 'hasn't been taken up' and said 'we're just gonna let it go' rather than pursue further relaxation, while separately acknowledging export-control enforcement has become 'a bit of whack-a-mole' given offshore GPU-rental structures. For positioning: this narrows near-term odds of eased US chip access for Chinese buyers via the summit, reinforcing continued reliance on Huawei Ascend and other domestic alternatives.",
+      "desc": "Referenced in China AI landscape as the global benchmark domestic Chinese chips must match. Key dynamics: US export controls (Oct 2022, Oct 2023, May 2024, Jan 2025) have progressively restricted H100+ sales to China; 'China-specific' compliant chips (H20, L20) can still be sold at lower specs. Beijing directs major AI firms to defer Nvidia H200 deployment to protect the Huawei Ascend ecosystem. Despite controls, Chinese labs still prefer Nvidia hardware where available — domestic chip gaps in HBM and training efficiency are real. Isaac GR00T (Nvidia's humanoid AI platform) is a strategic anchor for Chinese humanoid OEMs like Unitree and AgiBot despite the chip controls. **Open-weight counter-push (Aug 12):** Released Nemotron 3.5 Lightning, an open-weight model, alongside Meta's Muse Glimmer — part of a 20+ company US industry push to contest a category Chinese labs (DeepSeek, Qwen, Kimi) currently dominate on adoption and benchmark share. Notably, OpenAI and Anthropic — whose revenue depends on closed, API-sold frontier models — did not sign the coalition letter, underscoring that the open-weight push is as much a hardware-and-distribution play for Nvidia as a model-quality contest. **'Physical AI' push deepens China robotics dependency (Aug 29-31, 2026):** WSJ reported Nvidia is investing heavily in robots, autonomous vehicles, and drones under the 'physical AI' banner, with Chinese firms among its important customers. The strategy mirrors Nvidia's LLM-era playbook — bundle chips with free open-weight software (GR00T, Cosmos) that robot developers can download and customize, building dependency on the combined hardware-software stack rather than the chip alone. Unitree is a flagship customer: the first robotics system Nvidia sells to outside researchers is a Unitree humanoid running a Blackwell chip. China's domestic AI chips reportedly reached ~52% share of the domestic AI chip market in H1 2026, but that share is concentrated in LLM training/inference, not the robotics stack — where Nvidia's free software layer looks stickier than the silicon itself. **China declines Trump's H200 offer (Sept 2-3, 2026):** Commerce Secretary Howard Lutnick told reporters after the G20 Innovation Ministerial in Chapel Hill, NC, that Beijing has not taken up Trump's offer to sell it H200 chips (and AMD-equivalent parts), and that he does not expect chip export controls to be discussed at the planned Sept 24 Trump-Xi summit as a result. Lutnick called the offer an 'olive branch' that 'hasn't been taken up' and said 'we're just gonna let it go' rather than pursue further relaxation, while separately acknowledging export-control enforcement has become 'a bit of whack-a-mole' given offshore GPU-rental structures. For positioning: this narrows near-term odds of eased US chip access for Chinese buyers via the summit, reinforcing continued reliance on Huawei Ascend and other domestic alternatives.\n\n**Smuggling arrest and Senate scrutiny of Southeast Asia sales (Oct 1-2, 2026):** US authorities arrested California resident Greg Lui on Oct 1 on conspiracy, smuggling and money-laundering charges over $300M+ of Nvidia-equipped servers allegedly sent to China in 2023-24. A same-day Bloomberg investigation described labels stripped from server boxes and an alleged route through Bangkok-based OBON, which received ~$2.5B of AI servers without the ~100MW of capacity to run them. US officials estimate at least 115,000 restricted Nvidia processors have reached China. Senators Jim Banks and Elizabeth Warren called for a review of Nvidia's export licenses; Nvidia said a startup's growth plan in a friendly country 'is an opportunity for America, not a red flag.' The March Super Micro-linked indictment (~$510M) brings the two cases above $800M.",
       "tags": [
+        {
+          "l": "$300M smuggling arrest; Banks and Warren seek export-license review (Oct 1-2)",
+          "t": "highlight"
+        },
+        {
+          "l": "Officials estimate 115,000 restricted GPUs already in China",
+          "t": "red"
+        },
         {
           "l": "China declines Trump's H200 offer (Sept 2-3)",
           "t": "highlight"
@@ -4264,7 +4280,7 @@
           "t": "red"
         }
       ],
-      "issue": "#84, #87, #105, #110, #132, #133",
+      "issue": "#84, #87, #105, #110, #132, #133, #137",
       "bio": "Founded 1993, Santa Clara (CA), by Jensen Huang (黄仁勋, CEO), Chris Malachowsky, and Curtis Priem. Public (NASDAQ: NVDA). World's dominant AI accelerator chip company; H100/B200/GB300 series are the global benchmark for frontier AI training. Referenced in this landscape due to Chinese AI companies' critical dependence on — and US export controls restricting — Nvidia GPUs.",
       "trend": "flat"
     },
@@ -5064,6 +5080,29 @@
       ],
       "issue": "#136",
       "trend": "up"
+    },
+    {
+      "name": "Ministry of Transport (MOT)",
+      "zh": "交通运输部",
+      "py": "Jiāotōng Yùnshūbù",
+      "cat": "gov",
+      "status": "government",
+      "desc": "China's transport regulator; publishes daily cross-regional passenger-flow data (跨区域人员流动量) during holidays, an early read on travel demand. **Golden Week day one (Oct 1, 2026):** 329.5M cross-regional trips, -1.9% y/y; rail 25.2M (+9.0%), commercial road 44.71M (+8.5%), private car trips 255.65M (-4.5%), air 2.52M (+0.5%), water 1.42M (+7.2%). Forecast 308.2M trips on Oct 2 (+2.1%) and about 2.13B over the holiday period. The 2026 break runs seven days against an eight-day 2025 holiday that included Mid-Autumn, so full-period totals face a longer base.",
+      "tags": [
+        {
+          "l": "Golden Week day one: 329.5M trips, -1.9% y/y (Oct 1)",
+          "t": "highlight"
+        },
+        {
+          "l": "Rail +9.0%, private car trips -4.5%",
+          "t": "blue"
+        },
+        {
+          "l": "Seven-day holiday vs eight days in 2025",
+          "t": "red"
+        }
+      ],
+      "issue": "#137"
     }
   ]
 }
