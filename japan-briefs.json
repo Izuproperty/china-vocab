@@ -1,5 +1,104 @@
 [
   {
+    "issue": 128,
+    "date": "2026-10-05",
+    "title": "ELYZA Builds Free Japanese Reasoning Models, Air Liquide Bets €170 Million on Kyushu Logic, and Food Price Hikes Meet the Tax-Cut Diet",
+    "summary": "KDDI's ELYZA released free reasoning models built on NII's Japan-trained LLM-jp-4 and says AI agents did most of the work, while Air Liquide committed more than €170 million to gas plants for a Kyushu logic fab that fits JASM's 3nm second plant. Food makers raised prices on 3,153 items in October as the Diet convenes to debate cutting the food consumption tax to 1% from April 2027.",
+    "viz_url": "japan-brief-visualized-2026-10-05.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "KDDI's ELYZA Gives Away Japanese Reasoning Models Built on the Public LLM-jp Base, and Says Agents Did Most of the Work",
+        "tag": "AI & Tech",
+        "source": "ELYZA release and Hugging Face model cards · ITmedia AI+ · Business+IT · NII LLM-jp · Sept 28 – Oct 2, 2026",
+        "body": "イライザ (Iraiza, ELYZA), the Tokyo AI developer consolidated by KDDI, released two 推論モデル (suiron moderu, reasoning models) on October 2 under the Apache 2.0 license, free for commercial use. ELYZA-Thinking-1.0 comes in a 33-billion-parameter dense version and a 32B mixture-of-experts version that activates about 3 billion parameters per token. Both sit on LLM-jp-4, the open model that the 国立情報学研究所 (Kokuritsu Jōhōgaku Kenkyūsho, National Institute of Informatics, NII) pre-trained from scratch in Japan; NII shipped its own 4.1 update with tool calling on September 28. ELYZA added Japanese-translated math and coding data, several million synthetic reasoning examples (about half in Japanese) and reinforcement learning on tasks a program can grade.\n\nOn ELYZA's 20-benchmark suite the dense model averages 61.7. That beats NII's own LLM-jp-4.1 thinking model (60.6) and Alibaba's Qwen3-32B (58.1), and trails Qwen3.5-27B (68.2) and Google's Gemma 4 31B (70.5). ELYZA launched a unit called ELYZA RSI Research the same day, named for 再帰的自己改善 (saikiteki jiko kaizen, recursive self-improvement). It says AI agents ran most of the training and evaluation for both models, with one to two person-days of human work, and calls this groundwork rather than RSI itself. The company also corrected an English tagline that had described the models as \"fully domestic.\"\n\nA nine-point gap to Gemma means ELYZA cannot sell these models on raw capability. It can sell them on lineage. Ministries, banks and utilities buying 国産AI (kokusan AI, domestically built AI) want weights, training data and pre-training they can trace inside Japan, and an open license lets them run the model on their own servers. The agent-run pipeline is what changes the economics for KDDI (TSE: 9433). If two person-days can turn each new NII base model into a competitive reasoning model, ELYZA can retrain every time NII publishes, and the public pre-training budget does the expensive part. That puts pressure on the government-backed Noetra consortium and SoftBank's Sarashina models, which pay for their own pre-training.",
+        "takeaway": "ELYZA sells provenance to public-sector and regulated buyers who need models trained and hosted in Japan. Cheap, agent-run post-training lets KDDI (TSE: 9433) refresh its models each time NII publishes a new base, while NII's public budget covers pre-training. Watch for government or bank deployments that name ELYZA-Thinking.",
+        "vocab": [
+          {
+            "ja": "推論モデル",
+            "en": "Reasoning model",
+            "example": "ELYZA released two 推論モデル built on Japan's public LLM-jp-4 base."
+          },
+          {
+            "ja": "再帰的自己改善",
+            "en": "Recursive self-improvement",
+            "example": "ELYZA named its new research unit after 再帰的自己改善, AI that helps build better AI."
+          },
+          {
+            "ja": "国立情報学研究所",
+            "en": "National Institute of Informatics (NII)",
+            "example": "The 国立情報学研究所 pre-trained LLM-jp-4 from scratch in Japan."
+          },
+          {
+            "ja": "国産AI",
+            "en": "Domestically built AI",
+            "example": "Ministries and banks buying 国産AI want models trained and hosted in Japan."
+          }
+        ]
+      },
+      {
+        "icon": "🏭",
+        "title": "Air Liquide Commits €170 Million to Gas Plants for a Kyushu Logic Fab Expansion",
+        "tag": "Semiconductors",
+        "source": "Air Liquide release · Mynavi Tech+ · ChemXplore · TrendForce / Focus Taiwan (JASM background) · Sept 30 – Oct 1, 2026",
+        "body": "French industrial gas group エア・リキード (Ea Rikīdo, Air Liquide) said on September 30 it will invest more than €170 million to build, own and operate several plants making 超高純度ガス (chō-kōjundo gasu, ultra-high-purity gas) for a leading chipmaker expanding 先端ロジック (sentan rojikku, advanced logic) production in southern Japan's chip cluster. The units will supply nitrogen, oxygen, argon and hydrogen and include large backup storage, under a 長期供給契約 (chōki kyōkyū keiyaku, long-term supply contract). Neither company named the customer. Air Liquide committed €200 million in April to two units for another chipmaker in Hiroshima, due online by the end of 2028.\n\nThe description fits one project. TSMC's Japanese unit JASM is building its 熊本第2工場 (Kumamoto dai-ni kōjō, second Kumamoto fab) in Kikuyo. TSMC said in February it would make 3nm chips there instead of the 6nm originally planned, Taiwan's government approved the upgrade on March 31, and reports put capacity near 15,000 wafers a month with volume output in 2028. A 3nm fab uses more nitrogen and hydrogen per wafer than the 12nm and 16nm lines in JASM's first plant, and any interruption in supply scraps wafers already in process. Backup storage is written into the contract for that reason.\n\nGas plants are ordered and built before the tools arrive, so a contract signed now tells investors the customer is funding the 3nm schedule rather than waiting on demand. That supports the Kyushu supplier chain around the fab, including Tokyo Electron, which makes coater-developers in Kumamoto. The award also went to a foreign supplier over 日本酸素ホールディングス (Nippon Sanso Hōrudingusu, Nippon Sanso Holdings, TSE: 4091), the domestic leader. On-site gas contracts typically run more than a decade, so the Hiroshima and Kyushu awards lock in revenue that Nippon Sanso will not see for years.",
+        "takeaway": "Utility plants are contracted ahead of tool move-in, so this order is evidence the 3nm schedule is being funded now. It supports the Kumamoto supplier cluster, Tokyo Electron's Kyushu operations among them. The domestic leader Nippon Sanso (TSE: 4091) lost two large, decade-plus contracts in one year.",
+        "vocab": [
+          {
+            "ja": "超高純度ガス",
+            "en": "Ultra-high-purity gas",
+            "example": "Air Liquide will build plants making 超高純度ガス for a Kyushu logic fab."
+          },
+          {
+            "ja": "先端ロジック",
+            "en": "Advanced logic",
+            "example": "The customer is expanding 先端ロジック production in southern Japan."
+          },
+          {
+            "ja": "長期供給契約",
+            "en": "Long-term supply contract",
+            "example": "Air Liquide signed a 長期供給契約 to supply the fab with gases."
+          },
+          {
+            "ja": "熊本第2工場",
+            "en": "Second Kumamoto fab (JASM)",
+            "example": "TSMC upgraded its 熊本第2工場 plan to 3nm chips."
+          }
+        ]
+      },
+      {
+        "icon": "🛒",
+        "title": "Food Makers Raise Prices on 3,153 Items in October as the Diet Opens to Debate a Food Tax Cut",
+        "tag": "Macro",
+        "source": "Teikoku Databank food price survey · Ryukyu Shimpo / Jiji · Minkabu · Xinhua · Sept 30 – Oct 5, 2026",
+        "body": "帝国データバンク (Teikoku Dētabanku, Teikoku Databank) counted 3,153 food and drink items whose prices rose on October 1 across 195 major makers, with an average increase of about 10%. Alcohol and beverages accounted for 1,399 items and seasonings for 820. September was the year's peak at 4,965 items, November has 1,469 announced so far and December 132. The 2026 total stands at 20,187, the second year in a row above 20,000 after 20,609 in 2025. Makers cited raw materials in 91.3% of cases, logistics in 66.0%, energy in 63.8% and labor in 51.1%, and the survey expects further rounds in 2027 as Middle East tension holds up energy costs and the yen stays weaker than ¥150.\n\nThe extraordinary Diet convenes today with Prime Minister Takaichi's bill to cut the consumption tax on food from the 8% 軽減税率 (keigen zeiritsu, reduced tax rate) to 1% for two years from April 2027 at the center of debate. Full 価格転嫁 (kakaku tenka, price pass-through) of the cut would lower shelf prices by about 6.5%, since ¥108 including tax becomes ¥101. Alcohol and restaurant meals are taxed at the standard 10% and fall outside the cut, so a large share of October's drink increases would stay in place. The cut costs about ¥5 trillion a year, and Finance Minister Katayama has deferred the funding decision to the fiscal 2027 budget due in late December.\n\nThis matters for the BOJ in two directions. Price hikes this autumn keep food inflation high now, which supports another rate increase from the current 1.25%. From April 2027, the tax cut will knock food prices down for twelve months, pulling measured CPI lower for reasons the BOJ will treat as temporary. Households have already cut back: inflation-adjusted spending fell year on year for eight straight months through July. August real wages come out on Wednesday and household spending on Friday. A weak spending print would give the government more reason to push the cut through quickly, and it would give bond investors more reason to ask how a ¥5 trillion gap gets filled.",
+        "takeaway": "Food inflation stays high through year-end, which keeps a hike from 1.25% on the table, but from April 2027 the tax cut will pull measured CPI down by mechanical means for a year. Real wages (Wednesday) and household spending (Friday) decide how quickly the bill moves, and its funding gap keeps pressure on long JGBs.",
+        "vocab": [
+          {
+            "ja": "軽減税率",
+            "en": "Reduced tax rate",
+            "example": "The bill would cut the 8% 軽減税率 on food to 1% for two years."
+          },
+          {
+            "ja": "価格転嫁",
+            "en": "Price pass-through",
+            "example": "Full 価格転嫁 of the tax cut would lower shelf prices about 6.5%."
+          },
+          {
+            "ja": "消費税減税",
+            "en": "Consumption tax cut",
+            "example": "The 消費税減税 on food costs about ¥5 trillion a year."
+          },
+          {
+            "ja": "値上げ",
+            "en": "Price increase",
+            "example": "Teikoku Databank counted 3,153 値上げ items for October."
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 127,
     "date": "2026-10-04",
     "title": "Hitachi and Fanuc Team Up on Physical AI, Japan's Chip Tool Sales Hit a Record, and Takaichi and Ueda Speak Back to Back",

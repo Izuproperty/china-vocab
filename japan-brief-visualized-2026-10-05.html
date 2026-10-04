@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #128 · October 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #128 · October 5, 2026</div>
+    <div class="masthead-sub">ELYZA Builds Free Japanese Reasoning Models · Air Liquide Bets €170 Million on Kyushu Logic · Food Price Hikes Meet the Tax-Cut Diet</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ELYZA / KDDI</div>
+      <div class="card-num">61.7</div>
+      <div class="card-label">20-benchmark average for ELYZA-Thinking 33B, built on NII's LLM-jp-4 and released free under Apache 2.0</div>
+      <div class="card-delta delta-amber">Gemma 4 31B: 70.5</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMI · AIR LIQUIDE</div>
+      <div class="card-num">€170<span class="card-num-unit">M+</span></div>
+      <div class="card-label">Ultra-high-purity gas plants for an unnamed chipmaker's logic expansion in Kyushu</div>
+      <div class="card-delta delta-green">Fits JASM's 3nm fab 2</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · PRICES</div>
+      <div class="card-num">3,153</div>
+      <div class="card-label">Food and drink items with price increases in October, averaging about 10%</div>
+      <div class="card-delta delta-red">2026 total: 20,187</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">KDDI's ELYZA Gives Away Japanese Reasoning Models Built on the Public LLM-jp Base, and Says Agents Did Most of the Work</div>
+    <div class="story-insight">
+      <p>ELYZA released ELYZA-Thinking-1.0 in 33B dense and 32B-A3B mixture-of-experts versions on October 2, post-trained on NII's LLM-jp-4 and free for commercial use.</p>
+      <br>
+      <p>The dense model beats NII's own LLM-jp-4.1 and Qwen3-32B and trails Qwen3.5-27B and Gemma 4 31B. ELYZA says agents handled most of the work, with one to two person-days of human input per model.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> ELYZA sells provenance to public-sector and regulated buyers who need models trained and hosted in Japan. Cheap, agent-run post-training lets KDDI (TSE: 9433) refresh its models each time NII publishes a new base, while NII's public budget covers pre-training. Watch for government or bank deployments that name ELYZA-Thinking.</div>
+    <div class="chart-box">
+      <div class="chart-title">Where ELYZA's Models Land</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="20" font-size="11" font-weight="700" fill="#3730a3">AVERAGE SCORE, ELYZA 20-BENCHMARK SUITE</text>
+<line x1="230.0" y1="34" x2="230.0" y2="282" stroke="#e8eaf2"/><text x="230.0" y="298" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="355.0" y1="34" x2="355.0" y2="282" stroke="#e8eaf2"/><text x="355.0" y="298" font-size="10" fill="#5a6a8a" text-anchor="middle">20</text>
+<line x1="480.0" y1="34" x2="480.0" y2="282" stroke="#e8eaf2"/><text x="480.0" y="298" font-size="10" fill="#5a6a8a" text-anchor="middle">40</text>
+<line x1="605.0" y1="34" x2="605.0" y2="282" stroke="#e8eaf2"/><text x="605.0" y="298" font-size="10" fill="#5a6a8a" text-anchor="middle">60</text>
+<line x1="730.0" y1="34" x2="730.0" y2="282" stroke="#e8eaf2"/><text x="730.0" y="298" font-size="10" fill="#5a6a8a" text-anchor="middle">80</text>
+<text x="222" y="55" font-size="11" fill="#1a1a2e" text-anchor="end">Gemma 4 31B</text><rect x="230" y="42" width="440.9" height="18" rx="2" fill="#9aa3c0"/><text x="676.9" y="55" font-size="11" font-weight="700" fill="#1a1a2e">70.5</text>
+<text x="222" y="85" font-size="11" fill="#1a1a2e" text-anchor="end">Qwen3.5-27B</text><rect x="230" y="72" width="426.1" height="18" rx="2" fill="#9aa3c0"/><text x="662.1" y="85" font-size="11" font-weight="700" fill="#1a1a2e">68.2</text>
+<text x="222" y="115" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">ELYZA-Thinking 33B</text><rect x="230" y="102" width="385.6" height="18" rx="2" fill="#3730a3"/><text x="621.6" y="115" font-size="11" font-weight="700" fill="#1a1a2e">61.7</text>
+<text x="222" y="145" font-size="11" fill="#1a1a2e" text-anchor="end">LLM-jp-4.1 33B thinking</text><rect x="230" y="132" width="379.0" height="18" rx="2" fill="#818cf8"/><text x="615.0" y="145" font-size="11" font-weight="700" fill="#1a1a2e">60.6</text>
+<text x="222" y="175" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">ELYZA-Thinking 32B-A3B</text><rect x="230" y="162" width="365.6" height="18" rx="2" fill="#3730a3"/><text x="601.6" y="175" font-size="11" font-weight="700" fill="#1a1a2e">58.5</text>
+<text x="222" y="205" font-size="11" fill="#1a1a2e" text-anchor="end">Qwen3-32B</text><rect x="230" y="192" width="363.2" height="18" rx="2" fill="#9aa3c0"/><text x="599.2" y="205" font-size="11" font-weight="700" fill="#1a1a2e">58.1</text>
+<text x="222" y="235" font-size="11" fill="#1a1a2e" text-anchor="end">LLM-jp-4 33B thinking</text><rect x="230" y="222" width="321.9" height="18" rx="2" fill="#818cf8"/><text x="557.9" y="235" font-size="11" font-weight="700" fill="#1a1a2e">51.5</text>
+<text x="222" y="265" font-size="11" fill="#1a1a2e" text-anchor="end">OLMo 3.1 32B Think</text><rect x="230" y="252" width="316.9" height="18" rx="2" fill="#9aa3c0"/><text x="552.9" y="265" font-size="11" font-weight="700" fill="#1a1a2e">50.7</text>
+<text x="800" y="316" font-size="10" fill="#5a6a8a" text-anchor="end">Indigo = ELYZA · light indigo = NII LLM-jp · grey = foreign open models</text></svg>
+      <div class="chart-note">Sources: ELYZA Hugging Face model card (Oct 2, 2026); Business+IT. Scores are ELYZA's own 20-benchmark averages, not independently verified.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · OPEN AND DOMESTIC</div>
+        <div class="annotation-card-ja">国産AI<span class="annotation-card-en">kokusan AI · Domestically built AI</span></div>
+        <div class="annotation-card-body">Apache 2.0 weights on a Japan-trained base can run on a buyer's own servers.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · AGENT-RUN TRAINING</div>
+        <div class="annotation-card-ja">再帰的自己改善<span class="annotation-card-en">saikiteki jiko kaizen · Recursive self-improvement</span></div>
+        <div class="annotation-card-body">Two person-days per model, if it holds, makes each NII release cheap to follow.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CAPABILITY GAP</div>
+        <div class="annotation-card-ja">推論モデル<span class="annotation-card-en">suiron moderu · Reasoning model</span></div>
+        <div class="annotation-card-body">Nine points behind Gemma 4 31B on ELYZA's own suite.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Air Liquide Commits €170 Million to Gas Plants for a Kyushu Logic Fab Expansion</div>
+    <div class="story-insight">
+      <p>Air Liquide will build, own and operate nitrogen, oxygen, argon and hydrogen units with backup storage for an unnamed chipmaker's advanced logic expansion in southern Japan, under a long-term contract.</p>
+      <br>
+      <p>The profile matches JASM's second Kumamoto fab, upgraded to 3nm this year with volume output targeted for 2028. Air Liquide also won a €200 million Hiroshima award in April.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Utility plants are contracted ahead of tool move-in, so this order is evidence the 3nm schedule is being funded now. It supports the Kumamoto supplier cluster, Tokyo Electron's Kyushu operations among them. The domestic leader Nippon Sanso (TSE: 4091) lost two large, decade-plus contracts in one year.</div>
+    <div class="chart-box">
+      <div class="chart-title">From the 3nm Decision to the Gas Contract</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="20" font-size="11" font-weight="700" fill="#3730a3">JASM SECOND FAB AND AIR LIQUIDE'S JAPAN CHIP-GAS AWARDS</text>
+<line x1="60" y1="140" x2="780" y2="140" stroke="#5a6a8a" stroke-width="2"/>
+<rect x="640" y="132" width="140" height="16" fill="#fce7f3"/>
+<text x="710" y="124" font-size="10" font-weight="700" fill="#be185d" text-anchor="middle">TOOL-IN AND RAMP</text>
+<g fill="#be185d"><circle cx="80" cy="140" r="7"/><circle cx="210" cy="140" r="7"/><circle cx="330" cy="140" r="7"/><circle cx="520" cy="140" r="9"/><circle cx="760" cy="140" r="7"/></g>
+<g font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">
+<text x="80" y="104">Feb 5, 2026</text><text x="210" y="104">Mar 31</text><text x="330" y="104">Apr 16</text><text x="520" y="104">Sept 30</text><text x="760" y="104">2028</text></g>
+<g font-size="10" fill="#3a4a6a" text-anchor="middle">
+<text x="80" y="168">TSMC: Kumamoto</text><text x="80" y="182">fab 2 moves to 3nm</text>
+<text x="210" y="168">Taiwan approves</text><text x="210" y="182">3nm upgrade</text>
+<text x="330" y="168">Air Liquide €200M</text><text x="330" y="182">Hiroshima chipmaker</text>
+<text x="520" y="168" font-weight="700" fill="#be185d">Air Liquide €170M+</text><text x="520" y="182">Kyushu logic expansion</text>
+<text x="760" y="168">3nm volume output</text><text x="760" y="182">~15k wafers/month</text></g>
+<rect x="20" y="218" width="780" height="62" rx="6" fill="#fff" stroke="#dde0ec"/>
+<g font-size="11" fill="#1a1a2e">
+<text x="36" y="242" font-weight="700">~€370M</text><text x="36" y="262" fill="#5a6a8a">Air Liquide Japan chip awards, 2026</text>
+<text x="256" y="242" font-weight="700">N2 · O2 · Ar · H2</text><text x="256" y="262" fill="#5a6a8a">plus large backup storage</text>
+<text x="476" y="242" font-weight="700">Customer unnamed</text><text x="476" y="262" fill="#5a6a8a">profile matches JASM fab 2</text>
+<text x="656" y="242" font-weight="700">3nm vs 12/16nm</text><text x="656" y="262" fill="#5a6a8a">fab 1 nodes</text></g>
+</svg>
+      <div class="chart-note">Sources: Air Liquide releases (Apr 16, Sept 30, 2026); TrendForce; Focus Taiwan; BigGo Finance. Customer for the Kyushu award is not disclosed. Timeline not to scale.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SCHEDULE FUNDED</div>
+        <div class="annotation-card-ja">超高純度ガス<span class="annotation-card-en">chō-kōjundo gasu · Ultra-high-purity gas</span></div>
+        <div class="annotation-card-body">Gas plants come before tools, so the customer is committing to the ramp.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TSMC COMMENTS</div>
+        <div class="annotation-card-ja">熊本第2工場<span class="annotation-card-en">Kumamoto dai-ni kōjō · Second Kumamoto fab</span></div>
+        <div class="annotation-card-body">TSMC's mid-October earnings call may confirm the Kumamoto 3nm timetable.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LOCAL SUPPLIERS</div>
+        <div class="annotation-card-ja">長期供給契約<span class="annotation-card-en">chōki kyōkyū keiyaku · Long-term supply contract</span></div>
+        <div class="annotation-card-body">Nippon Sanso misses out on revenue that runs more than a decade.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO & FINANCE</div>
+    <div class="story-headline">Food Makers Raise Prices on 3,153 Items in October as the Diet Opens to Debate a Food Tax Cut</div>
+    <div class="story-insight">
+      <p>Teikoku Databank counted 3,153 food and drink price increases for October, averaging about 10%, and 20,187 for 2026. September was the peak at 4,965 items.</p>
+      <br>
+      <p>The Diet convenes today on Takaichi's bill to cut the food consumption tax from 8% to 1% for two years from April 2027, costing about ¥5 trillion a year with no named funding.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Food inflation stays high through year-end, which keeps a hike from 1.25% on the table, but from April 2027 the tax cut will pull measured CPI down by mechanical means for a year. Real wages (Wednesday) and household spending (Friday) decide how quickly the bill moves, and its funding gap keeps pressure on long JGBs.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Price-Hike Wave Peaked in September</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="20" font-size="11" font-weight="700" fill="#3730a3">FOOD AND DRINK ITEMS WITH PRICE INCREASES, 2026 (BY EFFECTIVE MONTH)</text>
+<line x1="60" y1="250.0" x2="790" y2="250.0" stroke="#e8eaf2"/><text x="54" y="254.0" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+<line x1="60" y1="210.0" x2="790" y2="210.0" stroke="#e8eaf2"/><text x="54" y="214.0" font-size="10" fill="#5a6a8a" text-anchor="end">1,000</text>
+<line x1="60" y1="170.0" x2="790" y2="170.0" stroke="#e8eaf2"/><text x="54" y="174.0" font-size="10" fill="#5a6a8a" text-anchor="end">2,000</text>
+<line x1="60" y1="130.0" x2="790" y2="130.0" stroke="#e8eaf2"/><text x="54" y="134.0" font-size="10" fill="#5a6a8a" text-anchor="end">3,000</text>
+<line x1="60" y1="90.0" x2="790" y2="90.0" stroke="#e8eaf2"/><text x="54" y="94.0" font-size="10" fill="#5a6a8a" text-anchor="end">4,000</text>
+<line x1="60" y1="50.0" x2="790" y2="50.0" stroke="#e8eaf2"/><text x="54" y="54.0" font-size="10" fill="#5a6a8a" text-anchor="end">5,000</text>
+<rect x="75" y="247.6" width="40" height="2.4" fill="#d6a56b"/><text x="95" y="241.6" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">60</text><text x="95" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">J</text>
+<rect x="135" y="221.2" width="40" height="28.8" fill="#d6a56b"/><text x="155" y="215.2" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">721</text><text x="155" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">F</text>
+<rect x="195" y="221.5" width="40" height="28.5" fill="#d6a56b"/><text x="215" y="215.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">712</text><text x="215" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">M</text>
+<rect x="255" y="136.5" width="40" height="113.5" fill="#d6a56b"/><text x="275" y="130.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2,838</text><text x="275" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">A</text>
+<rect x="315" y="246.6" width="40" height="3.4" fill="#d6a56b"/><text x="335" y="240.6" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">84</text><text x="335" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">M</text>
+<rect x="375" y="206.9" width="40" height="43.1" fill="#d6a56b"/><text x="395" y="200.9" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1,078</text><text x="395" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">J</text>
+<rect x="435" y="143.4" width="40" height="106.6" fill="#d6a56b"/><text x="455" y="137.4" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2,664</text><text x="455" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">J</text>
+<rect x="495" y="157.6" width="40" height="92.4" fill="#d6a56b"/><text x="515" y="151.6" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2,311</text><text x="515" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">A</text>
+<rect x="555" y="51.4" width="40" height="198.6" fill="#d6a56b"/><text x="575" y="45.4" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">4,965</text><text x="575" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">S</text>
+<rect x="615" y="123.9" width="40" height="126.1" fill="#b45309"/><text x="635" y="117.9" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">3,153</text><text x="635" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">O</text>
+<rect x="675" y="191.2" width="40" height="58.8" fill="#e8d2b4"/><text x="695" y="185.2" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1,469</text><text x="695" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">N</text>
+<rect x="735" y="244.7" width="40" height="5.3" fill="#e8d2b4"/><text x="755" y="238.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">132</text><text x="755" y="266" font-size="10" fill="#5a6a8a" text-anchor="middle">D</text>
+<text x="790" y="290" font-size="10" font-weight="700" fill="#b45309" text-anchor="end">2026 total 20,187 (2025: 20,609) · Nov-Dec announced so far</text></svg>
+      <div class="chart-note">Source: Teikoku Databank survey of 195 major food makers (Sept 30, 2026). Counts by month the increase takes effect; November and December reflect announcements so far.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PEAK PASSED</div>
+        <div class="annotation-card-ja">値上げ<span class="annotation-card-en">neage · Price increase</span></div>
+        <div class="annotation-card-body">Monthly counts fall sharply after October, to 1,469 in November.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PASS-THROUGH</div>
+        <div class="annotation-card-ja">価格転嫁<span class="annotation-card-en">kakaku tenka · Price pass-through</span></div>
+        <div class="annotation-card-body">A full pass-through of the cut lowers shelf prices about 6.5%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · FUNDING</div>
+        <div class="annotation-card-ja">軽減税率<span class="annotation-card-en">keigen zeiritsu · Reduced tax rate</span></div>
+        <div class="annotation-card-body">¥5 trillion a year with funding deferred to the December budget.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #128 · OCTOBER 5, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
