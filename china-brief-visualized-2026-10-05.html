@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #139 · October 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #139 · October 5, 2026</div>
+    <div class="masthead-sub">China's DUV Stockpile · Astribot Prices T1 for the US · Golden Week Box Office Slumps</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · CHIPS</div>
+      <div class="card-num">343<span class="card-num-unit">scanners</span></div>
+      <div class="card-label">Immersion DUV tools in Chinese-owned fabs by early 2026, ~270 of them ASML NXT:1980i (CTS estimate)</div>
+      <div class="card-delta delta-red">Authors urge full DUVi export ban</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · ROBOTICS</div>
+      <div class="card-num">$18K<span class="card-num-unit">US price</span></div>
+      <div class="card-label">Astribot T1 humanoid on sale in the US with immediate delivery, vs 89,900 yuan (~$13,000) in China</div>
+      <div class="card-delta delta-amber">~40% US premium</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CONSUMPTION</div>
+      <div class="card-num">753M<span class="card-num-unit">yuan</span></div>
+      <div class="card-label">National Day box office after four days (to 8 p.m. Oct 4), Maoyan Pro data</div>
+      <div class="card-delta delta-red">~30% behind 2025 pace</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">A Washington Think Tank Counts 343 Immersion Scanners in Chinese Fabs and Asks for a Total DUV Export Ban</div>
+    <div class="story-insight">
+      <p>The Center for Technology &amp; Statecraft estimates Chinese-owned fabs held ~343 immersion DUV scanners by early 2026, ~270 of them ASML NXT:1980i units, after buying about 90 in 2024 and 89 in 2025. One NXT:1980i can support 100,000+ Ascend 910C-equivalents a year, the authors estimate.</p>
+      <br>
+      <p>China's share of ASML system sales has fallen from 41% to 14% as the buying wave ended. The tools are installed, so a new ban would work through servicing and parts rather than new shipments.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> China front-loaded about 180 NXT:1980i purchases in two years, so a scanner ban now would mainly cut ASML's servicing and parts business in China, and its effect on output depends on whether Washington reaches maintenance.</div>
+    <div class="chart-box">
+      <div class="chart-title">China's Immersion DUV Fleet and ASML's China Exposure</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CHINA SHARE OF ASML NET SYSTEM SALES</text>
+<text x="30" y="48" font-size="12" fill="#1a1a2e">2024</text><rect x="200" y="36" width="400.0" height="18" fill="#c0392b"/><text x="608.0" y="50" font-size="11" font-weight="700" fill="#c0392b">41%</text>
+<text x="30" y="74" font-size="12" fill="#1a1a2e">2025</text><rect x="200" y="62" width="322.0" height="18" fill="#b45309"/><text x="530.0" y="76" font-size="11" font-weight="700" fill="#b45309">33%</text>
+<text x="30" y="100" font-size="12" fill="#1a1a2e">Q1 2026</text><rect x="200" y="88" width="185.4" height="18" fill="#c9c1b6"/><text x="393.4" y="102" font-size="11" font-weight="700" fill="#1a1a2e">19%</text>
+<text x="30" y="126" font-size="12" fill="#1a1a2e">Q2 2026</text><rect x="200" y="114" width="136.6" height="18" fill="#c9c1b6"/><text x="344.6" y="128" font-size="11" font-weight="700" fill="#1a1a2e">14%</text>
+<text x="30" y="170" font-size="11" font-weight="700" fill="#5a6a8a">IMMERSION DUV SCANNERS IN CHINESE-OWNED FABS (EARLY 2026, UNITS)</text>
+<text x="30" y="198" font-size="12" fill="#1a1a2e">All immersion DUV</text><rect x="200" y="186" width="400.0" height="18" fill="#1a1a2e"/><text x="608.0" y="200" font-size="11" font-weight="700" fill="#1a1a2e">~343</text>
+<text x="30" y="224" font-size="12" fill="#1a1a2e">ASML NXT:1980i</text><rect x="200" y="212" width="314.9" height="18" fill="#c0392b"/><text x="522.9" y="226" font-size="11" font-weight="700" fill="#c0392b">~270</text>
+<text x="30" y="250" font-size="12" fill="#1a1a2e">NXT:1980i bought 2024</text><rect x="200" y="238" width="104.9" height="18" fill="#b45309"/><text x="312.9" y="252" font-size="11" font-weight="700" fill="#b45309">~90</text>
+<text x="30" y="276" font-size="12" fill="#1a1a2e">NXT:1980i bought 2025</text><rect x="200" y="264" width="103.8" height="18" fill="#b45309"/><text x="311.8" y="278" font-size="11" font-weight="700" fill="#b45309">~89</text>
+<text x="30" y="308" font-size="10" fill="#5a6a8a">Sources: Center for Technology &amp; Statecraft via SCMP (Oct 2) and AI Weekly (Oct 3); ASML disclosures as cited. Counts are estimates.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPACITY</div>
+        <div class="annotation-card-zh">光刻机<span class="annotation-card-en">guāngkèjī · lithography machine</span></div>
+        <div class="annotation-card-body">The installed fleet already supports 7nm logic and memory without EUV, years before domestic scanners arrive.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ASML Q3</div>
+        <div class="annotation-card-zh">阿斯麦<span class="annotation-card-en">Āsīmài · ASML</span></div>
+        <div class="annotation-card-body">China's share in ASML's mid-October results, and any guidance on installed-base service revenue.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SERVICING</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Controls reaching parts and field service via the FDPR would hit uptime across the whole installed base.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">Astribot Puts Its T1 Humanoid on Sale in the US at $18,000, Roughly 40% Above Its China Price</div>
+    <div class="story-insight">
+      <p>Shenzhen's Astribot used IROS 2026 in Pittsburgh to open US orders for the T1 at $18,000 with immediate delivery. The 66 kg, 23-degree-of-freedom robot runs the Lumo-2 foundation model on a cable-driven body.</p>
+      <br>
+      <p>Astribot retrains Lumo on curated customer data and pushes updates over the air, so a US research base would feed it Western task data. That same data loop is the main procurement risk.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Astribot is charging US labs about 40% more than Chinese buyers and asking them to share task data for retraining, which tests whether US research demand holds once data-residency questions come up.</div>
+    <div class="chart-box">
+      <div class="chart-title">Astribot T1: Price by Market and Specifications</div>
+      <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">T1 LIST PRICE (US$ THOUSAND)</text>
+<text x="30" y="48" font-size="12" fill="#1a1a2e">China (89,900 yuan)</text><rect x="220" y="36" width="288.9" height="18" fill="#c9c1b6"/><text x="516.9" y="50" font-size="11" font-weight="700" fill="#1a1a2e">~13.0</text>
+<text x="30" y="74" font-size="12" fill="#1a1a2e">United States</text><rect x="220" y="62" width="400.0" height="18" fill="#c0392b"/><text x="628.0" y="76" font-size="11" font-weight="700" fill="#c0392b">18.0 (~+40%)</text>
+<text x="30" y="118" font-size="11" font-weight="700" fill="#5a6a8a">SPECIFICATIONS</text>
+<rect x="30" y="130" width="180" height="70" rx="6" fill="#fff" stroke="#e0d8d0"/><text x="120" y="160" font-size="22" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.55 m</text><text x="120" y="184" font-size="10.5" fill="#5a6a8a" text-anchor="middle">height</text>
+<rect x="225" y="130" width="180" height="70" rx="6" fill="#fff" stroke="#e0d8d0"/><text x="315" y="160" font-size="22" font-weight="700" fill="#1a1a2e" text-anchor="middle">66 kg</text><text x="315" y="184" font-size="10.5" fill="#5a6a8a" text-anchor="middle">weight</text>
+<rect x="420" y="130" width="180" height="70" rx="6" fill="#fff" stroke="#e0d8d0"/><text x="510" y="160" font-size="22" font-weight="700" fill="#1a1a2e" text-anchor="middle">23 DoF</text><text x="510" y="184" font-size="10.5" fill="#5a6a8a" text-anchor="middle">excluding end effectors</text>
+<rect x="615" y="130" width="180" height="70" rx="6" fill="#fff" stroke="#e0d8d0"/><text x="705" y="160" font-size="22" font-weight="700" fill="#c0392b" text-anchor="middle">5 kg</text><text x="705" y="184" font-size="10.5" fill="#5a6a8a" text-anchor="middle">payload per arm</text>
+<text x="30" y="232" font-size="11" fill="#5a6a8a">Model: Lumo-2 foundation model · OTA retraining on curated customer data · SDK + natural-language app builder</text>
+<text x="30" y="254" font-size="11" fill="#5a6a8a">Funding (36Kr): Series B above 1 billion yuan · valuation above 10 billion yuan</text>
+<text x="30" y="280" font-size="10" fill="#5a6a8a">Sources: Robotics &amp; Automation News, AndroidGuys (Oct 1-2), 36Kr. Dollar value of China price is approximate.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EXPANSION</div>
+        <div class="annotation-card-zh">出海<span class="annotation-card-en">chūhǎi · going overseas</span></div>
+        <div class="annotation-card-body">Research labs are the paying humanoid segment today, and the US has the largest pool of them.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CUSTOMERS</div>
+        <div class="annotation-card-zh">基座模型<span class="annotation-card-en">jīzuò móxíng · foundation model</span></div>
+        <div class="annotation-card-body">First named US labs and whether customer training data stays in the US.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PROCUREMENT</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+        <div class="annotation-card-body">Federal-funding limits on Chinese robots, as seen with drones, would close the university channel.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">Golden Week Box Office Reaches 753 Million Yuan in Four Days, About 30% Behind 2025, After the Weakest Opening Day in Years</div>
+    <div class="story-insight">
+      <p>Maoyan Pro data put National Day takings at 753 million yuan by 8 p.m. on October 4, against about 1.106 billion at the same point in 2025. Opening day fell 45% to about 176 million yuan.</p>
+      <br>
+      <p>The average ticket dropped to 36.3 yuan without lifting attendance, and holiday trips fell only 1.9% on day one, so travel diversion explains little of the slide.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Cinema spending fell 45% on opening day while trips fell 1.9%, so households are cutting cheap discretionary services, which strengthens the case for fourth-quarter consumer transfers if the tourism tally also misses last year's 911 yuan per trip.</div>
+    <div class="chart-box">
+      <div class="chart-title">National Day Box Office: First Four Days and Opening Day</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CUMULATIVE BOX OFFICE AFTER FOUR DAYS (MILLION YUAN)</text>
+<text x="30" y="48" font-size="12" fill="#1a1a2e">2024</text><rect x="200" y="36" width="400.0" height="18" fill="#c9c1b6"/><text x="608.0" y="50" font-size="11" font-weight="700" fill="#1a1a2e">~1,452</text>
+<text x="30" y="74" font-size="12" fill="#1a1a2e">2025</text><rect x="200" y="62" width="304.7" height="18" fill="#b45309"/><text x="512.7" y="76" font-size="11" font-weight="700" fill="#b45309">~1,106</text>
+<text x="30" y="100" font-size="12" fill="#1a1a2e">2026 (to 8 p.m. Oct 4)</text><rect x="200" y="88" width="207.4" height="18" fill="#c0392b"/><text x="415.4" y="102" font-size="11" font-weight="700" fill="#c0392b">753 (~-32% y/y)</text>
+<text x="30" y="146" font-size="11" font-weight="700" fill="#5a6a8a">OPENING DAY, OCT 1 (MILLION YUAN)</text>
+<text x="30" y="174" font-size="12" fill="#1a1a2e">2025</text><rect x="200" y="162" width="221.1" height="18" fill="#b45309"/><text x="429.1" y="176" font-size="11" font-weight="700" fill="#b45309">~321</text>
+<text x="30" y="200" font-size="12" fill="#1a1a2e">2026</text><rect x="200" y="188" width="121.2" height="18" fill="#c0392b"/><text x="329.2" y="202" font-size="11" font-weight="700" fill="#c0392b">~176 (-45%)</text>
+<text x="30" y="236" font-size="11" fill="#5a6a8a">Average ticket 36.3 yuan · Day-one trips -1.9% · Citi pre-holiday forecast ~1.6B yuan (-12%) · industry range now 1.1-1.3B</text>
+<text x="30" y="258" font-size="11" fill="#5a6a8a">2025 holiday ran eight days (Oct 1-8); 2026 runs seven, so full-period comparisons will look weaker than the daily pace.</text>
+<text x="30" y="286" font-size="10" fill="#5a6a8a">Sources: Maoyan Pro via Sohu (Oct 4), Tencent News (Oct 4), Sina Finance. 2026 figure is to 8 p.m.; prior-year figures are full four days.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLICY CASE</div>
+        <div class="annotation-card-zh">服务消费<span class="annotation-card-en">fúwù xiāofèi · services consumption</span></div>
+        <div class="annotation-card-body">Weak discretionary services spending adds weight to direct consumer support over rate cuts.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FINAL TALLY</div>
+        <div class="annotation-card-zh">国庆档<span class="annotation-card-en">Guóqìng dàng · National Day film slot</span></div>
+        <div class="annotation-card-body">Final Maoyan total on Oct 8 and the tourism ministry's per-trip spending versus 911 yuan.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EARNINGS</div>
+        <div class="annotation-card-zh">票房<span class="annotation-card-en">piàofáng · box office</span></div>
+        <div class="annotation-card-body">Cinema chains and Maoyan face a weak fourth quarter if no late-holiday hit emerges.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #139 · OCTOBER 5, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
