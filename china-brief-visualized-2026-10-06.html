@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #140 · October 6, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #140 · October 6, 2026</div>
+    <div class="masthead-sub">Reflection's Beam Targets GLM-5.2 · Golden Week Travel Agents · Fund Closures at an Eight-Year High</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · MODELS</div>
+      <div class="card-num">23B<span class="card-num-unit">active</span></div>
+      <div class="card-label">Active parameters in Reflection's Beam (501B total), vs 40B active in Zhipu's GLM-5.2 (744B total)</div>
+      <div class="card-delta delta-amber">Claims GLM-5.2 parity, 3-4x less compute</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · AGENTS</div>
+      <div class="card-num">2.8x<span class="card-num-unit">usage</span></div>
+      <div class="card-label">Fliggy AI trip-planner use over National Day vs the prior month; DeepTrip peak-hour visits more than tripled on Oct 1</div>
+      <div class="card-delta delta-red">Paid placements unlabeled</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · FUNDS</div>
+      <div class="card-num">256<span class="card-num-unit">funds</span></div>
+      <div class="card-label">Public mutual funds liquidated in 2026 so far, with 46 more on notice (Bloomberg, Oct 5)</div>
+      <div class="card-delta delta-red">300+ on pace, most since 2018</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">Reflection Launches Beam and Measures It Against Zhipu's GLM-5.2, Making a Chinese Model the Yardstick for America's Open-Weight Pitch</div>
+    <div class="story-insight">
+      <p>Nvidia-backed Reflection AI unveiled Beam on October 5: a 501B-parameter mixture-of-experts model with 23B active parameters, 23.8T training tokens and a 1M-token context. It claims parity with Zhipu's GLM-5.2 on reasoning at three to four times less inference compute.</p>
+      <br>
+      <p>Beam targets regulated US buyers who cannot run Chinese weights. Those buyers were never Zhipu customers, so the pressure lands on cost-driven US adopters of Chinese open models, where a cheaper-to-serve rival narrows China's price edge.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A $25 billion US lab chose a Chinese model as its benchmark, and if Beam's unpublished numbers hold, Zhipu's overseas API business faces a substitute that serves similar answers with 40% fewer active parameters.</div>
+    <div class="chart-box">
+      <div class="chart-title">Beam vs GLM-5.2: Parameters (Billions)</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">TOTAL PARAMETERS (BILLIONS)</text>
+<text x="30" y="48" font-size="12" fill="#1a1a2e">GLM-5.2 (Zhipu, Jun 2026)</text><rect x="230" y="36" width="400.0" height="18" fill="#c0392b"/><text x="638.0" y="50" font-size="11" font-weight="700" fill="#c0392b">~744</text>
+<text x="30" y="74" font-size="12" fill="#1a1a2e">Beam (Reflection, Oct 2026)</text><rect x="230" y="62" width="269.4" height="18" fill="#1a1a2e"/><text x="507.4" y="76" font-size="11" font-weight="700" fill="#1a1a2e">501</text>
+<text x="30" y="118" font-size="11" font-weight="700" fill="#5a6a8a">ACTIVE PARAMETERS PER TOKEN (BILLIONS)</text>
+<text x="30" y="146" font-size="12" fill="#1a1a2e">GLM-5.2</text><rect x="230" y="134" width="400.0" height="18" fill="#c0392b"/><text x="638.0" y="148" font-size="11" font-weight="700" fill="#c0392b">~40</text>
+<text x="30" y="172" font-size="12" fill="#1a1a2e">Beam</text><rect x="230" y="160" width="230.0" height="18" fill="#1a1a2e"/><text x="468.0" y="174" font-size="11" font-weight="700" fill="#1a1a2e">23 (-42%)</text>
+<text x="30" y="212" font-size="11" fill="#5a6a8a">Beam: 23.8T training tokens · 1M-token context · text only · claimed 3-4x less inference compute than GLM-5.2 (no numbers published)</text>
+<text x="30" y="234" font-size="11" fill="#5a6a8a">Reflection: ~$4.7B raised · $25B last pre-money valuation · $7B+ GB300 compute deals (SpaceX, Nebius) through 2029</text>
+<text x="30" y="256" font-size="11" fill="#5a6a8a">GLM-5.2: MIT licence · 1M-token context · since followed by GLM-5.3 and GLM-5.3-Flash</text>
+<text x="30" y="288" font-size="10" fill="#5a6a8a">Sources: TechCrunch, Bloomberg (Oct 5, 2026); Zhipu disclosures. Beam claims are self-reported and unverified.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · BENCHMARK</div>
+        <div class="annotation-card-zh">开放权重<span class="annotation-card-en">kāifàng quánzhòng · open weights</span></div>
+        <div class="annotation-card-body">US labs now measure open models against Chinese ones, which confirms where the open-weight frontier sits.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VERIFICATION</div>
+        <div class="annotation-card-zh">推理算力<span class="annotation-card-en">tuīlǐ suànlì · inference compute</span></div>
+        <div class="annotation-card-body">Licence terms, independent evals and October OpenRouter share once Beam's weights are public.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REVENUE</div>
+        <div class="annotation-card-zh">智谱<span class="annotation-card-en">Zhìpǔ · Zhipu AI</span></div>
+        <div class="annotation-card-body">H1 revenue of ¥954M trails ¥2.1B R&amp;D, and a US substitute presses the overseas API income Zhipu needs.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">Golden Week Travel Agents Take Off, Fliggy AI Use Up 2.8x and DeepTrip Traffic Triples, as Scholars Flag Unlabeled Paid Placements</div>
+    <div class="story-insight">
+      <p>Fliggy's AI trip-planner use rose 2.8 times over National Day versus the prior month, and Tongcheng's DeepTrip agent saw peak-hour visits more than triple on October 1. Fliggy Bangbang now plans, books and handles changes in one flow.</p>
+      <br>
+      <p>An October 4 report found platforms rank paid partners in AI answers without ad labels, and one AI-picked flight cost about 10 yuan more than a rival's fare. China's 2022 algorithm rules do not explicitly cover paid placement inside agent answers.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Agents give travel platforms control of both the recommendation and the sale, so a labeling rule for paid placements inside AI answers would directly limit how Trip.com, Tongcheng and Alibaba monetize ranking.</div>
+    <div class="chart-box">
+      <div class="chart-title">AI Travel Agent Usage Multiples (vs Prior Period)</div>
+      <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">USAGE MULTIPLE (1.0x = PRIOR PERIOD)</text>
+<line x1="340" y1="30" x2="340" y2="128" stroke="#c9c1b6" stroke-dasharray="3,3"/><text x="342" y="140" font-size="9" fill="#5a6a8a">1.0x</text>
+<text x="30" y="48" font-size="12" fill="#1a1a2e">Fliggy AI interactions, summer m/m</text><rect x="240" y="36" width="397.0" height="18" fill="#b45309"/><text x="645.0" y="50" font-size="11" font-weight="700" fill="#b45309">~4.0x (+297%)</text>
+<text x="30" y="80" font-size="12" fill="#1a1a2e">DeepTrip peak-hour visits, Oct 1</text><rect x="240" y="68" width="300.0" height="18" fill="#c0392b"/><text x="548.0" y="82" font-size="11" font-weight="700" fill="#c0392b">&gt;3.0x</text>
+<text x="30" y="112" font-size="12" fill="#1a1a2e">Fliggy AI planner, holiday vs prior month</text><rect x="240" y="100" width="280.0" height="18" fill="#c0392b"/><text x="528.0" y="114" font-size="11" font-weight="700" fill="#c0392b">2.8x</text>
+<text x="30" y="176" font-size="11" font-weight="700" fill="#5a6a8a">GOLDEN WEEK TRAVELER PROFILE (TRIP.COM DATA)</text>
+<text x="30" y="204" font-size="12" fill="#1a1a2e">Crossed provincial lines</text><rect x="240" y="192" width="328.0" height="18" fill="#1a1a2e"/><text x="576.0" y="206" font-size="11" font-weight="700" fill="#1a1a2e">82%</text>
+<text x="30" y="230" font-size="12" fill="#1a1a2e">Traveled more than 8 days</text><rect x="240" y="218" width="200.0" height="18" fill="#c9c1b6"/><text x="448.0" y="232" font-size="11" font-weight="700" fill="#1a1a2e">~50%</text>
+<text x="30" y="262" font-size="11" fill="#5a6a8a">Test case: AI-recommended flight priced ~10 yuan above a competing platform's fare</text>
+<text x="30" y="282" font-size="10" fill="#5a6a8a">Sources: City News Service (Oct 5), BigGo Finance (Oct 4), company figures. Multiples are company-reported; bars drawn on a 100px-per-1x scale.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ADOPTION</div>
+        <div class="annotation-card-zh">智能体<span class="annotation-card-en">zhìnéngtǐ · AI agent</span></div>
+        <div class="annotation-card-body">Long multi-province trips push travelers to agents that plan and book in one flow.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DISCLOSURE</div>
+        <div class="annotation-card-zh">同程旅行<span class="annotation-card-en">Tóngchéng Lǚxíng · Tongcheng Travel</span></div>
+        <div class="annotation-card-body">Whether Q3 results break out agent-driven bookings, since usage multiples say nothing about conversion.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REGULATION</div>
+        <div class="annotation-card-zh">付费推广<span class="annotation-card-en">fùfèi tuīguǎng · paid promotion</span></div>
+        <div class="annotation-card-body">CAC or SAMR labeling rules for agent answers would curb ranking fees.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">China's Fund Closures Head for an Eight-Year High: 256 Liquidated in 2026 and 46 More on Notice</div>
+    <div class="story-insight">
+      <p>Bloomberg data show 256 public funds liquidated so far in 2026, 46 more on notice and 300+ on pace for the year, the most since 2018. Nearly 100 closures came from sponsor-backed funds under a 2023 three-year rule.</p>
+      <br>
+      <p>Active stock funds returned -0.8% a year over five years. This year's gains sit in chip stocks (STAR 50 +14%, CSI 300 about -6%), and small funds that missed them fall below the 50-million-yuan floor while launches keep rising.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Product count is up 10% while closures hit an eight-year high, so managers are churning shelves under fee and performance pressure, which squeezes sub-scale active-equity houses hardest.</div>
+    <div class="chart-box">
+      <div class="chart-title">Fund Closures and the Returns Behind Them</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">PUBLIC FUND LIQUIDATIONS, 2026</text>
+<text x="30" y="48" font-size="12" fill="#1a1a2e">Liquidated YTD (to Oct 5)</text><rect x="230" y="36" width="341.3" height="18" fill="#c0392b"/><text x="579.3" y="50" font-size="11" font-weight="700" fill="#c0392b">256</text>
+<text x="30" y="74" font-size="12" fill="#1a1a2e">YTD + 46 on notice</text><rect x="230" y="62" width="402.7" height="18" fill="#b45309"/><text x="640.7" y="76" font-size="11" font-weight="700" fill="#b45309">302</text>
+<text x="30" y="100" font-size="12" fill="#1a1a2e">of which sponsor-backed</text><rect x="230" y="88" width="133.3" height="18" fill="#c9c1b6"/><text x="371.3" y="102" font-size="11" font-weight="700" fill="#1a1a2e">~100</text>
+<text x="30" y="146" font-size="11" font-weight="700" fill="#5a6a8a">RETURNS (%)</text>
+<line x1="430" y1="156" x2="430" y2="268" stroke="#1a1a2e" stroke-width="1"/>
+<text x="30" y="174" font-size="12" fill="#1a1a2e">STAR 50, 2026 YTD</text><rect x="430" y="162" width="210.0" height="18" fill="#166534"/><text x="648.0" y="176" font-size="11" font-weight="700" fill="#166534">+14</text>
+<text x="30" y="200" font-size="12" fill="#1a1a2e">Active stock funds, 2026 YTD</text><rect x="430" y="188" width="54.0" height="18" fill="#166534"/><text x="492.0" y="202" font-size="11" font-weight="700" fill="#166534">+3.6</text>
+<text x="30" y="226" font-size="12" fill="#1a1a2e">Active stock funds, 5-yr annualized</text><rect x="418" y="214" width="12.0" height="18" fill="#c0392b"/><text x="410" y="228" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">-0.8</text>
+<text x="30" y="252" font-size="12" fill="#1a1a2e">CSI 300, 2026 YTD</text><rect x="340" y="240" width="90.0" height="18" fill="#c0392b"/><text x="332" y="254" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">~-6</text>
+<text x="30" y="290" font-size="11" fill="#5a6a8a">Closure trigger: net assets below 50M yuan for 60 trading days · 14,585 products at end-Aug (+10% y/y)</text>
+<text x="30" y="312" font-size="10" fill="#5a6a8a">Sources: Bloomberg via The Edge and China Money Network (Oct 5, 2026); China Securities Index Co; Morningstar.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DISCIPLINE</div>
+        <div class="annotation-card-zh">清盘<span class="annotation-card-en">qīngpán · fund liquidation</span></div>
+        <div class="annotation-card-body">The 2023 sponsor-fund rule is clearing sub-scale products on schedule, as designed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · Q3 REPORTS</div>
+        <div class="annotation-card-zh">公募基金<span class="annotation-card-en">gōngmù jījīn · public mutual fund</span></div>
+        <div class="annotation-card-body">Late-October fund reports for active-equity flows and the year-end tally against 2018.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGINS</div>
+        <div class="annotation-card-zh">发起式基金<span class="annotation-card-en">fāqǐshì jījīn · sponsor-backed fund</span></div>
+        <div class="annotation-card-body">Fee caps plus performance-linked pay leave thin, sub-scale managers with shrinking economics.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #140 · OCTOBER 6, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
