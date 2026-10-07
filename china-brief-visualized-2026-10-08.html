@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #142 · October 8, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #142 · October 8, 2026</div>
+    <div class="masthead-sub">DeepSeek's ¥80B+ Round · Moonshot's $5B Hong Kong IPO Plan · Reserves Fall as Gold Buying Speeds Up</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · FUNDING</div>
+      <div class="card-num">¥80B+<span class="card-num-unit">DeepSeek</span></div>
+      <div class="card-label">Pre-IPO round led by Tencent and CATL, up from a ¥50B target; could near ¥100B (Bloomberg, Oct 6)</div>
+      <div class="card-delta delta-amber">CAC probe still open</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI & TECH · IPO</div>
+      <div class="card-num">$5B<span class="card-num-unit">max raise</span></div>
+      <div class="card-label">Moonshot's planned Q1 2027 Hong Kong IPO at a ~$50B private mark; ARR ~$1B, up from $0.3B in June</div>
+      <div class="card-delta delta-green">ARR more than tripled since June</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · RESERVES</div>
+      <div class="card-num">-$38.1B<span class="card-num-unit">Sept</span></div>
+      <div class="card-label">FX reserves fall to $3.4003T on dollar strength and bond prices; PBOC adds 740k oz of gold</div>
+      <div class="card-delta delta-red">Valuation loss after Fed hike</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI & TECH</div>
+    <div class="story-headline">DeepSeek's Pre-IPO Round Grows to ¥80 Billion or More, With Tencent and CATL Writing the Largest Checks</div>
+    <div class="story-insight">
+      <p>Bloomberg reported on October 6 that DeepSeek is close to raising at least ¥80 billion, led by Tencent and CATL, after opening with a ¥50 billion target. The total could approach ¥100 billion at a valuation of about ¥500 billion.</p>
+      <br>
+      <p>The price sits near August's reported $74 billion pre-money, so the extra demand went into size. A larger private raise funds DeepSeek's Ascend data-center build and reduces what the STAR listing has to raise.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> DeepSeek's round grew in size while the price held, so its STAR Market listing will matter more as an exit for mainland holders than as a source of capital, and the open CAC probe is the main thing that could move its timing.</div>
+    <div class="chart-box">
+      <div class="chart-title">DeepSeek: Round Size and Anchor Investors</div>
+      <svg viewBox="0 0 820 278" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">PRE-IPO ROUND SIZE (¥ BILLIONS)</text>
+<text x="30" y="46" font-size="12" fill="#1a1a2e">Initial target</text><rect x="250" y="34" width="190.0" height="18" fill="#1a1a2e"/><text x="448.0" y="48" font-size="11" font-weight="700" fill="#1a1a2e">~¥50B</text>
+<text x="30" y="72" font-size="12" fill="#1a1a2e">Reported floor (Oct 6)</text><rect x="250" y="60" width="304.0" height="18" fill="#c0392b"/><text x="562.0" y="74" font-size="11" font-weight="700" fill="#c0392b">¥80B+ (~$12B)</text>
+<text x="30" y="98" font-size="12" fill="#1a1a2e">Possible final size</text><rect x="250" y="86" width="380.0" height="18" fill="#b45309"/><text x="638.0" y="100" font-size="11" font-weight="700" fill="#b45309">up to ~¥100B</text>
+<text x="30" y="138" font-size="11" font-weight="700" fill="#5a6a8a">FIRST OUTSIDE ROUND, DISCLOSED COMMITMENTS (¥ BILLIONS)</text>
+<text x="30" y="164" font-size="12" fill="#1a1a2e">Liang Wenfeng (own money)</text><rect x="250" y="152" width="76.0" height="18" fill="#1a1a2e"/><text x="334.0" y="166" font-size="11" font-weight="700" fill="#1a1a2e">~¥20B</text>
+<text x="30" y="190" font-size="12" fill="#1a1a2e">Tencent</text><rect x="250" y="178" width="38.0" height="18" fill="#b45309"/><text x="296.0" y="192" font-size="11" font-weight="700" fill="#b45309">~¥10B</text>
+<text x="30" y="216" font-size="12" fill="#1a1a2e">CATL</text><rect x="250" y="204" width="19.0" height="18" fill="#b45309"/><text x="277.0" y="218" font-size="11" font-weight="700" fill="#b45309">~¥5B</text>
+<text x="30" y="246" font-size="11" fill="#5a6a8a">Valuation sought ~¥500B (~$75B) vs ~$74B pre-money reported in Aug · ~$1B revenue run rate (Sept) · ~75x run rate</text>
+<text x="30" y="266" font-size="10" fill="#5a6a8a">Sources: Bloomberg via Reuters/The Standard/The Next Web/Euronews (Oct 6, 2026). Round not announced by DeepSeek.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND</div>
+        <div class="annotation-card-zh">融资轮<span class="annotation-card-en">róngzī lún · funding round</span></div>
+        <div class="annotation-card-body">The round grew from a ¥50B target to ¥80B+ with the price roughly unchanged.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LISTING</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàngbǎn · STAR Market</span></div>
+        <div class="annotation-card-body">Shanghai exchange acceptance of a STAR application prepared by CITIC Securities.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · REGULATOR</div>
+        <div class="annotation-card-zh">数据安全<span class="annotation-card-en">shùjù ānquán · data security</span></div>
+        <div class="annotation-card-body">CAC's Sept probe into Claude routing is open and could delay a filing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI & TECH</div>
+    <div class="story-headline">Moonshot Targets Up to $5 Billion in a Hong Kong IPO After Kimi's Revenue Run Rate Tripled to $1 Billion Since June</div>
+    <div class="story-insight">
+      <p>Moonshot closed its private round at about $50 billion and plans a Hong Kong IPO of up to $5 billion in Q1 2027, with Bank of America coordinating and CICC, Deutsche Bank and Goldman Sachs as sponsors.</p>
+      <br>
+      <p>ARR rose from $300 million in June to about $1 billion, with $2 billion targeted by December. That puts the valuation at about 50 times current run rate, below DeepSeek's reported multiple and above Kling's.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Moonshot's IPO will be priced on whether a $1 billion run rate built in four months proves durable and profitable, and its terms will show how far Beijing's screening of US-origin capital reaches into a Hong Kong offering.</div>
+    <div class="chart-box">
+      <div class="chart-title">Moonshot: Revenue Run Rate, Valuation and Peer Multiples</div>
+      <svg viewBox="0 0 820 396" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">ANNUAL RECURRING REVENUE (US$ BILLIONS)</text>
+<text x="30" y="46" font-size="12" fill="#1a1a2e">June 2026</text><rect x="250" y="34" width="57.0" height="18" fill="#1a1a2e"/><text x="315.0" y="48" font-size="11" font-weight="700" fill="#1a1a2e">$0.3B</text>
+<text x="30" y="72" font-size="12" fill="#1a1a2e">October 2026</text><rect x="250" y="60" width="190.0" height="18" fill="#c0392b"/><text x="448.0" y="74" font-size="11" font-weight="700" fill="#c0392b">~$1.0B</text>
+<text x="30" y="98" font-size="12" fill="#1a1a2e">December 2026 (company target)</text><rect x="250" y="86" width="380.0" height="18" fill="#b45309"/><text x="638.0" y="100" font-size="11" font-weight="700" fill="#b45309">$2.0B target</text>
+<text x="30" y="138" font-size="11" font-weight="700" fill="#5a6a8a">PRIVATE VALUATION (US$ BILLIONS)</text>
+<text x="30" y="164" font-size="12" fill="#1a1a2e">Summer 2026 round</text><rect x="250" y="152" width="239.4" height="18" fill="#1a1a2e"/><text x="497.4" y="166" font-size="11" font-weight="700" fill="#1a1a2e">$31.5B</text>
+<text x="30" y="190" font-size="12" fill="#1a1a2e">Latest round (Oct 2026)</text><rect x="250" y="178" width="380.0" height="18" fill="#c0392b"/><text x="638.0" y="192" font-size="11" font-weight="700" fill="#c0392b">~$50B</text>
+<text x="30" y="230" font-size="11" font-weight="700" fill="#5a6a8a">VALUATION / ANNUALIZED REVENUE (x)</text>
+<text x="30" y="256" font-size="12" fill="#1a1a2e">DeepSeek round (~$75B / ~$1B)</text><rect x="250" y="244" width="380.0" height="18" fill="#1a1a2e"/><text x="638.0" y="258" font-size="11" font-weight="700" fill="#1a1a2e">~75x</text>
+<text x="30" y="282" font-size="12" fill="#1a1a2e">Moonshot on current run rate</text><rect x="250" y="270" width="253.3" height="18" fill="#c0392b"/><text x="511.3" y="284" font-size="11" font-weight="700" fill="#c0392b">~50x</text>
+<text x="30" y="308" font-size="12" fill="#1a1a2e">Kling private mark (Q2 annualized)</text><rect x="250" y="296" width="182.4" height="18" fill="#5a6a8a"/><text x="440.4" y="310" font-size="11" font-weight="700" fill="#5a6a8a">~36x</text>
+<text x="30" y="334" font-size="12" fill="#1a1a2e">Moonshot on Dec target</text><rect x="250" y="322" width="126.7" height="18" fill="#b45309"/><text x="384.7" y="336" font-size="11" font-weight="700" fill="#b45309">~25x</text>
+<text x="30" y="364" font-size="11" fill="#5a6a8a">HK IPO up to $5B, Q1 2027 target (vs ~$3B tied to Sept confidential filing) · BofA coordinating · CICC, Deutsche, Goldman sponsors</text>
+<text x="30" y="384" font-size="10" fill="#5a6a8a">Sources: Bloomberg via Euronews (Oct 6, 2026); prior China Brief issues for DeepSeek and Kling figures. Multiples are approximate.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GROWTH</div>
+        <div class="annotation-card-zh">年化经常性收入<span class="annotation-card-en">niánhuà jīngchángxìng shōurù · ARR</span></div>
+        <div class="annotation-card-body">Run-rate revenue more than tripled from June to about $1B after Kimi K3.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRE-MARKETING</div>
+        <div class="annotation-card-zh">预路演<span class="annotation-card-en">yù lùyǎn · early-look meetings</span></div>
+        <div class="annotation-card-body">Investor feedback this month will shape the size of a deal up to $5B.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CAPITAL ORIGIN</div>
+        <div class="annotation-card-zh">美国资本<span class="annotation-card-en">Měiguó zīběn · US capital</span></div>
+        <div class="annotation-card-body">NDRC screening of US-origin money may limit US allocations in the IPO.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE & MACRO</div>
+    <div class="story-headline">Reserves Fall $38 Billion in September While the PBOC Buys the Most Gold Since 2023 Into a 6.6% Price Drop</div>
+    <div class="story-insight">
+      <p>SAFE said FX reserves fell $38.1 billion to $3.4003 trillion in September, citing a stronger dollar and lower global asset prices after the Fed's first hike of the year.</p>
+      <br>
+      <p>The PBOC added 740,000 ounces of gold while the price fell 6.6%, so the market value of its gold dropped by $26.6 billion even as holdings rose.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> September's $38 billion reserve decline came from bond and currency valuation after the Fed's hike, while the PBOC sped up gold buying into a falling price, so this month's settlement and FX-purchase data are where any real outflow would show.</div>
+    <div class="chart-box">
+      <div class="chart-title">FX Reserves and Gold: September Changes</div>
+      <svg viewBox="0 0 820 278" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">SEPTEMBER 2026 CHANGE (%)</text>
+<line x1="500" y1="30" x2="500" y2="138" stroke="#5a6a8a" stroke-dasharray="3,3"/>
+<text x="30" y="46" font-size="12" fill="#1a1a2e">PBOC gold holdings (ounces)</text><rect x="500" y="34" width="21.6" height="18" fill="#166534"/><text x="529.6" y="48" font-size="11" font-weight="700" fill="#166534" text-anchor="start">+0.96% (+740k oz)</text>
+<text x="30" y="72" font-size="12" fill="#1a1a2e">FX reserves (US$)</text><rect x="475.0" y="60" width="25.0" height="18" fill="#c0392b"/><text x="508" y="74" font-size="11" font-weight="700" fill="#c0392b" text-anchor="start">-1.11% (-$38.1B)</text>
+<text x="30" y="98" font-size="12" fill="#1a1a2e">Gold spot price</text><rect x="352.2" y="86" width="147.8" height="18" fill="#c0392b"/><text x="508" y="100" font-size="11" font-weight="700" fill="#c0392b" text-anchor="start">-6.57% ($4,449 to $4,157)</text>
+<text x="30" y="124" font-size="12" fill="#1a1a2e">Market value of PBOC gold</text><rect x="329.2" y="112" width="170.8" height="18" fill="#c0392b"/><text x="508" y="126" font-size="11" font-weight="700" fill="#c0392b" text-anchor="start">-7.59% ($350.1B to $323.5B)</text>
+<text x="30" y="164" font-size="11" font-weight="700" fill="#5a6a8a">LEVELS AT END-SEPTEMBER</text>
+<text x="30" y="190" font-size="12" fill="#1a1a2e">FX reserves (US$ billions)</text><rect x="250" y="178" width="380.0" height="18" fill="#1a1a2e"/><text x="638.0" y="192" font-size="11" font-weight="700" fill="#1a1a2e">$3,400.3B</text>
+<text x="30" y="216" font-size="12" fill="#1a1a2e">Gold reserves at market value</text><rect x="250" y="204" width="36.2" height="18" fill="#b45309"/><text x="294.2" y="218" font-size="11" font-weight="700" fill="#b45309">$323.5B (~8.7% of FX + gold)</text>
+<text x="30" y="246" font-size="11" fill="#5a6a8a">23rd straight month of gold additions · largest monthly purchase since Oct 2023 · ~103t bought in 2026 (one estimate)</text>
+<text x="30" y="266" font-size="10" fill="#5a6a8a">Sources: SAFE and PBOC via People's Daily (Oct 7, 2026); BeInCrypto (gold price, value). Fed hiked 25bp in Sept to 3.75%-4.00%.</text>
+</svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GOLD</div>
+        <div class="annotation-card-zh">连续增持<span class="annotation-card-en">liánxù zēngchí · consecutive additions</span></div>
+        <div class="annotation-card-body">23rd month of buying and the largest addition since October 2023.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FLOWS</div>
+        <div class="annotation-card-zh">结售汇<span class="annotation-card-en">jiéshòuhuì · FX settlement</span></div>
+        <div class="annotation-card-body">September bank settlement data later this month will show any real outflow.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · FED</div>
+        <div class="annotation-card-zh">加息<span class="annotation-card-en">jiāxī · rate hike</span></div>
+        <div class="annotation-card-body">A second Fed hike would repeat the valuation drag on bond-heavy reserves.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #142 · OCTOBER 8, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
