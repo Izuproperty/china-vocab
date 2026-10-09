@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #144 · October 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #144 · October 10, 2026</div>
+    <div class="masthead-sub">Manus Refinances at Home After the Meta Unwind · Tencent Turns to Bonds for AI · PBOC Defends a Rising Yuan</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · AGENTS</div>
+      <div class="card-num">$500M+<span class="card-num-unit">raised</span></div>
+      <div class="card-label">Manus round led by Boyu and IDG, first since Beijing unwound the Meta deal (Oct 8)</div>
+      <div class="card-delta delta-green">~$4B reported valuation, 2x Meta</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · COMPUTE</div>
+      <div class="card-num">$5B<span class="card-num-unit">bonds</span></div>
+      <div class="card-label">Tencent weighing offshore USD and dim sum bonds after Q2 capex hit ¥52.8B</div>
+      <div class="card-delta delta-amber">Q2 FCF −¥13.8B</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · FX</div>
+      <div class="card-num">103.9<span class="card-num-unit">CFETS</span></div>
+      <div class="card-label">Yuan basket index at highest since Apr 2022; fixing 6.7330, strongest since Feb 2023</div>
+      <div class="card-delta delta-red">EU pressing for more</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Manus Raises More Than $500 Million in Its First Round Since Beijing Unwound the Meta Deal, at a Reported $4 Billion Valuation</div>
+    <div class="story-insight">
+      <p>Butterfly Effect, Manus&#x27;s parent, said on October 8 it raised more than $500 million, led by Boyu Capital and IDG Capital with Tencent, HSG and ZhenFund. Bloomberg reported a valuation of about $4 billion, roughly twice Meta&#x27;s $2 billion offer that Beijing ordered unwound in April.</p>
+      <br>
+      <p>Domestic capital has replaced the US buyer at a higher price. Manus has not disclosed current revenue, and a Hong Kong listing is the exit it is reported to be weighing.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing blocked Manus&#x27;s sale to Meta, and Chinese capital has now refinanced the company at roughly twice Meta&#x27;s price, so foreign buyers of Chinese-founded AI startups should treat a Hong Kong IPO as the realistic exit.</div>
+    <div class="chart-box">
+      <div class="chart-title">Manus: Round Sizes and Valuation</div>
+      <svg viewBox="0 0 820 238" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">MANUS FUNDING ROUNDS ($ MILLIONS)</text>
+<text x="30" y="45" font-size="12" fill="#1a1a2e">2024 round</text><rect x="250" y="32" width="8.0" height="18" fill="#5a6a8a"/><text x="266.0" y="45" font-size="11" font-weight="700" fill="#5a6a8a">$10M</text>
+<text x="30" y="71" font-size="12" fill="#1a1a2e">Apr 2025 (Benchmark-led)</text><rect x="250" y="58" width="60.0" height="18" fill="#5a6a8a"/><text x="318.0" y="71" font-size="11" font-weight="700" fill="#5a6a8a">$75M</text>
+<text x="30" y="97" font-size="12" fill="#1a1a2e">Oct 8, 2026 (Boyu, IDG-led)</text><rect x="250" y="84" width="400.0" height="18" fill="#c0392b"/><text x="658.0" y="97" font-size="11" font-weight="700" fill="#c0392b">$500M+</text>
+<text x="30" y="134" font-size="11" font-weight="700" fill="#5a6a8a">VALUATION ($ BILLIONS)</text>
+<text x="30" y="159" font-size="12" fill="#1a1a2e">Meta deal, Dec 2025 (unwound Apr 2026)</text><rect x="300" y="146" width="180.0" height="18" fill="#1a1a2e"/><text x="488.0" y="159" font-size="11" font-weight="700" fill="#1a1a2e">~$2B</text>
+<text x="30" y="185" font-size="12" fill="#1a1a2e">Oct 2026 round (reported)</text><rect x="300" y="172" width="360.0" height="18" fill="#c0392b"/><text x="668.0" y="185" font-size="11" font-weight="700" fill="#c0392b">~$4B</text>
+<text x="30" y="220" font-size="10" fill="#5a6a8a">Sources: TechCrunch, SiliconANGLE, CNBC (Oct 8, 2026); valuation per Bloomberg (Sept 2026), not disclosed by Manus.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL</div>
+        <div class="annotation-card-zh">博裕资本<span class="annotation-card-en">Bóyù Zīběn · Boyu Capital</span></div>
+        <div class="annotation-card-body">Chinese PE led the round that replaced Meta&#x27;s money at about twice the price.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LISTING</div>
+        <div class="annotation-card-zh">港股上市<span class="annotation-card-en">Gǎnggǔ shàngshì · Hong Kong listing</span></div>
+        <div class="annotation-card-body">A Hong Kong filing would be the first exit test after the unwind.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DISCLOSURE</div>
+        <div class="annotation-card-zh">年收入<span class="annotation-card-en">nián shōurù · annual revenue</span></div>
+        <div class="annotation-card-body">No revenue figure since the $100M+ ARR reported at the Meta deal.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH</div>
+    <div class="story-headline">Tencent Weighs Up to $5 Billion in Offshore Bonds, Its Second Big Debt Raise Since June, as AI Capex Runs Ahead of Cash Flow</div>
+    <div class="story-insight">
+      <p>Tencent is weighing up to $5 billion of offshore bonds in dollars and offshore yuan, after a $4.66 billion deal in June. Q2 capex rose 176% to ¥52.8 billion and free cash flow fell to minus ¥13.8 billion.</p>
+      <br>
+      <p>Excluding compute prepayments, free cash flow would have been ¥37.6 billion, so the debt funds chips bought ahead. Earnings cover the bonds easily. Q3 results in mid-November need to show AI revenue that justifies the spend.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Tencent is turning to the bond market because Q2 capex of ¥52.8 billion pushed free cash flow to minus ¥13.8 billion, which leaves credit risk low and puts the burden on Q3 results to show AI revenue that justifies the spend.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tencent: Capex, Cash Flow and Bond Funding</div>
+      <svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">QUARTERLY CAPEX (¥ BILLIONS)</text>
+<line x1="40" y1="200" x2="400" y2="200" stroke="#5a6a8a"/>
+<rect x="60" y="150.3" width="90" height="49.7" fill="#5a6a8a"/><text x="105" y="144.3" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">~19.1</text><text x="105" y="216" font-size="11" fill="#1a1a2e" text-anchor="middle">Q2 2025*</text>
+<rect x="170" y="116.8" width="90" height="83.2" fill="#5a6a8a"/><text x="215" y="110.8" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">~32.0</text><text x="215" y="216" font-size="11" fill="#1a1a2e" text-anchor="middle">Q1 2026*</text>
+<rect x="280" y="62.7" width="90" height="137.3" fill="#c0392b"/><text x="325" y="56.7" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">52.8</text><text x="325" y="216" font-size="11" fill="#1a1a2e" text-anchor="middle">Q2 2026</text>
+<text x="450" y="20" font-size="11" font-weight="700" fill="#5a6a8a">Q2 2026 FREE CASH FLOW (¥ BILLIONS)</text>
+<line x1="450" y1="130" x2="790" y2="130" stroke="#5a6a8a" stroke-dasharray="3,3"/>
+<rect x="480" y="130" width="90" height="27.6" fill="#c0392b"/><text x="525" y="171.6" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">-13.8</text><text x="525" y="196" font-size="11" fill="#1a1a2e" text-anchor="middle">Reported</text>
+<rect x="640" y="54.8" width="90" height="75.2" fill="#166534"/><text x="685" y="48.8" font-size="11" font-weight="700" fill="#166534" text-anchor="middle">+37.6</text><text x="685" y="150" font-size="11" fill="#1a1a2e" text-anchor="middle">Ex-prepayments</text>
+<text x="450" y="215" font-size="11" fill="#1a1a2e">Offshore bonds: $4.66B (Jun 2026) → up to $5B (weighed, Oct)</text>
+<text x="30" y="240" font-size="10" fill="#5a6a8a">*Implied from reported growth rates (+176% y/y, +65% q/q). Sources: Tencent Q2 results via The Next Web; Bloomberg via Reuters (Oct 8, 2026).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CREDIT</div>
+        <div class="annotation-card-zh">离岸债券<span class="annotation-card-en">lí&#x27;àn zhàiquàn · offshore bonds</span></div>
+        <div class="annotation-card-body">Adjusted Q2 net income of ¥68.4B covers two ~$5B deals easily.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICING</div>
+        <div class="annotation-card-zh">点心债<span class="annotation-card-en">diǎnxīn zhài · dim sum bonds</span></div>
+        <div class="annotation-card-body">Yuan tranche pricing against onshore yields and the final size.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · RETURNS</div>
+        <div class="annotation-card-zh">自由现金流<span class="annotation-card-en">zìyóu xiànjīn liú · free cash flow</span></div>
+        <div class="annotation-card-body">Reported FCF of -¥13.8B with AI revenue not yet matching capex.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO</div>
+    <div class="story-headline">PBOC Rejects Undervaluation Claims as the Yuan&#x27;s Trade-Weighted Index Reaches 103.9, Its Highest Since April 2022</div>
+    <div class="story-insight">
+      <p>The PBOC rejected claims the yuan is undervalued and said it has never pursued competitive devaluation, as EU Trade Commissioner Šefčovič held talks in Beijing. The October 9 fixing of 6.7330 was the strongest since February 2023.</p>
+      <br>
+      <p>Bloomberg&#x27;s CFETS replica hit 103.9, a four-year high, so the yuan is rising against the euro too. That gives Europe part of what it asks for while the PBOC keeps the decision in its own hands.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The PBOC is publicly rejecting EU pressure for a stronger yuan while its fixing pushes the trade-weighted index to a four-year high, so positioning should follow the fixing rather than the rhetoric.</div>
+    <div class="chart-box">
+      <div class="chart-title">Yuan: Fixing, Spot and Basket</div>
+      <svg viewBox="0 0 820 271" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">USD/CNY, OCT 9 (LOWER = STRONGER YUAN →)</text>
+<line x1="60.0" y1="70" x2="760.0" y2="70" stroke="#5a6a8a" stroke-width="2"/>
+<line x1="60.0" y1="64" x2="60.0" y2="76" stroke="#5a6a8a"/><text x="60.0" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">6.76</text>
+<line x1="235.0" y1="64" x2="235.0" y2="76" stroke="#5a6a8a"/><text x="235.0" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">6.74</text>
+<line x1="410.0" y1="64" x2="410.0" y2="76" stroke="#5a6a8a"/><text x="410.0" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">6.72</text>
+<line x1="585.0" y1="64" x2="585.0" y2="76" stroke="#5a6a8a"/><text x="585.0" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">6.70</text>
+<line x1="760.0" y1="64" x2="760.0" y2="76" stroke="#5a6a8a"/><text x="760.0" y="92" font-size="10" fill="#5a6a8a" text-anchor="middle">6.68</text>
+<circle cx="296.3" cy="70" r="7" fill="#1a1a2e"/><text x="296.3" y="52" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Fixing 6.7330</text>
+<circle cx="596.4" cy="70" r="7" fill="#c0392b"/><text x="596.4" y="52" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Spot ~6.6987</text>
+<text x="30" y="125" font-size="11" font-weight="700" fill="#5a6a8a">YUAN GAINS VS USD (%)</text>
+<text x="30" y="150" font-size="12" fill="#1a1a2e">2026 year to date</text><rect x="250" y="137" width="176.0" height="18" fill="#166534"/><text x="434.0" y="150" font-size="11" font-weight="700" fill="#166534">+4.4%</text>
+<text x="30" y="176" font-size="12" fill="#1a1a2e">Since late 2024 (approx.)</text><rect x="250" y="163" width="360.0" height="18" fill="#166534"/><text x="618.0" y="176" font-size="11" font-weight="700" fill="#166534">~+9%</text>
+<text x="30" y="209" font-size="11" font-weight="700" fill="#5a6a8a">CFETS BASKET (BLOOMBERG REPLICA)</text><text x="30" y="233" font-size="22" font-weight="700" fill="#c0392b">103.9</text><text x="110" y="232" font-size="12" fill="#1a1a2e">highest since April 2022 · fixing strongest since Feb 2, 2023</text>
+<text x="30" y="259" font-size="10" fill="#5a6a8a">Sources: Reuters via Business Recorder; Bloomberg via Briefs Finance (Oct 9, 2026). Onshore band ±2% around the fixing.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FIXING</div>
+        <div class="annotation-card-zh">中间价<span class="annotation-card-en">zhōngjiānjià · central parity fixing</span></div>
+        <div class="annotation-card-body">6.7330 on Oct 9, strongest since Feb 2, 2023.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TRADE DATA</div>
+        <div class="annotation-card-zh">出口<span class="annotation-card-en">chūkǒu · exports</span></div>
+        <div class="annotation-card-body">September trade data next week will show any slowdown in EU-bound exports.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EU MEASURES</div>
+        <div class="annotation-card-zh">贸易摩擦<span class="annotation-card-en">màoyì mócā · trade friction</span></div>
+        <div class="annotation-card-body">An EU trade-defense step over the €1B/day deficit would test Beijing&#x27;s line.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #144 · OCTOBER 10, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
