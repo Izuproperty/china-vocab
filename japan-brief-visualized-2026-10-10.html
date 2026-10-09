@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #133 · October 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #133 · October 10, 2026</div>
+    <div class="masthead-sub">SoftBank&#x27;s $100 Billion Gulf Pitch · Kioxia&#x27;s TOPIX Free Float · Spending Lags Wages</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SOFTBANK</div>
+      <div class="card-num">$100<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Up to this much sought from Gulf investors for an AI buyout vehicle</div>
+      <div class="card-delta delta-amber">Talks only, no commitments</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMI · INDEX FLOWS</div>
+      <div class="card-num">50<span class="card-num-unit">%</span></div>
+      <div class="card-label">Kioxia&#x27;s TOPIX free float by Nov 30, from 15% now</div>
+      <div class="card-delta delta-green">~¥2tn-3tn passive buying</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CONSUMPTION</div>
+      <div class="card-num">-3.1<span class="card-num-unit">%</span></div>
+      <div class="card-label">Real household spending in August, year on year</div>
+      <div class="card-delta delta-red">Ninth straight decline</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">SoftBank Sounds Out Gulf Investors for Up to $100 Billion to Buy Companies and Run Them on AI</div>
+    <div class="story-insight">
+      <p>ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) (TSE: 9984) founder 孫正義 (Son Masayoshi) has approached senior figures in the 中東 (Chūtō, Middle East), including the UAE, about raising up to $100 billion for a new AI investment vehicle, the Financial Times reported on October 9. The talks are preliminary and no investor has committed. The FT named Abu Dhabi's MGX and G42 as possible participants; neither commented, and SoftBank has not confirmed the plan. The vehicle would 買収 (baishū, acquire) established companies and then use AI and robotics to change how they operate. SoftBank's robotics and フィジカルAI (fizikaru AI, physical AI) unit, Roze, which SoftBank intends to list, is expected to play a central role.</p>
+      <br>
+      <p>The model differs from the two Vision Funds, which took minority stakes in startups and earned money only when valuations rose. This vehicle would own operating businesses and control their cash flow. The Gulf is a familiar 資金調達 (shikin chōtatsu, fundraising) source: Son raised close to $100 billion for the first Vision Fund in 2017, mostly from Saudi Arabia's Public Investment Fund and Abu Dhabi's Mubadala. He needs outside money because SoftBank's own capital is tied up. On October 1 it completed its last $10 billion OpenAI tranche, taking its total to about $64.6 billion for roughly 13%, and it paid coupons of up to 9.75% on a record high-yield bond in September to help fund it. Its loan-to-value ratio was 13% at the end of June, against the 25% ceiling it sets for normal conditions.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Gulf money would let SoftBank buy and automate companies without adding parent debt on top of its $64.6 billion OpenAI stake. The talks are preliminary, and Vision Fund 2 shows announced outside commitments can fail to arrive. Watch for named anchor investors and a first close.</div>
+    <div class="chart-box">
+      <div class="chart-title">SoftBank Pitches a Third Pool of Gulf Money</div>
+      <svg viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">CAPITAL POOLS IN SOFTBANK'S AI PUSH ($ BILLION)</text>
+<line x1="250.0" y1="36" x2="250.0" y2="200" stroke="#e8eaf2"/><text x="250.0" y="214" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="336.7" y1="36" x2="336.7" y2="200" stroke="#e8eaf2"/><text x="336.7" y="214" font-size="10" fill="#5a6a8a" text-anchor="middle">25</text>
+<line x1="423.3" y1="36" x2="423.3" y2="200" stroke="#e8eaf2"/><text x="423.3" y="214" font-size="10" fill="#5a6a8a" text-anchor="middle">50</text>
+<line x1="510.0" y1="36" x2="510.0" y2="200" stroke="#e8eaf2"/><text x="510.0" y="214" font-size="10" fill="#5a6a8a" text-anchor="middle">75</text>
+<line x1="596.7" y1="36" x2="596.7" y2="200" stroke="#e8eaf2"/><text x="596.7" y="214" font-size="10" fill="#5a6a8a" text-anchor="middle">100</text>
+<line x1="683.3" y1="36" x2="683.3" y2="200" stroke="#e8eaf2"/><text x="683.3" y="214" font-size="10" fill="#5a6a8a" text-anchor="middle">125</text>
+<text x="240" y="61" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">Vision Fund 1 (2017, raised)</text>
+<rect x="250" y="46" width="346.7" height="22" rx="2" fill="#c7d2fe"/>
+<text x="604.7" y="61" font-size="11" font-weight="700" fill="#1a1a2e">~100 (PIF, Mubadala)</text>
+<text x="240" y="101" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">Vision Fund 2 (2019, announced)</text>
+<rect x="250" y="86" width="374.4" height="22" rx="2" fill="#c7d2fe"/>
+<text x="632.4" y="101" font-size="11" font-weight="700" fill="#1a1a2e">108 (mostly SoftBank money)</text>
+<text x="240" y="141" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">OpenAI stake (Oct 1, 2026)</text>
+<rect x="250" y="126" width="223.9" height="22" rx="2" fill="#c7d2fe"/>
+<text x="481.9" y="141" font-size="11" font-weight="700" fill="#1a1a2e">64.6 for ~13%</text>
+<text x="240" y="181" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">Gulf AI buyout vehicle (FT, Oct 9)</text>
+<rect x="250" y="166" width="346.7" height="22" rx="2" fill="#3730a3"/>
+<text x="604.7" y="181" font-size="11" font-weight="700" fill="#1a1a2e">up to 100 (talks only)</text>
+<text x="840" y="244" font-size="10" fill="#5a6a8a" text-anchor="end">Gulf vehicle figure is a reported target with no commitments. Vision Fund 1 figure approximate.</text></svg>
+      <div class="chart-note">Sources: Financial Times via Bloomberg and Mobile World Live (Oct 9, 2026); SoftBank disclosure (Oct 1, 2026); Vision Fund history from SoftBank filings.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · OWNED, NOT MINORITY</div>
+        <div class="annotation-card-ja">資金調達<span class="annotation-card-en">shikin chōtatsu · Fundraising</span></div>
+        <div class="annotation-card-body">Outside capital to buy control of operating firms.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ANCHOR INVESTORS</div>
+        <div class="annotation-card-ja">買収<span class="annotation-card-en">baishū · Acquisition</span></div>
+        <div class="annotation-card-body">Whether MGX or G42 commit, and the first targets.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · TALKS MAY STALL</div>
+        <div class="annotation-card-ja">中東<span class="annotation-card-en">Chūtō · Middle East</span></div>
+        <div class="annotation-card-body">Vision Fund 2 never drew the outside money it announced.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">JPX Lifts Kioxia&#x27;s TOPIX Free Float From 15% to 50%, and Index Funds Must Buy in Two Steps</div>
+    <div class="story-insight">
+      <p>日本取引所グループ (Nihon Torihikisho Gurūpu, Japan Exchange Group, JPX) said on October 7 that the 浮動株比率 (fudōkabu hiritsu, free-float ratio) used for キオクシアホールディングス (Kiokushia Hōrudingusu, Kioxia Holdings) (TSE: 285A) in the 東証株価指数 (Tōshō Kabuka Shisū, TOPIX) will rise from 15% to 50%. The change comes in 段階的 (dankaiteki, phased) steps: to 32.5% on the last business day of October and to 50% on November 30, a split JPX set out in July to stop one stock from jolting the index. The 15% figure dated from the IPO, when the Bain Capital consortium and Toshiba held most of the shares. Bain has since sold out entirely and Toshiba trimmed its stake in September, so most of the stock now trades freely.</p>
+      <br>
+      <p>指数連動 (shisū rendō, index-linked) funds must buy to match the new weight. Bloomberg put passive demand at about ¥2 trillion on October 7, and a broker estimate from July reached about ¥3 trillion once quant strategies that track the index are included. That estimate had Kioxia's weight roughly tripling to about 2.7%. Some ¥160 trillion of assets track TOPIX, and because index weights sum to 100%, the purchases are funded by small sales of every other constituent. The same review confirmed which companies fail JPX's new size and trading-value tests; their weights start shrinking at the end of October and run down in stages until July 2028.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Index funds will buy roughly ¥2 trillion to ¥3 trillion of Kioxia at the October 30 and November 30 closes, funded by small sales across the rest of TOPIX. The flow is known and partly priced. Kioxia&#x27;s October 30 results, released the evening of the first step, decide whether that demand supports the stock or gives holders a buyer to sell into.</div>
+    <div class="chart-box">
+      <div class="chart-title">Kioxia&#x27;s Index Weight Rises in Two Steps</div>
+      <svg viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="22" font-size="11" font-weight="700" fill="#be185d">KIOXIA FREE-FLOAT RATIO USED IN TOPIX (%)</text>
+<line x1="70" y1="200.0" x2="470" y2="200.0" stroke="#e8eaf2"/><text x="62" y="204.0" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+<line x1="70" y1="162.5" x2="470" y2="162.5" stroke="#e8eaf2"/><text x="62" y="166.5" font-size="10" fill="#5a6a8a" text-anchor="end">15</text>
+<line x1="70" y1="125.0" x2="470" y2="125.0" stroke="#e8eaf2"/><text x="62" y="129.0" font-size="10" fill="#5a6a8a" text-anchor="end">30</text>
+<line x1="70" y1="87.5" x2="470" y2="87.5" stroke="#e8eaf2"/><text x="62" y="91.5" font-size="10" fill="#5a6a8a" text-anchor="end">45</text>
+<line x1="70" y1="50.0" x2="470" y2="50.0" stroke="#e8eaf2"/><text x="62" y="54.0" font-size="10" fill="#5a6a8a" text-anchor="end">60</text>
+<polyline fill="none" stroke="#be185d" stroke-width="3" points="70,162.5 200,162.5 200,118.8 335,118.8 335,75.0 470,75.0"/>
+<text x="135" y="152.5" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">15% now</text>
+<text x="267" y="108.8" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">32.5% Oct 30</text>
+<text x="402" y="65.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">50% Nov 30</text>
+<text x="70" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct 7 review</text>
+<text x="200" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">End Oct</text>
+<text x="335" y="216" font-size="10" fill="#5a6a8a" text-anchor="middle">End Nov</text>
+<text x="510" y="22" font-size="11" font-weight="700" fill="#be185d">PASSIVE BUYING ESTIMATES (¥ TRILLION)</text>
+<text x="510" y="46" font-size="10" fill="#3a4a6a">July, TOPIX passive only</text>
+<rect x="510" y="50" width="100.0" height="20" rx="2" fill="#f9a8d4"/><text x="618.0" y="64" font-size="11" font-weight="700" fill="#1a1a2e">~1.6</text>
+<text x="510" y="96" font-size="10" fill="#3a4a6a">Bloomberg, Oct 7</text>
+<rect x="510" y="100" width="125.0" height="20" rx="2" fill="#be185d"/><text x="643.0" y="114" font-size="11" font-weight="700" fill="#1a1a2e">~2.0</text>
+<text x="510" y="146" font-size="10" fill="#3a4a6a">July, incl. quant</text>
+<rect x="510" y="150" width="187.5" height="20" rx="2" fill="#f9a8d4"/><text x="705.5" y="164" font-size="11" font-weight="700" fill="#1a1a2e">~3.0</text>
+<rect x="50" y="240" width="770" height="58" rx="6" fill="#fce7f3"/>
+<text x="64" y="262" font-size="11" font-weight="700" fill="#be185d">Oct 30:</text><text x="120" y="262" font-size="11" fill="#1a1a2e">first step at the close, Kioxia Q2 results that evening, ¥800bn buyback window ends, BOJ decision.</text>
+<text x="64" y="282" font-size="11" font-weight="700" fill="#be185d">Funding:</text><text x="128" y="282" font-size="11" fill="#1a1a2e">index weights sum to 100%, so the buying is matched by small sales across ~¥160tn of TOPIX-tracking assets.</text>
+<text x="840" y="320" font-size="10" fill="#5a6a8a" text-anchor="end">Step dates are effective at the close of the last business day of each month.</text></svg>
+      <div class="chart-note">Sources: Japan Exchange Group (Oct 7, 2026); Bloomberg (Oct 7); Kabutan (Oct 8); broker estimates published in July 2026.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FLOAT AFTER BAIN EXIT</div>
+        <div class="annotation-card-ja">浮動株比率<span class="annotation-card-en">fudōkabu hiritsu · Free-float ratio</span></div>
+        <div class="annotation-card-body">15% to 50% as founding holders sell down.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · OCT 30 AND NOV 30</div>
+        <div class="annotation-card-ja">段階的<span class="annotation-card-en">dankaiteki · Phased</span></div>
+        <div class="annotation-card-body">Two closing-auction steps; results land the first evening.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · KNOWN FLOW</div>
+        <div class="annotation-card-ja">指数連動<span class="annotation-card-en">shisū rendō · Index-linked</span></div>
+        <div class="annotation-card-body">Holders can sell into passive demand on a weak quarter.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Household Spending Falls for a Ninth Month Even as Real Wages Rise</div>
+    <div class="story-insight">
+      <p>総務省 (Sōmushō, Ministry of Internal Affairs and Communications) said on October 9 that real 消費支出 (shōhi shishutsu, consumption expenditure) by households of two or more people fell 3.1% in August from a year earlier. The drop was smaller than the 3.6% median forecast and July's 3.6% fall, but it was the ninth straight year-on-year decline in the 家計調査 (kakei chōsa, household survey). Seasonally adjusted spending rose 0.1% from July, short of the 0.5% gain economists expected. Education spending fell 12.3%, clothing 8.7% and furniture and household goods 6.3%, while transport and communication rose 0.2% on car purchases.</p>
+      <br>
+      <p>Two days earlier the labour ministry reported 実質賃金 (jisshitsu chingin, real wages) up 1.5% in August, the eighth gain in a row. Households are getting higher pay after inflation and holding on to it. One reading is that families are rebuilding 貯蓄 (chochiku, savings) after three years of food inflation. Another is that pay gains go to working households while pensioners, a large share of the survey, still face higher prices on fixed incomes. The survey covers only about 9,000 households and swings sharply from month to month, so the BOJ leans more on its own consumption activity index built from sales data.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Real wages have risen for eight months and spending has fallen for nine, so higher pay is not yet reaching shops. That supports a BOJ hold on October 30 and weighs on domestic retailers. A September spending rebound, due in early November, would weaken the case for waiting.</div>
+    <div class="chart-box">
+      <div class="chart-title">Every Category but Transport Fell in August</div>
+      <svg viewBox="0 0 860 356" xmlns="http://www.w3.org/2000/svg">
+<text x="20" y="22" font-size="11" font-weight="700" fill="#b45309">AUGUST 2026 HOUSEHOLD SPENDING BY CATEGORY (% Y/Y, REAL)</text>
+<line x1="331.2" y1="36" x2="331.2" y2="300" stroke="#e8eaf2"/><text x="331.2" y="314" font-size="10" fill="#5a6a8a" text-anchor="middle">-12</text>
+<line x1="428.4" y1="36" x2="428.4" y2="300" stroke="#e8eaf2"/><text x="428.4" y="314" font-size="10" fill="#5a6a8a" text-anchor="middle">-9</text>
+<line x1="525.6" y1="36" x2="525.6" y2="300" stroke="#e8eaf2"/><text x="525.6" y="314" font-size="10" fill="#5a6a8a" text-anchor="middle">-6</text>
+<line x1="622.8" y1="36" x2="622.8" y2="300" stroke="#e8eaf2"/><text x="622.8" y="314" font-size="10" fill="#5a6a8a" text-anchor="middle">-3</text>
+<line x1="720.0" y1="36" x2="720.0" y2="300" stroke="#e8eaf2"/><text x="720.0" y="314" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="817.2" y1="36" x2="817.2" y2="300" stroke="#e8eaf2"/><text x="817.2" y="314" font-size="10" fill="#5a6a8a" text-anchor="middle">3</text>
+<text x="210" y="56" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">Headline (real, y/y)</text>
+<rect x="619.6" y="42" width="100.4" height="18" rx="2" fill="#b45309"/>
+<text x="613.6" y="55" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-3.1</text>
+<text x="210" y="82" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Transport &amp; communication</text>
+<rect x="720.0" y="68" width="6.5" height="18" rx="2" fill="#16a34a"/>
+<text x="732.5" y="81" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="start">+0.2</text>
+<text x="210" y="108" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Food</text>
+<rect x="674.6" y="94" width="45.4" height="18" rx="2" fill="#fdba74"/>
+<text x="668.6" y="107" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-1.4</text>
+<text x="210" y="134" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Healthcare</text>
+<rect x="658.4" y="120" width="61.6" height="18" rx="2" fill="#fdba74"/>
+<text x="652.4" y="133" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-1.9</text>
+<text x="210" y="160" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Culture &amp; recreation</text>
+<rect x="580.7" y="146" width="139.3" height="18" rx="2" fill="#fdba74"/>
+<text x="574.7" y="159" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-4.3</text>
+<text x="210" y="186" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Utilities</text>
+<rect x="551.5" y="172" width="168.5" height="18" rx="2" fill="#fdba74"/>
+<text x="545.5" y="185" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-5.2</text>
+<text x="210" y="212" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Housing</text>
+<rect x="532.1" y="198" width="187.9" height="18" rx="2" fill="#fdba74"/>
+<text x="526.1" y="211" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-5.8</text>
+<text x="210" y="238" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Furniture &amp; household goods</text>
+<rect x="515.9" y="224" width="204.1" height="18" rx="2" fill="#fdba74"/>
+<text x="509.9" y="237" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-6.3</text>
+<text x="210" y="264" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Clothing</text>
+<rect x="438.1" y="250" width="281.9" height="18" rx="2" fill="#fdba74"/>
+<text x="432.1" y="263" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-8.7</text>
+<text x="210" y="290" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Education</text>
+<rect x="321.5" y="276" width="398.5" height="18" rx="2" fill="#fdba74"/>
+<text x="315.5" y="289" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-12.3</text>
+<text x="840" y="350" font-size="10" fill="#5a6a8a" text-anchor="end">Ninth straight annual decline; consensus -3.6%. Real wages +1.5% in August (eighth straight gain).</text></svg>
+      <div class="chart-note">Sources: Ministry of Internal Affairs and Communications household survey (Oct 9, 2026); Trading Economics category detail; labour ministry wage data (Oct 7).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · WAGES DELIVERED</div>
+        <div class="annotation-card-ja">実質賃金<span class="annotation-card-en">jisshitsu chingin · Real wages</span></div>
+        <div class="annotation-card-body">+1.5% in August, eighth straight gain.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SEPTEMBER DATA</div>
+        <div class="annotation-card-ja">家計調査<span class="annotation-card-en">kakei chōsa · Household survey</span></div>
+        <div class="annotation-card-body">A rebound would revive the October hike case.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SAVING, NOT SPENDING</div>
+        <div class="annotation-card-ja">貯蓄<span class="annotation-card-en">chochiku · Savings</span></div>
+        <div class="annotation-card-body">Saved raises leave domestic demand flat.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #133 · OCTOBER 10, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
