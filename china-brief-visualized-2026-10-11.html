@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #145 · October 11, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #145 · October 11, 2026</div>
+    <div class="masthead-sub">BYD Patents Its Own Humanoid · Beijing&#x27;s AI Jobs Drive · ¥550 Billion of Unused Local Quota</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">31<span class="card-num-unit">DoF</span></div>
+      <div class="card-label">BYD&#x27;s Xiao Di humanoid, which its new CNIPA design patent (published Oct 9) closely resembles</div>
+      <div class="card-delta delta-amber">Appearance patent only</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · LABOUR</div>
+      <div class="card-num">87.7%<span class="card-num-unit">of target</span></div>
+      <div class="card-label">10.52M urban jobs added Jan–Sep as MOHRSS launches an AI employment action (Oct 10)</div>
+      <div class="card-delta delta-green">~1.48M to go in Q4</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · FISCAL</div>
+      <div class="card-num">¥550B<span class="card-num-unit">quota</span></div>
+      <div class="card-label">Unused local debt quota released: ¥300B to counties, ¥250B special bonds for projects (Oct 9)</div>
+      <div class="card-delta delta-amber">~0.4% of GDP</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">BYD Registers the Design of Its Own Humanoid Robot, Moving From Investor and Test Customer to Hardware Owner</div>
+    <div class="story-insight">
+      <p>CNIPA published BYD&#x27;s design patent CN310247768S for an "embodied intelligent robot" on October 9, after approval on October 6. The drawings closely match Xiao Di, the 1.61 m, 58.5 kg, 31-degree-of-freedom humanoid BYD showed in August.</p>
+      <br>
+      <p>BYD has backed AgiBot and Percibot and tested UBTech&#x27;s Walker S1 in its own plant. Owning its design makes it a competitor to the makers it bought from, with in-house batteries, motors and electronics to keep costs down.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> BYD now owns the design of its humanoid after years as an investor and test customer, which adds a low-cost, vertically integrated competitor to the listed humanoid makers it once bought from.</div>
+    <div class="chart-box">
+      <div class="chart-title">BYD&#x27;s Path Into Humanoids</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">EMBODIED AI MILESTONES</text>
+<line x1="50" y1="90" x2="780" y2="90" stroke="#5a6a8a" stroke-width="2"/>
+<circle cx="70" cy="90" r="7" fill="#5a6a8a"/><text x="70" y="62" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2022</text><text x="70" y="76" font-size="10" fill="#5a6a8a" text-anchor="middle">Research team</text>
+<circle cx="200" cy="90" r="7" fill="#5a6a8a"/><text x="200" y="114" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Aug 2023</text><text x="200" y="128" font-size="10" fill="#5a6a8a" text-anchor="middle">Invests in AgiBot</text>
+<circle cx="340" cy="90" r="7" fill="#5a6a8a"/><text x="340" y="62" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Apr 2025</text><text x="340" y="76" font-size="10" fill="#5a6a8a" text-anchor="middle">Percibot stake</text>
+<circle cx="480" cy="90" r="7" fill="#5a6a8a"/><text x="480" y="114" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jun 2026</text><text x="480" y="128" font-size="10" fill="#5a6a8a" text-anchor="middle">Dealer-robot plan</text>
+<circle cx="610" cy="90" r="7" fill="#1a1a2e"/><text x="610" y="62" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Aug 2026</text><text x="610" y="76" font-size="10" fill="#5a6a8a" text-anchor="middle">Xiao Di shown</text>
+<circle cx="750" cy="90" r="9" fill="#c0392b"/><text x="750" y="114" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Oct 9, 2026</text><text x="750" y="128" font-size="10" fill="#c0392b" text-anchor="middle">Design patent</text>
+<text x="30" y="160" font-size="11" font-weight="700" fill="#5a6a8a">XIAO DI SPECS (DISCLOSED AUG 2026)</text>
+<rect x="30" y="170" width="175" height="50" fill="#fff" stroke="#e0d8d0"/><text x="117" y="196" font-size="18" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.61 m</text><text x="117" y="212" font-size="10" fill="#5a6a8a" text-anchor="middle">height</text>
+<rect x="220" y="170" width="175" height="50" fill="#fff" stroke="#e0d8d0"/><text x="307" y="196" font-size="18" font-weight="700" fill="#1a1a2e" text-anchor="middle">58.5 kg</text><text x="307" y="212" font-size="10" fill="#5a6a8a" text-anchor="middle">weight</text>
+<rect x="410" y="170" width="175" height="50" fill="#fff" stroke="#e0d8d0"/><text x="497" y="196" font-size="18" font-weight="700" fill="#c0392b" text-anchor="middle">31</text><text x="497" y="212" font-size="10" fill="#5a6a8a" text-anchor="middle">degrees of freedom</text>
+<rect x="600" y="170" width="175" height="50" fill="#fff" stroke="#e0d8d0"/><text x="687" y="196" font-size="18" font-weight="700" fill="#1a1a2e" text-anchor="middle">±1 mm</text><text x="687" y="212" font-size="10" fill="#5a6a8a" text-anchor="middle">hand repeat accuracy</text>
+<text x="30" y="242" font-size="10" fill="#5a6a8a">Sources: CNIPA patent CN310247768S via Wallstreetcn (Oct 9, 2026); CarNewsChina (Oct 10, 2026). BYD has not confirmed the patent matches production.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · OWNERSHIP</div>
+        <div class="annotation-card-zh">外观设计专利<span class="annotation-card-en">wàiguān shèjì zhuānlì · design patent</span></div>
+        <div class="annotation-card-body">BYD now holds its own humanoid design after backing AgiBot and Percibot.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ROLLOUT</div>
+        <div class="annotation-card-zh">经销商<span class="annotation-card-en">jīngxiāoshāng · dealerships</span></div>
+        <div class="annotation-card-body">Growth beyond 2–3 units per showroom, a unit price, and invention patents.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARKET ACCESS</div>
+        <div class="annotation-card-zh">进口禁令<span class="annotation-card-en">jìnkǒu jìnlìng · import ban</span></div>
+        <div class="annotation-card-body">FCC humanoid ban and the 1260H listing keep it out of the US.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH</div>
+    <div class="story-headline">Beijing Launches an AI Employment Drive as Urban Hiring Reaches 87.7% of the Year&#x27;s Target</div>
+    <div class="story-insight">
+      <p>MOHRSS Vice Minister Li Zhong said on October 10 that China will run an AI employment action with AI literacy training for all workers, as one of five actions in a 2026–2030 package. Urban job creation reached 10.52 million in nine months.</p>
+      <br>
+      <p>No budget came with the AI action. Draft gig-worker rules published October 8, covering pay, hours and bargaining, carry the clearest cost for platform companies.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing&#x27;s answer to AI job losses is training and gig-worker rules with no new money attached, so the draft labour protections for platform workers are the part most likely to raise company costs.</div>
+    <div class="chart-box">
+      <div class="chart-title">Jobs and Social Insurance, 2026</div>
+      <svg viewBox="0 0 820 270" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">NEW URBAN JOBS, JAN–SEP 2026 (MILLIONS)</text>
+<rect x="30" y="32" width="700" height="24" fill="#e0d8d0"/>
+<rect x="30" y="32" width="613.7" height="24" fill="#166534"/>
+<text x="40" y="49" font-size="12" font-weight="700" fill="#fff">10.52M added</text>
+<text x="652" y="49" font-size="11" font-weight="700" fill="#5a6a8a">1.48M left</text>
+<text x="738" y="49" font-size="11" font-weight="700" fill="#1a1a2e">12M target</text>
+<text x="30" y="78" font-size="11" fill="#1a1a2e">87.7% of the annual target · surveyed urban unemployment averaged 5.2% Jan–Aug</text>
+<text x="30" y="112" font-size="11" font-weight="700" fill="#5a6a8a">SOCIAL INSURANCE COVERAGE, END-SEPTEMBER (MILLIONS OF PEOPLE)</text>
+<text x="30" y="137" font-size="12" fill="#1a1a2e">Basic pension</text><rect x="260" y="124" width="500" height="18" fill="#1a1a2e"/><text x="755" y="137" font-size="11" font-weight="700" fill="#fff" text-anchor="end">1,079</text>
+<text x="30" y="163" font-size="12" fill="#1a1a2e">Work injury</text><rect x="260" y="150" width="151.5" height="18" fill="#5a6a8a"/><text x="419.5" y="163" font-size="11" font-weight="700" fill="#5a6a8a">327</text>
+<text x="30" y="189" font-size="12" fill="#1a1a2e">Unemployment</text><rect x="260" y="176" width="116.3" height="18" fill="#5a6a8a"/><text x="384.3" y="189" font-size="11" font-weight="700" fill="#5a6a8a">251</text>
+<text x="30" y="215" font-size="12" fill="#1a1a2e">Gig-worker injury pilot (25 platforms)</text><rect x="260" y="202" width="17.3" height="18" fill="#c0392b"/><text x="285.3" y="215" font-size="11" font-weight="700" fill="#c0392b">37.27</text>
+<text x="30" y="245" font-size="11" fill="#1a1a2e">Skills target: skilled workers at 35% of the employed by 2030 · 72 new occupations in five years, 11 more in 2026</text>
+<text x="30" y="263" font-size="10" fill="#5a6a8a">Sources: MOHRSS at SCIO briefing via 21st Century Business Herald, Investing.com, OpenGov Asia (Oct 10, 2026).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TRAINING</div>
+        <div class="annotation-card-zh">人工智能通识教育<span class="annotation-card-en">réngōng zhìnéng tōngshí jiàoyù · AI literacy education</span></div>
+        <div class="annotation-card-body">Offered to all workers, plus digital-engineer training for specialised posts.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · GIG RULES</div>
+        <div class="annotation-card-zh">新就业形态<span class="annotation-card-en">xīn jiùyè xíngtài · new forms of employment</span></div>
+        <div class="annotation-card-body">Final rules on pay and hours would raise platform labour costs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NO BUDGET</div>
+        <div class="annotation-card-zh">就业补贴<span class="annotation-card-en">jiùyè bǔtiē · employment subsidies</span></div>
+        <div class="annotation-card-body">No funding figure for the AI action, so its reach is unclear.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO</div>
+    <div class="story-headline">Local Governments Get ¥550 Billion of Unused Debt Quota, More Than Beijing Released in 2024 or 2025</div>
+    <div class="story-insight">
+      <p>The Ministry of Finance released ¥550 billion of unused local debt quota on October 9: ¥300 billion to counties and districts for general budgets and ¥250 billion in special bonds for projects with Q4 funding needs.</p>
+      <br>
+      <p>Local debt of ¥60.7 trillion sits below the ¥63.2 trillion ceiling, so no legislative vote was needed. The release uses about 40% of the ~¥1.4 trillion available and equals roughly 0.4% of GDP.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing is spending ¥550 billion of borrowing room it already had, which supports fourth-quarter growth without a new deficit decision, though it is small against the economy and steers project money to regions that are already stronger.</div>
+    <div class="chart-box">
+      <div class="chart-title">Unused Quota: Releases and Headroom</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">UNUSED-QUOTA RELEASES (¥ BILLIONS)</text>
+<text x="30" y="45" font-size="12" fill="#1a1a2e">Sep 2022 (special bonds)</text><rect x="250" y="32" width="363.6" height="18" fill="#5a6a8a"/><text x="621.6" y="45" font-size="11" font-weight="700" fill="#5a6a8a">500+</text>
+<text x="30" y="71" font-size="12" fill="#1a1a2e">Oct 2024 (debt, arrears)</text><rect x="250" y="58" width="290.9" height="18" fill="#5a6a8a"/><text x="548.9" y="71" font-size="11" font-weight="700" fill="#5a6a8a">400</text>
+<text x="30" y="97" font-size="12" fill="#1a1a2e">Mid-2025 (local finances)</text><rect x="250" y="84" width="363.6" height="18" fill="#5a6a8a"/><text x="621.6" y="97" font-size="11" font-weight="700" fill="#5a6a8a">500</text>
+<text x="30" y="123" font-size="12" font-weight="700" fill="#1a1a2e">Oct 9, 2026</text><rect x="250" y="110" width="400" height="18" fill="#c0392b"/><text x="658" y="123" font-size="11" font-weight="700" fill="#c0392b">550</text>
+<text x="30" y="155" font-size="11" font-weight="700" fill="#5a6a8a">2026 UNUSED QUOTA, ~¥1.4 TRILLION (CAIXIN ESTIMATE)</text>
+<rect x="30" y="165" width="150" height="24" fill="#c0392b"/><text x="38" y="182" font-size="11" font-weight="700" fill="#fff">300 counties</text>
+<rect x="180" y="165" width="125" height="24" fill="#b45309"/><text x="188" y="182" font-size="11" font-weight="700" fill="#fff">250 projects</text>
+<rect x="305" y="165" width="425" height="24" fill="#e0d8d0"/><text x="315" y="182" font-size="11" font-weight="700" fill="#5a6a8a">~850 not released</text>
+<text x="30" y="208" font-size="11" fill="#1a1a2e">About 40% of available headroom released · ~$82 billion at 6.69 per dollar</text>
+<text x="30" y="236" font-size="11" font-weight="700" fill="#5a6a8a">LOCAL DEBT VS 2026 CEILING (¥ TRILLION)</text>
+<rect x="30" y="246" width="700" height="20" fill="#e0d8d0"/>
+<rect x="30" y="246" width="672.3" height="20" fill="#1a1a2e"/>
+<text x="40" y="260" font-size="11" font-weight="700" fill="#fff">60.7 outstanding (end-Sep)</text>
+<text x="738" y="260" font-size="11" font-weight="700" fill="#1a1a2e">63.2 cap</text>
+<text x="30" y="288" font-size="10" fill="#5a6a8a">Sources: Ministry of Finance via Caixin Global and Reuters (Oct 9, 2026). Prior releases per Caixin.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FISCAL</div>
+        <div class="annotation-card-zh">结存限额<span class="annotation-card-en">jiécún xiàn&#x27;é · unused debt quota</span></div>
+        <div class="annotation-card-body">Larger than the 2024 and 2025 releases, with no legislative vote needed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUPPLY</div>
+        <div class="annotation-card-zh">专项债券<span class="annotation-card-en">zhuānxiàng zhàiquàn · special-purpose bonds</span></div>
+        <div class="annotation-card-body">Q4 local bond supply, yields and PBOC liquidity support.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SCALE</div>
+        <div class="annotation-card-zh">财力<span class="annotation-card-en">cáilì · fiscal capacity</span></div>
+        <div class="annotation-card-body">~0.4% of GDP, much of it filling county budget gaps, not new investment.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #145 · OCTOBER 11, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
