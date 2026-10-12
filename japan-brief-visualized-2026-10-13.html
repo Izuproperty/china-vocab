@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #136 · October 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #136 · October 13, 2026</div>
+    <div class="masthead-sub">OpenAI&#x27;s Run Rate Hits SoftBank · Yaskawa&#x27;s Record Orders · Bessent Skips Bangkok</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SOFTBANK</div>
+      <div class="card-num">$50<span class="card-num-unit">bn</span></div>
+      <div class="card-label">OpenAI annualized revenue at end-September, per the FT</div>
+      <div class="card-delta delta-red">SoftBank -7.3% intraday, -3.9% close</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-robotics">ROBOTICS · YASKAWA</div>
+      <div class="card-num">¥185.4<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Record quarterly orders, June-August, up 38% year on year</div>
+      <div class="card-delta delta-amber">Op. profit forecast cut to ¥57.5bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · YEN</div>
+      <div class="card-num">¥158.6</div>
+      <div class="card-label">Dollar-yen in Monday holiday trade after a fourth weekly loss</div>
+      <div class="card-delta delta-red">¥160 intervention line</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">SoftBank Drops as Much as 7% After a Report Puts OpenAI&#x27;s Revenue Run Rate $20 Billion Below Expectations</div>
+    <div class="story-insight">
+      <p>ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) fell as much as 7.3% to ¥5,600 in Tokyo on Friday, October 9, and closed 3.9% lower at ¥5,803. The Financial Times had reported overnight that OpenAI told investors its 年換算売上高 (nenkansan uriagedaka, annualized revenue) was approaching $50 billion at the end of September. Press reports based on earlier investor documents had put the figure near $70 billion. Bloomberg reported during the Tokyo morning that OpenAI still expects the run rate to reach $70 billion or more by December on enterprise growth, and SoftBank recovered part of its loss after that. The Nasdaq Composite fell 1.3% and the Philadelphia semiconductor index 3.4% on the FT report. Tokyo was closed Monday for スポーツの日 (Supōtsu no Hi, Sports Day), so today is the first session since Friday.</p>
+      <br>
+      <p>SoftBank completed its final $10 billion payment to OpenAI on October 1, taking its cumulative investment to about $64.6 billion for roughly 13% of the company. It borrowed heavily to get there, through a ¥1 trillion retail bond in September and high-yield notes with coupons up to 9.75%. OpenAI is in talks to raise new money at about a $1.4 trillion pre-money valuation. The 含み益 (fukumi-eki, unrealized gain) on the OpenAI stake now drives SoftBank&#x27;s net asset value and its loan-to-value ratio, the measure Son uses to show lenders the group can carry its debt. A lower revenue figure makes the $1.4 trillion price harder to defend, and a lower price would shrink that gain.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> SoftBank trades as a leveraged bet on OpenAI&#x27;s valuation, and one unconfirmed revenue figure moved it 7% intraday. The terms of OpenAI&#x27;s current funding round and any December run-rate disclosure decide the next move. A lower round price would cut SoftBank&#x27;s net asset value and raise its loan-to-value ratio at the same time.</div>
+    <div class="chart-box">
+      <div class="chart-title">A $20 Billion Gap in a Run Rate</div>
+      <svg viewBox="0 0 860 212" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">OPENAI ANNUALIZED REVENUE: WHAT WAS REPORTED VS WHAT INVESTORS WERE TOLD ($BN)</text><line x1="300.0" y1="36" x2="300.0" y2="176" stroke="#e8eaf2"/><text x="300.0" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">$0bn</text><line x1="415.0" y1="36" x2="415.0" y2="176" stroke="#e8eaf2"/><text x="415.0" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">$20bn</text><line x1="530.0" y1="36" x2="530.0" y2="176" stroke="#e8eaf2"/><text x="530.0" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">$40bn</text><line x1="645.0" y1="36" x2="645.0" y2="176" stroke="#e8eaf2"/><text x="645.0" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">$60bn</text><line x1="760.0" y1="36" x2="760.0" y2="176" stroke="#e8eaf2"/><text x="760.0" y="192" font-size="10" fill="#5a6a8a" text-anchor="middle">$80bn</text><text x="290" y="61" font-size="12" fill="#1a1a2e" text-anchor="end">Earlier press reports</text><rect x="300" y="46" width="402.5" height="22" rx="3" fill="#818cf8"/><text x="710.5" y="61" font-size="11" font-weight="600" fill="#3a4a6a">~$70bn</text><text x="290" y="95" font-size="12" fill="#1a1a2e" text-anchor="end">FT: end-September (Oct 8)</text><rect x="300" y="80" width="287.5" height="22" rx="3" fill="#b91c1c"/><text x="595.5" y="95" font-size="11" font-weight="600" fill="#3a4a6a">~$50bn, about $20bn lower</text><text x="290" y="129" font-size="12" fill="#1a1a2e" text-anchor="end">Bloomberg: December target</text><rect x="300" y="114" width="402.5" height="22" rx="3" fill="#3730a3"/><text x="710.5" y="129" font-size="11" font-weight="600" fill="#3a4a6a">$70bn or more</text><text x="290" y="163" font-size="12" fill="#1a1a2e" text-anchor="end">SoftBank cumulative investment</text><rect x="300" y="148" width="371.4" height="22" rx="3" fill="#0e7490"/><text x="679.4" y="163" font-size="11" font-weight="600" fill="#3a4a6a">$64.6bn for ~13%</text></svg>
+      <div class="chart-note">Source: Financial Times (Oct 8), Bloomberg (Oct 9), SoftBank Group. Run rates are unaudited.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">年換算売上高<span class="annotation-card-en">annualized revenue</span></div>
+        <div class="annotation-card-body">Both reports agree on about $50bn now; they differ on the December number.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">含み益<span class="annotation-card-en">unrealized gain</span></div>
+        <div class="annotation-card-body">The price of OpenAI&#x27;s current round sets SoftBank&#x27;s mark on its 13% stake.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">純資産価値<span class="annotation-card-en">net asset value</span></div>
+        <div class="annotation-card-body">A lower round price cuts NAV and raises loan-to-value together.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · ROBOTICS &amp; INDUSTRIAL</div>
+    <div class="story-headline">Yaskawa Books Record Orders as Servo Demand From Chip and Data Center Customers Jumps 76%, Then Cuts Its Profit Forecast</div>
+    <div class="story-insight">
+      <p>安川電機 (Yasukawa Denki, Yaskawa Electric) reported after Friday&#x27;s close that its 受注高 (juchūdaka, order intake) in the June to August quarter rose 38% year on year to ¥185.4 billion, the highest in the company&#x27;s history. Motion control orders, mostly ACサーボ (ē-shī sābo, AC servo motors) and controllers, rose 56%, and AC servo orders alone rose 76%. Robotics orders rose 33%. The Americas led the regions at +60%, followed by other Asia at +53%, Europe at +36% and China at +35%. Yaskawa said data center and semiconductor investment drove the increase, citing wafer-handling robots sold in China and U1000 matrix converters for server cooling at US data centers.</p>
+      <br>
+      <p>Profit fell anyway. First-half operating profit dropped 5.5% to ¥22.1 billion on revenue up 9.8% to ¥285.6 billion, and the operating margin slipped to 7.7% from 9.0%. Yaskawa blamed its switch to a new 基幹システム (kikan shisutemu, core ERP system), which disrupted production and shipments, along with restructuring costs in Europe. Robotics operating profit fell to ¥6.0 billion from ¥10.5 billion. The company raised its full-year revenue forecast to ¥600 billion from ¥580 billion, mostly because the yen averaged about ¥160.8 per dollar in the quarter, and cut its operating profit forecast to ¥57.5 billion from ¥60 billion. The ¥72 dividend is unchanged.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Record orders show AI chip and data center spending reaching Japan&#x27;s motion-control suppliers. The profit cut traces to Yaskawa&#x27;s own systems migration while demand keeps rising. If second-half shipments catch up with the new capacity, ¥57.5 billion is beatable; a second cut in January would mean the ERP disruption is worse than disclosed.</div>
+    <div class="chart-box">
+      <div class="chart-title">Record Orders, Led by Servos and the Americas</div>
+      <svg viewBox="0 0 860 348" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">YASKAWA ORDERS, JUNE-AUGUST 2026, YEAR-ON-YEAR CHANGE (%)</text><line x1="300.0" y1="36" x2="300.0" y2="312" stroke="#e8eaf2"/><text x="300.0" y="328" font-size="10" fill="#5a6a8a" text-anchor="middle">+0%</text><line x1="415.0" y1="36" x2="415.0" y2="312" stroke="#e8eaf2"/><text x="415.0" y="328" font-size="10" fill="#5a6a8a" text-anchor="middle">+20%</text><line x1="530.0" y1="36" x2="530.0" y2="312" stroke="#e8eaf2"/><text x="530.0" y="328" font-size="10" fill="#5a6a8a" text-anchor="middle">+40%</text><line x1="645.0" y1="36" x2="645.0" y2="312" stroke="#e8eaf2"/><text x="645.0" y="328" font-size="10" fill="#5a6a8a" text-anchor="middle">+60%</text><line x1="760.0" y1="36" x2="760.0" y2="312" stroke="#e8eaf2"/><text x="760.0" y="328" font-size="10" fill="#5a6a8a" text-anchor="middle">+80%</text><text x="290" y="61" font-size="12" fill="#1a1a2e" text-anchor="end">AC servo</text><rect x="300" y="46" width="437.0" height="22" rx="3" fill="#3730a3"/><text x="745.0" y="61" font-size="11" font-weight="600" fill="#3a4a6a">+76%</text><text x="290" y="95" font-size="12" fill="#1a1a2e" text-anchor="end">Motion control</text><rect x="300" y="80" width="322.0" height="22" rx="3" fill="#818cf8"/><text x="630.0" y="95" font-size="11" font-weight="600" fill="#3a4a6a">+56%</text><text x="290" y="129" font-size="12" fill="#1a1a2e" text-anchor="end">Robotics</text><rect x="300" y="114" width="189.8" height="22" rx="3" fill="#818cf8"/><text x="497.8" y="129" font-size="11" font-weight="600" fill="#3a4a6a">+33%</text><text x="290" y="163" font-size="12" fill="#1a1a2e" text-anchor="end">Americas</text><rect x="300" y="148" width="345.0" height="22" rx="3" fill="#0e7490"/><text x="653.0" y="163" font-size="11" font-weight="600" fill="#3a4a6a">+60%</text><text x="290" y="197" font-size="12" fill="#1a1a2e" text-anchor="end">Other Asia</text><rect x="300" y="182" width="304.8" height="22" rx="3" fill="#0e7490"/><text x="612.8" y="197" font-size="11" font-weight="600" fill="#3a4a6a">+53%</text><text x="290" y="231" font-size="12" fill="#1a1a2e" text-anchor="end">China</text><rect x="300" y="216" width="201.2" height="22" rx="3" fill="#0e7490"/><text x="509.2" y="231" font-size="11" font-weight="600" fill="#3a4a6a">+35%</text><text x="290" y="265" font-size="12" fill="#1a1a2e" text-anchor="end">Japan</text><rect x="300" y="250" width="103.5" height="22" rx="3" fill="#0e7490"/><text x="411.5" y="265" font-size="11" font-weight="600" fill="#3a4a6a">+18%</text><text x="290" y="299" font-size="12" fill="#1a1a2e" text-anchor="end">Total orders (¥185.4bn)</text><rect x="300" y="284" width="218.5" height="22" rx="3" fill="#be185d"/><text x="526.5" y="299" font-size="11" font-weight="600" fill="#3a4a6a">+38%, record</text></svg>
+      <div class="chart-note">Source: Yaskawa Electric FY2026 first-half results presentation (Oct 9). Quarter = June-August 2026.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">受注高<span class="annotation-card-en">order intake</span></div>
+        <div class="annotation-card-body">¥185.4bn, up 38%, the highest quarter in Yaskawa&#x27;s history.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">納期<span class="annotation-card-en">lead time</span></div>
+        <div class="annotation-card-body">Servo waits run about four months; capacity rises 30-40% from this half.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">基幹システム<span class="annotation-card-en">core ERP system</span></div>
+        <div class="annotation-card-body">The ERP switch cut first-half profit 5.5%; a second guidance cut would signal deeper trouble.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Bessent Skips the IMF Meetings in Bangkok, Leaving Katayama Without a Joint Yen Stage as the Dollar Sits Near ¥158.6</div>
+    <div class="story-insight">
+      <p>US Treasury Secretary Scott Bessent will not attend the IMF and World Bank annual meetings in Bangkok this week, Reuters reported on October 9, citing unspecified domestic engagements. Deputy Treasury Secretary Francis Brooke and Under Secretary Erin Browne will lead the US delegation. Finance Minister 片山さつき (Katayama Satsuki, Satsuki Katayama) and BOJ Governor 植田和男 (Ueda Kazuo, Kazuo Ueda) are attending. The yen fell for a fourth straight week through Friday and traded between ¥158.2 and ¥158.6 per dollar in thin Monday trade, with Tokyo closed for Sports Day.</p>
+      <br>
+      <p>Bangkok was the obvious place for Katayama and Bessent to repeat the message behind the July 31 joint 為替介入 (kawase kainyū, FX intervention), when Japan spent an estimated ¥8.45 trillion buying yen alongside the US Treasury with the dollar near ¥164. The yen rallied to about ¥155.20 and had given back half the gain by August 10. The 日米金利差 (Nichi-Bei kinrisa, US-Japan rate gap) explains the slide: the US 10-year yield was near 5.23% on October 8 against 3.09% for the 10-year JGB, and futures priced only about a one-in-four chance that the BOJ lifts its 1.25% policy rate at the October 29-30 meeting. 高市早苗 (Takaichi Sanae, Sanae Takaichi) said on October 9 that a more competitive economy would maintain trust in the yen, which gives traders no new reason to sell dollars.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The yen&#x27;s floor at ¥160 rests on the threat of intervention while the 10-year rate gap stays above 200 basis points. Bessent&#x27;s absence leaves Katayama to make that threat alone this week. Exporters such as Yaskawa gain from each yen of weakness until Tokyo acts, and importers and households absorb the cost.</div>
+    <div class="chart-box">
+      <div class="chart-title">Back Near the Line Without a Joint Stage</div>
+      <svg viewBox="0 0 860 248" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">USD/JPY SINCE THE JULY 31 JOINT INTERVENTION (YEN PER DOLLAR, APPROXIMATE)</text><line x1="80" y1="173.3" x2="820" y2="173.3" stroke="#e8eaf2"/><text x="72" y="177.3" font-size="10" fill="#5a6a8a" text-anchor="end">¥156</text><line x1="80" y1="146.7" x2="820" y2="146.7" stroke="#e8eaf2"/><text x="72" y="150.7" font-size="10" fill="#5a6a8a" text-anchor="end">¥158</text><line x1="80" y1="120.0" x2="820" y2="120.0" stroke="#b91c1c" stroke-dasharray="5,4"/><text x="72" y="124.0" font-size="10" fill="#5a6a8a" text-anchor="end">¥160</text><line x1="80" y1="93.3" x2="820" y2="93.3" stroke="#e8eaf2"/><text x="72" y="97.3" font-size="10" fill="#5a6a8a" text-anchor="end">¥162</text><line x1="80" y1="66.7" x2="820" y2="66.7" stroke="#e8eaf2"/><text x="72" y="70.7" font-size="10" fill="#5a6a8a" text-anchor="end">¥164</text><text x="820" y="114.0" font-size="10" font-weight="600" fill="#b91c1c" text-anchor="end">¥160 intervention line</text><polyline fill="none" stroke="#3730a3" stroke-width="2.5" points="100.0,66.7 200.0,184.0 300.0,132.1 400.0,141.7 500.0,160.7 600.0,140.0 700.0,146.7 800.0,138.7"/><circle cx="100.0" cy="66.7" r="4.5" fill="#818cf8"/><text x="100.0" y="56.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">164</text><text x="100.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Jul 31</text><text x="100.0" y="236" font-size="9" fill="#3730a3" text-anchor="middle">Joint intervention</text><circle cx="200.0" cy="184.0" r="4.5" fill="#818cf8"/><text x="200.0" y="174.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">155.2</text><text x="200.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Aug 3</text><text x="200.0" y="236" font-size="9" fill="#3730a3" text-anchor="middle">Post-rally low</text><circle cx="300.0" cy="132.1" r="4.5" fill="#818cf8"/><text x="300.0" y="122.1" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">159.09</text><text x="300.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Aug 10</text><text x="300.0" y="236" font-size="9" fill="#3730a3" text-anchor="middle">Half the gain gone</text><circle cx="400.0" cy="141.7" r="4.5" fill="#818cf8"/><text x="400.0" y="131.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">158.37</text><text x="400.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct 1</text><circle cx="500.0" cy="160.7" r="4.5" fill="#818cf8"/><text x="500.0" y="150.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">156.95</text><text x="500.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct 2</text><text x="500.0" y="236" font-size="9" fill="#3730a3" text-anchor="middle">Range low</text><circle cx="600.0" cy="140.0" r="4.5" fill="#818cf8"/><text x="600.0" y="130.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">158.5</text><text x="600.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct 7</text><circle cx="700.0" cy="146.7" r="4.5" fill="#818cf8"/><text x="700.0" y="136.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">158</text><text x="700.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct 9</text><text x="700.0" y="236" font-size="9" fill="#3730a3" text-anchor="middle">4th weekly loss</text><circle cx="800.0" cy="138.7" r="4.5" fill="#818cf8"/><text x="800.0" y="128.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">158.6</text><text x="800.0" y="222" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct 12</text><text x="800.0" y="236" font-size="9" fill="#3730a3" text-anchor="middle">Holiday trade</text></svg>
+      <div class="chart-note">Source: Wikipedia summary of MoF/Treasury data, Vantage, Trading Economics, Bloomberg. Levels approximate; x-axis not to time scale.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">為替介入<span class="annotation-card-en">FX intervention</span></div>
+        <div class="annotation-card-body">Tokyo spent an estimated ¥8.45tn with the US on July 31 near ¥164.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">日米金利差<span class="annotation-card-en">US-Japan rate gap</span></div>
+        <div class="annotation-card-body">US CPI on Wednesday night Tokyo time can widen the gap and test ¥160.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">口先介入<span class="annotation-card-en">verbal intervention</span></div>
+        <div class="annotation-card-body">Without Bessent in Bangkok, Katayama&#x27;s warnings carry the yen alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #136 · OCTOBER 13, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
