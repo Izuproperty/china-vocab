@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #148 · October 14, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #148 · October 14, 2026</div>
+    <div class="masthead-sub">Nvidia 34%, Huawei 28% in China AI Chips · StepFun&#x27;s ¥3,999 Agent Phone · EU Caps Chinese Hybrids at 350,000</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">34% / 28%<span class="card-num-unit">share</span></div>
+      <div class="card-label">Nvidia vs Huawei share of China's 2.008M AI accelerator units in H1 2026 (IDC)</div>
+      <div class="card-delta delta-red">Nvidia units -44% y/y</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · DEVICES</div>
+      <div class="card-num">¥3,999<span class="card-num-unit">bundle</span></div>
+      <div class="card-label">StepFun STEPX Neo phone plus Step AOS and a 12-month token plan; first sale Oct 16</div>
+      <div class="card-delta delta-amber">No shipment target disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · TRADE</div>
+      <div class="card-num">350K<span class="card-num-unit">hybrids/yr</span></div>
+      <div class="card-label">EU cap on Chinese hybrid imports, +6% a year for four years; 302K arrived in 2025</div>
+      <div class="card-delta delta-red">44% of the 2026 EU expectation</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">IDC Puts Nvidia&#x27;s China Share at 34% and Huawei&#x27;s at 28% for the First Half, Weeks After Huawei Said Ascend Had Pulled Ahead</div>
+    <div class="story-insight">
+      <p>IDC counts 2.008 million AI accelerators shipped into China in the first half. Nvidia's 678,000 units gave it 34%, and Huawei's 572,000 gave it 28%, with T-Head, Cambricon, Kunlunxin and Hygon adding 19% more.</p>
+      <br>
+      <p>GPUs fell 26% under export and import limits while other accelerators rose about 80%. Total units grew only about 5%, so IDC's 19% full-year forecast needs a stronger second half.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Domestic chips took about half of China&#x27;s AI accelerator units in the first half, but Nvidia still leads, and Huawei&#x27;s catch-up depends on HBM supply and on how much compute each chip delivers.</div>
+    <div class="chart-box">
+      <div class="chart-title">China AI Accelerator Market, First Half 2026</div>
+      <svg viewBox="0 0 820 388" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">SHARE OF CHINA AI ACCELERATOR UNITS, H1 2026 (%) · TOTAL 2.008M</text>
+<text x="30" y="45" font-size="12" fill="#1a1a2e">Nvidia</text><rect x="220" y="32" width="408.0" height="18" fill="#5a6a8a"/><text x="636.0" y="45" font-size="11" font-weight="700" fill="#5a6a8a">34%</text>
+<text x="30" y="69" font-size="12" font-weight="700" fill="#1a1a2e">Huawei Ascend</text><rect x="220" y="56" width="336.0" height="18" fill="#c0392b"/><text x="564.0" y="69" font-size="11" font-weight="700" fill="#c0392b">28%</text>
+<text x="30" y="93" font-size="12" fill="#1a1a2e">T-Head (Alibaba)</text><rect x="220" y="80" width="84.0" height="18" fill="#c0392b"/><text x="312.0" y="93" font-size="11" font-weight="700" fill="#c0392b">7%</text>
+<text x="30" y="117" font-size="12" fill="#1a1a2e">Cambricon</text><rect x="220" y="104" width="60.0" height="18" fill="#c0392b"/><text x="288.0" y="117" font-size="11" font-weight="700" fill="#c0392b">5%</text>
+<text x="30" y="141" font-size="12" fill="#1a1a2e">Kunlunxin (Baidu)</text><rect x="220" y="128" width="48.0" height="18" fill="#c0392b"/><text x="276.0" y="141" font-size="11" font-weight="700" fill="#c0392b">4%</text>
+<text x="30" y="165" font-size="12" fill="#1a1a2e">Hygon</text><rect x="220" y="152" width="36.0" height="18" fill="#c0392b"/><text x="264.0" y="165" font-size="11" font-weight="700" fill="#c0392b">3%</text>
+<text x="30" y="189" font-size="12" fill="#1a1a2e">All others</text><rect x="220" y="176" width="228.0" height="18" fill="#9a8a7a"/><text x="456.0" y="189" font-size="11" font-weight="700" fill="#9a8a7a">19%</text>
+<text x="30" y="222" font-size="11" font-weight="700" fill="#5a6a8a">UNITS BY VENDOR AND CHIP TYPE (THOUSANDS) · H1 2025 (GREY) VS H1 2026 (RED)</text>
+<text x="30" y="250" font-size="12" fill="#1a1a2e">Nvidia</text><rect x="220" y="234" width="387.5" height="11" fill="#5a6a8a"/><text x="615.5" y="244" font-size="10" font-weight="700" fill="#5a6a8a">1,211*</text><rect x="220" y="247" width="217.0" height="11" fill="#c0392b"/><text x="445.0" y="257" font-size="10" font-weight="700" fill="#c0392b">678 (-44%)</text>
+<text x="30" y="282" font-size="12" fill="#1a1a2e">Huawei</text><rect x="220" y="266" width="96.0" height="11" fill="#5a6a8a"/><text x="324.0" y="276" font-size="10" font-weight="700" fill="#5a6a8a">300+</text><rect x="220" y="279" width="183.0" height="11" fill="#c0392b"/><text x="411.0" y="289" font-size="10" font-weight="700" fill="#c0392b">572 (~+90%)</text>
+<text x="30" y="314" font-size="12" fill="#1a1a2e">GPUs</text><rect x="220" y="298" width="428.5" height="11" fill="#5a6a8a"/><text x="656.5" y="308" font-size="10" font-weight="700" fill="#5a6a8a">1,339*</text><rect x="220" y="311" width="317.1" height="11" fill="#c0392b"/><text x="545.1" y="321" font-size="10" font-weight="700" fill="#c0392b">991 (-26%)</text>
+<text x="30" y="346" font-size="12" fill="#1a1a2e">Other accelerators</text><rect x="220" y="330" width="180.8" height="11" fill="#5a6a8a"/><text x="408.8" y="340" font-size="10" font-weight="700" fill="#5a6a8a">565*</text><rect x="220" y="343" width="325.1" height="11" fill="#c0392b"/><text x="553.1" y="353" font-size="10" font-weight="700" fill="#c0392b">1,016 (~+80%)</text>
+<text x="30" y="376" font-size="10" fill="#5a6a8a">Sources: IDC via Reuters, The Standard, TechBooky (Oct 13, 2026). *H1 2025 values derived from IDC growth rates; Huawei H1 2025 reported as "more than 300,000".</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUBSTITUTION</div>
+        <div class="annotation-card-zh">国产替代<span class="annotation-card-en">guóchǎn tìdài · domestic substitution</span></div>
+        <div class="annotation-card-body">Four Chinese vendors supply 95% of non-GPU accelerators.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MEMORY</div>
+        <div class="annotation-card-zh">高带宽内存<span class="annotation-card-en">gāo dàikuān nèicún · HBM</span></div>
+        <div class="annotation-card-body">HBM supply, not wafers, limits Ascend output.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DATA</div>
+        <div class="annotation-card-zh">走私<span class="annotation-card-en">zǒusī · smuggling</span></div>
+        <div class="annotation-card-body">IDC did not say if smuggled B200/B300 parts are counted.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH</div>
+    <div class="story-headline">StepFun Prices Its STEPX Neo Agent Phone at ¥3,999 With a Year of Model Tokens Bundled In</div>
+    <div class="story-insight">
+      <p>StepFun's device arm opened pre-orders on October 13 for a ¥3,999 bundle: phone, Step AOS, Step Studio and a 12-month token plan reported at 10 billion tokens a month.</p>
+      <br>
+      <p>Nearly 100 services, including Alipay, Tencent and Meituan, have signed on. No shipment target, battery size, benchmarks or exact chip were given.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> StepFun is selling model access as a hardware bundle, and the October 16 first sale and partner integration will show whether an AI lab can carry phone inventory ahead of its IPO.</div>
+    <div class="chart-box">
+      <div class="chart-title">STEPX Neo Launch Timeline and Bundle</div>
+      <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">STEPX NEO ROAD TO MARKET · 2026</text>
+<line x1="60" y1="70" x2="780" y2="70" stroke="#5a6a8a" stroke-width="2"/>
+<circle cx="60" cy="70" r="7" fill="#5a6a8a"/><text x="60" y="52" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="start">Jul 17</text><text x="60" y="96" font-size="11" fill="#1a1a2e" text-anchor="start">WAIC debut</text>
+<circle cx="240" cy="70" r="7" fill="#5a6a8a"/><text x="240" y="52" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="middle">Sep 23</text><text x="240" y="96" font-size="11" fill="#1a1a2e" text-anchor="middle">Gen-AI filing cleared</text>
+<circle cx="420" cy="70" r="7" fill="#c0392b"/><text x="420" y="52" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">Oct 13</text><text x="420" y="96" font-size="11" fill="#1a1a2e" text-anchor="middle">Launch + pre-orders</text>
+<circle cx="600" cy="70" r="7" fill="#c0392b"/><text x="600" y="52" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">Oct 16</text><text x="600" y="96" font-size="11" fill="#1a1a2e" text-anchor="middle">First sale 10:13</text>
+<circle cx="780" cy="70" r="7" fill="#5a6a8a"/><text x="780" y="52" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="end">Oct 25</text><text x="780" y="96" font-size="11" fill="#1a1a2e" text-anchor="end">Step 5 free trial ends</text>
+<text x="30" y="140" font-size="11" font-weight="700" fill="#5a6a8a">WHAT ¥3,999 BUYS (COMPANY AND MEDIA FIGURES)</text>
+<text x="40" y="180" font-size="24" font-weight="700" fill="#c0392b">¥3,999</text><text x="40" y="198" font-size="10" fill="#5a6a8a">full-stack price</text><text x="40" y="211" font-size="10" fill="#5a6a8a">(~$560)</text>
+<text x="196" y="180" font-size="24" font-weight="700" fill="#1a1a2e">16+256GB</text><text x="196" y="198" font-size="10" fill="#5a6a8a">Snapdragon 8-series,</text><text x="196" y="211" font-size="10" fill="#5a6a8a">model not named</text>
+<text x="352" y="180" font-size="24" font-weight="700" fill="#c0392b">10B</text><text x="352" y="198" font-size="10" fill="#5a6a8a">tokens per month</text><text x="352" y="211" font-size="10" fill="#5a6a8a">for 12 months</text>
+<text x="508" y="180" font-size="24" font-weight="700" fill="#1a1a2e">~100</text><text x="508" y="198" font-size="10" fill="#5a6a8a">partner services</text><text x="508" y="211" font-size="10" fill="#5a6a8a">Alipay, Meituan, Didi</text>
+<text x="664" y="180" font-size="24" font-weight="700" fill="#1a1a2e">10,000</text><text x="664" y="198" font-size="10" fill="#5a6a8a">Star Tickets: free</text><text x="664" y="211" font-size="10" fill="#5a6a8a">device swap in 5 yrs</text>
+<text x="30" y="246" font-size="12" fill="#1a1a2e">Not disclosed: shipment target · battery capacity · benchmark results · exact chip · device margin</text>
+<text x="30" y="276" font-size="10" fill="#5a6a8a">Sources: Sina Tech, Sina Finance (Oct 13, 2026); IT Home and CoinDesk via KuCoin; Issue #143 for filing and WAIC dates. Token quota per Chinese media reports.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ECOSYSTEM</div>
+        <div class="annotation-card-zh">智能体手机<span class="annotation-card-en">zhìnéngtǐ shǒujī · agent phone</span></div>
+        <div class="annotation-card-body">~100 partner services sign on, including Alipay and Didi.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FIRST SALE</div>
+        <div class="annotation-card-zh">首销<span class="annotation-card-en">shǒuxiāo · first sale</span></div>
+        <div class="annotation-card-body">Volumes and reviews after 10:13 on October 16.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · INVENTORY</div>
+        <div class="annotation-card-zh">库存<span class="annotation-card-en">kùcún · inventory</span></div>
+        <div class="annotation-card-body">Hardware stock and thin margins ahead of an HK IPO.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · TRADE &amp; MACRO</div>
+    <div class="story-headline">Beijing Says the EU Hybrid Car Deal Lets Exports Grow From 2025, Brussels Says It Halves Them, and EU Leaders Decide on October 15</div>
+    <div class="story-insight">
+      <p>The EU will cap Chinese hybrid imports at 350,000 a year, rising 6% annually for four years. MOFCOM says that grows exports from 2025's 302,000; Brussels says it halves the 800,000 expected this year.</p>
+      <br>
+      <p>Hybrids avoided the EU's duties on battery-electric cars and tripled to €6.7 billion in the first half. EU leaders review the deal on October 15.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The hybrid cap ends the duty gap that carried Chinese exports into Europe this year, pushing carmakers toward European plants while home retail sales fall 28%.</div>
+    <div class="chart-box">
+      <div class="chart-title">EU Cap on Chinese Hybrid Imports</div>
+      <svg viewBox="0 0 820 294" xmlns="http://www.w3.org/2000/svg">
+<text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CHINESE HYBRID CAR IMPORTS INTO THE EU (THOUSAND UNITS PER YEAR)</text>
+<text x="30" y="47" font-size="12" fill="#1a1a2e">2024 actual</text><rect x="230" y="34" width="66.3" height="18" fill="#5a6a8a"/><text x="304.3" y="47" font-size="11" font-weight="700" fill="#5a6a8a">107</text>
+<text x="30" y="73" font-size="12" fill="#1a1a2e">2025 actual</text><rect x="230" y="60" width="187.2" height="18" fill="#5a6a8a"/><text x="425.2" y="73" font-size="11" font-weight="700" fill="#5a6a8a">302</text>
+<text x="30" y="99" font-size="12" fill="#1a1a2e">Jul 2026 pace, annualized</text><rect x="230" y="86" width="372.0" height="18" fill="#9a8a7a"/><text x="610.0" y="99" font-size="11" font-weight="700" fill="#9a8a7a">~600</text>
+<text x="30" y="125" font-size="12" fill="#1a1a2e">2026 EU expectation</text><rect x="230" y="112" width="496.0" height="18" fill="#9a8a7a"/><text x="734.0" y="125" font-size="11" font-weight="700" fill="#9a8a7a">~800</text>
+<text x="30" y="151" font-size="12" font-weight="700" fill="#1a1a2e">Cap, year 1</text><rect x="230" y="138" width="217.0" height="18" fill="#c0392b"/><text x="455.0" y="151" font-size="11" font-weight="700" fill="#c0392b">350 (+16% vs 2025)</text>
+<text x="30" y="177" font-size="12" fill="#1a1a2e">Cap, year 2</text><rect x="230" y="164" width="230.0" height="18" fill="#c0392b"/><text x="468.0" y="177" font-size="11" font-weight="700" fill="#c0392b">~371 (+6%)</text>
+<text x="30" y="212" font-size="12" fill="#1a1a2e">Four-year cap total ≈ 1.53M units · first-year cap = 44% of the 2026 EU expectation</text>
+<text x="30" y="234" font-size="12" fill="#1a1a2e">Side deals: MFN tariff cuts on ~€4B of EU exports (≥€225M duty saved) · easier rare-earth and magnet licensing</text>
+<text x="30" y="256" font-size="12" fill="#1a1a2e">Context: China hybrid exports to EU €6.7B in H1 (3x) · EU deficit with China €103B in Q2 · China retail car sales -28% in Sep</text>
+<text x="30" y="282" font-size="10" fill="#5a6a8a">Sources: MOFCOM (Oct 12); Bloomberg via Just Auto, Seoul Economic Daily; FT (July pace); CPCA. Year-2 and totals are our arithmetic.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · QUOTA</div>
+        <div class="annotation-card-zh">配额<span class="annotation-card-en">pèi'é · quota</span></div>
+        <div class="annotation-card-body">350,000 in year one, then +6% a year, from December.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · COUNCIL</div>
+        <div class="annotation-card-zh">欧洲理事会<span class="annotation-card-en">Ōuzhōu Lǐshìhuì · European Council</span></div>
+        <div class="annotation-card-body">Leaders decide on October 15 whether to ask for more.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · ALLOCATION</div>
+        <div class="annotation-card-zh">本地化生产<span class="annotation-card-en">běndìhuà shēngchǎn · local production</span></div>
+        <div class="annotation-card-body">Returns shift to EU plants; quota split still unknown.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #148 · OCTOBER 14, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
