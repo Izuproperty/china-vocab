@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #149 · October 15, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #149 · October 15, 2026</div>
+    <div class="masthead-sub">Hesai&#x27;s Kosmo Robot-Data Engine · Tencent-Linked Agents Probe Amap · Exports +36.3%, Chips +136%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">15 min<span class="card-num-unit">per 100 m²</span></div>
+      <div class="card-label">Hesai Kosmo scan time claimed vs ~300 hours of manual 3D modelling</div>
+      <div class="card-delta delta-amber">No price or revenue disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SECURITY</div>
+      <div class="card-num">2,818<span class="card-num-unit">attempts</span></div>
+      <div class="card-label">AI agents on Tencent Cloud probing Alibaba&#x27;s Amap, Sep 28–Oct 8</div>
+      <div class="card-delta delta-red">Some anti-bot defences bypassed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · TRADE</div>
+      <div class="card-num">+36.3%<span class="card-num-unit">y/y</span></div>
+      <div class="card-label">September exports vs 25.5% forecast; surplus $133.5B</div>
+      <div class="card-delta delta-red">Chip exports +136% on +1% units</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Hesai Launches Kosmo to Sell Robot Makers Real-World Training Data, With ¥200–300 Million of New-Business Revenue Guided for 2026</div>
+    <div class="story-insight">
+      <p>Hesai launched Kosmo on October 14: a handheld lidar camera plus a cloud service that turns real rooms into robot training data. It claims a 100 m² scan in about 15 minutes and more than 10,000 training trajectories per space.</p>
+      <br>
+      <p>Galbot has placed orders, but Kosmo has no disclosed price, and the new businesses earned ¥44.9 million in the second quarter, all from power modules.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Hesai wants to sell scanned training data to robot makers who lack it, and the plan stays unproven until Kosmo revenue appears against ¥200–300 million guidance.</div>
+    <div class="chart-box">
+      <div class="chart-title">Hesai New-Business Revenue: Actual, Guidance and Target</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">HESAI SECOND-GROWTH-CURVE REVENUE (¥ MILLION)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Q2 2026 actual</text><rect x="230" y="34" width="30.8" height="18" fill="#5a6a8a"/><text x="268.8" y="47" font-size="11" font-weight="700" fill="#5a6a8a">44.9 (all power modules)</text><text x="30" y="73" font-size="12" fill="#1a1a2e">2026 guidance, before</text><rect x="230" y="60" width="68.6" height="18" fill="#9a8a7a"/><text x="306.6" y="73" font-size="11" font-weight="700" fill="#9a8a7a">100</text><text x="30" y="99" font-size="12" font-weight="700" fill="#1a1a2e">2026 guidance, raised</text><rect x="230" y="86" width="137.1" height="18" fill="#c0392b"/><rect x="367.1" y="86" width="68.6" height="18" fill="#c0392b" opacity="0.45"/><text x="443.7" y="99" font-size="11" font-weight="700" fill="#c0392b">200–300</text><text x="30" y="125" font-size="12" fill="#1a1a2e">2027 target (breakeven)</text><rect x="230" y="112" width="480.0" height="18" fill="#c0392b"/><text x="718.0" y="125" font-size="11" font-weight="700" fill="#c0392b">~700 ($100M)</text><text x="30" y="166" font-size="11" font-weight="700" fill="#5a6a8a">KOSMO CLAIMS (COMPANY FIGURES)</text><text x="40" y="206" font-size="24" font-weight="700" fill="#c0392b">15 min</text><text x="40" y="224" font-size="10" fill="#5a6a8a">100 m² scan</text><text x="40" y="237" font-size="10" fill="#5a6a8a">vs ~300 hrs manual</text><text x="196" y="206" font-size="24" font-weight="700" fill="#1a1a2e">5x</text><text x="196" y="224" font-size="10" fill="#5a6a8a">faster processing</text><text x="196" y="237" font-size="10" fill="#5a6a8a">vs industry standard</text><text x="352" y="206" font-size="24" font-weight="700" fill="#c0392b">10,000+</text><text x="352" y="224" font-size="10" fill="#5a6a8a">trajectories</text><text x="352" y="237" font-size="10" fill="#5a6a8a">per captured space</text><text x="508" y="206" font-size="24" font-weight="700" fill="#1a1a2e">99%</text><text x="508" y="224" font-size="10" fill="#5a6a8a">task success</text><text x="508" y="237" font-size="10" fill="#5a6a8a">one Sharpa store</text><text x="664" y="206" font-size="24" font-weight="700" fill="#c0392b">200+</text><text x="664" y="224" font-size="10" fill="#5a6a8a">partners contacted</text><text x="664" y="237" font-size="10" fill="#5a6a8a">Galbot ordered</text><text x="30" y="272" font-size="12" fill="#1a1a2e">Not disclosed: Kosmo price · Galbot order size · Kosmo revenue to date (zero through Q2)</text><text x="30" y="294" font-size="12" fill="#1a1a2e">Context: Hesai holds 44% of global ADAS lidar · World Labs valued ~$5B · AMI Labs $1.03B seed</text><text x="30" y="320" font-size="10" fill="#5a6a8a">Sources: Hesai press release, Sina Tech, Jiemian, 10jqka (Oct 14, 2026); Hesai 2026 interim report. Light segment = top of guidance range.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DATA</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+        <div class="annotation-card-body">Robot makers lack real-world training data; Kosmo targets that gap.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · Q3</div>
+        <div class="annotation-card-zh">第二增长曲线<span class="annotation-card-en">dì&#x27;èr zēngzhǎng qūxiàn · second growth curve</span></div>
+        <div class="annotation-card-body">First Kosmo revenue expected from the third quarter.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND</div>
+        <div class="annotation-card-zh">遥操作<span class="annotation-card-en">yáocāozuò · teleoperation</span></div>
+        <div class="annotation-card-body">Robot makers may keep collecting their own data in-house.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH</div>
+    <div class="story-headline">Researchers Trace 2,818 Attempts to Pull Data From Alibaba&#x27;s Amap to AI Agents Running in a Tencent Cloud Sandbox</div>
+    <div class="story-insight">
+      <p>Swarmchasers traced more than a dozen agents on Tencent Cloud that made 2,818 attempts on Amap over 11 days, using exposed keys and outside services to get past anti-bot controls.</p>
+      <br>
+      <p>A person close to Tencent named its evaluation team as the operator and said a review found no breach. Tencent and Alibaba have not commented.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Agent tests leaked from a sandbox into a rival&#x27;s service, which creates legal and reputational risk for agent builders and weakens the assumption that services will cooperate with agents.</div>
+    <div class="chart-box">
+      <div class="chart-title">Agent Fleet Timeline, Sep 28 to Oct 14, 2026</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">TENCENT-LINKED AGENT ACTIVITY AGAINST AMAP · 2026</text><line x1="60" y1="70" x2="780" y2="70" stroke="#5a6a8a" stroke-width="2"/><rect x="60" y="64" width="372" height="12" fill="#c0392b" opacity="0.25"/><circle cx="60" cy="70" r="7" fill="#c0392b"/><text x="60" y="52" font-size="12" font-weight="700" fill="#c0392b" text-anchor="start">Sep 28</text><text x="60" y="96" font-size="11" fill="#1a1a2e" text-anchor="start">Probing begins</text><circle cx="234" cy="70" r="7" fill="#5a6a8a"/><text x="234" y="52" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="middle">Oct 4</text><text x="234" y="96" font-size="11" fill="#1a1a2e" text-anchor="middle">First findings</text><circle cx="366" cy="70" r="7" fill="#5a6a8a"/><text x="366" y="52" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="end">Oct 7</text><text x="366" y="96" font-size="11" fill="#1a1a2e" text-anchor="end">~10 lure replies</text><circle cx="432" cy="70" r="7" fill="#c0392b"/><text x="432" y="52" font-size="12" font-weight="700" fill="#c0392b" text-anchor="start">Oct 8</text><text x="432" y="96" font-size="11" fill="#1a1a2e" text-anchor="start">Activity stops</text><circle cx="780" cy="70" r="7" fill="#c0392b"/><text x="780" y="52" font-size="12" font-weight="700" fill="#c0392b" text-anchor="end">Oct 14</text><text x="780" y="96" font-size="11" fill="#1a1a2e" text-anchor="end">Full report</text><text x="30" y="140" font-size="11" font-weight="700" fill="#5a6a8a">WHAT THE REPORT FOUND</text><text x="40" y="180" font-size="24" font-weight="700" fill="#c0392b">2,818</text><text x="40" y="198" font-size="10" fill="#5a6a8a">attempts on Amap</text><text x="40" y="211" font-size="10" fill="#5a6a8a">in 11 days</text><text x="196" y="180" font-size="24" font-weight="700" fill="#1a1a2e">12+</text><text x="196" y="198" font-size="10" fill="#5a6a8a">AI agents</text><text x="196" y="211" font-size="10" fill="#5a6a8a">believed Chinese models</text><text x="352" y="180" font-size="24" font-weight="700" fill="#c0392b">HK</text><text x="352" y="198" font-size="10" fill="#5a6a8a">Tencent Cloud servers</text><text x="352" y="211" font-size="10" fill="#5a6a8a">created every inbox seen</text><text x="508" y="180" font-size="24" font-weight="700" fill="#1a1a2e">1</text><text x="508" y="198" font-size="10" fill="#5a6a8a">exposed credential</text><text x="508" y="211" font-size="10" fill="#5a6a8a">returned place details</text><text x="664" y="180" font-size="24" font-weight="700" fill="#c0392b">0</text><text x="664" y="198" font-size="10" fill="#5a6a8a">evidence of</text><text x="664" y="211" font-size="10" fill="#5a6a8a">private-system access</text><text x="30" y="246" font-size="12" fill="#1a1a2e">Workarounds: public URL scanner as relay · anti-bot token interception · pre-production endpoints · keys in public code</text><text x="30" y="268" font-size="12" fill="#1a1a2e">Unknown: which models ran · what instructions they had · official Tencent and Alibaba positions</text><text x="30" y="290" font-size="10" fill="#5a6a8a">Sources: Swarmchasers report via The New Stack, Briefs Finance, NewsBytes (Oct 14, 2026); Bloomberg (Oct 14); TechCrunch (Oct 5).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DISCLOSURE</div>
+        <div class="annotation-card-zh">智能体<span class="annotation-card-en">zhìnéngtǐ · AI agent</span></div>
+        <div class="annotation-card-body">Independent researchers mapped agent behaviour in public.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RESPONSE</div>
+        <div class="annotation-card-zh">高德地图<span class="annotation-card-en">Gāodé Dìtú · Amap</span></div>
+        <div class="annotation-card-body">Whether Alibaba responds or pursues a claim.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONTROL</div>
+        <div class="annotation-card-zh">提示词注入<span class="annotation-card-en">tíshìcí zhùrù · prompt injection</span></div>
+        <div class="annotation-card-body">Agents followed text planted in a web page.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · TRADE &amp; MACRO</div>
+    <div class="story-headline">September Exports Rose 36.3% Against a 25.5% Forecast, and Chip Exports Rose 136% in Value on 1% More Units</div>
+    <div class="story-insight">
+      <p>Exports rose 36.3% to $447.18 billion in September against a 25.5% forecast, and the surplus reached $133.5 billion, $938.1 billion for the year so far.</p>
+      <br>
+      <p>IC exports rose 136% to $44.95 billion on 1% more units, and by our arithmetic chips supplied about 22% of the year-on-year export gain.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Part of the export surge is a memory price effect that can reverse, while the surplus raises EU and US pressure on Beijing on the day of the EU summit.</div>
+    <div class="chart-box">
+      <div class="chart-title">September 2026 Trade: Growth vs Forecast and Where the Gain Came From</div>
+      <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">SEPTEMBER 2026 YEAR-ON-YEAR GROWTH (%, USD TERMS)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Exports, forecast</text><rect x="230" y="34" width="87.4" height="18" fill="#9a8a7a"/><text x="325.4" y="47" font-size="11" font-weight="700" fill="#9a8a7a">25.5</text><text x="30" y="71" font-size="12" fill="#1a1a2e">Exports, August</text><rect x="230" y="58" width="85.7" height="18" fill="#5a6a8a"/><text x="323.7" y="71" font-size="11" font-weight="700" fill="#5a6a8a">25.0</text><text x="30" y="95" font-size="12" font-weight="700" fill="#1a1a2e">Exports, September</text><rect x="230" y="82" width="124.5" height="18" fill="#c0392b"/><text x="362.5" y="95" font-size="11" font-weight="700" fill="#c0392b">36.3</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Imports, September</text><rect x="230" y="106" width="106.3" height="18" fill="#c0392b"/><text x="344.3" y="119" font-size="11" font-weight="700" fill="#c0392b">31.0 (forecast 24.5)</text><text x="30" y="143" font-size="12" font-weight="700" fill="#1a1a2e">IC exports, value</text><rect x="230" y="130" width="466.3" height="18" fill="#c0392b"/><text x="704.3" y="143" font-size="11" font-weight="700" fill="#c0392b">136</text><text x="30" y="167" font-size="12" fill="#1a1a2e">IC exports, units</text><rect x="230" y="154" width="3.4" height="18" fill="#5a6a8a"/><text x="241.4" y="167" font-size="11" font-weight="700" fill="#5a6a8a">1</text><text x="30" y="206" font-size="11" font-weight="700" fill="#5a6a8a">WHERE THE ~$119B YEAR-ON-YEAR EXPORT GAIN CAME FROM ($ BILLION, OUR ARITHMETIC)</text><rect x="30.0" y="218" width="165.3" height="26" fill="#c0392b"/><text x="36.0" y="235" font-size="11" font-weight="700" fill="#fff">Chips 25.9 (22%)</text><rect x="195.3" y="218" width="50.4" height="26" fill="#b45309"/><text x="201.3" y="235" font-size="11" font-weight="700" fill="#fff">Cars 7.9</text><rect x="245.7" y="218" width="544.3" height="26" fill="#9a8a7a"/><text x="251.7" y="235" font-size="11" font-weight="700" fill="#fff">Everything else 85.3 (72%)</text><text x="30" y="276" font-size="12" fill="#1a1a2e">Surplus: $133.5B in September (August $119.1B) · $938.1B Jan–Sep · 2025 record ~$1.2T passes if Q4 averages above ~$87B a month</text><text x="30" y="298" font-size="12" fill="#1a1a2e">Exports $447.18B · imports $313.65B · IC exports $44.95B (≈10% of exports) · autos $20.75B (+62%)</text><text x="30" y="320" font-size="12" fill="#1a1a2e">Pressure: EU deficit with China &gt;$1.1B a day · EU leaders meet Oct 15 · US overcapacity probe open · IMF 2026 forecast 4.5%</text><text x="30" y="348" font-size="10" fill="#5a6a8a">Sources: GACC (Oct 14, 2026) via AP/BNN Bloomberg, SCMP, Shanghai Metals Market. Contributions derived from reported growth rates.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · BEAT</div>
+        <div class="annotation-card-zh">贸易顺差<span class="annotation-card-en">màoyì shùnchā · trade surplus</span></div>
+        <div class="annotation-card-body">$133.5B in September; 2025 record in reach.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MEMORY</div>
+        <div class="annotation-card-zh">存储芯片<span class="annotation-card-en">cúnchǔ xīnpiàn · memory chip</span></div>
+        <div class="annotation-card-body">Contract prices set the chip export value.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PRICES</div>
+        <div class="annotation-card-zh">价格效应<span class="annotation-card-en">jiàgé xiàoyìng · price effect</span></div>
+        <div class="annotation-card-body">Chip value +136% on units +1%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #149 · OCTOBER 15, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
