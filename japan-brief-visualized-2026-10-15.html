@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #138 · October 15, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #138 · October 15, 2026</div>
+    <div class="masthead-sub">SB Intuitions Opens Sarashina · Japan Funds NY Fabs · IMF on the BOJ</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SB INTUITIONS</div>
+      <div class="card-num">6<span class="card-num-unit">models</span></div>
+      <div class="card-label">Sarashina3 models free via API and chat</div>
+      <div class="card-delta delta-amber">6 requests/min cap on mini</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · GLOBALFOUNDRIES</div>
+      <div class="card-num">$21<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Japan funding for up to two New York fabs</div>
+      <div class="card-delta delta-green">Fab 1 output in 2029</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · IMF</div>
+      <div class="card-num">0.7<span class="card-num-unit">%</span></div>
+      <div class="card-label">IMF 2026 growth forecast for Japan, up from 0.6%</div>
+      <div class="card-delta delta-amber">2025 growth was 1.2%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">SoftBank&#x27;s SB Intuitions Opens Six Sarashina Models to Anyone for Free, With Tight Rate Limits</div>
+    <div class="story-insight">
+      <p>SBイントゥイションズ (SB Intuishonzu, SB Intuitions), the SoftBank Corp subsidiary that builds the Sarashina family of Japanese-language models, opened a 無償ベータ版 (mushō bēta-ban, free beta) of its Sarashina Service on October 13. Anyone with a Google account can sign in without applying. The API offers six Sarashina3 models: mini for text generation and conversation, nano for fast handling of simple tasks in volume, embedding and rerank for 検索拡張生成 (kensaku kakuchō seisei, retrieval-augmented generation, RAG), guard for screening unsafe inputs, and translate for Japanese-English translation. A browser chat adds web search, writing help and translation. The company set no end date for the free period, published no paid prices, and its terms allow user data to be used to improve the models.</p>
+      <br>
+      <p>The limits keep it a test bed. A developer who called all six models on launch day found a レート制限 (rēto seigen, rate limit) of 6 requests a minute on mini, guard and translate and 60 on the other three, so scoring 100 prompts on mini takes about 17 minutes. Mini and nano accept 128,000 tokens of context. The API resembles OpenAI&#x27;s but rejects some OpenAI parameters, such as max_tokens, so code written for OpenAI needs changes before it runs. The paid version has been on sale since Sarashina3 launched on June 30, billed per million tokens on shared servers or as a monthly fee on dedicated GPUs.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The free tier lowers the cost for Japanese developers to test a domestic stack instead of defaulting to US models, and each prototype is a sales lead for SoftBank Corp&#x27;s paid cloud. Six requests a minute rules out production use, so revenue depends on converting testers to per-token or dedicated plans. Watch for published paid prices and the first named enterprise customers.</div>
+    <div class="chart-box">
+      <div class="chart-title">Free, but Throttled</div>
+      <svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">FREE-BETA RATE LIMIT (REQUESTS PER MINUTE)</text><line x1="300.0" y1="36" x2="300.0" y2="244" stroke="#e8eaf2"/><text x="300.0" y="260" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text><line x1="415.0" y1="36" x2="415.0" y2="244" stroke="#e8eaf2"/><text x="415.0" y="260" font-size="10" fill="#5a6a8a" text-anchor="middle">20</text><line x1="530.0" y1="36" x2="530.0" y2="244" stroke="#e8eaf2"/><text x="530.0" y="260" font-size="10" fill="#5a6a8a" text-anchor="middle">40</text><line x1="645.0" y1="36" x2="645.0" y2="244" stroke="#e8eaf2"/><text x="645.0" y="260" font-size="10" fill="#5a6a8a" text-anchor="middle">60</text><line x1="760.0" y1="36" x2="760.0" y2="244" stroke="#e8eaf2"/><text x="760.0" y="260" font-size="10" fill="#5a6a8a" text-anchor="middle">80</text><text x="290" y="61" font-size="12" fill="#1a1a2e" text-anchor="end">Sarashina3 mini</text><rect x="300" y="46" width="34.5" height="22" rx="3" fill="#3730a3"/><text x="342.5" y="61" font-size="11" font-weight="600" fill="#3a4a6a">6 rpm · 128k context</text><text x="290" y="95" font-size="12" fill="#1a1a2e" text-anchor="end">Sarashina3 guard</text><rect x="300" y="80" width="34.5" height="22" rx="3" fill="#3730a3"/><text x="342.5" y="95" font-size="11" font-weight="600" fill="#3a4a6a">6 rpm</text><text x="290" y="129" font-size="12" fill="#1a1a2e" text-anchor="end">Sarashina3 translate</text><rect x="300" y="114" width="34.5" height="22" rx="3" fill="#3730a3"/><text x="342.5" y="129" font-size="11" font-weight="600" fill="#3a4a6a">6 rpm</text><text x="290" y="163" font-size="12" fill="#1a1a2e" text-anchor="end">Sarashina3 nano</text><rect x="300" y="148" width="345.0" height="22" rx="3" fill="#818cf8"/><text x="653.0" y="163" font-size="11" font-weight="600" fill="#3a4a6a">60 rpm · 128k context</text><text x="290" y="197" font-size="12" fill="#1a1a2e" text-anchor="end">Sarashina3 embedding</text><rect x="300" y="182" width="345.0" height="22" rx="3" fill="#818cf8"/><text x="653.0" y="197" font-size="11" font-weight="600" fill="#3a4a6a">60 rpm</text><text x="290" y="231" font-size="12" fill="#1a1a2e" text-anchor="end">Sarashina3 rerank</text><rect x="300" y="216" width="345.0" height="22" rx="3" fill="#818cf8"/><text x="653.0" y="231" font-size="11" font-weight="600" fill="#3a4a6a">60 rpm</text></svg>
+      <div class="chart-note">Source: SB Intuitions via Impress Watch, Mynavi (Oct 13-14); limits from a developer test on Qiita (Oct 13), single runs.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">無償ベータ版<span class="annotation-card-en">free beta</span></div>
+        <div class="annotation-card-body">Six models open to anyone with a Google login, no end date.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">検索拡張生成<span class="annotation-card-en">RAG</span></div>
+        <div class="annotation-card-body">Embedding, rerank and guard target corporate document search.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">レート制限<span class="annotation-card-en">rate limit</span></div>
+        <div class="annotation-card-body">6 requests a minute keeps it a sandbox; paid prices are unpublished.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Japan Will Fund Up to $21 Billion for Two New York Chip Fabs Run by GlobalFoundries, With Renesas as a First Customer</div>
+    <div class="story-insight">
+      <p>Japan will finance up to about $21 billion for as many as two chip fabs in Malta, New York, that GlobalFoundries will operate, the company and the Trump administration announced on October 14. The money comes from the $550 billion 対米投資 (taibei tōshi, investment in the US) that Tokyo pledged in last year&#x27;s 関税合意 (kanzei gōi, tariff agreement), in return for which Washington cut tariffs on Japanese cars and other goods to 15% from at least 25%. Construction of the first fab starts this year and output is due in 2029. At full capacity it adds about 900,000 300mm wafers a year and more than 1,000 factory jobs. The partners decide on the second fab before the end of 2028. ルネサスエレクトロニクス (Runesasu Erekutoronikusu, Renesas Electronics) and Apple are the named 初期顧客 (shoki kokyaku, initial customers).</p>
+      <br>
+      <p>The terms favor Washington. The US president picks the projects Japan funds, Japan supplies all the capital, and free cash flow is split evenly until a set amount is reached, after which 90% goes to the US. GlobalFoundries puts in no capital and earns 運営受託 (un&#x27;ei jutaku, contract operation) fees for at least 20 years, starting with about $50 million next year for managing construction. The US government&#x27;s stake in the company rises to 7% from 3%. GlobalFoundries is also moving $955 million of earlier federal grants to silicon photonics, silicon-germanium and advanced packaging at its existing plants. Its shares rose more than 4%.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The deal turns part of Japan&#x27;s $550 billion pledge into tool demand that Japanese equipment makers can bid for, though no supplier contract is signed yet. Japan carries the capital risk and gives up most of the cash flow after the threshold, so its return comes mainly through the tariff truce and supplier orders. Watch whether TEL wins orders when tools for the first fab are placed, and whether the second fab is approved before 2028.</div>
+    <div class="chart-box">
+      <div class="chart-title">A Tariff Pledge Becomes a Fab</div>
+      <svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">FROM TARIFF DEAL TO WAFERS</text><line x1="60" y1="110" x2="800" y2="110" stroke="#c7cbe0" stroke-width="2"/><line x1="175.1" y1="104" x2="175.1" y2="116" stroke="#c7cbe0"/><text x="175.1" y="210" font-size="10" fill="#5a6a8a" text-anchor="middle">2026</text><line x1="339.6" y1="104" x2="339.6" y2="116" stroke="#c7cbe0"/><text x="339.6" y="210" font-size="10" fill="#5a6a8a" text-anchor="middle">2027</text><line x1="504.0" y1="104" x2="504.0" y2="116" stroke="#c7cbe0"/><text x="504.0" y="210" font-size="10" fill="#5a6a8a" text-anchor="middle">2028</text><line x1="668.4" y1="104" x2="668.4" y2="116" stroke="#c7cbe0"/><text x="668.4" y="210" font-size="10" fill="#5a6a8a" text-anchor="middle">2029</text><circle cx="101.1" cy="110" r="6" fill="#5a6a8a"/><line x1="101.1" y1="104" x2="101.1" y2="70" stroke="#5a6a8a" stroke-dasharray="2,2"/><text x="101.1" y="40" font-size="10" font-weight="700" fill="#5a6a8a" text-anchor="middle">Jul 2025</text><text x="101.1" y="54" font-size="11" fill="#1a1a2e" text-anchor="middle">Tariff deal: $550bn</text><text x="101.1" y="68" font-size="11" fill="#3a4a6a" text-anchor="middle">pledge, car tariff 15%</text><circle cx="290.2" cy="110" r="6" fill="#818cf8"/><line x1="290.2" y1="116" x2="215.2" y2="134" stroke="#818cf8" stroke-dasharray="2,2"/><text x="215.2" y="136" font-size="10" font-weight="700" fill="#818cf8" text-anchor="middle">Sep 2026</text><text x="215.2" y="150" font-size="11" fill="#1a1a2e" text-anchor="middle">Working-level</text><text x="215.2" y="164" font-size="11" fill="#3a4a6a" text-anchor="middle">fab talks</text><circle cx="305.0" cy="110" r="6" fill="#3730a3"/><line x1="305.0" y1="104" x2="305.0" y2="70" stroke="#3730a3" stroke-dasharray="2,2"/><text x="305.0" y="40" font-size="10" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 14</text><text x="305.0" y="54" font-size="11" fill="#1a1a2e" text-anchor="middle">Up to $21bn,</text><text x="305.0" y="68" font-size="11" fill="#3a4a6a" text-anchor="middle">GF to operate</text><circle cx="331.3" cy="110" r="6" fill="#be185d"/><line x1="331.3" y1="116" x2="406.3" y2="134" stroke="#be185d" stroke-dasharray="2,2"/><text x="406.3" y="136" font-size="10" font-weight="700" fill="#be185d" text-anchor="middle">Late 2026</text><text x="406.3" y="150" font-size="11" fill="#1a1a2e" text-anchor="middle">Fab 1</text><text x="406.3" y="164" font-size="11" fill="#3a4a6a" text-anchor="middle">construction starts</text><circle cx="660.2" cy="110" r="6" fill="#b45309"/><line x1="660.2" y1="104" x2="660.2" y2="70" stroke="#b45309" stroke-dasharray="2,2"/><text x="660.2" y="40" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">By end-2028</text><text x="660.2" y="54" font-size="11" fill="#1a1a2e" text-anchor="middle">Decision on</text><text x="660.2" y="68" font-size="11" fill="#3a4a6a" text-anchor="middle">second fab</text><circle cx="750.7" cy="110" r="6" fill="#166534"/><line x1="750.7" y1="116" x2="750.7" y2="134" stroke="#166534" stroke-dasharray="2,2"/><text x="750.7" y="136" font-size="10" font-weight="700" fill="#166534" text-anchor="middle">2029</text><text x="750.7" y="150" font-size="11" fill="#1a1a2e" text-anchor="middle">Fab 1 output,</text><text x="750.7" y="164" font-size="11" fill="#3a4a6a" text-anchor="middle">~900k wafers/yr</text></svg>
+      <div class="chart-note">Source: Reuters via Investing.com, GlobalFoundries (Oct 14). Second fab not yet approved.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">対米投資<span class="annotation-card-en">US investment</span></div>
+        <div class="annotation-card-body">First large chip fab funded from the $550bn pledge.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">東京エレクトロン<span class="annotation-card-en">Tokyo Electron</span></div>
+        <div class="annotation-card-body">GlobalFoundries wants Japanese tool makers; no orders yet.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">利益配分<span class="annotation-card-en">profit split</span></div>
+        <div class="annotation-card-body">After the threshold, 90% of cash flow goes to the US.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The IMF Lifts Japan&#x27;s 2026 Growth Forecast to 0.7% and Tells the BOJ to Keep Raising Rates Step by Step</div>
+    <div class="story-insight">
+      <p>The International Monetary Fund raised its forecast for Japan&#x27;s 2026 growth to 0.7% from 0.6% in its October 世界経済見通し (sekai keizai mitōshi, World Economic Outlook), released on October 13 as its annual meetings opened in Bangkok. The 上方修正 (jōhō shūsei, upward revision) still leaves growth at about half of 2025&#x27;s 1.2%, and the 2027 forecast stays at 0.7%. The IMF said fiscal support is partly cushioning the hit from higher energy prices this year, and it expects steady growth in 2027 as the energy shock fades and monetary policy normalizes. It raised global growth for 2026 to 3.1%, crediting AI investment for offsetting geopolitical disruption.</p>
+      <br>
+      <p>On policy, the IMF said the Bank of Japan should keep raising rates gradually toward a 中立金利 (chūritsu kinri, neutral rate), from the 1.25% it set on September 18. It described Japan as exposed to imported inflation because it buys its fuel and raw materials abroad with a weak currency, and it called temporary 為替介入 (kawase kainyū, currency intervention) acceptable when moves become disorderly. That language gives Tokyo cover: Japan and the US intervened together in August, and the dollar traded near ¥158.3 on October 14.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The IMF expects the BOJ to keep hiking while growth runs at 0.7%, which supports bank lending margins and weighs on rate-sensitive sectors such as real estate. Its acceptance of intervention lowers the diplomatic cost if the Ministry of Finance steps in near ¥160. Koeda&#x27;s speech today shows whether a December hike still has board support.</div>
+    <div class="chart-box">
+      <div class="chart-title">Slower Growth, Higher Rates</div>
+      <svg viewBox="0 0 860 240" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">REAL GDP GROWTH, IMF OCTOBER 2026 WEO (%)</text><line x1="80" y1="200.0" x2="820" y2="200.0" stroke="#e8eaf2"/><text x="70" y="204.0" font-size="10" fill="#5a6a8a" text-anchor="end">0%</text><line x1="80" y1="162.5" x2="820" y2="162.5" stroke="#e8eaf2"/><text x="70" y="166.5" font-size="10" fill="#5a6a8a" text-anchor="end">1%</text><line x1="80" y1="125.0" x2="820" y2="125.0" stroke="#e8eaf2"/><text x="70" y="129.0" font-size="10" fill="#5a6a8a" text-anchor="end">2%</text><line x1="80" y1="87.5" x2="820" y2="87.5" stroke="#e8eaf2"/><text x="70" y="91.5" font-size="10" fill="#5a6a8a" text-anchor="end">3%</text><line x1="80" y1="50.0" x2="820" y2="50.0" stroke="#e8eaf2"/><text x="70" y="54.0" font-size="10" fill="#5a6a8a" text-anchor="end">4%</text><rect x="150" y="155.0" width="40" height="45.0" rx="3" fill="#3730a3"/><text x="170" y="149.0" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">1.2</text><rect x="210" y="68.8" width="40" height="131.2" rx="3" fill="#c7cbe0"/><text x="230" y="62.8" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">3.5</text><text x="200" y="218" font-size="11" fill="#1a1a2e" text-anchor="middle">2025</text><rect x="390" y="173.8" width="40" height="26.2" rx="3" fill="#3730a3"/><text x="410" y="167.8" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">0.7</text><rect x="450" y="83.8" width="40" height="116.2" rx="3" fill="#c7cbe0"/><text x="470" y="77.8" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">3.1</text><text x="440" y="218" font-size="11" fill="#1a1a2e" text-anchor="middle">2026F</text><rect x="630" y="173.8" width="40" height="26.2" rx="3" fill="#3730a3"/><text x="650" y="167.8" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">0.7</text><rect x="690" y="72.5" width="40" height="127.5" rx="3" fill="#c7cbe0"/><text x="710" y="66.5" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">3.4</text><text x="680" y="218" font-size="11" fill="#1a1a2e" text-anchor="middle">2027F</text><rect x="600" y="34" width="12" height="12" fill="#3730a3"/><text x="618" y="44" font-size="10" fill="#3a4a6a">Japan (2026 up from 0.6%)</text><rect x="600" y="52" width="12" height="12" fill="#c7cbe0"/><text x="618" y="62" font-size="10" fill="#3a4a6a">World</text></svg>
+      <div class="chart-note">Source: IMF World Economic Outlook (Oct 13) via Jiji, Trading Economics. 2025 world growth 3.5%.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">上方修正<span class="annotation-card-en">upward revision</span></div>
+        <div class="annotation-card-body">2026 growth lifted to 0.7% on fiscal support.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">中立金利<span class="annotation-card-en">neutral rate</span></div>
+        <div class="annotation-card-body">IMF backs gradual hikes from 1.25%; Koeda speaks today.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">為替介入<span class="annotation-card-en">intervention</span></div>
+        <div class="annotation-card-body">Hot US CPI keeps the dollar near ¥158 and the ¥160 line close.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #138 · OCTOBER 15, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

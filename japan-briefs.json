@@ -1,5 +1,116 @@
 [
   {
+    "issue": 138,
+    "date": "2026-10-15",
+    "title": "SoftBank Gives Away Sarashina, Japan Funds GlobalFoundries' New York Fabs, and the IMF Backs Gradual BOJ Hikes",
+    "summary": "SoftBank Corp's SB Intuitions opened a free beta of six Sarashina3 models and a chat app on October 13, and Japan agreed on October 14 to fund up to $21 billion for two GlobalFoundries fabs in New York under its $550 billion US investment pledge, with Renesas as an initial customer. The IMF raised Japan's 2026 growth forecast to 0.7% and said the BOJ should keep hiking gradually, a day before hotter US inflation kept the dollar near ¥158.",
+    "viz_url": "japan-brief-visualized-2026-10-15.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "SoftBank's SB Intuitions Opens Six Sarashina Models to Anyone for Free, With Tight Rate Limits",
+        "tag": "AI & Tech",
+        "source": "Impress Watch (Oct 13) · ITmedia (Oct 13) · Mynavi TECH+ (Oct 14) · Qiita developer test (Oct 13) · AI & Tech · Oct 13, 2026",
+        "body": "SBイントゥイションズ (SB Intuishonzu, SB Intuitions), the SoftBank Corp subsidiary that builds the Sarashina family of Japanese-language models, opened a 無償ベータ版 (mushō bēta-ban, free beta) of its Sarashina Service on October 13. Anyone with a Google account can sign in without applying. The API offers six Sarashina3 models: mini for text generation and conversation, nano for fast handling of simple tasks in volume, embedding and rerank for 検索拡張生成 (kensaku kakuchō seisei, retrieval-augmented generation, RAG), guard for screening unsafe inputs, and translate for Japanese-English translation. A browser chat adds web search, writing help and translation. The company set no end date for the free period, published no paid prices, and its terms allow user data to be used to improve the models.\n\nThe limits keep it a test bed. A developer who called all six models on launch day found a レート制限 (rēto seigen, rate limit) of 6 requests a minute on mini, guard and translate and 60 on the other three, so scoring 100 prompts on mini takes about 17 minutes. Mini and nano accept 128,000 tokens of context. The API resembles OpenAI's but rejects some OpenAI parameters, such as max_tokens, so code written for OpenAI needs changes before it runs. The paid version has been on sale since Sarashina3 launched on June 30, billed per million tokens on shared servers or as a monthly fee on dedicated GPUs.\n\nSoftBank wants the corporate search business, where companies query their own documents and want the data processed in Japan. NTT's tsuzumi 2, a model of about 30 billion parameters that runs on one GPU, already sits inside the government's Gennai platform. Noetra, the national model venture run by SB Intuitions' first CEO Hironobu Tamba, is building a larger model. A free tier lets developers wire Sarashina's 埋め込み (umekomi, embedding), rerank and guard models into prototypes now, and SB Intuitions says the usage data will steer its next products.",
+        "takeaway": "The free tier lowers the cost for Japanese developers to test a domestic stack instead of defaulting to US models, and each prototype is a sales lead for SoftBank Corp's paid cloud. Six requests a minute rules out production use, so revenue depends on converting testers to per-token or dedicated plans. Watch for published paid prices and the first named enterprise customers.",
+        "vocab": [
+          {
+            "ja": "無償ベータ版",
+            "en": "Free beta version",
+            "py": "mushō bēta-ban",
+            "example": "SB Intuitions opened a 無償ベータ版 of Sarashina with no end date."
+          },
+          {
+            "ja": "検索拡張生成",
+            "en": "Retrieval-augmented generation (RAG)",
+            "py": "kensaku kakuchō seisei",
+            "example": "The embedding and rerank models are built for 検索拡張生成 over company documents."
+          },
+          {
+            "ja": "レート制限",
+            "en": "Rate limit",
+            "py": "rēto seigen",
+            "example": "The レート制限 on Sarashina3 mini is 6 requests a minute."
+          },
+          {
+            "ja": "埋め込み",
+            "en": "Embedding (vector)",
+            "py": "umekomi",
+            "example": "Sarashina3's 埋め込み model turns documents into vectors for search."
+          }
+        ]
+      },
+      {
+        "icon": "💾",
+        "title": "Japan Will Fund Up to $21 Billion for Two New York Chip Fabs Run by GlobalFoundries, With Renesas as a First Customer",
+        "tag": "Semiconductors",
+        "source": "Reuters via Investing.com (Oct 14) · GlobalFoundries (Oct 14) · Traders Agency (Oct 14) · Semiconductors · Oct 14, 2026",
+        "body": "Japan will finance up to about $21 billion for as many as two chip fabs in Malta, New York, that GlobalFoundries will operate, the company and the Trump administration announced on October 14. The money comes from the $550 billion 対米投資 (taibei tōshi, investment in the US) that Tokyo pledged in last year's 関税合意 (kanzei gōi, tariff agreement), in return for which Washington cut tariffs on Japanese cars and other goods to 15% from at least 25%. Construction of the first fab starts this year and output is due in 2029. At full capacity it adds about 900,000 300mm wafers a year and more than 1,000 factory jobs. The partners decide on the second fab before the end of 2028. ルネサスエレクトロニクス (Runesasu Erekutoronikusu, Renesas Electronics) and Apple are the named 初期顧客 (shoki kokyaku, initial customers).\n\nThe terms favor Washington. The US president picks the projects Japan funds, Japan supplies all the capital, and free cash flow is split evenly until a set amount is reached, after which 90% goes to the US. GlobalFoundries puts in no capital and earns 運営受託 (un'ei jutaku, contract operation) fees for at least 20 years, starting with about $50 million next year for managing construction. The US government's stake in the company rises to 7% from 3%. GlobalFoundries is also moving $955 million of earlier federal grants to silicon photonics, silicon-germanium and advanced packaging at its existing plants. Its shares rose more than 4%.\n\nJapanese suppliers gain through equipment orders. GlobalFoundries CEO Tim Breen said he wants Japanese tool makers in the build and named 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron (TEL)) among them. Renesas designs its own chips and outsources much of its logic production, so a New York source gives it US-made supply as American automakers and defense buyers press for domestic content. Japan has now announced two batches of projects under the pledge worth more than $100 billion combined. Working-level talks on a chip fab began in September, and this is the first large semiconductor project to come out of the program.",
+        "takeaway": "The deal turns part of Japan's $550 billion pledge into tool demand that Japanese equipment makers can bid for, though no supplier contract is signed yet. Japan carries the capital risk and gives up most of the cash flow after the threshold, so its return comes mainly through the tariff truce and supplier orders. Watch whether TEL wins orders when tools for the first fab are placed, and whether the second fab is approved before 2028.",
+        "vocab": [
+          {
+            "ja": "対米投資",
+            "en": "Investment in the US",
+            "py": "taibei tōshi",
+            "example": "The New York fabs are funded from Japan's $550 billion 対米投資 pledge."
+          },
+          {
+            "ja": "関税合意",
+            "en": "Tariff agreement",
+            "py": "kanzei gōi",
+            "example": "Under the 関税合意, US tariffs on Japanese cars fell to 15%."
+          },
+          {
+            "ja": "運営受託",
+            "en": "Contract operation",
+            "py": "un'ei jutaku",
+            "example": "GlobalFoundries earns 運営受託 fees for at least 20 years without putting in capital."
+          },
+          {
+            "ja": "初期顧客",
+            "en": "Initial customer",
+            "py": "shoki kokyaku",
+            "example": "Renesas and Apple are the 初期顧客 of the Malta fabs."
+          }
+        ]
+      },
+      {
+        "icon": "🏦",
+        "title": "The IMF Lifts Japan's 2026 Growth Forecast to 0.7% and Tells the BOJ to Keep Raising Rates Step by Step",
+        "tag": "Macro",
+        "source": "IMF World Economic Outlook (Oct 13) · Jiji via Nippon.com (Oct 13) · IndexBox (Oct 13) · XTB (Oct 14) · FXStreet (Oct 14) · Macro · Oct 13, 2026",
+        "body": "The International Monetary Fund raised its forecast for Japan's 2026 growth to 0.7% from 0.6% in its October 世界経済見通し (sekai keizai mitōshi, World Economic Outlook), released on October 13 as its annual meetings opened in Bangkok. The 上方修正 (jōhō shūsei, upward revision) still leaves growth at about half of 2025's 1.2%, and the 2027 forecast stays at 0.7%. The IMF said fiscal support is partly cushioning the hit from higher energy prices this year, and it expects steady growth in 2027 as the energy shock fades and monetary policy normalizes. It raised global growth for 2026 to 3.1%, crediting AI investment for offsetting geopolitical disruption.\n\nOn policy, the IMF said the Bank of Japan should keep raising rates gradually toward a 中立金利 (chūritsu kinri, neutral rate), from the 1.25% it set on September 18. It described Japan as exposed to imported inflation because it buys its fuel and raw materials abroad with a weak currency, and it called temporary 為替介入 (kawase kainyū, currency intervention) acceptable when moves become disorderly. That language gives Tokyo cover: Japan and the US intervened together in August, and the dollar traded near ¥158.3 on October 14.\n\nUS data the next day added pressure. September US consumer prices rose 3.7% from a year earlier against a 3.6% forecast, core inflation reached 2.6%, and the dollar rose after the release. Futures price at least two more Fed hikes next year, while Bloomberg reported on October 13 that BOJ officials lean against an October move. A wider rate gap weakens the yen, so the IMF's backing for intervention carries more weight if the BOJ waits until December. Board member Junko Koeda speaks in Kumamoto today, and August machinery orders are due this morning.",
+        "takeaway": "The IMF expects the BOJ to keep hiking while growth runs at 0.7%, which supports bank lending margins and weighs on rate-sensitive sectors such as real estate. Its acceptance of intervention lowers the diplomatic cost if the Ministry of Finance steps in near ¥160. Koeda's speech today shows whether a December hike still has board support.",
+        "vocab": [
+          {
+            "ja": "世界経済見通し",
+            "en": "World Economic Outlook (IMF)",
+            "py": "sekai keizai mitōshi",
+            "example": "The IMF's October 世界経済見通し put Japan's 2026 growth at 0.7%."
+          },
+          {
+            "ja": "上方修正",
+            "en": "Upward revision",
+            "py": "jōhō shūsei",
+            "example": "The 上方修正 lifted Japan's 2026 forecast from 0.6% to 0.7%."
+          },
+          {
+            "ja": "中立金利",
+            "en": "Neutral interest rate",
+            "py": "chūritsu kinri",
+            "example": "The IMF wants the BOJ to move gradually toward the 中立金利."
+          },
+          {
+            "ja": "為替介入",
+            "en": "Currency intervention",
+            "py": "kawase kainyū",
+            "example": "The IMF called temporary 為替介入 acceptable when currency moves are disorderly."
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 137,
     "date": "2026-10-14",
     "title": "NTT Data Nears an Anthropic Data Center Deal, Kioxia Falls 13% on a Chinese DRAM Advance, and the BOJ Leans Toward December",
