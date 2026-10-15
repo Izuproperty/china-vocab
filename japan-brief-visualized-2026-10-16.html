@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #139 · October 16, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #139 · October 16, 2026</div>
+    <div class="masthead-sub">NICT's Self-Updating AI Test · The CoreWeave Shock in Tokyo · Machinery Orders Jump</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · NICT / PFN</div>
+      <div class="card-num">200<span class="card-num-unit">bn params</span></div>
+      <div class="card-label">LLM co-built by NICT and PFN for the platform</div>
+      <div class="card-delta delta-green">Operations from FY2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · ADVANTEST</div>
+      <div class="card-num">−3,318<span class="card-num-unit">pts</span></div>
+      <div class="card-label">Nikkei 225 drop, third-largest on record</div>
+      <div class="card-delta delta-red">Advantest −14.96%</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · MACHINERY ORDERS</div>
+      <div class="card-num">+18.6<span class="card-num-unit">%</span></div>
+      <div class="card-label">Core orders vs a year earlier, August</div>
+      <div class="card-delta delta-green">+5.2% m/m vs ~2-3% expected</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">NICT, PFN and Sakura Internet Will Run a National AI Safety Test That Writes Its Own Prompts, Starting Next Fiscal Year</div>
+    <div class="story-insight">
+      <p>情報通信研究機構 (Jōhō Tsūshin Kenkyū Kikō, National Institute of Information and Communications Technology, NICT), プリファードネットワークス (Purifādo Nettowākusu, Preferred Networks, PFN) and さくらインターネット (Sakura Intānetto, Sakura Internet) said on October 14 that they will put NICT&#x27;s 能動的評価基盤 (nōdōteki hyōka kiban, active evaluation platform) into service in the fiscal year that starts in April 2027. The platform handles 安全性評価 (anzensei hyōka, safety evaluation) of generative AI by writing new test prompts continuously. Most current safety tests score a model against a fixed prompt database. Developers can train on those prompts and pass without becoming safer, and a fixed set cannot catch fraud techniques or misuse that appear after it was written.</p>
+      <br>
+      <p>NICT has two working prototypes. WISDOM-AR uses Japanese-language models and NICT&#x27;s WISDOM X question-answering system to generate large numbers of high-risk prompts, then judges whether each answer is discriminatory, offensive or helps commit a crime, and explains the verdict. In one test an open model wrote a fraudulent investment email posing as a public authority. WISDOM-CE checks answers against large volumes of Japanese web pages to flag ハルシネーション (harushinēshon, hallucination) and bias; its demo caught a foreign model contradicting the Momotaro folk tale. NICT and PFN built a 200-billion-parameter model for the work from about 20 years of Japanese web data NICT has collected. PFN&#x27;s PLaMo 3.0 Prime, on sale since June 22, came out of that joint research and will be plugged into the platform.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Sakura Internet (TSE: 3778) gains a service it can sell to tenants: a cloud where hosted models are tested against Japan-specific risks before customers buy them, which helps fill subsidized GPU capacity that still needs paying users. PFN gets a public reference point for PLaMo ahead of its planned 2028-2030 IPO. Watch whether the Digital Agency or the AI Safety Institute adopts the platform&#x27;s scores, and whether NICT&#x27;s FY2027 budget request funds it.</div>
+    <div class="chart-box">
+      <div class="chart-title">A Test That Keeps Changing</div>
+      <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg"><defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5a6a8a"/></marker></defs><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">HOW THE ACTIVE EVALUATION LOOP WORKS</text><rect x="20" y="50" width="190" height="72" rx="6" fill="#fff" stroke="#c7cbe0"/><text x="115.0" y="74" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">NICT web corpus</text><text x="115.0" y="92" font-size="10.5" fill="#3a4a6a" text-anchor="middle">~20 years of Japanese pages</text><text x="115.0" y="107" font-size="10.5" fill="#3a4a6a" text-anchor="middle">+ WISDOM X Q&amp;A</text><rect x="250" y="50" width="170" height="72" rx="6" fill="#e0e7ff" stroke="#3730a3"/><text x="335.0" y="74" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">WISDOM-AR</text><text x="335.0" y="92" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Generates new</text><text x="335.0" y="107" font-size="10.5" fill="#3a4a6a" text-anchor="middle">high-risk prompts</text><rect x="460" y="50" width="180" height="72" rx="6" fill="#fff" stroke="#be185d"/><text x="550.0" y="74" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Model under test</text><text x="550.0" y="92" font-size="10.5" fill="#3a4a6a" text-anchor="middle">PLaMo 3.0 Prime, other</text><text x="550.0" y="107" font-size="10.5" fill="#3a4a6a" text-anchor="middle">models on Sakura AI Engine</text><rect x="680" y="50" width="160" height="72" rx="6" fill="#fef3e2" stroke="#b45309"/><text x="760.0" y="74" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Verdicts</text><text x="760.0" y="92" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Discrimination, crime,</text><text x="760.0" y="107" font-size="10.5" fill="#3a4a6a" text-anchor="middle">fraud, with reasons</text><rect x="460" y="180" width="180" height="72" rx="6" fill="#e0e7ff" stroke="#3730a3"/><text x="550.0" y="204" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">WISDOM-CE</text><text x="550.0" y="222" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Cross-checks answers</text><text x="550.0" y="237" font-size="10.5" fill="#3a4a6a" text-anchor="middle">vs web: hallucination, bias</text><rect x="250" y="180" width="170" height="72" rx="6" fill="#fff" stroke="#c7cbe0"/><text x="335.0" y="204" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Developers</text><text x="335.0" y="222" font-size="10.5" fill="#3a4a6a" text-anchor="middle">PFN and others retrain</text><text x="335.0" y="237" font-size="10.5" fill="#3a4a6a" text-anchor="middle">to fix flagged answers</text><line x1="210" y1="86" x2="248" y2="86" stroke="#5a6a8a" stroke-width="1.5" marker-end="url(#ar)"/><line x1="420" y1="86" x2="458" y2="86" stroke="#5a6a8a" stroke-width="1.5" marker-end="url(#ar)"/><line x1="640" y1="86" x2="678" y2="86" stroke="#5a6a8a" stroke-width="1.5" marker-end="url(#ar)"/><line x1="550" y1="122" x2="550" y2="178" stroke="#5a6a8a" stroke-width="1.5" marker-end="url(#ar)"/><line x1="460" y1="216" x2="422" y2="216" stroke="#5a6a8a" stroke-width="1.5" marker-end="url(#ar)"/><path d="M335,180 L335,124" stroke="#5a6a8a" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-end="url(#ar)"/><text x="345" y="158" font-size="10" fill="#5a6a8a">prompts refresh each round</text><text x="20" y="290" font-size="10" fill="#5a6a8a">Built on a 200B-parameter LLM co-developed by NICT and PFN · Operations target: FY2027 (from April 2027)</text></svg>
+      <div class="chart-note">Source: NICT press release (Oct 14). Platform components are prototypes; integration planned before launch.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">能動的評価基盤<span class="annotation-card-en">active evaluation</span></div>
+        <div class="annotation-card-body">Prompts refresh each round, so models cannot train to the test.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">さくらインターネット<span class="annotation-card-en">Sakura Internet</span></div>
+        <div class="annotation-card-body">Trial on hosted Japanese and foreign models before FY2027 launch.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">予算<span class="annotation-card-en">budget</span></div>
+        <div class="annotation-card-body">No funding or procurement role disclosed yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">CoreWeave&#x27;s Bond Slide Knocks 3,318 Points Off the Nikkei and Advantest Falls 15%, on the Day TSMC Says Demand Still Outruns Supply</div>
+    <div class="story-insight">
+      <p>The Nikkei 225 fell 3,318 points, or 4.9%, to 64,425.95 on October 15, the third-largest 下げ幅 (sagehaba, size of decline) in points on record. The trigger came from US credit markets. CoreWeave, which rents Nvidia GPU capacity to AI developers and cloud providers, saw its 2032 bonds fall below 80 cents on the dollar on October 14, lifting the yield to about 14.8%. It carried $52 billion of liabilities including leases at the end of June, and its quarterly net interest bill more than doubled from a year earlier to $640 million. Its shares fell 15% in New York, the Philadelphia semiconductor index lost more than 4%, and September US consumer prices rose 3.7%, which raised bets on higher US rates. Turnover on Tokyo&#x27;s Prime market reached ¥10.1 trillion.</p>
+      <br>
+      <p>Japan&#x27;s chip-equipment makers took the heaviest losses. アドバンテスト (Adobantesuto, Advantest) fell 14.96% to ¥34,340 and by itself removed about 1,300 points from the index, because the price-weighted Nikkei gives 値がさ株 (negasa-kabu, high-priced shares) outsized influence. SUMCO fell 13.85%, レーザーテック (Rēzātekku, Lasertec) 13.56% and 国際電気 (Kokusai Denki, Kokusai Electric) 13.48%. 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron (TEL)) was down 7.3% and ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) 9.4% at the midday break. リスク回避 (risuku kaihi, risk aversion) pushed money into drugmakers, and pharmaceuticals rose 3.4% as a sector. Nomura strategist Wataru Akiyama said worries about the financial health of AI-related companies had risen quickly.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Tokyo&#x27;s chip-tool stocks now trade on the credit of US data-center builders as well as on chip orders. TSMC&#x27;s capex plan keeps tool orders intact for 2026, so the immediate damage is to valuations. The larger risk is that GPU cloud operators lose access to debt and cut purchases, which would hit Advantest&#x27;s tester volumes first. Watch CoreWeave&#x27;s bond prices, Tokyo Electron&#x27;s results on October 30, and the trading level of SoftBank Group&#x27;s 9.75% notes.</div>
+    <div class="chart-box">
+      <div class="chart-title">Who Fell Hardest</div>
+      <svg viewBox="0 0 860 314" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">SHARE PRICE CHANGE, OCTOBER 15 (%)</text><line x1="215" y1="40" x2="215" y2="274" stroke="#e8eaf2"/><text x="215" y="290" font-size="10" fill="#5a6a8a" text-anchor="middle">-15</text><line x1="290" y1="40" x2="290" y2="274" stroke="#e8eaf2"/><text x="290" y="290" font-size="10" fill="#5a6a8a" text-anchor="middle">-10</text><line x1="365" y1="40" x2="365" y2="274" stroke="#e8eaf2"/><text x="365" y="290" font-size="10" fill="#5a6a8a" text-anchor="middle">-5</text><line x1="440" y1="40" x2="440" y2="274" stroke="#e8eaf2"/><text x="440" y="290" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text><line x1="515" y1="40" x2="515" y2="274" stroke="#e8eaf2"/><text x="515" y="290" font-size="10" fill="#5a6a8a" text-anchor="middle">5</text><line x1="590" y1="40" x2="590" y2="274" stroke="#e8eaf2"/><text x="590" y="290" font-size="10" fill="#5a6a8a" text-anchor="middle">10</text><line x1="665" y1="40" x2="665" y2="274" stroke="#e8eaf2"/><text x="665" y="290" font-size="10" fill="#5a6a8a" text-anchor="middle">15</text><rect x="215.6" y="44" width="224.4" height="18" rx="3" fill="#be185d"/><text x="209.6" y="57" font-size="11" fill="#1a1a2e" text-anchor="end">Advantest  -14.96</text><rect x="232.2" y="70" width="207.8" height="18" rx="3" fill="#be185d"/><text x="226.2" y="83" font-size="11" fill="#1a1a2e" text-anchor="end">SUMCO  -13.85</text><rect x="236.6" y="96" width="203.4" height="18" rx="3" fill="#be185d"/><text x="230.6" y="109" font-size="11" fill="#1a1a2e" text-anchor="end">Lasertec  -13.56</text><rect x="237.8" y="122" width="202.2" height="18" rx="3" fill="#be185d"/><text x="231.8" y="135" font-size="11" fill="#1a1a2e" text-anchor="end">Kokusai Electric  -13.48</text><rect x="299.0" y="148" width="141.0" height="18" rx="3" fill="#be185d"/><text x="293.0" y="161" font-size="11" fill="#1a1a2e" text-anchor="end">SoftBank Group (midday)  -9.40</text><rect x="330.5" y="174" width="109.5" height="18" rx="3" fill="#be185d"/><text x="324.5" y="187" font-size="11" fill="#1a1a2e" text-anchor="end">Tokyo Electron (midday)  -7.30</text><rect x="366.5" y="200" width="73.5" height="18" rx="3" fill="#3730a3"/><text x="360.5" y="213" font-size="11" fill="#1a1a2e" text-anchor="end">Nikkei 225  -4.90</text><rect x="440.0" y="226" width="51.0" height="18" rx="3" fill="#166534"/><text x="497.0" y="239" font-size="11" fill="#1a1a2e">Pharma sector (midday)  +3.40</text><rect x="440.0" y="252" width="237.2" height="18" rx="3" fill="#166534"/><text x="683.1" y="265" font-size="11" fill="#1a1a2e">Sumitomo Pharma  +15.81</text></svg>
+      <div class="chart-note">Source: Reuters via MarketScreener (closing moves), Business Recorder (midday moves for SoftBank Group, Tokyo Electron, pharma sector), Oct 15.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">設備投資<span class="annotation-card-en">capex</span></div>
+        <div class="annotation-card-body">TSMC keeps 2026 capex at $60-64bn and plans more through 2028.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">社債<span class="annotation-card-en">corporate bonds</span></div>
+        <div class="annotation-card-body">CoreWeave 2032 bonds below 80 cents, yield ~14.8%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">信用不安<span class="annotation-card-en">credit fears</span></div>
+        <div class="annotation-card-body">If GPU clouds lose debt access, tester volumes fall first.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Core Machinery Orders Run 18.6% Above Last Year as the BOJ&#x27;s Koeda Says There Is No Need to Be Overly Cautious on Hikes</div>
+    <div class="story-insight">
+      <p>Core machinery orders, the 先行指標 (senkō shihyō, leading indicator) for business capital spending, rose 5.2% in August from July to ¥1,069.8 billion, the 内閣府 (Naikakufu, Cabinet Office) said on October 15. Forecasts were for a gain of about 2% to 3% after July&#x27;s 3.7% fall. The series tracks 民需 (minju, private-sector demand) and leaves out volatile orders for ships and electric power. Orders were 18.6% higher than a year earlier, the fastest annual pace in six months, and the three-month average rose 3.6%. The Cabinet Office kept its 基調判断 (kichō handan, overall assessment) that orders show signs of picking up.</p>
+      <br>
+      <p>Manufacturers ordered 1.6% more, at ¥527.0 billion, with non-ferrous metals up 132.6% and autos and parts up 13.1%. Non-manufacturers ordered 2.9% more, at ¥541.3 billion, led by goods leasing (up 136%) and wholesale and retail (up 29%). Leasing orders swing widely from month to month, so part of August&#x27;s gain may reverse. Daiwa Institute of Research expects a gradual uptrend because companies keep spending on 省力化投資 (shōryokuka tōshi, labor-saving investment) to cope with staff shortages and on AI. It named a worse Middle East situation and raw material costs as the main downside risks.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Orders running 18.6% above last year give the BOJ evidence that companies can absorb another rate increase, and Koeda&#x27;s remarks show at least one board member ready to vote for one. Automation suppliers such as Fanuc and Yaskawa gain if the orders turn into spending, while a higher policy rate and firmer yen trim exporters&#x27; yen-translated profits. Watch whether September orders hold the gain and how the BOJ revises its price forecasts at the October 29-30 meeting.</div>
+    <div class="chart-box">
+      <div class="chart-title">Orders Rebound After a July Dip</div>
+      <svg viewBox="0 0 860 262" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3">CORE MACHINERY ORDERS (EX SHIPS AND POWER), % CHANGE</text><line x1="80" y1="209.0" x2="820" y2="209.0" stroke="#e8eaf2"/><text x="70" y="213.0" font-size="10" fill="#5a6a8a" text-anchor="end">-5%</text><line x1="80" y1="180.0" x2="820" y2="180.0" stroke="#c7cbe0"/><text x="70" y="184.0" font-size="10" fill="#5a6a8a" text-anchor="end">0%</text><line x1="80" y1="151.0" x2="820" y2="151.0" stroke="#e8eaf2"/><text x="70" y="155.0" font-size="10" fill="#5a6a8a" text-anchor="end">5%</text><line x1="80" y1="122.0" x2="820" y2="122.0" stroke="#e8eaf2"/><text x="70" y="126.0" font-size="10" fill="#5a6a8a" text-anchor="end">10%</text><line x1="80" y1="93.0" x2="820" y2="93.0" stroke="#e8eaf2"/><text x="70" y="97.0" font-size="10" fill="#5a6a8a" text-anchor="end">15%</text><line x1="80" y1="64.0" x2="820" y2="64.0" stroke="#e8eaf2"/><text x="70" y="68.0" font-size="10" fill="#5a6a8a" text-anchor="end">20%</text><rect x="150" y="180.0" width="46" height="21.5" rx="3" fill="#c7cbe0"/><text x="173" y="215.5" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">-3.7</text><text x="173" y="252" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Jul</text><rect x="220" y="149.8" width="46" height="30.2" rx="3" fill="#3730a3"/><text x="243" y="143.8" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">+5.2</text><text x="243" y="252" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Aug</text><text x="208" y="224" font-size="0"> </text><text x="208" y="44" font-size="10.5" font-weight="700" fill="#5a6a8a" text-anchor="middle">Month on month</text><rect x="400" y="115.0" width="46" height="65.0" rx="3" fill="#c7cbe0"/><text x="423" y="109.0" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">+11.2</text><text x="423" y="252" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Jul</text><rect x="470" y="72.1" width="46" height="107.9" rx="3" fill="#3730a3"/><text x="493" y="66.1" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">+18.6</text><text x="493" y="252" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Aug</text><text x="458" y="224" font-size="0"> </text><text x="458" y="44" font-size="10.5" font-weight="700" fill="#5a6a8a" text-anchor="middle">Year on year</text><rect x="650" y="170.7" width="46" height="9.3" rx="3" fill="#b45309"/><text x="673" y="164.7" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">+1.6</text><text x="673" y="252" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Mfg</text><rect x="720" y="163.2" width="46" height="16.8" rx="3" fill="#b45309"/><text x="743" y="157.2" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">+2.9</text><text x="743" y="252" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Non-mfg</text><text x="708" y="224" font-size="0"> </text><text x="708" y="44" font-size="10.5" font-weight="700" fill="#5a6a8a" text-anchor="middle">Aug by sector, m/m</text></svg>
+      <div class="chart-note">Source: Cabinet Office via Kyodo, RTTNews (Oct 15). Seasonally adjusted. August level ¥1,069.8bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">民需<span class="annotation-card-en">private demand</span></div>
+        <div class="annotation-card-body">Orders +18.6% y/y, fastest in six months.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">利上げ<span class="annotation-card-en">rate hike</span></div>
+        <div class="annotation-card-body">Koeda: no need to be overly cautious; meeting Oct 29-30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">リース<span class="annotation-card-en">leasing</span></div>
+        <div class="annotation-card-body">Leasing orders +136% can reverse next month.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #139 · OCTOBER 16, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
