@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #150 · October 16, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #150 · October 16, 2026</div>
+    <div class="masthead-sub">ByteDance Courts MediaTek for Custom AI Chips · AgiBot&#x27;s ¥50B Round · September Loans ¥1.08T, M2 7.2%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">$2B<span class="card-num-unit">2026 AI chips</span></div>
+      <div class="card-label">MediaTek&#x27;s expected AI chip sales; ByteDance would be its 2nd big ASIC client</div>
+      <div class="card-delta delta-amber">Talks not final; no volume disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">¥50B<span class="card-num-unit">valuation</span></div>
+      <div class="card-label">AgiBot round of ¥1–1.5B, about 48x 2025 revenue of ¥1.05B</div>
+      <div class="card-delta delta-red">IPO pushed past 2026 by 120-day rule</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CREDIT</div>
+      <div class="card-num">¥1.08T<span class="card-num-unit">new loans</span></div>
+      <div class="card-label">September new yuan loans vs ¥975B forecast and ¥60B in August</div>
+      <div class="card-delta delta-red">M2 7.2%, an 18-month low</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">ByteDance Is in Advanced Talks to Buy Custom AI Chips From MediaTek, Five Months After a Qualcomm Deal for Millions of Units</div>
+    <div class="story-insight">
+      <p>Bloomberg reported on October 15 that ByteDance is in advanced talks to buy custom data-center ASICs from MediaTek. No volume, price or date has been disclosed and neither company has confirmed it.</p>
+      <br>
+      <p>It would be ByteDance&#x27;s third capped supply line after rationed Nvidia H200s and a Qualcomm ASIC deal in May, and MediaTek&#x27;s second big ASIC client after Google.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> ByteDance is adding a third chip supply line under US performance caps, and the deal stays unconfirmed and exposed to thresholds Washington can lower and to Beijing&#x27;s push for domestic chips.</div>
+    <div class="chart-box">
+      <div class="chart-title">China Accelerator Share and ByteDance&#x27;s Chip Supply Lines</div>
+      <svg viewBox="0 0 820 362" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CHINA AI ACCELERATOR UNIT SHARE, H1 2026 (IDC)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Nvidia</text><rect x="230" y="34" width="420.0" height="18" fill="#5a6a8a"/><text x="658.0" y="47" font-size="11" font-weight="700" fill="#5a6a8a">34%</text><text x="30" y="71" font-size="12" font-weight="700" fill="#1a1a2e">Huawei Ascend</text><rect x="230" y="58" width="345.9" height="18" fill="#c0392b"/><text x="583.9" y="71" font-size="11" font-weight="700" fill="#c0392b">28%</text><text x="30" y="95" font-size="12" fill="#1a1a2e">T-Head (Alibaba)</text><rect x="230" y="82" width="86.5" height="18" fill="#9a8a7a"/><text x="324.5" y="95" font-size="11" font-weight="700" fill="#9a8a7a">7%</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Cambricon</text><rect x="230" y="106" width="61.8" height="18" fill="#9a8a7a"/><text x="299.8" y="119" font-size="11" font-weight="700" fill="#9a8a7a">5%</text><text x="30" y="143" font-size="12" fill="#1a1a2e">Kunlunxin (Baidu)</text><rect x="230" y="130" width="49.4" height="18" fill="#9a8a7a"/><text x="287.4" y="143" font-size="11" font-weight="700" fill="#9a8a7a">4%</text><text x="30" y="167" font-size="12" fill="#1a1a2e">Hygon</text><rect x="230" y="154" width="37.1" height="18" fill="#9a8a7a"/><text x="275.1" y="167" font-size="11" font-weight="700" fill="#9a8a7a">3%</text><text x="30" y="200" font-size="11" font-weight="700" fill="#5a6a8a">BYTEDANCE COMPUTE SUPPLY LINES · 2026</text><text x="40" y="238" font-size="24" font-weight="700" fill="#c0392b">~10k</text><text x="40" y="256" font-size="10" fill="#5a6a8a">Nvidia H200s</text><text x="40" y="269" font-size="10" fill="#5a6a8a">delivered Aug</text><text x="196" y="238" font-size="24" font-weight="700" fill="#1a1a2e">13%</text><text x="196" y="256" font-size="10" fill="#5a6a8a">of 75,000-unit</text><text x="196" y="269" font-size="10" fill="#5a6a8a">licensed allowance</text><text x="352" y="238" font-size="24" font-weight="700" fill="#c0392b">May</text><text x="352" y="256" font-size="10" fill="#5a6a8a">Qualcomm ASIC deal</text><text x="352" y="269" font-size="10" fill="#5a6a8a">millions of units</text><text x="508" y="238" font-size="24" font-weight="700" fill="#1a1a2e">Oct 15</text><text x="508" y="256" font-size="10" fill="#5a6a8a">MediaTek ASIC</text><text x="508" y="269" font-size="10" fill="#5a6a8a">talks, not final</text><text x="664" y="238" font-size="24" font-weight="700" fill="#c0392b">$29.6B</text><text x="664" y="256" font-size="10" fill="#5a6a8a">loan, September</text><text x="664" y="269" font-size="10" fill="#5a6a8a">capex up to $70B</text><text x="30" y="302" font-size="12" fill="#1a1a2e">MediaTek: ~$2B AI chip sales expected in 2026 · Google is its first large ASIC customer · reported goal 15% of an $80B market</text><text x="30" y="324" font-size="12" fill="#1a1a2e">Not disclosed: volume · price · delivery date · chip performance level relative to the US threshold</text><text x="30" y="348" font-size="10" fill="#5a6a8a">Sources: Bloomberg (Oct 15, 2026) via Gizmochina, AI Weekly, TechNode; IDC via Reuters (Oct 13); China Brief #148. Shares by units shipped.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SUPPLY</div>
+        <div class="annotation-card-zh">定制芯片<span class="annotation-card-en">dìngzhì xīnpiàn · custom chip</span></div>
+        <div class="annotation-card-body">A third route to compute beyond Nvidia and Huawei.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CONFIRMATION</div>
+        <div class="annotation-card-zh">联发科<span class="annotation-card-en">Liánfākē · MediaTek</span></div>
+        <div class="annotation-card-body">Q3 earnings call later this month.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POLICY</div>
+        <div class="annotation-card-zh">算力门槛<span class="annotation-card-en">suànlì ménkǎn · compute threshold</span></div>
+        <div class="annotation-card-body">Washington can lower the cap; Beijing prefers domestic chips.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · ROBOTICS</div>
+    <div class="story-headline">AgiBot Nears a ¥1–1.5 Billion Round at a ¥50 Billion Valuation, a Raise That Pushes Its Hong Kong IPO Past Year-End</div>
+    <div class="story-insight">
+      <p>AgiBot is near a ¥1–1.5 billion round at about ¥50 billion, roughly 48 times its ¥1.05 billion of 2025 revenue, per Caijing on October 13.</p>
+      <br>
+      <p>Hong Kong&#x27;s 120-day rule pushes its IPO past year-end. Unitree, the listed peer, is down more than 60% from its peak but still trades near 100 times 2025 sales.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> AgiBot chose a private round at about 48 times 2025 sales over a quick listing, which delays its IPO past year-end and leaves the commercial-demand question for the prospectus to answer.</div>
+    <div class="chart-box">
+      <div class="chart-title">Humanoid Valuations vs 2025 Revenue</div>
+      <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">VALUE ÷ 2025 REVENUE (OUR ARITHMETIC)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Unitree at peak</text><rect x="230" y="34" width="420.0" height="18" fill="#9a8a7a"/><text x="658.0" y="47" font-size="11" font-weight="700" fill="#9a8a7a">~260x (¥444.9B)</text><text x="30" y="73" font-size="12" fill="#1a1a2e">Unitree now</text><rect x="230" y="60" width="161.5" height="18" fill="#5a6a8a"/><text x="399.5" y="73" font-size="11" font-weight="700" fill="#5a6a8a">~100x (¥170.4B)</text><text x="30" y="99" font-size="12" font-weight="700" fill="#1a1a2e">AgiBot new round</text><rect x="230" y="86" width="77.5" height="18" fill="#c0392b"/><text x="315.5" y="99" font-size="11" font-weight="700" fill="#c0392b">~48x (¥50B)</text><text x="30" y="125" font-size="12" fill="#1a1a2e">AgiBot July IPO talk</text><rect x="230" y="112" width="64.6" height="18" fill="#b45309"/><text x="302.6" y="125" font-size="11" font-weight="700" fill="#b45309">~35–44x (HK$40–50B)</text><text x="30" y="160" font-size="11" font-weight="700" fill="#5a6a8a">2025 REVENUE</text><text x="30" y="183" font-size="12" fill="#1a1a2e">UBTech</text><rect x="230" y="170" width="300.0" height="18" fill="#9a8a7a"/><text x="538.0" y="183" font-size="11" font-weight="700" fill="#9a8a7a">¥2.0B</text><text x="30" y="209" font-size="12" fill="#1a1a2e">Unitree</text><rect x="230" y="196" width="255.0" height="18" fill="#5a6a8a"/><text x="493.0" y="209" font-size="11" font-weight="700" fill="#5a6a8a">¥1.7B</text><text x="30" y="235" font-size="12" font-weight="700" fill="#1a1a2e">AgiBot</text><rect x="230" y="222" width="157.5" height="18" fill="#c0392b"/><text x="395.5" y="235" font-size="11" font-weight="700" fill="#c0392b">¥1.05B</text><text x="30" y="268" font-size="12" fill="#1a1a2e">Round: ¥1–1.5B · investors unnamed · 120-day HKEX gap pushes IPO past 2026 unless exempted</text><text x="30" y="290" font-size="12" fill="#1a1a2e">Demand: 69% of H1 humanoid units went to research, education, exhibition and government buyers (IDC)</text><text x="30" y="314" font-size="10" fill="#5a6a8a">Sources: Caijing (Oct 13, 2026), TechNode (Oct 14), IDC; HK$ range converted at ~0.92. Multiples are value ÷ 2025 revenue.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL</div>
+        <div class="annotation-card-zh">估值<span class="annotation-card-en">gūzhí · valuation</span></div>
+        <div class="annotation-card-body">Private money still pays at or above the July IPO talk.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · IPO</div>
+        <div class="annotation-card-zh">智元机器人<span class="annotation-card-en">Zhìyuán Jīqìrén · AgiBot</span></div>
+        <div class="annotation-card-body">Investor names and repeat-customer revenue in the filing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND</div>
+        <div class="annotation-card-zh">泡沫<span class="annotation-card-en">pàomò · bubble</span></div>
+        <div class="annotation-card-body">69% of units still go to labs, schools and showrooms.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO</div>
+    <div class="story-headline">September New Loans Hit ¥1.08 Trillion Against a ¥975 Billion Forecast, While M2 Growth Fell to an 18-Month Low of 7.2%</div>
+    <div class="story-insight">
+      <p>September new loans rose to ¥1.08 trillion against a ¥975 billion forecast and ¥60 billion in August, helped by quarter-end and new policy-based financial instruments.</p>
+      <br>
+      <p>M2 slowed to 7.2%, an 18-month low, and M1 to 3.2%, so money held for spending shrank as lending rose.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> September&#x27;s loan beat came from seasonal and policy-instrument lending while M1 and M2 both slowed, so the data do not show a turn in private credit demand.</div>
+    <div class="chart-box">
+      <div class="chart-title">September 2026 Credit and Money Data</div>
+      <svg viewBox="0 0 820 370" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">NEW YUAN LOANS (¥ BILLION)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">August actual</text><rect x="230" y="34" width="25.6" height="18" fill="#5a6a8a"/><text x="263.6" y="47" font-size="11" font-weight="700" fill="#5a6a8a">¥60B</text><text x="30" y="73" font-size="12" fill="#1a1a2e">September forecast</text><rect x="230" y="60" width="415.3" height="18" fill="#9a8a7a"/><text x="653.3" y="73" font-size="11" font-weight="700" fill="#9a8a7a">¥975B</text><text x="30" y="99" font-size="12" font-weight="700" fill="#1a1a2e">September actual</text><rect x="230" y="86" width="460.0" height="18" fill="#c0392b"/><text x="698.0" y="99" font-size="11" font-weight="700" fill="#c0392b">¥1,080B</text><text x="30" y="134" font-size="11" font-weight="700" fill="#5a6a8a">YEAR-ON-YEAR GROWTH (%)</text><text x="30" y="157" font-size="12" fill="#1a1a2e">M2, August</text><rect x="230" y="144" width="380.0" height="18" fill="#9a8a7a"/><text x="618.0" y="157" font-size="11" font-weight="700" fill="#9a8a7a">7.5%</text><text x="30" y="181" font-size="12" font-weight="700" fill="#1a1a2e">M2, September</text><rect x="230" y="168" width="364.8" height="18" fill="#c0392b"/><text x="602.8" y="181" font-size="11" font-weight="700" fill="#c0392b">7.2% (18-month low)</text><text x="30" y="205" font-size="12" fill="#1a1a2e">M1, August</text><rect x="230" y="192" width="207.7" height="18" fill="#9a8a7a"/><text x="445.7" y="205" font-size="11" font-weight="700" fill="#9a8a7a">4.1%</text><text x="30" y="229" font-size="12" font-weight="700" fill="#1a1a2e">M1, September</text><rect x="230" y="216" width="162.1" height="18" fill="#c0392b"/><text x="400.1" y="229" font-size="11" font-weight="700" fill="#c0392b">3.2%</text><text x="30" y="253" font-size="12" fill="#1a1a2e">TSF stock, September</text><rect x="230" y="240" width="359.7" height="18" fill="#5a6a8a"/><text x="597.7" y="253" font-size="11" font-weight="700" fill="#5a6a8a">7.1% (Aug 7.2%)</text><text x="30" y="277" font-size="12" fill="#1a1a2e">Loan stock, September</text><rect x="230" y="264" width="243.2" height="18" fill="#5a6a8a"/><text x="481.2" y="277" font-size="11" font-weight="700" fill="#5a6a8a">4.8%</text><text x="30" y="308" font-size="12" fill="#1a1a2e">M1–M2 gap widened to 4.0 points from 3.4 · Jan–Sep new loans ¥11.52T · outstanding loans ¥283.44T</text><text x="30" y="332" font-size="10" fill="#5a6a8a">Sources: PBOC (Oct 14, 2026) via Reuters, Xinhua/gov.cn. Forecast is the Reuters poll.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · LENDING</div>
+        <div class="annotation-card-zh">新增人民币贷款<span class="annotation-card-en">xīnzēng rénmínbì dàikuǎn · new yuan loans</span></div>
+        <div class="annotation-card-body">¥1.08T beat the ¥975B forecast.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · Q3 GDP</div>
+        <div class="annotation-card-zh">新型政策性金融工具<span class="annotation-card-en">xīnxíng zhèngcèxìng jīnróng gōngjù · policy financial tools</span></div>
+        <div class="annotation-card-body">Whether project lending lasts into October.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND</div>
+        <div class="annotation-card-zh">狭义货币<span class="annotation-card-en">xiáyì huòbì · M1</span></div>
+        <div class="annotation-card-body">M1 3.2% shows weak private spending money.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #150 · OCTOBER 16, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
