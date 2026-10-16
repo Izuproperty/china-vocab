@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #140 · October 17, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #140 · October 17, 2026</div>
+    <div class="masthead-sub">Ricoh&#x27;s Qwen-Based Document Model · Nidec&#x27;s Liability Report · CPI Week</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · RICOH</div>
+      <div class="card-num">3<span class="card-num-unit">bn active</span></div>
+      <div class="card-label">Of 35bn total parameters in Ricoh LMM_35B-A3B</div>
+      <div class="card-delta delta-green">On-prem sales from November</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-robotics">INDUSTRIAL · NIDEC</div>
+      <div class="card-num">9<span class="card-num-unit">officers</span></div>
+      <div class="card-label">Found liable for damages, incl. founder Nagamori</div>
+      <div class="card-delta delta-red">FY op. loss ¥519bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CPI WEEK</div>
+      <div class="card-num">2.8-3.0<span class="card-num-unit">%</span></div>
+      <div class="card-label">September national CPI forecast, due Oct 23</div>
+      <div class="card-delta delta-amber">From 1.9% in August</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Ricoh Builds a Japanese Document Model on Alibaba&#x27;s Qwen That Runs on a Single Nvidia DGX Spark</div>
+    <div class="story-insight">
+      <p>リコー (Rikō, Ricoh) released Ricoh LMM_35B-A3B on October 15, a マルチモーダル (maruchimōdaru, multimodal) model that reads Japanese documents along with the charts, drawings and forms inside them. It uses a 混合エキスパート (kongō ekisupāto, mixture of experts) design with about 35 billion parameters in total, of which roughly 3 billion work on any given token, so each answer needs far less compute than a dense model of the same size. It takes image and video input, can call tools and handles up to 256,000 tokens of context. Ricoh built it on Alibaba&#x27;s open-weight Qwen3.6-35B-A3B, adding its own 強化学習 (kyōka gakushū, reinforcement learning) and curriculum learning for Japanese reasoning, with a reward that penalizes overlong answers to stop the model looping.</p>
+      <br>
+      <p>On JDocQA-Reasoning v2.0, a Japanese document and chart benchmark Ricoh built and released for free in May, the model scored 0.841, up from 0.816 for the Qwen base and level with Alibaba&#x27;s dense Qwen3.6-27B. A commercial GPT-5.6 tier scored 0.821 and Google&#x27;s gemma-4-26B-A4B scored 0.784. On j-tau-bench, the Japanese agent test published by SoftBank&#x27;s SB Intuitions, its success rate in a telecom customer-service scenario rose to 77.7% from 62.4%. Ricoh ran every test under its own conditions. A version quantized to NVFP4 runs on one NVIDIA DGX Spark and answers in about a quarter of the time of the full-precision model when multi-token prediction is switched on, though it needs Blackwell-generation GPUs or newer.</p>
+      <br>
+      <p>Ricoh Japan will add the model to its オンプレミス (onpuremisu, on-premises) LLM starter kit from November and pitches it to manufacturers checking design drawings, insurers reading policy terms and local governments processing forms. Ricoh&#x27;s June models, a dense 27B and a 9B, were also Qwen derivatives, and the company built a reasoning model under phase 3 of METI&#x27;s GENIAC program for domestic generative AI. SB Intuitions took the opposite route with Sarashina, which SoftBank trained from scratch and opened for free use this week. Ricoh sells the hardware, integration and support around the model, so a strong open base it can tune cheaply lowers its own costs. The release gives no price.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Ricoh (TSE: 7752) earns its money on hardware, integration and support, so a model that fits on one desk-side box cuts the entry cost for the mid-size companies and municipalities Ricoh Japan already sells copiers and IT services to. The benchmark wins come from Ricoh&#x27;s own tests, and a Chinese base model may slow approval at government and financial buyers even when the weights run entirely on site. Watch whether Ricoh discloses starter-kit pricing or customer numbers with its first-half results.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japanese Document Reasoning, Ricoh&#x27;s Own Benchmark</div>
+      <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">JDOCQA-REASONING v2.0 SCORE (HIGHER IS BETTER)</text><line x1="282" y1="40" x2="282" y2="250" stroke="#e8eaf2"/><text x="281.81818181818187" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.76</text><line x1="385" y1="40" x2="385" y2="250" stroke="#e8eaf2"/><text x="385.4545454545456" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.78</text><line x1="489" y1="40" x2="489" y2="250" stroke="#e8eaf2"/><text x="489.09090909090935" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.80</text><line x1="593" y1="40" x2="593" y2="250" stroke="#e8eaf2"/><text x="592.7272727272725" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.82</text><line x1="696" y1="40" x2="696" y2="250" stroke="#e8eaf2"/><text x="696.3636363636363" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.84</text><line x1="800" y1="40" x2="800" y2="250" stroke="#e8eaf2"/><text x="800.0" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.86</text><text x="220" y="68" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="end">Ricoh LMM_35B-A3B</text><rect x="230" y="50" width="472" height="26" rx="3" fill="#3730a3"/><text x="709.5454545454544" y="68" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">0.841</text><text x="220" y="108" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Qwen3.6-27B (dense)</text><rect x="230" y="90" width="472" height="26" rx="3" fill="#818cf8"/><text x="709.5454545454544" y="108" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">0.841</text><text x="220" y="148" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">GPT-5.6 Sol (cloud)</text><rect x="230" y="130" width="368" height="26" rx="3" fill="#a5b4fc"/><text x="605.9090909090908" y="148" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">0.821</text><text x="220" y="188" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Qwen3.6-35B-A3B (base)</text><rect x="230" y="170" width="342" height="26" rx="3" fill="#c7cbe0"/><text x="579.9999999999998" y="188" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">0.816</text><text x="220" y="228" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">gemma-4-26B-A4B-it</text><rect x="230" y="210" width="176" height="26" rx="3" fill="#c7cbe0"/><text x="414.18181818181836" y="228" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">0.784</text><text x="20" y="292" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Axis starts at 0.75 to show spread. j-tau-bench telecom task success: 62.4% (base) to 77.7% (Ricoh).</text></svg>
+      <div class="chart-note">Source: Ricoh press release (Oct 15). All scores measured by Ricoh under its own evaluation conditions.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">混合エキスパート<span class="annotation-card-en">mixture of experts</span></div>
+        <div class="annotation-card-body">3B of 35B parameters active, so it runs on one DGX Spark.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">オンプレミス<span class="annotation-card-en">on-premises</span></div>
+        <div class="annotation-card-body">Starter kit rollout from November; price not yet disclosed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">中国製ベース<span class="annotation-card-en">Chinese base model</span></div>
+        <div class="annotation-card-body">Qwen origin may slow approval at government and bank buyers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · INDUSTRIAL</div>
+    <div class="story-headline">Nidec&#x27;s Own Committee Says Founder Nagamori and Eight Other Officers Can Be Held Liable for the Accounting Scandal</div>
+    <div class="story-insight">
+      <p>ニデック (Nidekku, Nidec), the Kyoto motor maker, said on October 16 that its 役員責任調査委員会 (yakuin sekinin chōsa iinkai, executive responsibility investigation committee) had concluded that nine current and former officers bear 損害賠償責任 (songai baishō sekinin, liability for damages) over accounting irregularities across the group. They include founder 永守重信 (Nagamori Shigenobu, Shigenobu Nagamori), former chairman 小部博志 (Kobe Hiroshi, Hiroshi Kobe), former presidents 吉本浩之 (Yoshimoto Hiroyuki, Hiroyuki Yoshimoto), 関潤 (Seki Jun, Jun Seki) and 岸田光哉 (Kishida Mitsuya, Mitsuya Kishida), two former directors who sat on the audit committee, a former senior managing executive officer and the executive who served as CFO from May 2022 to March 2026. Nidec also acknowledged that several directors broke the law in carrying out their duties. The committee assigns damages by each person&#x27;s share of responsibility but put no amount on them.</p>
+      <br>
+      <p>The board said it will consider legal action, including damages claims, and will publish a redacted report around October 20. The findings build on a 第三者委員会 (daisansha iinkai, third-party committee) report from March 3 that found irregularities in every business segment, driven by unrealistic profit targets and heavy pressure to hit them. That report found no evidence Nagamori directed the irregularities but said he tolerated some of them and bore the greatest responsibility. Nidec booked an operating loss of ¥519 billion and impairments of ¥632 billion for the year to March 2026 on sales of ¥2.71 trillion, and PwC Japan issued an 意見不表明 (iken fuhyōmei, disclaimer of opinion) on the accounts. A separate review in September found 844 improper quality practices, 60 of them serious, and Kishida resigned as president on September 29.</p>
+      <br>
+      <p>Under Japan&#x27;s Companies Act, shareholders can demand that a company sue its directors and file a 株主代表訴訟 (kabunushi daihyō soshō, shareholder derivative suit) themselves if it does not act within 60 days. A committee finding of liability against named people makes inaction hard for the board to defend, because it hands any shareholder a ready-made case. Nagamori founded Nidec in 1973 and built it through dozens of acquisitions, so a suit would test how far a Japanese board will go against a living founder.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The committee moves Nidec (TSE: 6594) from finding the problem to assigning the cost, but any damages recovered will be small next to ¥632 billion of impairments. The audit opinion matters more for the stock: the Tokyo Stock Exchange can delist a company whose auditor declines to give an opinion if it judges the effect serious, and that risk weighs on the shares more than any damages claim. Watch the redacted report on October 20, whether the board files suit or leaves it to shareholders, and whether the next annual accounts get a clean opinion.</div>
+    <div class="chart-box">
+      <div class="chart-title">Nidec Scandal Timeline</div>
+      <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">NIDEC: FROM DISCOVERY TO LIABILITY</text><line x1="40" y1="150" x2="830" y2="150" stroke="#c7cbe0" stroke-width="3"/><circle cx="60" cy="150" r="6" fill="#3730a3"/><line x1="60" y1="140" x2="60" y2="95" stroke="#c7cbe0"/><text x="60" y="69" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Sept 2025</text><text x="60" y="83" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Third-party committee</text><text x="60" y="96" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">set up</text><circle cx="165" cy="150" r="6" fill="#3730a3"/><line x1="165" y1="160" x2="165" y2="205" stroke="#c7cbe0"/><text x="165" y="221" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Dec 2025</text><text x="165" y="235" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Nagamori leaves</text><text x="165" y="248" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">board</text><circle cx="270" cy="150" r="6" fill="#3730a3"/><line x1="270" y1="140" x2="270" y2="95" stroke="#c7cbe0"/><text x="270" y="69" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Mar 3, 2026</text><text x="270" y="83" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Report: flaws in</text><text x="270" y="96" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">every segment</text><circle cx="375" cy="150" r="6" fill="#3730a3"/><line x1="375" y1="160" x2="375" y2="205" stroke="#c7cbe0"/><text x="375" y="221" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Mar 2026</text><text x="375" y="235" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Liability committee</text><text x="375" y="248" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">formed</text><circle cx="480" cy="150" r="6" fill="#3730a3"/><line x1="480" y1="140" x2="480" y2="95" stroke="#c7cbe0"/><text x="480" y="69" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">FY to Mar 2026</text><text x="480" y="83" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Op. loss ¥519bn;</text><text x="480" y="96" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">PwC disclaimer</text><circle cx="585" cy="150" r="6" fill="#3730a3"/><line x1="585" y1="160" x2="585" y2="205" stroke="#c7cbe0"/><text x="585" y="221" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Sept 29, 2026</text><text x="585" y="235" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Kishida resigns</text><text x="585" y="248" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">as president</text><circle cx="690" cy="150" r="8" fill="#be185d"/><line x1="690" y1="140" x2="690" y2="95" stroke="#c7cbe0"/><text x="690" y="69" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 16, 2026</text><text x="690" y="83" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">9 officers</text><text x="690" y="96" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">found liable</text><circle cx="795" cy="150" r="6" fill="#b45309"/><line x1="795" y1="160" x2="795" y2="205" stroke="#c7cbe0"/><text x="795" y="221" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">~Oct 20, 2026</text><text x="795" y="235" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Redacted report</text><text x="795" y="248" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">published</text><text x="20" y="292" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Next: board decision on legal action; shareholders may sue on the company&#x27;s behalf if it does not act within 60 days.</text></svg>
+      <div class="chart-note">Source: Nidec release via Business Wire (Oct 16); EE Times Japan (Oct 16). Damages amount not disclosed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">損害賠償責任<span class="annotation-card-en">liability for damages</span></div>
+        <div class="annotation-card-body">Nine officers incl. founder Nagamori named as liable.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">株主代表訴訟<span class="annotation-card-en">derivative suit</span></div>
+        <div class="annotation-card-body">Shareholders can sue if the board does not act within 60 days.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">意見不表明<span class="annotation-card-en">audit disclaimer</span></div>
+        <div class="annotation-card-body">PwC disclaimer keeps the listing under exchange scrutiny.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Week Ahead: September CPI on Friday Is Expected Near 3% as Energy Subsidies Fade, the Last Big Print Before the BOJ Meets</div>
+    <div class="story-insight">
+      <p>The 総務省 (Sōmushō, Ministry of Internal Affairs and Communications) releases September national 消費者物価指数 (shōhisha bukka shisū, consumer price index) at 8:30 a.m. on Friday, October 23. Forecasts compiled by Newsquawk put headline inflation at 2.8% to 3.0%, up from 1.9% in August, and expect core inflation, which excludes fresh food, to rise sharply from 1.7%. Most of the jump comes from the fading of government energy 補助金 (hojokin, subsidies), which had held down household energy bills, with higher import and wholesale costs adding to it. Tokyo&#x27;s core CPI for September, released three weeks ago, already rose to 2.7%. September producer prices were up 6.8% from a year earlier, and Brent crude traded near $110 a barrel late in the week after reported attacks on Saudi Arabia&#x27;s East-West pipeline.</p>
+      <br>
+      <p>Customs publishes September trade data on Wednesday, October 21. In August exports rose 19.3% from a year earlier to ¥10.05 trillion, but imports rose 28.0% on costlier energy, widening the 貿易赤字 (bōeki akaji, trade deficit) to ¥1.11 trillion from ¥0.29 trillion. Chip exports grew 52.3% and chip-equipment exports 40.1%. Flash October PMIs follow on Friday. Oil near $110 keeps the import bill high even if AI-related exports hold up.</p>
+      <br>
+      <p>The 日本銀行 (Nippon Ginkō, Bank of Japan) meets on October 29-30 and publishes a new quarterly outlook report. Board member Junko Koeda said on October 15 that there is no need to be overly cautious about raising the 1.25% policy rate, while people familiar with the bank&#x27;s thinking told Bloomberg on October 13 that officials see no need to move in October unless upside price risks jump, with December in play. The yen traded near ¥157.85 per dollar on Friday. The subsidy effect inflates headline CPI for mechanical reasons, so the board will watch コアコア (koa koa, core-core, excluding fresh food and energy) inflation more closely, since it strips that effect out.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A headline print at or above 3% with core-core steady would show the jump is mostly subsidy roll-off, which supports the December case without forcing an October move. A rise in core-core would push swaps toward October and lift bank shares such as MUFG and Mizuho, whose lending margins widen with each hike, while a stronger yen would trim exporters&#x27; yen profits. Watch Friday&#x27;s core-core figure and whether Wednesday&#x27;s trade data shows the deficit narrowing from August&#x27;s ¥1.11 trillion.</div>
+    <div class="chart-box">
+      <div class="chart-title">Inflation Into the Week Ahead</div>
+      <svg viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">INFLATION READINGS INTO THE BOJ MEETING (% Y/Y)</text><line x1="250" y1="40" x2="250" y2="200" stroke="#e8eaf2"/><text x="250.0" y="216" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0%</text><line x1="361" y1="40" x2="361" y2="200" stroke="#e8eaf2"/><text x="361.42857142857144" y="216" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">1%</text><line x1="473" y1="40" x2="473" y2="200" stroke="#e8eaf2"/><text x="472.85714285714283" y="216" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">2%</text><line x1="584" y1="40" x2="584" y2="200" stroke="#e8eaf2"/><text x="584.2857142857142" y="216" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">3%</text><line x1="473" y1="40" x2="473" y2="200" stroke="#3730a3" stroke-dasharray="4,3"/><text x="476.85714285714283" y="48" font-size="9.5" font-weight="600" fill="#3730a3" text-anchor="start">BOJ 2% target</text><text x="240" y="74" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">National CPI, Aug</text><rect x="250" y="58" width="212" height="22" rx="3" fill="#c7cbe0"/><text x="469.71428571428567" y="74" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">1.9%</text><text x="240" y="110" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">National core CPI, Aug</text><rect x="250" y="94" width="189" height="22" rx="3" fill="#c7cbe0"/><text x="447.42857142857144" y="110" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">1.7%</text><text x="240" y="146" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Tokyo core CPI, Sept</text><rect x="250" y="130" width="301" height="22" rx="3" fill="#818cf8"/><text x="558.8571428571429" y="146" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">2.7%</text><text x="240" y="182" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">National CPI, Sept (forecast)</text><rect x="250" y="166" width="312" height="22" rx="3" fill="#b45309"/><rect x="562" y="166" width="22" height="22" rx="0" fill="#b45309" opacity="0.45"/><text x="592.2857142857143" y="182" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">2.8-3.0%</text><rect x="20" y="240" width="200" height="62" rx="6" fill="#fff" stroke="#c7cbe0"/><text x="32" y="262" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">MON 19</text><text x="32" y="284" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="start">China data; US-Japan drills begin</text><rect x="230" y="240" width="200" height="62" rx="6" fill="#fff" stroke="#c7cbe0"/><text x="242" y="262" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">WED 21</text><text x="242" y="284" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="start">Japan Sept trade data</text><rect x="440" y="240" width="200" height="62" rx="6" fill="#fff" stroke="#b45309"/><text x="452" y="262" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">FRI 23</text><text x="452" y="284" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="start">Sept CPI 8:30 JST; flash PMIs</text><rect x="650" y="240" width="200" height="62" rx="6" fill="#fff" stroke="#c7cbe0"/><text x="662" y="262" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">OCT 29-30</text><text x="662" y="284" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="start">BOJ meeting + outlook report</text></svg>
+      <div class="chart-note">Sources: Newsquawk Week in Focus (forecast range); BOJ / Statistics Bureau prior prints as reported. Forecast shown as a range.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">補助金<span class="annotation-card-en">subsidy</span></div>
+        <div class="annotation-card-body">Subsidy roll-off lifts headline CPI toward 2.8-3.0%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">コアコア<span class="annotation-card-en">core-core</span></div>
+        <div class="annotation-card-body">The cleaner gauge the board will weigh before Oct 29-30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">原油高<span class="annotation-card-en">high oil</span></div>
+        <div class="annotation-card-body">Brent near $110 widens the import bill and trade deficit.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #140 · OCTOBER 17, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

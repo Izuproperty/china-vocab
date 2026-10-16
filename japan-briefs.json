@@ -1,5 +1,122 @@
 [
   {
+    "issue": 140,
+    "date": "2026-10-17",
+    "title": "Ricoh Builds a Japanese Document Model on Qwen, Nidec's Committee Names Nine Officers Liable, and September CPI Leads the Week",
+    "summary": "Ricoh released a 35-billion-parameter document model built on Alibaba's open Qwen3.6 that runs on a single Nvidia DGX Spark and goes on sale to on-premises customers from November, while an internal Nidec committee concluded on October 16 that founder Shigenobu Nagamori and eight other current and former officers can be held liable for damages over the company's accounting scandal. The coming week brings September national CPI on October 23, forecast at 2.8% to 3.0% from 1.9% as energy subsidies fade, the last major inflation reading before the BOJ meets on October 29-30.",
+    "viz_url": "japan-brief-visualized-2026-10-17.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "Ricoh Builds a Japanese Document Model on Alibaba's Qwen That Runs on a Single Nvidia DGX Spark",
+        "tag": "AI & Tech",
+        "source": "Ricoh press release (Oct 15) · Kaiyu AI News digest (Oct 16) · AI & Tech · Oct 15, 2026",
+        "body": "リコー (Rikō, Ricoh) released Ricoh LMM_35B-A3B on October 15, a マルチモーダル (maruchimōdaru, multimodal) model that reads Japanese documents along with the charts, drawings and forms inside them. It uses a 混合エキスパート (kongō ekisupāto, mixture of experts) design with about 35 billion parameters in total, of which roughly 3 billion work on any given token, so each answer needs far less compute than a dense model of the same size. It takes image and video input, can call tools and handles up to 256,000 tokens of context. Ricoh built it on Alibaba's open-weight Qwen3.6-35B-A3B, adding its own 強化学習 (kyōka gakushū, reinforcement learning) and curriculum learning for Japanese reasoning, with a reward that penalizes overlong answers to stop the model looping.\n\nOn JDocQA-Reasoning v2.0, a Japanese document and chart benchmark Ricoh built and released for free in May, the model scored 0.841, up from 0.816 for the Qwen base and level with Alibaba's dense Qwen3.6-27B. A commercial GPT-5.6 tier scored 0.821 and Google's gemma-4-26B-A4B scored 0.784. On j-tau-bench, the Japanese agent test published by SoftBank's SB Intuitions, its success rate in a telecom customer-service scenario rose to 77.7% from 62.4%. Ricoh ran every test under its own conditions. A version quantized to NVFP4 runs on one NVIDIA DGX Spark and answers in about a quarter of the time of the full-precision model when multi-token prediction is switched on, though it needs Blackwell-generation GPUs or newer.\n\nRicoh Japan will add the model to its オンプレミス (onpuremisu, on-premises) LLM starter kit from November and pitches it to manufacturers checking design drawings, insurers reading policy terms and local governments processing forms. Ricoh's June models, a dense 27B and a 9B, were also Qwen derivatives, and the company built a reasoning model under phase 3 of METI's GENIAC program for domestic generative AI. SB Intuitions took the opposite route with Sarashina, which SoftBank trained from scratch and opened for free use this week. Ricoh sells the hardware, integration and support around the model, so a strong open base it can tune cheaply lowers its own costs. The release gives no price.",
+        "takeaway": "Ricoh (TSE: 7752) earns its money on hardware, integration and support, so a model that fits on one desk-side box cuts the entry cost for the mid-size companies and municipalities Ricoh Japan already sells copiers and IT services to. The benchmark wins come from Ricoh's own tests, and a Chinese base model may slow approval at government and financial buyers even when the weights run entirely on site. Watch whether Ricoh discloses starter-kit pricing or customer numbers with its first-half results.",
+        "vocab": [
+          {
+            "ja": "マルチモーダル",
+            "en": "Multimodal",
+            "py": "maruchimōdaru",
+            "example": "Ricoh's マルチモーダル model reads charts and drawings inside Japanese documents."
+          },
+          {
+            "ja": "混合エキスパート",
+            "en": "Mixture of experts (MoE)",
+            "py": "kongō ekisupāto",
+            "example": "A 混合エキスパート design activates only 3 billion of the model's 35 billion parameters per token."
+          },
+          {
+            "ja": "強化学習",
+            "en": "Reinforcement learning",
+            "py": "kyōka gakushū",
+            "example": "Ricoh used 強化学習 to improve Japanese reasoning on top of the Qwen base."
+          },
+          {
+            "ja": "オンプレミス",
+            "en": "On-premises",
+            "py": "onpuremisu",
+            "example": "The model ships in Ricoh's オンプレミス starter kit so data never leaves the customer's site."
+          }
+        ]
+      },
+      {
+        "icon": "🏭",
+        "title": "Nidec's Own Committee Says Founder Nagamori and Eight Other Officers Can Be Held Liable for the Accounting Scandal",
+        "tag": "Industrial",
+        "source": "Nidec release via Business Wire (Oct 16) · EE Times Japan (Oct 16) · Industrial · Oct 16, 2026",
+        "body": "ニデック (Nidekku, Nidec), the Kyoto motor maker, said on October 16 that its 役員責任調査委員会 (yakuin sekinin chōsa iinkai, executive responsibility investigation committee) had concluded that nine current and former officers bear 損害賠償責任 (songai baishō sekinin, liability for damages) over accounting irregularities across the group. They include founder 永守重信 (Nagamori Shigenobu, Shigenobu Nagamori), former chairman 小部博志 (Kobe Hiroshi, Hiroshi Kobe), former presidents 吉本浩之 (Yoshimoto Hiroyuki, Hiroyuki Yoshimoto), 関潤 (Seki Jun, Jun Seki) and 岸田光哉 (Kishida Mitsuya, Mitsuya Kishida), two former directors who sat on the audit committee, a former senior managing executive officer and the executive who served as CFO from May 2022 to March 2026. Nidec also acknowledged that several directors broke the law in carrying out their duties. The committee assigns damages by each person's share of responsibility but put no amount on them.\n\nThe board said it will consider legal action, including damages claims, and will publish a redacted report around October 20. The findings build on a 第三者委員会 (daisansha iinkai, third-party committee) report from March 3 that found irregularities in every business segment, driven by unrealistic profit targets and heavy pressure to hit them. That report found no evidence Nagamori directed the irregularities but said he tolerated some of them and bore the greatest responsibility. Nidec booked an operating loss of ¥519 billion and impairments of ¥632 billion for the year to March 2026 on sales of ¥2.71 trillion, and PwC Japan issued an 意見不表明 (iken fuhyōmei, disclaimer of opinion) on the accounts. A separate review in September found 844 improper quality practices, 60 of them serious, and Kishida resigned as president on September 29.\n\nUnder Japan's Companies Act, shareholders can demand that a company sue its directors and file a 株主代表訴訟 (kabunushi daihyō soshō, shareholder derivative suit) themselves if it does not act within 60 days. A committee finding of liability against named people makes inaction hard for the board to defend, because it hands any shareholder a ready-made case. Nagamori founded Nidec in 1973 and built it through dozens of acquisitions, so a suit would test how far a Japanese board will go against a living founder.",
+        "takeaway": "The committee moves Nidec (TSE: 6594) from finding the problem to assigning the cost, but any damages recovered will be small next to ¥632 billion of impairments. The audit opinion matters more for the stock: the Tokyo Stock Exchange can delist a company whose auditor declines to give an opinion if it judges the effect serious, and that risk weighs on the shares more than any damages claim. Watch the redacted report on October 20, whether the board files suit or leaves it to shareholders, and whether the next annual accounts get a clean opinion.",
+        "vocab": [
+          {
+            "ja": "役員責任調査委員会",
+            "en": "Executive responsibility investigation committee",
+            "py": "yakuin sekinin chōsa iinkai",
+            "example": "Nidec's 役員責任調査委員会 found nine officers liable for damages."
+          },
+          {
+            "ja": "損害賠償責任",
+            "en": "Liability for damages",
+            "py": "songai baishō sekinin",
+            "example": "The committee said founder Nagamori bears 損害賠償責任 for the accounting irregularities."
+          },
+          {
+            "ja": "意見不表明",
+            "en": "Disclaimer of audit opinion",
+            "py": "iken fuhyōmei",
+            "example": "PwC Japan issued an 意見不表明 on Nidec's accounts for the year to March 2026."
+          },
+          {
+            "ja": "株主代表訴訟",
+            "en": "Shareholder derivative suit",
+            "py": "kabunushi daihyō soshō",
+            "example": "If the board does not sue, shareholders can file a 株主代表訴訟 against the officers."
+          },
+          {
+            "ja": "第三者委員会",
+            "en": "Third-party (independent) committee",
+            "py": "daisansha iinkai",
+            "example": "A 第三者委員会 found irregularities in every Nidec business segment."
+          }
+        ]
+      },
+      {
+        "icon": "🏦",
+        "title": "Week Ahead: September CPI on Friday Is Expected Near 3% as Energy Subsidies Fade, the Last Big Print Before the BOJ Meets",
+        "tag": "Macro",
+        "source": "Newsquawk Week in Focus (Oct 16) · Japan Customs (Sept 16) · FXStreet (Oct 16) · Macro · Preview for Oct 19-23, 2026",
+        "body": "The 総務省 (Sōmushō, Ministry of Internal Affairs and Communications) releases September national 消費者物価指数 (shōhisha bukka shisū, consumer price index) at 8:30 a.m. on Friday, October 23. Forecasts compiled by Newsquawk put headline inflation at 2.8% to 3.0%, up from 1.9% in August, and expect core inflation, which excludes fresh food, to rise sharply from 1.7%. Most of the jump comes from the fading of government energy 補助金 (hojokin, subsidies), which had held down household energy bills, with higher import and wholesale costs adding to it. Tokyo's core CPI for September, released three weeks ago, already rose to 2.7%. September producer prices were up 6.8% from a year earlier, and Brent crude traded near $110 a barrel late in the week after reported attacks on Saudi Arabia's East-West pipeline.\n\nCustoms publishes September trade data on Wednesday, October 21. In August exports rose 19.3% from a year earlier to ¥10.05 trillion, but imports rose 28.0% on costlier energy, widening the 貿易赤字 (bōeki akaji, trade deficit) to ¥1.11 trillion from ¥0.29 trillion. Chip exports grew 52.3% and chip-equipment exports 40.1%. Flash October PMIs follow on Friday. Oil near $110 keeps the import bill high even if AI-related exports hold up.\n\nThe 日本銀行 (Nippon Ginkō, Bank of Japan) meets on October 29-30 and publishes a new quarterly outlook report. Board member Junko Koeda said on October 15 that there is no need to be overly cautious about raising the 1.25% policy rate, while people familiar with the bank's thinking told Bloomberg on October 13 that officials see no need to move in October unless upside price risks jump, with December in play. The yen traded near ¥157.85 per dollar on Friday. The subsidy effect inflates headline CPI for mechanical reasons, so the board will watch コアコア (koa koa, core-core, excluding fresh food and energy) inflation more closely, since it strips that effect out.",
+        "takeaway": "A headline print at or above 3% with core-core steady would show the jump is mostly subsidy roll-off, which supports the December case without forcing an October move. A rise in core-core would push swaps toward October and lift bank shares such as MUFG and Mizuho, whose lending margins widen with each hike, while a stronger yen would trim exporters' yen profits. Watch Friday's core-core figure and whether Wednesday's trade data shows the deficit narrowing from August's ¥1.11 trillion.",
+        "vocab": [
+          {
+            "ja": "消費者物価指数",
+            "en": "Consumer price index (CPI)",
+            "py": "shōhisha bukka shisū",
+            "example": "September 消費者物価指数 is due on October 23 and is forecast near 3%."
+          },
+          {
+            "ja": "補助金",
+            "en": "Subsidy",
+            "py": "hojokin",
+            "example": "Fading energy 補助金 are pushing up electricity and gas bills."
+          },
+          {
+            "ja": "貿易赤字",
+            "en": "Trade deficit",
+            "py": "bōeki akaji",
+            "example": "Costlier energy widened Japan's August 貿易赤字 to ¥1.11 trillion."
+          },
+          {
+            "ja": "コアコア",
+            "en": "Core-core CPI (ex fresh food and energy)",
+            "py": "koa koa",
+            "example": "The BOJ watches コアコア inflation because it strips out the subsidy effect."
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 139,
     "date": "2026-10-16",
     "title": "NICT Builds an AI Safety Test That Rewrites Itself, CoreWeave's Bond Slide Knocks 3,318 Points Off the Nikkei, and Machinery Orders Jump 18.6%",
