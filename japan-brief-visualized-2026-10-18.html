@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #141 · October 18, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #141 · October 18, 2026</div>
+    <div class="masthead-sub">Omron Buys OnLogic · Mitsubishi Electric and Foxconn · Ueda's 2% Call</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · OMRON</div>
+      <div class="card-num">$675<span class="card-num-unit">million</span></div>
+      <div class="card-label">Omron&#x27;s price for OnLogic parent Interlogic</div>
+      <div class="card-delta delta-amber">~30x FY2025 EBITDA</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-robotics">INDUSTRIAL · MITSUBISHI ELECTRIC</div>
+      <div class="card-num">¥115<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Foxconn&#x27;s price for 50% of Mitsubishi Electric Mobility</div>
+      <div class="card-delta delta-red">~¥100bn impairment</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">~75<span class="card-num-unit">%</span></div>
+      <div class="card-label">Market odds of a December 18 BOJ hike after Ueda&#x27;s remarks</div>
+      <div class="card-delta delta-amber">Policy rate 1.25%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Omron Pays $675 Million for OnLogic, a US Maker of Rugged Factory PCs, to Run Physical AI Next to the Machine</div>
+    <div class="story-insight">
+      <p>オムロン (Omuron, Omron), the Kyoto maker of factory controllers, sensors and robots, agreed on October 13 to buy Interlogic, the parent of US industrial computer maker OnLogic, for $675 million. The figure is an enterprise value on a debt-free, cash-free basis, and Omron will pay mainly from cash on hand. OnLogic builds rugged 産業用PC (sangyō-yō PC, industrial PCs) to order and sells them directly to customers, and more than 90% of its sales come from the Americas and Europe. Interlogic reported net sales of $154.2 million for fiscal 2025 and EBITDA of $22.6 million, or $27.1 million on an adjusted basis. It had 301 employees at seven sites, two of them factories, as of March. Omron expects to close around January 2027.</p>
+      <br>
+      <p>Omron says it will combine OnLogic&#x27;s computers with its own 制御技術 (seigyo gijutsu, control technology) to build platforms for フィジカルAI (fijikaru ēai, physical AI), meaning AI models that see and act through robots and production lines. A robot arm or inspection camera running a vision model needs a computer beside it that survives heat, dust and vibration, a setup known as エッジコンピューティング (ejji konpyūtingu, edge computing), and Omron&#x27;s controllers were not built to carry that load. OnLogic keeps its brand, its direct sales model and chief executive Sean Larkin. The two companies plan to cross-sell, pairing Omron sensors and robots with OnLogic hardware, and Omron will push OnLogic products through its Asian sales network. Omron Robotics signed a separate automation agreement with Italy&#x27;s Comau in May.</p>
+      <br>
+      <p>The price works out to about 30 times reported EBITDA and 4.4 times sales, a high multiple for a hardware assembler. Omron is buying a US direct sales channel and an edge computing product line it did not have. Its rivals are moving the same way: Fanuc paired its robots with Hitachi&#x27;s industrial AI software and edge chips on September 30, and Yaskawa reported a 76% jump in servo orders from chip and data center customers last week. Omron shares were roughly flat on October 13 while the Nikkei 225 fell about 2.2%.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Omron (TSE: 6645) gets edge hardware and a US direct channel in one purchase, and the computer that sits beside the robot is where much of the physical AI spending on a factory floor will land. At about 30 times EBITDA the deal only pays off if OnLogic grows well beyond $154 million in sales through Omron&#x27;s Asian network and cross-selling. Watch for OnLogic revenue targets with Omron&#x27;s first-half results and for OnLogic hardware appearing inside Omron&#x27;s Sysmac automation line.</div>
+    <div class="chart-box">
+      <div class="chart-title">Omron&#x27;s Price Against OnLogic&#x27;s Numbers</div>
+      <svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">INTERLOGIC (ONLOGIC PARENT): DEAL VALUE VS FY2025 FINANCIALS, $ MILLION</text><line x1="250" y1="40" x2="250" y2="210" stroke="#e8eaf2"/><text x="250" y="228" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$0M</text><line x1="360" y1="40" x2="360" y2="210" stroke="#e8eaf2"/><text x="360" y="228" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$150M</text><line x1="470" y1="40" x2="470" y2="210" stroke="#e8eaf2"/><text x="470" y="228" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$300M</text><line x1="580" y1="40" x2="580" y2="210" stroke="#e8eaf2"/><text x="580" y="228" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$450M</text><line x1="690" y1="40" x2="690" y2="210" stroke="#e8eaf2"/><text x="690" y="228" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$600M</text><line x1="800" y1="40" x2="800" y2="210" stroke="#e8eaf2"/><text x="800" y="228" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$750M</text><text x="240" y="68" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="end">Omron&#x27;s price (EV)</text><rect x="250" y="50" width="495" height="26" rx="3" fill="#3730a3"/><text x="753" y="68" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$675M</text><text x="240" y="108" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">FY2025 net sales</text><rect x="250" y="90" width="113" height="26" rx="3" fill="#818cf8"/><text x="371" y="108" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$154M</text><text x="240" y="148" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">FY2025 adj. EBITDA</text><rect x="250" y="130" width="20" height="26" rx="3" fill="#a5b4fc"/><text x="278" y="148" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$27.1M</text><text x="240" y="188" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">FY2025 EBITDA</text><rect x="250" y="170" width="17" height="26" rx="3" fill="#c7cbe0"/><text x="275" y="188" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$22.6M</text><text x="20" y="262" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Implied multiples: about 4.4x sales and about 30x reported EBITDA (25x adjusted).</text></svg>
+      <div class="chart-note">Source: Omron release via Pulse 2.0 (Oct 13); Reuters (Oct 13).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">フィジカルAI<span class="annotation-card-en">physical AI</span></div>
+        <div class="annotation-card-body">Edge PCs plus Omron controllers form one physical AI stack.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">クロスセル<span class="annotation-card-en">cross-selling</span></div>
+        <div class="annotation-card-body">OnLogic sales through Omron&#x27;s Asian network after Jan 2027 close.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">高い買収価格<span class="annotation-card-en">rich price</span></div>
+        <div class="annotation-card-body">About 30x EBITDA for a $154M-sales hardware maker.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · INDUSTRIAL</div>
+    <div class="story-headline">Mitsubishi Electric Sells Half Its Car Parts Business to Foxconn for ¥115 Billion and Takes a ¥100 Billion Impairment</div>
+    <div class="story-insight">
+      <p>三菱電機 (Mitsubishi Denki, Mitsubishi Electric) signed a final agreement on October 16 to sell 50% of its subsidiary 三菱電機モビリティ (Mitsubishi Denki Mobiriti, Mitsubishi Electric Mobility) to Lin Yin International Investment, the investment arm of 鴻海精密工業 (Honhai Seimitsu Kōgyō, Hon Hai Precision Industry, or Foxconn), for ¥115 billion. The two companies will run the business as a 共同運営 (kyōdō un&#x27;ei, joint operation) inside the existing subsidiary rather than form a new company. Before the sale Mitsubishi Electric will move all of its automotive operations, including those held by group companies in Japan and abroad, into the subsidiary through a 会社分割 (kaisha bunkatsu, corporate split). The combined business had sales of ¥875.6 billion in the year to March 2026. Closing needs antitrust approvals and is expected in October 2027, and the unit becomes a 持分法適用会社 (mochibunhō tekiyō gaisha, equity-method affiliate) from the fiscal year ending March 2028.</p>
+      <br>
+      <p>The deal puts an enterprise value of ¥320 billion on the business and an equity value of ¥230 billion after adjustments, and Foxconn pays half of the equity figure. The assets moving into the unit total ¥727.5 billion against ¥375.4 billion of liabilities, so net assets of about ¥352 billion sit well above the agreed equity value. Mitsubishi Electric expects to book a 減損損失 (genson sonshitsu, impairment loss) of about ¥100 billion in the year to March 2027 to close that gap. Mitsubishi Electric Mobility earned operating profit of ¥13.2 billion on sales of ¥657.6 billion last fiscal year, a margin of about 2%.</p>
+      <br>
+      <p>Mitsubishi Electric created the subsidiary in April 2024 to restructure its car business, and a joint venture it planned with Aisin that year was scaled back to a business alliance. Foxconn adds manufacturing scale and speed, while Mitsubishi Electric contributes 電動パワートレイン (dendō pawātorein, electrified powertrain) hardware and control software, and the partners say they will sell a Japan-developed EV platform. Foxconn agreed in January to set up a bus maker in Japan with Mitsubishi Fuso. President 漆間啓 (Urushima Kei, Kei Urushima) has been shifting capital toward factory automation, power chips and grid software, including the $1.4 billion purchase of US grid-software firm PCI Energy Solutions in August.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Mitsubishi Electric (TSE: 6503) accepts a ¥100 billion write-down to halve its exposure to an ¥876 billion business earning about 2%, which lifts group margins and frees capital for higher-return units. Foxconn gains a Tier 1 supplier with long Japanese automaker relationships, but those automakers may hesitate to share EV designs with a contract manufacturer that also builds for their rivals. Watch the first-half results due October 30 for when the impairment lands and whether the capital plan or buybacks change.</div>
+    <div class="chart-box">
+      <div class="chart-title">From Book Value to Sale Price</div>
+      <svg viewBox="0 0 860 310" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">MITSUBISHI ELECTRIC MOBILITY: HOW THE ¥115BN PRICE WAS SET, ¥ BILLION</text><line x1="250" y1="40" x2="250" y2="250" stroke="#e8eaf2"/><text x="250" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥0bn</text><line x1="388" y1="40" x2="388" y2="250" stroke="#e8eaf2"/><text x="388" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥100bn</text><line x1="525" y1="40" x2="525" y2="250" stroke="#e8eaf2"/><text x="525" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥200bn</text><line x1="662" y1="40" x2="662" y2="250" stroke="#e8eaf2"/><text x="662" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥300bn</text><line x1="800" y1="40" x2="800" y2="250" stroke="#e8eaf2"/><text x="800" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥400bn</text><text x="240" y="68" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Net assets transferred</text><rect x="250" y="50" width="484" height="26" rx="3" fill="#c7cbe0"/><text x="742" y="68" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">¥352bn</text><text x="240" y="108" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Enterprise value</text><rect x="250" y="90" width="440" height="26" rx="3" fill="#a5b4fc"/><text x="698" y="108" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">¥320bn</text><text x="240" y="148" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Equity value (agreed)</text><rect x="250" y="130" width="316" height="26" rx="3" fill="#818cf8"/><text x="574" y="148" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">¥230bn</text><text x="240" y="188" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="end">Foxconn pays (50%)</text><rect x="250" y="170" width="158" height="26" rx="3" fill="#3730a3"/><text x="416" y="188" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">¥115bn</text><text x="240" y="228" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="end">Expected impairment</text><rect x="250" y="210" width="138" height="26" rx="3" fill="#b91c1c"/><text x="396" y="228" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">¥100bn</text><text x="20" y="302" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Net assets = ¥727.5bn assets less ¥375.4bn liabilities. Impairment booked in FY to March 2027.</text></svg>
+      <div class="chart-note">Source: Mitsubishi Electric disclosure as reported by MONOist and Business+IT (Oct 16-17).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">事業再編<span class="annotation-card-en">restructuring</span></div>
+        <div class="annotation-card-body">Halves exposure to a unit earning a 2% margin.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">上期決算<span class="annotation-card-en">first-half results</span></div>
+        <div class="annotation-card-body">Oct 30 results: impairment timing and capital plan.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">独禁法審査<span class="annotation-card-en">antitrust review</span></div>
+        <div class="annotation-card-body">Closing not expected until October 2027.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Ueda Says the BOJ Will Decide on October 29-30 Whether Underlying Inflation Has Reached 2%, and Will Not Let It Rise Further</div>
+    <div class="story-insight">
+      <p>日本銀行 (Nippon Ginkō, Bank of Japan) Governor 植田和男 (Ueda Kazuo, Kazuo Ueda) told reporters in Bangkok on October 16, where he attended the IMF and World Bank annual meetings and a G20 finance gathering, that 基調的な物価上昇率 (kichōteki na bukka jōshōritsu, underlying inflation) is getting quite close to 2%. He said the board will discuss at its October 29-30 meeting whether to change that assessment and will reach a conclusion, alongside its new quarterly outlook report. He said the bank cannot allow underlying inflation to rise further and that anchoring it at the 2% 物価安定の目標 (bukka antei no mokuhyō, price stability target) is now the main goal. Data since the September meeting have moved in line with the bank&#x27;s forecasts, he said, and nothing he heard from other officials in Bangkok contradicted that view.</p>
+      <br>
+      <p>The BOJ has justified each hike since 2024 by saying underlying inflation is moving toward 2%. A formal finding that it has arrived removes the reason to wait and shifts the debate to how far rates must rise to stop an overshoot. Ueda tied the timing and pace of further hikes to the yen, AI-related demand and the Middle East, and said a few officials he met were more upbeat about AI demand than the BOJ. Krishna Srinivasan, head of the IMF&#x27;s Asia and Pacific department, told Reuters on October 17 that the BOJ is right to move toward the 中立金利 (chūritsu kinri, neutral rate) and may need to tighten faster if inflation beats forecasts. He also said Japan should explain how it will pay for its spending plans, including the two-year cut in the consumption tax on food planned from April 2027.</p>
+      <br>
+      <p>The policy rate stands at 1.25% after hikes in June and September. After the remarks markets priced little chance of a move on October 30 and about 75% odds for December 18, and the dollar held near ¥158. Finance Minister Satsuki Katayama said on October 15 that authorities are ready to intervene in the currency market again if needed. September national CPI on October 23, forecast at 2.8% to 3.0%, is the last major data point before the meeting.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> If the board concludes in October that underlying inflation has reached 2%, a December hike becomes the base case and a further move in early 2027 gets more likely, which helps bank stocks such as MUFG and Mizuho because their lending margins widen with each hike. A firmer yen would follow, trimming exporters&#x27; yen earnings and easing pressure on the Ministry of Finance to intervene. Watch the wording on underlying inflation in the October 30 statement and whether Ueda signals December at his press conference.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Road to the October and December Meetings</div>
+      <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">BOJ PATH: FROM THE SEPTEMBER HIKE TO THE DECEMBER DECISION</text><line x1="40" y1="130" x2="820" y2="130" stroke="#c7cbe0" stroke-width="3"/><circle cx="60" cy="130" r="8" fill="#3730a3"/><line x1="60" y1="130" x2="60" y2="92" stroke="#e8eaf2"/><text x="60" y="66" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">SEP 18</text><text x="60" y="82" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Hike to 1.25%</text><text x="60" y="96" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">7-2 vote</text><circle cx="200" cy="130" r="8" fill="#818cf8"/><line x1="200" y1="130" x2="200" y2="158" stroke="#e8eaf2"/><text x="200" y="170" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">OCT 15</text><text x="200" y="186" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Koeda: don&#x27;t be</text><text x="200" y="200" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">overly cautious</text><circle cx="330" cy="130" r="8" fill="#3730a3"/><line x1="330" y1="130" x2="330" y2="92" stroke="#e8eaf2"/><text x="330" y="66" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">OCT 16</text><text x="330" y="82" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Ueda: underlying</text><text x="330" y="96" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">inflation near 2%</text><circle cx="460" cy="130" r="8" fill="#818cf8"/><line x1="460" y1="130" x2="460" y2="158" stroke="#e8eaf2"/><text x="460" y="170" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">OCT 23</text><text x="460" y="186" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Sept CPI</text><text x="460" y="200" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">2.8-3.0% expected</text><circle cx="600" cy="130" r="8" fill="#3730a3"/><line x1="600" y1="130" x2="600" y2="92" stroke="#e8eaf2"/><text x="600" y="66" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">OCT 29-30</text><text x="600" y="82" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Meeting rules on</text><text x="600" y="96" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">2% + outlook report</text><circle cx="770" cy="130" r="8" fill="#b45309"/><line x1="770" y1="130" x2="770" y2="158" stroke="#e8eaf2"/><text x="770" y="170" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">DEC 17-18</text><text x="770" y="186" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Next meeting</text><text x="770" y="200" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">~75% hike priced</text><text x="40" y="238" font-size="10" font-weight="700" fill="#3730a3" text-anchor="start">MARKET-IMPLIED HIKE ODDS AFTER UEDA (OCT 16)</text><text x="150" y="262" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Oct 30</text><rect x="160" y="250" width="40" height="18" rx="3" fill="#c7cbe0"/><text x="208" y="263" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">low (about 10% on Oct 13)</text><text x="150" y="288" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">Dec 18</text><rect x="160" y="276" width="375" height="18" rx="3" fill="#3730a3"/><text x="543" y="289" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">~75%</text></svg>
+      <div class="chart-note">Sources: investingLive (Oct 16), NHK (Oct 17), Bloomberg (Oct 13). Odds as reported; not a forecast.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">基調物価<span class="annotation-card-en">underlying inflation</span></div>
+        <div class="annotation-card-body">Ueda: quite close to 2%, cannot let it rise further.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">展望レポート<span class="annotation-card-en">outlook report</span></div>
+        <div class="annotation-card-body">Oct 29-30 meeting rules on the 2% assessment.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">円安<span class="annotation-card-en">weak yen</span></div>
+        <div class="annotation-card-body">Dollar near ¥158 keeps intervention on the table.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #141 · OCTOBER 18, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
