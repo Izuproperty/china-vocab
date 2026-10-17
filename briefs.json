@@ -1,5 +1,116 @@
 [
   {
+    "issue": 152,
+    "date": "2026-10-18",
+    "title": "StepFun Opens Step 5 Preview Weights With Day-0 Domestic Chip Support, CAICT Flags Embodied-AI Bubble Risk, STAR 50 Down 40% Since June",
+    "summary": "StepFun released open weights for its 600-billion-parameter Step 5 Preview, with Huawei Ascend, MetaX, Biren and Moore Threads announcing day-0 support. The industry ministry's CAICT said bubble risk is building in embodied AI after ¥93.5 billion of first-half funding, 59% of it to 20 firms, and predicted a shake-out within two to three years. The STAR 50 has fallen about 40% since June as the AI hardware trade unwinds, and regulators urged the national team to buy faster.",
+    "viz_url": "china-brief-visualized-2026-10-18.html",
+    "sections": [
+      {
+        "icon": "🧠",
+        "title": "StepFun Opens the Weights of Its 600-Billion-Parameter Step 5 Preview, With Day-0 Support on Huawei Ascend, MetaX, Biren and Moore Threads",
+        "tag": "ai",
+        "source": "IT Home via iFeng Tech (Oct 15) · StepFun / Hugging Face · BigGo Finance (Oct 16) · MarkTechPost (Oct 16) · AI & Tech · Oct 15, 2026 (about 2.5 days old; weekend)",
+        "body": "阶跃星辰 (Jiēyuè Xīngchén, StepFun) published the weights of Step 5 Preview on Hugging Face and ModelScope on the evening of October 15, in BF16 and FP8 versions. The model is a sparse 混合专家模型 (hùnhé zhuānjiā móxíng, mixture-of-experts model) with 600 billion total parameters and 27 billion 激活参数 (jīhuó cānshù, active parameters) per token, a 1-million-token 上下文窗口 (shàngxiàwén chuāngkǒu, context window), and native text and image input. StepFun first offered it through its API on September 20 and aims it at long-running agent tasks, software engineering and finance. Four domestic chip vendors announced 首日适配 (shǒurì shìpèi, day-0 adaptation) the same night: 华为昇腾 (Huáwéi Shēngténg, Huawei Ascend) through vLLM Ascend, 沐曦 (Mùxī, MetaX) on its C-series GPUs, 壁仞科技 (Bìrèn Kējì, Biren) on its BR-series cards, and 摩尔线程 (Mó'ěr Xiànchéng, Moore Threads) on the MTT S5000.\n\nStepFun's own numbers put the model near the top of the open-weight field. BigGo Finance, citing OpenRouter, reported it at No. 2 on the platform's daily and weekly usage charts as of October 15, and it scores 44 on the Artificial Analysis Intelligence Index. StepFun claims an average cost of $0.71 per task against $5.86 for Claude Opus 5, and says it beats Moonshot's Kimi K3 and Zhipu's GLM-5.3 on three agent and finance benchmarks. Those comparisons are StepFun's and have not been independently reproduced, and the coverage we reviewed did not state the licence terms. The release came one day before Beijing's draft export controls, which reach model weights at 2 trillion parameters or more. At 600 billion parameters Step 5 Preview sits well under that bar, so a release like this one would not need clearance under the draft as reported.\n\nA frontier-class open model that runs on domestic hardware from day one lowers the switching cost that keeps Chinese buyers on Nvidia, and the four vendors now compete on how quickly they adapt. Day-0 support shows the model runs. It does not show throughput or cost per token on each chip, and none of the vendors published those figures. The FP8 weights alone need roughly 600GB of accelerator memory, so serving the full model takes multi-card systems, and the HBM shortage that limits Ascend output also limits how many of these deployments domestic clusters can host. For StepFun, open weights build developer usage ahead of a planned Hong Kong IPO, while Beijing's April order to keep US-origin capital off its cap table still narrows the investor base. Watch whether OpenRouter usage holds after the free trial on Tencent WorkBuddy ends on October 25, and whether any chip vendor publishes Step 5 throughput on its own hardware.",
+        "takeaway": "Step 5 Preview gives Huawei, MetaX, Biren and Moore Threads a frontier-class open model to sell against Nvidia, but with no per-chip throughput published and HBM still scarce, the adoption gain cannot yet be sized.",
+        "vocab": [
+          {
+            "zh": "首日适配",
+            "en": "day-0 adaptation (chip support at release)"
+          },
+          {
+            "zh": "激活参数",
+            "en": "active parameters"
+          },
+          {
+            "zh": "上下文窗口",
+            "en": "context window"
+          },
+          {
+            "zh": "混合专家模型",
+            "en": "mixture-of-experts model"
+          },
+          {
+            "zh": "沐曦",
+            "en": "MetaX, GPU designer"
+          },
+          {
+            "zh": "壁仞科技",
+            "en": "Biren Technology, GPU designer"
+          }
+        ]
+      },
+      {
+        "icon": "🤖",
+        "title": "China's Telecom Research Academy Says Embodied-AI Bubble Risk Is Building and Predicts a First Shake-Out Within Two to Three Years",
+        "tag": "robotics",
+        "source": "CAICT / Tsinghua report (Oct 16) via JRJ (Oct 17) · IT Juzi data · Counterpoint · Robotics · Oct 16, 2026 (about 2 days old)",
+        "body": "中国信息通信研究院 (Zhōngguó Xìnxī Tōngxìn Yánjiūyuàn, China Academy of Information and Communications Technology, CAICT), the research institute under the industry ministry, released its Embodied Intelligence Development Report 2026 on October 16 with Tsinghua University's electronic engineering department. Citing IT Juzi data, it counts 322 domestic 具身智能 (jùshēn zhìnéng, embodied AI) financing deals worth about ¥93.5 billion in the first half of 2026, roughly five times the first half of 2025. The top 20 companies took about ¥55 billion, or 59%, and 20 companies are now valued at ¥10 billion or more. New products shown at the World Robot Conference rose from 123 in 2025 to 311 in 2026, and Counterpoint puts global humanoid shipments above 22,000 units in the first half, up nearly 300%.\n\nThe report says 泡沫风险 (pàomò fēngxiǎn, bubble risk) is building and describes a market split by 冷热两极分化 (lěngrè liǎngjí fēnhuà, hot-cold polarization). Use in real work settings is far smaller than shipments: most units go to research and teaching, data collection, exhibitions, entertainment, and pilots backed by governments, investors or supply-chain partners. On technology, it says most domestic firms reproduce and fine-tune open robot models such as π0, π0.5 and OpenVLA, and that their 基座模型 (jīzuò móxíng, foundation models) trail the leading closed models by about two generations. It expects competition to complete a first round of 出清 (chūqīng, industry shake-out) within two to three years. These figures come from a press summary of the report; we have not reviewed the full text.\n\nA ministry-affiliated institute putting bubble language in print adds to warnings already on record: the 国家发展改革委 (Guójiā Fāzhǎn Gǎigéwěi, NDRC) cautioned in August against \"blindly rushing in,\" and the 证监会 (Zhèngjiānhuì, CSRC) used window guidance in September to slow humanoid IPOs. Share prices have already moved, with 宇树科技 (Yǔshù Kējì, Unitree) trading about half its August high. The 59% concentration tells investors where the pressure will land. Capital is already pooling at the top, as 智元机器人 (Zhìyuán Jīqìrén, AgiBot)'s reported ¥50 billion round last week shows, so companies outside the top 20 face harder raises and likely consolidation. The report names no companies at risk and sets no valuation threshold. Watch whether the CSRC ties humanoid IPO approvals to recurring industrial revenue, and whether second-half funding, due early next year, falls from the first-half pace.",
+        "takeaway": "A state research body now uses bubble language about embodied AI, and with 59% of first-half funding going to 20 firms, the shake-out it predicts would fall hardest on startups outside that group.",
+        "vocab": [
+          {
+            "zh": "中国信息通信研究院",
+            "en": "CAICT, MIIT research institute"
+          },
+          {
+            "zh": "泡沫风险",
+            "en": "bubble risk"
+          },
+          {
+            "zh": "冷热两极分化",
+            "en": "hot-cold polarization"
+          },
+          {
+            "zh": "出清",
+            "en": "industry shake-out"
+          },
+          {
+            "zh": "基座模型",
+            "en": "foundation model"
+          },
+          {
+            "zh": "具身智能",
+            "en": "embodied AI"
+          }
+        ]
+      },
+      {
+        "icon": "📉",
+        "title": "China's STAR 50 Has Lost About 40% Since June as the AI Hardware Trade Unwinds, and Regulators Call on the National Team",
+        "tag": "market",
+        "source": "Bloomberg via The Edge Malaysia (Oct 17) · Reuters via Business Recorder (Oct 15–17) · SCMP via KuCoin (Oct 16) · Finance & Markets · Oct 16–17, 2026 (about 1 day old)",
+        "body": "The 科创50 (Kēchuàng 50, STAR 50) index has fallen nearly 40% since its June 30 peak, the worst showing among major technology gauges this half, after rallying about 75% between April and June. The hardware-heavy 创业板 (Chuàngyèbǎn, ChiNext) index is down 36%. MetaX and Moore Threads have each lost about half their value, 长鑫存储 (Chángxīn Cúnchǔ, CXMT) is 27% below its post-listing high, and Unitree is about 50% below its August peak. The CSI 300 hit its lowest level since August 2025 midweek and ended the week down 3.4%, its worst week since mid-July, despite a 0.1% gain on Friday. Bloomberg Intelligence estimates foreign outflows through 沪深港通 (Hù-Shēn-Gǎng Tōng, Stock Connect) at about ¥90 billion ($13.5 billion) in the third quarter, the largest in a year and more than half of the second quarter's inflows.\n\nBeijing responded through the market. Financial regulators met on Thursday to discuss stabilization and urged the 国家队 (guójiā duì, national team) of state-backed funds to speed up share purchases, and late-session volume spiked on Friday in the ETFs those funds favor. At least ten AI supply-chain companies, including Eoptolink and Piotech, announced 回购 (huígòu, share buyback) or shareholder purchase plans. Earnings guidance helped at the margin. In its 业绩预告 (yèjì yùgào, earnings preview) MetaX guided nine-month net profit of ¥587 million to ¥717 million against a loss a year earlier, and 海光信息 (Hǎiguāng Xìnxī, Hygon) guided nine-month revenue growth of 50% to 64%. Valuations stay high after the fall: the STAR 50 traded above 80 times forward earnings at its peak and still trades above 40 times, against 21 times for the Nasdaq 100. HSBC cut its end-2026 CSI 300 target to 4,800.\n\nThe sell-off reaches AI funding because Chinese AI firms raise most of their capital in equity markets. Onshore IPOs have raised $37 billion this year, the most in three years, with technology companies taking more than a third, and 深度求索 (Shēndù Qiúsuǒ, DeepSeek), AgiBot and others have listings in preparation. If prices stay down, those deals face lower valuations or delays, and Gavekal's Leonid Mironov said Beijing may need to act more aggressively. State buying can slow a fall, but it cannot raise earnings or bring back foreign money, which left as the global AI hardware trade weakened in the US and Korea. GAM's Jian Shi Cortesi called the drop \"a technical pullback, not a value play.\" Watch Monday's Q3 GDP print, where consensus is 4.4%, Hygon's full results on October 20, and whether Stock Connect flows turn positive in late October.",
+        "takeaway": "State buying and buybacks have steadied prices, but with STAR 50 valuations still above 40 times earnings and foreign money leaving, the equity window that funds China's planned AI listings is narrower than it was in June.",
+        "vocab": [
+          {
+            "zh": "沪深港通",
+            "en": "Stock Connect"
+          },
+          {
+            "zh": "回购",
+            "en": "share buyback"
+          },
+          {
+            "zh": "业绩预告",
+            "en": "earnings preview / profit forecast"
+          },
+          {
+            "zh": "海光信息",
+            "en": "Hygon Information Technology"
+          },
+          {
+            "zh": "国家队",
+            "en": "\"national team\" state-backed funds"
+          },
+          {
+            "zh": "科创50",
+            "en": "STAR 50 index"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 151,
     "date": "2026-10-17",
     "title": "Beijing Drafts AI Export Controls on Model Weights and Chip Designs, Apple Intelligence Cleared in China on Qwen, Q3 GDP Seen at 4.4%",

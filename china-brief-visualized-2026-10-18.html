@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #152 · October 18, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #152 · October 18, 2026</div>
+    <div class="masthead-sub">StepFun Opens Step 5 Weights · CAICT Flags Embodied-AI Bubble Risk · STAR 50 Down 40% Since June</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">600B<span class="card-num-unit">/ 27B active</span></div>
+      <div class="card-label">StepFun Step 5 Preview open weights, with day-0 support on four domestic chip platforms</div>
+      <div class="card-delta delta-green">OpenRouter No. 2 as of Oct 15</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">¥93.5B<span class="card-num-unit">H1 funding</span></div>
+      <div class="card-label">Embodied-AI financing across 322 deals in H1 2026, about 5x a year earlier; top 20 took 59%</div>
+      <div class="card-delta delta-red">CAICT: shake-out in 2–3 years</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MARKETS · EQUITIES</div>
+      <div class="card-num">-40%<span class="card-num-unit">STAR 50</span></div>
+      <div class="card-label">Fall since the June 30 peak; forward P/E down from 80x to about 40x, vs 21x for the Nasdaq 100</div>
+      <div class="card-delta delta-red">¥90B Q3 Stock Connect outflow</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">StepFun Opens the Weights of Its 600-Billion-Parameter Step 5 Preview, With Day-0 Support on Huawei Ascend, MetaX, Biren and Moore Threads</div>
+    <div class="story-insight">
+      <p>StepFun released BF16 and FP8 weights for Step 5 Preview on October 15: 600B total parameters, 27B active per token, a 1M-token context and text plus image input. Huawei Ascend, MetaX, Biren and Moore Threads all announced day-0 support that night.</p>
+      <br>
+      <p>OpenRouter ranked it No. 2 on usage as of October 15. StepFun claims $0.71 per task against $5.86 for Claude Opus 5, a figure no one has independently checked. At 600B it falls under the 2T bar in Beijing's draft export controls.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Domestic chipmakers gain a frontier-class open model to sell against Nvidia, but no vendor has published per-chip throughput, and HBM supply still caps how many 600GB deployments China's clusters can host.</div>
+    <div class="chart-box">
+      <div class="chart-title">Step 5 Preview Against the Export-Control Bar, and StepFun's Cost Claim</div>
+      <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">TOTAL PARAMETERS (TRILLION) · DRAFT CONTROL BAR = 2T</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Kimi K3 (Moonshot)</text><rect x="230" y="34" width="420.0" height="18" fill="#9a8a7a"/><text x="658" y="47" font-size="11" font-weight="700" fill="#9a8a7a">2.8T</text><text x="30" y="71" font-size="12" fill="#1a1a2e">Qwen3.8-Max (Alibaba)</text><rect x="230" y="58" width="360.0" height="18" fill="#9a8a7a"/><text x="598" y="71" font-size="11" font-weight="700" fill="#9a8a7a">2.4T</text><text x="30" y="95" font-size="12" font-weight="700" fill="#1a1a2e">Step 5 Preview (StepFun)</text><rect x="230" y="82" width="90.0" height="18" fill="#c0392b"/><text x="328" y="95" font-size="11" font-weight="700" fill="#c0392b">0.6T · 27B active</text><line x1="530" y1="28" x2="530" y2="108" stroke="#1a1a2e" stroke-width="2" stroke-dasharray="4 3"/><text x="536" y="120" font-size="10" font-weight="700" fill="#1a1a2e">2T draft threshold</text><text x="30" y="158" font-size="11" font-weight="700" fill="#5a6a8a">AVERAGE COST PER TASK, USD (STEPFUN CLAIM, NOT INDEPENDENTLY TESTED)</text><text x="30" y="185" font-size="12" fill="#1a1a2e">Claude Opus 5</text><rect x="230" y="172" width="420.0" height="18" fill="#9a8a7a"/><text x="658" y="185" font-size="11" font-weight="700" fill="#9a8a7a">$5.86</text><text x="30" y="209" font-size="12" font-weight="700" fill="#1a1a2e">Step 5 Preview</text><rect x="230" y="196" width="50.9" height="18" fill="#c0392b"/><text x="289" y="209" font-size="11" font-weight="700" fill="#c0392b">$0.71</text><text x="30" y="248" font-size="11" font-weight="700" fill="#5a6a8a">DAY-0 CHIP SUPPORT · OCT 15</text><rect x="30" y="260" width="180" height="34" rx="4" fill="#fff" stroke="#c0392b"/><text x="120" y="282" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Huawei Ascend</text><rect x="225" y="260" width="180" height="34" rx="4" fill="#fff" stroke="#c0392b"/><text x="315" y="282" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">MetaX C-series</text><rect x="420" y="260" width="180" height="34" rx="4" fill="#fff" stroke="#c0392b"/><text x="510" y="282" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Biren BR-series</text><rect x="615" y="260" width="180" height="34" rx="4" fill="#fff" stroke="#c0392b"/><text x="705" y="282" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Moore Threads S5000</text><text x="30" y="320" font-size="12" fill="#1a1a2e">FP8 weights ≈ 600GB of accelerator memory · no per-chip throughput published · free WorkBuddy trial to Oct 25</text><text x="30" y="346" font-size="10" fill="#5a6a8a">Sources: IT Home via iFeng (Oct 15, 2026), BigGo Finance (Oct 16), MarkTechPost (Oct 16); Kimi/Qwen sizes per Bloomberg/AP (Oct 16).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CHIPS</div>
+        <div class="annotation-card-zh">首日适配<span class="annotation-card-en">shǒurì shìpèi · day-0 adaptation</span></div>
+        <div class="annotation-card-body">Four domestic vendors ran it on release night.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · USAGE</div>
+        <div class="annotation-card-zh">开放权重<span class="annotation-card-en">kāifàng quánzhòng · open weights</span></div>
+        <div class="annotation-card-body">OpenRouter rank after the free trial ends Oct 25.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MEMORY</div>
+        <div class="annotation-card-zh">激活参数<span class="annotation-card-en">jīhuó cānshù · active parameters</span></div>
+        <div class="annotation-card-body">27B active, but all 600B must sit in scarce HBM.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">China's Telecom Research Academy Says Embodied-AI Bubble Risk Is Building and Predicts a First Shake-Out Within Two to Three Years</div>
+    <div class="story-insight">
+      <p>CAICT's October 16 report counts 322 embodied-AI deals worth about ¥93.5B in H1 2026, roughly five times a year earlier. The top 20 firms took 59%, and 20 companies now carry ¥10B-plus valuations.</p>
+      <br>
+      <p>It says deployment lags shipments, most firms fine-tune open robot models, and their base models trail the leaders by about two generations. It expects a first shake-out within two to three years.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A state research body now uses bubble language about embodied AI, and with 59% of funding at the top 20, startups outside that group carry most of the consolidation risk.</div>
+    <div class="chart-box">
+      <div class="chart-title">Where H1 2026 Embodied-AI Money Went, and How Fast Supply Grew</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">H1 2026 FINANCING, ¥ BILLION (322 DEALS, IT JUZI VIA CAICT)</text><rect x="30" y="34" width="434.0" height="34" fill="#c0392b"/><text x="42" y="56" font-size="12" font-weight="700" fill="#fff">Top 20 firms · ¥55B · 59%</text><rect x="464" y="34" width="304.0" height="34" fill="#9a8a7a"/><text x="476" y="56" font-size="12" font-weight="700" fill="#fff">Other ~302 deals · ¥38.5B · 41%</text><text x="30" y="88" font-size="10" fill="#5a6a8a">Total ≈ ¥93.5B, about 5x H1 2025 · 20 companies valued at ¥10B or more</text><text x="30" y="128" font-size="11" font-weight="700" fill="#5a6a8a">NEW PRODUCTS AT THE WORLD ROBOT CONFERENCE</text><text x="30" y="155" font-size="12" fill="#1a1a2e">2025</text><rect x="230" y="142" width="166.1" height="18" fill="#9a8a7a"/><text x="404" y="155" font-size="11" font-weight="700" fill="#9a8a7a">123</text><text x="30" y="179" font-size="12" font-weight="700" fill="#1a1a2e">2026</text><rect x="230" y="166" width="420.0" height="18" fill="#c0392b"/><text x="658" y="179" font-size="11" font-weight="700" fill="#c0392b">311</text><text x="30" y="218" font-size="11" font-weight="700" fill="#5a6a8a">CAICT'S DIAGNOSIS BEHIND THE HOT FUNDING</text><text x="30" y="244" font-size="12" font-weight="700" fill="#1a1a2e">技术冷 technology</text><text x="230" y="244" font-size="12" fill="#1a1a2e">Most firms fine-tune π0 / π0.5 / OpenVLA; ~2 generations behind</text><text x="30" y="266" font-size="12" font-weight="700" fill="#1a1a2e">应用冷 applications</text><text x="230" y="266" font-size="12" fill="#1a1a2e">Units go to research, data collection, exhibitions and pilots</text><text x="30" y="288" font-size="12" font-weight="700" fill="#1a1a2e">出货 vs 落地 use</text><text x="230" y="288" font-size="12" fill="#1a1a2e">H1 humanoid shipments &gt;22,000 (+~300%), deployment far lower</text><text x="30" y="318" font-size="10" fill="#5a6a8a">Sources: CAICT / Tsinghua Embodied Intelligence Development Report 2026 (Oct 16) via JRJ (Oct 17); Counterpoint shipment data.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+        <div class="annotation-card-body">¥93.5B in six months, about 5x a year earlier.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · IPOS</div>
+        <div class="annotation-card-zh">泡沫风险<span class="annotation-card-en">pàomò fēngxiǎn · bubble risk</span></div>
+        <div class="annotation-card-body">Whether CSRC ties approvals to industrial revenue.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONSOLIDATION</div>
+        <div class="annotation-card-zh">出清<span class="annotation-card-en">chūqīng · industry shake-out</span></div>
+        <div class="annotation-card-body">Firms outside the top 20 face harder raises.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MARKETS</div>
+    <div class="story-headline">China's STAR 50 Has Lost About 40% Since June as the AI Hardware Trade Unwinds, and Regulators Call on the National Team</div>
+    <div class="story-insight">
+      <p>The STAR 50 is down nearly 40% from its June 30 peak and ChiNext 36%. MetaX, Moore Threads and Unitree are each about half off their highs, and the CSI 300 lost 3.4% on the week. Foreign Stock Connect outflows hit about ¥90B in Q3.</p>
+      <br>
+      <p>Regulators met on Thursday and urged the national team to buy faster, and ten-plus AI supply-chain firms announced buybacks. MetaX and Hygon guided strong nine-month numbers, but the STAR 50 still trades above 40x forward earnings.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> State buying has steadied prices without bringing back foreign money, so the equity window that funds DeepSeek, AgiBot and other planned AI listings is narrower than it was in June.</div>
+    <div class="chart-box">
+      <div class="chart-title">Drawdowns From Recent Peaks, and What Valuations Still Price In</div>
+      <svg viewBox="0 0 820 372" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">DECLINE FROM RECENT PEAK, % (APPROXIMATE, AS REPORTED OCT 17)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">MetaX</text><rect x="230" y="34" width="420.0" height="18" fill="#c0392b"/><text x="658" y="47" font-size="11" font-weight="700" fill="#c0392b">~50%</text><text x="30" y="71" font-size="12" fill="#1a1a2e">Moore Threads</text><rect x="230" y="58" width="420.0" height="18" fill="#c0392b"/><text x="658" y="71" font-size="11" font-weight="700" fill="#c0392b">~50%</text><text x="30" y="95" font-size="12" fill="#1a1a2e">Unitree (from Aug high)</text><rect x="230" y="82" width="420.0" height="18" fill="#c0392b"/><text x="658" y="95" font-size="11" font-weight="700" fill="#c0392b">~50%</text><text x="30" y="119" font-size="12" font-weight="700" fill="#1a1a2e">STAR 50 (from Jun 30)</text><rect x="230" y="106" width="336.0" height="18" fill="#b45309"/><text x="574" y="119" font-size="11" font-weight="700" fill="#b45309">~40%</text><text x="30" y="143" font-size="12" fill="#1a1a2e">ChiNext (this half)</text><rect x="230" y="130" width="302.4" height="18" fill="#b45309"/><text x="540" y="143" font-size="11" font-weight="700" fill="#b45309">36%</text><text x="30" y="167" font-size="12" fill="#1a1a2e">CXMT (from post-IPO high)</text><rect x="230" y="154" width="226.8" height="18" fill="#9a8a7a"/><text x="465" y="167" font-size="11" font-weight="700" fill="#9a8a7a">27%</text><text x="30" y="206" font-size="11" font-weight="700" fill="#5a6a8a">FORWARD P/E</text><text x="30" y="233" font-size="12" fill="#1a1a2e">STAR 50 at Jun 30 peak</text><rect x="230" y="220" width="420.0" height="18" fill="#9a8a7a"/><text x="658" y="233" font-size="11" font-weight="700" fill="#9a8a7a">&gt;80x</text><text x="30" y="257" font-size="12" font-weight="700" fill="#1a1a2e">STAR 50 now</text><rect x="230" y="244" width="210.0" height="18" fill="#c0392b"/><text x="448" y="257" font-size="11" font-weight="700" fill="#c0392b">&gt;40x</text><text x="30" y="281" font-size="12" fill="#1a1a2e">Nasdaq 100</text><rect x="230" y="268" width="110.3" height="18" fill="#5a6a8a"/><text x="348" y="281" font-size="11" font-weight="700" fill="#5a6a8a">21x</text><text x="30" y="318" font-size="12" fill="#1a1a2e">Q3 Stock Connect outflow ≈ ¥90B ($13.5B) · CSI 300 -3.4% on week · onshore IPOs $37B YTD · Q3 GDP Mon Oct 19</text><text x="30" y="344" font-size="12" fill="#1a1a2e">Support: national-team ETF buying · 10+ buybacks (Eoptolink, Piotech) · MetaX 9M profit ¥587–717M · Hygon 9M revenue +50–64%</text><text x="30" y="366" font-size="10" fill="#5a6a8a">Sources: Bloomberg via The Edge Malaysia (Oct 17, 2026), Reuters via Business Recorder (Oct 15–17), SCMP via KuCoin (Oct 16).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EARNINGS</div>
+        <div class="annotation-card-zh">业绩预告<span class="annotation-card-en">yèjì yùgào · earnings preview</span></div>
+        <div class="annotation-card-body">MetaX swings to profit; Hygon revenue +50–64%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FLOWS</div>
+        <div class="annotation-card-zh">沪深港通<span class="annotation-card-en">Hù-Shēn-Gǎng Tōng · Stock Connect</span></div>
+        <div class="annotation-card-body">Whether foreign flows turn positive in late October.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · FUNDING</div>
+        <div class="annotation-card-zh">国家队<span class="annotation-card-en">guójiā duì · national team</span></div>
+        <div class="annotation-card-body">State buying slows the fall but does not lift earnings.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #152 · OCTOBER 18, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
