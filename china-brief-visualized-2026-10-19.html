@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #153 · October 19, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #153 · October 19, 2026</div>
+    <div class="masthead-sub">DeepSeek V4.1-Flash-1017 and a Paid Search API · Gewu Tongzhi's ¥100M Angel · Financial Street Forum Opens</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">77.0<span class="card-num-unit">DeepSWE</span></div>
+      <div class="card-label">DeepSeek V4.1-Flash-1017's self-reported score, at about $0.20 a task and an unchanged token price</div>
+      <div class="card-delta delta-green">MIT weights · paid search API</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">~¥100M<span class="card-num-unit">angel</span></div>
+      <div class="card-label">Gewu Tongzhi's round from Hangzhou state funds, two days after CAICT's bubble warning</div>
+      <div class="card-delta delta-amber">First PoC due end-2026</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · POLICY</div>
+      <div class="card-num">¥126.9B<span class="card-num-unit">ETF inflows</span></div>
+      <div class="card-label">Net ETF inflows in the week ChiNext fell 8.9%, as the Financial Street Forum opens today</div>
+      <div class="card-delta delta-red">Q3 GDP today · consensus 4.4%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">DeepSeek Ships V4.1-Flash-1017 Under the MIT Licence, Claims 77.0 on DeepSWE at About 20 Cents a Task, and Opens Its Own Search API</div>
+    <div class="story-insight">
+      <p>DeepSeek moved its app and API to V4.1-Flash-1017 on October 17 and posted MIT-licensed weights. Price and architecture are unchanged: 552B backbone, 8B/16B active, 1M context.</p>
+      <br>
+      <p>It claims 77.0 on its own DeepSWE benchmark at about $0.20 a task, against 74.0 for Claude Opus 5, while still trailing Opus on Terminal-Bench and HLE. A paid Search and Fetch API starts billing on November 1.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> DeepSeek is competing on cost per finished agent task and adding paid search, but its benchmark lead is self-reported and a ranking-based curb on open weights would hit exactly this kind of release.</div>
+    <div class="chart-box">
+      <div class="chart-title">DeepSWE Scores and Cost per Task, and Where Claude Opus 5 Still Leads</div>
+      <svg viewBox="0 0 820 400" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">DEEPSWE V1.1 SCORE (DEEPSEEK'S OWN BENCHMARK AND TABLE)</text><text x="30" y="47" font-size="12" font-weight="700" fill="#1a1a2e">V4.1-Flash-1017</text><rect x="230" y="34" width="404.2" height="18" fill="#c0392b"/><text x="642" y="47" font-size="11" font-weight="700" fill="#c0392b">77.0</text><text x="30" y="71" font-size="12" fill="#1a1a2e">V4.1-Flash (Sept)</text><rect x="230" y="58" width="389.6" height="18" fill="#9a8a7a"/><text x="628" y="71" font-size="11" font-weight="700" fill="#9a8a7a">74.2</text><text x="30" y="95" font-size="12" fill="#1a1a2e">Claude Opus 5</text><rect x="230" y="82" width="388.5" height="18" fill="#5a6a8a"/><text x="626" y="95" font-size="11" font-weight="700" fill="#5a6a8a">74.0</text><text x="30" y="119" font-size="12" fill="#1a1a2e">GPT 5.6-Sol</text><rect x="230" y="106" width="383.2" height="18" fill="#5a6a8a"/><text x="621" y="119" font-size="11" font-weight="700" fill="#5a6a8a">73.0</text><text x="30" y="150" font-size="11" font-weight="700" fill="#5a6a8a">AVERAGE COST PER DEEPSWE TASK, USD (DEEPSEEK CLAIM)</text><text x="30" y="175" font-size="12" font-weight="700" fill="#1a1a2e">1017, default</text><rect x="230" y="162" width="140.0" height="18" fill="#c0392b"/><text x="378" y="175" font-size="11" font-weight="700" fill="#c0392b">~$0.20</text><text x="30" y="199" font-size="12" fill="#1a1a2e">1017, low effort</text><rect x="230" y="186" width="70.0" height="18" fill="#b45309"/><text x="308" y="199" font-size="11" font-weight="700" fill="#b45309">~$0.10 (72%+)</text><text x="30" y="223" font-size="12" fill="#1a1a2e">V4.1-Flash (Sept)</text><rect x="230" y="210" width="350.0" height="18" fill="#9a8a7a"/><text x="588" y="223" font-size="11" font-weight="700" fill="#9a8a7a">~$0.50</text><text x="30" y="258" font-size="11" font-weight="700" fill="#5a6a8a">WHERE IT STILL TRAILS CLAUDE OPUS 5</text><text x="30" y="283" font-size="12" fill="#1a1a2e">Terminal-Bench 4.0</text><rect x="230" y="270" width="211.5" height="9" fill="#c0392b"/><rect x="230" y="279" width="259.0" height="9" fill="#5a6a8a"/><text x="497" y="283" font-size="11" font-weight="700" fill="#1a1a2e">42.3 vs 51.8</text><text x="30" y="309" font-size="12" fill="#1a1a2e">HLE, no tools</text><rect x="230" y="296" width="213.0" height="9" fill="#c0392b"/><rect x="230" y="305" width="281.5" height="9" fill="#5a6a8a"/><text x="520" y="309" font-size="11" font-weight="700" fill="#1a1a2e">42.6 vs 56.3</text><text x="30" y="335" font-size="12" fill="#1a1a2e">ProgramBench</text><rect x="230" y="322" width="145.5" height="9" fill="#c0392b"/><rect x="230" y="331" width="185.0" height="9" fill="#5a6a8a"/><text x="423" y="335" font-size="11" font-weight="700" fill="#1a1a2e">29.1 vs 37.0</text><text x="30" y="366" font-size="12" fill="#1a1a2e">Price unchanged: $0.30 / $1.20 per 1M tokens at peak · Search &amp; Fetch API $0.75 per 1,000 calls from Nov 1 · MIT weights</text><text x="30" y="388" font-size="10" fill="#5a6a8a">Sources: DeepSeek via MarkTechPost, Tencent News, Yahoo HK (Oct 17, 2026). Red = DeepSeek, slate = Claude Opus 5. Not independently reproduced.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · COST</div>
+        <div class="annotation-card-zh">编程智能体<span class="annotation-card-en">biānchéng zhìnéngtǐ · coding agent</span></div>
+        <div class="annotation-card-body">Per-task cost fell from ~$0.50 to ~$0.20.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REVENUE</div>
+        <div class="annotation-card-zh">搜索接口<span class="annotation-card-en">sōusuǒ jiēkǒu · search API</span></div>
+        <div class="annotation-card-body">Paid usage once billing starts Nov 1.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · POLICY</div>
+        <div class="annotation-card-zh">开放权重<span class="annotation-card-en">kāifàng quánzhòng · open weights</span></div>
+        <div class="annotation-card-body">A top-ten ranking test could cover this model.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">Ex-Huawei Driving Scientist's Gewu Tongzhi Raises Nearly ¥100 Million From Hangzhou State Funds to Give Factory Robots a Sense of Touch</div>
+    <div class="story-insight">
+      <p>Gewu Tongzhi, founded this year by former Huawei ADS scientist Cai Jia, raised nearly ¥100M from Hangzhou Capital, Hangzhou Talent Group, a provincial embodied-AI fund, Peak and others.</p>
+      <br>
+      <p>Its model infers contact and force from video, calibrated on real tactile data, to give robots "hand feel" for fabric, optical modules and auto parts. First proof-of-concept delivery is due by end-2026.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Local state funds keep seeding new embodied-AI teams outside the top 20 despite bubble warnings, and Gewu's video-to-touch approach would cut manipulation data costs if it works, but it has no benchmark, valuation or delivered project yet.</div>
+    <div class="chart-box">
+      <div class="chart-title">A Small Angel Round in a Top-Heavy Market, and Who Funded It</div>
+      <svg viewBox="0 0 820 364" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">EMBODIED-AI MONEY, ¥ BILLION (LOG SCALE)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">H1 2026 total (322 deals)</text><rect x="230" y="34" width="416.3" height="18" fill="#9a8a7a"/><text x="654" y="47" font-size="11" font-weight="700" fill="#9a8a7a">¥93.5B</text><text x="30" y="71" font-size="12" fill="#1a1a2e">Top 20 firms, H1 2026</text><rect x="230" y="58" width="387.0" height="18" fill="#9a8a7a"/><text x="625" y="71" font-size="11" font-weight="700" fill="#9a8a7a">¥55B · 59%</text><text x="30" y="95" font-size="12" fill="#1a1a2e">AgiBot round (Oct, reported)</text><rect x="230" y="82" width="177.9" height="18" fill="#b45309"/><text x="416" y="95" font-size="11" font-weight="700" fill="#b45309">¥1–1.5B</text><text x="30" y="119" font-size="12" font-weight="700" fill="#1a1a2e">Gewu Tongzhi angel (Oct 18)</text><rect x="230" y="106" width="38.3" height="18" fill="#c0392b"/><text x="276" y="119" font-size="11" font-weight="700" fill="#c0392b">~¥0.1B</text><text x="30" y="158" font-size="11" font-weight="700" fill="#5a6a8a">WHO WROTE THE ANGEL CHEQUE</text><rect x="30" y="170" width="245" height="34" rx="4" fill="#fff" stroke="#c0392b"/><text x="152" y="185" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Hangzhou Capital</text><text x="152" y="198" font-size="9" fill="#c0392b" text-anchor="middle">STATE</text><rect x="290" y="170" width="245" height="34" rx="4" fill="#fff" stroke="#c0392b"/><text x="412" y="185" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Hangzhou Talent Group</text><text x="412" y="198" font-size="9" fill="#c0392b" text-anchor="middle">STATE</text><rect x="550" y="170" width="245" height="34" rx="4" fill="#fff" stroke="#c0392b"/><text x="672" y="185" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Provincial embodied-AI fund</text><text x="672" y="198" font-size="9" fill="#c0392b" text-anchor="middle">STATE</text><rect x="30" y="214" width="245" height="34" rx="4" fill="#fff" stroke="#5a6a8a"/><text x="152" y="229" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Peak Investment</text><text x="152" y="242" font-size="9" fill="#5a6a8a" text-anchor="middle">CORPORATE</text><rect x="290" y="214" width="245" height="34" rx="4" fill="#fff" stroke="#5a6a8a"/><text x="412" y="229" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Hongfu Asset</text><text x="412" y="242" font-size="9" fill="#5a6a8a" text-anchor="middle">PRIVATE</text><rect x="550" y="214" width="245" height="34" rx="4" fill="#fff" stroke="#5a6a8a"/><text x="672" y="229" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Listed companies</text><text x="672" y="242" font-size="9" fill="#5a6a8a" text-anchor="middle">CORPORATE</text><text x="30" y="284" font-size="11" font-weight="700" fill="#5a6a8a">THE TECHNICAL BET</text><text x="30" y="306" font-size="12" fill="#1a1a2e">Video (1st/3rd-person) → physical inverse world model infers contact and force → calibrated on real tactile data → PSI loop</text><text x="30" y="328" font-size="12" fill="#1a1a2e">PoCs: textiles &amp; apparel · optical modules · auto parts · first delivery targeted end-2026 · no valuation or benchmark disclosed</text><text x="30" y="352" font-size="10" fill="#5a6a8a">Sources: 36Kr Yingke via Tencent News, Robot Frontier via NetEase (Oct 18, 2026); CAICT report (Oct 16); Caijing on AgiBot (Oct 13).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPITAL</div>
+        <div class="annotation-card-zh">国资<span class="annotation-card-en">guózī · state capital</span></div>
+        <div class="annotation-card-body">Local funds still seed new teams.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DELIVERY</div>
+        <div class="annotation-card-zh">灵巧操作<span class="annotation-card-en">língqiǎo cāozuò · dexterous manipulation</span></div>
+        <div class="annotation-card-body">Whether the end-2026 PoC becomes a contract.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EVIDENCE</div>
+        <div class="annotation-card-zh">物理逆向世界模型<span class="annotation-card-en">wùlǐ nìxiàng shìjiè móxíng · physical inverse world model</span></div>
+        <div class="annotation-card-body">No benchmark, valuation or delivered project.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; POLICY · WEEK AHEAD</div>
+    <div class="story-headline">Week Ahead: The Financial Street Forum Opens Today With Wu Qing and Pan Gongsheng, and Regulators Promise a Policy Batch Days After Visa's Clearing Approval</div>
+    <div class="story-insight">
+      <p>The Financial Street Forum runs October 19–22. Wu Qing keynotes today, and regulators said a batch of reform policies would come during the forum, without naming any.</p>
+      <br>
+      <p>Equities fell hard in the week to October 16 while ETFs took ¥126.9B of inflows. Investors want stabilization signals from Wu, and market-access watchers want Connect and licensing steps after Visa's October 12 approval.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Wu Qing's keynote sets the tone for equities after a week of state-backed ETF buying, while any new licences or Connect measures in the policy batch matter most for financial services firms building China business.</div>
+    <div class="chart-box">
+      <div class="chart-title">Last Week's Sell-Off, the State-Backed ETF Bid, and This Week's Calendar</div>
+      <svg viewBox="0 0 820 352" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">INDEX CHANGE, WEEK OF OCT 12–16, % (WIND)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Shanghai Composite</text><rect x="230" y="34" width="107.5" height="18" fill="#b45309"/><text x="346" y="47" font-size="11" font-weight="700" fill="#b45309">-2.56%</text><text x="30" y="71" font-size="12" fill="#1a1a2e">Shenzhen Component</text><rect x="230" y="58" width="278.9" height="18" fill="#c0392b"/><text x="517" y="71" font-size="11" font-weight="700" fill="#c0392b">-6.64%</text><text x="30" y="95" font-size="12" fill="#1a1a2e">ChiNext</text><rect x="230" y="82" width="373.8" height="18" fill="#c0392b"/><text x="612" y="95" font-size="11" font-weight="700" fill="#c0392b">-8.90%</text><text x="30" y="130" font-size="11" font-weight="700" fill="#5a6a8a">ETF NET INFLOWS SAME WEEK, ¥ BILLION</text><text x="30" y="155" font-size="12" fill="#1a1a2e">All ETFs</text><rect x="230" y="142" width="380.7" height="18" fill="#166534"/><text x="619" y="155" font-size="11" font-weight="700" fill="#166534">¥126.9B</text><text x="30" y="179" font-size="12" fill="#1a1a2e">Broad-based equity ETFs</text><rect x="230" y="166" width="240.0" height="18" fill="#166534"/><text x="478" y="179" font-size="11" font-weight="700" fill="#166534">&gt;¥80B</text><text x="30" y="214" font-size="11" font-weight="700" fill="#5a6a8a">THE WEEK AHEAD</text><rect x="30" y="226" width="184" height="66" rx="4" fill="#fff" stroke="#c0392b"/><text x="40" y="245" font-size="11" font-weight="700" fill="#c0392b">MON 19</text><text x="40" y="264" font-size="10.5" fill="#1a1a2e">Forum opens · Wu Qing keynote</text><text x="40" y="281" font-size="10.5" fill="#5a6a8a">Q3 GDP 10:00 · consensus 4.4%</text><rect x="226" y="226" width="184" height="66" rx="4" fill="#fff" stroke="#e0d8d0"/><text x="236" y="245" font-size="11" font-weight="700" fill="#c0392b">TUE 20</text><text x="236" y="264" font-size="10.5" fill="#1a1a2e">Loan prime rate fixing</text><text x="236" y="281" font-size="10.5" fill="#5a6a8a">Hygon Q3 results</text><rect x="422" y="226" width="184" height="66" rx="4" fill="#fff" stroke="#e0d8d0"/><text x="432" y="245" font-size="11" font-weight="700" fill="#c0392b">WED 21</text><text x="432" y="264" font-size="10.5" fill="#1a1a2e">CSRC main forum</text><text x="432" y="281" font-size="10.5" fill="#5a6a8a">Patient capital · two-way opening</text><rect x="618" y="226" width="184" height="66" rx="4" fill="#fff" stroke="#e0d8d0"/><text x="628" y="245" font-size="11" font-weight="700" fill="#c0392b">THU 22</text><text x="628" y="264" font-size="10.5" fill="#1a1a2e">SAFE special session</text><text x="628" y="281" font-size="10.5" fill="#5a6a8a">Forum closes</text><text x="30" y="316" font-size="12" fill="#1a1a2e">Context: Visa cleared to prepare a card-clearing unit (Oct 12) · e-CNY payment brand due at the forum</text><text x="30" y="340" font-size="10" fill="#5a6a8a">Sources: Global Times, BigGo Finance (Oct 12, 2026); SCMP (Oct 16); Reuters via IndexBox (Oct 14); Wind via Sina Finance (Oct 19).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · OPENING</div>
+        <div class="annotation-card-zh">银行卡清算机构<span class="annotation-card-en">yínhángkǎ qīngsuàn jīgòu · card clearing institution</span></div>
+        <div class="annotation-card-body">Visa has a year to finish preparation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · EQUITIES</div>
+        <div class="annotation-card-zh">金融街论坛<span class="annotation-card-en">Jīnróngjiē Lùntán · Financial Street Forum</span></div>
+        <div class="annotation-card-body">Any hint from Wu on slower IPO approvals.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · GROWTH</div>
+        <div class="annotation-card-zh">耐心资本<span class="annotation-card-en">nàixīn zīběn · patient capital</span></div>
+        <div class="annotation-card-body">A sub-4.5% GDP print keeps pressure on.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #153 · OCTOBER 19, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

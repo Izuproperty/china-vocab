@@ -1,5 +1,116 @@
 [
   {
+    "issue": 153,
+    "date": "2026-10-19",
+    "title": "DeepSeek Ships V4.1-Flash-1017 With a Paid Search API, Gewu Tongzhi Raises ¥100M for Robot Touch, Financial Street Forum Opens Today",
+    "summary": "DeepSeek released V4.1-Flash-1017 under the MIT licence at an unchanged price, claiming 77.0 on its own DeepSWE benchmark at about $0.20 a task, and opened a paid Search and Fetch API. Hangzhou startup Gewu Tongzhi, led by a former Huawei driving scientist, raised nearly ¥100 million from local state funds for a model that infers touch from video. The Financial Street Forum opens in Beijing today alongside Q3 GDP, with regulators promising a batch of reform policies after Visa's clearing approval.",
+    "viz_url": "china-brief-visualized-2026-10-19.html",
+    "sections": [
+      {
+        "icon": "🧠",
+        "title": "DeepSeek Ships V4.1-Flash-1017 Under the MIT Licence, Claims 77.0 on DeepSWE at About 20 Cents a Task, and Opens Its Own Search API",
+        "tag": "ai",
+        "source": "DeepSeek on X / Hugging Face (Oct 17) · Tencent News (Oct 17) · Yahoo HK (Oct 17) · MarkTechPost (Oct 17) · AI & Tech · Oct 17, 2026 (about 1.5 days old)",
+        "body": "深度求索 (Shēndù Qiúsuǒ, DeepSeek) switched its website, app and API to V4.1-Flash-1017 on the afternoon of October 17. The release is a new checkpoint of the V4.1-Flash model it shipped in September, and the weights went up on Hugging Face and ModelScope under the MIT licence. Developers keep the deepseek-flash model name and pay the same price as before: $0.30 per million cache-miss input tokens and $1.20 per million output tokens at peak, and half that off-peak. The architecture is unchanged, a 552-billion-parameter 混合专家模型 (hùnhé zhuānjiā móxíng, mixture-of-experts) backbone with 8 billion 激活参数 (jīhuó cānshù, active parameters) in prefill, 16 billion in decode and a 1-million-token context. DeepSeek credits the gains to 自反馈强化学习 (zì fǎnkuì qiánghuà xuéxí, self-feedback reinforcement learning), which rewards the model with its own critiques and confidence scores instead of human raters or a separate reward model, and describes the result as a 帕累托改进 (pàlèituō gǎijìn, Pareto improvement): higher scores with shorter outputs and faster task completion.\n\nOn DeepSWE v1.1, a software-engineering benchmark DeepSeek runs itself, the new checkpoint scores 77.0 against 74.2 for the September version, 74.0 for Claude Opus 5 and 73.0 for GPT 5.6-Sol. DeepSeek puts the average cost at just under $0.20 per task, against about $0.50 for the September version, and says a low-effort setting still clears 72% at about $0.10. The same table shows it trailing Claude Opus 5 on Terminal-Bench 4.0 (42.3 against 51.8), ProgramBench (29.1 against 37.0), NL2Repo-Bench (68.2 against 75.3) and Humanity's Last Exam without tools (42.6 against 56.3). No independent reproductions had been published by Sunday. DeepSeek also opened its Search and Fetch tools to all developers as a paid 搜索接口 (sōusuǒ jiēkǒu, search API), built on the in-house engine it says handles hundreds of millions of queries a day. Each endpoint costs $0.75 per 1,000 successful calls with a 5-queries-per-second limit, and calls routed through DeepSeek Harness, Claude Code or Codex stay free until November 1, Beijing time.\n\nDeepSeek is now pricing on cost per finished 编程智能体 (biānchéng zhìnéngtǐ, coding agent) task. Shorter outputs at an unchanged token price cut what a buyer pays for each job, and that is the number enterprise teams compare when they choose between DeepSeek and US models that cost $2 to more than $10 a task on DeepSeek's own cost chart. The search API adds a per-call revenue line beyond tokens while DeepSeek raises a pre-IPO round reported at ¥80 billion or more at a valuation near ¥500 billion. Policy is the main open question. Counting its 196 billion Engram memory parameters, the model sits near 750 billion parameters, well under the 2-trillion bar in Beijing's October 16 draft export controls, but Hong Kong press reports say regulators are also weighing a test based on whether an open model ranks among the ten strongest, and a claimed lead over Claude Opus 5 on DeepSWE would invite that scrutiny. The CAC data-security probe opened in September is also still unresolved. Watch for independent DeepSWE and Terminal-Bench results, usage of the search API once billing starts on November 1, and whether the final export-control text adds a ranking test for open weights.",
+        "takeaway": "DeepSeek is competing on cost per finished agent task and adding paid search, but its benchmark lead is self-reported and a ranking-based curb on open weights would hit exactly this kind of release.",
+        "vocab": [
+          {
+            "zh": "自反馈强化学习",
+            "en": "self-feedback reinforcement learning"
+          },
+          {
+            "zh": "帕累托改进",
+            "en": "Pareto improvement"
+          },
+          {
+            "zh": "搜索接口",
+            "en": "search API"
+          },
+          {
+            "zh": "编程智能体",
+            "en": "coding agent"
+          },
+          {
+            "zh": "激活参数",
+            "en": "active parameters"
+          },
+          {
+            "zh": "深度求索",
+            "en": "DeepSeek"
+          }
+        ]
+      },
+      {
+        "icon": "🤖",
+        "title": "Ex-Huawei Driving Scientist's Gewu Tongzhi Raises Nearly ¥100 Million From Hangzhou State Funds to Give Factory Robots a Sense of Touch",
+        "tag": "robotics",
+        "source": "36Kr Yingke via Tencent News (Oct 18) · Robot Frontier via NetEase (Oct 18) · Robotics · Oct 18, 2026 (about 1 day old)",
+        "body": "格物通智 (Géwù Tōngzhì, Gewu Tongzhi), a Hangzhou startup building the control \"brain\" for factory robots, has closed an 天使轮 (tiānshǐ lún, angel round) of nearly ¥100 million, 36Kr's hardware desk reported on October 18. The backers are 匹克投资 (Pǐkè Tóuzī, Peak Investment), linked to sportswear maker Peak, Hongfu Asset, 杭州资本 (Hángzhōu Zīběn, Hangzhou Capital), Hangzhou Talent Group, an unnamed provincial 具身智能 (jùshēn zhìnéng, embodied AI) industry fund and several listed companies. Founder and CEO 蔡佳 (Cài Jiā, Cai Jia) holds a PhD in space robotics from Northwestern Polytechnical University and spent his earlier career at Huawei's 2012 Lab and its car unit, where he worked on the ADS 2.0 to 4.0 driver-assistance systems and led a team of about 100. The core team comes from Huawei and Li Auto. The company did not disclose a valuation.\n\nThe technical claim centres on a 物理逆向世界模型 (wùlǐ nìxiàng shìjiè móxíng, physical inverse world model) that infers contact and force from observed motion. Gewu pretrains it on large volumes of video, including first- and third-person internet footage, and calibrates it against real force and tactile sensor readings so that ordinary motion data can carry physics labels. A closed loop it calls PSI then feeds real-world results back into training. The aim is 灵巧操作 (língqiǎo cāozuò, dexterous manipulation) with what the company calls 手感 (shǒugǎn, \"hand feel\"), the sense of touch that tasks like handling fabric or seating optical connectors need. It is running proof-of-concept projects with customers in textiles and apparel, optical modules and auto parts, has a strategic agreement with Peak, and expects its first proof-of-concept delivery by the end of 2026. The money goes to large-scale pretraining, its own robot hardware, hiring and real-world data collection.\n\nThe round closed two days after the industry ministry's research academy warned of building bubble risk in embodied AI and showed the top 20 companies taking 59% of first-half funding. Local 国资 (guózī, state capital) is still writing first cheques to new teams outside that group, and Hangzhou is doing much of it, because city and provincial funds treat these startups as industrial policy as well as investments. The technical bet targets the scarcest input in robot manipulation. Touch data is expensive to collect through teleoperation, so a model that reads force from video would cut data costs if it generalizes. The evidence so far is thin: no benchmark, no valuation, one named partner that is also an investor, and no delivered project. Building its own robot body also raises capital needs well beyond an angel round. Watch whether the end-2026 proof of concept turns into a paying contract, and whether the next round brings in investors from outside Hangzhou's state funds.",
+        "takeaway": "Local state funds keep seeding new embodied-AI teams outside the top 20 despite bubble warnings, and Gewu's video-to-touch approach would cut manipulation data costs if it works, but it has no benchmark, valuation or delivered project yet.",
+        "vocab": [
+          {
+            "zh": "格物通智",
+            "en": "Gewu Tongzhi, Hangzhou robot-brain startup"
+          },
+          {
+            "zh": "天使轮",
+            "en": "angel round"
+          },
+          {
+            "zh": "国资",
+            "en": "state capital"
+          },
+          {
+            "zh": "物理逆向世界模型",
+            "en": "physical inverse world model"
+          },
+          {
+            "zh": "灵巧操作",
+            "en": "dexterous manipulation"
+          },
+          {
+            "zh": "手感",
+            "en": "hand feel, tactile sense"
+          }
+        ]
+      },
+      {
+        "icon": "🏛️",
+        "title": "Week Ahead: The Financial Street Forum Opens Today With Wu Qing and Pan Gongsheng, and Regulators Promise a Policy Batch Days After Visa's Clearing Approval",
+        "tag": "policy",
+        "source": "Global Times (Oct 12) · BigGo Finance / CSRC briefing (Oct 12) · SCMP (Oct 16) · Reuters via IndexBox (Oct 14) · Wind via Sina Finance (Oct 19) · Week-ahead calendar · Forum runs Oct 19–22, 2026 (preview, not a breaking story)",
+        "body": "The 金融街论坛 (Jīnróngjiē Lùntán, Financial Street Forum) annual conference opens in Beijing today and runs to October 22. The 中国人民银行 (Zhōngguó Rénmín Yínháng, PBOC), the 国家金融监督管理总局 (Guójiā Jīnróng Jiāndū Guǎnlǐ Zǒngjú, National Financial Regulatory Administration, NFRA), the 证监会 (Zhèngjiānhuì, CSRC), the foreign-exchange regulator SAFE and Xinhua co-host it, with more than 400 guests from over 40 countries across 21 sessions. CSRC chairman 吴清 (Wú Qīng, Wu Qing) gives a keynote at this morning's opening and PBOC deputy governor and SAFE head 朱鹤新 (Zhū Hèxīn, Zhu Hexin) gives a featured address, with Governor 潘功胜 (Pān Gōngshèng, Pan Gongsheng) and NFRA head Ding Xiangqun also expected to speak. At an October 12 briefing the organizers said regulators would release \"a series of financial reform and development policies\" during the four days without naming any, and that the PBOC would announce the brand of its 数字人民币 (shùzì rénmínbì, e-CNY) payment system. The CSRC's main session on Wednesday covers investment institutions, 耐心资本 (nàixīn zīběn, patient capital) and two-way opening, and SAFE holds its own session on Thursday.\n\nEquity investors want to hear from Wu first. In the week to October 16 the Shanghai Composite fell 2.56%, the Shenzhen Component 6.64% and ChiNext 8.90%, while ETFs took ¥126.9 billion of net inflows, more than ¥80 billion of it into broad-based funds, a pattern consistent with state-backed buying. Fund managers including Huichen Asset Management listed the options they expect him to weigh: direct state purchases, more listed-company buybacks, more long-term institutional money, or slower IPO approvals. Slower approvals would support prices in the short run and push back the AI listings now queued for Shanghai and Hong Kong. On market access, the PBOC on October 12 let Visa begin a year-long preparation to set up a wholly foreign-owned 银行卡清算机构 (yínhángkǎ qīngsuàn jīgòu, bank card clearing institution), and analysts told SCMP the forum could add yuan-internationalization steps and wider 互联互通 (hùlián hùtōng, Connect) cross-border investment links. Pan previewed that pitch in Bangkok last week, telling investors a portfolio of 80% yuan bonds and 20% Chinese equities beat a global portfolio over two decades and pledging to seek acceptance of yuan bonds as collateral at major clearing houses.\n\nThe forum shares its first day with the data. Q3 GDP, September activity data and home prices come out at 10:00 Beijing time, with consensus at 4.4%, which would be a second straight quarter under the 4.5% floor of the official target. Tuesday brings the monthly loan prime rate fixing and Hygon's full third-quarter results. A weak GDP print would put more weight on what Wu says about stabilization, while a batch built around Connect, collateral and licensing would matter more to financial services firms planning China business than to this week's prices. Forum packages are usually incremental, and the briefing named no measures, so the details will decide how much this week changes. Watch whether the policy batch includes new licences or expanded operating rights for foreign institutions, whether Wu signals any slowdown in IPO approvals, and whether Stock Connect flows turn positive after the GDP release.",
+        "takeaway": "Wu Qing's keynote sets the tone for equities after a week of state-backed ETF buying, while any new licences or Connect measures in the policy batch matter most for financial services firms building China business.",
+        "vocab": [
+          {
+            "zh": "金融街论坛",
+            "en": "Financial Street Forum"
+          },
+          {
+            "zh": "国家金融监督管理总局",
+            "en": "NFRA, banking and insurance regulator"
+          },
+          {
+            "zh": "银行卡清算机构",
+            "en": "bank card clearing institution"
+          },
+          {
+            "zh": "耐心资本",
+            "en": "patient capital"
+          },
+          {
+            "zh": "互联互通",
+            "en": "Connect cross-border schemes"
+          },
+          {
+            "zh": "数字人民币",
+            "en": "e-CNY, digital yuan"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 152,
     "date": "2026-10-18",
     "title": "StepFun Opens Step 5 Preview Weights With Day-0 Domestic Chip Support, CAICT Flags Embodied-AI Bubble Risk, STAR 50 Down 40% Since June",
