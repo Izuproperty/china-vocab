@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #142 · October 19, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #142 · October 19, 2026</div>
+    <div class="masthead-sub">SoftBank Eyes Allied Universal · Toyota's Arene Rollout · Takaichi Below 50%</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SOFTBANK</div>
+      <div class="card-num">$18<span class="card-num-unit">billion</span></div>
+      <div class="card-label">Reported value of Allied Universal in SoftBank&#x27;s talks, excluding debt</div>
+      <div class="card-delta delta-amber">Preliminary · no price agreed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-robotics">INDUSTRIAL · TOYOTA</div>
+      <div class="card-num">10<span class="card-num-unit">million</span></div>
+      <div class="card-label">New vehicles a year running Toyota&#x27;s Arene software by 2030</div>
+      <div class="card-delta delta-green">~50 models · ¥3tn profit goal</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · FISCAL</div>
+      <div class="card-num">49.1<span class="card-num-unit">%</span></div>
+      <div class="card-label">Takaichi cabinet approval in Kyodo&#x27;s Oct 17-18 poll, first reading below 50%</div>
+      <div class="card-delta delta-red">&gt;65% worry about food tax cut</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">SoftBank Weighs an $18 Billion Bid for Allied Universal to Put Robots on America&#x27;s Largest Guard Force</div>
+    <div class="story-insight">
+      <p>ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) is in early talks to buy Allied Universal, the largest company in the US 警備業 (keibi-gyō, security services industry), Bloomberg reported on October 16. Reuters, citing a person familiar with the matter, said a deal could value Allied at about $18 billion, and The Wall Street Journal reported on October 17 that the figure of up to $18 billion excludes Allied&#x27;s debt. Allied is owned by Warburg Pincus and Canadian pension fund La Caisse, operates in more than 100 countries and lists about $23 billion of annual revenue on its website. It bought British guard company G4S for about £3.8 billion in 2021. SoftBank declined to comment, and no price or financing has been agreed.</p>
+      <br>
+      <p>People familiar with the talks said SoftBank would over time hand some guard work, such as patrols, camera monitoring and access control, to 警備ロボット (keibi robotto, security robots), with humanoid machines further out. Allied already sells AI-based monitoring, incident reporting and GPS tracking, and it staffs the construction and operation of data centers, so SoftBank would own a services customer inside the AI buildout it is financing. Founder 孫正義 (Son Masayoshi, Masayoshi Son) has been building a robotics business around the $5.4 billion purchase of ABB&#x27;s robotics division agreed last year. The Financial Times reported on October 9 that he had asked Gulf investors for up to $100 billion for a vehicle that would buy established companies and run them with AI and robots. Allied is the first large target to surface for that plan.</p>
+      <br>
+      <p>Guarding is a payroll business with thin margins, and US guard companies face the same 人手不足 (hitode busoku, labor shortage) that is pushing Japanese factories toward automation. Every shift a machine takes over moves labor cost into profit, and that is the only way an $18 billion price for a guard company earns a return. SoftBank&#x27;s own balance sheet is stretched. It has committed about $64.6 billion to OpenAI, sold $11 billion of high-yield bonds in September at coupons up to 9.75%, and its shares fell about 9% at one point on October 15 when CoreWeave&#x27;s bonds slid. An equity check of this size plus Allied&#x27;s debt would likely need the Gulf vehicle or other outside money. SoftBank Group closed at ¥4,944 on October 16, before the report.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> SoftBank Group (TSE: 9984) would be paying for a guard company whose upside depends on robots it has not yet deployed at scale, and its Pepper robot was shelved after weak demand. The bull case is a large captive customer for SoftBank&#x27;s robotics unit plus Allied&#x27;s data center contracts. Watch whether Gulf partners such as MGX co-invest, which would keep the debt off the parent balance sheet, and whether SoftBank puts a number on the guard tasks it expects to automate.</div>
+    <div class="chart-box">
+      <div class="chart-title">SoftBank&#x27;s Allied Bid Against Its Other Commitments</div>
+      <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">SOFTBANK&#x27;S BIG-TICKET BETS, $ BILLION</text><line x1="250" y1="40" x2="250" y2="250" stroke="#e8eaf2"/><text x="250" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$0bn</text><line x1="360" y1="40" x2="360" y2="250" stroke="#e8eaf2"/><text x="360" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$25bn</text><line x1="470" y1="40" x2="470" y2="250" stroke="#e8eaf2"/><text x="470" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$50bn</text><line x1="580" y1="40" x2="580" y2="250" stroke="#e8eaf2"/><text x="580" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$75bn</text><line x1="690" y1="40" x2="690" y2="250" stroke="#e8eaf2"/><text x="690" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$100bn</text><text x="240" y="68" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Gulf buyout vehicle (sought)</text><rect x="250" y="50" width="440" height="26" rx="3" fill="#c7cbe0"/><text x="698" y="68" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">up to $100bn</text><text x="240" y="108" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">OpenAI commitment</text><rect x="250" y="90" width="284" height="26" rx="3" fill="#818cf8"/><text x="542" y="108" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$64.6bn</text><text x="240" y="148" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="end">Allied Universal (reported)</text><rect x="250" y="130" width="79" height="26" rx="3" fill="#3730a3"/><text x="337" y="148" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">up to $18bn ex-debt</text><text x="240" y="188" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">September high-yield bonds</text><rect x="250" y="170" width="48" height="26" rx="3" fill="#a5b4fc"/><text x="306" y="188" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$11bn</text><text x="240" y="228" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">ABB robotics purchase</text><rect x="250" y="210" width="24" height="26" rx="3" fill="#a5b4fc"/><text x="282" y="228" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$5.4bn</text><text x="20" y="312" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Allied figure per WSJ (Oct 17), equity value excluding debt; Gulf vehicle per FT (Oct 9), talks only.</text></svg>
+      <div class="chart-note">Sources: Bloomberg, Reuters (Oct 16); WSJ via Investing.com (Oct 17); FT (Oct 9).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">買収戦略<span class="annotation-card-en">buyout strategy</span></div>
+        <div class="annotation-card-body">First large target for Son&#x27;s buy-and-automate plan.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">共同出資<span class="annotation-card-en">co-investment</span></div>
+        <div class="annotation-card-body">Whether MGX or other Gulf money funds the deal.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">財務負担<span class="annotation-card-en">balance-sheet strain</span></div>
+        <div class="annotation-card-body">$64.6bn OpenAI commitment and 9.75% bonds already.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · INDUSTRIAL</div>
+    <div class="story-headline">Toyota Will Put Its Arene Software in All 50 Models and 10 Million Cars a Year by 2030</div>
+    <div class="story-insight">
+      <p>トヨタ自動車 (Toyota Jidōsha, Toyota Motor) expects its Arene vehicle software platform to run in about 50 models and 10 million new vehicles a year by 2030, the company said on October 16, confirming a Nikkei report. Chief technology officer 中嶋裕樹 (Nakajima Hiroki, Hiroki Nakajima) laid out the plan at an investor briefing in Brussels the previous week. Arene is developed by Woven by Toyota and first shipped in the redesigned RAV4 in 2025. It turns each car into a ソフトウェア定義車両 (sofutowea teigi sharyō, software-defined vehicle), whose driver assistance, safety and entertainment functions can be changed through a 無線アップデート (musen appudēto, over-the-air update) after the sale.</p>
+      <br>
+      <p>Toyota plans to offer Arene to partner automakers by 2035 and later to robots and to communication devices mounted on homes and utility poles, according to the Nikkei. A car could switch on the house lights as it pulls in, or receive a signal from a pole that a pedestrian is crossing ahead. The money sits in what Toyota calls its バリューチェーン事業 (baryū chēn jigyō, value chain business): software updates, connected safety services and parts sold after the new car. Toyota wants operating profit from that business to reach ¥3 trillion by fiscal 2030, about 40% above the current level.</p>
+      <br>
+      <p>Toyota sells roughly 10 million vehicles a year, so the target puts Arene on essentially its whole output. Tesla and Chinese EV makers such as BYD already update cars over the air, and Volkswagen&#x27;s software unit Cariad has struggled with delays and losses, which shows how hard the switch is for a legacy automaker. Toyota holds stakes in Subaru, Mazda and Suzuki, which gives Arene a ready list of partner customers after 2035. Software-defined cars also move control into fewer, more powerful central computers, raising chip content per vehicle for suppliers such as Renesas and Denso.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Toyota (TSE: 7203) wants recurring software and service profit from cars already on the road, and a ¥3 trillion after-sale target would make that business a far larger share of earnings than the market prices today. Software delivery is the execution risk: a slip in Arene delays every model and partner launch behind it. Watch first-half results in early November for Arene milestones and whether the ¥3 trillion goal moves into formal guidance.</div>
+    <div class="chart-box">
+      <div class="chart-title">From the RAV4 to Every Toyota</div>
+      <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">TOYOTA ARENE ROLLOUT AND THE ¥3 TRILLION AFTER-SALE TARGET</text><line x1="40" y1="120" x2="820" y2="120" stroke="#c7cbe0" stroke-width="3"/><circle cx="70" cy="120" r="8" fill="#818cf8"/><line x1="70" y1="120" x2="70" y2="88" stroke="#e8eaf2"/><text x="70" y="58" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2025</text><text x="70" y="74" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">First car: new RAV4</text><text x="70" y="88" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Arene debuts</text><circle cx="250" cy="120" r="8" fill="#3730a3"/><line x1="250" y1="120" x2="250" y2="148" stroke="#e8eaf2"/><text x="250" y="160" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">OCT 2026</text><text x="250" y="176" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Brussels briefing</text><text x="250" y="190" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">CTO Nakajima</text><circle cx="450" cy="120" r="8" fill="#3730a3"/><line x1="450" y1="120" x2="450" y2="88" stroke="#e8eaf2"/><text x="450" y="58" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">FY2030</text><text x="450" y="74" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">~50 models</text><text x="450" y="88" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">10M cars a year</text><circle cx="630" cy="120" r="8" fill="#818cf8"/><line x1="630" y1="120" x2="630" y2="148" stroke="#e8eaf2"/><text x="630" y="160" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2035</text><text x="630" y="176" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Offered to</text><text x="630" y="190" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">alliance partners</text><circle cx="790" cy="120" r="8" fill="#b45309"/><line x1="790" y1="120" x2="790" y2="88" stroke="#e8eaf2"/><text x="790" y="58" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">LATER</text><text x="790" y="74" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Robots, homes,</text><text x="790" y="88" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">utility poles</text><text x="40" y="226" font-size="10" font-weight="700" fill="#3730a3" text-anchor="start">VALUE CHAIN OPERATING PROFIT, ¥ TRILLION</text><text x="150" y="250" font-size="11" font-weight="400" fill="#1a1a2e" text-anchor="end">Current (implied)</text><rect x="160" y="238" width="300" height="18" rx="3" fill="#c7cbe0"/><text x="468" y="251" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">~¥2.1tn</text><text x="150" y="276" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">FY2030 target</text><rect x="160" y="264" width="420" height="18" rx="3" fill="#3730a3"/><text x="588" y="277" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">¥3tn (+40%)</text><text x="20" y="296" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Current level implied from Toyota&#x27;s ¥3tn target being about 40% above today.</text></svg>
+      <div class="chart-note">Sources: Reuters (Oct 16); Nikkei via Seoul Economic Daily (Oct 18).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">継続収益<span class="annotation-card-en">recurring revenue</span></div>
+        <div class="annotation-card-body">¥3tn after-sale profit goal, ~40% above today.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">上期決算<span class="annotation-card-en">first-half results</span></div>
+        <div class="annotation-card-body">Early November: Arene milestones and guidance.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">開発遅延<span class="annotation-card-en">development delay</span></div>
+        <div class="annotation-card-body">A software slip delays every model behind it.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Takaichi&#x27;s Approval Falls Below 50% as Most Voters Say They Worry About Her Food Tax Cut</div>
+    <div class="story-insight">
+      <p>Prime Minister 高市早苗 (Takaichi Sanae, Sanae Takaichi) saw her 内閣支持率 (naikaku shiji-ritsu, cabinet approval rating) fall to 49.1% in a Kyodo News telephone poll taken October 17-18, the first reading below 50% since she took office in October 2025. Disapproval was 33%. Kyodo tied the drop partly to Farm Minister Kazuo Yana, who resigned on October 14 after reports that he had talked about cutting road funding for municipalities that did not back him; 57.7% of respondents said Takaichi replaced him too late. A Jiji Press poll published on October 15 put support at 42.4%, also a record low for her cabinet.</p>
+      <br>
+      <p>More than 65% of Kyodo&#x27;s respondents said they were concerned about the plan to cut the 軽減税率 (keigen zeiritsu, reduced tax rate) on food from 8% to 1% for two years from April 2027, Takaichi&#x27;s main campaign promise. The cabinet approved the bill on October 9 together with an income-based cash benefit for low- and middle-income earners, at a combined cost of about ¥10 trillion over two years, and the government wants it enacted before the Diet session ends on December 12. It still has no named 財源 (zaigen, funding source). Takaichi has ruled out 赤字国債 (akaji kokusai, deficit-financing bonds), Finance Minister Satsuki Katayama has pushed the funding decision into the fiscal 2027 budget due in late December, and Keidanren opposes a corporate tax increase. Takaichi calls the cut a bridge to a 給付付き税額控除 (kyūfu-tsuki zeigaku kōjo, refundable tax credit) for low earners planned from 2029.</p>
+      <br>
+      <p>Rahul Anand, the IMF&#x27;s mission chief for Japan, called the temporary cut "a very welcome step" in comments reported on October 17 and praised the pledge not to borrow for it. He also said support at Japan&#x27;s debt level should be targeted, temporary and budget-neutral, warned that higher long-term rates would raise debt-service costs, and said the BOJ would need to hike if a weaker yen pushed inflation up. The 10-year JGB yield has climbed from about 1.6% when the cut was first floated to around 3.1%, and interest costs for fiscal 2027 are projected at ¥16.59 trillion, ¥3.5 trillion more than this year. The bill was scheduled for lower house debate from Tuesday, October 20.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A weaker prime minister has less room to choose a painful revenue source such as ending special tax breaks or raising corporate tax, so the bill is likely to pass with the financing question pushed into the December budget. That keeps pressure on super-long JGB yields, and a consumption subsidy adds to demand the BOJ is already trying to cool. Watch the lower house debate for any named revenue source, demand at the next 20-year and 30-year JGB auctions, and whether the next round of polls drops further.</div>
+    <div class="chart-box">
+      <div class="chart-title">Approval Slips as the Tax Bill Reaches the Lower House</div>
+      <svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg"><text x="20" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">KYODO POLL, OCT 17-18 (AND JIJI, OCT 15), % OF RESPONDENTS</text><line x1="250" y1="40" x2="250" y2="250" stroke="#e8eaf2"/><text x="250" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0%</text><line x1="388" y1="40" x2="388" y2="250" stroke="#e8eaf2"/><text x="388" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">25%</text><line x1="525" y1="40" x2="525" y2="250" stroke="#e8eaf2"/><text x="525" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">50%</text><line x1="662" y1="40" x2="662" y2="250" stroke="#e8eaf2"/><text x="662" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">75%</text><line x1="800" y1="40" x2="800" y2="250" stroke="#e8eaf2"/><text x="800" y="268" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">100%</text><text x="240" y="68" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="end">Worried about food tax cut</text><rect x="250" y="50" width="358" height="26" rx="3" fill="#b91c1c"/><text x="616" y="68" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">more than 65%</text><text x="240" y="108" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Yana replaced &#x27;too late&#x27;</text><rect x="250" y="90" width="317" height="26" rx="3" fill="#b45309"/><text x="575" y="108" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">57.7%</text><text x="240" y="148" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="end">Support cabinet (Kyodo)</text><rect x="250" y="130" width="270" height="26" rx="3" fill="#3730a3"/><text x="528" y="148" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">49.1%</text><text x="240" y="188" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Support cabinet (Jiji)</text><rect x="250" y="170" width="233" height="26" rx="3" fill="#818cf8"/><text x="491" y="188" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">42.4%</text><text x="240" y="228" font-size="11.5" font-weight="400" fill="#1a1a2e" text-anchor="end">Do not support (Kyodo)</text><rect x="250" y="210" width="182" height="26" rx="3" fill="#c7cbe0"/><text x="440" y="228" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">33.0%</text><text x="20" y="312" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Food tax bill: 8% to 1% for two years from April 2027, about ¥10tn with cash benefits. 10Y JGB ~3.1%.</text></svg>
+      <div class="chart-note">Sources: Kyodo via The Star and TASS (Oct 18); Jiji via Japan Times (Oct 15).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">軽減税率<span class="annotation-card-en">reduced tax rate</span></div>
+        <div class="annotation-card-body">Food rate 8% to 1% from April 2027, ~¥10tn cost.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">衆院審議<span class="annotation-card-en">lower house debate</span></div>
+        <div class="annotation-card-body">From Oct 20: any named revenue source.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">利払い費<span class="annotation-card-en">interest costs</span></div>
+        <div class="annotation-card-body">FY2027 debt service projected at ¥16.59tn.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #142 · OCTOBER 19, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
