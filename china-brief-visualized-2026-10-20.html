@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #154 · October 20, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #154 · October 20, 2026</div>
+    <div class="masthead-sub">Special Edition: PBOC Opens SLF to Foreign Banks · DeepSeek to Pre-Train on Ascend · MiniMax M3.1 Flash at $0.15 · Q3 GDP 4.5%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3" style="grid-template-columns:1fr 1fr;">
+    <div class="card">
+      <div class="card-tag tag-special">SPECIAL · PBOC</div>
+      <div class="card-num">5<span class="card-num-unit">measures</span></div>
+      <div class="card-label">Pan Gongsheng's Financial Street Forum package, led by SLF access for foreign banks and an overnight policy rate under study</div>
+      <div class="card-delta delta-amber">No dates, sizes or bank names yet</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">End-2026<span class="card-num-unit">pre-training</span></div>
+      <div class="card-label">Earliest date DeepSeek plans to pre-train on Huawei's Ascend 950DT, with priority on the 960DT in Q1 2027</div>
+      <div class="card-delta delta-red">B300 ≈ 7× Ascend 950 raw compute</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">$0.15<span class="card-num-unit">/1M input</span></div>
+      <div class="card-label">MiniMax M3.1 Flash list price, half of M3 and of DeepSeek V4.1 Flash at peak</div>
+      <div class="card-delta delta-green">Open weights due Oct 23</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MACRO</div>
+      <div class="card-num">4.5%<span class="card-num-unit">Q3 GDP</span></div>
+      <div class="card-label">Against a 4.4% consensus and 4.3% in Q2; nine-month growth 4.6%</div>
+      <div class="card-delta delta-red">Property investment −20.6% YTD</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">SPECIAL EDITION · FINANCE &amp; POLICY</div>
+    <div class="story-headline">Pan Gongsheng Opens the PBOC's Standing Lending Facility to Foreign Banks and Says the Overnight Rate Could Replace the 7-Day as the Main Policy Rate</div>
+    <div class="story-insight">
+      <p>At the Financial Street Forum on October 19, Pan admitted locally incorporated foreign banks to the SLF, let eight offshore RMB clearing banks trade onshore FX for their own account, and set up a liquidity backstop for asset managers hit by redemption-driven bond selling.</p>
+      <br>
+      <p>The PBOC will study making the overnight repo rate its main policy rate in place of the 7-day reverse repo at 1.4%, let strong borrowers price loans off DR001, and retire benchmark deposit and lending rates frozen since 2015. Wu Qing announced no buying program.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Foreign banks get the same central-bank funding line as domestic lenders, which lowers what they must hold in onshore buffers, but most of the package is framed as study or pilot and the implementing notices will set its weight.</div>
+    <div class="chart-box">
+      <div class="chart-title">China's Rate Stack Today, and What the PBOC Plans to Retire or Replace</div>
+      <svg viewBox="0 0 820 372" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">KEY RATES, % (CURRENT LEVELS)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">1-yr benchmark lending</text><rect x="230" y="34" width="400" height="18" fill="#9a8a7a"/><text x="638" y="47" font-size="11" font-weight="700" fill="#9a8a7a">4.35 · to be retired</text><text x="30" y="71" font-size="12" fill="#1a1a2e">5-yr LPR</text><rect x="230" y="58" width="322" height="18" fill="#5a6a8a"/><text x="560" y="71" font-size="11" font-weight="700" fill="#5a6a8a">3.50</text><text x="30" y="95" font-size="12" fill="#1a1a2e">1-yr LPR</text><rect x="230" y="82" width="276" height="18" fill="#5a6a8a"/><text x="514" y="95" font-size="11" font-weight="700" fill="#5a6a8a">3.00 · stays for SMEs, households</text><text x="30" y="119" font-size="12" fill="#1a1a2e">1-yr benchmark deposit</text><rect x="230" y="106" width="138" height="18" fill="#9a8a7a"/><text x="376" y="119" font-size="11" font-weight="700" fill="#9a8a7a">1.50 · to be retired</text><text x="30" y="143" font-size="12" font-weight="700" fill="#1a1a2e">7-day reverse repo</text><rect x="230" y="130" width="129" height="18" fill="#c0392b"/><text x="367" y="143" font-size="11" font-weight="700" fill="#c0392b">1.40 · policy rate now; overnight under study</text><text x="30" y="178" font-size="11" font-weight="700" fill="#5a6a8a">THE FIVE MEASURES (OCT 19)</text><rect x="30" y="190" width="245" height="44" rx="4" fill="#fff" stroke="#c0392b"/><text x="152" y="208" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">SLF for foreign banks</text><text x="152" y="224" font-size="9.5" fill="#c0392b" text-anchor="middle">ALL ONSHORE DEPOSIT-TAKERS COVERED</text><rect x="290" y="190" width="245" height="44" rx="4" fill="#fff" stroke="#c0392b"/><text x="412" y="208" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">8 clearing banks trade onshore FX</text><text x="412" y="224" font-size="9.5" fill="#c0392b" text-anchor="middle">PROPRIETARY · PILOT · NAMES TBD</text><rect x="550" y="190" width="245" height="44" rx="4" fill="#fff" stroke="#5a6a8a"/><text x="672" y="208" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Non-bank liquidity tool</text><text x="672" y="224" font-size="9.5" fill="#5a6a8a" text-anchor="middle">WMPS + FUNDS · HIGH-GRADE COLLATERAL</text><rect x="160" y="244" width="245" height="44" rx="4" fill="#fff" stroke="#5a6a8a"/><text x="282" y="262" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Interbank–exchange bond link</text><text x="282" y="278" font-size="9.5" fill="#5a6a8a" text-anchor="middle">READY PENDING TESTING</text><rect x="420" y="244" width="245" height="44" rx="4" fill="#fff" stroke="#5a6a8a"/><text x="542" y="262" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Sci-tech center financing</text><text x="542" y="278" font-size="9.5" fill="#5a6a8a" text-anchor="middle">PBOC + MOST + 9 AGENCIES</text><text x="30" y="318" font-size="12" fill="#1a1a2e">Context: rate corridor narrowed to ±25bp around the 7-day rate in June · benchmark rates unchanged since Oct 2015</text><text x="30" y="340" font-size="12" fill="#1a1a2e">CSRC (Wu Qing): stronger stabilization mechanisms, watch offshore leveraged A-share products, no buying program</text><text x="30" y="362" font-size="10" fill="#5a6a8a">Sources: SCMP, BigGo Finance, Reuters via US News, ChainCatcher (Oct 19, 2026); BigGo Finance (Jun 18, 2026). Red = changed or under review.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ACCESS</div>
+        <div class="annotation-card-zh">常备借贷便利<span class="annotation-card-en">chángbèi jièdài biànlì · Standing Lending Facility</span></div>
+        <div class="annotation-card-body">Foreign banks get the domestic funding line.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FRAMEWORK</div>
+        <div class="annotation-card-zh">隔夜利率<span class="annotation-card-en">géyè lìlǜ · overnight rate</span></div>
+        <div class="annotation-card-body">Timing and level of any switch from 7-day.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EXECUTION</div>
+        <div class="annotation-card-zh">流动性支持工具<span class="annotation-card-en">liúdòngxìng zhīchí gōngjù · liquidity support tool</span></div>
+        <div class="annotation-card-body">No size, trigger rules or bank list yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS</div>
+    <div class="story-headline">DeepSeek Plans to Pre-Train on Huawei's Ascend 950DT as Soon as Year-End, With Huawei Engineers in Its Offices Shaping Future Chips</div>
+    <div class="story-insight">
+      <p>The Information reported October 19 that DeepSeek will start pre-training on Ascend 950DT as soon as end-2026, that Huawei engineers sit in DeepSeek's offices feeding its needs into chip designs, and that DeepSeek gets priority on most 960DT supply in Q1 2027.</p>
+      <br>
+      <p>In September DeepSeek's 160,000-chip Ascend order was reported as inference-only, with training kept on Nvidia. Epoch AI puts Nvidia's B300 at about seven times the Ascend 950's raw arithmetic, and HBM shortages cap 950DT output.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A DeepSeek base model trained on Ascend would make Huawei a training supplier and support DeepSeek's IPO case on compute independence, but the plan is "as soon as," depends on HBM supply, and follows an earlier attempt that went back to Nvidia.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Compute Gap and the Road From Inference to Pre-Training</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">RAW ARITHMETIC THROUGHPUT, ASCEND 950 = 1 (EPOCH AI ESTIMATE)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Nvidia B300</text><rect x="230" y="34" width="400" height="18" fill="#5a6a8a"/><text x="638" y="47" font-size="11" font-weight="700" fill="#5a6a8a">~7×</text><text x="30" y="71" font-size="12" font-weight="700" fill="#1a1a2e">Huawei Ascend 950</text><rect x="230" y="58" width="57" height="18" fill="#c0392b"/><text x="295" y="71" font-size="11" font-weight="700" fill="#c0392b">1×</text><text x="30" y="95" font-size="12" fill="#1a1a2e">Frontier pre-training run</text><text x="230" y="95" font-size="11" fill="#1a1a2e">&gt;10,000 Huawei chips together for weeks · 950DT: 144GB HBM at 4 TB/s</text><text x="30" y="132" font-size="11" font-weight="700" fill="#5a6a8a">DEEPSEEK ON ASCEND: TIMELINE</text><line x1="60" y1="190" x2="780" y2="190" stroke="#c9bfb3" stroke-width="2"/><circle cx="80" cy="190" r="7" fill="#9a8a7a"/><text x="80" y="165" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Early Sep</text><text x="80" y="215" font-size="10" fill="#3a4a6a" text-anchor="middle">160K Ascend order</text><text x="80" y="229" font-size="10" fill="#3a4a6a" text-anchor="middle">inference only</text><circle cx="250" cy="190" r="7" fill="#9a8a7a"/><text x="250" y="165" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Sep 30</text><text x="250" y="215" font-size="10" fill="#3a4a6a" text-anchor="middle">TileLang + Ascend</text><text x="250" y="229" font-size="10" fill="#3a4a6a" text-anchor="middle">kernel libraries</text><circle cx="420" cy="190" r="9" fill="#c0392b"/><text x="420" y="165" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Oct 19</text><text x="420" y="215" font-size="10" fill="#3a4a6a" text-anchor="middle">Co-design report;</text><text x="420" y="229" font-size="10" fill="#3a4a6a" text-anchor="middle">DHS federal ban same day</text><circle cx="590" cy="190" r="7" fill="#b45309"/><text x="590" y="165" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">End-2026</text><text x="590" y="215" font-size="10" fill="#3a4a6a" text-anchor="middle">Pre-training on</text><text x="590" y="229" font-size="10" fill="#3a4a6a" text-anchor="middle">950DT "as soon as"</text><circle cx="760" cy="190" r="7" fill="#b45309"/><text x="760" y="165" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Q1 2027</text><text x="760" y="215" font-size="10" fill="#3a4a6a" text-anchor="middle">Priority on most</text><text x="760" y="229" font-size="10" fill="#3a4a6a" text-anchor="middle">960DT supply</text><text x="30" y="272" font-size="12" fill="#1a1a2e">Constraint: HBM shortages keep 950DT output in the low hundreds of thousands this year; price above ¥250,000 after Sept rises</text><text x="30" y="294" font-size="12" fill="#1a1a2e">DeepSeek still seeking advanced Nvidia processors in parallel</text><text x="30" y="326" font-size="10" fill="#5a6a8a">Sources: The Information via Techmeme; Investing.com via Yahoo Finance; WSJ (Oct 19, 2026); GuruFocus via Yahoo (Sep 4); Reuters (Sep 10).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CO-DESIGN</div>
+        <div class="annotation-card-zh">软硬件协同设计<span class="annotation-card-en">ruǎn-yìngjiàn xiétóng shèjì · hardware-software co-design</span></div>
+        <div class="annotation-card-body">Huawei engineers embedded at DeepSeek.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TRAINING</div>
+        <div class="annotation-card-zh">预训练<span class="annotation-card-en">yùxùnliàn · pre-training</span></div>
+        <div class="annotation-card-body">Whether the next tech report names Ascend.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLY</div>
+        <div class="annotation-card-zh">高带宽内存<span class="annotation-card-en">gāo dàikuān nèicún · high-bandwidth memory</span></div>
+        <div class="annotation-card-body">HBM shortages cap 950DT volumes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · MODELS</div>
+    <div class="story-headline">MiniMax Prices M3.1 Flash at $0.15 per Million Input Tokens, Half Its Flagship's Rate, Two Days After DeepSeek's Update</div>
+    <div class="story-insight">
+      <p>MiniMax launched M3.1 Flash on October 19: 428B parameters, about 23B active, 1M context, text, image and video input, always-on reasoning. It costs $0.15 in and $0.60 out per million tokens, flat, with open weights due October 23.</p>
+      <br>
+      <p>Its own table shows 62.2 on Automation-Bench against 50.3 for Claude Opus 5 and 73.7 on DeepSWE, below DeepSeek's claimed 77.0, while trailing Opus 5 by 13.7 points on Terminal Bench 4.0. None of it is independently replicated.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Chinese labs are cutting list prices at the low end where developers switch easily, which pressures revenue per token at a listed MiniMax already marked down for cash burn, and always-on reasoning can lift the real cost per task above the list price.</div>
+    <div class="chart-box">
+      <div class="chart-title">Output Price per Million Tokens, and MiniMax's Self-Reported Scores</div>
+      <svg viewBox="0 0 820 384" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">API LIST PRICE, USD PER 1M TOKENS (BAR = OUTPUT)</text><text x="30" y="47" font-size="12" font-weight="700" fill="#1a1a2e">MiniMax M3.1 Flash</text><rect x="230" y="34" width="16" height="18" fill="#c0392b"/><text x="254" y="47" font-size="11" font-weight="700" fill="#c0392b">$0.15 in / $0.60 out · flat</text><text x="30" y="71" font-size="12" fill="#1a1a2e">MiniMax M3 (≤512K)</text><rect x="230" y="58" width="32" height="18" fill="#9a8a7a"/><text x="270" y="71" font-size="11" font-weight="700" fill="#9a8a7a">$0.30 / $1.20 · 2× above 512K</text><text x="30" y="95" font-size="12" fill="#1a1a2e">DeepSeek V4.1 Flash (peak)</text><rect x="230" y="82" width="32" height="18" fill="#5a6a8a"/><text x="270" y="95" font-size="11" font-weight="700" fill="#5a6a8a">$0.30 / $1.20 · half off-peak</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Zhipu GLM-5.3</text><rect x="230" y="106" width="117" height="18" fill="#5a6a8a"/><text x="355" y="119" font-size="11" font-weight="700" fill="#5a6a8a">$1.40 / $4.40</text><text x="30" y="143" font-size="12" fill="#1a1a2e">Moonshot Kimi K3</text><rect x="230" y="130" width="400" height="18" fill="#5a6a8a"/><text x="638" y="143" font-size="11" font-weight="700" fill="#5a6a8a">$3.00 / $15.00</text><text x="30" y="180" font-size="11" font-weight="700" fill="#5a6a8a">SELF-REPORTED BENCHMARKS (MINIMAX TABLE; DEEPSEEK FIGURE FROM DEEPSEEK)</text><text x="30" y="205" font-size="12" fill="#1a1a2e">Automation-Bench</text><rect x="230" y="192" width="311" height="9" fill="#c0392b"/><rect x="230" y="201" width="252" height="9" fill="#5a6a8a"/><text x="549" y="205" font-size="11" font-weight="700" fill="#1a1a2e">62.2 vs Opus 5 50.3</text><text x="30" y="231" font-size="12" fill="#1a1a2e">BankerToolBench</text><rect x="230" y="218" width="381" height="9" fill="#c0392b"/><rect x="230" y="227" width="381" height="9" fill="#5a6a8a"/><text x="619" y="231" font-size="11" font-weight="700" fill="#1a1a2e">76.2 = Opus 5</text><text x="30" y="257" font-size="12" fill="#1a1a2e">DeepSWE v1.1</text><rect x="230" y="244" width="369" height="9" fill="#c0392b"/><rect x="230" y="253" width="385" height="9" fill="#b45309"/><text x="623" y="257" font-size="11" font-weight="700" fill="#1a1a2e">73.7 vs DeepSeek 77.0</text><text x="30" y="283" font-size="12" fill="#1a1a2e">Terminal Bench 4.0</text><rect x="230" y="270" width="191" height="9" fill="#c0392b"/><rect x="230" y="279" width="259" height="9" fill="#5a6a8a"/><text x="497" y="283" font-size="11" font-weight="700" fill="#1a1a2e">38.1 vs Opus 5 51.8</text><text x="30" y="318" font-size="12" fill="#1a1a2e">428B total / ~23B active · 1M context · reasoning always on · "Space Bunny" stealth build served 200T+ tokens</text><text x="30" y="340" font-size="12" fill="#1a1a2e">Harness caveat: Kimi K3 scores 30.8 on its own Automation-Bench subset vs 46.7 in MiniMax's table</text><text x="30" y="370" font-size="10" fill="#5a6a8a">Sources: MarkTechPost, MiniMax platform, AI Weekly (Oct 19, 2026). Red = MiniMax M3.1 Flash, slate = Claude Opus 5, amber = DeepSeek V4.1-Flash-1017.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICE</div>
+        <div class="annotation-card-zh">价格战<span class="annotation-card-en">jiàgé zhàn · price war</span></div>
+        <div class="annotation-card-body">Half DeepSeek's peak list price in 48 hours.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LICENCE</div>
+        <div class="annotation-card-zh">开放权重<span class="annotation-card-en">kāifàng quánzhòng · open weights</span></div>
+        <div class="annotation-card-body">Weights and licence terms on October 23.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGIN</div>
+        <div class="annotation-card-zh">推理<span class="annotation-card-en">tuīlǐ · reasoning</span></div>
+        <div class="annotation-card-body">Always-on reasoning inflates tokens per task.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO</div>
+    <div class="story-headline">Q3 GDP Grew 4.5% Against a 4.4% Forecast, While Fixed-Asset Investment Is Down 7.2% This Year and Property Investment 20.6%</div>
+    <div class="story-insight">
+      <p>The NBS reported 4.5% year-on-year growth for Q3 (consensus 4.4%, Q2 4.3%) and 1.2% quarter on quarter. September industrial output rose 5.5% and retail sales 1.1%, both above forecast.</p>
+      <br>
+      <p>Fixed-asset investment fell 7.2% in nine months, private investment 10.4% and property investment 20.6%. Exports rose 36.3% in September, and the NBS called insufficient domestic demand "prominent."</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Growth at the 4.5% floor with 4.6% banked lowers the case for broad year-end stimulus, but the quarter rests on exports and chip prices while investment and property keep shrinking.</div>
+    <div class="chart-box">
+      <div class="chart-title">Growth Back at the Target Floor, Carried by Output While Investment Shrinks</div>
+      <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">REAL GDP GROWTH, % Y/Y (DASHED LINE = 4.5% TARGET FLOOR)</text><text x="30" y="47" font-size="12" fill="#1a1a2e">Q1 2026</text><rect x="230" y="34" width="333" height="18" fill="#9a8a7a"/><text x="571" y="47" font-size="11" font-weight="700" fill="#9a8a7a">5.0</text><text x="30" y="71" font-size="12" fill="#1a1a2e">Q2 2026</text><rect x="230" y="58" width="287" height="18" fill="#9a8a7a"/><text x="571" y="71" font-size="11" font-weight="700" fill="#9a8a7a">4.3</text><text x="30" y="95" font-size="12" font-weight="700" fill="#1a1a2e">Q3 2026</text><rect x="230" y="82" width="300" height="18" fill="#c0392b"/><text x="571" y="95" font-size="11" font-weight="700" fill="#c0392b">4.5 (consensus 4.4)</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Jan–Sep 2026</text><rect x="230" y="106" width="307" height="18" fill="#5a6a8a"/><text x="571" y="119" font-size="11" font-weight="700" fill="#5a6a8a">4.6</text><line x1="530" y1="28" x2="530" y2="130" stroke="#1a1a2e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="30" y="160" font-size="11" font-weight="700" fill="#5a6a8a">SEPTEMBER, % Y/Y: ACTUAL (TOP) VS FORECAST (BOTTOM)</text><text x="30" y="185" font-size="12" fill="#1a1a2e">Industrial output</text><rect x="230" y="172" width="367" height="9" fill="#166534"/><rect x="230" y="181" width="360" height="9" fill="#c9bfb3"/><text x="605" y="185" font-size="11" font-weight="700" fill="#1a1a2e">5.5 vs 5.4</text><text x="30" y="211" font-size="12" fill="#1a1a2e">Retail sales</text><rect x="230" y="198" width="73" height="9" fill="#166534"/><rect x="230" y="207" width="33" height="9" fill="#c9bfb3"/><text x="311" y="211" font-size="11" font-weight="700" fill="#1a1a2e">1.1 vs 0.5 (Aug 0.4)</text><text x="30" y="248" font-size="11" font-weight="700" fill="#5a6a8a">JAN–SEP DECLINES, % Y/Y</text><text x="30" y="273" font-size="12" fill="#1a1a2e">Fixed-asset investment</text><rect x="230" y="260" width="115" height="18" fill="#b45309"/><text x="353" y="273" font-size="11" font-weight="700" fill="#b45309">−7.2</text><text x="30" y="297" font-size="12" fill="#1a1a2e">Private investment</text><rect x="230" y="284" width="166" height="18" fill="#c0392b"/><text x="404" y="297" font-size="11" font-weight="700" fill="#c0392b">−10.4</text><text x="30" y="321" font-size="12" fill="#1a1a2e">Property investment</text><rect x="230" y="308" width="330" height="18" fill="#c0392b"/><text x="568" y="321" font-size="11" font-weight="700" fill="#c0392b">−20.6</text><text x="30" y="350" font-size="12" fill="#1a1a2e">Offsets: September exports +36.3% (USD) · services GDP +5.2% · Q4 near 4.2% still delivers 4.5% for the year</text><text x="30" y="370" font-size="10" fill="#5a6a8a">Sources: NBS via Xinhua, Vantage Markets, InvestingLive, The Eastern Herald (Oct 19, 2026).</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · GROWTH</div>
+        <div class="annotation-card-zh">国内生产总值<span class="annotation-card-en">guónèi shēngchǎn zǒngzhí · GDP</span></div>
+        <div class="annotation-card-body">Back at the 4.5% floor after a 4.3% Q2.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DEMAND</div>
+        <div class="annotation-card-zh">内需不足<span class="annotation-card-en">nèixū bùzú · insufficient domestic demand</span></div>
+        <div class="annotation-card-body">October PMI on Oct 31; fiscal top-up mix.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · INVESTMENT</div>
+        <div class="annotation-card-zh">房地产开发投资<span class="annotation-card-en">fángdìchǎn kāifā tóuzī · property investment</span></div>
+        <div class="annotation-card-body">Down 20.6% with no floor in sight.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #154 · OCTOBER 20, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
