@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #146 · Friday, October 23, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #146 · October 23, 2026</div>
+    <div class="masthead-sub">SoftBank Value Halves · Disco Record Margin, HBM Pause · Economists See December BOJ Hike</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SOFTBANK</div>
+      <div class="card-num">-50<span class="card-num-unit">%</span></div>
+      <div class="card-label">SoftBank Group share price from its June 2 record; market value ~¥24.7tn</div>
+      <div class="card-delta delta-red">-6.9% on Oct 22</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · DISCO</div>
+      <div class="card-num">71.7<span class="card-num-unit">%</span></div>
+      <div class="card-label">Disco gross margin in July-September, a quarterly record; OP +52%</div>
+      <div class="card-delta delta-amber">HBM pauses in Oct-Dec</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">83<span class="card-num-unit">%</span></div>
+      <div class="card-label">Economists expecting the next BOJ hike in December (35% a month ago)</div>
+      <div class="card-delta delta-green">Sept core CPI seen 2.1%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">SoftBank Group Has Lost Half Its Market Value Since June and Now Trails Hitachi and Recruit</div>
+    <div class="story-insight">
+      <p>ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) fell 6.9% in Tokyo on October 22. The stock is now 50% below its June 2 record and down more than 30% in October, the worst performer in the Nikkei 225 this month. Its 時価総額 (jika sōgaku, market capitalization) of about ¥24.7 trillion ($157 billion) is smaller than Hitachi's or Recruit Holdings', four months after it briefly passed Toyota as Japan's most valuable listed company. Chip stocks fell with it: 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron) dropped 4.1% after Lam Research slipped in after-hours trading on worries that Chinese customers had bought equipment early, and the Nikkei was down 0.8% in morning trade.</p>
+      <br>
+      <p>SoftBank pays for its AI positions with borrowed money, and the price of that money has risen. It has committed about $64.6 billion to OpenAI for a stake of roughly 13%, agreed to pay $5.4 billion for ABB's robotics business and $3.1 billion for DigitalBridge, and in September sold $11.1 billion of bonds, the largest junk bond sale on record, with dollar coupons as high as 9.75%. Fitch rates the company BB+, one notch below 投資適格 (tōshi tekikaku, investment grade), and S&amp;P has its rating on negative outlook. Five-year 信用デフォルト・スワップ (shin'yō deforuto suwappu, credit default swap) spreads reached their highest level in almost four years on October 20, around 400 basis points against about 280 in June. When CoreWeave's bonds fell to distressed prices last week, investors sold AI companies that rely on debt, and SoftBank is the largest of them listed in Tokyo.</p>
+      <br>
+      <p>The pressure feeds on itself. SoftBank's 純資産価値 (jun shisan kachi, net asset value) depends mostly on its OpenAI and Arm holdings, and OpenAI now competes with cheaper Chinese models that perform about as well. A lower OpenAI valuation raises SoftBank's loan-to-value ratio, and a higher ratio makes its next bond more expensive. Kazuyuki Muramatsu of Nagomi Capital said a turn in sentiment on AI growth could produce valuation losses at the Vision Fund and raise SoftBank's funding costs. The reported talks to buy Allied Universal for up to $18 billion excluding debt would add another large cash need on top of these.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> SoftBank Group (TSE: 9984) now trades as a leveraged claim on OpenAI's private valuation, and its CDS spread measures that stress more directly than the share price. Watch the November results for the loan-to-value ratio and any OpenAI markdown, whether the Allied Universal talks go ahead and how they would be financed, and any action by S&amp;P. A rating cut would raise the cost of every refinancing SoftBank has ahead of it.</div>
+    <div class="chart-box">
+      <div class="chart-title">Where SoftBank Group's Money Went, and What the Market Now Charges</div>
+      <svg viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg"><text x="10" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">AI FUNDING COMMITMENTS, $BN</text><text x="192" y="53" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">OpenAI (~13% stake)</text><rect x="200" y="40" width="230.0" height="17" rx="2" fill="#be185d"/><text x="436.0" y="53" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">$64.6bn</text><text x="192" y="83" font-size="10.5" font-weight="400" fill="#3a4a6a" text-anchor="end">Allied Universal (talks, up to)</text><rect x="200" y="70" width="64.1" height="17" rx="2" fill="#818cf8"/><text x="270.0866873065016" y="83" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">$18bn</text><text x="192" y="113" font-size="10.5" font-weight="400" fill="#3a4a6a" text-anchor="end">Sept junk bond raised</text><rect x="200" y="100" width="39.5" height="17" rx="2" fill="#818cf8"/><text x="245.5201238390093" y="113" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">$11.1bn</text><text x="192" y="143" font-size="10.5" font-weight="400" fill="#3a4a6a" text-anchor="end">ABB Robotics</text><rect x="200" y="130" width="19.2" height="17" rx="2" fill="#818cf8"/><text x="225.22600619195046" y="143" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">$5.4bn</text><text x="192" y="173" font-size="10.5" font-weight="400" fill="#3a4a6a" text-anchor="end">DigitalBridge</text><rect x="200" y="160" width="11.0" height="17" rx="2" fill="#818cf8"/><text x="217.0371517027864" y="173" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">$3.1bn</text><text x="520" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">SHARE PRICE (JUNE 2 = 100) AND 5Y CDS</text><rect x="540" y="40" width="60" height="130" rx="2" fill="#818cf8"/><text x="570" y="35.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">100</text><text x="570" y="186" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Jun 2 peak</text><rect x="635" y="76" width="60" height="94" rx="2" fill="#818cf8"/><text x="665" y="71.39999999999999" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">72</text><text x="665" y="186" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Sep 30 (implied)</text><rect x="730" y="105" width="60" height="65" rx="2" fill="#be185d"/><text x="760" y="100.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">50</text><text x="760" y="186" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Oct 22</text><line x1="530" y1="170" x2="820" y2="170" stroke="#c7cbe0"/><text x="530" y="210" font-size="10" font-weight="600" fill="#be185d" text-anchor="start">CDS: ~280bp in June → ~400bp+ on Oct 20, a near four-year high</text></svg>
+      <div class="chart-note">Sources: Bloomberg via Business Standard (Oct 22); Crypto Briefing (Oct 19); Fitch (Sept 11). Sep 30 level implied from the reported >30% October decline.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">時価総額<span class="annotation-card-en">market cap</span></div>
+        <div class="annotation-card-body">¥24.7tn, below Hitachi and Recruit.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">LTV<span class="annotation-card-en">loan-to-value</span></div>
+        <div class="annotation-card-body">November results and any OpenAI markdown.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">格下げ<span class="annotation-card-en">downgrade</span></div>
+        <div class="annotation-card-body">S&amp;P outlook is negative; Fitch at BB+.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Disco Posts a 52% Profit Jump and a Record Margin, Then Guides to an HBM Pause for October-December</div>
+    <div class="story-insight">
+      <p>ディスコ (Disuko, Disco), the Tokyo company that makes most of the world's saws and grinders for cutting and thinning chips, reported on October 22 that July-September net sales rose 36% to ¥142.75 billion and operating profit rose 52% to ¥67.61 billion. Both beat consensus of ¥139.07 billion and ¥63.08 billion. Net income of ¥46.15 billion came in just under the ¥47.06 billion estimate. Quarterly 出荷額 (shukka-gaku, shipment value) reached ¥148.6 billion against a plan of ¥141.0 billion, and gross margin hit a quarterly record of 71.7% because higher volumes spread the fixed cost of making blades and grinding wheels. For April-September, sales rose 32% to ¥257.1 billion and the interim dividend rises to ¥186 from ¥129.</p>
+      <br>
+      <p>The outlook is flatter. Disco forecast April-December sales of ¥389.5 billion and operating profit of ¥174.7 billion at ¥151 per dollar, which implies about ¥132 billion of sales and ¥58 billion of profit in October-December. Shipments are guided only slightly higher at that rate and above ¥150 billion at today's rate near ¥158. Memory falls from just under 40% of shipments to about 30% because HBM orders pause for a quarter. Each HBM stack needs 研削 (kensaku, grinding) to thin each of its eight to 16 DRAM dies, so HBM spending shows up quickly in Disco's book. Management called the pause a quarterly fluctuation, said underlying demand has not changed, and said it cannot yet explain the January-March quarter. Gross margin is guided down by just under 2 points.</p>
+      <br>
+      <p>Other lines rise. Logic and CPU customers increase orders in October-December, and photonics work for co-packaged optics grew in July-September and is expected to grow again. Disco's China shipments fell after a strong April-June but are forecast to rise, and management said demand from Chinese OSATs shows no sudden change. That matters on a day when Tokyo Electron fell on fears of early Chinese buying. Panel-level packaging and glass substrates, two 先端パッケージ (sentan pakkēji, advanced packaging) formats that would need new Disco tools, are still in customer evaluation.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Disco (TSE: 6146) shows AI packaging demand still growing in logic while HBM orders take a one-quarter break, and the yen near ¥158, against a ¥151 assumption, should lift shipments above ¥150 billion. The guide puts weight on memory makers' January-March orders. Watch SK Hynix and Micron capex comments on HBM4 in the coming weeks: if HBM grinder orders do not return in early 2027, memory stays near 30% of shipments and margins stay below the July-September record.</div>
+    <div class="chart-box">
+      <div class="chart-title">Disco: Record Quarter, Flatter Guide</div>
+      <svg viewBox="0 0 860 262" xmlns="http://www.w3.org/2000/svg"><text x="10" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">DISCO QUARTERLY NET SALES AND OPERATING PROFIT, ¥BN (OCT-DEC IMPLIED BY GUIDANCE)</text><rect x="110" y="101" width="70" height="114" rx="2" fill="#818cf8"/><text x="145" y="94.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">114.3</text><rect x="190" y="166" width="70" height="49" rx="2" fill="#be185d"/><text x="225" y="160.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">49</text><text x="185" y="233" font-size="10.5" font-weight="600" fill="#3a4a6a" text-anchor="middle">Apr-Jun</text><rect x="350" y="72" width="70" height="143" rx="2" fill="#818cf8"/><text x="385" y="66.25" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">142.75</text><rect x="430" y="147" width="70" height="68" rx="2" fill="#be185d"/><text x="465" y="141.39" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">67.61</text><text x="425" y="233" font-size="10.5" font-weight="600" fill="#3a4a6a" text-anchor="middle">Jul-Sep</text><rect x="590" y="83" width="70" height="132" rx="2" fill="#818cf8" fill-opacity="0.45" stroke="#3730a3" stroke-dasharray="4 3"/><text x="625" y="76.6" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">132.4</text><rect x="670" y="157" width="70" height="58" rx="2" fill="#be185d" fill-opacity="0.45" stroke="#be185d" stroke-dasharray="4 3"/><text x="705" y="150.9" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">58.1</text><text x="665" y="233" font-size="10.5" font-weight="600" fill="#3a4a6a" text-anchor="middle">Oct-Dec (implied)</text><line x1="80" y1="215" x2="840" y2="215" stroke="#c7cbe0"/><rect x="620" y="40" width="12" height="10" fill="#818cf8"/><text x="638" y="49" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Net sales</text><rect x="710" y="40" width="12" height="10" fill="#be185d"/><text x="728" y="49" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">Operating profit</text><text x="10" y="254" font-size="10" font-weight="600" fill="#5a6a8a" text-anchor="start">Memory share of shipments: just under 40% in Jul-Sep → ~30% in Oct-Dec as HBM pauses. Gross margin 71.7% record in Jul-Sep.</text></svg>
+      <div class="chart-note">Sources: Disco Q2 results and briefing (Oct 22) via Smartkarma and BigGo Finance. Apr-Jun derived from H1 minus Q2; Oct-Dec implied from Apr-Dec guidance at ¥151/USD.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">粗利率<span class="annotation-card-en">gross margin</span></div>
+        <div class="annotation-card-body">Record 71.7% in July-September.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">HBM<span class="annotation-card-en">memory orders</span></div>
+        <div class="annotation-card-body">Memory falls to ~30% of Oct-Dec shipments.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">1-3月<span class="annotation-card-en">Jan-Mar</span></div>
+        <div class="annotation-card-body">Management cannot yet explain Q4 demand.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">83% of Economists Now Expect a December BOJ Hike as September Core CPI Is Seen Back Above 2%</div>
+    <div class="story-insight">
+      <p>A Bloomberg survey published on October 22 found that 83% of economists who follow the 日本銀行 (Nippon Ginkō, Bank of Japan) expect its next rate hike at the December 17-18 meeting. A month earlier 35% picked December and January was the most common answer. None of the respondents expect a move at the October 29-30 meeting. The share expecting a hike every three months rose to 67% from 46%, while the median forecast for the peak rate this cycle stayed at 1.75%. About two-thirds said the government has softened its resistance to higher rates. MUFG strategists said the prime minister's office probably does not welcome further hikes but will tacitly accept them for now.</p>
+      <br>
+      <p>The September national CPI is due at 8:30 a.m. Tokyo time today. A Reuters poll of 15 economists expects 生鮮食品を除く総合 (seisen shokuhin o nozoku sōgō, core CPI excluding fresh food) at 2.1%, up from 1.7% in August. That would be the first reading above the 2% target since December, after seven months below it. The index that also excludes energy is expected near 2.3% from 1.9%. Tokyo's September data, published three weeks earlier, already showed core at 2.7% and the ex-food-and-energy measure at 3.0%. Expiring electricity subsidies and energy costs tied to the Middle East conflict account for much of the rise. Reuters sources said the BOJ will likely raise its inflation forecast for next fiscal year at the October meeting.</p>
+      <br>
+      <p>The October decision will turn on wording. The BOJ has never stated that 基調的な物価上昇率 (kichōteki na bukka jōshōritsu, underlying inflation) has reached 2% since it adopted the target in 2013. Governor Ueda has said it is very close, and Deputy Governor Himino warned on October 21 about acting too late. The two September dissenters, Takaichi appointees Toichiro Asada and Ayano Sato, argued that inflation was still below target, and a 2.1% core print would weaken that argument. Standard Chartered still has January as its base case because consumption remains weak. The 1.25% policy rate already sits inside the BOJ's estimated 中立金利 (chūritsu kinri, neutral rate) range of 1.1% to 2.5%.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> If core CPI prints at 2.1% or higher and the October 30 statement says underlying inflation has reached 2%, a December hike becomes the base case for nearly everyone, which supports two-year JGB yields and gives the yen some help near ¥158. A miss driven by subsidies would leave the dissenters room to argue for January. Watch the outlook report's fiscal 2027 core forecast and whether Asada and Sato dissent again.</div>
+    <div class="chart-box">
+      <div class="chart-title">Economists Converge on December as CPI Is Seen Above 2%</div>
+      <svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg"><text x="10" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">BLOOMBERG SURVEY, % OF ECONOMISTS</text><text x="10" y="54" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="start">Next hike in December</text><rect x="10" y="60" width="105" height="12" rx="2" fill="#c7cbe0"/><text x="121" y="70" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">35% Sept</text><rect x="10" y="74" width="249" height="12" rx="2" fill="#b45309"/><text x="265" y="84" font-size="9.5" font-weight="700" fill="#1a1a2e" text-anchor="start">83% Oct</text><text x="10" y="106" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="start">Hike every 3 months</text><rect x="10" y="112" width="138" height="12" rx="2" fill="#c7cbe0"/><text x="154" y="122" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">46% Sept</text><rect x="10" y="126" width="201" height="12" rx="2" fill="#b45309"/><text x="217" y="136" font-size="9.5" font-weight="700" fill="#1a1a2e" text-anchor="start">67% Oct</text><text x="10" y="158" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="start">Hike on Oct 30</text><rect x="10" y="178" width="2" height="12" rx="2" fill="#b45309"/><text x="18" y="188" font-size="9.5" font-weight="700" fill="#1a1a2e" text-anchor="start">0% Oct</text><text x="470" y="22" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">NATIONAL CPI, % Y/Y (SEPT = REUTERS POLL)</text><line x1="470" y1="100" x2="840" y2="100" stroke="#b45309" stroke-dasharray="5 4"/><text x="842" y="104" font-size="10" font-weight="700" fill="#b45309" text-anchor="end">2%</text><rect x="500" y="112" width="50" height="68" rx="2" fill="#c7cbe0"/><text x="525" y="107.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.7</text><rect x="556" y="96" width="50" height="84" rx="2" fill="#b45309"/><text x="581" y="91.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.1</text><text x="553" y="196" font-size="10" font-weight="600" fill="#3a4a6a" text-anchor="middle">Core (ex fresh food)</text><rect x="670" y="104" width="50" height="76" rx="2" fill="#c7cbe0"/><text x="695" y="99.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.9</text><rect x="726" y="88" width="50" height="92" rx="2" fill="#b45309"/><text x="751" y="83.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.3</text><text x="723" y="196" font-size="10" font-weight="600" fill="#3a4a6a" text-anchor="middle">Ex fresh food &amp; energy</text><line x1="470" y1="180" x2="840" y2="180" stroke="#c7cbe0"/><text x="470" y="212" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Grey = August actual · amber = September forecast, due 08:30 JST Oct 23</text></svg>
+      <div class="chart-note">Sources: Bloomberg survey via investingLive (Oct 22); Reuters poll of 15 economists via investingLive (Oct 22).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">12月利上げ<span class="annotation-card-en">December hike</span></div>
+        <div class="annotation-card-body">83% of economists, up from 35%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">全国CPI<span class="annotation-card-en">national CPI</span></div>
+        <div class="annotation-card-body">Core seen 2.1% at 8:30 JST today.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">補助金<span class="annotation-card-en">subsidies</span></div>
+        <div class="annotation-card-body">Energy support distorts the print.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #146 · OCTOBER 23, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
