@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-10-22",
-    "issue": 156,
+    "updated": "2026-10-23",
+    "issue": 157,
     "title": "China AI Landscape"
   },
   "entities": [
@@ -1977,8 +1977,16 @@
       "py": "Huáwéi Shēngténg",
       "cat": "chips",
       "status": "private",
-      "desc": "China's dominant domestic AI chip ecosystem, built around the Ascend (昇腾) accelerator line. **Ascend 910C — volume inference, HBM-constrained:** Mass shipments began May 2026, targeting roughly 600,000 units in 2026 (1.6M Ascend dies overall, ~2x 2025 volume) on SMIC's enhanced 7nm process — at roughly 1/3 of Nvidia H100 BF16 throughput but favored for supply-chain sovereignty; Beijing directed major cloud providers to defer Nvidia H200 deployment to protect the Huawei ecosystem. DIGITIMES reported the 910C sold out domestically by Aug 28 despite still trailing the H200 per-chip, with buyers absorbing the gap via larger clusters. CXMT's projected 2026 HBM output (~2M stacks) supports only an estimated 250,000-300,000 units at typical configurations, making HBM supply — not SMIC wafer capacity — the binding constraint on the stated 600K target. Reuters reported Huawei raised Ascend prices 20-60% over two months as the HBM shortage bit (Sept 10): the 910C rose from ~¥90,000 to above ¥110,000, the 950PR ~30% to above ¥80,000, and the 950DT to above ¥250,000 (~$37,000); Cambricon raised prices similarly.\n\n**Ascend 950 — frontier training, ByteDance's largest chip order:** DeepSeek's V4 was natively optimized for the 950, cementing Huawei as the default domestic training platform and triggering a $5.6B ByteDance order — the largest known single AI chip purchase in China — against a 750,000-unit 2026 target. The 950 sits alongside the 910C in a roughly $12B 2026 Huawei AI chip revenue target: 950 for frontier training, 910C for volume inference deployment.\n\n**Ascend 960 roadmap accelerated three quarters (Sept 16-17):** At Huawei Connect 2026, Huawei pulled the next-gen Ascend 960DT forward from 2027 to Q1 2027 and the 960PR to Q3 2027, specifying 2x the compute, bandwidth, memory capacity, and interconnect ports of the 950 generation, built around a new 'super node' interconnect meant to rival Nvidia's NVLink at rack scale; Huawei says it will hold a one-generation-per-year cadence through the 970 (2028) and 980 (2029).\n\n**LogicFolding/Tau Scaling Law (May 2026, ISCAS):** Proprietary architecture theory targeting 1.4nm-equivalent density by 2031 using 3D chip stacking on domestic processes — a longer-horizon bet distinct from the near-term 910C/950/960 shipment story.\n\n**DeepSeek releases Ascend software stack (Sept 30, 2026):** DeepSeek open-sourced TileLang and Ascend-ready kernel and communication libraries, tuned with Huawei on a 128-chip Ascend 950 supernode. It targets CUDA switching costs, Nvidia's main lock-in in China; Huawei says Ascend will carry real training workloads in 2027. How TileLang fits with Huawei's own CANN stack is not yet clear.\n\n**Kirin 9050 Pro ships in Mate 90; Richard Yu says advanced capacity is limited (Oct 1, 2026):** The Mate 90 series went on sale on National Day (5,999 to 12,999 yuan). Premium models use the Kirin 9050 Pro, the second commercial LogicFolding chip after the Mate XT 2, at a claimed 238M transistors/mm² with 31% higher system performance and 140% higher NPU throughput on LLMs; node undisclosed, analysts place it on SMIC N+2/N+3 (7nm-class). Yu said China's advanced semiconductor capacity 'remains very limited' and called LogicFolding a workaround for restricted technology access. Kirin and Ascend draw on the same scarce SMIC advanced wafers, so phone demand competes directly with 910C/950 output. Huawei domestic phone shipments +13% Jan-Aug vs market -7%.\n\n**Qualcomm cross-license and US patent sale (Oct 5, 2026 / Issue #141):** Huawei and Qualcomm signed their first 5G patent agreement, a multi-year cross-license covering 5G, compute, AI and networking, with Qualcomm also buying a set of Huawei's US patents in compute, AI and networking pending regulatory approval. Terms undisclosed; Huawei says its licensing contracts now total more than $6.9B. Payment direction has reversed: Huawei paid Qualcomm from 2001 and settled for ~$1.8B in back royalties in 2020, and Qualcomm's old Huawei license lapsed in early FY2025. Export controls on chip and software sales to Huawei are unchanged; the patent transfer may need US scrutiny and Chinese technology-export clearance. Huawei held 165,000+ active granted patents at end-2025 and licensed Wi-Fi patents to HP in August.\n\n**IDC first-half count: 572,000 Ascend units, 28% share (Oct 13, 2026 / Issue #148):** Reuters reported IDC data showing Huawei shipped about 572,000 AI accelerators in China in H1 2026, up from just over 300,000, against Nvidia's 678,000 (34%). Total market 2.008M units; GPUs fell 26% to 991,000 while other accelerators rose ~80% to 1.016M, with Huawei, T-Head, Kunlunxin and Cambricon supplying 95% of that segment. The count does not support Eric Xu's Huawei Connect claim that Ascend had likely passed Nvidia in China, but Huawei now ships ~84 units per 100 Nvidia units vs ~25 a year earlier. Units ignore per-chip compute, and HBM supply caps output. **DeepSeek co-design and pre-training plan (Oct 19, 2026 / Issue #154):** The Information reported Huawei engineers are stationed at DeepSeek shaping future Ascend designs, DeepSeek will pre-train on the 950DT (144GB HBM, 4 TB/s) as soon as end-2026, and Huawei will give DeepSeek priority on most Q1 2027 960DT supply, leaving less for ByteDance and other buyers. Would be the first frontier-lab pre-training on Ascend; HBM supply remains the cap.",
+      "desc": "**¥15B offshore loan (#157, Oct 22, 2026):** Bloomberg reported a seven-year ¥15B (~$2.25B) offshore yuan syndicated loan from six Chinese banks incl. Bank of China, CCB and ICBC, Huawei's first offshore syndicated borrowing since a HK$11.8B facility in 2020; exploratory talks with international banks did not produce a deal. H1 2026 R&D ¥121B; memory stockpiling pushed H1 cash flow to -¥39.9B. DeepSeek plans 160K+ Ascend units in Inner Mongolia. China's dominant domestic AI chip ecosystem, built around the Ascend (昇腾) accelerator line. **Ascend 910C — volume inference, HBM-constrained:** Mass shipments began May 2026, targeting roughly 600,000 units in 2026 (1.6M Ascend dies overall, ~2x 2025 volume) on SMIC's enhanced 7nm process — at roughly 1/3 of Nvidia H100 BF16 throughput but favored for supply-chain sovereignty; Beijing directed major cloud providers to defer Nvidia H200 deployment to protect the Huawei ecosystem. DIGITIMES reported the 910C sold out domestically by Aug 28 despite still trailing the H200 per-chip, with buyers absorbing the gap via larger clusters. CXMT's projected 2026 HBM output (~2M stacks) supports only an estimated 250,000-300,000 units at typical configurations, making HBM supply — not SMIC wafer capacity — the binding constraint on the stated 600K target. Reuters reported Huawei raised Ascend prices 20-60% over two months as the HBM shortage bit (Sept 10): the 910C rose from ~¥90,000 to above ¥110,000, the 950PR ~30% to above ¥80,000, and the 950DT to above ¥250,000 (~$37,000); Cambricon raised prices similarly.\n\n**Ascend 950 — frontier training, ByteDance's largest chip order:** DeepSeek's V4 was natively optimized for the 950, cementing Huawei as the default domestic training platform and triggering a $5.6B ByteDance order — the largest known single AI chip purchase in China — against a 750,000-unit 2026 target. The 950 sits alongside the 910C in a roughly $12B 2026 Huawei AI chip revenue target: 950 for frontier training, 910C for volume inference deployment.\n\n**Ascend 960 roadmap accelerated three quarters (Sept 16-17):** At Huawei Connect 2026, Huawei pulled the next-gen Ascend 960DT forward from 2027 to Q1 2027 and the 960PR to Q3 2027, specifying 2x the compute, bandwidth, memory capacity, and interconnect ports of the 950 generation, built around a new 'super node' interconnect meant to rival Nvidia's NVLink at rack scale; Huawei says it will hold a one-generation-per-year cadence through the 970 (2028) and 980 (2029).\n\n**LogicFolding/Tau Scaling Law (May 2026, ISCAS):** Proprietary architecture theory targeting 1.4nm-equivalent density by 2031 using 3D chip stacking on domestic processes — a longer-horizon bet distinct from the near-term 910C/950/960 shipment story.\n\n**DeepSeek releases Ascend software stack (Sept 30, 2026):** DeepSeek open-sourced TileLang and Ascend-ready kernel and communication libraries, tuned with Huawei on a 128-chip Ascend 950 supernode. It targets CUDA switching costs, Nvidia's main lock-in in China; Huawei says Ascend will carry real training workloads in 2027. How TileLang fits with Huawei's own CANN stack is not yet clear.\n\n**Kirin 9050 Pro ships in Mate 90; Richard Yu says advanced capacity is limited (Oct 1, 2026):** The Mate 90 series went on sale on National Day (5,999 to 12,999 yuan). Premium models use the Kirin 9050 Pro, the second commercial LogicFolding chip after the Mate XT 2, at a claimed 238M transistors/mm² with 31% higher system performance and 140% higher NPU throughput on LLMs; node undisclosed, analysts place it on SMIC N+2/N+3 (7nm-class). Yu said China's advanced semiconductor capacity 'remains very limited' and called LogicFolding a workaround for restricted technology access. Kirin and Ascend draw on the same scarce SMIC advanced wafers, so phone demand competes directly with 910C/950 output. Huawei domestic phone shipments +13% Jan-Aug vs market -7%.\n\n**Qualcomm cross-license and US patent sale (Oct 5, 2026 / Issue #141):** Huawei and Qualcomm signed their first 5G patent agreement, a multi-year cross-license covering 5G, compute, AI and networking, with Qualcomm also buying a set of Huawei's US patents in compute, AI and networking pending regulatory approval. Terms undisclosed; Huawei says its licensing contracts now total more than $6.9B. Payment direction has reversed: Huawei paid Qualcomm from 2001 and settled for ~$1.8B in back royalties in 2020, and Qualcomm's old Huawei license lapsed in early FY2025. Export controls on chip and software sales to Huawei are unchanged; the patent transfer may need US scrutiny and Chinese technology-export clearance. Huawei held 165,000+ active granted patents at end-2025 and licensed Wi-Fi patents to HP in August.\n\n**IDC first-half count: 572,000 Ascend units, 28% share (Oct 13, 2026 / Issue #148):** Reuters reported IDC data showing Huawei shipped about 572,000 AI accelerators in China in H1 2026, up from just over 300,000, against Nvidia's 678,000 (34%). Total market 2.008M units; GPUs fell 26% to 991,000 while other accelerators rose ~80% to 1.016M, with Huawei, T-Head, Kunlunxin and Cambricon supplying 95% of that segment. The count does not support Eric Xu's Huawei Connect claim that Ascend had likely passed Nvidia in China, but Huawei now ships ~84 units per 100 Nvidia units vs ~25 a year earlier. Units ignore per-chip compute, and HBM supply caps output. **DeepSeek co-design and pre-training plan (Oct 19, 2026 / Issue #154):** The Information reported Huawei engineers are stationed at DeepSeek shaping future Ascend designs, DeepSeek will pre-train on the 950DT (144GB HBM, 4 TB/s) as soon as end-2026, and Huawei will give DeepSeek priority on most Q1 2027 960DT supply, leaving less for ByteDance and other buyers. Would be the first frontier-lab pre-training on Ascend; HBM supply remains the cap.",
       "tags": [
+        {
+          "l": "¥15B 7-yr offshore loan from six Chinese banks (Oct 22)",
+          "t": "highlight"
+        },
+        {
+          "l": "H1 cash flow -¥39.9B on memory stockpiling",
+          "t": "red"
+        },
         {
           "l": "IDC H1 2026: 572K units, 28% share vs Nvidia 34% (Oct 13)",
           "t": "highlight"
@@ -2051,7 +2059,7 @@
           "t": "red"
         }
       ],
-      "issue": "#1, #4, #13, #102, #116, #121, #135, #137, #141, #148, #154",
+      "issue": "#1, #4, #13, #102, #116, #121, #135, #137, #141, #148, #154, #157",
       "bio": "Huawei (华为, founded 1987, Shenzhen, by Ren Zhengfei 任正非) is China's largest tech company and primary domestic alternative to Nvidia for AI chips following its 2019 US Entity List designation. The Ascend (昇腾) accelerator line is designed by Huawei and manufactured at SMIC's enhanced 7nm process. Entirely employee-owned.",
       "trend": "up"
     },
@@ -4201,8 +4209,16 @@
       "py": "Zhōngyāng Huìjīn",
       "cat": "gov",
       "status": "gov",
-      "desc": "Domestic investment arm of China's sovereign wealth fund (CIC) and the anchor of the 'national team' (国家队) that buys equities to stabilize markets. July 2026: PBOC said it would provide relending to back Huijin purchases as state buyers — China Reform Holdings (国新) and China Chengtong (诚通) — deployed ≥¥60B (~$8.9B) from July 19 to halt a tech-led rout that took the STAR Market down ~25% from its July 1 high. Record inflows into tech ETFs followed. Relending-financed equity support blurs the monetary–fiscal boundary and is the mechanism to watch.",
+      "desc": "**CSI 300 bear market (#157, Oct 22, 2026):** CSI 300 closed at 4,036.30, ~20.2% below its June 22 high, heading for a 10th straight weekly loss. Huijin sold ~$231B of ETFs in H1 2026 and has reinvested only ~$43B since July; Bloomberg Intelligence estimates ~$188B capacity remains. Domestic investment arm of China's sovereign wealth fund (CIC) and the anchor of the 'national team' (国家队) that buys equities to stabilize markets. July 2026: PBOC said it would provide relending to back Huijin purchases as state buyers — China Reform Holdings (国新) and China Chengtong (诚通) — deployed ≥¥60B (~$8.9B) from July 19 to halt a tech-led rout that took the STAR Market down ~25% from its July 1 high. Record inflows into tech ETFs followed. Relending-financed equity support blurs the monetary–fiscal boundary and is the mechanism to watch.",
       "tags": [
+        {
+          "l": "Reinvested ~$43B since Jul vs ~$231B H1 ETF sales",
+          "t": "highlight"
+        },
+        {
+          "l": "CSI 300 -20.2% from June high (Oct 22)",
+          "t": "red"
+        },
         {
           "l": "Anchor of the 'national team' 国家队",
           "t": "highlight"
@@ -4220,7 +4236,7 @@
           "t": "red"
         }
       ],
-      "issue": "#64"
+      "issue": "#64, #157"
     },
     {
       "name": "CSRC",
@@ -5978,6 +5994,33 @@
         }
       ],
       "issue": "#156"
+    },
+    {
+      "name": "Today AI",
+      "zh": "此间无限",
+      "py": "Cǐjiān Wúxiàn",
+      "cat": "foundation",
+      "status": "private",
+      "desc": "Shanghai personal AI agent startup (此间无限（上海）智能科技, registered Mar 4, 2026) founded by Qi Junyuan (齐俊元), Teambition co-founder, ex-Feishu VP of product and former lead of ByteDance's Doubao PC client. Product 'Today' reads email, calendar, notes and files with permission, tracks commitments and can operate a cloud computer; global beta Sep 8, China launch Sep 24, 2026, with WeCom, Baidu Netdisk, Kingsoft Docs and Tencent Meeting integrations. **>$200M cumulative funding (#157, Oct 22, 2026)** from IDG, Tencent, 5Y Capital, Ant Group, HSG, Transsion, Tongge and SJTU Hanyuan; no valuation disclosed.",
+      "tags": [
+        {
+          "l": ">$200M cumulative funding (Oct 22)",
+          "t": "highlight"
+        },
+        {
+          "l": "Tencent and Ant both invested",
+          "t": "green"
+        },
+        {
+          "l": "Depends on platform access (WeChat, email)",
+          "t": "red"
+        },
+        {
+          "l": "No valuation or paid-user data",
+          "t": "red"
+        }
+      ],
+      "issue": "#157"
     }
   ]
 }
