@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #147 · Saturday, October 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #147 · October 24, 2026</div>
+    <div class="masthead-sub">AI-Found PHP Flaws Hit Japan · Fanuc Guides to a Record · Core CPI Tops 2%</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · PHP2SHELL</div>
+      <div class="card-num">70<span class="card-num-unit">%</span></div>
+      <div class="card-label">Share of websites running PHP, patched Oct 21 after Wiz found the flaws with AI</div>
+      <div class="card-delta delta-red">Exploit attempts in the millions</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-robotics">ROBOTICS · FANUC</div>
+      <div class="card-num">240.7<span class="card-num-unit">¥bn</span></div>
+      <div class="card-label">FY3/27 operating profit guide, up from ¥218bn; record net profit</div>
+      <div class="card-delta delta-green">+10.4% vs prior guide</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CPI</div>
+      <div class="card-num">2.4<span class="card-num-unit">%</span></div>
+      <div class="card-label">September CPI ex fresh food and energy, up from 1.9%; core at 2.1%</div>
+      <div class="card-delta delta-amber">BOJ meets Oct 29-30</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">AI-Found PHP Flaws Knock SoftBank&#x27;s Quake Alerts Offline, and METI Orders an AI Red Team for November</div>
+    <div class="story-insight">
+      <p>PHP's developers released fixes on October 21 for two critical 脆弱性 (zeijakusei, vulnerabilities) that let an attacker run code on a web server without logging in. Wiz Research found the bugs with its own Atlas tool and Google Gemini and OpenAI GPT models, reported them to PHP on August 24, and says the faulty code has sat in the language for more than a decade, back to PHP 5.4. PHP runs about 70% of the world's websites. Cloudflare chief executive Matthew Prince said exploit attempts reached the millions, and Amazon logged an attempt on its decoy servers on October 17, four days before the patch was public.</p>
+      <br>
+      <p>Japanese operators responded by switching services off. ソフトバンク (Sofutobanku, SoftBank Corp., the mobile carrier) suspended 緊急速報メール (kinkyū sokuhō mēru, emergency alert texts) to SoftBank, Y!mobile and LINEMO phones at 06:47 JST on Friday and expects to restore them by October 26, so its users will not get earthquake, tsunami or evacuation warnings by text until then. MUFG, Nomura, ANA and JR East suspended some online services, and the Ministry of Finance, the National Tax Agency and the Japan Meteorological Agency took systems offline. Nippon Paint patched and brought its site back. Officials have not confirmed any breach tied to the flaws.</p>
+      <br>
+      <p>The same day, industry minister Ryosei Akazawa said the 情報処理推進機構 (Jōhō Shori Suishin Kikō, Information-technology Promotion Agency, IPA), which reports to METI, will set up a team in November that uses AI to run 模擬攻撃 (mogi kōgeki, simulated attacks) on Japanese systems so their owners can fix weak points first. He said defenders have to think like attackers, and he cited this month's run of breaches at Japanese companies rather than PHP. Trend Micro chief executive Eva Chen told Reuters that AI translation has removed the language barrier that used to make Japanese corporate records harder to steal and use. Japan now faces AI on both sides: models found a decade-old flaw in weeks, and attackers began exploiting it within days of disclosure.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Japanese banks, carriers and ministries chose to go offline because they could not patch thousands of PHP servers in two days, and that gap between disclosure and exploitation will keep shrinking as AI tools spread. Demand for managed patching and vulnerability scanning should rise for Trend Micro (TSE: 4704) and for the system integrators that run legacy client sites, such as NTT Data and Fujitsu. Watch whether SoftBank restores alerts by October 26, whether any Japanese breach is traced to the flaws, and how much money IPA's team gets in the next extra budget.</div>
+    <div class="chart-box">
+      <div class="chart-title">From Discovery to Shutdown: The PHP2Shell Timeline</div>
+      <svg viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="100" x2="820" y2="100" stroke="#c7cbe0" stroke-width="2"/>
+<circle cx="60" cy="100" r="7" fill="#3730a3"/>
+<text x="60" y="75" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Aug 19</text>
+<text x="60" y="58" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">Wiz finds first bug</text>
+<circle cx="165" cy="100" r="7" fill="#3730a3"/>
+<text x="165" y="132" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Aug 24</text>
+<text x="165" y="149" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">Reported to PHP</text>
+<circle cx="270" cy="100" r="7" fill="#3730a3"/>
+<text x="270" y="75" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Sep 21</text>
+<text x="270" y="58" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">PHP acknowledges</text>
+<circle cx="375" cy="100" r="7" fill="#be185d"/>
+<text x="375" y="132" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 17</text>
+<text x="375" y="149" font-size="9.5" font-weight="400" fill="#be185d" text-anchor="middle">First exploit seen (Amazon)</text>
+<circle cx="480" cy="100" r="7" fill="#be185d"/>
+<text x="480" y="75" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 21</text>
+<text x="480" y="58" font-size="9.5" font-weight="400" fill="#be185d" text-anchor="middle">Patch and disclosure</text>
+<circle cx="585" cy="100" r="7" fill="#be185d"/>
+<text x="585" y="132" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 23</text>
+<text x="585" y="149" font-size="9.5" font-weight="400" fill="#be185d" text-anchor="middle">Japan shutdowns; IPA plan</text>
+<circle cx="690" cy="100" r="7" fill="#3730a3"/>
+<text x="690" y="75" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 26</text>
+<text x="690" y="58" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">SoftBank alerts back (target)</text>
+<circle cx="795" cy="100" r="7" fill="#3730a3"/>
+<text x="795" y="132" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nov</text>
+<text x="795" y="149" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">IPA AI red team starts</text>
+<text x="40" y="190" font-size="10" font-weight="600" fill="#5a6a8a" text-anchor="start">Discovery to report: 5 days · Report to patch: 58 days · First exploit to Japanese shutdowns: 6 days</text>
+</svg>
+      <div class="chart-note">Sources: Wiz Research (Oct 21); The Next Web (Oct 23); Reuters (Oct 23). IPA team start per Business+IT via The Next Web.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">脆弱性<span class="annotation-card-en">vulnerability</span></div>
+        <div class="annotation-card-body">AI found decade-old bugs in weeks.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">緊急速報メール<span class="annotation-card-en">alert texts</span></div>
+        <div class="annotation-card-body">SoftBank targets restore by Oct 26.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">侵害<span class="annotation-card-en">breach</span></div>
+        <div class="annotation-card-body">No Japanese breach confirmed yet.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · ROBOTICS</div>
+    <div class="story-headline">Fanuc Lifts Its Profit Guide 10% to a Record and Adds a ¥50 Billion Buyback as CNC Orders More Than Double</div>
+    <div class="story-insight">
+      <p>ファナック (Fanakku, Fanuc) reported after the close on October 23 that July-September 受注 (juchū, orders) reached ¥306.0 billion, 8.5% more than the ¥281.9 billion it booked in April-June. Orders in its FA division, which sells 数値制御 (sūchi seigyo, numerical control, CNC) systems and servo motors to machine tool makers, were 2.3 times the level of a year earlier. Quarterly operating profit of ¥63.2 billion came in 24% above the level its own first-half guide implied, and the operating margin rose to 26.0% from 20.6%. 経常利益 (keijō rieki, ordinary profit) rose 43.5% to ¥80.8 billion for the quarter and 38.1% to ¥149.0 billion for the half.</p>
+      <br>
+      <p>Fanuc raised its full-year operating profit forecast for the year to March 2027 to ¥240.7 billion from ¥218 billion and its ordinary profit forecast to ¥308.8 billion from ¥271.2 billion. Nikkei reported that this puts net profit up 37% at a record, the first in 12 years. The company also set an interim dividend of ¥72.54 and a 自社株買い (jisha kabu gai, share buyback) of up to 10 million shares, about 1.08% of the total, or ¥50 billion, running from October 26 to April 30. The shares closed at ¥5,946 on October 19, a third below their May high, so the buyback lands on a stock that has already de-rated.</p>
+      <br>
+      <p>The CNC surge follows Japan's machine tool industry. Orders for Japanese machine tools hit a record ¥223 billion in September as makers of AI servers, power equipment and chip tools ordered ahead, and nearly every one of those machines needs a controller and servos, which Fanuc dominates. The second half looks weaker on paper: the new guide adds only ¥10.4 billion of operating profit on ¥57.9 billion of extra sales, which implies a lower margin than the first half. In July Fanuc wrote that some customers had ordered in advance and that it could not count on that pace continuing, and the stock fell 14% the next day.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Fanuc (TSE: 6954) is earning record profits on CNC demand from AI-related capex, and its new guide of ¥240.7 billion still sits well below the roughly ¥270 billion analysts had pencilled in, with a second-half margin plan that leaves room to beat if the yen stays near ¥158. The risk is that pulled-forward orders unwind: if FA orders fall back in October-December, the 2.3x print was timing. Watch JMTBA's October machine tool orders in mid-November and Yaskawa's servo commentary for confirmation.</div>
+    <div class="chart-box">
+      <div class="chart-title">Fanuc: Orders, Guidance and Margin</div>
+      <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+<text x="10" y="20" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">QUARTERLY ORDERS, ¥BN</text>
+<text x="160" y="55" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Apr-Jun 2026</text>
+<rect x="168" y="42" width="221.1" height="18" rx="2" fill="#818cf8"/>
+<text x="395.0980392156863" y="55" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">¥281.9bn</text>
+<text x="160" y="89" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Jul-Sep 2026</text>
+<rect x="168" y="76" width="240.0" height="18" rx="2" fill="#0e7490"/>
+<text x="414.0" y="89" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">¥306.0bn (+8.5% QoQ)</text>
+<text x="10" y="130" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">FY3/27 OPERATING PROFIT, ¥BN</text>
+<text x="160" y="165" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Guide (July)</text>
+<rect x="168" y="152" width="193.7" height="18" rx="2" fill="#818cf8"/>
+<text x="367.70603480192517" y="165" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">¥218.0bn</text>
+<text x="160" y="199" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Guide (Oct 23)</text>
+<rect x="168" y="186" width="213.9" height="18" rx="2" fill="#0e7490"/>
+<text x="387.87634209552016" y="199" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">¥240.7bn (+10.4%)</text>
+<text x="160" y="233" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Analyst view</text>
+<rect x="168" y="220" width="240.0" height="18" rx="2" fill="#c7cbe0"/>
+<text x="414.0" y="233" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">¥270.1bn</text>
+<text x="530" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">Q2 OPERATING MARGIN</text>
+<rect x="560" y="86" width="70" height="124" rx="2" fill="#818cf8"/>
+<text x="595" y="80.39999999999999" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">20.6%</text>
+<text x="595" y="226" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Jul-Sep 2025</text>
+<rect x="680" y="54" width="70" height="156" rx="2" fill="#0e7490"/>
+<text x="715" y="48.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">26.0%</text>
+<text x="715" y="226" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Jul-Sep 2026</text>
+<line x1="540" y1="210" x2="820" y2="210" stroke="#c7cbe0"/>
+<text x="530" y="262" font-size="10" font-weight="600" fill="#0e7490" text-anchor="start">FA (CNC) orders: 2.3x year-earlier · Buyback up to ¥50bn</text>
+</svg>
+      <div class="chart-note">Sources: Fanuc Q1 and Q2 results; Smartkarma (Oct 23) for implied plan and analyst view; JKN (Oct 23).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">受注<span class="annotation-card-en">orders</span></div>
+        <div class="annotation-card-body">¥306bn; FA orders 2.3x YoY.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">工作機械<span class="annotation-card-en">machine tools</span></div>
+        <div class="annotation-card-body">JMTBA October orders, mid-Nov.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">先行発注<span class="annotation-card-en">advance orders</span></div>
+        <div class="annotation-card-body">Pull-forward could unwind in 2H.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO · BOJ</div>
+    <div class="story-headline">September Core CPI Rises to 2.1% and the Measure Without Energy Jumps to 2.4%, a Week Before the BOJ Meets</div>
+    <div class="story-insight">
+      <p>Japan's nationwide 消費者物価指数 (shōhisha bukka shisū, consumer price index) excluding fresh food rose 2.1% in September from a year earlier, up from 1.7% in August and in line with forecasts. It is the first reading above the Bank of Japan's 2% target in nine months. Headline inflation also came in at 2.1%, from 1.9%. The 生鮮食品及びエネルギーを除く総合 (seisen shokuhin oyobi enerugī o nozoku sōgō, CPI excluding fresh food and energy) rose to 2.4% from 1.9%, above the 2.3% consensus. Goods prices rose 2.8% and services 1.5%, up from 2.6% and 1.2%.</p>
+      <br>
+      <p>Fuel costs rose because the Middle East conflict keeps oil above $110 a barrel, the yen near ¥158 makes imports dearer, and AI-related demand is lifting prices for some goods. Those forces outweighed the government's fuel subsidies. Services matter most to the BOJ because companies are passing higher wages through to customers, and 価格転嫁 (kakaku tenka, price pass-through) in services is what the bank needs to see before it calls inflation self-sustaining. The jump in the ex-energy measure means the rise cannot be put down to oil alone.</p>
+      <br>
+      <p>The BOJ meets on October 29-30 with its policy rate at 1.25%. Reuters sources expect no change, a higher inflation forecast in the outlook report, and possibly a statement that underlying inflation has probably reached 2%, which the bank has never said since adopting the target. Governor Ueda said last week that the bank will not accept an overshoot. The government is moving more slowly: economy minister Minoru Kiuchi said the conditions for declaring デフレ脱却 (defure dakkyaku, an exit from deflation) have not yet been met. Masato Koike of Sompo Institute Plus expects a December hike and argues prices are not accelerating fast enough to justify October. The September print also weakens the case of the two dissenters, Toichiro Asada and Ayano Sato, who argued last month that inflation was still below target.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A 2.4% ex-energy reading gives the BOJ the data to say underlying inflation has reached 2% on October 30, which would make a December hike the base case and support two-year JGB yields and the yen near ¥158. Kiuchi's comment shows the Takaichi government is not ready to say deflation is over, and that gap is the political risk to a December move. Watch the outlook report's fiscal 2027 core forecast, Tokyo's October CPI on the morning of October 30, and whether Asada and Sato dissent again.</div>
+    <div class="chart-box">
+      <div class="chart-title">September National CPI vs August, % YoY</div>
+      <svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="210" x2="840" y2="210" stroke="#e8eaf2"/>
+<text x="50" y="214" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">0%</text>
+<line x1="60" y1="155" x2="840" y2="155" stroke="#e8eaf2"/>
+<text x="50" y="159" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">1%</text>
+<line x1="60" y1="100" x2="840" y2="100" stroke="#e8eaf2"/>
+<text x="50" y="104" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">2%</text>
+<line x1="60" y1="45" x2="840" y2="45" stroke="#e8eaf2"/>
+<text x="50" y="49" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">3%</text>
+<line x1="60" y1="100" x2="840" y2="100" stroke="#b45309" stroke-dasharray="5,4" stroke-width="1.5"/>
+<text x="838" y="94" font-size="10" font-weight="700" fill="#b45309" text-anchor="end">BOJ 2% target</text>
+<rect x="100" y="106" width="38" height="104" rx="2" fill="#c7cbe0"/>
+<text x="119" y="100.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.9%</text>
+<rect x="144" y="94" width="38" height="116" rx="2" fill="#818cf8"/>
+<text x="163" y="89.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.1%</text>
+<text x="141" y="230" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">Headline</text>
+<rect x="250" y="116" width="38" height="94" rx="2" fill="#c7cbe0"/>
+<text x="269" y="111.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.7%</text>
+<rect x="294" y="94" width="38" height="116" rx="2" fill="#818cf8"/>
+<text x="313" y="89.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.1%</text>
+<text x="291" y="230" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">Core (ex fresh food)</text>
+<rect x="400" y="106" width="38" height="104" rx="2" fill="#c7cbe0"/>
+<text x="419" y="100.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.9%</text>
+<rect x="444" y="78" width="38" height="132" rx="2" fill="#3730a3"/>
+<text x="463" y="73.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.4%</text>
+<text x="441" y="230" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">Core-core (ex food, energy)</text>
+<rect x="550" y="67" width="38" height="143" rx="2" fill="#c7cbe0"/>
+<text x="569" y="62.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.6%</text>
+<rect x="594" y="56" width="38" height="154" rx="2" fill="#818cf8"/>
+<text x="613" y="51.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.8%</text>
+<text x="591" y="230" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">Goods</text>
+<rect x="700" y="144" width="38" height="66" rx="2" fill="#c7cbe0"/>
+<text x="719" y="139.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.2%</text>
+<rect x="744" y="128" width="38" height="82" rx="2" fill="#818cf8"/>
+<text x="763" y="122.5" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.5%</text>
+<text x="741" y="230" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">Services</text>
+<text x="60" y="252" font-size="10" font-weight="600" fill="#3730a3" text-anchor="start">Grey = August · Indigo = September. Core-core beat the 2.3% consensus.</text>
+</svg>
+      <div class="chart-note">Sources: Statistics Bureau via Reuters, IndexBox and Gotrade (Oct 23).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">コアコア<span class="annotation-card-en">core-core</span></div>
+        <div class="annotation-card-body">2.4%, above the 2.3% forecast.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">展望レポート<span class="annotation-card-en">outlook report</span></div>
+        <div class="annotation-card-body">Oct 30 wording on underlying 2%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">デフレ脱却<span class="annotation-card-en">deflation exit</span></div>
+        <div class="annotation-card-body">Kiuchi says conditions not met.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #147 · OCTOBER 24, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
