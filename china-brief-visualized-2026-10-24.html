@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #158 · October 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #158 · October 24, 2026</div>
+    <div class="masthead-sub">DeepSeek Nears a ¥100B Round · Moonshot Ships Kimi K3.1 Pro · NDRC Rewrites Outbound Investment Rules</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · FUNDING</div>
+      <div class="card-num">¥100B<span class="card-num-unit">~$15B</span></div>
+      <div class="card-label">DeepSeek round nearing close, with CATL and Tencent among the largest investors; target raised from ¥50B and ¥80B</div>
+      <div class="card-delta delta-amber">~75x run rate at ¥500B</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">65.7%<span class="card-num-unit">Terminal-Bench 4.0</span></div>
+      <div class="card-label">Kimi K3.1 Pro, self-reported, against 66.4% for Claude Opus 5.5 and 58.2% for GPT-6 Astra</div>
+      <div class="card-delta delta-amber">Open weights due Nov 4</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · POLICY</div>
+      <div class="card-num">76<span class="card-num-unit">articles</span></div>
+      <div class="card-label">NDRC Outbound Investment Measures, Order No. 49, replacing the 2017 rules and covering individuals, technology and data</div>
+      <div class="card-delta delta-red">Effective Dec 1</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · FUNDING</div>
+    <div class="story-headline">DeepSeek Nears a ¥100 Billion Round Led by Tencent and CATL After Raising Its Target Twice, as It Prepares a STAR Market Listing</div>
+    <div class="story-insight">
+      <p>Bloomberg and Reuters reported on October 22 that DeepSeek is finalizing about ¥100B, with CATL and Tencent among the biggest backers. The target opened at ¥50B and was raised to ¥80B. No final valuation is public; CNBC reported about ¥500B sought, and said individual private funds were turned away.</p>
+      <br>
+      <p>DeepSeek has hired CITIC Securities for a STAR listing, named an ex-Hillhouse CFO, and reports a $1B revenue run rate. The June round raised ¥50B at ¥350B to ¥400B post-money, so most of the extra demand went into size.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> An all-mainland round at a reported ¥500B target leaves foreign institutions to meet DeepSeek at the STAR listing, which must price above about ¥600B for this round to profit while the STAR 50 sits about 40% below its peak.</div>
+    <div class="chart-box">
+      <div class="chart-title">How the Round Grew, and What Investors Are Paying</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">ROUND SIZE, ¥ BILLION</text><line x1="260" y1="30" x2="260" y2="134" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" font-weight="700" fill="#1a1a2e">Opening target</text><rect x="260" y="36" width="200" height="18" fill="#9a8a7a"/><text x="468" y="49" font-size="11" font-weight="700" fill="#9a8a7a">50</text><text x="30" y="81" font-size="12" font-weight="700" fill="#1a1a2e">First increase</text><rect x="260" y="68" width="320" height="18" fill="#b45309"/><text x="588" y="81" font-size="11" font-weight="700" fill="#b45309">80</text><text x="30" y="113" font-size="12" font-weight="700" fill="#1a1a2e">Reported close (Oct 22)</text><rect x="260" y="100" width="400" height="18" fill="#c0392b"/><text x="668" y="113" font-size="11" font-weight="700" fill="#c0392b">~100 · CATL, Tencent lead</text><text x="30" y="170" font-size="11" font-weight="700" fill="#5a6a8a">VALUATION, ¥ BILLION</text><line x1="260" y1="180" x2="260" y2="252" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="199" font-size="12" fill="#1a1a2e">June round post-money</text><rect x="260" y="186" width="280" height="18" fill="#9a8a7a"/><rect x="540" y="186" width="40" height="18" fill="#9a8a7a" opacity="0.45"/><text x="588" y="199" font-size="11" font-weight="700" fill="#9a8a7a">350 to 400</text><text x="30" y="231" font-size="12" font-weight="700" fill="#1a1a2e">Sought now (CNBC, Oct 6)</text><rect x="260" y="218" width="400" height="18" fill="#c0392b"/><text x="668" y="231" font-size="11" font-weight="700" fill="#c0392b">~500 · ~75x $1B run rate</text><text x="30" y="300" font-size="10" fill="#5a6a8a">Sources: Bloomberg, Reuters via China Daily (Oct 22, 2026); CNBC (Oct 6); earlier Reuters reporting on June round. Top scale 4px per ¥1B; bottom 0.8px per ¥1B. Final valuation not reported.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STRATEGIC MONEY</div>
+        <div class="annotation-card-zh">宁德时代<span class="annotation-card-en">Níngdé Shídài · CATL</span></div>
+        <div class="annotation-card-body">Storage and cloud partners buy access as well as equity.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LISTING</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàngbǎn · STAR Market</span></div>
+        <div class="annotation-card-body">Final valuation and a CSRC filing date.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MULTIPLE</div>
+        <div class="annotation-card-zh">估值<span class="annotation-card-en">gūzhí · valuation</span></div>
+        <div class="annotation-card-body">75x revenue while weights stay MIT-licensed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · MODELS</div>
+    <div class="story-headline">Moonshot Releases Kimi K3.1 Pro, Scoring 65.7% on Terminal-Bench 4.0 Against Claude Opus 5.5's 66.4%, and Says It Stripped Hacking Data Before a November 4 Weight Release</div>
+    <div class="story-insight">
+      <p>Kimi K3.1 Pro went live on October 23 in Moonshot's apps, Kimi Code and the API, with a faster Highspeed variant. It builds on the roughly 3T-parameter K3, keeps a 1M-token context, and claims a hallucination rate of 8.3% against 23.4% for K3. Weights are due by November 4.</p>
+      <br>
+      <p>Moonshot says removing cyberattack data cut its exploit score to 81.0% from 90.5% for an unfiltered checkpoint. The release targets finance and coding work as Moonshot's ARR nears $1B ahead of a Hong Kong IPO of up to $5B.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> K3.1 Pro's self-reported coding score sits within a point of Claude Opus 5.5, but open weights cap Moonshot's API pricing ahead of its IPO, and an 81% exploit score will not end US scrutiny of Chinese open-weight releases.</div>
+    <div class="chart-box">
+      <div class="chart-title">Coding Score and the Cyber Trim, Company-Reported</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">TERMINAL-BENCH 4.0, %</text><line x1="240" y1="30" x2="240" y2="134" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">Claude Opus 5.5</text><rect x="240" y="36" width="332" height="18" fill="#5a6a8a"/><text x="580" y="49" font-size="11" font-weight="700" fill="#5a6a8a">66.4</text><text x="30" y="81" font-size="12" font-weight="700" fill="#1a1a2e">Kimi K3.1 Pro</text><rect x="240" y="68" width="328" height="18" fill="#c0392b"/><text x="576" y="81" font-size="11" font-weight="700" fill="#c0392b">65.7</text><text x="30" y="113" font-size="12" fill="#1a1a2e">GPT-6 Astra</text><rect x="240" y="100" width="291" height="18" fill="#9a8a7a"/><text x="539" y="113" font-size="11" font-weight="700" fill="#9a8a7a">58.2</text><text x="30" y="166" font-size="11" font-weight="700" fill="#5a6a8a">IN-HOUSE EXPLOIT TEST (XDEV-BENCH-HARD), % SOLVED</text><line x1="240" y1="176" x2="240" y2="312" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="195" font-size="12" fill="#1a1a2e">K3.1 checkpoint, no cuts</text><rect x="240" y="182" width="362" height="18" fill="#9a8a7a"/><text x="610" y="195" font-size="11" font-weight="700" fill="#9a8a7a">90.5</text><text x="30" y="227" font-size="12" fill="#1a1a2e">DeepSeek V4.1-Flash</text><rect x="240" y="214" width="343" height="18" fill="#5a6a8a"/><text x="591" y="227" font-size="11" font-weight="700" fill="#5a6a8a">85.7</text><text x="30" y="259" font-size="12" font-weight="700" fill="#1a1a2e">K3.1 Pro (released)</text><rect x="240" y="246" width="324" height="18" fill="#c0392b"/><text x="572" y="259" font-size="11" font-weight="700" fill="#c0392b">81.0 · weights by Nov 4</text><text x="30" y="291" font-size="12" fill="#1a1a2e">Kimi K3 (July)</text><rect x="240" y="278" width="133" height="18" fill="#b45309"/><text x="381" y="291" font-size="11" font-weight="700" fill="#b45309">33.3</text><text x="30" y="332" font-size="10" fill="#5a6a8a">Sources: Moonshot AI via The Next Web, Unite.AI (Oct 23, 2026). All figures self-reported, not independently verified. Scales 5px and 4px per point.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CAPABILITY</div>
+        <div class="annotation-card-zh">混合专家<span class="annotation-card-en">hùnhé zhuānjiā · mixture-of-experts</span></div>
+        <div class="annotation-card-body">Post-training lifts K3 near the frontier on coding.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RELEASE</div>
+        <div class="annotation-card-zh">开源权重<span class="annotation-card-en">kāiyuán quánzhòng · open weights</span></div>
+        <div class="annotation-card-body">Nov 4 weights, licence terms, outside benchmarks.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · US SCRUTINY</div>
+        <div class="annotation-card-zh">漏洞利用<span class="annotation-card-en">lòudòng lìyòng · exploit</span></div>
+        <div class="annotation-card-body">Four in five exploit tasks still solved.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · POLICY</div>
+    <div class="story-headline">NDRC Replaces Its 2017 Outbound Investment Rules From December 1, Counting Technology and Data as Investment and Bringing Individuals Into Scope</div>
+    <div class="story-insight">
+      <p>NDRC Order No. 49, published October 22, keeps approval for sensitive countries and sectors and filing for the rest, with deals of $300M or more by local investors filed in Beijing. Portfolio channels such as QDII and Stock Connect are untouched.</p>
+      <br>
+      <p>The new rules cover individuals, count technology, IP and data as investment, cover round-trip deals, and extend security review to sales of overseas assets. They implement State Council regulations in force since July 1.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> From December 1, moving AI models, code or data into an offshore entity counts as outbound investment that needs a Chinese filing, which adds seller-side approval risk to any cross-border deal for a China-origin AI team.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Outbound Book the New Rules Govern</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">OUTBOUND INVESTMENT FLOW, US$ BILLION</text><line x1="240" y1="30" x2="240" y2="134" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">2017 (old rules issued)</text><rect x="240" y="36" width="285" height="18" fill="#9a8a7a"/><text x="533" y="49" font-size="11" font-weight="700" fill="#9a8a7a">158.3</text><text x="30" y="81" font-size="12" font-weight="700" fill="#1a1a2e">2025</text><rect x="240" y="68" width="384" height="18" fill="#c0392b"/><text x="632" y="81" font-size="11" font-weight="700" fill="#c0392b">213.6</text><text x="30" y="113" font-size="12" fill="#1a1a2e">2026 Q1 to Q3 (ODI, MOFCOM)</text><rect x="240" y="100" width="232" height="18" fill="#b45309"/><text x="480" y="113" font-size="11" font-weight="700" fill="#b45309">128.6</text><text x="30" y="166" font-size="11" font-weight="700" fill="#5a6a8a">OUTBOUND INVESTMENT STOCK, US$ TRILLION</text><line x1="240" y1="176" x2="240" y2="248" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="195" font-size="12" fill="#1a1a2e">2017</text><rect x="240" y="182" width="198" height="18" fill="#9a8a7a"/><text x="446" y="195" font-size="11" font-weight="700" fill="#9a8a7a">1.8</text><text x="30" y="227" font-size="12" font-weight="700" fill="#1a1a2e">2025</text><rect x="240" y="214" width="374" height="18" fill="#c0392b"/><text x="622" y="227" font-size="11" font-weight="700" fill="#c0392b">3.4 · rules effective Dec 1, 2026</text><text x="30" y="284" font-size="10" fill="#5a6a8a">Sources: NDRC via Global Times, 21st Century Business Herald (Oct 22, 2026); MOFCOM. Top scale 1.8px per $1B; bottom 110px per $1T.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CODIFIED</div>
+        <div class="annotation-card-zh">对外投资管理办法<span class="annotation-card-en">Duìwài Tóuzī Guǎnlǐ Bànfǎ · Outbound Investment Measures</span></div>
+        <div class="annotation-card-body">Tech and data contributions now count as investment.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · GUIDANCE</div>
+        <div class="annotation-card-zh">备案<span class="annotation-card-en">bèi'àn · filing</span></div>
+        <div class="annotation-card-body">Filing forms before Dec 1; first individual case.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEAL FRICTION</div>
+        <div class="annotation-card-zh">安全审查<span class="annotation-card-en">ānquán shěnchá · security review</span></div>
+        <div class="annotation-card-body">Seller-side review for China-origin AI teams.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #158 · OCTOBER 24, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
