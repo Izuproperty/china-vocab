@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #159 · October 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #159 · October 25, 2026</div>
+    <div class="masthead-sub">Cambricon's Q3 Inventory Build · Unitree Moves Its Timeline to 2028 · Land Revenue Falls 27.9%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">¥11.66B<span class="card-num-unit">inventory</span></div>
+      <div class="card-label">Cambricon stock at end-September, up ¥3.42B in a quarter with ¥3.53B of revenue</div>
+      <div class="card-delta delta-red">Cash down to ¥555M</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">2028<span class="card-num-unit">target year</span></div>
+      <div class="card-label">Wang Xingxing's new date for humanoids completing 80% of voice-given tasks, against ~10 years in August</div>
+      <div class="card-delta delta-amber">No outside benchmark</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · FISCAL</div>
+      <div class="card-num">−27.9%<span class="card-num-unit">land sales</span></div>
+      <div class="card-label">Land-sale revenue to ¥1.61T in Jan to Sep, while tax rose 6.1% and budget spending only 1%</div>
+      <div class="card-delta delta-amber">Special bonds at 81% of quota</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS</div>
+    <div class="story-headline">Cambricon Doubles Q3 Revenue to ¥3.53 Billion but Misses Forecasts, While Inventory Climbs to ¥11.66 Billion and Cash Falls to ¥555 Million</div>
+    <div class="story-insight">
+      <p>Cambricon's Q3 revenue rose 104.5% to ¥3.53B and net profit 147.7% to ¥1.40B, filed after the close on October 23. Bloomberg said sales missed projections because of production bottlenecks and tight HBM supply. The ¥13.5B full-year target needs about ¥3.97B in Q4.</p>
+      <br>
+      <p>Inventory rose ¥3.42B in the quarter to ¥11.66B, notes payable reached ¥4.97B from ¥351M at the start of the year, and supplier prepayments hit ¥3.04B. Cash fell to ¥555M and Q3 operating cash flow was negative ¥84M.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Cambricon is locking up SMIC wafers and HBM ahead of demand, so the risk now sits in working capital: about eight quarters of cost of sales in stock, ¥555M of cash, and ¥4.97B of bills that banks need to keep rolling.</div>
+    <div class="chart-box">
+      <div class="chart-title">Inventory Build Against Cash and Bills</div>
+      <svg viewBox="0 0 820 382" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CAMBRICON INVENTORY, ¥ BILLION</text><line x1="240" y1="30" x2="240" y2="166" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">End-2025</text><rect x="240" y="36" width="188" height="18" fill="#9a8a7a"/><text x="436" y="49" font-size="11" font-weight="700" fill="#9a8a7a">4.94</text><text x="30" y="81" font-size="12" fill="#1a1a2e">End-March</text><rect x="240" y="68" width="171" height="18" fill="#9a8a7a"/><text x="419" y="81" font-size="11" font-weight="700" fill="#9a8a7a">4.50</text><text x="30" y="113" font-size="12" fill="#1a1a2e">End-June</text><rect x="240" y="100" width="314" height="18" fill="#b45309"/><text x="562" y="113" font-size="11" font-weight="700" fill="#b45309">8.25</text><text x="30" y="145" font-size="12" font-weight="700" fill="#1a1a2e">End-September</text><rect x="240" y="132" width="443" height="18" fill="#c0392b"/><text x="691" y="145" font-size="11" font-weight="700" fill="#c0392b">11.66 · +3.42 in Q3</text><text x="30" y="196" font-size="11" font-weight="700" fill="#5a6a8a">FLOWS AND OBLIGATIONS, ¥ BILLION</text><line x1="240" y1="206" x2="240" y2="342" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="225" font-size="12" fill="#1a1a2e">Q3 revenue (actual)</text><rect x="240" y="212" width="212" height="18" fill="#5a6a8a"/><text x="460" y="225" font-size="11" font-weight="700" fill="#5a6a8a">3.53</text><text x="30" y="257" font-size="12" font-weight="700" fill="#1a1a2e">Q4 needed for ¥13.5B target</text><rect x="240" y="244" width="238" height="18" fill="#b45309"/><text x="486" y="257" font-size="11" font-weight="700" fill="#b45309">3.97</text><text x="30" y="289" font-size="12" fill="#1a1a2e">Cash on hand, end-Sep</text><rect x="240" y="276" width="33" height="18" fill="#c0392b"/><text x="281" y="289" font-size="11" font-weight="700" fill="#c0392b">0.555</text><text x="30" y="321" font-size="12" font-weight="700" fill="#1a1a2e">Notes payable, end-Sep</text><rect x="240" y="308" width="298" height="18" fill="#c0392b"/><text x="546" y="321" font-size="11" font-weight="700" fill="#c0392b">4.97 · vs 0.351 at end-2025</text><text x="30" y="370" font-size="10" fill="#5a6a8a">Sources: Cambricon Q3 report (Oct 23, 2026) via China AI Dispatch; Bloomberg. Q4 need = ¥13.5B target minus ¥9.53B nine-month revenue. Scales 38px and 60px per ¥1B.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND</div>
+        <div class="annotation-card-zh">国产替代<span class="annotation-card-en">guóchǎn tìdài · domestic substitution</span></div>
+        <div class="annotation-card-body">Revenue still doubling with ~59% gross margin.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · Q4</div>
+        <div class="annotation-card-zh">存货<span class="annotation-card-en">cúnhuò · inventory</span></div>
+        <div class="annotation-card-body">¥3.97B Q4 sales needed; does stock start falling?</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LIQUIDITY</div>
+        <div class="annotation-card-zh">应付票据<span class="annotation-card-en">yìngfù piàojù · notes payable</span></div>
+        <div class="annotation-card-body">¥4.97B of bills against ¥555M cash.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">Unitree's Wang Xingxing Pulls His Humanoid Timeline Forward to 2028, Two Months After Saying Mass Use Could Take a Decade</div>
+    <div class="story-insight">
+      <p>Wang Xingxing said on October 23 in Hangzhou that humanoids could complete 80% of voice-given tasks in factories and homes as soon as 2028, a day after telling CMG a breakthrough could come in 2027. In August he put mass use about ten years out.</p>
+      <br>
+      <p>He named Unitree Rehearsal, where AI agents read papers, write control code and test it in simulation before real trials, as the year's top project. Digitimes puts cumulative G1 output at 10,000 to 20,000 units; Bloomberg says the shares sit about 25% below their August peak.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A listed founder cutting his sector's horizon from ten years to two supports volume-based valuations, but the claim has no task definition or outside benchmark, and it lands as CAICT warns of a bubble and regulators slow humanoid IPOs.</div>
+    <div class="chart-box">
+      <div class="chart-title">How Wang's Forecast Moved in Two Months</div>
+      <svg viewBox="0 0 820 322" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">WANG XINGXING'S STATED HORIZON, BY DATE SAID</text><line x1="260" y1="34" x2="260" y2="150" stroke="#e0d8d0" stroke-width="1"/><text x="260" y="166" font-size="10" fill="#5a6a8a" text-anchor="middle">2026</text><line x1="360" y1="34" x2="360" y2="150" stroke="#e0d8d0" stroke-width="1"/><text x="360" y="166" font-size="10" fill="#5a6a8a" text-anchor="middle">2028</text><line x1="460" y1="34" x2="460" y2="150" stroke="#e0d8d0" stroke-width="1"/><text x="460" y="166" font-size="10" fill="#5a6a8a" text-anchor="middle">2030</text><line x1="560" y1="34" x2="560" y2="150" stroke="#e0d8d0" stroke-width="1"/><text x="560" y="166" font-size="10" fill="#5a6a8a" text-anchor="middle">2032</text><line x1="660" y1="34" x2="660" y2="150" stroke="#e0d8d0" stroke-width="1"/><text x="660" y="166" font-size="10" fill="#5a6a8a" text-anchor="middle">2034</text><line x1="760" y1="34" x2="760" y2="150" stroke="#e0d8d0" stroke-width="1"/><text x="760" y="166" font-size="10" fill="#5a6a8a" text-anchor="middle">2036</text><text x="30" y="55" font-size="12" font-weight="700" fill="#1a1a2e">Aug 2026 · World Robot Conf.</text><rect x="260" y="42" width="500" height="18" fill="#9a8a7a"/><text x="268" y="55" font-size="11" font-weight="700" fill="#ffffff">~10 yrs to mass use</text><text x="30" y="91" font-size="12" font-weight="700" fill="#1a1a2e">Oct 22 · CMG interview</text><rect x="260" y="78" width="50" height="18" fill="#b45309"/><text x="318" y="91" font-size="11" font-weight="700" fill="#b45309">breakthrough as early as 2027</text><text x="30" y="127" font-size="12" font-weight="700" fill="#1a1a2e">Oct 23 · Hangzhou conference</text><rect x="260" y="114" width="100" height="18" fill="#c0392b"/><text x="368" y="127" font-size="11" font-weight="700" fill="#c0392b">80% of voice tasks by 2028</text><text x="30" y="200" font-size="11" font-weight="700" fill="#5a6a8a">UNITREE G1 HUMANOID, CUMULATIVE UNITS (THOUSANDS)</text><line x1="260" y1="210" x2="260" y2="282" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="229" font-size="12" fill="#1a1a2e">G1 cumulative output, low</text><rect x="260" y="216" width="150" height="18" fill="#9a8a7a"/><text x="418" y="229" font-size="11" font-weight="700" fill="#9a8a7a">10,000</text><text x="30" y="261" font-size="12" font-weight="700" fill="#1a1a2e">G1 cumulative output, high</text><rect x="260" y="248" width="300" height="18" fill="#c0392b"/><text x="568" y="261" font-size="11" font-weight="700" fill="#c0392b">20,000 units (Digitimes)</text><text x="30" y="310" font-size="10" fill="#5a6a8a">Sources: Bloomberg, The Next Web (Oct 23, 2026); CGTN (Oct 23); Digitimes (Oct 22). Timeline 50px per year from 2026; bottom scale 15px per 1,000 units.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SOFTWARE</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+        <div class="annotation-card-body">Frontier models shortened the founder's own timeline.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RESULTS</div>
+        <div class="annotation-card-zh">宇树科技<span class="annotation-card-en">Yǔshù Kējì · Unitree Robotics</span></div>
+        <div class="annotation-card-body">Q3 results and the industrial share of revenue.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · HYPE</div>
+        <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+        <div class="annotation-card-body">No benchmark for the 80% claim; hardware cost unchanged.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · FISCAL</div>
+    <div class="story-headline">Land-Sale Revenue Falls 27.9% in Nine Months as Tax Receipts Grow 6.1%, While Budget Spending Rises Only 1% and Local Bond Sales Reach 81% of Quota</div>
+    <div class="story-insight">
+      <p>MOF data for January to September show general budget revenue up 5.1% to ¥17.23T and tax up 6.1%, while spending rose 1% to ¥21.02T. Land-sale revenue fell 27.9% to ¥1.61T and fund-budget revenue 18.6%.</p>
+      <br>
+      <p>Local governments issued ¥3.56T of new special bonds, 81% of quota, and ¥1.90T of debt-swap bonds. ¥550B of unused quota is in use for Q4, and ¥300B of special bonds for bank recapitalization is planned this quarter.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Taxes are growing six times faster than general spending, so the budget is tighter than the deficit suggests, and Q4 bond supply (remaining quota, ¥550B and ¥300B for banks) lands while the PBOC eases liquidity rather than cutting rates.</div>
+    <div class="chart-box">
+      <div class="chart-title">Where the Revenue Grew and Where It Fell</div>
+      <svg viewBox="0 0 820 384" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">JAN TO SEP 2026, % CHANGE YEAR ON YEAR</text><line x1="470" y1="30" x2="470" y2="344" stroke="#1a1a2e" stroke-width="1.5"/><text x="462" y="49" font-size="12" fill="#1a1a2e" text-anchor="end">Individual income tax</text><rect x="470" y="36" width="113" height="18" fill="#166534"/><text x="591" y="49" font-size="11" font-weight="700" fill="#166534">+14.1</text><text x="462" y="77" font-size="12" fill="#1a1a2e" text-anchor="end">Import VAT & consumption tax</text><rect x="470" y="64" width="102" height="18" fill="#166534"/><text x="580" y="77" font-size="11" font-weight="700" fill="#166534">+12.7</text><text x="462" y="105" font-size="12" fill="#1a1a2e" text-anchor="end">Corporate income tax</text><rect x="470" y="92" width="57" height="18" fill="#166534"/><text x="535" y="105" font-size="11" font-weight="700" fill="#166534">+7.1</text><text x="462" y="133" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">Tax revenue</text><rect x="470" y="120" width="49" height="18" fill="#166534"/><text x="527" y="133" font-size="11" font-weight="700" fill="#166534">+6.1</text><text x="462" y="161" font-size="12" fill="#1a1a2e" text-anchor="end">General budget revenue</text><rect x="470" y="148" width="41" height="18" fill="#166534"/><text x="519" y="161" font-size="11" font-weight="700" fill="#166534">+5.1</text><text x="462" y="189" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">General budget spending</text><rect x="470" y="176" width="8" height="18" fill="#b45309"/><text x="486" y="189" font-size="11" font-weight="700" fill="#b45309">+1.0</text><text x="462" y="217" font-size="12" fill="#1a1a2e" text-anchor="end">Local budget spending</text><rect x="470" y="204" width="2" height="18" fill="#b45309"/><text x="480" y="217" font-size="11" font-weight="700" fill="#b45309">+0.2</text><rect x="437" y="232" width="33" height="18" fill="#c0392b"/><text x="429" y="245" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">-4.1</text><text x="478" y="245" font-size="12" fill="#1a1a2e">Consumption tax</text><rect x="340" y="260" width="130" height="18" fill="#c0392b"/><text x="332" y="273" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">-16.2</text><text x="478" y="273" font-size="12" fill="#1a1a2e">Fund budget spending</text><rect x="321" y="288" width="149" height="18" fill="#c0392b"/><text x="313" y="301" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">-18.6</text><text x="478" y="301" font-size="12" fill="#1a1a2e">Fund budget revenue</text><rect x="247" y="316" width="223" height="18" fill="#c0392b"/><text x="239" y="329" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">-27.9</text><text x="478" y="329" font-size="12" font-weight="700" fill="#1a1a2e">Land-sale revenue</text><text x="30" y="372" font-size="10" fill="#5a6a8a">Source: Ministry of Finance press conference transcript (Oct 23, 2026). Scale 8px per percentage point.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TAX</div>
+        <div class="annotation-card-zh">一般公共预算<span class="annotation-card-en">yībān gōnggòng yùsuàn · general public budget</span></div>
+        <div class="annotation-card-body">Tax +6.1%, income tax +14.1%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUPPLY</div>
+        <div class="annotation-card-zh">结存限额<span class="annotation-card-en">jiécún xiàn'é · unused debt quota</span></div>
+        <div class="annotation-card-body">¥550B plus ¥300B bank bonds in Q4.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LAND</div>
+        <div class="annotation-card-zh">土地出让收入<span class="annotation-card-en">tǔdì chūràng shōurù · land-sale revenue</span></div>
+        <div class="annotation-card-body">Down 27.9%, now below debt-swap issuance.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #159 · OCTOBER 25, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
