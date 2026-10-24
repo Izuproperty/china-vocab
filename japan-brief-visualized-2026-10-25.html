@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #148 · Sunday, October 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #148 · October 25, 2026</div>
+    <div class="masthead-sub">Humanoids Meet CNC · Yttrium Supply Stalls · BOJ Week Ahead</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MITSUBISHI ELECTRIC</div>
+      <div class="card-num">2030</div>
+      <div class="card-label">Target for practical use of humanoid robots directed by its CNC controllers</div>
+      <div class="card-delta delta-amber">JIMTOF demo from Oct 26</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · YTTRIUM</div>
+      <div class="card-num">-92<span class="card-num-unit">%</span></div>
+      <div class="card-label">Chinese yttrium oxide exports to Japan, Sept 2026 vs Sept 2025 (4,000 kg vs 51,000 kg)</div>
+      <div class="card-delta delta-red">METI: supply has stalled</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">1.25<span class="card-num-unit">%</span></div>
+      <div class="card-label">BOJ policy rate going into the Oct 29-30 meeting; hold expected</div>
+      <div class="card-delta delta-amber">~80% priced for December</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Mitsubishi Electric Lets Its CNC Controllers Direct Humanoid Robots, and Shows the System at JIMTOF From Monday</div>
+    <div class="story-insight">
+      <p>三菱電機 (Mitsubishi Denki, Mitsubishi Electric) said on October 21 it has built a machining system in which a humanoid robot and a CNC machine tool work together under AI control. An operator gives an instruction in plain language, and an AI Machining Task Planner converts it into a work plan drawn from a pre-registered task list, then assigns each step to the machine or the robot. The CNC unit runs what the company calls フィジカルAI (fijikaru AI, physical AI), sold under its Maisart brand, and exchanges status with the robot in natural language while it cuts. The robot takes the jobs operators now do by hand around a machine: setup, cleaning, pulling finished parts, moving them, inspection and clearing faults.</p>
+      <br>
+      <p>The company says this is the first NC system designed around humanoid coordination, a claim based on its own research. It targets practical use in 2030 and has not named the humanoid it uses, a price or a launch customer. The system goes on show at the 日本国際工作機械見本市 (Nihon Kokusai Kōsaku Kikai Mihonichi, JIMTOF, the Japan International Machine Tool Fair), which opens at Tokyo Big Sight on October 26. Mitsubishi Electric competes with Fanuc in CNC controllers, and Fanuc reported on October 23 that orders in its CNC division ran at 2.3 times the year-earlier level as AI hardware makers bought 工作機械 (kōsaku kikai, machine tools).</p>
+      <br>
+      <p>The commercial case rests on integration cost. Each robot cell beside a machine tool is engineered to order today, and Mitsubishi Electric says the system cuts that robot-by-robot integration work. A controller that can schedule a general-purpose robot from a spoken instruction gives the controller maker control of the cell, and the robot becomes an interchangeable part. METI's July robotics strategy targets 10 million AI-equipped robots by 2040, and the ministry is collecting complaints about rules that block physical AI until October 30, so policy is pushing in the same direction.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Mitsubishi Electric (TSE: 6503) wants its CNC controller to be the place where a machine shop tells a robot what to do, which would defend its controller share as humanoids reach the factory floor. The 2030 target means no earnings effect this fiscal year or next. At JIMTOF, watch which humanoid it runs and how many of the listed tasks it finishes without a human stepping in.</div>
+    <div class="chart-box">
+      <div class="chart-title">How the System Splits the Work, and When</div>
+      <svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="40" width="175" height="80" rx="6" fill="#fff" stroke="#c7cbe0" stroke-width="2"/>
+<text x="107.5" y="64" font-size="10.5" font-weight="700" fill="#5a6a8a" text-anchor="middle">OPERATOR</text>
+<text x="107.5" y="86" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Plain-language</text>
+<text x="107.5" y="102" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">instruction</text>
+<rect x="235" y="40" width="175" height="80" rx="6" fill="#fff" stroke="#818cf8" stroke-width="2"/>
+<text x="322.5" y="64" font-size="10.5" font-weight="700" fill="#818cf8" text-anchor="middle">AI TASK PLANNER</text>
+<text x="322.5" y="86" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Builds plan from</text>
+<text x="322.5" y="102" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">pre-registered tasks</text>
+<rect x="450" y="40" width="175" height="80" rx="6" fill="#fff" stroke="#3730a3" stroke-width="2"/>
+<text x="537.5" y="64" font-size="10.5" font-weight="700" fill="#3730a3" text-anchor="middle">CNC MACHINE TOOL</text>
+<text x="537.5" y="86" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Physical AI (Maisart)</text>
+<text x="537.5" y="102" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">cuts, reports status</text>
+<rect x="665" y="40" width="175" height="80" rx="6" fill="#fff" stroke="#0e7490" stroke-width="2"/>
+<text x="752.5" y="64" font-size="10.5" font-weight="700" fill="#0e7490" text-anchor="middle">HUMANOID ROBOT</text>
+<text x="752.5" y="86" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Setup, cleaning, parts,</text>
+<text x="752.5" y="102" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">inspection, faults</text>
+<line x1="195" y1="80" x2="231" y2="80" stroke="#5a6a8a" stroke-width="2"/><polygon points="231,75 235,80 231,85" fill="#5a6a8a"/>
+<line x1="410" y1="80" x2="446" y2="80" stroke="#5a6a8a" stroke-width="2"/><polygon points="446,75 450,80 446,85" fill="#5a6a8a"/>
+<line x1="625" y1="72" x2="661" y2="72" stroke="#0e7490" stroke-width="2"/><polygon points="661,67 665,72 661,77" fill="#0e7490"/>
+<line x1="629" y1="90" x2="665" y2="90" stroke="#3730a3" stroke-width="2"/><polygon points="629,85 625,90 629,95" fill="#3730a3"/>
+<text x="645" y="138" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">natural-language status exchange</text>
+<line x1="40" y1="200" x2="820" y2="200" stroke="#c7cbe0" stroke-width="2"/>
+<circle cx="80" cy="200" r="7" fill="#3730a3"/>
+<text x="80" y="180" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 21, 2026</text>
+<text x="80" y="165" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">System announced</text>
+<circle cx="300" cy="200" r="7" fill="#0e7490"/>
+<text x="300" y="228" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 23</text>
+<text x="300" y="245" font-size="9.5" font-weight="400" fill="#0e7490" text-anchor="middle">Fanuc: CNC orders 2.3x YoY</text>
+<circle cx="500" cy="200" r="7" fill="#3730a3"/>
+<text x="500" y="180" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 26</text>
+<text x="500" y="165" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">JIMTOF demo, Tokyo Big Sight</text>
+<circle cx="780" cy="200" r="7" fill="#be185d"/>
+<text x="780" y="228" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2030</text>
+<text x="780" y="245" font-size="9.5" font-weight="400" fill="#be185d" text-anchor="middle">Practical use target</text>
+</svg>
+      <div class="chart-note">Sources: Mitsubishi Electric via The AI Insider and BigGo Finance (Oct 21); Fanuc Q2 results (Oct 23).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">フィジカルAI<span class="annotation-card-en">physical AI</span></div>
+        <div class="annotation-card-body">CNC controller schedules the robot.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">見本市<span class="annotation-card-en">trade fair</span></div>
+        <div class="annotation-card-body">JIMTOF demo from Oct 26.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">人型ロボット<span class="annotation-card-en">humanoid robot</span></div>
+        <div class="annotation-card-body">No robot partner named; 2030 target.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">China's Yttrium Oxide Shipments to Japan Fall 92% and METI Says Supply Has Stalled</div>
+    <div class="story-insight">
+      <p>A 経済産業省 (Keizai Sangyō-shō, METI) official told AFP on October 21 that global yttrium exports have stalled, describing a supply-demand crunch and soaring prices. The comment followed a Financial Times report that Japan has told Washington it is months from running out. Chinese customs data show 酸化イットリウム (sanka ittoryumu, yttrium oxide) exports to Japan of 4,000 kg in September, against 51,000 kg in the same month a year earlier, a fall of 92%. China refines 92% of the world's rare earths, according to the IEA, and stopped key yttrium shipments to Japan in July under 輸出規制 (yushutsu kisei, export controls) that its foreign ministry says are aimed at Japan's remilitarisation.</p>
+      <br>
+      <p>Chipmaking is among the most exposed uses. Yttria coatings line the chamber parts of plasma エッチング装置 (etchingu sōchi, etch tools) and deposition tools because they resist erosion and shed fewer particles than alumina under the harsh chemistries used at advanced nodes. A tool maker that switches materials has to requalify the process with its customers, which can take several quarters. That puts the exposure on 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron), which is adding a ¥104 billion building in Miyagi to make plasma etch tools, and on the ceramics and parts suppliers behind it.</p>
+      <br>
+      <p>The price gap shows who pays. Inside China, high-purity yttrium oxide traded near $7.6-7.9 per kg in mid-August, while Rotterdam quotes ran $419-470 per kg from May to July and European offers reached about $1,175 in late July. A Chinese parts maker therefore buys the coating at a small fraction of what its Japanese rival pays. Tokyo has asked the US government and US companies to press Beijing, and its domestic response so far has been recycling subsidies, such as the ¥3 billion METI gave Kyocera this month to recover tungsten from used tools.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Yttria is a small cost per tool, so the near-term hit lands on margins and lead times at Japanese etch-tool makers and their parts suppliers. Wafer output is safe while inventories last. If shortages force material changes, requalification delays would reach 2027 tool shipments. Watch Tokyo Electron's October 30 results for comments on parts costs, and China's October customs data in late November for any easing.</div>
+    <div class="chart-box">
+      <div class="chart-title">Yttrium Oxide: Shipments to Japan and the Price Gap</div>
+      <svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+<text x="10" y="20" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">CHINA YTTRIUM OXIDE EXPORTS TO JAPAN, KG</text>
+<text x="160" y="55" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Sept 2025</text>
+<rect x="168" y="42" width="560.0" height="18" rx="2" fill="#c7cbe0"/>
+<text x="734.0" y="55" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">51,000 kg</text>
+<text x="160" y="89" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Sept 2026</text>
+<rect x="168" y="76" width="43.9" height="18" rx="2" fill="#be185d"/>
+<text x="217.921568627451" y="89" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">4,000 kg (-92%)</text>
+<text x="10" y="140" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">YTTRIUM OXIDE PRICE, US$ PER KG</text>
+<text x="160" y="175" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Inside China (Aug)</text>
+<rect x="168" y="162" width="3.7" height="18" rx="2" fill="#818cf8"/>
+<text x="177.6936170212766" y="175" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">$7.6-7.9</text>
+<text x="160" y="209" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Rotterdam (May-Jul)</text>
+<rect x="168" y="196" width="212.1" height="18" rx="2" fill="#be185d"/>
+<text x="386.0851063829787" y="209" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">$419-470</text>
+<text x="160" y="243" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Europe offers (late Jul)</text>
+<rect x="168" y="230" width="560.0" height="18" rx="2" fill="#be185d"/>
+<text x="734.0" y="243" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">~$1,175</text>
+<text x="10" y="285" font-size="10" font-weight="600" fill="#5a6a8a" text-anchor="start">China refines 92% of the world's rare earths (IEA) · Ex-China premium roughly 55-150x</text>
+</svg>
+      <div class="chart-note">Sources: Chinese customs via AFP/Malay Mail (Oct 21); SMM and Rotterdam/Baiinfo quotes via Materials Dispatch; IEA.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">輸出規制<span class="annotation-card-en">export controls</span></div>
+        <div class="annotation-card-body">Sept shipments to Japan: 4,000 kg.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">決算<span class="annotation-card-en">earnings</span></div>
+        <div class="annotation-card-body">Tokyo Electron reports Oct 30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">再認定<span class="annotation-card-en">requalification</span></div>
+        <div class="annotation-card-body">Material swaps take quarters.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO · WEEK AHEAD</div>
+    <div class="story-headline">Week Ahead: The BOJ Decides on Friday Whether to Say Inflation Has Reached 2%, Two Days After the Fed</div>
+    <div class="story-insight">
+      <p>The 日本銀行 (Nihon Ginkō, Bank of Japan) board meets on October 29-30 and announces on Friday. Consensus expects the policy rate to stay at 1.25%, where it has been since the September 18 hike. The quarterly 展望レポート (Tenbō Repōto, Outlook Report) carries more weight than the rate this time: Reuters sources expect higher inflation forecasts and possibly a statement that 基調的な物価上昇率 (kichōteki na bukka jōshōritsu, underlying inflation) has reached 2%. Governor Ueda has called underlying inflation quite close to 2%, and money markets price about an 80% chance of a hike in December.</p>
+      <br>
+      <p>Tokyo's 東京都区部 (Tōkyō-to kubu, 23-ward area) October CPI comes out on the morning of the 30th, hours before the decision, along with the September jobless rate. Tokyo headline inflation rose to 2.7% in September from 1.9%. The Federal Reserve announces on October 28 in Washington; 94 of 100 economists in a Reuters poll expect it to hold at 3.75-4.00% after its September hike, and CME futures put about 10% on another move. USD/JPY touched ¥156.00 on Friday, a one-month low, after the national CPI print, and trades below its 200-day average near ¥158.55. Tokyo Electron reports fiscal second-quarter results the same Friday.</p>
+      <br>
+      <p>The BOJ has led this slot in three of the last four issues. It returns because the decision falls this week and its wording will set the yen and short-dated JGB yields into December. A hold paired with a statement that underlying inflation has reached 2% would make a December hike close to the base case and support the yen. A hold without that wording would push hike expectations toward January and leave room for USD/JPY to climb back toward ¥158, the zone where intervention speculation has capped the pair.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The Outlook Report wording will drive December positioning, and the market already expects Friday's rate decision to be a hold. Institutional investors positioned for a December hike need the 2% statement and a higher fiscal 2027 core CPI forecast, and a Tokyo core print below 2% on Friday morning would weaken that case before the board speaks. Watch for dissents and for Ueda's language on December at his press conference.</div>
+    <div class="chart-box">
+      <div class="chart-title">Week Ahead Calendar and Rate Gap</div>
+      <svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="90" x2="820" y2="90" stroke="#c7cbe0" stroke-width="2"/>
+<circle cx="70" cy="90" r="8" fill="#3730a3"/>
+<text x="70" y="66" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Mon 26</text>
+<text x="70" y="118" font-size="9.5" font-weight="500" fill="#3730a3" text-anchor="middle">JIMTOF opens</text>
+<circle cx="250" cy="90" r="8" fill="#3730a3"/>
+<text x="250" y="66" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Wed 28</text>
+<text x="250" y="118" font-size="9.5" font-weight="500" fill="#3730a3" text-anchor="middle">Fed decision (US time)</text>
+<text x="250" y="133" font-size="9.5" font-weight="400" fill="#3730a3" text-anchor="middle">hold at 3.75-4.00% seen</text>
+<circle cx="430" cy="90" r="8" fill="#3730a3"/>
+<text x="430" y="66" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Thu 29</text>
+<text x="430" y="118" font-size="9.5" font-weight="500" fill="#3730a3" text-anchor="middle">BOJ meeting, day 1</text>
+<circle cx="640" cy="90" r="8" fill="#b45309"/>
+<text x="640" y="66" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">Fri 30</text>
+<text x="640" y="118" font-size="9.5" font-weight="500" fill="#b45309" text-anchor="middle">Tokyo CPI, jobless rate (am)</text>
+<text x="640" y="133" font-size="9.5" font-weight="400" fill="#b45309" text-anchor="middle">BOJ decision + Outlook Report</text>
+<text x="640" y="148" font-size="9.5" font-weight="400" fill="#b45309" text-anchor="middle">Tokyo Electron Q2</text>
+<text x="10" y="20" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">OCT 26-30: THE WEEK IN JAPAN TIME</text>
+<text x="10" y="195" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">POLICY RATES AND MARKET PRICING</text>
+<text x="160" y="221" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">BOJ policy rate</text>
+<rect x="168" y="208" width="112.5" height="18" rx="2" fill="#818cf8"/>
+<text x="286.5" y="221" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">1.25% (since Sept 18)</text>
+<text x="160" y="251" font-size="10.5" font-weight="500" fill="#1a1a2e" text-anchor="end">Fed funds (upper)</text>
+<rect x="168" y="238" width="360.0" height="18" rx="2" fill="#c7cbe0"/>
+<text x="534.0" y="251" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">3.75-4.00%</text>
+<text x="600" y="221" font-size="10.5" font-weight="600" fill="#b45309" text-anchor="start">~80% priced for a</text>
+<text x="600" y="237" font-size="10.5" font-weight="600" fill="#b45309" text-anchor="start">December BOJ hike</text>
+<text x="600" y="257" font-size="10" font-weight="500" fill="#5a6a8a" text-anchor="start">USD/JPY low ¥156.00 (Oct 23)</text>
+</svg>
+      <div class="chart-note">Sources: Newsquawk Week in Focus (Oct 23); Statistics Bureau calendar; FXStreet (Oct 23); Tokyo Electron IR calendar.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">展望レポート<span class="annotation-card-en">Outlook Report</span></div>
+        <div class="annotation-card-body">'Reached 2%' wording in play.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">東京都区部<span class="annotation-card-en">Tokyo CPI</span></div>
+        <div class="annotation-card-body">Out on the morning of Oct 30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">円安<span class="annotation-card-en">weak yen</span></div>
+        <div class="annotation-card-body">No 2% wording: USD/JPY toward ¥158.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #148 · OCTOBER 25, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
