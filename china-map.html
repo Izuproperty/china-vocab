@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>China AI Map · 中国AI地图</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect rx='7' width='32' height='32' fill='%23c0392b'/><circle cx='16' cy='16' r='6' fill='white'/></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1a1a2e;--cream:#e8d5b0;--border:#e0d8d0;--dim:#9a8a7a;--bg:#f4f1ec}
+body{background:var(--bg);font-family:'Inter',sans-serif;color:var(--navy);height:100vh;display:flex;flex-direction:column}
+.header{background:var(--navy);padding:16px 28px 14px;border-bottom:4px solid #c0392b;flex:none}
+.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.nav a{color:var(--cream);font-size:11px;font-weight:600;text-decoration:none;letter-spacing:1px;text-transform:uppercase;border:1px solid #3a3a6e;padding:5px 12px;border-radius:3px}
+.nav a:hover{background:#2a2a4e}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#c0392b}
+.title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff}
+.title span{font-size:16px;font-weight:400;color:var(--cream);letter-spacing:4px;margin-left:12px}
+.meta{font-size:11px;color:#8a9bb5;margin-top:4px}
+.main{flex:1;display:flex;min-height:0}
+.side{width:340px;flex:none;overflow-y:auto;background:#fff;border-right:1px solid var(--border);padding:14px}
+#map{flex:1;min-width:0}
+.side h3{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin:16px 0 8px}
+.side h3:first-child{margin-top:0}
+input[type=search]{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:4px;font:inherit;font-size:13px}
+.flt{display:flex;align-items:center;gap:8px;font-size:12px;padding:3px 0;cursor:pointer}
+.dot{width:11px;height:11px;border-radius:50%;flex:none}
+.flt .n{margin-left:auto;color:var(--dim)}
+.card{border:1px solid var(--border);border-radius:6px;padding:12px;background:#faf8f5;font-size:12.5px;line-height:1.55}
+.card .nm{font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
+.card .zh{color:var(--dim);margin-left:6px;font-size:13px}
+.card .loc{color:#c0392b;font-weight:600;font-size:12px;margin:4px 0 6px}
+.card .tg{display:inline-block;font-size:10px;background:#eee;border-radius:2px;padding:2px 6px;margin:4px 4px 0 0}
+.card a{color:#c0392b;font-size:11px;font-weight:600;text-decoration:none}
+.row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px dotted var(--border);cursor:pointer}
+.row:hover{color:#c0392b}
+.row .z{color:var(--dim)}
+.un{font-size:12px;color:#555;line-height:1.7}
+.un b{cursor:pointer}
+.pop-nm{font-weight:700}
+.prov-label{font-size:10px;color:#7a6a5a;font-weight:600;background:none;border:none;box-shadow:none;text-shadow:0 0 3px #fff,0 0 3px #fff}
+@media(max-width:800px){.main{flex-direction:column-reverse}.side{width:100%;height:42%;border-right:none;border-top:1px solid var(--border)}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="nav"><a href="brief.html">← China Brief</a><a href="china-ai-landscape-viz.html">AI Landscape</a><a href="china-snapshot.html">Snapshot</a></div>
+  <div class="eyebrow">朋友 Pengyou · Geography</div>
+  <div class="title">China AI Map<span>中国AI地图</span></div>
+  <div class="meta" id="meta">Loading…</div>
+</div>
+<div class="main">
+  <div class="side">
+    <input type="search" id="q" placeholder="Search company, city or province…">
+    <h3>Selected</h3>
+    <div id="detail" class="card">Click a pin or a name to see details. Pins group into clusters at low zoom; click a cluster to zoom in.</div>
+    <h3>Categories</h3>
+    <div id="filters"></div>
+    <h3>By city &middot; 城市 (click to zoom)</h3>
+    <div id="cities"></div>
+    <h3>By province &middot; 省份</h3>
+    <div id="provs"></div>
+    <h3>Overseas parents / HQ</h3>
+    <div class="un" id="over">—</div>
+    <h3>Not yet located</h3>
+    <div class="un" id="unmapped">—</div>
+  </div>
+  <div id="map"></div>
+</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script>
+const CATS={
+  foundation:{label:'Foundation Model Labs',color:'#c0392b'},
+  robotics:{label:'Physical AI & Robotics',color:'#27ae60'},
+  chips:{label:'Chips & AI Infrastructure',color:'#e67e22'},
+  cloud:{label:'Cloud Platforms',color:'#1a56db'},
+  auto:{label:'Autonomous Driving',color:'#8e44ad'},
+  security:{label:'AI Security & Enterprise',color:'#2c3e50'},
+  gov:{label:'Government & Regulators',color:'#7f8c8d'},
+  university:{label:'Universities',color:'#16a085'}
+};
+const strip=s=>(s||'').replace(/<[^>]*>/g,'').replace(/\*\*/g,'');
+const map=L.map('map',{worldCopyJump:false}).setView([34.5,108],4);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap, &copy; CARTO',maxZoom:17}).addTo(map);
+// Province outlines (best-effort; map still works if this fails)
+fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json').then(r=>r.json()).then(g=>{
+  L.geoJSON(g,{style:{color:'#b9a98f',weight:1,fillColor:'#e8d5b0',fillOpacity:.12},
+    onEachFeature:(f,l)=>{const n=f.properties.name;if(n)l.bindTooltip(n,{sticky:true,className:'prov-label'});}}).addTo(map).bringToBack();
+}).catch(()=>{});
+const cluster=L.markerClusterGroup({maxClusterRadius:38,spiderfyOnMaxZoom:true,showCoverageOnHover:false});
+map.addLayer(cluster);
+let ents=[],markers={},active=new Set(Object.keys(CATS)),query='';
+function loc(e,stat){return e.loc||stat[e.name]||null}
+function icon(c){return L.divIcon({className:'',html:`<div style="width:14px;height:14px;border-radius:50%;background:${c};border:2px solid #fff;box-shadow:0 0 4px rgba(0,0,0,.5)"></div>`,iconSize:[14,14]})}
+function show(e){
+  const l=e._l,c=CATS[e.cat]||CATS.security;
+  document.getElementById('detail').innerHTML=
+   `<div><span class="nm">${e.name}</span><span class="zh">${e.zh||''}</span></div>`+
+   `<div class="loc">${l.city} ${l.city_zh||''} &middot; ${l.province} ${l.province_zh||''}${l.district?' &middot; '+l.district:''}${l.approx?' (approx.)':''}</div>`+
+   `<div><span class="dot" style="display:inline-block;background:${c.color}"></span> ${c.label}${e.ticker?' &middot; '+e.ticker:''}</div>`+
+   `<div style="margin-top:6px">${strip(e.desc||e.bio).slice(0,420)}${strip(e.desc||e.bio).length>420?'…':''}</div>`+
+   (e.issue?`<div style="margin-top:6px;color:#9a8a7a">Issues: ${e.issue}</div>`:'')+
+   `<div style="margin-top:6px"><a href="china-snapshot.html">Open Snapshot →</a> &nbsp; <a href="china-ai-landscape-viz.html">Full Landscape →</a></div>`;
+  if(!l.overseas){map.setView([l.lat,l.lng],Math.max(map.getZoom(),9));}
+  const m=markers[e.name]; if(m) m.openPopup();
+}
+function render(){
+  cluster.clearLayers();
+  const q=query.toLowerCase();
+  const rows=ents.filter(e=>e._l&&!e._l.overseas&&active.has(e.cat)&&(!q||[e.name,e.zh,e._l.city,e._l.province,e._l.city_zh,e._l.province_zh].join(' ').toLowerCase().includes(q)));
+  rows.forEach(e=>{
+    const l=e._l,m=L.marker([l.lat,l.lng],{icon:icon((CATS[e.cat]||CATS.security).color),title:e.name});
+    m.bindPopup(`<span class="pop-nm">${e.name}</span> ${e.zh||''}<br>${l.city}, ${l.province}`);
+    m.on('click',()=>show(e)); markers[e.name]=m; cluster.addLayer(m);
+  });
+  // city + province summaries (of currently filtered rows)
+  const by=(k)=>{const o={};rows.forEach(e=>{const key=e._l[k];(o[key]=o[key]||{n:0,zh:e._l[k+'_zh'],lat:e._l.lat,lng:e._l.lng,names:[]}).n++;});return Object.entries(o).sort((a,b)=>b[1].n-a[1].n)};
+  document.getElementById('cities').innerHTML=by('city').map(([k,v])=>`<div class="row" data-lat="${v.lat}" data-lng="${v.lng}"><span>${k} <span class="z">${v.zh||''}</span></span><b>${v.n}</b></div>`).join('')||'—';
+  document.getElementById('provs').innerHTML=by('province').map(([k,v])=>`<div class="row" data-lat="${v.lat}" data-lng="${v.lng}"><span>${k} <span class="z">${v.zh||''}</span></span><b>${v.n}</b></div>`).join('')||'—';
+  document.querySelectorAll('.row').forEach(r=>r.onclick=()=>map.setView([+r.dataset.lat,+r.dataset.lng],r.parentElement.id==='cities'?10:6));
+}
+fetch('china-ai-landscape.json?v='+Date.now()).then(r=>r.json()).then(async data=>{
+  let stat={};
+  try{stat=(await (await fetch('china-locations.json?v='+Date.now())).json()).locations||{}}catch(e){}
+  ents=(data.entities||[]);
+  ents.forEach(e=>{if(e.cat==='autonomous')e.cat='auto';e._l=loc(e,stat)});
+  const m=data.meta||{};
+  const mapped=ents.filter(e=>e._l),un=ents.filter(e=>!e._l),over=mapped.filter(e=>e._l.overseas);
+  document.getElementById('meta').textContent=`Issue #${m.issue||'—'} · ${m.updated||''} · ${mapped.length-over.length} of ${ents.length} entities located in China`;
+  const counts={};ents.forEach(e=>counts[e.cat]=(counts[e.cat]||0)+1);
+  document.getElementById('filters').innerHTML=Object.entries(CATS).filter(([k])=>counts[k]).map(([k,c])=>
+    `<label class="flt"><input type="checkbox" checked data-k="${k}"><span class="dot" style="background:${c.color}"></span>${c.label}<span class="n">${counts[k]}</span></label>`).join('');
+  document.querySelectorAll('#filters input').forEach(i=>i.onchange=()=>{i.checked?active.add(i.dataset.k):active.delete(i.dataset.k);render()});
+  document.getElementById('q').oninput=ev=>{query=ev.target.value;render()};
+  const link=e=>`<b data-n="${e.name.replace(/"/g,'&quot;')}">${e.name}</b>`;
+  document.getElementById('over').innerHTML=over.length?over.map(e=>`${e.name} — ${e._l.city}`).join('<br>'):'None';
+  document.getElementById('unmapped').innerHTML=un.length?un.map(e=>e.name).join(', ')+'<br><i>The daily brief adds a location when it next touches these.</i>':'All entities located.';
+  render();
+  const hq=ents.filter(e=>e._l&&!e._l.overseas);
+  if(hq.length)map.fitBounds(L.latLngBounds(hq.map(e=>[e._l.lat,e._l.lng])).pad(.1));
+  // clicking a city row also lists its companies in detail pane
+}).catch(err=>{document.getElementById('meta').textContent='Could not load data: '+err});
+</script>
+</body>
+</html>
