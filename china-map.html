@@ -86,7 +86,7 @@ const CATS={
 };
 const strip=s=>(s||'').replace(/<[^>]*>/g,'').replace(/\*\*/g,'');
 const map=L.map('map',{worldCopyJump:false}).setView([34.5,108],4);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap, &copy; CARTO',maxZoom:17}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:18}).addTo(map);
 // Province outlines (best-effort; map still works if this fails)
 fetch('https://geo.datav.aliyun.com/areas_v3/bound/100000_full.json').then(r=>r.json()).then(g=>{
   L.geoJSON(g,{style:{color:'#b9a98f',weight:1,fillColor:'#e8d5b0',fillOpacity:.12},
