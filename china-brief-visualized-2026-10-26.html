@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #160 · October 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #160 · October 26, 2026</div>
+    <div class="masthead-sub">IFP's China Compute Count · Qiyuan's 5,000th Personal Robot · Fifth Plenum and an Earnings Week</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">65%<span class="card-num-unit">US-designed</span></div>
+      <div class="card-label">IFP's estimate of the US-designed share of China's 8.8M H100-equivalents of AI compute in 2027</div>
+      <div class="card-delta delta-red">Offshore rentals 1M → 2.8M</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">5,000<span class="card-num-unit">robots built</span></div>
+      <div class="card-label">Qiyuan's personal robots off the line five weeks after the ¥19,999 Q1 and T1 launched</div>
+      <div class="card-delta delta-amber">Deliveries not disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · WEEK AHEAD</div>
+      <div class="card-num">−9%<span class="card-num-unit">avg miss</span></div>
+      <div class="card-label">MSCI China Q3 reporters versus consensus, as the Fifth Plenum opens and September profits land Tuesday</div>
+      <div class="card-delta delta-amber">August profits +4.2% only</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS</div>
+    <div class="story-headline">IFP Puts China's AI Compute at 4.6 Million H100-Equivalents, Rising to 8.8 Million in 2027, With About 65% on US-Designed Chips and Offshore Rentals Nearly Tripling</div>
+    <div class="story-insight">
+      <p>The Institute for Progress estimates Chinese entities have about 4.6M H100-equivalents of AI compute this year and will have about 8.8M in 2027, SCMP reported on October 24. US-designed chips make up about 65% of the 2027 figure, and capacity rented from offshore clouds rises from roughly 1M to 2.8M.</p>
+      <br>
+      <p>Huawei has moved its Ascend 960DT training chip forward to Q1 2027 and deployed more than 1,000 Atlas 900 A3 SuperPoDs, but Epoch AI says HBM limits its 2026 output to under 4% of the compute in Nvidia's global shipments. A separate think-tank paper urges BIS to stop listed Chinese firms from renting US compute legally.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> China's compute growth to 2027 still depends on US licensing and on cloud rentals that a single BIS rule could curb, which would shift demand onto Ascend and Cambricon parts already short of HBM and SMIC capacity.</div>
+    <div class="chart-box">
+      <div class="chart-title">Where China's AI Compute Comes From</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">COMPUTE AVAILABLE TO CHINESE ENTITIES, MILLION H100-EQUIVALENTS</text><line x1="240" y1="30" x2="240" y2="104" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">2026 estimate</text><rect x="240" y="36" width="276" height="18" fill="#9a8a7a"/><text x="524" y="49" font-size="11" font-weight="700" fill="#9a8a7a">4.6</text><text x="30" y="81" font-size="12" font-weight="700" fill="#1a1a2e">2027 projection</text><rect x="240" y="68" width="343" height="18" fill="#c0392b"/><rect x="583" y="68" width="185" height="18" fill="#9a8a7a"/><text x="248" y="81" font-size="11" font-weight="700" fill="#ffffff">US-designed ~5.7 (65%)</text><text x="591" y="81" font-size="11" font-weight="700" fill="#ffffff">other ~3.1</text><text x="776" y="81" font-size="11" font-weight="700" fill="#1a1a2e">8.8</text><text x="30" y="140" font-size="11" font-weight="700" fill="#5a6a8a">OF WHICH RENTED FROM OFFSHORE CLOUDS</text><line x1="240" y1="150" x2="240" y2="224" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="169" font-size="12" fill="#1a1a2e">2026 estimate</text><rect x="240" y="156" width="60" height="18" fill="#b45309"/><text x="308" y="169" font-size="11" font-weight="700" fill="#b45309">~1.0</text><text x="30" y="201" font-size="12" font-weight="700" fill="#1a1a2e">End-2027 projection</text><rect x="240" y="188" width="168" height="18" fill="#c0392b"/><text x="416" y="201" font-size="11" font-weight="700" fill="#c0392b">2.8 · nearly triple</text><text x="30" y="260" font-size="11" font-weight="700" fill="#5a6a8a">CONTEXT</text><text x="30" y="282" font-size="12" fill="#1a1a2e">US training-compute lead ~16x · model lag ~6.5 months · Huawei 2026 output &lt;4% of Nvidia's shipped compute</text><text x="30" y="318" font-size="10" fill="#5a6a8a">Sources: Institute for Progress via South China Morning Post (Oct 24, 2026); Epoch AI. US-designed split = 65% of 8.8M. Scale 60px per 1M H100-equivalents.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DOMESTIC</div>
+        <div class="annotation-card-zh">华为昇腾<span class="annotation-card-en">Huáwéi Shēngténg · Huawei Ascend</span></div>
+        <div class="annotation-card-body">960DT pulled forward to Q1 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · BIS</div>
+        <div class="annotation-card-zh">境外云服务<span class="annotation-card-en">jìngwài yún fúwù · offshore cloud services</span></div>
+        <div class="annotation-card-body">Any rule on remote access to US compute.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEPENDENCE</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">65% of 2027 compute on US designs.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">AgiBot-Controlled Swancor's Qiyuan Unit Rolls Out Its 5,000th ¥19,999 Personal Robot Five Weeks After Launch, With Daily Output Up From About 10 to More Than 200</div>
+    <div class="story-insight">
+      <p>Qiyuan Robotics, the robot unit of STAR-listed Swancor (688585), said on October 25 its 5,000th personal robot came off the line. It now builds one every 2.5 minutes, and daily capacity has gone from just over 10 to more than 200 using a semi-automated line set up with suppliers.</p>
+      <br>
+      <p>The Q1 and T1 launched on September 20 at ¥19,999 and began shipping October 1. An AgiBot-linked vehicle controls Swancor, AgiBot is reportedly raising at about ¥50B, and a Guancha briefing says regulators have raised the IPO bar for robot makers.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> 5,000 units at list price is at least ¥100M of gross value, but Qiyuan reported production rather than deliveries or orders, so the milestone proves the line works and leaves consumer demand untested.</div>
+    <div class="chart-box">
+      <div class="chart-title">From Launch to 5,000 Units in Five Weeks</div>
+      <svg viewBox="0 0 820 372" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">QIYUAN DAILY OUTPUT, ROBOTS PER DAY</text><line x1="240" y1="30" x2="240" y2="72" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">At launch (Sep)</text><rect x="240" y="36" width="20" height="18" fill="#9a8a7a"/><text x="268" y="49" font-size="11" font-weight="700" fill="#9a8a7a">~10+</text><text x="30" y="71" font-size="12" font-weight="700" fill="#1a1a2e">Now (Oct 25)</text><rect x="240" y="58" width="400" height="18" fill="#c0392b"/><text x="648" y="71" font-size="11" font-weight="700" fill="#c0392b">200+ · one every 2.5 min</text><text x="30" y="118" font-size="11" font-weight="700" fill="#5a6a8a">TIMELINE, 2026</text><line x1="240" y1="140" x2="760" y2="140" stroke="#1a1a2e" stroke-width="1.5"/><circle cx="240" cy="140" r="6" fill="#9a8a7a"/><text x="240" y="164" font-size="11" font-weight="700" fill="#9a8a7a" text-anchor="start">Sep 20 · Q1/T1 launch</text><circle cx="403" cy="140" r="6" fill="#b45309"/><text x="403" y="164" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">Oct 1 · shipping</text><circle cx="760" cy="140" r="6" fill="#c0392b"/><text x="760" y="164" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">Oct 25 · 5,000th unit</text><text x="30" y="210" font-size="11" font-weight="700" fill="#5a6a8a">LIST PRICES, ¥</text><line x1="240" y1="220" x2="240" y2="334" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="239" font-size="12" fill="#1a1a2e">Q1 humanoid (88 cm)</text><rect x="240" y="226" width="300" height="18" fill="#1a1a2e"/><text x="548" y="239" font-size="11" font-weight="700" fill="#1a1a2e">¥19,999</text><text x="30" y="267" font-size="12" fill="#1a1a2e">T1</text><rect x="240" y="254" width="300" height="18" fill="#1a1a2e"/><text x="548" y="267" font-size="11" font-weight="700" fill="#1a1a2e">¥19,999</text><text x="30" y="295" font-size="12" fill="#1a1a2e">Q1 Explorer (open SDK/HDK)</text><rect x="240" y="282" width="405" height="18" fill="#5a6a8a"/><text x="653" y="295" font-size="11" font-weight="700" fill="#5a6a8a">¥26,999</text><text x="30" y="323" font-size="12" fill="#1a1a2e">T1 Pro (Nvidia Orin Nano)</text><rect x="240" y="310" width="450" height="18" fill="#5a6a8a"/><text x="698" y="323" font-size="11" font-weight="700" fill="#5a6a8a">¥29,999</text><text x="30" y="360" font-size="10" fill="#5a6a8a">Sources: IT之家, Jiemian, NetEase (Oct 25, 2026); Xinhua (Sep 22). Output scale 2px per robot; prices 15px per ¥1,000.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FACTORY</div>
+        <div class="annotation-card-zh">日产能<span class="annotation-card-en">rì chǎnnéng · daily capacity</span></div>
+        <div class="annotation-card-body">200+ a day on roughly one shift.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · Q3 REPORT</div>
+        <div class="annotation-card-zh">上纬新材<span class="annotation-card-en">Shàngwěi Xīncái · Swancor</span></div>
+        <div class="annotation-card-body">Robot revenue and inventory by Oct 31.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEMAND</div>
+        <div class="annotation-card-zh">下线<span class="annotation-card-en">xiàxiàn · roll off the line</span></div>
+        <div class="annotation-card-body">Built is not sold; no order data.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · WEEK AHEAD</div>
+    <div class="story-headline">Week Ahead: The Fifth Plenum Opens Today on Party Discipline, as MSCI China Companies Miss Earnings by 9% on Average Before September Profits on Tuesday and PMIs on Saturday</div>
+    <div class="story-insight">
+      <p>The Central Committee's Fifth Plenum runs October 26 to 29 and reviews a decision on strict Party governance, with no five-year plan to ratify and no stimulus expected. September industrial profits come Tuesday after August growth slowed to 4.2%, and official PMIs come Saturday.</p>
+      <br>
+      <p>Bloomberg says Chinese stocks have lost $3.5T since May, MSCI China 2026 earnings forecasts are down more than 4% since March, Hang Seng Tech's more than 13%, and Q3 reporters have missed by 9% on average. The NPC Standing Committee takes up a draft Finance Law from November 2.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> With the plenum focused on discipline, Tuesday's profit data and Saturday's PMI will decide whether earnings downgrades keep running before December's Central Economic Work Conference.</div>
+    <div class="chart-box">
+      <div class="chart-title">Profits Slowing Into an Earnings-Miss Season</div>
+      <svg viewBox="0 0 820 378" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">INDUSTRIAL PROFITS, % CHANGE YEAR ON YEAR</text><line x1="240" y1="30" x2="240" y2="160" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">Jan to Jul, cumulative</text><rect x="240" y="36" width="352" height="18" fill="#9a8a7a"/><text x="600" y="49" font-size="11" font-weight="700" fill="#9a8a7a">17.6</text><text x="30" y="77" font-size="12" fill="#1a1a2e">Jan to Aug, cumulative</text><rect x="240" y="64" width="314" height="18" fill="#9a8a7a"/><text x="562" y="77" font-size="11" font-weight="700" fill="#9a8a7a">15.7</text><text x="30" y="105" font-size="12" fill="#1a1a2e">July alone</text><rect x="240" y="92" width="224" height="18" fill="#b45309"/><text x="472" y="105" font-size="11" font-weight="700" fill="#b45309">11.2</text><text x="30" y="133" font-size="12" font-weight="700" fill="#1a1a2e">August alone</text><rect x="240" y="120" width="84" height="18" fill="#c0392b"/><text x="332" y="133" font-size="11" font-weight="700" fill="#c0392b">4.2 · weakest since Nov 2025</text><text x="30" y="196" font-size="11" font-weight="700" fill="#5a6a8a">EARNINGS DOWNGRADES AND MISSES, %</text><line x1="240" y1="206" x2="240" y2="280" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="225" font-size="12" fill="#1a1a2e">MSCI China EPS cut</text><rect x="240" y="212" width="80" height="18" fill="#b45309"/><text x="328" y="225" font-size="11" font-weight="700" fill="#b45309">−4+</text><text x="30" y="253" font-size="12" font-weight="700" fill="#1a1a2e">Avg Q3 miss so far</text><rect x="240" y="240" width="180" height="18" fill="#c0392b"/><text x="428" y="253" font-size="11" font-weight="700" fill="#c0392b">−9</text><text x="30" y="281" font-size="12" fill="#1a1a2e">Hang Seng Tech EPS cut</text><rect x="240" y="268" width="260" height="18" fill="#c0392b"/><text x="508" y="281" font-size="11" font-weight="700" fill="#c0392b">−13+</text><text x="30" y="316" font-size="11" font-weight="700" fill="#5a6a8a">THIS WEEK</text><text x="30" y="338" font-size="12" fill="#1a1a2e">Mon–Thu Fifth Plenum · Tue Sep profits · Wed FOMC · Fri BoJ · Sat Oct PMIs (Sep: 50.1 / 50.2) · Nov 2–6 NPCSC</text><text x="30" y="366" font-size="10" fill="#5a6a8a">Sources: NBS via Trading Economics; Bloomberg (Oct 25, 2026); Newsquawk; NPC Observer. Scale 20px per percentage point.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLITICS</div>
+        <div class="annotation-card-zh">五中全会<span class="annotation-card-en">Wǔzhōng Quánhuì · Fifth Plenum</span></div>
+        <div class="annotation-card-body">Communiqué wording on demand and local debt.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TUESDAY</div>
+        <div class="annotation-card-zh">工业企业利润<span class="annotation-card-en">gōngyè qǐyè lìrùn · industrial profits</span></div>
+        <div class="annotation-card-body">Near 4.2% again, or a rebound?</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EARNINGS</div>
+        <div class="annotation-card-zh">全面从严治党<span class="annotation-card-en">quánmiàn cóngyán zhìdǎng · strict Party governance</span></div>
+        <div class="annotation-card-body">A discipline plenum offers no demand support.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #160 · OCTOBER 26, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
