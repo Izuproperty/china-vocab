@@ -58,7 +58,7 @@ input[type=search]{width:100%;padding:8px 10px;border:1px solid var(--border);bo
     <input type="search" id="q" placeholder="Search company, city or province…">
     <h3>Selected</h3>
     <div id="detail" class="card">Click a pin or a name to see details. Pins group into clusters at low zoom; click a cluster to zoom in.</div>
-    <h3>Categories</h3>
+    <h3>Categories <span style="float:right;letter-spacing:0;text-transform:none;font-size:11px"><a href="#" id="selAll" style="color:#c0392b;text-decoration:none">Select all</a> &middot; <a href="#" id="selNone" style="color:#c0392b;text-decoration:none">Clear all</a></span></h3>
     <div id="filters"></div>
     <h3>By city &middot; 城市 (click to zoom)</h3>
     <div id="cities"></div>
@@ -136,6 +136,8 @@ fetch('china-ai-landscape.json?v='+Date.now()).then(r=>r.json()).then(async data
   document.getElementById('filters').innerHTML=Object.entries(CATS).filter(([k])=>counts[k]).map(([k,c])=>
     `<label class="flt"><input type="checkbox" checked data-k="${k}"><span class="dot" style="background:${c.color}"></span>${c.label}<span class="n">${counts[k]}</span></label>`).join('');
   document.querySelectorAll('#filters input').forEach(i=>i.onchange=()=>{i.checked?active.add(i.dataset.k):active.delete(i.dataset.k);render()});
+  document.getElementById('selAll').onclick=()=>{document.querySelectorAll('#filters input').forEach(i=>{i.checked=true;active.add(i.dataset.k)});render();return false};
+  document.getElementById('selNone').onclick=()=>{document.querySelectorAll('#filters input').forEach(i=>{i.checked=false;active.delete(i.dataset.k)});render();return false};
   document.getElementById('q').oninput=ev=>{query=ev.target.value;render()};
   const link=e=>`<b data-n="${e.name.replace(/"/g,'&quot;')}">${e.name}</b>`;
   document.getElementById('over').innerHTML=over.length?over.map(e=>`${e.name} — ${e._l.city}`).join('<br>'):'None';
