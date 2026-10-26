@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #161 · October 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #161 · October 27, 2026</div>
+    <div class="masthead-sub">Approaching.AI's ¥1.3B Series B · AgiBot's G2 Max at JD · The Yuan at a Four-Year High</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · INFERENCE</div>
+      <div class="card-num">¥1.3B<span class="card-num-unit">Series B</span></div>
+      <div class="card-label">Approaching.AI's round, co-led by local state funds and ICBC Investment; ¥2.4B raised in 2026</div>
+      <div class="card-delta delta-amber">Growth figures self-reported</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">40<span class="card-num-unit">kg dual-arm</span></div>
+      <div class="card-label">AgiBot G2 Max rated payload, four times the A3 Ultra's 5kg per arm; now at JD Logistics</div>
+      <div class="card-delta delta-amber">~80 cases/hr, units undisclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · FX</div>
+      <div class="card-num">6.6682<span class="card-num-unit">per $</span></div>
+      <div class="card-label">Onshore yuan high on Oct 26, strongest since June 2022, eighth straight session of gains</div>
+      <div class="card-delta delta-amber">Fixing 471 pips weaker than model</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · INFERENCE</div>
+    <div class="story-headline">Approaching.AI Raises More Than ¥1.3 Billion in a Series B Co-Led by Local State Funds and ICBC Investment, Taking 2026 Funding to ¥2.4 Billion for Inference "Token Factories" on Domestic Chips</div>
+    <div class="story-insight">
+      <p>Beijing-based Approaching.AI closed a Series B of more than ¥1.3 billion on October 26, co-led by six investors including ICBC Investment, Xiaoshan Capital and Hangzhou's Qianjiang Century City, with SenseTime and Wangsu following. It sells inference output priced in tokens and does not train its own models; its team started KTransformers and helped build Mooncake.</p>
+      <br>
+      <p>The company says core metrics grew more than tenfold in six months and daily token output more than 100 times, and that it is at breakeven. It plans more than ten token factories, including a 10,000-accelerator site in the Hangzhou district whose fund co-led the round, and runs on Moore Threads, MetaX and Iluvatar CoreX chips.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Local state funds are paying to turn domestic accelerators into billable inference capacity in their own districts, but with no named customers, no audited figures and token prices falling, the round does not yet show that the model earns a margin.</div>
+    <div class="chart-box">
+      <div class="chart-title">Funding Raised in 2026 and the Growth Claimed</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">APPROACHING.AI FUNDING IN 2026, ¥ BILLION</text><line x1="240" y1="30" x2="240" y2="132" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">Earlier 2026 rounds (incl. July A)</text><rect x="240" y="36" width="220" height="18" fill="#9a8a7a"/><text x="468" y="49" font-size="11" font-weight="700" fill="#9a8a7a">~1.1 (derived)</text><text x="30" y="77" font-size="12" font-weight="700" fill="#1a1a2e">Series B (Oct 26)</text><rect x="240" y="64" width="260" height="18" fill="#c0392b"/><text x="508" y="77" font-size="11" font-weight="700" fill="#c0392b">1.3+</text><text x="30" y="105" font-size="12" fill="#1a1a2e">2026 total</text><rect x="240" y="92" width="480" height="18" fill="#1a1a2e"/><text x="728" y="105" font-size="11" font-weight="700" fill="#1a1a2e">2.4</text><text x="30" y="160" font-size="11" font-weight="700" fill="#5a6a8a">COMPANY-REPORTED GROWTH MULTIPLES, UNAUDITED (LOG SCALE)</text><line x1="240" y1="170" x2="240" y2="244" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="189" font-size="12" fill="#1a1a2e">Core metrics, six months</text><rect x="240" y="176" width="200" height="18" fill="#b45309"/><text x="448" y="189" font-size="11" font-weight="700" fill="#b45309">&gt;10x</text><text x="30" y="217" font-size="12" fill="#1a1a2e">2026 YTD revenue vs 2025</text><rect x="240" y="204" width="196" height="18" fill="#b45309"/><text x="444" y="217" font-size="11" font-weight="700" fill="#b45309">~10x</text><text x="30" y="245" font-size="12" font-weight="700" fill="#1a1a2e">Daily token output</text><rect x="240" y="232" width="400" height="18" fill="#c0392b"/><text x="648" y="245" font-size="11" font-weight="700" fill="#c0392b">&gt;100x · now trillions/day</text><text x="30" y="282" font-size="11" font-weight="700" fill="#5a6a8a">BUILD-OUT</text><text x="30" y="300" font-size="12" fill="#1a1a2e">10+ token factories · 10,000-card Hangzhou site · SenseTime plant · Henan and Hainan with local SOEs</text><text x="30" y="322" font-size="10" fill="#5a6a8a">Sources: 投资界, 36氪, 同花顺 (Oct 26, 2026). Earlier rounds = ¥2.4B total minus ¥1.3B. Funding scale 200px per ¥1B; multiples 200px per factor of 10.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STATE CAPITAL</div>
+        <div class="annotation-card-zh">工银投资<span class="annotation-card-en">Gōngyín Tóuzī · ICBC Investment</span></div>
+        <div class="annotation-card-body">State bank arm among six co-leads.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · HANGZHOU</div>
+        <div class="annotation-card-zh">国产算力<span class="annotation-card-en">guóchǎn suànlì · domestic compute</span></div>
+        <div class="annotation-card-body">Chip orders and utilization at the 10,000-card site.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · PRICING</div>
+        <div class="annotation-card-zh">词元<span class="annotation-card-en">cíyuán · token</span></div>
+        <div class="annotation-card-body">Token prices falling; cloud majors subsidize.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">AgiBot Launches the G2 Max Heavy-Duty Humanoid With a 40kg Dual-Arm Rating and Puts It on JD Logistics' Inbound Docks at About 80 Cases an Hour</div>
+    <div class="story-insight">
+      <p>AgiBot released the G2 Max on October 26 for depalletizing, palletizing and line feeding: 20kg per arm, 40kg rated across both arms, 50kg peak and 0.5mm repeatability. It says the robot already works on several lines, including its own robot assembly.</p>
+      <br>
+      <p>JD Logistics uses it at inbound receiving in its Zhilang goods-to-person warehouse, where AgiBot reports about 80 cases an hour unstacked, 75 stacked and above 99% success. Unit numbers and price were not disclosed. Swancor closed limit-up and Unitree rose more than 18% intraday the same day.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A fourfold payload increase brings AgiBot's humanoids into ordinary carton handling, but 80 cases an hour is slow next to fixed palletizing cells, so the sale rests on flexibility, and Thursday's Innovation Day needs to show prices and order volumes.</div>
+    <div class="chart-box">
+      <div class="chart-title">Payload Up Fourfold, Throughput Still Modest</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">PAYLOAD, KG</text><line x1="240" y1="30" x2="240" y2="146" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">A3 Ultra, per arm (WAIC Jul)</text><rect x="240" y="36" width="50" height="18" fill="#9a8a7a"/><text x="298" y="49" font-size="11" font-weight="700" fill="#9a8a7a">5</text><text x="30" y="77" font-size="12" fill="#1a1a2e">G2 Max, per arm</text><rect x="240" y="64" width="200" height="18" fill="#b45309"/><text x="448" y="77" font-size="11" font-weight="700" fill="#b45309">20</text><text x="30" y="105" font-size="12" font-weight="700" fill="#1a1a2e">G2 Max, dual-arm rated</text><rect x="240" y="92" width="400" height="18" fill="#c0392b"/><text x="648" y="105" font-size="11" font-weight="700" fill="#c0392b">40</text><text x="30" y="133" font-size="12" fill="#1a1a2e">G2 Max, dual-arm peak</text><rect x="240" y="120" width="500" height="18" fill="#1a1a2e"/><text x="748" y="133" font-size="11" font-weight="700" fill="#1a1a2e">50</text><text x="30" y="182" font-size="11" font-weight="700" fill="#5a6a8a">JD ZHILANG INBOUND, CASES PER HOUR (AGIBOT-REPORTED)</text><line x1="240" y1="192" x2="240" y2="238" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="211" font-size="12" fill="#1a1a2e">Depalletizing</text><rect x="240" y="198" width="320" height="18" fill="#c0392b"/><text x="568" y="211" font-size="11" font-weight="700" fill="#c0392b">80</text><text x="30" y="239" font-size="12" fill="#1a1a2e">Palletizing</text><rect x="240" y="226" width="300" height="18" fill="#b45309"/><text x="548" y="239" font-size="11" font-weight="700" fill="#b45309">75</text><text x="30" y="276" font-size="11" font-weight="700" fill="#5a6a8a">ALSO CLAIMED</text><text x="30" y="296" font-size="12" fill="#1a1a2e">&gt;99% success · ±0.5mm repeatability · 7-axis force-controlled arms · 24-hour operation · Innovation Day Oct 29</text><text x="30" y="330" font-size="10" fill="#5a6a8a">Sources: IT之家, 新浪财经, 上海证券报 (Oct 26, 2026); AgiBot WAIC materials (Jul 2026). Payload scale 10px per kg; throughput 4px per case.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PAYLOAD</div>
+        <div class="annotation-card-zh">重载<span class="annotation-card-en">zhòngzài · heavy load</span></div>
+        <div class="annotation-card-body">40kg rated puts cartons in reach.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · OCT 29</div>
+        <div class="annotation-card-zh">京东物流<span class="annotation-card-en">Jīngdōng Wùliú · JD Logistics</span></div>
+        <div class="annotation-card-body">Unit count, price, a second customer.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · THROUGHPUT</div>
+        <div class="annotation-card-zh">拆码垛<span class="annotation-card-en">chāi mǎduò · de/palletizing</span></div>
+        <div class="annotation-card-body">80 cases/hr trails fixed cells.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · FX</div>
+    <div class="story-headline">The Onshore Yuan Reaches 6.6682 per Dollar, Its Strongest Since June 2022, as the PBOC Sets the Fixing 471 Pips Weaker Than Expected to Slow the Climb</div>
+    <div class="story-insight">
+      <p>Onshore spot touched 6.6682 on Monday, heading for an eighth straight gain. The PBOC fixed at 6.7162, its strongest since February 2023 but 471 pips weaker than the Reuters estimate of 6.6691, the widest weak-side gap since September 23.</p>
+      <br>
+      <p>Barclays says the PBOC is resisting faster appreciation through weak fixings; Goldman Sachs keeps a 12-month target of 6.40. The Fed decides Wednesday, the ECB and BoJ later in the week, and the Fifth Plenum closes Thursday.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The PBOC is allowing the yuan to rise and setting the pace with its fixing; the gap between the fixing and model estimates is the measure to track, and a narrowing gap would mean Beijing is accepting faster gains despite weak exporter earnings.</div>
+    <div class="chart-box">
+      <div class="chart-title">Spot Runs Ahead, the Fixing Holds Back (Yuan per Dollar)</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CNY PER USD · RIGHT = STRONGER YUAN</text><line x1="240" y1="40" x2="760" y2="40" stroke="#c9bfb3" stroke-width="1"/><text x="240" y="34" font-size="10" fill="#5a6a8a" text-anchor="middle">6.74</text><text x="370" y="34" font-size="10" fill="#5a6a8a" text-anchor="middle">6.72</text><text x="500" y="34" font-size="10" fill="#5a6a8a" text-anchor="middle">6.70</text><text x="630" y="34" font-size="10" fill="#5a6a8a" text-anchor="middle">6.68</text><text x="760" y="34" font-size="10" fill="#5a6a8a" text-anchor="middle">6.66</text><line x1="240" y1="40" x2="240" y2="200" stroke="#e0d8d0" stroke-width="1"/><line x1="370" y1="40" x2="370" y2="200" stroke="#e0d8d0" stroke-width="1"/><line x1="500" y1="40" x2="500" y2="200" stroke="#e0d8d0" stroke-width="1"/><line x1="630" y1="40" x2="630" y2="200" stroke="#e0d8d0" stroke-width="1"/><line x1="760" y1="40" x2="760" y2="200" stroke="#e0d8d0" stroke-width="1"/><text x="30" y="74" font-size="12" font-weight="700" fill="#1a1a2e">PBOC fixing</text><line x1="286" y1="70" x2="395" y2="70" stroke="#b45309" stroke-width="2"/><circle cx="286" cy="70" r="6" fill="#9a8a7a"/><text x="286" y="92" font-size="10" fill="#9a8a7a" text-anchor="middle">Oct 9 · 6.7330</text><circle cx="395" cy="70" r="7" fill="#b45309"/><text x="395" y="92" font-size="10" font-weight="700" fill="#b45309" text-anchor="middle">Oct 26 · 6.7162</text><text x="30" y="124" font-size="12" font-weight="700" fill="#1a1a2e">Onshore spot</text><line x1="509" y1="120" x2="707" y2="120" stroke="#c0392b" stroke-width="2"/><circle cx="509" cy="120" r="6" fill="#9a8a7a"/><text x="509" y="142" font-size="10" fill="#9a8a7a" text-anchor="middle">Oct 9 · ~6.6987</text><circle cx="707" cy="120" r="7" fill="#c0392b"/><text x="707" y="142" font-size="10" font-weight="700" fill="#c0392b" text-anchor="middle">Oct 26 high · 6.6682</text><text x="30" y="174" font-size="12" fill="#1a1a2e">Reuters fixing estimate</text><circle cx="701" cy="170" r="6" fill="none" stroke="#1a1a2e" stroke-width="2"/><text x="701" y="192" font-size="10" fill="#1a1a2e" text-anchor="middle">Oct 26 · 6.6691</text><line x1="395" y1="214" x2="701" y2="214" stroke="#1a1a2e" stroke-width="1.5"/><line x1="395" y1="208" x2="395" y2="220" stroke="#1a1a2e" stroke-width="1.5"/><line x1="701" y1="208" x2="701" y2="220" stroke="#1a1a2e" stroke-width="1.5"/><text x="548" y="234" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">471 pips weaker than expected · widest since Sep 23</text><text x="30" y="264" font-size="12" fill="#1a1a2e">Context: CFETS basket replica 103.9 on Oct 9 (4-yr high) · yuan +4.4% YTD at Oct 9 · Goldman 12-month target 6.40</text><text x="30" y="290" font-size="10" fill="#5a6a8a">Sources: Reuters via The Standard (Oct 26, 2026); CFETS; Bloomberg (Oct 9, 2026). Axis 6.74 to 6.66, 65px per 0.01.</text></svg>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STRENGTH</div>
+        <div class="annotation-card-zh">在岸人民币<span class="annotation-card-en">zài'àn rénmínbì · onshore yuan</span></div>
+        <div class="annotation-card-body">Strongest since June 2022.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FIXING GAP</div>
+        <div class="annotation-card-zh">中间价<span class="annotation-card-en">zhōngjiānjià · midpoint fixing</span></div>
+        <div class="annotation-card-body">Narrowing gap means faster gains allowed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EXPORTERS</div>
+        <div class="annotation-card-zh">人民币升值<span class="annotation-card-en">rénmínbì shēngzhí · yuan appreciation</span></div>
+        <div class="annotation-card-body">Squeezes overseas earnings in a miss season.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #161 · OCTOBER 27, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
