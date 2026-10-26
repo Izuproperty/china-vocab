@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #150 · Tuesday, October 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #150 · October 27, 2026</div>
+    <div class="masthead-sub">Sakana Pretrains Sawara · Nikon Submicron Lithography · Meiji Yasuda Buys Into Man Group</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SAKANA AI</div>
+      <div class="card-num">Spring 2027</div>
+      <div class="card-label">First from-scratch Sawara model due</div>
+      <div class="card-delta delta-green">Development starts in November</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · NIKON</div>
+      <div class="card-num">0.85<span class="card-num-unit">µm</span></div>
+      <div class="card-label">FX-6ASLH line width on G6 display glass</div>
+      <div class="card-delta delta-green">First FPD tool below 1 µm</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MEIJI YASUDA</div>
+      <div class="card-num">¥200<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Placed with Man Group over three years</div>
+      <div class="card-delta delta-amber">Plus ~5% open-market stake</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &AMP; TECH</div>
+    <div class="story-headline">Sakana AI Will Pretrain Its Own Japanese Model, Sawara, After Two Years of Building on Other Labs' Weights</div>
+    <div class="story-insight">
+      <p>サカナAI (Sakana Ē-Ai, Sakana AI) said on October 26 that it will train a Japanese 基盤モデル (kiban moderu, foundation model) from randomly initialized weights, its first attempt at full 事前学習 (jizen gakushū, pre-training). CEO David Ha announced the project, tentatively named Sawara, at a symposium at Hitotsubashi Hall in Tokyo. Development starts in November, a smaller model is due in spring 2027, and a larger version aimed at hundreds of billions of parameters follows. Chief Scientist Takuya Akiba will lead a team of about 20 that uses AI agents to help run training experiments, and Jürgen Schmidhuber, a pioneer of recurrent neural networks, gave the keynote as Sakana's new chief scientific advisor. Sakana has not disclosed the compute, training data or budget.</p>
+      <br>
+      <p>The plan reverses the approach Sakana has used since 2023, when it began building products by merging, fine-tuning and orchestrating other labs' open models. Its commercial Namazu model is post-trained on Kimi K2.6, an open-weight model from China's Moonshot AI, and its Fugu orchestrator routes tasks across US models. That works for general business use but runs into trouble with the customers Sakana now depends on: the Ministry of Defense, government cyber teams, MUFG, SMBC and Daiwa Securities. These buyers want to know what data went into a model and need assurance that a foreign supplier cannot change or withdraw it. A 国産 (kokusan, domestically built) base checkpoint answers both demands, and owning the weights lets Sakana choose its own data mixture.</p>
+      <br>
+      <p>Compute is the constraint. Training a model with hundreds of billions of parameters from scratch typically takes thousands of GPUs for months, and Sakana's last round raised ¥32 billion in November 2025 at a ¥432 billion valuation, which covers only part of that bill. The state-backed Noetra consortium already holds ¥387.3 billion of METI money for fiscal 2026 to build a sovereign multimodal model by 2028, and MUFG backs both efforts. Sakana will therefore compete with its own shareholder's other bet for government compute and procurement. The name keeps Sakana's fish theme: sawara is Spanish mackerel.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Sakana is private, so listed exposure runs through its backers and suppliers: MUFG (TSE: 8306), Mitsubishi Electric (TSE: 6503) and domestic GPU clouds such as Sakura Internet (TSE: 3778). Pretraining from scratch raises Sakana's cash burn and makes a new funding round likely in 2027. Watch for a named compute partner and for direct Ministry of Defense funding. Without either, the spring 2027 small model has to prove that a 20-person team can match the open-weight models Sakana used to build on.</div>
+    <div class="chart-box">
+      <div class="chart-title">Sakana AI: From Merging Models to Pretraining Its Own</div>
+<svg viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="125" x2="820" y2="125" stroke="#c7cbe0" stroke-width="2"/>
+<line x1="480" y1="125" x2="820" y2="125" stroke="#3730a3" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="70" cy="125" r="7" fill="#5a6a8a"/>
+<text x="70" y="103" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jun 2023</text>
+<text x="70" y="72" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">Founded by</text>
+<text x="70" y="86" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Ha and Jones</text>
+<circle cx="200" cy="125" r="7" fill="#5a6a8a"/>
+<text x="200" y="153" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nov 2025</text>
+<text x="200" y="171" font-size="9.5" font-weight="500" fill="#5a6a8a" text-anchor="middle">Series B ¥32bn</text>
+<text x="200" y="185" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥432bn valuation</text>
+<circle cx="330" cy="125" r="7" fill="#be185d"/>
+<text x="330" y="103" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Aug 2026</text>
+<text x="330" y="72" font-size="9.5" font-weight="500" fill="#be185d" text-anchor="middle">Namazu post-trained</text>
+<text x="330" y="86" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">on Kimi K2.6</text>
+<circle cx="470" cy="125" r="7" fill="#3730a3"/>
+<text x="470" y="153" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 26</text>
+<text x="470" y="171" font-size="9.5" font-weight="500" fill="#3730a3" text-anchor="middle">Sawara announced</text>
+<text x="470" y="185" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">from-scratch plan</text>
+<circle cx="590" cy="125" r="7" fill="#3730a3"/>
+<text x="590" y="103" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nov 2026</text>
+<text x="590" y="72" font-size="9.5" font-weight="500" fill="#3730a3" text-anchor="middle">Pre-training</text>
+<text x="590" y="86" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">work begins</text>
+<circle cx="700" cy="125" r="7" fill="#3730a3"/>
+<text x="700" y="153" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Spring 2027</text>
+<text x="700" y="171" font-size="9.5" font-weight="500" fill="#3730a3" text-anchor="middle">Small Sawara</text>
+<text x="700" y="185" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">model ships</text>
+<circle cx="800" cy="125" r="7" fill="#0e7490"/>
+<text x="800" y="103" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Later</text>
+<text x="800" y="72" font-size="9.5" font-weight="500" fill="#0e7490" text-anchor="middle">Large model:</text>
+<text x="800" y="86" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">100s of bn params</text>
+<text x="430" y="228" font-size="10" font-weight="500" fill="#5a6a8a" text-anchor="middle">Solid: building on other labs' weights. Dashed: own base checkpoint. Compute, data and budget not disclosed.</text>
+</svg>
+      <div class="chart-note">Sources: Nikkei Asia and AlphaSignal (Oct 26); Sakana AI Series B release (Nov 2025).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">国産<span class="annotation-card-en">domestically built</span></div>
+        <div class="annotation-card-body">Own base checkpoint for defense and banks.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">計算資源<span class="annotation-card-en">compute</span></div>
+        <div class="annotation-card-body">No GPU partner named yet.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">事前学習<span class="annotation-card-en">pre-training</span></div>
+        <div class="annotation-card-body">Cost may force a 2027 raise.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Nikon Takes Orders for the First Submicron Display Lithography Tool and Aims It at Korean and Chinese OLED Makers</div>
+    <div class="story-insight">
+      <p>ニコン (Nikon, Nikon) began taking orders on October 26 for the FX-6ASLH, a flat panel display 露光装置 (rokō sōchi, lithography system) that prints circuit lines 0.85 micrometers wide on glass. Nikon says it is the first FPD tool to resolve below 1 micrometer. It reaches 1.0 µm contact holes and an overlay accuracy, or 重ね合わせ精度 (kasaneawase seido, overlay accuracy), of ±0.18 µm or better, works on G6 glass of 1,500 by 1,850 millimeters, and exposes a plate every 39 seconds using a UV-LED light source. The finest lines require a phase-shift mask and chemically amplified resist. Sales start in December 2027, and a Nikon official said the company will focus on display makers in South Korea and China.</p>
+      <br>
+      <p>The tool patterns the thin-film transistor layers behind high-resolution 有機EL (yūki EL, OLED) panels for phones and foldables. Those panels need finer wiring as pixel density rises and as makers pack more circuitry into narrower bezels, and Nikon says G6 lines for small and medium panels increasingly need resolution below 1 µm. Nikon and Canon are the two main suppliers of FPD lithography, and Korean and Chinese makers such as Samsung Display and BOE run most of the world's G6 OLED capacity, so that is where the orders will come from.</p>
+      <br>
+      <p>The same large-glass optics carry Nikon into chip packaging. In June Nikon said it is developing a maskless digital lithography system with 1.5 µm 解像度 (kaizōdo, resolution) and at least 65 panels an hour for semiconductor advanced packaging, due in fiscal 2027, and it has taken orders since July 2025 for the 1.0 µm DSP-100. Panel-level packaging for AI chips uses large rectangular substrates like display glass, and Nikon built the DSP-100 by combining its FPD multi-lens optics with its semiconductor lithography technology. Nikon lost front-end chip lithography to ASML two decades ago, and these back-end tools are how it gets a share of AI chip spending again.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Nikon (TSE: 7731) books no revenue from the FX-6ASLH until late 2027, so near-term numbers do not change. The order book will show whether Samsung Display and BOE commit to upgrading G6 OLED lines for higher-resolution phone panels, and a slowdown in Chinese display capex is the main risk. Watch Nikon's next results for FPD order intake and first DSP-100 shipments, which would show whether its packaging tools are turning into chip-related revenue.</div>
+    <div class="chart-box">
+      <div class="chart-title">Nikon Lithography Resolution by Tool (lower is finer)</div>
+<svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
+<line x1="210.0" y1="30" x2="210.0" y2="200" stroke="#e8eaf2" stroke-width="1"/>
+<text x="210.0" y="218" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0 µm</text>
+<line x1="297.5" y1="30" x2="297.5" y2="200" stroke="#e8eaf2" stroke-width="1"/>
+<text x="297.5" y="218" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.4 µm</text>
+<line x1="385.0" y1="30" x2="385.0" y2="200" stroke="#e8eaf2" stroke-width="1"/>
+<text x="385.0" y="218" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0.8 µm</text>
+<line x1="472.5" y1="30" x2="472.5" y2="200" stroke="#e8eaf2" stroke-width="1"/>
+<text x="472.5" y="218" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">1.2 µm</text>
+<line x1="560.0" y1="30" x2="560.0" y2="200" stroke="#e8eaf2" stroke-width="1"/>
+<text x="560.0" y="218" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">1.6 µm</text>
+<text x="200" y="57" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">FX-6ASLH (FPD, L/S)</text>
+<rect x="210" y="40" width="185.9" height="24" rx="3" fill="#3730a3"/>
+<text x="403.9" y="57" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">0.85 µm</text>
+<text x="457.9" y="57" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Orders open; ships Dec 2027</text>
+<text x="200" y="97" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">FX-6ASLH contact hole</text>
+<rect x="210" y="80" width="218.8" height="24" rx="3" fill="#818cf8"/>
+<text x="436.8" y="97" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">1 µm</text>
+<text x="490.8" y="97" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Same tool</text>
+<text x="200" y="137" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">DSP-100 (packaging)</text>
+<rect x="210" y="120" width="218.8" height="24" rx="3" fill="#be185d"/>
+<text x="436.8" y="137" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">1 µm</text>
+<text x="490.8" y="137" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Orders since Jul 2025</text>
+<text x="200" y="177" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Digital litho (packaging)</text>
+<rect x="210" y="160" width="328.1" height="24" rx="3" fill="#f9a8d4"/>
+<text x="546.1" y="177" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">1.5 µm</text>
+<text x="600.1" y="177" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Due FY2027; 65+ panels/hr</text>
+<line x1="428.8" y1="30" x2="428.8" y2="200" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="428.8" y="24" font-size="9.5" font-weight="600" fill="#b45309" text-anchor="middle">1 µm: prior FPD floor</text>
+<text x="430" y="252" font-size="10" font-weight="500" fill="#5a6a8a" text-anchor="middle">G6 glass 1,500 × 1,850 mm · overlay ±0.18 µm · 39 s per plate · UV-LED light source</text>
+</svg>
+      <div class="chart-note">Sources: Nikon releases (Oct 26, 2026; Jun 5, 2026); Jiji Press via Nippon.com (Oct 26).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">解像度<span class="annotation-card-en">resolution</span></div>
+        <div class="annotation-card-body">0.85 µm, first below 1 µm on glass.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">有機EL<span class="annotation-card-en">OLED</span></div>
+        <div class="annotation-card-body">Samsung Display and BOE line upgrades.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">設備投資<span class="annotation-card-en">capex</span></div>
+        <div class="annotation-card-body">Chinese display spending slows.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE</div>
+    <div class="story-headline">Meiji Yasuda Buys About 5% of Man Group and Pledges ¥200 Billion to Its Private Credit Funds Over Three Years</div>
+    <div class="story-insight">
+      <p>明治安田生命 (Meiji Yasuda Seimei, Meiji Yasuda Life Insurance) said on October 26 that it will buy about 5% of Man Group, the London-listed hedge fund and credit manager, through open-market purchases, and will place ¥200 billion (about $1.3 billion) with Man Group over three years, mostly in プライベートクレジット (puraibēto kurejitto, private credit). The stake was worth about £179 million at the October 23 close, and Man Group will issue no new shares. Meiji Yasuda accepted a three-year lock-up and a standstill that caps its holding at 19.99%. The two firms will develop products for Japanese clients together, and Man Group becomes a preferred asset manager for the insurer. Man Group shares rose as much as 4.9% in London.</p>
+      <br>
+      <p>This is Meiji Yasuda's first major investment in an overseas asset manager, and it extends a partnership signed in February 2025. The insurer is a 相互会社 (sōgo gaisha, mutual company) owned by its policyholders, so it cannot issue shares to fund a large acquisition. A minority stake plus a mandate is a cheaper way into foreign 資産運用 (shisan un'yō, asset management). Its peers have spent far more: Nippon Life bought Resolution Life for $8.2 billion, and Dai-ichi Life offered A$7.9 billion for Australia's Challenger on October 18, an offer Challenger's board rejected on October 26. The Man Group money is part of Meiji Yasuda's plan to put ¥600 billion into private assets through fiscal 2027.</p>
+      <br>
+      <p>The deal sends money abroad while domestic yields are the highest in decades. The 10-year JGB yield is near 2.8% and the 20-year near 3.6%, and Japanese life insurers have been buying long JGBs to match their liabilities under the economic-value solvency rules that took effect for fiscal 2025. Meiji Yasuda is still adding overseas credit because private loans pay a spread that JGBs do not, and because Man Group brings origination and quantitative skills the insurer lacks in-house. Those solvency rules also mark holdings to economic value, so a downturn in private credit, where industry warnings about loose underwriting are growing, would hit reported capital quickly.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Man Group gets ¥200 billion of long-term insurance money and a Japanese distribution partner. For Japanese markets, the deal shows that higher JGB yields have not stopped the big life insurers from adding overseas credit, which limits how much repatriation demand the bond market should expect from them. Watch the insurers' second-half investment plans, which they usually brief in late October, and whether Dai-ichi raises its Challenger price.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japanese Life Insurers' Overseas Moves (USD bn)</div>
+<svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+<line x1="90" y1="220.0" x2="820" y2="220.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="224.0" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">$0bn</text>
+<line x1="90" y1="160.0" x2="820" y2="160.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="164.0" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">$3bn</text>
+<line x1="90" y1="100.0" x2="820" y2="100.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="104.0" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">$6bn</text>
+<line x1="90" y1="40.0" x2="820" y2="40.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="44.0" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">$9bn</text>
+<rect x="170" y="56.0" width="110" height="164.0" rx="3" fill="#5a6a8a"/>
+<text x="225" y="48.0" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">$8.2bn</text>
+<text x="225" y="240" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nippon Life</text>
+<text x="225" y="256" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Resolution Life</text>
+<rect x="400" y="109.2" width="110" height="110.8" rx="3" fill="#b45309"/>
+<text x="455" y="101.2" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">A$7.94bn (US$5.54bn)</text>
+<text x="455" y="240" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Dai-ichi Life</text>
+<text x="455" y="256" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Challenger bid (rejected)</text>
+<rect x="630" y="215.2" width="110" height="4.8" rx="3" fill="#3730a3"/>
+<rect x="630" y="189.2" width="110" height="26.0" rx="3" fill="#c7cbe0" stroke="#3730a3" stroke-dasharray="4 3"/>
+<text x="685" y="181.2" font-size="11.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">£179m + ¥200bn</text>
+<text x="685" y="240" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Meiji Yasuda</text>
+<text x="685" y="256" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="middle">Man Group ~5% + mandate</text>
+<text x="430" y="275" font-size="10" font-weight="500" fill="#b45309" text-anchor="middle">Dashed: ¥200bn (~$1.3bn) placed with Man Group over three years. Equity stake alone ~$0.24bn.</text>
+</svg>
+      <div class="chart-note">Sources: Bloomberg, Private Equity Wire (Oct 26); Reuters (Oct 18-19); Japan Times (Oct 26). Values at announcement.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">プライベートクレジット<span class="annotation-card-en">private credit</span></div>
+        <div class="annotation-card-body">¥200bn over three years.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">運用計画<span class="annotation-card-en">investment plan</span></div>
+        <div class="annotation-card-body">Lifers' H2 plans this week.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">相互会社<span class="annotation-card-en">mutual company</span></div>
+        <div class="annotation-card-body">Credit losses hit capital fast.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #150 · OCTOBER 27, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
   "meta": {
-    "updated": "2026-10-26",
-    "issue": 149,
+    "updated": "2026-10-27",
+    "issue": 150,
     "title": "Japan AI & Industrial Landscape"
   },
   "entities": [
@@ -1874,63 +1874,30 @@
       "py": "Sakana Ē-Ai",
       "cat": "ai",
       "status": "private",
-      "desc": "Japan's most internationally prominent AI research lab, founded by two of the most credentialed AI researchers in the world (David Ha + Llion Jones, Transformer co-inventor). **Evolutionary model merging:** Sakana AI's primary research direction is 'AI for AI' — using evolutionary algorithms and model merging to automatically compose or improve existing foundation models without gradient descent retraining, offering potentially 10x+ compute reduction versus training from scratch. **Sovereignty through post-training:** Rather than compete on frontier pretraining compute, Sakana fine-tunes and orchestrates other labs' open-weight models (Moonshot AI's Kimi, Google's Gemma) into Japan-specific products — its free Sakana Translate service, upgraded Aug 21 to the new-generation Namazu model, beat rival translation services in head-to-head evaluation on culturally specific Japanese text. **AI Scientist (2024):** Published a paper on an AI system that autonomously generates, runs, and writes up machine learning research experiments — widely cited as the first plausible automated AI research system. **Funding trajectory:** The $430M raise at $1B+ valuation (2024) makes it the largest single venture round for a Japan-based AI startup in history. **Comprehensive partnership with Sumitomo Corp and SCSK (#104, Sept 10, 2026):** Sakana AI, trading house Sumitomo Corporation, and IT services firm SCSK announced a comprehensive business partnership to accelerate enterprise AI deployment in Japan, combining Sakana's research and its Japan-developed orchestration model with Sumitomo's business-development reach and SCSK's systems-integration capability. Initial work targets finance and manufacturing use cases, with cybersecurity and overseas expansion flagged as follow-on areas — a distinct commercialization channel from Sakana's existing SDF command-layer and translation-product work, moving the lab further from pure research toward enterprise deployment via established corporate distribution partners rather than building its own sales organization. **Fugu Ultra v2 ships with Claude Fable 5/5.1 and GPT-6 Astra excluded from its pool (#106, Sept 11, 2026):** Sakana shipped a refreshed version of its multi-agent orchestration model, Fugu Ultra v2, alongside a cheaper sibling, Fugu Max. The pool composition change is the story: Sakana explicitly removed three of the strongest models now shipping (Claude Fable 5, Fable 5.1, GPT-6 Astra) from the coordinator's available pool and still claims best-or-joint-best placement on 5 of 8 benchmarks, including a 21-point vendor-reported gap over Claude Opus 5 on visual reasoning (Chartography). All figures are vendor-reported with no independent evaluation published and no per-task routing disclosed -- Sakana's FAQ states routing information is not exposed by design. Pricing is unchanged from the June launch ($5/$30 per 1M tokens for Ultra); the product remains unavailable in the EU/EEA pending GDPR compliance work. **Tops Nikkei/Kepple H1 2026 startup funding ranking as investor base narrows (#109, Sept 15-16, 2026):** Nikkei Asia reported Sakana ranked first in Japan's H1 2026 startup funding league table compiled with data provider Kepple Group, as Japanese venture investors grew more selective — concentrating capital on a smaller number of companies with track records rather than spreading bets broadly. Japanese startups raised a combined ¥377.9bn in H1 2026, up 12% year-on-year, with research-intensive companies (deep tech, AI, robotics) accounting for roughly 44% (¥167.5bn) of that total — the clearest sign yet that the 'flight to quality' dynamic already visible in Sakana's own late-2025 Series B (at a ¥400bn/$2.65bn valuation) has become a market-wide pattern rather than a company-specific story. Self-driving software startup Turing ranked among the other top winners. **Launches Frontier Intelligence Group, a formal bet against pure Transformer scaling (#118, Sept 18, 2026):** Sakana AI stood up an internal research collective, the Frontier Intelligence Group (FIG), organized around five speculative projects that share one premise -- that the Transformer architecture anchoring AI progress since 2017 may not be the only path worth funding. The projects span biologically inspired \"Continuous Thought Machines,\" a backpropagation-free training method (Augmented Lagrangian Predictive Coding, or PC-ALM) that trains 1,000-layer networks with only local layer-by-layer updates and lands within about two points of standard backprop accuracy on deep test networks, a sparse-Transformer collaboration with Nvidia aimed at cutting the memory and energy cost of running billion-parameter models, an evolutionary image-generation experiment, and a self-organizing physical-hardware project. CTO Llion Jones -- a co-author of the original 2017 Transformer paper -- said the architecture's own success \"has stifled the kind of research freedom that allowed for its very inception.\" Only the Nvidia sparse-Transformer work has an obvious near-term commercial path; the rest remain unproven outside small image-classification benchmarks. The more useful read for positioning is that FIG is insurance and recruiting leverage rather than a product roadmap -- a hedge against transformer-scaling fatigue and a pitch to researchers who want to work outside the current scaling-law consensus, distinct from Sakana's existing orchestration/fine-tuning business (Fugu) and its Sept 10-16 funding and partnership news already tracked above.",
+      "desc": "Japan's most internationally prominent AI lab, now moving from building on other labs' models to owning its own. **Sawara: first from-scratch foundation model (#150, Oct 26, 2026):** CEO David Ha announced at a Tokyo symposium that Sakana will pretrain a Japanese foundation model, tentatively named Sawara, from random weights. Development starts November 2026, a smaller model ships spring 2027 and a larger one targeting hundreds of billions of parameters follows. Chief Scientist Takuya Akiba leads a team of about 20 using AI agents in training experiments; Jurgen Schmidhuber joined as chief scientific advisor. Compute, data and budget are undisclosed. The move answers defense and bank customers that want auditable training data and weights no foreign supplier can withdraw, replacing reliance on Moonshot's Kimi K2.6 (base of the Namazu product). **Defense and finance customer base:** Ministry of Defense integrated-analysis contract, MUFG lending AI, SMBC proposal agents, Daiwa wealth AI, plus a Sumitomo Corp/SCSK distribution partnership (#104). **Fugu orchestrator:** multi-agent router across frontier models; benchmark claims vendor-reported (#106). Risk: from-scratch pretraining at scale needs far more compute than the ¥66bn raised to date, and Sakana competes with METI-funded Noetra for sovereign-AI money.",
       "tags": [
         {
-          "l": "Launches Frontier Intelligence Group, 5 research bets (Sept 18)",
+          "l": "Sawara: own model from scratch, small model spring 2027 (Oct 26)",
           "t": "highlight"
         },
         {
-          "l": "PC-ALM: backprop-free training, within ~2pts of BP accuracy",
-          "t": "blue"
-        },
-        {
-          "l": "Nvidia sparse-Transformer project nearest to commercialization",
+          "l": "Ends reliance on Kimi K2.6 base for sovereign customers",
           "t": "green"
         },
         {
-          "l": "Tops Nikkei/Kepple H1 2026 funding ranking (Sept 15-16)",
-          "t": "highlight"
-        },
-        {
-          "l": "Japan startup funding +12% YoY to ¥377.9bn; deep tech 44%",
+          "l": "Defense, MUFG, SMBC, Daiwa customers",
           "t": "blue"
         },
         {
-          "l": "Fugu Ultra v2: excludes Fable 5/5.1, GPT-6 Astra, still claims wins (Sept 11)",
-          "t": "highlight"
+          "l": "Series B ¥32bn at ¥432bn valuation (Nov 2025)"
         },
         {
-          "l": "All benchmark figures vendor-reported, unverified",
-          "t": "red"
-        },
-        {
-          "l": "Comprehensive partnership w/ Sumitomo Corp + SCSK (Sept 10)",
-          "t": "highlight"
-        },
-        {
-          "l": "Sakana Translate on new Namazu (Aug 21)",
-          "t": "highlight"
-        },
-        {
-          "l": "Fugu + Nemotron open-model routing",
-          "t": "highlight"
-        },
-        {
-          "l": "Evolutionary model merging",
-          "t": "blue"
-        },
-        {
-          "l": "SDF command-layer AI sovereignty role",
-          "t": "green"
-        },
-        {
-          "l": "Benchmark methodology not fully disclosed",
+          "l": "Compute and budget undisclosed; competes with Noetra",
           "t": "red"
         }
       ],
-      "issue": "#53, #56, #62, #65, #67, #72, #73, #86, #104, #106, #109, #118",
-      "bio": "Founded June 2023, Tokyo, by David Ha (CEO) — former Research Director at Google DeepMind — and Llion Jones — co-author of the seminal 2017 'Attention Is All You Need' paper (co-inventor of the Transformer architecture). Raised $430M total; valuation $1B+. Backed by Khosla Ventures, Lux Capital, and others.",
+      "issue": "#53, #56, #62, #65, #67, #72, #73, #86, #104, #106, #109, #118, #150",
+      "bio": "Founded June 2023 in Tokyo by David Ha (CEO), former Google Brain researcher and head of strategy at Stability AI, and Llion Jones (CTO), co-author of the 2017 'Attention Is All You Need' Transformer paper. Known for evolutionary model merging, The AI Scientist and the Fugu orchestrator. Private; about ¥66bn raised in total, including a ¥32bn Series B in November 2025 at about ¥432bn post-money, from investors including MUFG, Khosla Ventures, Lux Capital, Mitsubishi Electric, Google and In-Q-Tel.",
       "trend": "up"
     },
     {
@@ -3669,6 +3636,65 @@
       ],
       "issue": "#149",
       "trend": "down"
+    },
+    {
+      "name": "Nikon",
+      "zh": "ニコン",
+      "py": "Nikon",
+      "cat": "semi",
+      "status": "public",
+      "ticker": "TSE: 7731",
+      "bio": "Founded 1917 in Tokyo as Nippon Kogaku K.K., part of the Mitsubishi group, and renamed Nikon in 1988. Best known for cameras, it also makes lithography systems for semiconductors and flat panel displays, where it and Canon are the main FPD suppliers. Listed on the Tokyo Stock Exchange Prime market.",
+      "desc": "**First submicron FPD lithography tool (#150, Oct 26, 2026):** Opened orders for the FX-6ASLH, which prints 0.85 µm lines (1.0 µm contact holes) on G6 glass with ±0.18 µm overlay and 39-second takt using a UV-LED source; sales start December 2027, aimed at Korean and Chinese OLED makers. **Back-end chip packaging push:** Taking orders since July 2025 for the maskless 1.0 µm DSP-100 digital lithography system for panel-level advanced packaging, and developing a 1.5 µm, 65+ panels/hour successor due FY2027 (announced June 2026). The packaging tools reuse its FPD multi-lens optics and are Nikon's route back into AI chip spending after losing front-end lithography to ASML. Risk: FPD orders follow Korean and Chinese display capex cycles.",
+      "tags": [
+        {
+          "l": "FX-6ASLH: 0.85 µm, first FPD tool below 1 µm (Oct 26)",
+          "t": "highlight"
+        },
+        {
+          "l": "DSP-100 maskless packaging litho",
+          "t": "green"
+        },
+        {
+          "l": "1.5 µm, 65+ panels/hr packaging tool FY2027",
+          "t": "blue"
+        },
+        {
+          "l": "Revenue from Dec 2027; display capex risk",
+          "t": "red"
+        }
+      ],
+      "trend": "up",
+      "issue": "#150"
+    },
+    {
+      "name": "Meiji Yasuda Life Insurance",
+      "zh": "明治安田生命保険",
+      "py": "Meiji Yasuda Seimei Hoken",
+      "cat": "bank",
+      "status": "private",
+      "bio": "Formed in 2004 by the merger of Meiji Life (founded 1881, Japan's oldest life insurer) and Yasuda Life. Headquartered in Tokyo and organized as a mutual company owned by its policyholders, so it is unlisted. One of Japan's largest life insurers and a major institutional holder of JGBs and Japanese equities.",
+      "desc": "**Man Group stake and ¥200bn mandate (#150, Oct 26, 2026):** Will buy about 5% of London-listed Man Group on the open market (about £179m at the Oct 23 close) and place ¥200bn with Man over three years, mostly in private credit, with a three-year lock-up and a 19.99% standstill. Its first major investment in an overseas asset manager, extending a February 2025 partnership; the firms will co-develop products for Japanese clients. Part of a ¥600bn private-assets plan through FY2027. Context: peers Nippon Life (Resolution Life) and Dai-ichi Life (Challenger bid) have pursued larger overseas acquisitions. Risk: private credit losses would hit capital quickly under Japan's economic-value solvency rules.",
+      "tags": [
+        {
+          "l": "~5% Man Group stake + ¥200bn mandate (Oct 26)",
+          "t": "highlight"
+        },
+        {
+          "l": "¥600bn private-assets plan to FY2027",
+          "t": "blue"
+        },
+        {
+          "l": "First overseas asset-manager investment",
+          "t": "green"
+        },
+        {
+          "l": "Private credit risk under ESR",
+          "t": "red"
+        }
+      ],
+      "trend": "up",
+      "issue": "#150"
     }
   ]
 }
