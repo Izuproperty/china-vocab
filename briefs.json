@@ -1,5 +1,108 @@
 [
   {
+    "issue": 162,
+    "date": "2026-10-28",
+    "title": "Zhipu Rallies on Anthropic's IPO Filing, Tencent Open-Sources Hy-SimulMT, September Industrial Profits Rise 14.4%",
+    "summary": "Zhipu rose as much as 12% in Hong Kong after Anthropic filed for a Nasdaq listing, while Chinese chip and robot stocks fell, and its $1.8 billion ARR claim now needs to show up in reported revenue. Tencent open-sourced Hy-SimulMT, a 30B Chinese-English simultaneous interpretation model it says runs about three seconds behind the speaker. September industrial profits rose 14.4%, with electronics supplying about six-tenths of this year's growth.",
+    "viz_url": "china-brief-visualized-2026-10-28.html",
+    "sections": [
+      {
+        "icon": "📈",
+        "title": "Zhipu Jumps as Much as 12% in Hong Kong After Anthropic's IPO Filing While Mainland AI Hardware Falls, and Its $3 Billion ARR Target Now Faces a Revenue Test",
+        "tag": "ai",
+        "source": "21世纪经济报道 21jingji (Oct 27) · Fortune (Oct 27) · TechFlow (Oct 27) · AI & Tech · Foundation models / markets · Oct 27, 2026 (about 1 day old)",
+        "body": "Shares of 智谱 (Zhìpǔ, Zhipu AI, international brand Z.ai) rose as much as 12% in Hong Kong on Tuesday morning, a day after Anthropic filed its registration statement with the US SEC for a Nasdaq listing. 稀宇科技 (Xīyǔ Kējì, MiniMax), the other Hong Kong-listed model developer, gained more than 5% at one point. Chinese AI hardware moved the other way. Fortune reported Cambricon down 5.7% and Unitree down 4.8%, with the CSI 300 off 1.3% and the Hang Seng off 0.7%, while Zhipu was up 8.9% at the time of its snapshot. 南向资金 (nánxiàng zījīn, southbound Stock Connect flows) bought a net HK$431 million of Zhipu on October 26 and HK$2.17 billion over the two latest sessions.\n\nZhipu has said its 年度经常性收入 (niándù jīngchángxìng shōurù, annual recurring revenue) reached $1.8 billion and has raised its year-end target to $3 billion from $2.4 billion. Goldman Sachs upgraded the stock to Buy with a $3.2 billion forecast. Amazon Bedrock added Zhipu's GLM-5.3 on October 6 under a revenue share based on call volume, and Zhipu says similar arrangements with other large cloud providers start contributing revenue this month. Reported results are much smaller. First-half revenue was ¥953.9 million (about $143 million), up 399.7%, of which the 模型即服务 (móxíng jí fúwù, MaaS) platform and API business made ¥825.2 million (about $124 million), or 86.5%. The net loss was ¥2.0 billion (about $300 million).\n\nInvestors are treating Anthropic's filing as a valuation reference for listed model developers, and Zhipu is the closest pure model company available in Hong Kong, so it took the bid. The chip and robot names fell because, as Natixis's Alicia Garcia Herrero said, Chinese markets sit outside the US AI supply chain, and a US lab's listing adds no demand for Cambricon accelerators. The ARR figure needs reconciling with the accounts. $1.8 billion a year is $150 million a month, while first-half revenue averaged about $24 million a month, so either revenue rose roughly sixfold after June or Zhipu's ARR counts contracted or gross billings that will not all appear as recognized revenue. Zhipu has not published its definition. Second-half results will settle it, and Bedrock is the first revenue line that should show up. The stock fell more than 30% in September after the US distillation advisory, and the founders' reported links to an MI5-flagged institute remain a screen for European buyers of GLM.",
+        "takeaway": "Zhipu trades as Hong Kong's closest listed proxy for a US frontier lab, but its $1.8 billion ARR implies monthly revenue about six times its first-half average, so second-half results need to confirm the run rate before the valuation can rely on it.",
+        "vocab": [
+          {
+            "zh": "智谱",
+            "en": "Zhipu AI (Z.ai)"
+          },
+          {
+            "zh": "稀宇科技",
+            "en": "MiniMax"
+          },
+          {
+            "zh": "南向资金",
+            "en": "southbound Stock Connect flows"
+          },
+          {
+            "zh": "年度经常性收入",
+            "en": "annual recurring revenue (ARR)"
+          },
+          {
+            "zh": "模型即服务",
+            "en": "model-as-a-service (MaaS)"
+          }
+        ]
+      },
+      {
+        "icon": "🗣️",
+        "title": "Tencent Open-Sources Hy-SimulMT, a 30B Chinese-English Simultaneous Interpretation Model It Says Runs About Three Seconds Behind the Speaker",
+        "tag": "ai",
+        "source": "TechNode (Oct 27) · AlphaSignal (Oct 27) · AITOP100 daily (Oct 27) · Tencent-Hunyuan GitHub · AI & Tech · Open-source models · Oct 27, 2026 (about 1 day old)",
+        "body": "腾讯混元 (Téngxùn Hùnyuán, Tencent Hunyuan) released Hy-SimulMT on October 27 as an 开源 (kāiyuán, open-source) model for Chinese-English 同声传译 (tóngshēng chuányì, simultaneous interpretation). It translates continuously as speech comes in, before the speaker finishes a sentence. The model is a mixture-of-experts design with 30 billion parameters and about 3 billion active per token. Tencent published six variants on Hugging Face, including FP8 builds meant for a single GPU and GGUF builds for llama.cpp, plus an inference server and continued-training scripts. Output can be text or speech, and with an external text-to-speech service it reads the translation in a 声音克隆 (shēngyīn kèlóng, voice clone) of the original speaker. Consumers can use it free in the Hy Translate app.\n\nTencent reports about 3 seconds of 延迟 (yánchí, latency) on the RealSI long-form audio benchmark, the lowest of the systems it compared. It says its GEMBA quality score beat every open model it tested and four of five commercial APIs, none of which it named, and it trails Alibaba's Qwen3.8-LiveTranslate on the CoVoST2 benchmark. In a Tencent-run study, six CATTI-certified interpreters (three Level 1, three Level 2) worked through 18 Chinese and English recordings of about six minutes each, and Tencent reports comparable quality with usually faster responses. Certified human interpreters typically run 4 to 5 seconds behind. The release pages reviewed do not state a licence, and the model handles only Chinese and English.\n\nA model with 3 billion active parameters that fits on one GPU brings the cost of live interpretation down toward the cost of hardware. Meeting software, conference organizers and customer-service operators can now self-host something Tencent says matches most paid APIs. That puts pricing pressure on commercial interpretation APIs and on 科大讯飞 (Kēdà Xùnfēi, iFlytek), which sells translator devices and conference interpretation systems, and it gives Tencent Meeting a feature to bundle. The release follows Tencent's approach since Hy4 Preview in August: give away weights to win developers and earn through Tencent Cloud and WeChat. The quality case rests on Tencent's own tests, with no per-domain breakdown, and performance in medical, legal and noisy settings has not been shown. Those are the settings where human interpreters charge the most, so independent evaluations there will decide how much of the paid market the model can take.",
+        "takeaway": "An open interpretation model with about 3 billion active parameters that runs on one GPU pushes the price of live translation toward hardware cost, pressuring paid APIs and iFlytek's device line, if Tencent's vendor-run quality claims hold up in independent tests.",
+        "vocab": [
+          {
+            "zh": "腾讯混元",
+            "en": "Tencent Hunyuan"
+          },
+          {
+            "zh": "开源",
+            "en": "open source"
+          },
+          {
+            "zh": "同声传译",
+            "en": "simultaneous interpretation"
+          },
+          {
+            "zh": "声音克隆",
+            "en": "voice cloning"
+          },
+          {
+            "zh": "延迟",
+            "en": "latency, lag"
+          },
+          {
+            "zh": "科大讯飞",
+            "en": "iFlytek"
+          }
+        ]
+      },
+      {
+        "icon": "🏭",
+        "title": "September Industrial Profits Rise 14.4%, the Fastest in Three Months, With Electronics Supplying About Six-Tenths of This Year's Growth",
+        "tag": "macro",
+        "source": "Xinhua (Oct 27) · NBS release (Oct 27) · Press News Agency / Reuters (Oct 27) · Time News (Oct 27) · Finance & Macro · Industrial data · Oct 27, 2026 (about 1 day old)",
+        "body": "Profits at China's 规模以上工业企业 (guīmó yǐshàng gōngyè qǐyè, above-scale industrial firms, those with annual revenue of at least ¥20 million, about $3.0 million) rose 14.4% from a year earlier in September, the 国家统计局 (Guójiā Tǒngjìjú, National Bureau of Statistics) said on October 27. That is 10.2 percentage points faster than August's 4.2% and the strongest month since June. Profits for January to September rose 15.5%, against 15.7% through August, when the eight-month total was ¥5.27 trillion (about $790 billion).\n\nElectronics did most of the work. Profits in the sector doubled over nine months and contributed 9.6 percentage points of the 15.5% total, about six-tenths of all growth. Electronic specialty materials rose 220% and semiconductor discrete devices 51.7%. 高技术制造业 (gāo jìshù zhìzàoyè, high-tech manufacturing) profits rose 52% and now make up 25.5% of industrial profits, up 6.2 points from a year earlier. Mining profits were up 35.1% through August, helped by commodity prices lifted by the war in Iran. Furniture makers' profits fell by more than half. NBS statistician Yu Weining credited 新质生产力 (xīnzhì shēngchǎnlì, new quality productive forces) and policy support. The consumer side of the economy is weaker: September retail sales grew 1.1% and property investment fell 20.6% in the first nine months.\n\nThe headline overstates how broad the recovery is. Profit growth comes from the hardware supply chain for domestic and overseas data centres and from higher commodity prices, while consumer and property-linked industries keep shrinking. CITIC Bank International's Ding Meng expects strong profit growth to continue unless the global AI investment boom reverses. That ties industrial earnings to the same AI capex trade that has cut the STAR50 index by about 40% since June, according to Reuters. Because the gains sit in capital-intensive electronics rather than labour-heavy sectors, they do less for employment and household income than a 14.4% print suggests, and they give Beijing little reason to add consumption support. Wen Bin of China Minsheng Bank expects some near-term pressure before profits stabilize in the fourth quarter. Saturday's official October PMI is the next check: new export orders holding above 50 would point to the electronics run continuing into the fourth quarter.",
+        "takeaway": "September's profit jump comes mostly from electronics and commodities, so industrial earnings now track the AI hardware cycle more than domestic demand, and a reversal in AI capex would hit them directly.",
+        "vocab": [
+          {
+            "zh": "规模以上工业企业",
+            "en": "above-scale industrial firms"
+          },
+          {
+            "zh": "国家统计局",
+            "en": "National Bureau of Statistics"
+          },
+          {
+            "zh": "高技术制造业",
+            "en": "high-tech manufacturing"
+          },
+          {
+            "zh": "新质生产力",
+            "en": "new quality productive forces"
+          },
+          {
+            "zh": "工业利润",
+            "en": "industrial profits"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 161,
     "date": "2026-10-27",
     "title": "Approaching.AI's ¥1.3B Series B, AgiBot's G2 Max at JD Logistics, the Yuan at a Four-Year High",
