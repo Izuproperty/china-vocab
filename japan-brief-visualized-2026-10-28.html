@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #151 · Wednesday, October 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #151 · October 28, 2026</div>
+    <div class="masthead-sub">SoftBank's Malaysia Plan · Advantest Rebounds on Anthropic · Services PPI 3.7% and the Yen</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SOFTBANK</div>
+      <div class="card-num">$50<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Malaysia AI and data center plan, per Anwar</div>
+      <div class="card-delta delta-amber">Mostly partner money</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · ADVANTEST</div>
+      <div class="card-num">+9.0<span class="card-num-unit">%</span></div>
+      <div class="card-label">Top Nikkei gainer on Anthropic S-1</div>
+      <div class="card-delta delta-green">Q2 results today</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ DATA</div>
+      <div class="card-num">3.7<span class="card-num-unit">%</span></div>
+      <div class="card-label">September services PPI, y/y</div>
+      <div class="card-delta delta-amber">Up from revised 3.5%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Son Picks Kuching and Peninsular Malaysia for a $50 Billion AI and Data Center Plan, Anwar Says, With Most of the Money From Others</div>
+    <div class="story-insight">
+      <p>ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) founder 孫正義 (Son Masayoshi) has chosen Kuching, the capital of Sarawak, and a site in Peninsular Malaysia for about $50 billion of investment in AI, new technology and データセンター (dēta sentā, data centers), Malaysian Prime Minister Anwar Ibrahim said in a speech on October 24 after a video call with Son. SoftBank has not commented. Nikkei Asia reported that SoftBank would put in only part of the total, with project finance and partners covering the rest. The plan follows a 枠組み合意 (wakugumi gōi, framework agreement) that SoftBank signed on October 8 with Grab Holdings and Petroleum Sarawak, the state energy company, to study an AI and digital infrastructure platform in Sarawak.</p>
+      <br>
+      <p>Sarawak can offer what AI campuses now compete for: land and power. The state runs large 水力発電 (suiryoku hatsuden, hydropower) dams, and in May its premier set aside a 405-hectare site at Tanjung Embang, near Kuching, for a &quot;Kuching AI Data Campus&quot; with its own power and water supply, to be built as a public-private partnership starting with 120 hectares. Malaysia drew RM385.7 billion ($94 billion) of data-center-related investment from 2021 through the first half of 2026, according to the Malaysian Investment Development Authority, most of it from Amazon, Microsoft and Google. A SoftBank-led campus would add a Japanese sponsor to a market the US cloud companies have so far dominated.</p>
+      <br>
+      <p>The figure lands on a balance sheet that markets already doubt. SoftBank has committed about $64.6 billion to OpenAI, a $500 billion campus in Piketon, Ohio whose cost it expects to share with tenants, and €45 billion for data centers in northern France. Its shares had halved from the June peak by October 22 and its five-year credit default swaps reached a four-year high. The Malaysia structure, with SoftBank arranging the site and tenants while lenders and partners supply most of the capital, lets it add another project of this size without taking on more debt at the parent. Sarawak&#x27;s legislature has been dissolved and state elections must be held by December 26, which gives Anwar and the state government a reason to announce large numbers early.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> SoftBank Group (TSE: 9984) rose about 5% on October 27, but that move came from Anthropic&#x27;s IPO filing lifting AI shares, and the Malaysia plan commits no SoftBank cash yet. Watch for three disclosures: how much equity the parent puts in, whether an anchor tenant such as OpenAI is named, and what management says at fiscal second-quarter results in November. A large cash share from the parent would push the credit spreads wider again.</div>
+    <div class="chart-box">
+      <div class="chart-title">SoftBank Group: Large Commitments (USD bn)</div>
+<svg viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="25" x2="230.0" y2="185" stroke="#e8eaf2" stroke-width="1"/>
+<text x="230.0" y="203" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$0bn</text>
+<line x1="380.0" y1="25" x2="380.0" y2="185" stroke="#e8eaf2" stroke-width="1"/>
+<text x="380.0" y="203" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$20bn</text>
+<line x1="530.0" y1="25" x2="530.0" y2="185" stroke="#e8eaf2" stroke-width="1"/>
+<text x="530.0" y="203" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$40bn</text>
+<line x1="680.0" y1="25" x2="680.0" y2="185" stroke="#e8eaf2" stroke-width="1"/>
+<text x="680.0" y="203" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$60bn</text>
+<line x1="830.0" y1="25" x2="830.0" y2="185" stroke="#e8eaf2" stroke-width="1"/>
+<text x="830.0" y="203" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">$80bn</text>
+<text x="220" y="56" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">OpenAI stake (~13%)</text>
+<rect x="230" y="40" width="484.5" height="26" rx="3" fill="#3730a3"/>
+<text x="722.5" y="57" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">$64.6bn</text>
+<text x="783.5" y="57" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Largest commitment</text>
+<text x="220" y="104" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Northern France data centers</text>
+<rect x="230" y="88" width="377.2" height="26" rx="3" fill="#818cf8"/>
+<text x="615.25" y="105" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">€45bn (~$50.3bn)</text>
+<text x="739.25" y="105" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Announced earlier in 2026</text>
+<text x="220" y="152" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Malaysia AI + data centers</text>
+<rect x="230" y="136" width="56.2" height="26" rx="3" fill="#be185d"/>
+<rect x="286.2" y="136" width="318.8" height="26" rx="3" fill="#fce7f3" stroke="#be185d" stroke-dasharray="4 3"/>
+<text x="613.0" y="153" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">~$50bn</text>
+<text x="667.0" y="153" font-size="9.5" font-weight="400" fill="#5a6a8a" text-anchor="start">Mostly partners and project finance</text>
+<text x="430" y="228" font-size="10" font-weight="500" fill="#5a6a8a" text-anchor="middle">Not shown: $500bn Piketon, Ohio campus, cost to be shared with tenants. Malaysia split is illustrative: SoftBank share not disclosed.</text>
+</svg>
+      <div class="chart-note">Sources: The Edge Malaysia, Fortune, Japan Times (Oct 26); Bernama (May 3); company disclosures.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">枠組み合意<span class="annotation-card-en">framework agreement</span></div>
+        <div class="annotation-card-body">Sarawak deal with Grab and Petros, Oct 8.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">資金調達<span class="annotation-card-en">financing</span></div>
+        <div class="annotation-card-body">How much equity the parent puts in.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">信用スプレッド<span class="annotation-card-en">credit spread</span></div>
+        <div class="annotation-card-body">Cash-heavy share widens CDS again.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Advantest Jumps 9% on Anthropic&#x27;s IPO Filing and Reports Today, With Tokyo Electron and Kioxia on Friday</div>
+    <div class="story-insight">
+      <p>アドバンテスト (Adobantesuto, Advantest) rose about 9% to roughly ¥34,000 on October 27, the biggest gain in the Nikkei 225, after Anthropic filed its 新規株式公開 (shinki kabushiki kōkai, IPO) prospectus with the US Securities and Exchange Commission on October 26. The S-1 showed first-half revenue of $16.3 billion against $1.2 billion a year earlier. イビデン (Ibiden, Ibiden) rose 8.5%, SUMCO 5.5%, SoftBank Group 5.0% and Lasertec 4.9%, and the Nikkei closed up 1.73% at 63,268.37, ending a three-day losing streak. The Philadelphia Semiconductor Index had gained 2.8% overnight.</p>
+      <br>
+      <p>The filing changed the funding picture that had driven the selloff. Investors had been selling AI hardware since mid-October on fears that the biggest buyers of compute could not keep raising money, and Advantest and Tokyo Electron alone took more than 420 points off the Nikkei on October 26. Anthropic&#x27;s S-1 lists compute commitments with Google, Amazon, Microsoft and Broadcom that The Next Web tallied at more than $430 billion, and a public listing gives Anthropic a new way to pay for them. Those commitments turn into accelerators and memory, and a large share of AI accelerators pass through Advantest&#x27;s 試験装置 (shiken sōchi, test equipment) before shipment, while Ibiden makes the パッケージ基板 (pakkēji kiban, package substrates) the largest chips sit on. Daiwa Securities strategist Daisuke Hashizume said the market was relieved by the news. The rally was narrow: about half of Prime Market stocks fell, real estate dropped 3.4% and Daiichi Sankyo lost 8.2%.</p>
+      <br>
+      <p>Advantest publishes fiscal second-quarter results today, October 28. In the first quarter revenue rose 39.3% and operating profit 53.3%, and the company has guided to ¥846 billion of operating profit for the year. Tokyo Electron and Kioxia report on October 30. Disco guided to a pause in HBM-related shipments for October through December when it reported on October 22, so memory test demand is the number most likely to disappoint.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> After a 9% jump Advantest needs more than a beat in today&#x27;s 決算発表 (kessan happyō, earnings release). A higher full-year guide or a firm view on 2027 tester demand would support the rebound in Ibiden, SUMCO and Lasertec as well. A cautious HBM test outlook that echoes Disco would put the October lows back in play before Tokyo Electron reports on Friday.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo Moves on Anthropic&#x27;s IPO Filing, Oct 27 (%)</div>
+<svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+<line x1="230" y1="20" x2="230" y2="255" stroke="#e8eaf2" stroke-width="1"/>
+<text x="230" y="272" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">-8%</text>
+<line x1="350" y1="20" x2="350" y2="255" stroke="#e8eaf2" stroke-width="1"/>
+<text x="350" y="272" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">-4%</text>
+<line x1="470" y1="20" x2="470" y2="255" stroke="#c7cbe0" stroke-width="1"/>
+<text x="470" y="272" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="590" y1="20" x2="590" y2="255" stroke="#e8eaf2" stroke-width="1"/>
+<text x="590" y="272" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">+4%</text>
+<line x1="710" y1="20" x2="710" y2="255" stroke="#e8eaf2" stroke-width="1"/>
+<text x="710" y="272" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">+8%</text>
+<rect x="470.0" y="26" width="269.4" height="20" rx="3" fill="#be185d"/>
+<text x="462" y="40" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Advantest</text>
+<text x="745.4000000000001" y="40" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="start">+8.98%</text>
+<rect x="470.0" y="55" width="256.2" height="20" rx="3" fill="#be185d"/>
+<text x="462" y="69" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Ibiden</text>
+<text x="732.2" y="69" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="start">+8.54%</text>
+<rect x="470.0" y="84" width="165.0" height="20" rx="3" fill="#be185d"/>
+<text x="462" y="98" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">SUMCO</text>
+<text x="641.0" y="98" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="start">+5.50%</text>
+<rect x="470.0" y="113" width="148.5" height="20" rx="3" fill="#be185d"/>
+<text x="462" y="127" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">SoftBank Group</text>
+<text x="624.5" y="127" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="start">+4.95%</text>
+<rect x="470.0" y="142" width="147.0" height="20" rx="3" fill="#be185d"/>
+<text x="462" y="156" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Lasertec</text>
+<text x="623.0" y="156" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="start">+4.90%</text>
+<rect x="470.0" y="171" width="51.9" height="20" rx="3" fill="#3730a3"/>
+<text x="462" y="185" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Nikkei 225</text>
+<text x="527.9" y="185" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="start">+1.73%</text>
+<rect x="367.7" y="200" width="102.3" height="20" rx="3" fill="#5a6a8a"/>
+<text x="478" y="214" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="start">TSE Real Estate</text>
+<text x="361.7" y="214" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-3.41%</text>
+<rect x="225.2" y="229" width="244.8" height="20" rx="3" fill="#5a6a8a"/>
+<text x="478" y="243" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="start">Daiichi Sankyo</text>
+<text x="219.2" y="243" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="end">-8.16%</text>
+<text x="430" y="294" font-size="10" font-weight="500" fill="#5a6a8a" text-anchor="middle">Oct 27 close. Advantest and TEL took 420+ Nikkei points off on Oct 26; Advantest reports Oct 28, TEL and Kioxia Oct 30.</text>
+</svg>
+      <div class="chart-note">Sources: Reuters via MarketScreener; Japan Stock Intel; Investing.com (Oct 27).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">新規株式公開<span class="annotation-card-en">IPO</span></div>
+        <div class="annotation-card-body">Anthropic S-1 eases AI funding fears.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">決算発表<span class="annotation-card-en">earnings release</span></div>
+        <div class="annotation-card-body">Advantest today; TEL, Kioxia Friday.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">広帯域メモリ<span class="annotation-card-en">HBM</span></div>
+        <div class="annotation-card-body">Disco flagged an Oct-Dec HBM pause.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Services Prices Speed Up to 3.7% and Katayama Repeats His Yen Warning as the Dollar Nears ¥158</div>
+    <div class="story-insight">
+      <p>The Bank of Japan&#x27;s 企業向けサービス価格指数 (kigyō-muke sābisu kakaku shisū, services producer price index) rose 3.7% from a year earlier in September, matching forecasts. August was revised down to 3.5% from 3.7%, so the rate picked up and now stands at its highest in more than two years. Goods producer prices went the other way, slowing to 6.8% from 7.6% as government fuel subsidies cut raw-material costs.</p>
+      <br>
+      <p>The services index measures what companies charge each other for transport, advertising, IT, leasing and similar work, and its biggest input is 人件費 (jinkenhi, labor costs). When it rises while goods inflation fades, it shows wage increases moving into prices, which is the kind of inflation the BOJ says it wants before raising rates further. The board meets on October 29-30 and is expected to hold the policy rate at 1.25%, set in September, while its Outlook Report decides whether to say underlying inflation has reached 2%. Most economists expect the next hike in December, and Tuesday&#x27;s data support that call.</p>
+      <br>
+      <p>The yen is the BOJ&#x27;s other pressure point. On the same day 財務大臣 (zaimu daijin, finance minister) 片山さつき (Katayama Satsuki) said the government &quot;stands ready to take decisive action&quot; in currency markets and is watching moves with a high sense of urgency. USD/JPY traded around 157.7 to 157.9, up from 156.37 the previous week, with the 200-day moving average near 158.5. The Ministry of Finance carried out 為替介入 (kawase kainyū, currency intervention) around 160 in 2024. For now Tokyo is relying on 口先介入 (kuchisaki kainyū, verbal intervention), and a weak yen raises import costs just as subsidies are holding goods prices down.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A firmer services trend makes it harder for the BOJ to sound patient on Friday. A clear December signal would support the yen and short-dated JGB yields and weigh on exporters that have benefited from ¥157. If the statement is cautious and USD/JPY breaks through 158.5, intervention risk rises quickly, and the 160 area becomes the line to watch.</div>
+    <div class="chart-box">
+      <div class="chart-title">Services Prices Speed Up While the Yen Weakens</div>
+<svg viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="220" x2="420" y2="220" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="224" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">0%</text>
+<line x1="60" y1="176" x2="420" y2="176" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="180" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">2%</text>
+<line x1="60" y1="132" x2="420" y2="132" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="136" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">4%</text>
+<line x1="60" y1="88" x2="420" y2="88" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="92" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">6%</text>
+<line x1="60" y1="44" x2="420" y2="44" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="48" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="end">8%</text>
+<rect x="100" y="143.0" width="56" height="77.0" rx="3" fill="#b45309" fill-opacity="0.45"/>
+<text x="128" y="137.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">3.5%</text>
+<text x="128" y="236" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Aug</text>
+<rect x="170" y="138.6" width="56" height="81.4" rx="3" fill="#b45309" fill-opacity="1.0"/>
+<text x="198" y="132.6" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">3.7%</text>
+<text x="198" y="236" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Sep</text>
+<text x="163" y="254" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Services PPI</text>
+<rect x="280" y="52.8" width="56" height="167.2" rx="3" fill="#5a6a8a" fill-opacity="0.45"/>
+<text x="308" y="46.80000000000001" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">7.6%</text>
+<text x="308" y="236" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Aug</text>
+<rect x="350" y="70.4" width="56" height="149.6" rx="3" fill="#5a6a8a" fill-opacity="1.0"/>
+<text x="378" y="64.4" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">6.8%</text>
+<text x="378" y="236" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Sep</text>
+<text x="343" y="254" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Goods PPI</text>
+<text x="240" y="16" font-size="10" font-weight="600" fill="#b45309" text-anchor="middle">Producer prices, % y/y (Aug revised)</text>
+<line x1="520" y1="40" x2="520" y2="240" stroke="#c7cbe0" stroke-width="2"/>
+<circle cx="520" cy="221.5" r="6" fill="#166534"/>
+<text x="536" y="225.49999999999977" font-size="11" font-weight="600" fill="#166534" text-anchor="start">Oct 23 low: 156.37</text>
+<circle cx="520" cy="145.0" r="6" fill="#3730a3"/>
+<text x="536" y="148.99999999999972" font-size="11" font-weight="600" fill="#3730a3" text-anchor="start">Oct 27: ~157.9</text>
+<circle cx="520" cy="115.0" r="6" fill="#b45309"/>
+<text x="536" y="119.0" font-size="11" font-weight="600" fill="#b45309" text-anchor="start">200-day MA: ~158.5</text>
+<circle cx="520" cy="40.0" r="6" fill="#b91c1c"/>
+<text x="536" y="44.0" font-size="11" font-weight="600" fill="#b91c1c" text-anchor="start">2024 intervention zone: ~160</text>
+<text x="640" y="16" font-size="10" font-weight="600" fill="#3730a3" text-anchor="middle">USD/JPY levels</text>
+<text x="430" y="272" font-size="10" font-weight="500" fill="#5a6a8a" text-anchor="middle">BOJ meets Oct 29-30; policy rate 1.25% expected to hold. Katayama: "ready to take decisive action."</text>
+</svg>
+      <div class="chart-note">Sources: Bank of Japan; investingLive; getLeveraged (Oct 27).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">人件費<span class="annotation-card-en">labor costs</span></div>
+        <div class="annotation-card-body">Wages moving into service prices.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">展望レポート<span class="annotation-card-en">Outlook Report</span></div>
+        <div class="annotation-card-body">Underlying 2% wording on Friday.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">為替介入<span class="annotation-card-en">FX intervention</span></div>
+        <div class="annotation-card-body">Risk rises above 158.5.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #151 · OCTOBER 28, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
