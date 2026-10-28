@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #163 · October 29, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #163 · October 29, 2026</div>
+    <div class="masthead-sub">Moore Threads Turns Profitable · ByteDance Hires to Build Robot Bodies · PBOC's Record ¥1T Day Meets ¥2.2T of Bonds</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">¥1.55B<span class="card-num-unit">Q3 rev.</span></div>
+      <div class="card-label">Moore Threads, about $230M, up 1,773.9% y/y and 55.4% q/q; first quarterly profit</div>
+      <div class="card-delta delta-amber">Net margin ~3%; one-offs ~60% of profit</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">Dozens<span class="card-num-unit">robot roles</span></div>
+      <div class="card-label">ByteDance Seed posts hand, reducer, body, simulation and data roles on Oct 27</div>
+      <div class="card-delta delta-amber">No robot, budget or headcount announced</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · LIQUIDITY</div>
+      <div class="card-num">¥1.01T<span class="card-num-unit">net, one day</span></div>
+      <div class="card-label">PBOC record net injection on Oct 27 (about $150B); 5-year yield closed at 1.340% on Oct 28</div>
+      <div class="card-delta delta-amber">¥2.2T of bonds due Nov-Dec</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS</div>
+    <div class="story-headline">Moore Threads Posts Its First Quarterly Profit as Q3 Revenue Rises Nearly 19-Fold to ¥1.55 Billion, and Plans a Hong Kong Secondary Listing</div>
+    <div class="story-insight">
+      <p>Moore Threads reported Q3 revenue of ¥1.55 billion (about $230 million) on October 28, with net profit of ¥49.26 million (about $7.3 million) and ¥20.07 million (about $3.0 million) excluding one-offs, its first profitable quarter and ahead of a 2027 target. Nine-month revenue was ¥3.29 billion (about $490 million), up 319%. It plans a Hong Kong secondary listing.</p>
+      <br>
+      <p>Domestic AI labs and government buyers drove MTT S5000 orders, and a 100,000-GPU cluster with JD.com is under construction. Quarterly R&amp;D of ¥570 million (about $85 million) took more than a third of revenue, and the nine-month gross margin is about 54%.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> State and domestic-lab procurement now produces profits at a second listed accelerator maker after Cambricon, but the margin is thin and Entity List limits on foundry capacity cap how fast revenue can grow, so Q4 revenue holding near ¥1.5 billion is the test for the valuation.</div>
+    <div class="chart-box">
+      <div class="chart-title">Revenue Climbs Each Quarter; Profit Is Small Next to R&amp;D</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">QUARTERLY REVENUE, ¥ BILLION</text><line x1="240" y1="30" x2="240" y2="146" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">Q3 2025</text><rect x="240" y="36" width="25" height="18" fill="#9a8a7a"/><text x="273" y="49" font-size="11" font-weight="700" fill="#9a8a7a">~0.08 (≈$12M)</text><text x="30" y="77" font-size="12" fill="#1a1a2e">Q1 2026 (derived)</text><rect x="240" y="64" width="222" height="18" fill="#c9a27a"/><text x="470" y="77" font-size="11" font-weight="700" fill="#b45309">~0.74 (≈$110M)</text><text x="30" y="105" font-size="12" fill="#1a1a2e">Q2 2026 (derived)</text><rect x="240" y="92" width="300" height="18" fill="#b45309"/><text x="548" y="105" font-size="11" font-weight="700" fill="#b45309">~1.0 (≈$150M)</text><text x="30" y="133" font-size="12" font-weight="700" fill="#1a1a2e">Q3 2026</text><rect x="240" y="120" width="465" height="18" fill="#c0392b"/><text x="713" y="133" font-size="11" font-weight="700" fill="#c0392b">1.55 (≈$230M)</text><text x="30" y="190" font-size="11" font-weight="700" fill="#5a6a8a">Q3 2026 LINES, ¥ MILLION</text><line x1="240" y1="200" x2="240" y2="288" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="219" font-size="12" fill="#1a1a2e">R&amp;D spending</text><rect x="240" y="206" width="456" height="18" fill="#1a1a2e"/><text x="704" y="219" font-size="11" font-weight="700" fill="#1a1a2e">570 (+87.9%)</text><text x="30" y="247" font-size="12" font-weight="700" fill="#1a1a2e">Net profit</text><rect x="240" y="234" width="39" height="18" fill="#166534"/><text x="287" y="247" font-size="11" font-weight="700" fill="#166534">49.3</text><text x="30" y="275" font-size="12" fill="#1a1a2e">Excl. one-offs</text><rect x="240" y="262" width="16" height="18" fill="#4d8a5f"/><text x="264" y="275" font-size="11" font-weight="700" fill="#166534">20.1</text><text x="30" y="318" font-size="12" fill="#1a1a2e">Nine months: revenue ¥3.29B (≈$490M) · gross profit ¥1.77B (≈$260M, ~54% margin) · R&amp;D ¥1.34B (≈$200M)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Moore Threads Q3 report via Sina/NetEase, Futu, BigGo Finance (Oct 28, 2026). Q1 and Q2 derived from the 55.4% q/q growth and nine-month total; Q3 2025 derived from 1,773.9% y/y. Revenue 300px per ¥1B; Q3 lines 0.8px per ¥1M. USD at ¥6.72/$.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PROFIT</div>
+        <div class="annotation-card-zh">扭亏为盈<span class="annotation-card-en">niǔkuī wéiyíng · swing to profit</span></div>
+        <div class="annotation-card-body">Profitable a year ahead of the 2027 target.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · HONG KONG</div>
+        <div class="annotation-card-zh">二次上市<span class="annotation-card-en">èrcì shàngshì · secondary listing</span></div>
+        <div class="annotation-card-body">Prospectus detail on customers and foundry terms.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · QUALITY</div>
+        <div class="annotation-card-zh">扣非净利润<span class="annotation-card-en">kòufēi jìnglìrùn · profit ex one-offs</span></div>
+        <div class="annotation-card-body">Only ¥20M (~$3M) of core profit.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">ByteDance's Seed Team Posts Dozens of Robot Jobs, From Dexterous Hands to Gear Reducers, Signalling It Will Build Its Own Robot Bodies</div>
+    <div class="story-insight">
+      <p>ByteDance's Seed team posted dozens of robotics roles on October 27 covering robot bodies, dexterous hands, gear reducers, wiring and embedded drivers, plus software for instruction-to-execution control and a data loop from collection to evaluation. A senior manipulation post listed ¥95,000 to ¥120,000 a month (about $14,000 to $18,000).</p>
+      <br>
+      <p>ByteDance has released GR-1 through GR-3 robot models since 2023, built the ByteMini dual-arm robot, shipped 1,000+ logistics robots, and joined X Square Robot's ¥1 billion (about $150 million) round in January. Analysts describe Seed building hardware for data while Volcano Engine sells embodied models externally.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A cash-rich model lab is moving into robot hardware to generate its own manipulation data, which brings prototype orders for reducer and hand suppliers and new competition for startups selling bodies plus models, though nothing beyond job posts has been announced.</div>
+    <div class="chart-box">
+      <div class="chart-title">From Robot Models to Robot Bodies: ByteDance's Path</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">TIMELINE, 2021 TO OCT 2026</text><line x1="60" y1="90" x2="780" y2="90" stroke="#c9bfb3" stroke-width="2"/><circle cx="80" cy="90" r="7" fill="#9a8a7a"/><text x="80" y="70" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">2021</text><text x="80" y="115" font-size="10.5" fill="#3a4a6a" text-anchor="middle">Invests in</text><text x="80" y="129" font-size="10.5" fill="#3a4a6a" text-anchor="middle">迦智 · 未来机器人</text><circle cx="250" cy="90" r="7" fill="#b45309"/><text x="250" y="70" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">2023-24</text><text x="250" y="115" font-size="10.5" fill="#3a4a6a" text-anchor="middle">GR-1, GR-2 models</text><text x="250" y="129" font-size="10.5" fill="#3a4a6a" text-anchor="middle">learn from web video</text><circle cx="420" cy="90" r="7" fill="#b45309"/><text x="420" y="70" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">2025</text><text x="420" y="115" font-size="10.5" fill="#3a4a6a" text-anchor="middle">GR-3 + ByteMini</text><text x="420" y="129" font-size="10.5" fill="#3a4a6a" text-anchor="middle">dual-arm robot</text><circle cx="590" cy="90" r="7" fill="#1a1a2e"/><text x="590" y="70" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jan 2026</text><text x="590" y="115" font-size="10.5" fill="#3a4a6a" text-anchor="middle">X Square ¥1B round</text><text x="590" y="129" font-size="10.5" fill="#3a4a6a" text-anchor="middle">(≈$150M)</text><circle cx="760" cy="90" r="9" fill="#c0392b"/><text x="760" y="70" font-size="12" font-weight="700" fill="#c0392b" text-anchor="middle">Oct 27</text><text x="760" y="115" font-size="10.5" font-weight="700" fill="#c0392b" text-anchor="middle">Hardware hiring</text><text x="760" y="129" font-size="10.5" fill="#c0392b" text-anchor="middle">hands, reducers</text><text x="30" y="180" font-size="11" font-weight="700" fill="#5a6a8a">ROLE AREAS IN THE OCT 27 POSTINGS</text><rect x="30" y="192" width="180" height="30" rx="4" fill="#1a1a2e"/><text x="120" y="212" font-size="11" font-weight="700" fill="#e8d5b0" text-anchor="middle">Hardware: body, hand</text><rect x="222" y="192" width="180" height="30" rx="4" fill="#1a1a2e"/><text x="312" y="212" font-size="11" font-weight="700" fill="#e8d5b0" text-anchor="middle">Reducers, harness, drivers</text><rect x="414" y="192" width="180" height="30" rx="4" fill="#b45309"/><text x="504" y="212" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">Software: instruction→act</text><rect x="606" y="192" width="180" height="30" rx="4" fill="#c0392b"/><text x="696" y="212" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">Data: collect→evaluate</text><text x="30" y="258" font-size="12" fill="#1a1a2e">Senior manipulation pay: ¥95K-120K/month (≈$14K-18K) · logistics robots shipped: 1,000+ in 2.5 years</text><text x="30" y="280" font-size="12" fill="#1a1a2e">Robotics ETF net inflow, two sessions to Oct 26: ¥498M (≈$74M) · CSI Robotics index at 49.74x trailing P/E</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: 科创板日报 via Tencent News, 潮新闻, Sohu (Oct 27, 2026); ChinaTechNews (Oct 27); 物理智能观察 (Oct 23) for pay range. USD at ¥6.72/$.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · HARDWARE</div>
+        <div class="annotation-card-zh">灵巧手<span class="annotation-card-en">língqiǎo shǒu · dexterous hand</span></div>
+        <div class="annotation-card-body">Seed is hiring to design hands and bodies in-house.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRODUCT</div>
+        <div class="annotation-card-zh">火山引擎<span class="annotation-card-en">Huǒshān Yǐnqíng · Volcano Engine</span></div>
+        <div class="annotation-card-body">Pricing for external embodied models.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLIERS</div>
+        <div class="annotation-card-zh">减速器<span class="annotation-card-en">jiǎnsùqì · gear reducer</span></div>
+        <div class="annotation-card-body">A big buyer that may set specs or make parts.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · LIQUIDITY</div>
+    <div class="story-headline">PBOC Adds a Record ¥1.01 Trillion in a Day and the Five-Year Yield Closes at an All-Time Low as Beijing Lines Up ¥2.2 Trillion of Bond Sales for November and December</div>
+    <div class="story-insight">
+      <p>Banks drew the full ¥1 trillion (about $149 billion) overnight reverse repo window on October 27 at 1.25%, plus ¥412 billion (about $61 billion) of seven-day repos, for a record ¥1.01 trillion (about $150 billion) net injection. The five-year yield closed at 1.340% on October 28, the lowest since 2002.</p>
+      <br>
+      <p>Governments are likely to raise at least ¥2.2 trillion (about $330 billion) net in November and December, taking 2026 to at least ¥13.35 trillion (about $2.0 trillion). Policy rates are unchanged, so the PBOC is supplying volume to let banks absorb the supply.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The central bank is funding the banks that buy the year-end bond wave, which keeps yields falling while debt rises; record-low yields squeeze bank margins and widen the gap with a hiking Fed, a headwind for the yuan.</div>
+    <div class="chart-box">
+      <div class="chart-title">Overnight Take-Up Hits the Cap; Yields at Record Lows</div>
+      <svg viewBox="0 0 820 400" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">OVERNIGHT REVERSE REPO TAKE-UP, ¥ BILLION (CAP ¥1,000B)</text><line x1="240" y1="30" x2="240" y2="174" stroke="#c9bfb3" stroke-width="1.5"/><line x1="690" y1="30" x2="690" y2="174" stroke="#c0392b" stroke-width="1" stroke-dasharray="4 3"/><text x="690" y="186" font-size="10" fill="#c0392b" text-anchor="middle">cap</text><text x="30" y="49" font-size="12" fill="#1a1a2e">Oct 21</text><rect x="240" y="36" width="36" height="18" fill="#9a8a7a"/><text x="284" y="49" font-size="11" font-weight="700" fill="#9a8a7a">80</text><text x="30" y="77" font-size="12" fill="#1a1a2e">Oct 22</text><rect x="240" y="64" width="78" height="18" fill="#9a8a7a"/><text x="326" y="77" font-size="11" font-weight="700" fill="#9a8a7a">173</text><text x="30" y="105" font-size="12" fill="#1a1a2e">Oct 23</text><rect x="240" y="92" width="116" height="18" fill="#b45309"/><text x="364" y="105" font-size="11" font-weight="700" fill="#b45309">258</text><text x="30" y="133" font-size="12" fill="#1a1a2e">Oct 26</text><rect x="240" y="120" width="179" height="18" fill="#b45309"/><text x="427" y="133" font-size="11" font-weight="700" fill="#b45309">398</text><text x="30" y="161" font-size="12" font-weight="700" fill="#1a1a2e">Oct 27</text><rect x="240" y="148" width="450" height="18" fill="#c0392b"/><text x="698" y="161" font-size="11" font-weight="700" fill="#c0392b">1,000 (net day ¥1.01T)</text><text x="30" y="226" font-size="11" font-weight="700" fill="#5a6a8a">CGB CLOSING YIELDS, OCT 28, %</text><line x1="240" y1="236" x2="240" y2="320" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="255" font-size="12" font-weight="700" fill="#1a1a2e">5-year (record low)</text><rect x="240" y="242" width="268" height="18" fill="#c0392b"/><text x="516" y="255" font-size="11" font-weight="700" fill="#c0392b">1.340</text><text x="30" y="283" font-size="12" fill="#1a1a2e">10-year</text><rect x="240" y="270" width="323" height="18" fill="#b45309"/><text x="571" y="283" font-size="11" font-weight="700" fill="#b45309">1.615</text><text x="30" y="311" font-size="12" fill="#1a1a2e">30-year</text><rect x="240" y="298" width="410" height="18" fill="#1a1a2e"/><text x="658" y="311" font-size="11" font-weight="700" fill="#1a1a2e">2.052</text><text x="30" y="356" font-size="11" font-weight="700" fill="#5a6a8a">NET GOVERNMENT BOND ISSUANCE 2026, ¥ TRILLION</text><rect x="240" y="366" width="446" height="18" fill="#5a6a8a"/><text x="250" y="379" font-size="11" font-weight="700" fill="#fff">11.15 to Oct 23</text><rect x="686" y="366" width="88" height="18" fill="#c0392b"/><text x="730" y="379" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">+2.2</text><text x="30" y="379" font-size="12" fill="#1a1a2e">≥13.35 (≈$2.0T)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Bloomberg via Seoul Economic Daily, Dragonometry, Money &amp; Banking (Oct 27-28, 2026); Newsquawk (Oct 27). Take-up 0.45px per ¥1B; yields 200px per 1%; issuance 40px per ¥1T. USD at ¥6.72/$.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · VOLUME</div>
+        <div class="annotation-card-zh">净投放<span class="annotation-card-en">jìng tóufàng · net injection</span></div>
+        <div class="annotation-card-body">Record ¥1.01T (~$150B) in one day.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · NOV 2</div>
+        <div class="annotation-card-zh">逆回购<span class="annotation-card-en">nì huígòu · reverse repo</span></div>
+        <div class="annotation-card-body">Full draw again before the window closes?</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGINS</div>
+        <div class="annotation-card-zh">收益率<span class="annotation-card-en">shōuyìlǜ · yield</span></div>
+        <div class="annotation-card-body">1.34% five-year squeezes bank lending margins.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #163 · OCTOBER 29, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
