@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #153 · Friday, October 30, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #153 · October 30, 2026</div>
+    <div class="masthead-sub">NEC Raises Its Guide · Renesas Guides Margins Lower · Nomura's Wealth Fees</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · NEC</div>
+      <div class="card-num">¥460<span class="card-num-unit">bn</span></div>
+      <div class="card-label">FY2026 non-GAAP operating income guide, from ¥430bn</div>
+      <div class="card-delta delta-red">FCF guide -¥90bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · RENESAS</div>
+      <div class="card-num">59.4<span class="card-num-unit">%</span></div>
+      <div class="card-label">Q3 gross margin vs 57.5% company forecast</div>
+      <div class="card-delta delta-amber">Q4 guide 58.0%</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · NOMURA</div>
+      <div class="card-num">+44<span class="card-num-unit">%</span></div>
+      <div class="card-label">Wealth Management pretax income, to ¥65.6bn</div>
+      <div class="card-delta delta-green">Interim dividend ¥35</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">NEC Raises Its Profit Guide to ¥460 Billion on CSG, Then Falls 6% as Free Cash Flow Turns Negative</div>
+    <div class="story-insight">
+      <p>日本電気 (Nippon Denki, NEC) raised its full-year forecast on October 28 after first-half revenue rose 11.7% to ¥1.754 trillion and non-GAAP operating income rose 47.7% to ¥188.3 billion. Net income attributable to shareholders rose 59.9% to ¥116.4 billion. NEC now expects ¥3.74 trillion of revenue and ¥460 billion of non-GAAP operating income for the year to March 2027, up from ¥3.54 trillion and ¥430 billion in its previous 通期見通し (tsūki mitōshi, full-year outlook). Most of the increase comes from one 買収 (baishū, acquisition). CSG Systems International, a US maker of billing and customer software consolidated from May, pushed overseas IT services revenue up 53.1% and added ¥170 billion to that unit's revenue guide. Excluding acquisitions, group revenue grew 6.6%.</p>
+      <br>
+      <p>The Japanese business improved as well. BluStellar, NEC's consulting-led modernization and security offering, grew 29.5%, and aerospace and 防衛 (bōei, defense) revenue rose 19.4%. Ocean Systems revenue rose 80.3%, and NEC won the order for Petal, a 7,000 km US-France 海底ケーブル (kaitei kēburu, submarine cable) with one petabit per second of capacity, due in service in 2029. On AI, NEC began using Anthropic's Claude internally in June and reached 15,000 users within four months. In November it will launch cotomi Gateway, a service meant to cut customers' model token costs.</p>
+      <br>
+      <p>The shares fell about 6.4% on October 29, in a session when Hitachi fell 9.8% and weak Alphabet and Samsung results revived doubts about AI spending. NEC's own guidance gave sellers a reason too. It now expects free cash flow of minus ¥90 billion for the year because of about ¥390 billion of cash paid out for CSG, and it kept a ¥30 billion profit buffer for component shortages and the Middle East. Analysts flagged integration risk and higher leverage after the deal.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> NEC is buying growth abroad while its Japanese base grows in the mid-single digits, so the stock now depends on CSG delivering. Management raised its target for the overseas IT services margin from the mid-teens to the high teens, which gives investors a number to check each quarter. Watch second-half cash flow and whether component shortages eat into the ¥30 billion buffer.</div>
+    <div class="chart-box">
+      <div class="chart-title">NEC H1 FY2026: Growth by Line (% y/y)</div>
+<svg viewBox="0 0 860 401" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="25" x2="250.0" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250.0" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="322.9" y1="25" x2="322.9" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="322.9" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">10%</text>
+<line x1="395.7" y1="25" x2="395.7" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="395.7" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">20%</text>
+<line x1="468.6" y1="25" x2="468.6" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="468.6" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">30%</text>
+<line x1="541.4" y1="25" x2="541.4" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="541.4" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">40%</text>
+<line x1="614.3" y1="25" x2="614.3" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="614.3" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">50%</text>
+<line x1="687.1" y1="25" x2="687.1" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="687.1" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">60%</text>
+<line x1="760.0" y1="25" x2="760.0" y2="361" stroke="#e8eaf2" stroke-width="1"/>
+<text x="760.0" y="379" font-size="10" fill="#5a6a8a" text-anchor="middle">70%</text>
+<text x="240" y="56" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Net income</text>
+<rect x="250.0" y="40" width="436.4" height="24" rx="3" fill="#3730a3"/>
+<text x="694.4" y="56" font-size="11" font-weight="700" fill="#1a1a2e">+59.9%</text>
+<text x="694.4" y="70" font-size="9" fill="#5a6a8a">¥116.4bn</text>
+<text x="240" y="104" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Overseas IT services rev.</text>
+<rect x="250.0" y="88" width="386.9" height="24" rx="3" fill="#3730a3"/>
+<text x="644.9" y="104" font-size="11" font-weight="700" fill="#1a1a2e">+53.1%</text>
+<text x="644.9" y="118" font-size="9" fill="#5a6a8a">CSG consolidated from May</text>
+<text x="240" y="152" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Non-GAAP operating income</text>
+<rect x="250.0" y="136" width="347.5" height="24" rx="3" fill="#818cf8"/>
+<text x="605.5" y="152" font-size="11" font-weight="700" fill="#1a1a2e">+47.7%</text>
+<text x="605.5" y="166" font-size="9" fill="#5a6a8a">¥188.3bn</text>
+<text x="240" y="200" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">BluStellar (Japan)</text>
+<rect x="250.0" y="184" width="214.9" height="24" rx="3" fill="#818cf8"/>
+<text x="472.9" y="200" font-size="11" font-weight="700" fill="#1a1a2e">+29.5%</text>
+<text x="472.9" y="214" font-size="9" fill="#5a6a8a">Modernization and security</text>
+<text x="240" y="248" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Aerospace &amp; defense rev.</text>
+<rect x="250.0" y="232" width="141.3" height="24" rx="3" fill="#818cf8"/>
+<text x="399.3" y="248" font-size="11" font-weight="700" fill="#1a1a2e">+19.4%</text>
+<text x="240" y="296" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Group revenue</text>
+<rect x="250.0" y="280" width="85.2" height="24" rx="3" fill="#c7cbe0"/>
+<text x="343.2" y="296" font-size="11" font-weight="700" fill="#1a1a2e">+11.7%</text>
+<text x="343.2" y="310" font-size="9" fill="#5a6a8a">¥1.754tn</text>
+<text x="240" y="344" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Revenue ex-acquisitions</text>
+<rect x="250.0" y="328" width="48.1" height="24" rx="3" fill="#be185d"/>
+<text x="306.1" y="344" font-size="11" font-weight="700" fill="#1a1a2e">+6.6%</text>
+<text x="306.1" y="358" font-size="9" fill="#5a6a8a">Organic pace</text>
+</svg>
+      <div class="chart-note">Source: NEC H1 FY2026 results and earnings call via BigGo Finance (Oct 28, 2026). FY guide: revenue ¥3.74tn, non-GAAP OP ¥460bn, FCF -¥90bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">通期見通し<span class="annotation-card-en">full-year outlook</span></div>
+        <div class="annotation-card-body">Non-GAAP OP guide ¥460bn, from ¥430bn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">買収<span class="annotation-card-en">acquisition</span></div>
+        <div class="annotation-card-body">CSG drives overseas IT rev +53%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">資金流出<span class="annotation-card-en">cash outflow</span></div>
+        <div class="annotation-card-body">FCF guide -¥90bn on ~¥390bn CSG cash.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Renesas Beats on a 59.4% Gross Margin, Then Falls 4.6% on a Lower Fourth-Quarter Margin Guide</div>
+    <div class="story-insight">
+      <p>ルネサスエレクトロニクス (Runesasu Erekutoronikusu, Renesas Electronics) reported July-September revenue of ¥435.2 billion on October 29, up 30.2% from a year earlier and 7.4% from the previous quarter. Excluding currency and one-off items, growth was 22.3%. The 売上総利益率 (uriage sōrieki-ritsu, gross margin) reached 59.4% against the company's own forecast of 57.5%, and non-GAAP operating profit rose 47.3% to ¥150.5 billion, a 34.6% margin. Industrial, infrastructure and IoT revenue jumped 46.4% to ¥243.8 billion, well ahead of automotive, which rose 19.3% to ¥189.5 billion. Net income attributable to shareholders came to ¥372.2 billion, inflated by a ¥450.3 billion gain on the sale of its timing business on July 1.</p>
+      <br>
+      <p>The shares fell 4.6% to ¥2,956.5 because the fourth-quarter guide points to lower margins. Renesas expects revenue of about ¥454.0 billion, up 4.3% from the third quarter, with gross margin falling to 58.0% and operating margin to 32.0%. Management said more than half of the decline comes from product mix inside digital power, the chips that convert electricity in servers. CFO Shuhei Shinkai said higher operating costs will continue as ongoing investment. 設備投資 (setsubi tōshi, capital spending) ran ¥111.2 billion in the quarter, about 80% of it for new capacity, mostly in digital power, and Renesas plans to raise digital power capacity 2 to 2.5 times from fiscal 2027.</p>
+      <br>
+      <p>Factory use has doubled since late 2024. Front-end 稼働率 (kadōritsu, utilization rate) reached about 60%, up from about 30%, and the 12-inch line went from under 20% to nearly 60%. 在庫日数 (zaiko nissū, days of inventory) approached 120, and management expects it to rise again in the fourth quarter as Renesas builds stock for demand it expects from early 2027. Inventory held by distributors stayed between eight and ten weeks.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Renesas is spending ahead of power-chip demand from AI data centers, which lifts revenue now and costs margin until the new lines fill. Higher utilization supports the plan, and inventory near 120 days becomes a problem if 2027 orders slip. Tokyo Electron and Kioxia report today, and their guidance will show whether chip demand outside AI accelerators is holding up.</div>
+    <div class="chart-box">
+      <div class="chart-title">Renesas Margins: Q3 Beat, Q4 Guide (%)</div>
+<svg viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="270.0" x2="830" y2="270.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="274.0" font-size="10" fill="#5a6a8a" text-anchor="end">0%</text>
+<line x1="70" y1="237.1" x2="830" y2="237.1" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="241.1" font-size="10" fill="#5a6a8a" text-anchor="end">10%</text>
+<line x1="70" y1="204.3" x2="830" y2="204.3" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="208.3" font-size="10" fill="#5a6a8a" text-anchor="end">20%</text>
+<line x1="70" y1="171.4" x2="830" y2="171.4" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="175.4" font-size="10" fill="#5a6a8a" text-anchor="end">30%</text>
+<line x1="70" y1="138.6" x2="830" y2="138.6" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="142.6" font-size="10" fill="#5a6a8a" text-anchor="end">40%</text>
+<line x1="70" y1="105.7" x2="830" y2="105.7" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="109.7" font-size="10" fill="#5a6a8a" text-anchor="end">50%</text>
+<line x1="70" y1="72.9" x2="830" y2="72.9" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="76.9" font-size="10" fill="#5a6a8a" text-anchor="end">60%</text>
+<line x1="70" y1="40.0" x2="830" y2="40.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="44.0" font-size="10" fill="#5a6a8a" text-anchor="end">70%</text>
+<rect x="130" y="81.1" width="70" height="188.9" rx="3" fill="#c7cbe0"/>
+<text x="165" y="75.1" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">57.5%</text>
+<text x="165" y="286" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Q3 company forecast</text>
+<rect x="225" y="74.8" width="70" height="195.2" rx="3" fill="#be185d"/>
+<text x="260" y="68.8" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">59.4%</text>
+<text x="260" y="286" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Q3 actual</text>
+<rect x="320" y="79.4" width="70" height="190.6" rx="3" fill="#f9a8d4"/>
+<text x="355" y="73.4" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">58.0%</text>
+<text x="355" y="286" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Q4 guide</text>
+<text x="260" y="310" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Gross margin</text>
+<rect x="500" y="162.6" width="70" height="107.4" rx="3" fill="#c7cbe0"/>
+<text x="535" y="156.6" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">32.7%</text>
+<text x="535" y="286" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Q2 actual</text>
+<rect x="595" y="156.3" width="70" height="113.7" rx="3" fill="#be185d"/>
+<text x="630" y="150.3" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">34.6%</text>
+<text x="630" y="286" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Q3 actual</text>
+<rect x="690" y="164.9" width="70" height="105.1" rx="3" fill="#f9a8d4"/>
+<text x="725" y="158.9" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">32.0%</text>
+<text x="725" y="286" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Q4 guide</text>
+<text x="630" y="310" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Operating margin (non-GAAP)</text>
+</svg>
+      <div class="chart-note">Source: Renesas Q3 2026 results and slides via Investing.com (Oct 29, 2026); Q2 margin from Issue #105. Q4 revenue guide ¥454.0bn ± ¥7.5bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">稼働率<span class="annotation-card-en">utilization rate</span></div>
+        <div class="annotation-card-body">Front-end ~60%, from ~30% in late 2024.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">設備投資<span class="annotation-card-en">capital spending</span></div>
+        <div class="annotation-card-body">¥111.2bn in Q3; digital power 2-2.5x.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">在庫日数<span class="annotation-card-en">days of inventory</span></div>
+        <div class="annotation-card-body">Near 120 days and rising in Q4.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO &amp; FINANCE</div>
+    <div class="story-headline">Nomura's Wealth Business Earns Nearly Half the Group's Profit as Its Pretax Income Jumps 44%</div>
+    <div class="story-insight">
+      <p>野村ホールディングス (Nomura Hōrudingusu, Nomura Holdings) reported July-September net income of ¥103.7 billion on October 28, up 13% from ¥92.1 billion a year earlier. Net revenue rose 18% to ¥607.5 billion and pretax income rose 8% to ¥148.0 billion. Compared with a record first quarter, net income fell 29%. Nomura raised its 中間配当 (chūkan haitō, interim dividend) to ¥35 a share from ¥27.</p>
+      <br>
+      <p>Wealth Management, the retail branch business, made ¥65.6 billion before tax, up 44% and close to half the group total, on revenue of ¥141.5 billion. Its ストック収入 (sutokku shūnyū, recurring revenue), the fees on managed and advisory assets, reached a record ¥66.7 billion, and clients added a record ¥755.4 billion to fee-paying assets during the quarter. Investment Management revenue rose 39% to ¥84.8 billion while its pretax income fell 11%. Wholesale, the trading and investment banking arm, grew revenue 11% to ¥308.9 billion but earned 13% less, at ¥46.1 billion.</p>
+      <br>
+      <p>Nomura led Japan's equity and debt underwriting tables for the six months to September, helped by SoftBank Group's record ¥1 trillion 個人向け社債 (kojin-muke shasai, retail bond). That deal shows how much Japanese savers will put into yield now that the BOJ's policy rate is 1.25% and the 10-year JGB pays about 2.84%. Record inflows into fee-paying accounts point the same way, and Nomura collects those fees whether markets rise or fall. The BOJ announces its policy decision around midday today.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Recurring wealth fees now earn more for Nomura than wholesale does, so its profits depend less on trading volumes than they did. A deeper slide in AI stocks is the main risk, because it would slow the flow of savings into managed accounts. Watch whether net additions to fee-paying assets stay near ¥750 billion in October-December and whether wholesale profit recovers.</div>
+    <div class="chart-box">
+      <div class="chart-title">Nomura Q2 FY2026: Pretax Income by Division (¥bn)</div>
+<svg viewBox="0 0 860 257" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="25" x2="250.0" y2="217" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250.0" y="235" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="377.5" y1="25" x2="377.5" y2="217" stroke="#e8eaf2" stroke-width="1"/>
+<text x="377.5" y="235" font-size="10" fill="#5a6a8a" text-anchor="middle">20</text>
+<line x1="505.0" y1="25" x2="505.0" y2="217" stroke="#e8eaf2" stroke-width="1"/>
+<text x="505.0" y="235" font-size="10" fill="#5a6a8a" text-anchor="middle">40</text>
+<line x1="632.5" y1="25" x2="632.5" y2="217" stroke="#e8eaf2" stroke-width="1"/>
+<text x="632.5" y="235" font-size="10" fill="#5a6a8a" text-anchor="middle">60</text>
+<line x1="760.0" y1="25" x2="760.0" y2="217" stroke="#e8eaf2" stroke-width="1"/>
+<text x="760.0" y="235" font-size="10" fill="#5a6a8a" text-anchor="middle">80</text>
+<text x="240" y="56" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Wealth Management</text>
+<rect x="250.0" y="40" width="418.2" height="24" rx="3" fill="#3730a3"/>
+<text x="676.2" y="56" font-size="11" font-weight="700" fill="#1a1a2e">¥65.6bn</text>
+<text x="676.2" y="70" font-size="9" fill="#5a6a8a">+44% y/y</text>
+<text x="240" y="104" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Wholesale</text>
+<rect x="250.0" y="88" width="293.9" height="24" rx="3" fill="#b45309"/>
+<text x="551.9" y="104" font-size="11" font-weight="700" fill="#1a1a2e">¥46.1bn</text>
+<text x="551.9" y="118" font-size="9" fill="#5a6a8a">-13% y/y on revenue +11%</text>
+<text x="240" y="152" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Investment Management</text>
+<rect x="250.0" y="136" width="174.7" height="24" rx="3" fill="#818cf8"/>
+<text x="432.7" y="152" font-size="11" font-weight="700" fill="#1a1a2e">¥27.4bn</text>
+<text x="432.7" y="166" font-size="9" fill="#5a6a8a">-11% y/y on revenue +39%</text>
+<text x="240" y="200" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Banking</text>
+<rect x="250.0" y="184" width="28.1" height="24" rx="3" fill="#c7cbe0"/>
+<text x="286.1" y="200" font-size="11" font-weight="700" fill="#1a1a2e">¥4.4bn</text>
+<text x="286.1" y="214" font-size="9" fill="#5a6a8a">+37% y/y</text>
+</svg>
+      <div class="chart-note">Source: Nomura Holdings Q2 FY2026 results via TokenPost and BigGo Finance (Oct 28, 2026). Group pretax ¥148.0bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">ストック収入<span class="annotation-card-en">recurring revenue</span></div>
+        <div class="annotation-card-body">Record ¥66.7bn; inflows ¥755.4bn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">個人向け社債<span class="annotation-card-en">retail bond</span></div>
+        <div class="annotation-card-body">SoftBank's ¥1tn shows demand for yield.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">ホールセール<span class="annotation-card-en">wholesale</span></div>
+        <div class="annotation-card-body">Pretax down 13% despite revenue +11%.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #153 · OCTOBER 30, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
