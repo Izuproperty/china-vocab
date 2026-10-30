@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #154 · Saturday, October 31, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #154 · October 31, 2026</div>
+    <div class="masthead-sub">Fujitsu Keeps Its Guide · Tokyo Electron Guides to ¥1.17tn · The BOJ Declares 2%</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · FUJITSU</div>
+      <div class="card-num">¥425<span class="card-num-unit">bn</span></div>
+      <div class="card-label">FY2026 adjusted operating profit guide, kept unchanged</div>
+      <div class="card-delta delta-red">Q2 adj. OP ¥59.0bn vs ¥86.2bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · TOKYO ELECTRON</div>
+      <div class="card-num">¥1.169<span class="card-num-unit">tn</span></div>
+      <div class="card-label">First FY3/2027 operating income guide, +87.1%</div>
+      <div class="card-delta delta-green">Buyback up to ¥150bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">1.25<span class="card-num-unit">%</span></div>
+      <div class="card-label">Policy rate held on an 8-1 vote; Takata proposed 1.5%</div>
+      <div class="card-delta delta-amber">FY27 core CPI 2.6%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Fujitsu Keeps Its ¥425 Billion Profit Guide After Second-Quarter Profit Falls 32%, and Starts Selling MONAKA in November</div>
+    <div class="story-insight">
+      <p>富士通 (Fujitsū, Fujitsu) reported first-half revenue of ¥1.626 trillion on October 29, up 3.8%, while adjusted operating profit fell 6.1% to ¥113.9 billion and the margin slipped to 7.0% from 7.7%. The second quarter did the damage. Adjusted operating profit fell to ¥59.0 billion from ¥86.2 billion a year earlier because gross profit in services came in about ¥10 billion short. Half of that came from 不採算案件 (fusaisan anken, unprofitable projects), split between Japan and overseas, and the rest from fewer working days and lighter middleware sales. Hardware made only ¥4.5 billion, down 64%, because Fujitsu absorbed about ¥8 billion of higher memory and component costs instead of raising prices.</p>
+      <br>
+      <p>Management left the full-year forecast 据え置き (sueoki, unchanged): ¥3.51 trillion of revenue and ¥425 billion of adjusted operating profit. That requires about ¥311 billion in the second half, roughly 16% more than a year earlier, after the first half delivered only 27% of the annual target. Two numbers support the plan. Uvance, the consulting-led growth business, grew revenue 26.5% to ¥393.4 billion and is on track to beat its ¥840 billion target, and the Japan 受注残高 (juchū zandaka, order backlog) stood at ¥707.7 billion at the end of September. Fujitsu also says AI-driven software development saved about ¥7 billion of cost in the first half, and expects two to three times that in the second half as the share of agent-based work rises from about 20% to 40%.</p>
+      <br>
+      <p>The new product line starts next month. Fujitsu begins selling the MONAKA Arm-based server CPU and MONAKA servers in November 2026, with shipments from the fourth quarter. It targets ¥35 billion of CPU revenue in the year to March 2028 and ¥250 billion cumulatively through fiscal 2030, at about a 40% gross margin, well above the hardware unit's current 1%. Spending on MONAKA and quantum rose about ¥7 billion in the second quarter, which also weighed on profit.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Fujitsu now needs a much stronger second half to hit an unchanged guide, and the second quarter showed that loss-making projects and unrecovered component costs can still erase the gains from Uvance. The AI productivity savings are the lever investors can track: if they reach ¥14 to ¥21 billion in the second half as guided, they cover most of the first-half shortfall. Watch third-quarter services margins and whether hardware starts passing through memory prices.</div>
+    <div class="chart-box">
+      <div class="chart-title">Fujitsu Adjusted Operating Profit by Half (¥bn)</div>
+<svg viewBox="0 0 860 257" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="25" x2="250.0" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250.0" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥0bn</text>
+<line x1="322.9" y1="25" x2="322.9" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="322.9" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥50bn</text>
+<line x1="395.7" y1="25" x2="395.7" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="395.7" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥100bn</text>
+<line x1="468.6" y1="25" x2="468.6" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="468.6" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥150bn</text>
+<line x1="541.4" y1="25" x2="541.4" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="541.4" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥200bn</text>
+<line x1="614.3" y1="25" x2="614.3" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="614.3" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥250bn</text>
+<line x1="687.1" y1="25" x2="687.1" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="687.1" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥300bn</text>
+<line x1="760.0" y1="25" x2="760.0" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="760.0" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥350bn</text>
+<text x="240" y="56" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">H1 FY2025 adj. OP</text>
+<rect x="250.0" y="40" width="176.8" height="24" rx="3" fill="#c7cbe0"/>
+<text x="434.8" y="56" font-size="11" font-weight="700" fill="#1a1a2e">¥121.3bn</text>
+<text x="434.8" y="70" font-size="9" fill="#5a6a8a">Apr-Sep 2025</text>
+<text x="240" y="104" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">H1 FY2026 adj. OP</text>
+<rect x="250.0" y="88" width="166.0" height="24" rx="3" fill="#be185d"/>
+<text x="424.0" y="104" font-size="11" font-weight="700" fill="#1a1a2e">¥113.9bn</text>
+<text x="424.0" y="118" font-size="9" fill="#5a6a8a">-6.1% y/y; Q2 ¥59.0bn vs ¥86.2bn</text>
+<text x="240" y="152" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">H2 FY2025 adj. OP</text>
+<rect x="250.0" y="136" width="392.3" height="24" rx="3" fill="#c7cbe0"/>
+<text x="650.3" y="152" font-size="11" font-weight="700" fill="#1a1a2e">¥269.2bn</text>
+<text x="650.3" y="166" font-size="9" fill="#5a6a8a">Oct 2025-Mar 2026</text>
+<text x="240" y="200" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">H2 FY2026 needed</text>
+<rect x="250.0" y="184" width="453.3" height="24" rx="3" fill="#3730a3"/>
+<text x="711.3" y="200" font-size="11" font-weight="700" fill="#1a1a2e">¥311.1bn</text>
+<text x="711.3" y="214" font-size="9" fill="#5a6a8a">Implied by unchanged ¥425bn guide, ~+16%</text>
+</svg>
+      <div class="chart-note">Source: Fujitsu FY2026 first-half results and presentation (Oct 29, 2026). FY guide unchanged: revenue ¥3.51tn, adjusted OP ¥425bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">受注残高<span class="annotation-card-en">order backlog</span></div>
+        <div class="annotation-card-body">Japan backlog ¥707.7bn; Uvance +26.5%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">据え置き<span class="annotation-card-en">kept unchanged</span></div>
+        <div class="annotation-card-body">Guide held; H2 must earn ~¥311bn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">不採算案件<span class="annotation-card-en">unprofitable projects</span></div>
+        <div class="annotation-card-body">~¥5bn Q2 hit, Japan and overseas.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Tokyo Electron Sets Its First Full-Year Guide at ¥1.169 Trillion of Operating Profit and Adds a ¥150 Billion Buyback</div>
+    <div class="story-insight">
+      <p>東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron, TEL) reported July-September net sales of ¥935.0 billion on October 30, up 48.4% from a year earlier, and operating income of ¥295.3 billion, up 86.4%. The operating margin reached 31.6% on a 47.8% gross margin. First-half operating income of ¥506.8 billion beat the company's own July guide of ¥458 billion by 10.6%. TEL then gave its first forecast for the year to March 2027: ¥3.70 trillion of sales, up 51.4%, and ¥1.169 trillion of operating income, up 87.1%. On October 6 the CFO had pointed to about ¥1 trillion, so the guide came in roughly 17% higher.</p>
+      <br>
+      <p>Shareholders get more cash. The full-year dividend forecast is a record ¥191 a share after the 5-for-1 split, against ¥125 last year, in line with a payout ratio of about 50%. The board also approved a 自社株買い (jishakabu-gai, share buyback) of up to 25 million shares and ¥150 billion between November 1 and March 31, on top of ¥150 billion already bought back in the first half. TEL lifted its outlook for 前工程製造装置 (maekōtei seizō sōchi, wafer fab equipment) spending to about $160 billion in 2026 and more than $210 billion in 2027, citing GPUs, HBM and the DRAM and NAND capacity that AI servers need.</p>
+      <br>
+      <p>China accounts for more of the growth than the earlier trend suggested. Chinese customers bought ¥339.9 billion of equipment in the quarter, 36.4% of sales, up from 30.4% in April-June, though below 40.3% a year earlier. 先端パッケージング (sentan pakkējingu, advanced packaging) is the new source of orders. TEL expects to ship more than 200 of its deep-trench capacitor deposition tools in each of the next two fiscal years, and prober shipments for leading-edge logic test should rise about 60%. New equipment sales are forecast at ¥1.56 trillion for the second half, against ¥1.27 trillion in the first half.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> TEL's guide implies the second half earns more than the first, so the forecast rests on AI customers keeping orders on schedule into early 2027. A larger China share raises exposure to any further tightening of export controls, and the yttrium supply squeeze remains a cost risk for etch chamber parts. Watch Kioxia, Samsung and SK Hynix capex comments for confirmation of the memory spending TEL is counting on.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo Electron Quarterly Operating Income (¥bn)</div>
+<svg viewBox="0 0 860 257" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="25" x2="250.0" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250.0" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥0bn</text>
+<line x1="322.9" y1="25" x2="322.9" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="322.9" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥50bn</text>
+<line x1="395.7" y1="25" x2="395.7" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="395.7" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥100bn</text>
+<line x1="468.6" y1="25" x2="468.6" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="468.6" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥150bn</text>
+<line x1="541.4" y1="25" x2="541.4" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="541.4" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥200bn</text>
+<line x1="614.3" y1="25" x2="614.3" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="614.3" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥250bn</text>
+<line x1="687.1" y1="25" x2="687.1" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="687.1" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥300bn</text>
+<line x1="760.0" y1="25" x2="760.0" y2="218" stroke="#e8eaf2" stroke-width="1"/>
+<text x="760.0" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">¥350bn</text>
+<text x="240" y="56" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Q2 FY2026 (Jul-Sep 2025)</text>
+<rect x="250.0" y="40" width="230.8" height="24" rx="3" fill="#c7cbe0"/>
+<text x="488.8" y="56" font-size="11" font-weight="700" fill="#1a1a2e">¥158.4bn</text>
+<text x="488.8" y="70" font-size="9" fill="#5a6a8a">Derived from +86.4% y/y</text>
+<text x="240" y="104" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Q1 FY2027 (Apr-Jun 2026)</text>
+<rect x="250.0" y="88" width="308.2" height="24" rx="3" fill="#818cf8"/>
+<text x="566.2" y="104" font-size="11" font-weight="700" fill="#1a1a2e">¥211.5bn</text>
+<text x="566.2" y="118" font-size="9" fill="#5a6a8a">H1 ¥506.8bn less Q2</text>
+<text x="240" y="152" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Q2 FY2027 (Jul-Sep 2026)</text>
+<rect x="250.0" y="136" width="430.3" height="24" rx="3" fill="#3730a3"/>
+<text x="688.3" y="152" font-size="11" font-weight="700" fill="#1a1a2e">¥295.3bn</text>
+<text x="688.3" y="166" font-size="9" fill="#5a6a8a">31.6% operating margin</text>
+<text x="240" y="200" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">H2 FY2027 per quarter</text>
+<rect x="250.0" y="184" width="482.5" height="24" rx="3" fill="#be185d"/>
+<text x="740.5" y="200" font-size="11" font-weight="700" fill="#1a1a2e">¥331.1bn</text>
+<text x="740.5" y="214" font-size="9" fill="#5a6a8a">Implied by ¥1.169tn guide</text>
+</svg>
+      <div class="chart-note">Source: Tokyo Electron Q2 FY2027 summary of results and presentation (Oct 30, 2026). FY3/2027 guide: sales ¥3.70tn, OP ¥1.169tn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">自社株買い<span class="annotation-card-en">share buyback</span></div>
+        <div class="annotation-card-body">Up to ¥150bn Nov-Mar; dividend ¥191.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">先端パッケージング<span class="annotation-card-en">advanced packaging</span></div>
+        <div class="annotation-card-body">200+ DTC deposition tools a year.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">中国比率<span class="annotation-card-en">China share</span></div>
+        <div class="annotation-card-body">36.4% of Q2 sales, up from 30.4%.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO &amp; BOJ</div>
+    <div class="story-headline">The BOJ Holds at 1.25% but Says Underlying Inflation Is Generally at 2%, and Takata Votes for a Hike</div>
+    <div class="story-insight">
+      <p>The 日本銀行 (Nihon Ginkō, Bank of Japan, BOJ) kept its policy rate at 1.25% on October 30 by an 8-1 vote. Board member Takata Hajime (高田創) proposed raising it to 1.5%, arguing that underlying inflation had reached the target and policy had entered a new phase. The rest of the board accepted his premise. The Outlook Report says underlying CPI inflation is at a level generally consistent with the 物価安定の目標 (bukka antei no mokuhyō, price stability target) of 2% and is expected to stay there, and that the Bank will continue to raise rates because financial conditions remain accommodative. The BOJ last raised rates on September 18, to 1.25% on a 7-2 vote.</p>
+      <br>
+      <p>The forecasts moved up for next year. The board's median for core CPI in the year to March 2028 rose to 2.6% from 2.4%, and core-core inflation, which excludes fresh food and energy, rose to 2.7% from 2.6%. Growth forecasts barely changed at 0.7% for this year and next. The forecasts leave out the government's proposed temporary 消費税 (shōhizei, consumption tax) cut on food, which the BOJ estimates would lower core CPI by about 1.3 points in fiscal 2027. The board also voted unanimously to sell its 上場投資信託 (jōjō tōshi shintaku, ETF) holdings faster, at about ¥860 billion a year at book value from January 2027 instead of about ¥330 billion, roughly ¥2.46 trillion at market prices.</p>
+      <br>
+      <p>Governor Ueda Kazuo (植田和男) declined to commit to a date. He said the pace of hikes will depend on the data, that the Bank cannot decide in advance how many months to wait between moves, and that the policy rate is still below the 中立金利 (chūritsu kinri, neutral rate). He also said the Bank must watch for inflation overshooting its target. Reuters read the statement as opening the door to a hike in December, the board's next meeting.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> With the BOJ saying the target has been met, the question shifts from whether to hike to how often, and Ueda's language allows a move every few months. The food tax cut is the main complication: it would push measured inflation well below 2% in fiscal 2027 even if underlying pressure holds, which gives the board a reason to move before it takes effect. Faster ETF sales add a small but steady supply of Japanese equities from January. Watch the December 17-18 meeting and the winter wage survey data.</div>
+    <div class="chart-box">
+      <div class="chart-title">BOJ Board Median Inflation Forecasts, July vs October (%)</div>
+<svg viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="280.0" x2="830" y2="280.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="284.0" font-size="10" fill="#5a6a8a" text-anchor="end">0.0%</text>
+<line x1="70" y1="238.3" x2="830" y2="238.3" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="242.3" font-size="10" fill="#5a6a8a" text-anchor="end">0.5%</text>
+<line x1="70" y1="196.7" x2="830" y2="196.7" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="200.7" font-size="10" fill="#5a6a8a" text-anchor="end">1.0%</text>
+<line x1="70" y1="155.0" x2="830" y2="155.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="159.0" font-size="10" fill="#5a6a8a" text-anchor="end">1.5%</text>
+<line x1="70" y1="113.3" x2="830" y2="113.3" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="117.3" font-size="10" fill="#5a6a8a" text-anchor="end">2.0%</text>
+<line x1="70" y1="71.7" x2="830" y2="71.7" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="75.7" font-size="10" fill="#5a6a8a" text-anchor="end">2.5%</text>
+<line x1="70" y1="30.0" x2="830" y2="30.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="34.0" font-size="10" fill="#5a6a8a" text-anchor="end">3.0%</text>
+<line x1="70" y1="113.3" x2="815" y2="113.3" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="819" y="117.3" font-size="9.5" font-weight="700" fill="#b45309">2%</text>
+<rect x="90" y="71.7" width="44" height="208.3" rx="2" fill="#c7cbe0"/>
+<text x="112.0" y="66.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.5</text>
+<rect x="142" y="71.7" width="44" height="208.3" rx="2" fill="#3730a3"/>
+<text x="164.0" y="66.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.5</text>
+<rect x="194" y="71.7" width="44" height="208.3" rx="2" fill="#f5c6dc"/>
+<text x="216.0" y="66.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.5</text>
+<rect x="246" y="80.0" width="44" height="200.0" rx="2" fill="#be185d"/>
+<text x="268.0" y="75.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.4</text>
+<text x="190" y="298" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">FY2026</text>
+<rect x="340" y="80.0" width="44" height="200.0" rx="2" fill="#c7cbe0"/>
+<text x="362.0" y="75.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.4</text>
+<rect x="392" y="63.3" width="44" height="216.7" rx="2" fill="#3730a3"/>
+<text x="414.0" y="58.3" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.6</text>
+<rect x="444" y="63.3" width="44" height="216.7" rx="2" fill="#f5c6dc"/>
+<text x="466.0" y="58.3" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.6</text>
+<rect x="496" y="55.0" width="44" height="225.0" rx="2" fill="#be185d"/>
+<text x="518.0" y="50.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.7</text>
+<text x="440" y="298" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">FY2027</text>
+<rect x="590" y="113.3" width="44" height="166.7" rx="2" fill="#c7cbe0"/>
+<text x="612.0" y="108.3" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.0</text>
+<rect x="642" y="113.3" width="44" height="166.7" rx="2" fill="#3730a3"/>
+<text x="664.0" y="108.3" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.0</text>
+<rect x="694" y="96.7" width="44" height="183.3" rx="2" fill="#f5c6dc"/>
+<text x="716.0" y="91.7" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.2</text>
+<rect x="746" y="88.3" width="44" height="191.7" rx="2" fill="#be185d"/>
+<text x="768.0" y="83.3" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.3</text>
+<text x="690" y="298" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">FY2028</text>
+<rect x="90" y="306" width="10" height="10" fill="#c7cbe0"/><text x="105" y="315" font-size="10" fill="#5a6a8a">Core CPI, July</text>
+<rect x="260" y="306" width="10" height="10" fill="#3730a3"/><text x="275" y="315" font-size="10" fill="#5a6a8a">Core CPI, October</text>
+<rect x="430" y="306" width="10" height="10" fill="#f5c6dc"/><text x="445" y="315" font-size="10" fill="#5a6a8a">Core-core, July</text>
+<rect x="600" y="306" width="10" height="10" fill="#be185d"/><text x="615" y="315" font-size="10" fill="#5a6a8a">Core-core, October</text>
+</svg>
+      <div class="chart-note">Source: BOJ Outlook Report (Oct 30, 2026). Core CPI excludes fresh food; core-core excludes fresh food and energy. Forecasts exclude the proposed food consumption tax cut.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">物価安定の目標<span class="annotation-card-en">price stability target</span></div>
+        <div class="annotation-card-body">Underlying inflation 'generally consistent' with 2%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">上場投資信託<span class="annotation-card-en">ETF</span></div>
+        <div class="annotation-card-body">Sales pace ~¥860bn/yr from Jan 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">消費税<span class="annotation-card-en">consumption tax</span></div>
+        <div class="annotation-card-body">Food tax cut would cut FY27 CPI ~1.3pt.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #154 · OCTOBER 31, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
