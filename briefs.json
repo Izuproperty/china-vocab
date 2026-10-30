@@ -1,9 +1,120 @@
 [
   {
+    "issue": 165,
+    "date": "2026-10-31",
+    "title": "Iluvatar's Unverified H200 Claim, 01.AI Takes Hangzhou State Money, Ping An's Q3 Profit Falls 93.7%",
+    "summary": "Iluvatar CoreX ran its Tiangai 300 GPU live and claims 1.05 times H200 inference throughput, but only that figure comes from a third party, the method is unpublished and the memory type is undisclosed. Kai-Fu Lee's 01.AI took several hundred million yuan from Hangzhou and Linping state funds and is moving its headquarters there ahead of a planned 2027 Hong Kong IPO built on enterprise contracts. Ping An's third-quarter net profit fell 93.7% to ¥4.06 billion ($611 million) and CPIC's 68.4% as the stock slide turned equity gains into fair-value losses, even as Ping An's operating profit rose 8.3%.",
+    "viz_url": "china-brief-visualized-2026-10-31.html",
+    "sections": [
+      {
+        "icon": "🔲",
+        "title": "Iluvatar CoreX Runs Its Tiangai 300 Live and Claims 1.05 Times H200 Throughput, but Only One Result Is Third-Party and Its Method Is Unpublished",
+        "tag": "chip",
+        "source": "SCMP (Oct 30) · ITHome (Oct 28) · Pandaily · FourWeekMBA (Oct 29) · AASTOCKS · AI & Tech · Chips / GPUs · Shanghai demo Oct 28, SCMP report Oct 30, 2026 (report about 1 day old, demo about 2.5 days)",
+        "body": "天数智芯 (Tiānshù Zhìxīn, Iluvatar CoreX), the Shanghai GPU designer listed in Hong Kong as 9903.HK, showed its 天垓 (Tiāngāi) 300 running live for the first time at a Shanghai media day on October 28, and SCMP reported on October 30 that the company says the chip matches Nvidia's H200. The part launched at the World Artificial Intelligence Conference in July. Its headline number comes from a 第三方测试 (dì-sān-fāng cèshì, third-party test) by state-owned Shanghai Instrument Electric (INESA), which put per-card end-to-end 吞吐量 (tūntǔliàng, throughput) at 1.05 times the H200 in a prefill-decode disaggregated inference setup. ITHome reported that the test method, model loads and workload conditions were not published. Each card carries 144GB of 显存 (xiǎncún, GPU memory), against 141GB of HBM3e at 4.8TB/s on the H200. Iluvatar did not disclose the memory type, bandwidth or peak compute.\n\nThe other comparisons are the company's own lab results: 1.15 times H200 throughput on mixture-of-experts inference with Zhipu's GLM-5.3 at 64K context, 10% to 30% lower first-token latency on agent tasks, 2% to 5% higher throughput on image and video generation, and 1.33 times an H100 per card in an eight-card FP8 training run on Qwen3-32B. Iluvatar also showed the IXL144 超节点 (chāojiédiǎn, supernode) rack with 144 GPUs, and says it cuts cost per million tokens by about 40% against \"international mainstream solutions\" without naming the comparison system. The rack is quoted at about 10.1TB of memory, roughly 70GB per GPU, which is under half the 144GB card specification, and the company has not explained the gap. The shares fell 8.8% on October 29, according to AASTOCKS data cited by FourWeekMBA.\n\nAn inference claim at H200 level would matter for Chinese cloud buyers, who have been paying 20% to 50% more for domestic accelerators since September while Nvidia supply stays restricted. The claim rests on one undisclosed test, and the missing memory specification is the important gap. Yesterday's brief showed CXMT starting HBM3E at 20% to 30% yields, so a 144GB card shipping in volume needs either imported HBM bought through unofficial channels or domestic stacks that are still a generation behind. The rack figure suggests the volume configuration may carry far less memory than the single-card demo. Two disclosures would firm up the claim: a published benchmark run under MLPerf-style rules, and a named cloud or telecom customer deploying IXL144 racks at scale. Until then, institutional investors should value Iluvatar on its reported revenue, which roughly tripled in the first half, and not on the H200 comparison.",
+        "takeaway": "Iluvatar's H200-level claim rests on one third-party test with an unpublished method and no disclosed memory type, so value the company on its reported revenue growth until a public benchmark and a named volume customer appear.",
+        "vocab": [
+          {
+            "zh": "天数智芯",
+            "en": "Iluvatar CoreX"
+          },
+          {
+            "zh": "天垓",
+            "en": "Iluvatar's training/inference GPU line"
+          },
+          {
+            "zh": "吞吐量",
+            "en": "throughput"
+          },
+          {
+            "zh": "第三方测试",
+            "en": "third-party test"
+          },
+          {
+            "zh": "显存",
+            "en": "GPU memory"
+          },
+          {
+            "zh": "超节点",
+            "en": "supernode (rack-scale system)"
+          }
+        ]
+      },
+      {
+        "icon": "🧠",
+        "title": "01.AI Takes Several Hundred Million Yuan From Hangzhou State Funds and Moves Its Headquarters to Linping, Ahead of a Planned 2027 Hong Kong IPO",
+        "tag": "ai",
+        "source": "Jiemian (Oct 30) · The Paper / STAR Market Daily (Oct 30) · PEdaily (Oct 30) · TechNode (Oct 30) · AI & Tech · Foundation models / enterprise AI · Signed Oct 29, announced Oct 30, 2026 (about 1 day old)",
+        "body": "零一万物 (Líng Yī Wànwù, 01.AI), the Beijing AI company founded in 2023 by 李开复 (Lǐ Kāifù, Kai-Fu Lee), signed an agreement on October 29 at the Hangzhou International Expo Center under which Hangzhou municipal and Linping district 国资 (guózī, state capital) will invest several hundred million yuan, and the company will move its 总部 (zǒngbù, headquarters) to Linping and build an industrial AI base there. Neither side disclosed the exact amount, the stake or the investing entities. Jiemian reported that Linping's package bundles equity with compute, use cases and orders, including a ¥400 million ($60 million) compute fund, grants of up to ¥3 million ($450,000) for enterprise model work and compute vouchers worth up to ¥2 million ($300,000) a year per firm. PEdaily reported that the round is part of a Pre-IPO raise, and Bloomberg reported in July that the company is targeting a Hong Kong listing in 2027.\n\n01.AI has been turning itself from a model lab into an enterprise services firm since early 2025. It said in March 2025 that it would stop training its own trillion-parameter 基座模型 (jīzuò móxíng, base model), moved pretraining staff into a joint lab with Alibaba Cloud, and in September shut public trials and API access on its model platform. TechNode, citing IT Home, reported that it now customizes open-weight DeepSeek, Qwen and GLM models for businesses and earns roughly half its revenue outside China. Jiemian put 2024 revenue at just over ¥100 million ($15 million), about 70% from enterprises, and 2025 at ¥500 million ($75 million) of 订单 (dìngdān, orders) and ¥250 million ($38 million) of audited revenue. Lee set a 2026 goal in May of ¥1.5 billion ($226 million) in signed contracts. Lee said in July the company is restructuring its offshore shareholding ahead of the Pre-IPO round.\n\nThe Linping deal gives a cash-hungry AI company a local government investor that also supplies customers, which helps with the 2026 contract target and with a listing narrative built on revenue. It also replaces part of what US-dollar funds once provided at a time when Beijing is asking AI firms to clear or unwind US limited-partner capital, and the offshore restructuring Lee described fits that pressure. The model has costs. Jiemian noted that each large client needs engineers on site for process mapping and data integration, so every ¥100 million ($15 million) order adds headcount, and margins improve only if the platform can reuse that work across clients. 01.AI no longer owns a frontier model, so its pricing power depends on integration skill and not on model quality. Investors weighing the 2027 IPO should look for recognized revenue, not signed contracts, and for gross margin on project work in the prospectus.",
+        "takeaway": "Local state capital that brings compute subsidies and customers can fill 01.AI's contract book and stand in for US-dollar fund money, but on-site project work keeps margins thin, so the 2027 IPO test is recognized revenue and gross margin.",
+        "vocab": [
+          {
+            "zh": "零一万物",
+            "en": "01.AI"
+          },
+          {
+            "zh": "李开复",
+            "en": "Kai-Fu Lee, 01.AI founder"
+          },
+          {
+            "zh": "国资",
+            "en": "state capital"
+          },
+          {
+            "zh": "总部",
+            "en": "headquarters"
+          },
+          {
+            "zh": "基座模型",
+            "en": "base (foundation) model"
+          },
+          {
+            "zh": "订单",
+            "en": "orders, signed contracts"
+          }
+        ]
+      },
+      {
+        "icon": "🏦",
+        "title": "Ping An's Third-Quarter Profit Falls 93.7% to ¥4.06 Billion and CPIC's 68.4% as the Stock Slide Turns Equity Gains Into Fair-Value Losses",
+        "tag": "market",
+        "source": "Shanghai and Hong Kong exchange filings (Oct 28) · Reuters via The Standard (Oct 28) · Caixin Global (Oct 29) · Red Star Capital (Oct 29) · Economic Information Daily (Oct 29) · Finance & Macro · Insurers / earnings · Oct 28, 2026 (about 2.5 days old; weekend fallback, major financial institution results within 72 hours)",
+        "body": "中国平安 (Zhōngguó Píng'ān, Ping An Insurance) reported on October 28 that third-quarter net profit attributable to shareholders fell 93.7% from a year earlier to ¥4.06 billion ($611 million), and 中国太保 (Zhōngguó Tàibǎo, China Pacific Insurance, CPIC) reported a 68.4% drop to ¥5.63 billion ($846 million). Both stayed profitable after some analysts had expected every listed insurer to post a quarterly loss. Ping An's nine-month net profit fell 27.3% to ¥96.6 billion ($14.5 billion). Its 营运利润 (yíngyùn lìrùn, operating profit), which strips out short-term investment swings, rose 8.3% to ¥125.9 billion ($18.9 billion). 新业务价值 (xīn yèwù jiàzhí, new business value) fell 13.3% to ¥31.0 billion ($4.66 billion) at Ping An and 6.5% to ¥14.4 billion ($2.16 billion) at CPIC.\n\nThe losses came from stocks held at 公允价值 (gōngyǔn jiàzhí, fair value) through profit and loss. Ping An's nine-month fair-value line swung from a ¥48.0 billion ($7.22 billion) gain a year earlier to a ¥64.3 billion ($9.67 billion) loss, and its non-annualized 综合投资收益率 (zōnghé tóuzī shōuyìlǜ, comprehensive investment yield) fell 3.1 percentage points to 2.3% on a ¥6.83 trillion ($1.03 trillion) portfolio. CPIC's swung from a ¥41.9 billion ($6.30 billion) gain to a ¥24.5 billion ($3.69 billion) loss, and its total investment yield fell 2.7 points to 2.5%. The CSI 300 entered a bear market on October 22, 20.2% below its June high. Ping An said it will keep equity allocation measured and add alternative assets. CPIC said it will adjust equity exposure gradually and lean on dividend-paying stocks. Ping An's A shares rose 1.7% on October 29.\n\nRegulators have pushed insurers to put more long-term money into stocks, and the five largest pledged in July to raise equity holdings to steady the market. Under the new accounting standard, much of that money sits in accounts that mark to market through earnings, so the policy that supports the index also moves insurer profits with it. A ¥64.3 billion ($9.67 billion) swing at one insurer will push chief investment officers toward high-dividend stocks booked through other comprehensive income, where price moves bypass net profit. Ping An reported more than ¥58 billion ($8.7 billion) of pre-tax unrealized gains in that bucket. That shift would favor banks and utilities over growth and technology shares, and it would weaken insurers as marginal buyers of the AI-hardware names that led the October sell-off. Ping An ties its dividend to operating profit, which rose, so payouts look safe. Falling new business value at both firms is the slower problem, and a weak fourth-quarter market would cut full-year profits again.",
+        "takeaway": "Insurers pushed to buy stocks for market support now carry that volatility in earnings, which favors high-dividend shares booked through OCI over growth and AI-hardware names, while dividends tied to rising operating profit look safe.",
+        "vocab": [
+          {
+            "zh": "中国平安",
+            "en": "Ping An Insurance"
+          },
+          {
+            "zh": "中国太保",
+            "en": "China Pacific Insurance (CPIC)"
+          },
+          {
+            "zh": "公允价值",
+            "en": "fair value"
+          },
+          {
+            "zh": "营运利润",
+            "en": "operating profit (insurer metric)"
+          },
+          {
+            "zh": "新业务价值",
+            "en": "new business value (NBV)"
+          },
+          {
+            "zh": "综合投资收益率",
+            "en": "comprehensive investment yield"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 164,
     "date": "2026-10-30",
     "title": "CXMT's Low-Yield HBM3E Start, Unitree's Profit Miss, the Fifth Plenum's 34 Discipline Cases",
-    "summary": "CXMT plans to start limited HBM3E production with only 20% to 30% of chips usable, against about 70% at SK Hynix, as domestic AI chipmakers raise prices on scarce memory. Unitree's first post-IPO quarter showed revenue up 70% to ¥665 million (about $100 million) but profit down 17% to half the consensus as R&D tripled and inventory reached ¥1.02 billion (about $153 million). The Fifth Plenum closed by confirming discipline cases against 34 Central Committee members, including two former financial regulator chiefs, and set the 21st Party Congress for late 2027.",
+    "summary": "CXMT plans to start limited HBM3E production with only 20% to 30% of chips usable, against about 70% at SK Hynix, as domestic AI chipmakers raise prices on scarce memory. Unitree's first post-IPO quarter showed revenue up 70% to ¥665 million ($100 million) but profit down 17% to half the consensus as R&D tripled and inventory reached ¥1.02 billion ($153 million). The Fifth Plenum closed by confirming discipline cases against 34 Central Committee members, including two former financial regulator chiefs, and set the 21st Party Congress for late 2027.",
     "viz_url": "china-brief-visualized-2026-10-30.html",
     "sections": [
       {
@@ -11,7 +122,7 @@
         "title": "CXMT Will Start HBM3E Production With Yields of 20% to 30%, Against About 70% at SK Hynix, as Domestic AI Chipmakers Wait for Memory",
         "tag": "chip",
         "source": "Reuters (Oct 28) · The Information (Oct 28) · Counterpoint Research · AI & Tech · Chips / memory · Oct 28, 2026 (about 1.5 days old)",
-        "body": "长鑫存储 (Chángxīn Cúnchǔ, CXMT), China's largest DRAM maker, plans to begin limited production of HBM3E 高带宽内存 (gāo dàikuān nèicún, high-bandwidth memory) over the next two months even though only 20% to 30% of the chips it makes are usable, Reuters reported on October 28, citing two people familiar with the plan. SK Hynix runs at about 70%. CXMT has already 送样 (sòngyàng, sent samples) to several domestic AI chip designers in two versions, a standard part and one modified to lift 良率 (liánglǜ, yield). One source said the part performs closer to SK Hynix's previous-generation HBM3 than to HBM3E. The Information first reported the plan, and CXMT did not comment.\n\nHBM is the stacked memory that sits beside an AI accelerator, and US controls tightened in December 2024 cut Chinese chip designers off from advanced parts. HBM bought through unofficial channels can cost several times the list price. Reuters reported last month that 华为 (Huáwèi, Huawei), 寒武纪 (Hánwǔjì, Cambricon), MetaX and Iluvatar CoreX raised prices on current and next-generation AI chips by 20% to 50%. Earlier estimates put CXMT's 2026 output at about 2 million HBM stacks, enough for 250,000 to 300,000 Ascend 910C chips against Huawei's 600,000-unit target. SK Hynix, which took 50% of global HBM revenue in the second quarter against 33% for Samsung and 18% for Micron according to Counterpoint, said on its October 28 earnings call that HBM4 yields had passed target.\n\nAt a 20% to 30% yield CXMT scraps most of the dies it puts into HBM, so each good stack carries roughly three times the silicon cost of a mature line. The company can afford that. Its commodity DRAM business earned ¥77.6 billion (about $11.6 billion) of net profit on ¥150.3 billion (about $22.5 billion) of revenue in the first half, and its July STAR Market IPO raised ¥66.6 billion (about $10 billion). Domestic accelerator makers will pay for the waste through higher memory prices, which adds to the 20% to 50% chip price increases already passed on to buyers. HBM3-class bandwidth also limits how far Chinese accelerators can close the performance gap with Nvidia parts, because memory supply has been the binding constraint on Ascend output this year. Two developments would change that read: a named customer qualifying CXMT stacks in a shipping accelerator, and yields above 50% by mid-2027. Until then, institutional investors pricing domestic AI chip volumes for 2027 should treat HBM as the limiting input.",
+        "body": "长鑫存储 (Chángxīn Cúnchǔ, CXMT), China's largest DRAM maker, plans to begin limited production of HBM3E 高带宽内存 (gāo dàikuān nèicún, high-bandwidth memory) over the next two months even though only 20% to 30% of the chips it makes are usable, Reuters reported on October 28, citing two people familiar with the plan. SK Hynix runs at about 70%. CXMT has already 送样 (sòngyàng, sent samples) to several domestic AI chip designers in two versions, a standard part and one modified to lift 良率 (liánglǜ, yield). One source said the part performs closer to SK Hynix's previous-generation HBM3 than to HBM3E. The Information first reported the plan, and CXMT did not comment.\n\nHBM is the stacked memory that sits beside an AI accelerator, and US controls tightened in December 2024 cut Chinese chip designers off from advanced parts. HBM bought through unofficial channels can cost several times the list price. Reuters reported last month that 华为 (Huáwèi, Huawei), 寒武纪 (Hánwǔjì, Cambricon), MetaX and Iluvatar CoreX raised prices on current and next-generation AI chips by 20% to 50%. Earlier estimates put CXMT's 2026 output at about 2 million HBM stacks, enough for 250,000 to 300,000 Ascend 910C chips against Huawei's 600,000-unit target. SK Hynix, which took 50% of global HBM revenue in the second quarter against 33% for Samsung and 18% for Micron according to Counterpoint, said on its October 28 earnings call that HBM4 yields had passed target.\n\nAt a 20% to 30% yield CXMT scraps most of the dies it puts into HBM, so each good stack carries roughly three times the silicon cost of a mature line. The company can afford that. Its commodity DRAM business earned ¥77.6 billion ($11.6 billion) of net profit on ¥150.3 billion ($22.5 billion) of revenue in the first half, and its July STAR Market IPO raised ¥66.6 billion ($10 billion). Domestic accelerator makers will pay for the waste through higher memory prices, which adds to the 20% to 50% chip price increases already passed on to buyers. HBM3-class bandwidth also limits how far Chinese accelerators can close the performance gap with Nvidia parts, because memory supply has been the binding constraint on Ascend output this year. Two developments would change that read: a named customer qualifying CXMT stacks in a shipping accelerator, and yields above 50% by mid-2027. Until then, institutional investors pricing domestic AI chip volumes for 2027 should treat HBM as the limiting input.",
         "takeaway": "CXMT will make usable HBM3E-class memory at roughly three times the silicon cost per good stack and one generation behind on performance, so domestic accelerator prices stay high and output stays memory-limited until a customer qualifies the part and yields pass 50%.",
         "vocab": [
           {
@@ -41,7 +152,7 @@
         "title": "Unitree's First Report as a Listed Company: Q3 Revenue Rises 70% to ¥665 Million, but Profit Falls 17% to Half the Consensus as R&D Triples and Inventory Reaches ¥1 Billion",
         "tag": "robotics",
         "source": "Reuters (Oct 28) · Caixin Global (Oct 29) · TechNode (Oct 29) · Shanghai Stock Exchange filing · AI & Tech · Physical AI / robotics · Oct 28, 2026 (about 1.5 days old)",
-        "body": "宇树科技 (Yǔshù Kējì, Unitree Robotics) reported third-quarter 营收 (yíngshōu, revenue) of ¥665 million (about $100 million) on October 28, up 69.9% from a year earlier, in its first quarterly filing since its August listing on Shanghai's STAR Market. 净利润 (jìnglìrùn, net profit) attributable to shareholders fell 17.4% to ¥112.7 million (about $17 million), roughly half the ¥224 million (about $34 million) analysts expected, according to Reuters. 研发费用 (yánfā fèiyòng, R&D spending) rose 249.6% to ¥127 million (about $19 million), or 19.1% of revenue, and selling expenses tripled to ¥230 million (about $34 million) from ¥76 million (about $11 million). Nine-month revenue of ¥1.82 billion (about $270 million) rose 55.7% and already exceeds full-year 2025 revenue of ¥1.71 billion (about $256 million).\n\nUnitree said it spent more on embodied-intelligence models, computing capacity and its research team. 存货 (cúnhuò, inventory) reached ¥1.02 billion (about $153 million) at the end of September, up from ¥367 million (about $55 million) at the end of 2025, and Caixin reported that the company did not say whether the build reflects slower sell-through or stock for expected orders. Nine-month net profit rose 270.5% to ¥386.7 million (about $58 million), a comparison flattered by a large share-based payment charge in 2025. Excluding one-off items, nine-month profit fell 18.8% to ¥349 million (about $52 million). The shares fell more than 3% at Wednesday's open after an 8.7% gain on Tuesday, for a market value near ¥281.5 billion (about $42 billion). They had climbed more than 65% in two weeks after dropping almost 55% from the August debut.\n\nFounder 王兴兴 (Wáng Xīngxīng) said last week that humanoids could handle 80% of voice-given tasks by 2028, and this quarter shows the cost of that goal. R&D and selling expenses together took about 54% of revenue, up from about 29% a year earlier. At ¥281.5 billion the stock trades at roughly 106 times annualized third-quarter sales, a multiple that requires growth to speed up from the 55% to 70% range. Inventory nearly tripled while revenue grew 70%, and regulators have already questioned how much humanoid revenue comes from state and university buyers instead of industrial customers. A fourth quarter that turns that stock into sales would ease the doubt about end demand, while a further build would deepen it. For institutional investors, the next disclosure on customer mix matters more for the valuation than another product video.",
+        "body": "宇树科技 (Yǔshù Kējì, Unitree Robotics) reported third-quarter 营收 (yíngshōu, revenue) of ¥665 million ($100 million) on October 28, up 69.9% from a year earlier, in its first quarterly filing since its August listing on Shanghai's STAR Market. 净利润 (jìnglìrùn, net profit) attributable to shareholders fell 17.4% to ¥112.7 million ($17 million), roughly half the ¥224 million ($34 million) analysts expected, according to Reuters. 研发费用 (yánfā fèiyòng, R&D spending) rose 249.6% to ¥127 million ($19 million), or 19.1% of revenue, and selling expenses tripled to ¥230 million ($34 million) from ¥76 million ($11 million). Nine-month revenue of ¥1.82 billion ($270 million) rose 55.7% and already exceeds full-year 2025 revenue of ¥1.71 billion ($256 million).\n\nUnitree said it spent more on embodied-intelligence models, computing capacity and its research team. 存货 (cúnhuò, inventory) reached ¥1.02 billion ($153 million) at the end of September, up from ¥367 million ($55 million) at the end of 2025, and Caixin reported that the company did not say whether the build reflects slower sell-through or stock for expected orders. Nine-month net profit rose 270.5% to ¥386.7 million ($58 million), a comparison flattered by a large share-based payment charge in 2025. Excluding one-off items, nine-month profit fell 18.8% to ¥349 million ($52 million). The shares fell more than 3% at Wednesday's open after an 8.7% gain on Tuesday, for a market value near ¥281.5 billion ($42 billion). They had climbed more than 65% in two weeks after dropping almost 55% from the August debut.\n\nFounder 王兴兴 (Wáng Xīngxīng) said last week that humanoids could handle 80% of voice-given tasks by 2028, and this quarter shows the cost of that goal. R&D and selling expenses together took about 54% of revenue, up from about 29% a year earlier. At ¥281.5 billion the stock trades at roughly 106 times annualized third-quarter sales, a multiple that requires growth to speed up from the 55% to 70% range. Inventory nearly tripled while revenue grew 70%, and regulators have already questioned how much humanoid revenue comes from state and university buyers instead of industrial customers. A fourth quarter that turns that stock into sales would ease the doubt about end demand, while a further build would deepen it. For institutional investors, the next disclosure on customer mix matters more for the valuation than another product video.",
         "takeaway": "Unitree's revenue grew 70% while spending and inventory grew faster, so a valuation of about 106 times annualized Q3 sales depends on fourth-quarter sell-through and on proof that industrial customers are buying the extra units.",
         "vocab": [
           {
