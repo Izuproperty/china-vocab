@@ -138,6 +138,7 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
     <span class="badge" id="badge-issue">—</span>
     <span class="badge" id="badge-date">—</span>
     <span class="badge" id="badge-count">—</span>
+    <input id="snap-search" type="search" placeholder="Search companies…" style="margin-left:auto;background:#2a2a4e;border:1px solid #3a3a6e;border-radius:3px;color:#e8e0f0;font:12px Inter,sans-serif;padding:5px 10px;width:220px;outline:none;">
   </div>
 </div>
 
@@ -156,10 +157,66 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
 <script>
 const CATS = {
   ai:       { label: 'AI & Tech Companies',       color: '#3730a3', bg: '#e0e7ff' },
+  cloud:    { label: 'Cloud, Telecom & Data Centres', color: '#1a56db', bg: '#f0f4fe' },
   semi:     { label: 'Semiconductors',             color: '#be185d', bg: '#fce7f3' },
   robotics: { label: 'Robotics & Physical AI',     color: '#27ae60', bg: '#f0faf4' },
+  auto:     { label: 'Autos & Mobility',           color: '#8e44ad', bg: '#f8f0fe' },
   bank:     { label: 'Financial Institutions',     color: '#b45309', bg: '#fef3e2' },
+  foreign:  { label: 'Global Companies in Japan',  color: '#64748b', bg: '#f1f5f9' },
 };
+// Verified logo replacements (take priority over everything else)
+const LOGO_FORCE = {
+ "Anduril Industries": "https://www.google.com/s2/favicons?sz=128&domain=anduril.com",
+ "Anthropic": "https://www.google.com/s2/favicons?sz=128&domain=anthropic.com",
+ "CADDi": "https://www.google.com/s2/favicons?sz=128&domain=caddi.com",
+ "Palantir Technologies": "https://www.google.com/s2/favicons?sz=128&domain=palantir.com",
+ "Rakuten Group": "https://www.google.com/s2/favicons?sz=128&domain=rakuten.com",
+ "Ricoh": "https://www.google.com/s2/favicons?sz=128&domain=ricoh.com",
+ "TIER IV": "https://www.google.com/s2/favicons?sz=128&domain=tier4.jp",
+ "Turing": "https://www.google.com/s2/favicons?sz=128&domain=turing-motors.com",
+ "Z Venture Capital": "https://www.google.com/s2/favicons?sz=128&domain=zvc.vc",
+ "Air Liquide Japan": "https://www.google.com/s2/favicons?sz=128&domain=airliquide.com",
+ "Ajinomoto": "https://www.google.com/s2/favicons?sz=128&domain=ajinomoto.com",
+ "ASML Japan": "https://www.google.com/s2/favicons?sz=128&domain=asml.com",
+ "Fujifilm": "https://www.google.com/s2/favicons?sz=128&domain=fujifilm.com",
+ "GlobalFoundries": "https://www.google.com/s2/favicons?sz=128&domain=gf.com",
+ "Japan Display Inc. (JDI)": "https://www.google.com/s2/favicons?sz=128&domain=www.j-display.com",
+ "Kyocera": "https://www.google.com/s2/favicons?sz=128&domain=kyocera.com",
+ "Nikon": "https://www.google.com/s2/favicons?sz=128&domain=nikon.com",
+ "Powrex": "https://www.google.com/s2/favicons?sz=128&domain=powrex.co.jp",
+ "Rohm": "https://www.google.com/s2/favicons?sz=128&domain=rohm.com",
+ "Sakai Chemical Industry": "https://www.google.com/s2/favicons?sz=128&domain=sakai-chem.co.jp",
+ "SK Hynix": "https://www.google.com/s2/favicons?sz=128&domain=www.skhynix.com",
+ "SUMCO": "https://www.google.com/s2/favicons?sz=128&domain=www.sumcosi.com",
+ "Sumitomo Chemical": "https://www.google.com/s2/favicons?sz=128&domain=sumitomo-chem.co.jp",
+ "Taiyo Yuden": "https://www.google.com/s2/favicons?sz=128&domain=www.yuden.co.jp",
+ "TDK Corporation": "https://www.google.com/s2/favicons?sz=128&domain=tdk.com",
+ "FingerVision": "https://www.google.com/s2/favicons?sz=128&domain=fingervision.jp",
+ "GMO AI & Robotics Corporation (GMO AIR)": "https://www.google.com/s2/favicons?sz=128&domain=gmo.jp",
+ "Nidec": "https://www.google.com/s2/favicons?sz=128&domain=nidec.com",
+ "NSK": "https://www.google.com/s2/favicons?sz=128&domain=nsk.com",
+ "Omron": "https://www.google.com/s2/favicons?sz=128&domain=www.omron.com",
+ "Panasonic Energy": "https://www.google.com/s2/favicons?sz=128&domain=panasonic.com",
+ "Qualcomm": "https://www.google.com/s2/favicons?sz=128&domain=qualcomm.com",
+ "Shimizu Corporation": "https://www.google.com/s2/favicons?sz=128&domain=www.shimz.co.jp",
+ "THK Corporation": "https://www.google.com/s2/favicons?sz=128&domain=www.thk.com",
+ "ugo": "https://www.google.com/s2/favicons?sz=128&domain=ugo.plus",
+ "Japan Exchange Group (JPX)": "https://www.google.com/s2/favicons?sz=128&domain=www.jpx.co.jp",
+ "JPYC": "https://www.google.com/s2/favicons?sz=128&domain=jpyc.co.jp",
+ "Nomura Holdings": "https://www.google.com/s2/favicons?sz=128&domain=nomura.com",
+ "NTT Corporation": "https://www.google.com/s2/favicons?sz=128&domain=group.ntt",
+ "Sakura Internet": "https://www.google.com/s2/favicons?sz=128&domain=sakura.ad.jp",
+ "Colt Technology Services": "https://www.google.com/s2/favicons?sz=128&domain=colt.net",
+ "KDDI Corporation": "https://www.google.com/s2/favicons?sz=128&domain=kddi.com",
+ "Preferred Computing Infrastructure (PFCI)": "https://www.google.com/s2/favicons?sz=128&domain=preferred.jp",
+ "Goodman Group": "https://www.google.com/s2/favicons?sz=128&domain=goodman.com",
+ "GMO Internet Group": "https://www.google.com/s2/favicons?sz=128&domain=gmo.jp",
+ "Toyota Motor Corporation": "https://www.google.com/s2/favicons?sz=128&domain=toyota.com",
+ "Nissan Motor": "https://www.google.com/s2/favicons?sz=128&domain=nissan-global.com",
+ "Foxconn (Hon Hai Precision Industry)": "https://www.google.com/s2/favicons?sz=128&domain=foxconn.com"
+};
+// Non-Japanese companies shown in their own section (an entity can also set "foreign": true)
+const FOREIGN = new Set(["Anthropic", "Anduril Industries", "Palantir Technologies", "Sierra", "Qualcomm", "ASML Japan", "Air Liquide Japan", "GlobalFoundries", "Samsung Electronics (Japan Packaging)", "SK Hynix", "Micron Hiroshima", "Tower Semiconductor Japan", "TSMC JASM (Kumamoto)", "Colt Technology Services", "Goodman Group", "Foxconn (Hon Hai Precision Industry)"]);
 
 // Logo overrides — GitHub org avatars + Wikimedia Commons PNG thumbnails
 const LOGO_OVERRIDES = {
@@ -309,28 +366,27 @@ function makeLogoHtml(entity, size) {
   const mono = logoInitials(entity.name, entity.zh);
   const r = Math.round(size * 0.2);
   const monoHtml = `<div class="logo-monogram" style="background:${cat.color};width:${size}px;height:${size}px;border-radius:${r}px;display:flex;align-items:center;justify-content:center;"><span class="mono-zh" style="font-size:${Math.round(size*0.33)}px">${mono}</span></div>`;
-
-  const override = LOGO_OVERRIDES[entity.name];
-  const domain = DOMAINS[entity.name];
-
-  if (!override && !domain) return monoHtml;
-
-  const primary = override || `https://logo.clearbit.com/${domain}?size=128`;
-  const fallback = (override && domain) ? `https://logo.clearbit.com/${domain}?size=128` : '';
-
+  const forced = LOGO_FORCE[entity.name];
+  const list = forced ? [forced] : [LOGO_OVERRIDES[entity.name],
+    DOMAINS[entity.name] ? 'https://www.google.com/s2/favicons?sz=128&domain=' + DOMAINS[entity.name] : ''].filter(Boolean);
+  if (!list.length) return monoHtml;
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
-    src="${primary}"
-    data-fb="${fallback}"
-    onerror="logoFallback(this)"
+    src="${list[0]}" data-c="${list.slice(1).join('|')}" data-forced="${forced ? 1 : ''}"
+    onerror="nextLogo(this)" onload="if(!this.dataset.forced && this.src.includes('s2/favicons') && this.naturalWidth < 32) nextLogo(this)"
     alt="${entity.name}">
   ${monoHtml.replace('display:flex', 'display:none')}`;
+}
+function nextLogo(img) {
+  const rest = (img.dataset.c || '').split('|').filter(Boolean);
+  if (rest.length) { img.dataset.c = rest.slice(1).join('|'); img.src = rest[0]; return; }
+  img.style.display = 'none'; img.nextElementSibling.style.display = 'flex';
 }
 
 function makeCard(entity) {
   const cat = CATS[entity.cat] || CATS.ai;
   const safeName = entity.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   return `
-    <div class="logo-card" onmouseenter="showPopup(event,'${safeName}')" onmouseleave="hidePopup()">
+    <div class="logo-card" data-name="${entity.name.replace(/"/g,'&quot;')}" onmouseenter="showPopup(event,'${safeName}')" onmouseleave="hidePopup()">
       <div class="logo-face" style="background:${cat.bg}">
         ${makeLogoHtml(entity, 56)}
       </div>
@@ -420,8 +476,9 @@ fetch('japan-ai-landscape.json?v=' + Date.now())
 
     const grouped = {};
     all.forEach(e => {
-      if (!grouped[e.cat]) grouped[e.cat] = [];
-      grouped[e.cat].push(e);
+      const k = (e.foreign === true || FOREIGN.has(e.name)) ? 'foreign' : e.cat;
+      if (!grouped[k]) grouped[k] = [];
+      grouped[k].push(e);
     });
     Object.values(grouped).forEach(arr => arr.sort((a,b) => a.name.localeCompare(b.name)));
 
@@ -448,6 +505,19 @@ fetch('japan-ai-landscape.json?v=' + Date.now())
     document.getElementById('content').innerHTML =
       '<div class="loading">Could not load landscape data.</div>';
   });
+document.getElementById('snap-search').addEventListener('input', ev => {
+  const q = ev.target.value.trim().toLowerCase();
+  document.querySelectorAll('.cat-section').forEach(sec => {
+    let n = 0;
+    sec.querySelectorAll('.logo-card').forEach(c => {
+      const e = entityMap[c.dataset.name] || {};
+      const hay = [e.name, e.zh, e.py, e.ticker].join(' ').toLowerCase();
+      const ok = !q || hay.includes(q);
+      c.style.display = ok ? '' : 'none'; if (ok) n++;
+    });
+    sec.style.display = n ? '' : 'none';
+  });
+});
 </script>
 </body>
 </html>
