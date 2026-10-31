@@ -140,6 +140,7 @@ body { background: var(--bg); font-family: 'Inter', sans-serif; color: var(--nav
     <span class="badge" id="badge-issue">—</span>
     <span class="badge" id="badge-date">—</span>
     <span class="badge" id="badge-count">—</span>
+    <input id="snap-search" type="search" placeholder="Search companies…" style="margin-left:auto;background:#2a2a4e;border:1px solid #3a3a6e;border-radius:3px;color:#e8d5b0;font:12px Inter,sans-serif;padding:5px 10px;width:220px;outline:none;">
   </div>
 </div>
 
@@ -331,6 +332,27 @@ const LOGO_OVERRIDES = {
   'Nvidia':                  'https://github.com/NVIDIA.png?size=128',
 };
 
+// Verified replacements (take priority over logos/ files and overrides)
+const LOGO_FORCE = {
+  "Iluvatar CoreX": "https://www.google.com/s2/favicons?sz=128&domain=iluvatar.com",
+  "Pony.ai": "https://www.google.com/s2/favicons?sz=128&domain=pony.ai",
+  "WeRide": "https://www.google.com/s2/favicons?sz=128&domain=weride.ai",
+  "Biren Technology": "https://www.google.com/s2/favicons?sz=128&domain=www.birentech.com",
+  "SMIC": "https://commons.wikimedia.org/wiki/Special:FilePath/SMIC_logo.svg?width=128",
+  "Spirit AI": "https://www.google.com/s2/favicons?sz=128&domain=spirit-ai.com",
+  "Anyverse Dynamics": "MONO",
+  "Fliggy": "https://www.google.com/s2/favicons?sz=128&domain=fliggy.com",
+  "Astribot": "https://www.google.com/s2/favicons?sz=128&domain=astribot.com",
+  "Hesai Group": "https://www.google.com/s2/favicons?sz=128&domain=hesaitech.com",
+  "JAKA Robotics": "https://www.google.com/s2/favicons?sz=128&domain=jaka.com",
+  "Orbbec": "https://www.google.com/s2/favicons?sz=128&domain=orbbec.com",
+  "X-Humanoid": "https://www.google.com/s2/favicons?sz=128&domain=x-humanoid.com",
+  "Approaching.AI": "https://www.google.com/s2/favicons?sz=128&domain=approaching.ai",
+  "Alkaidsemi": "https://www.google.com/s2/favicons?sz=128&domain=alkaidsemi.com",
+  "Leaderdrive": "https://www.google.com/s2/favicons?sz=128&domain=leaderdrive.com",
+  "Huaqin Technology": "https://www.google.com/s2/favicons?sz=128&domain=www.huaqin.com"
+};
+
 // Store all entities for modal lookup
 let entityMap = {};
 
@@ -396,14 +418,16 @@ function makeLogoHtml(entity, size = 56) {
   const monoHtml = `<div class="logo-monogram" style="background:${cat.color};width:${size}px;height:${size}px;border-radius:${Math.round(size*0.2)}px;display:flex;align-items:center;justify-content:center;"><span class="mono-zh" style="font-size:${Math.round(size*0.33)}px">${mono}</span></div>`;
 
   const s = nameToSlug(entity.name);
-  const localUrl  = `logos/${s}.png`;            // self-hosted — primary
+  const forced = LOGO_FORCE[entity.name];
+  if (forced === 'MONO') return monoHtml;
+  const localUrl  = forced || `logos/${s}.png`;  // forced → self-hosted → fallbacks
   const override  = LOGO_OVERRIDES[entity.name]; // GitHub/Wikimedia — fallback
   const domain    = DOMAINS[entity.name];        // Clearbit — final fallback
 
   // Load order: logos/{s}.png → logos/{s}.svg → LOGO_OVERRIDES URL → Clearbit(domain) → monogram
   return `<img class="logo-img" style="width:${size}px;height:${size}px;"
     src="${localUrl}"
-    data-fb="${override || ''}"
+    data-fb="${forced ? '' : (override || '')}"
     data-domain="${domain || ''}"
     onerror="logoFallback(this)"
     onload="checkFaviconQuality(this)"
@@ -415,7 +439,7 @@ function makeCard(entity) {
   const cat = CATS[entity.cat] || CATS.security;
   const safeName = entity.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   return `
-    <div class="logo-card" onmouseenter="showPopup(event,'${safeName}')" onmouseleave="hidePopup()">
+    <div class="logo-card" data-name="${entity.name.replace(/"/g,'&quot;')}" onmouseenter="showPopup(event,'${safeName}')" onmouseleave="hidePopup()">
       <div class="logo-face" style="background:${cat.bg}">
         ${makeLogoHtml(entity, 56)}
       </div>
@@ -541,6 +565,19 @@ fetch('china-ai-landscape.json?v=' + Date.now())
     document.getElementById('content').innerHTML =
       '<div class="loading">Could not load landscape data.</div>';
   });
+document.getElementById('snap-search').addEventListener('input', ev => {
+  const q = ev.target.value.trim().toLowerCase();
+  document.querySelectorAll('.cat-section').forEach(sec => {
+    let n = 0;
+    sec.querySelectorAll('.logo-card').forEach(c => {
+      const e = entityMap[c.dataset.name] || {};
+      const hay = [e.name, e.zh, e.py, e.ticker].join(' ').toLowerCase();
+      const ok = !q || hay.includes(q);
+      c.style.display = ok ? '' : 'none'; if (ok) n++;
+    });
+    sec.style.display = n ? '' : 'none';
+  });
+});
 </script>
 </body>
 </html>
