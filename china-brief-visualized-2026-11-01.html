@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #166 · November 1, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #166 · November 1, 2026</div>
+    <div class="masthead-sub">Meta's Fourier-Built Humanoid · Kling Closes ¥19.8B Round · October PMI at 49.3</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">~3<span class="card-num-unit">months</span></div>
+      <div class="card-label">Time for Meta and Fourier to build the "Max" humanoid prototype in Shanghai; Max 2 started in September</div>
+      <div class="card-delta delta-amber">Internal research only, per Meta</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · VIDEO</div>
+      <div class="card-num">¥19.8B<span class="card-num-unit">$2.98B</span></div>
+      <div class="card-label">Kling AI capital increase paid in full; Alibaba 1.38%, Tencent affiliate 0.56%, Baidu 0.28%</div>
+      <div class="card-delta delta-green">HK spin-off filing targeted early 2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · PMI</div>
+      <div class="card-num">49.3<span class="card-num-unit">Oct PMI</span></div>
+      <div class="card-label">Official manufacturing PMI, from 50.1; consensus 49.9; construction 48.0</div>
+      <div class="card-delta delta-red">Small firms 47.5</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · HUMANOID ROBOTICS</div>
+    <div class="story-headline">Meta Built a Humanoid Prototype at Fourier's Shanghai Factory in About Three Months, and Work on a Second Version Began in September</div>
+    <div class="story-insight">
+      <p>The Information reported on October 31 that Meta built a humanoid prototype called Max with Shanghai's Fourier in roughly three months. Max is about 1.5 meters and 48 kg, runs on Nvidia's Jetson Thor and has five-fingered hands; a Meta robotics vice president spent almost two months at Fourier's factory.</p>
+      <br>
+      <p>Max 2 work began in September with a new torso, better hands and stair sensors. Meta says the units are for internal research and will not be sold, and no contract value or unit count was reported.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Fourier now has a US platform company as a disclosed build partner, which supports a contract-engineering revenue line for Chinese humanoid makers, but US security scrutiny of Chinese robots in homes could push any commercial version to another manufacturer.</div>
+    <div class="chart-box">
+      <div class="chart-title">Three Months From Start to Working Robot</div>
+      <svg viewBox="0 0 820 345" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">META HUMANOID PROJECT, 2026 (REPORTED)</text><line x1="120" y1="80" x2="750" y2="80" stroke="#c9bfb3" stroke-width="2"/><line x1="120" y1="75" x2="120" y2="85" stroke="#c9bfb3"/><text x="120" y="100" font-size="10" text-anchor="middle" fill="#9a8a7a">May</text><line x1="225" y1="75" x2="225" y2="85" stroke="#c9bfb3"/><text x="225" y="100" font-size="10" text-anchor="middle" fill="#9a8a7a">Jun</text><line x1="330" y1="75" x2="330" y2="85" stroke="#c9bfb3"/><text x="330" y="100" font-size="10" text-anchor="middle" fill="#9a8a7a">Jul</text><line x1="435" y1="75" x2="435" y2="85" stroke="#c9bfb3"/><text x="435" y="100" font-size="10" text-anchor="middle" fill="#9a8a7a">Aug</text><line x1="540" y1="75" x2="540" y2="85" stroke="#c9bfb3"/><text x="540" y="100" font-size="10" text-anchor="middle" fill="#9a8a7a">Sep</text><line x1="645" y1="75" x2="645" y2="85" stroke="#c9bfb3"/><text x="645" y="100" font-size="10" text-anchor="middle" fill="#9a8a7a">Oct</text><line x1="750" y1="75" x2="750" y2="85" stroke="#c9bfb3"/><text x="750" y="100" font-size="10" text-anchor="middle" fill="#9a8a7a">Nov</text><rect x="225" y="70" width="290" height="20" fill="#b45309" opacity="0.25"/><text x="370" y="64" font-size="10" font-weight="700" text-anchor="middle" fill="#b45309">~3-month build of Max (window approximate)</text><circle cx="140" cy="80" r="6" fill="#5a6a8a"/><text x="140" y="122" font-size="10" font-weight="700" text-anchor="middle" fill="#5a6a8a">Buys Assured Robot</text><text x="140" y="135" font-size="10" text-anchor="middle" fill="#5a6a8a">Intelligence</text><circle cx="515" cy="80" r="6" fill="#1a1a2e"/><text x="515" y="122" font-size="10" font-weight="700" text-anchor="end" fill="#1a1a2e">Max shown at internal</text><text x="515" y="135" font-size="10" text-anchor="end" fill="#1a1a2e">summit (late Aug)</text><circle cx="585" cy="80" r="6" fill="#166534"/><text x="585" y="122" font-size="10" font-weight="700" text-anchor="start" fill="#166534">Max 2 work</text><text x="585" y="135" font-size="10" text-anchor="start" fill="#166534">begins (Sep)</text><circle cx="745" cy="80" r="6" fill="#c0392b"/><text x="745" y="122" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">The Information</text><text x="745" y="135" font-size="10" text-anchor="middle" fill="#c0392b">report (Oct 31)</text><text x="30" y="180" font-size="11" font-weight="700" fill="#5a6a8a">SIZE: META'S MAX VS FOURIER'S GR-2</text><line x1="240" y1="190" x2="240" y2="300" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="213" font-size="12" font-weight="700" fill="#1a1a2e">Height, Max</text><rect x="240" y="200" width="375" height="18" fill="#c0392b"/><text x="623" y="213" font-size="11" font-weight="700" fill="#c0392b">~1.5 m</text><text x="30" y="239" font-size="12" fill="#1a1a2e">Height, GR-2</text><rect x="240" y="226" width="438" height="18" fill="#9a8a7a"/><text x="686" y="239" font-size="11" font-weight="700" fill="#9a8a7a">1.75 m</text><text x="30" y="269" font-size="12" font-weight="700" fill="#1a1a2e">Weight, Max</text><rect x="240" y="256" width="288" height="18" fill="#c0392b"/><text x="536" y="269" font-size="11" font-weight="700" fill="#c0392b">~48 kg (106 lb)</text><text x="30" y="295" font-size="12" fill="#1a1a2e">Weight, GR-2</text><rect x="240" y="282" width="378" height="18" fill="#9a8a7a"/><text x="626" y="295" font-size="11" font-weight="700" fill="#9a8a7a">63 kg</text><text x="30" y="330" font-size="11" fill="#5a4a3a">Max: Nvidia Jetson Thor, expression display, speakers, five-fingered hands. No cost, units or contract value disclosed.</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: The Information via Reuters, US News and Investing.com (Oct 31, 2026); Fourier GR-2 specifications (Sept 2024). Build-window start is approximate; the report says roughly three months. Height 250px per meter; weight 6px per kg. No renminbi figures in this chart; USD at ¥6.65/$ (Oct 30, 2026) for the issue.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · US CUSTOMER</div>
+        <div class="annotation-card-zh">傅利叶<span class="annotation-card-en">Fùlìyè · Fourier</span></div>
+        <div class="annotation-card-body">Meta's build partner for Max and Max 2.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUPPLIER ROLE</div>
+        <div class="annotation-card-zh">原型机<span class="annotation-card-en">yuánxíngjī · prototype</span></div>
+        <div class="annotation-card-body">Whether Fourier is named beyond prototypes.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · WASHINGTON</div>
+        <div class="annotation-card-zh">家用机器人<span class="annotation-card-en">jiāyòng jīqìrén · household robot</span></div>
+        <div class="annotation-card-body">Chinese-built home robots face security questions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · VIDEO MODELS</div>
+    <div class="story-headline">Kling AI Closes Its ¥19.8 Billion Round After a Middle East Investor Fails to Pay and Kingdee Takes Part of Its Share</div>
+    <div class="story-insight">
+      <p>Kuaishou said on October 30 that Kling's capital increase closed at ¥19.80 billion ($2.98 billion), against a ¥20.45 billion ($3.07 billion) cap. Two subscribers, including Middle East-linked BFI MIDCO with $80 million unpaid, dropped out, and Kingdee, MetaX-named entities and domestic funds took their places.</p>
+      <br>
+      <p>Lucky Labs holds 66.68% of the equity and 52.45% of the votes; CEO Gai Kun holds 3.02% of the equity and 23.72% of the votes. Q2 revenue topped ¥850 million ($128 million), and Bloomberg put the post-money valuation at ¥122.8 billion ($18.5 billion).</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Kling has close to $3 billion to spend on compute before a planned 2027 Hong Kong filing, and the investor base is now more onshore, but about three quarters of the votes sit with Lucky Labs and Gai, so the IPO test is margin after compute and whether public buyers accept the ¥122.8 billion ($18.5 billion) mark.</div>
+    <div class="chart-box">
+      <div class="chart-title">Fully Paid, With Votes Concentrated</div>
+      <svg viewBox="0 0 820 385" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">KLING ROUND SIZE, ¥ BILLION</text><line x1="240" y1="30" x2="240" y2="122" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">Cap (Jul 2)</text><rect x="240" y="36" width="450" height="18" fill="#9a8a7a"/><text x="698" y="49" font-size="11" font-weight="700" fill="#9a8a7a">20.45 ($3.07B)</text><text x="30" y="77" font-size="12" fill="#1a1a2e">Committed (Jul 2)</text><rect x="240" y="64" width="419" height="18" fill="#5a6a8a"/><text x="667" y="77" font-size="11" font-weight="700" fill="#5a6a8a">19.05 ($2.86B)</text><text x="30" y="105" font-size="12" font-weight="700" fill="#1a1a2e">Paid in (Oct 30)</text><rect x="240" y="92" width="436" height="18" fill="#166534"/><text x="684" y="105" font-size="11" font-weight="700" fill="#166534">19.80 ($2.98B)</text><text x="30" y="145" font-size="10" fill="#c0392b">Dropped out: Dakang Lanwu (¥100M / $15M unpaid), BFI MIDCO ($80M unpaid); Kingdee, MetaX-named entities took over</text><text x="30" y="182" font-size="11" font-weight="700" fill="#5a6a8a">BEIJING KLING SHAREHOLDERS AFTER CLOSE: EQUITY % (SOLID) VS VOTING % (OUTLINE)</text><line x1="240" y1="192" x2="240" y2="372" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="214" font-size="12" fill="#1a1a2e">Lucky Labs (controlling)</text><rect x="240" y="198" width="400" height="11" fill="#1a1a2e"/><rect x="240" y="210" width="315" height="11" fill="none" stroke="#b45309" stroke-width="1.5"/><text x="648" y="215" font-size="11" font-weight="700" fill="#1a1a2e">66.68% equity · 52.45% votes</text><text x="30" y="244" font-size="12" font-weight="700" fill="#1a1a2e">CEO Gai Kun</text><rect x="240" y="228" width="18" height="11" fill="#1a1a2e"/><rect x="240" y="240" width="142" height="11" fill="none" stroke="#b45309" stroke-width="1.5"/><text x="390" y="245" font-size="11" font-weight="700" fill="#b45309">3.02% equity · 23.72% votes</text><text x="30" y="274" font-size="12" fill="#1a1a2e">Alibaba</text><rect x="240" y="258" width="8" height="11" fill="#1a1a2e"/><rect x="240" y="270" width="7" height="11" fill="none" stroke="#b45309" stroke-width="1.5"/><text x="256" y="275" font-size="11" font-weight="700" fill="#1a1a2e">1.38% equity · 1.09% votes</text><text x="30" y="304" font-size="12" fill="#1a1a2e">Cheng Yixiao</text><rect x="240" y="288" width="6" height="11" fill="#1a1a2e"/><rect x="240" y="300" width="5" height="11" fill="none" stroke="#b45309" stroke-width="1.5"/><text x="254" y="305" font-size="11" font-weight="700" fill="#1a1a2e">1.01% equity · 0.79% votes</text><text x="30" y="334" font-size="12" fill="#1a1a2e">Tencent affiliate</text><rect x="240" y="318" width="3" height="11" fill="#1a1a2e"/><rect x="240" y="330" width="3" height="11" fill="none" stroke="#b45309" stroke-width="1.5"/><text x="251" y="335" font-size="11" font-weight="700" fill="#1a1a2e">0.56% equity · 0.44% votes</text><text x="30" y="364" font-size="12" fill="#1a1a2e">Baidu</text><rect x="240" y="348" width="2" height="11" fill="#1a1a2e"/><rect x="240" y="360" width="2" height="11" fill="none" stroke="#b45309" stroke-width="1.5"/><text x="250" y="365" font-size="11" font-weight="700" fill="#1a1a2e">0.28% equity · 0.22% votes</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Kuaishou HKEX filing (Oct 30, 2026) via TechWeb/Sina Tech (Oct 31); Sina Finance (Oct 30) for the dropouts. Round bars 22px per ¥1B; shareholder bars 6px per percentage point (minimum 2px). USD at ¥6.65/$ (Oct 30, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FUNDED</div>
+        <div class="annotation-card-zh">增资<span class="annotation-card-en">zēngzī · capital increase</span></div>
+        <div class="annotation-card-body">¥19.80B ($2.98B) paid in full.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LISTING</div>
+        <div class="annotation-card-zh">分拆上市<span class="annotation-card-en">fēnchāi shàngshì · spin-off listing</span></div>
+        <div class="annotation-card-body">Hong Kong filing targeted for early 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · GOVERNANCE</div>
+        <div class="annotation-card-zh">投票权<span class="annotation-card-en">tóupiàoquán · voting rights</span></div>
+        <div class="annotation-card-body">Gai: 3.02% equity, 23.72% of votes.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · ACTIVITY DATA</div>
+    <div class="story-headline">October's Factory PMI Falls to 49.3 as Small Firms, Consumer Goods and Construction Contract While High-Tech Output Keeps Expanding</div>
+    <div class="story-insight">
+      <p>The official manufacturing PMI fell to 49.3 from 50.1, below the 49.9 consensus, with new orders at 49.4 and production at 49.8. Non-manufacturing fell to 49.7, and construction dropped to 48.0 with its new orders at 40.0.</p>
+      <br>
+      <p>Input prices fell 4.0 points to 56.8 and ex-factory prices 2.3 points to 51.7. Small firms fell to 47.5 while large firms held at 50.2, and high-tech manufacturing stayed at 51.3. NBS blamed holiday demand pulled forward.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Weakness is concentrated in small firms, consumer goods and construction while the AI-hardware and equipment chain keeps expanding; with the PBOC moving to an overnight policy rate on November 2, any easing may arrive through that rate, and the private PMI and October trade data will show whether orders keep falling.</div>
+    <div class="chart-box">
+      <div class="chart-title">Back Below 50, With the Split by Firm Size Widening</div>
+      <svg viewBox="0 0 820 355" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">OFFICIAL PMI SUB-INDICES, SEPTEMBER (GREY) VS OCTOBER (RED)</text><line x1="370" y1="34" x2="370" y2="300" stroke="#1a1a2e" stroke-dasharray="4,3"/><text x="370" y="314" font-size="10" font-weight="700" text-anchor="middle" fill="#1a1a2e">50 = 荣枯线</text><text x="250" y="314" font-size="10" text-anchor="middle" fill="#9a8a7a">46</text><text x="310" y="314" font-size="10" text-anchor="middle" fill="#9a8a7a">48</text><text x="430" y="314" font-size="10" text-anchor="middle" fill="#9a8a7a">52</text><text x="490" y="314" font-size="10" text-anchor="middle" fill="#9a8a7a">54</text><text x="550" y="314" font-size="10" text-anchor="middle" fill="#9a8a7a">56</text><text x="610" y="314" font-size="10" text-anchor="middle" fill="#9a8a7a">58</text><text x="670" y="314" font-size="10" text-anchor="middle" fill="#9a8a7a">60</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">Manufacturing PMI</text><line x1="349" y1="48" x2="373" y2="48" stroke="#c9bfb3" stroke-width="3"/><circle cx="373" cy="48" r="6" fill="#9a8a7a"/><circle cx="349" cy="48" r="6" fill="#c0392b"/><text x="385" y="52" font-size="11" font-weight="700" fill="#c0392b">50.1 → 49.3</text><text x="30" y="81" font-size="12" fill="#1a1a2e">Production</text><line x1="364" y1="77" x2="421" y2="77" stroke="#c9bfb3" stroke-width="3"/><circle cx="421" cy="77" r="6" fill="#9a8a7a"/><circle cx="364" cy="77" r="6" fill="#c0392b"/><text x="433" y="81" font-size="11" font-weight="700" fill="#c0392b">51.7 → 49.8</text><text x="30" y="110" font-size="12" fill="#1a1a2e">New orders</text><line x1="352" y1="106" x2="385" y2="106" stroke="#c9bfb3" stroke-width="3"/><circle cx="385" cy="106" r="6" fill="#9a8a7a"/><circle cx="352" cy="106" r="6" fill="#c0392b"/><text x="397" y="110" font-size="11" font-weight="700" fill="#c0392b">50.5 → 49.4</text><text x="30" y="139" font-size="12" fill="#1a1a2e">Input prices</text><line x1="574" y1="135" x2="694" y2="135" stroke="#c9bfb3" stroke-width="3"/><circle cx="694" cy="135" r="6" fill="#9a8a7a"/><circle cx="574" cy="135" r="6" fill="#c0392b"/><text x="706" y="139" font-size="11" font-weight="700" fill="#c0392b">60.8 → 56.8</text><text x="30" y="168" font-size="12" fill="#1a1a2e">Ex-factory prices</text><line x1="421" y1="164" x2="490" y2="164" stroke="#c9bfb3" stroke-width="3"/><circle cx="490" cy="164" r="6" fill="#9a8a7a"/><circle cx="421" cy="164" r="6" fill="#c0392b"/><text x="502" y="168" font-size="11" font-weight="700" fill="#c0392b">54.0 → 51.7</text><text x="30" y="197" font-size="12" fill="#1a1a2e">Large firms</text><line x1="376" y1="193" x2="388" y2="193" stroke="#c9bfb3" stroke-width="3"/><circle cx="388" cy="193" r="6" fill="#9a8a7a"/><circle cx="376" cy="193" r="6" fill="#c0392b"/><text x="400" y="197" font-size="11" font-weight="700" fill="#c0392b">50.6 → 50.2</text><text x="30" y="226" font-size="12" fill="#1a1a2e">Small firms</text><line x1="295" y1="222" x2="337" y2="222" stroke="#c9bfb3" stroke-width="3"/><circle cx="337" cy="222" r="6" fill="#9a8a7a"/><circle cx="295" cy="222" r="6" fill="#c0392b"/><text x="349" y="226" font-size="11" font-weight="700" fill="#c0392b">48.9 → 47.5</text><text x="30" y="255" font-size="12" fill="#1a1a2e">Non-manufacturing</text><line x1="361" y1="251" x2="376" y2="251" stroke="#c9bfb3" stroke-width="3"/><circle cx="376" cy="251" r="6" fill="#9a8a7a"/><circle cx="361" cy="251" r="6" fill="#c0392b"/><text x="388" y="255" font-size="11" font-weight="700" fill="#c0392b">50.2 → 49.7</text><text x="30" y="284" font-size="12" fill="#1a1a2e">Construction</text><line x1="310" y1="280" x2="379" y2="280" stroke="#c9bfb3" stroke-width="3"/><circle cx="379" cy="280" r="6" fill="#9a8a7a"/><circle cx="310" cy="280" r="6" fill="#c0392b"/><text x="391" y="284" font-size="11" font-weight="700" fill="#c0392b">50.3 → 48.0</text><text x="30" y="340" font-size="11" fill="#5a4a3a">October only: high-tech 51.3 · equipment 50.6 · consumer goods 48.8 · energy-intensive 47.3 · construction new orders 40.0</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: National Bureau of Statistics (Oct 31, 2026) via Xinhua and SMM; AFP via China-Global South Project (consensus). September values derived from reported changes. Scale 30px per index point. No renminbi figures in this chart; USD at ¥6.65/$ (Oct 30, 2026) for the issue.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · HIGH-TECH</div>
+        <div class="annotation-card-zh">新订单<span class="annotation-card-en">xīn dìngdān · new orders</span></div>
+        <div class="annotation-card-body">Rail, ships, aerospace, electronics at 53 or above.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRICES</div>
+        <div class="annotation-card-zh">出厂价格<span class="annotation-card-en">chūchǎng jiàgé · ex-factory price</span></div>
+        <div class="annotation-card-body">51.7, still rising but slower.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONSTRUCTION</div>
+        <div class="annotation-card-zh">建筑业<span class="annotation-card-en">jiànzhùyè · construction</span></div>
+        <div class="annotation-card-body">Index 48.0, new orders 40.0.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #166 · NOVEMBER 1, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
