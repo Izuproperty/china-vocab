@@ -350,7 +350,13 @@ const LOGO_FORCE = {
   "Approaching.AI": "https://www.google.com/s2/favicons?sz=128&domain=approaching.ai",
   "Alkaidsemi": "https://www.google.com/s2/favicons?sz=128&domain=alkaidsemi.com",
   "Leaderdrive": "https://www.google.com/s2/favicons?sz=128&domain=leaderdrive.com",
-  "Huaqin Technology": "https://www.google.com/s2/favicons?sz=128&domain=www.huaqin.com"
+  "Huaqin Technology": "https://www.google.com/s2/favicons?sz=128&domain=www.huaqin.com",
+  "Unitree Robotics": "https://www.google.com/s2/favicons?sz=128&domain=www.unitree.com",
+  "Booster Robotics": "https://www.google.com/s2/favicons?sz=128&domain=www.boosterobotics.com",
+  "Leju Robotics": "https://www.google.com/s2/favicons?sz=128&domain=www.lejurobot.com",
+  "AsiaInfo Security": "https://www.google.com/s2/favicons?sz=128&domain=www.asiainfo-sec.com",
+  "Zeroth": "MONO",
+  "Guangdong Tianji Intelligent Systems": "MONO"
 };
 
 // Store all entities for modal lookup
@@ -522,7 +528,7 @@ fetch('china-ai-landscape.json?v=' + Date.now())
   .then(r => r.json())
   .then(data => {
     const meta = data.meta || {};
-    const all = (data.entities || []).filter(e => e.cat !== 'gov');
+    const all = (data.entities || []).filter(e => e.cat !== 'gov' && e.status !== 'gov');
 
     // Normalise legacy cat values that don't match CATS keys
     all.forEach(e => { if (e.cat === 'autonomous') e.cat = 'auto'; });
