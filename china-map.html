@@ -116,6 +116,7 @@ function render(){
   rows.forEach(e=>{
     const l=e._l,m=L.marker([l.lat,l.lng],{icon:icon((CATS[e.cat]||CATS.security).color),title:e.name});
     m.bindPopup(`<span class="pop-nm">${e.name}</span> ${e.zh||''}<br>${l.city}, ${l.province}`);
+    m.bindTooltip(`${e.name}${e.zh?' · '+e.zh:''}`,{direction:'top',offset:[0,-8]});
     m.on('click',()=>show(e)); markers[e.name]=m; cluster.addLayer(m);
   });
   // city + province summaries (of currently filtered rows)
