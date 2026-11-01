@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #156 · Monday, November 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #156 · November 2, 2026</div>
+    <div class="masthead-sub">Tokyo Seeks US Cyber Models · Lasertec Orders Up, Revenue Down · Food Tax Cut Nears a Vote</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CYBER</div>
+      <div class="card-num">2<span class="card-num-unit">US labs</span></div>
+      <div class="card-label">Asked for wider access to vulnerability-finding models</div>
+      <div class="card-delta delta-amber">Package due as early as this week</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · LASERTEC</div>
+      <div class="card-num">¥400-500<span class="card-num-unit">bn</span></div>
+      <div class="card-label">FY2027 order guide, up from ¥300-400bn</div>
+      <div class="card-delta delta-red">Q1 revenue -26% to ¥40.4bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · DIET</div>
+      <div class="card-num">8% → 1%<span class="card-num-unit"></span></div>
+      <div class="card-label">Food consumption tax for two years from April 2027</div>
+      <div class="card-delta delta-amber">Upper house panel split 20-20</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &AMP; TECH</div>
+    <div class="story-headline">Tokyo Asks Anthropic and OpenAI for Wider Access to Bug-Hunting AI Models, With an Emergency Cyber Package Due This Week</div>
+    <div class="story-insight">
+      <p>The Japanese government has asked アンソロピック (Ansoropikku, Anthropic) and OpenAI for more access to their most advanced models that can find software 脆弱性 (zeijakusei, vulnerabilities), Nikkei reported on October 30. Officials want to use the models to check government systems, and they will encourage 重要インフラ (jūyō infura, critical infrastructure) operators such as power and telecom companies to adopt them. The request is part of a cybersecurity package the government plans to release as early as this week. Neither company had commented publicly in the reports available by Sunday.</p>
+      <br>
+      <p>Prime Minister Takaichi ordered the package at an emergency cabinet meeting on October 26, after dozens of companies reported 不正アクセス (fusei akusesu, unauthorized access) to their systems and possible leaks of client data in recent weeks. "By next week, the government will compile an emergency package of measures," she said. The most visible victim is GMO Internet Group, where a hacker demanded $50 million by October 21. GMO's security unit found that a Chinese AI security-testing tool called Artex was used in several of the attacks. Attackers are using AI to find holes faster, so Tokyo wants defenders to run the same class of model over their own code first.</p>
+      <br>
+      <p>The request builds on earlier contact. PANews reported that a Japanese cybersecurity official met Anthropic co-founder Jack Clark on October 13, and that the two sides confirmed Anthropic will work with a government-affiliated AI safety institute in Japan to study how AI can be used in attacks. US developers release their strongest cyber-capable models only to a limited group of vetted organizations. Japan is asking to put more of its ministries and infrastructure operators on that list, and to get them on it faster.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The package will show whether Tokyo pays for access and deployment or only issues guidance. If power and telecom operators are told to adopt US vulnerability-scanning models, their security budgets rise, and the integrators that install and run these tools for Japanese clients, such as NEC, NTT Data and Fujitsu, gain service work. Watch for a named list of models and users, a budget line in the supplementary budget, and any statement from Anthropic or OpenAI on what they will provide.</div>
+    <div class="chart-box">
+      <div class="chart-title">From the Breach Wave to the Cyber Package, October 2026</div>
+<svg viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+<line x1="110" y1="120" x2="750" y2="120" stroke="#c7cbe0" stroke-width="3"/>
+<line x1="110.0" y1="120" x2="110.0" y2="82" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="110.0" cy="120" r="8" fill="#c7cbe0"/>
+<text x="110.0" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 1</text>
+<text x="110.0" y="55" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Neutralization powers</text>
+<text x="110.0" y="69" font-size="9.5" fill="#5a6a8a" text-anchor="middle">active cyber defense in force</text>
+<line x1="238.0" y1="120" x2="238.0" y2="144" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="238.0" cy="120" r="8" fill="#3730a3"/>
+<text x="238.0" y="170" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 13</text>
+<text x="238.0" y="185" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Official meets Jack Clark</text>
+<text x="238.0" y="199" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Anthropic to work with AI safety body</text>
+<line x1="366.0" y1="120" x2="366.0" y2="82" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="366.0" cy="120" r="8" fill="#b91c1c"/>
+<text x="366.0" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 21</text>
+<text x="366.0" y="55" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">GMO ransom deadline</text>
+<text x="366.0" y="69" font-size="9.5" fill="#5a6a8a" text-anchor="middle">$50m demand; Artex tool found</text>
+<line x1="494.0" y1="120" x2="494.0" y2="144" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="494.0" cy="120" r="8" fill="#b45309"/>
+<text x="494.0" y="170" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 26</text>
+<text x="494.0" y="185" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Emergency cabinet meeting</text>
+<text x="494.0" y="199" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Takaichi orders a package</text>
+<line x1="622.0" y1="120" x2="622.0" y2="82" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="622.0" cy="120" r="8" fill="#3730a3"/>
+<text x="622.0" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 30</text>
+<text x="622.0" y="55" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Nikkei: Japan asks</text>
+<text x="622.0" y="69" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Anthropic, OpenAI for model access</text>
+<line x1="750.0" y1="120" x2="750.0" y2="144" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="750.0" cy="120" r="8" fill="#166534"/>
+<text x="750.0" y="170" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Week of Nov 2</text>
+<text x="750.0" y="185" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Cyber package due</text>
+<text x="750.0" y="199" font-size="9.5" fill="#5a6a8a" text-anchor="middle">"as early as next week"</text>
+</svg>
+      <div class="chart-note">Sources: AFP (Oct 26), PANews and Azernews on Nikkei (Oct 30), Japan Brief #122 and #149. Package timing is the reported target, not a confirmed date.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">脆弱性<span class="annotation-card-en">vulnerability</span></div>
+        <div class="annotation-card-body">Tokyo wants US models scanning government code.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">重要インフラ<span class="annotation-card-en">critical infrastructure</span></div>
+        <div class="annotation-card-body">Power and telecom urged to adopt the models.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">不正アクセス<span class="annotation-card-en">unauthorized access</span></div>
+        <div class="annotation-card-body">Dozens of firms breached; access to models is rationed.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Lasertec's Quarterly Revenue Falls 26% and Misses Forecasts, but It Raises Its Order Guide to as Much as ¥500 Billion on Repeat EUV Inspection Orders</div>
+    <div class="story-insight">
+      <p>レーザーテック (Rēzātekku, Lasertec) reported July-September 売上高 (uriagedaka, revenue) of ¥40.4 billion on October 30, down 26% from a year earlier, and operating profit of ¥15.8 billion, down 41%. Both came in below market consensus. Management said the quarter matched its own plan: tools shipped in the first half of 2026 have taken longer than expected to clear customer acceptance, so revenue recognition started later than it had assumed.</p>
+      <br>
+      <p>Orders moved the other way. Lasertec raised its full-year 受注見通し (juchū mitōshi, order outlook) to ¥400-500 billion from ¥300-400 billion. The increase comes from repeat orders for mass-production use of the ACTIS A200HiT, its actinic EUV マスク検査装置 (masuku kensa sōchi, mask inspection system), which checks photomasks with the same 13.5nm light the lithography scanner uses. Customers are ordering before they finish their own evaluations of the tool. In the year to June 2026, orders rose 126% to ¥237.5 billion while revenue fell 8.3% to ¥230.5 billion, and the order backlog stood at about ¥323 billion.</p>
+      <br>
+      <p>The gap between orders and revenue comes from timing, because Lasertec books revenue when customers accept the tool. An order year of ¥400-500 billion against about ¥230 billion of annual revenue would push the backlog well above a year of sales. Concentration is the main risk. Actinic patterned-mask inspection is bought by a handful of leading-edge logic makers and mask shops, so a capex pause at one of them would cut orders quickly.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The release gives investors weak reported earnings and a much larger order book at the same time. Slow acceptance makes second-half revenue harder to hit, even as the raised order range lifts the revenue base for fiscal 2028. Watch October-December order intake against the new range, any change to the full-year revenue forecast, and what TSMC, Samsung and Intel say about EUV mask capacity in their next capex updates.</div>
+    <div class="chart-box">
+      <div class="chart-title">Lasertec Revenue, Orders and Order Guide (¥bn)</div>
+<svg viewBox="0 0 860 368" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="25" x2="250.0" y2="343" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250.0" y="361" font-size="10" fill="#5a6a8a" text-anchor="middle">¥0bn</text>
+<line x1="335.0" y1="25" x2="335.0" y2="343" stroke="#e8eaf2" stroke-width="1"/>
+<text x="335.0" y="361" font-size="10" fill="#5a6a8a" text-anchor="middle">¥100bn</text>
+<line x1="420.0" y1="25" x2="420.0" y2="343" stroke="#e8eaf2" stroke-width="1"/>
+<text x="420.0" y="361" font-size="10" fill="#5a6a8a" text-anchor="middle">¥200bn</text>
+<line x1="505.0" y1="25" x2="505.0" y2="343" stroke="#e8eaf2" stroke-width="1"/>
+<text x="505.0" y="361" font-size="10" fill="#5a6a8a" text-anchor="middle">¥300bn</text>
+<line x1="590.0" y1="25" x2="590.0" y2="343" stroke="#e8eaf2" stroke-width="1"/>
+<text x="590.0" y="361" font-size="10" fill="#5a6a8a" text-anchor="middle">¥400bn</text>
+<line x1="675.0" y1="25" x2="675.0" y2="343" stroke="#e8eaf2" stroke-width="1"/>
+<text x="675.0" y="361" font-size="10" fill="#5a6a8a" text-anchor="middle">¥500bn</text>
+<line x1="760.0" y1="25" x2="760.0" y2="343" stroke="#e8eaf2" stroke-width="1"/>
+<text x="760.0" y="361" font-size="10" fill="#5a6a8a" text-anchor="middle">¥600bn</text>
+<text x="240" y="56" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Q1 revenue, Jul-Sep 2026</text>
+<rect x="250" y="40" width="34.3" height="24" rx="3" fill="#be185d"/>
+<text x="292.3" y="56" font-size="11" font-weight="700" fill="#1a1a2e">¥40.4bn</text>
+<text x="292.3" y="70" font-size="9" fill="#5a6a8a">-26% y/y, below consensus</text>
+<text x="240" y="104" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">FY2026 revenue (to June)</text>
+<rect x="250" y="88" width="195.9" height="24" rx="3" fill="#c7cbe0"/>
+<text x="453.9" y="104" font-size="11" font-weight="700" fill="#1a1a2e">¥230.5bn</text>
+<text x="453.9" y="118" font-size="9" fill="#5a6a8a">-8.3%</text>
+<text x="240" y="152" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">FY2026 orders (to June)</text>
+<rect x="250" y="136" width="201.9" height="24" rx="3" fill="#0e7490"/>
+<text x="459.9" y="152" font-size="11" font-weight="700" fill="#1a1a2e">¥237.5bn</text>
+<text x="459.9" y="166" font-size="9" fill="#5a6a8a">+126%</text>
+<text x="240" y="200" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Backlog (FY2026 end)</text>
+<rect x="250" y="184" width="274.6" height="24" rx="3" fill="#c7cbe0"/>
+<text x="532.5" y="200" font-size="11" font-weight="700" fill="#1a1a2e">~¥323bn</text>
+<text x="532.5" y="214" font-size="9" fill="#5a6a8a">per HDIN Research</text>
+<text x="240" y="248" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">FY2027 order guide, prior</text>
+<rect x="250" y="232" width="255.0" height="24" rx="3" fill="#c7cbe0" opacity="0.35"/>
+<rect x="505.0" y="232" width="85.0" height="24" rx="3" fill="#c7cbe0"/>
+<text x="598.0" y="248" font-size="11" font-weight="700" fill="#1a1a2e">¥300-400bn</text>
+<text x="598.0" y="262" font-size="9" fill="#5a6a8a">range</text>
+<text x="240" y="296" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">FY2027 order guide, new</text>
+<rect x="250" y="280" width="340.0" height="24" rx="3" fill="#3730a3" opacity="0.35"/>
+<rect x="590.0" y="280" width="85.0" height="24" rx="3" fill="#3730a3"/>
+<text x="683.0" y="296" font-size="11" font-weight="700" fill="#1a1a2e">¥400-500bn</text>
+<text x="683.0" y="310" font-size="9" fill="#5a6a8a">raised Oct 30; ACTIS A200HiT repeats</text>
+</svg>
+      <div class="chart-note">Sources: Investing.com on Lasertec Q1 FY2027 results (Oct 30, 2026); ad-hoc-news on FY2026 results and HDIN Research. Fiscal year ends June.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">受注見通し<span class="annotation-card-en">order outlook</span></div>
+        <div class="annotation-card-body">Raised to ¥400-500bn from ¥300-400bn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">マスク検査装置<span class="annotation-card-en">mask inspection system</span></div>
+        <div class="annotation-card-body">ACTIS A200HiT repeat orders before evaluation ends.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">売上高<span class="annotation-card-en">revenue</span></div>
+        <div class="annotation-card-body">-26% y/y on slow customer acceptance.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The Food Tax Cut Bill Heads for a Lower House Vote This Week, but the Upper House Panel It Must Clear Is Split 20-20</div>
+    <div class="story-insight">
+      <p>The LDP wants committee and plenary votes in the 衆議院 (Shūgiin, House of Representatives) on Friday on the bill that would cut the 消費税 (shōhizei, consumption tax) on food from 8% to 1% for two years from April 2027, Jiji reported on October 31. The bill also pays low- and middle-income workers a benefit equal to one percentage point of consumption tax. Opposition parties want about 30 hours of debate in the 財務金融委員会 (Zaimu Kin'yū Iinkai, Financial Affairs Committee), and the total reaches 28 hours after Wednesday's session. They also want Prime Minister Takaichi to attend. Yuichi Goto, who handles Diet affairs for the centrist group formed by the Democratic Reform Party and Komeito, proposed that she sit for two hours. The two sides will discuss her attendance on Wednesday, the day after the 文化の日 (Bunka no Hi, Culture Day) holiday.</p>
+      <br>
+      <p>The harder test comes in the 参議院 (Sangiin, House of Councillors). On October 30 the LDP and the CDP agreed to set up a 40-member 特別委員会 (tokubetsu iinkai, special committee) on the tax bills, expected to form on Wednesday. The ruling and opposition camps hold 20 seats each, and the LDP chair normally does not vote, so the committee has no clear majority. The session ends on December 12. Komeito's Yasuhiro Nakagawa said a bill that creates a new system without specific figures is unprecedented and that his party cannot vote until the details are clear. He also called a temporary cut "very problematic" because farmers, restaurants and households take a second hit when the rate goes back to 8%.</p>
+      <br>
+      <p>The cut feeds directly into monetary policy. The BOJ's October 30 Outlook Report left the measure out of its forecasts and estimated that it would lower fiscal 2027 core CPI by about 1.3 percentage points. The BOJ forecasts fiscal 2027 core CPI at 2.6%, so a passed bill would mechanically pull measured core inflation down to about 1.3% in the first year of the cut, with no change in underlying price pressure. The Jiji reports give no annual revenue cost for the cut and no figures for the benefit program.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> This week's lower house vote sets Japan's fiscal path for 2027. If the bill passes, the BOJ will be raising rates while headline CPI falls by more than a point, which makes its communication harder and puts more weight on its core-core and services measures. JGB investors will focus on funding, since none of the reports names a revenue source. Watch Friday's plenary vote, the upper house committee's first session, and whether Komeito's demand for figures forces the government to publish a cost estimate.</div>
+    <div class="chart-box">
+      <div class="chart-title">What the Food Tax Cut Does to Measured Core CPI in FY2027</div>
+<svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+<line x1="90" y1="260.0" x2="800" y2="260.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="264.0" font-size="10" fill="#5a6a8a" text-anchor="end">0.0%</text>
+<line x1="90" y1="225.0" x2="800" y2="225.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="229.0" font-size="10" fill="#5a6a8a" text-anchor="end">0.5%</text>
+<line x1="90" y1="190.0" x2="800" y2="190.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="194.0" font-size="10" fill="#5a6a8a" text-anchor="end">1.0%</text>
+<line x1="90" y1="155.0" x2="800" y2="155.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="159.0" font-size="10" fill="#5a6a8a" text-anchor="end">1.5%</text>
+<line x1="90" y1="120.0" x2="800" y2="120.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="124.0" font-size="10" fill="#5a6a8a" text-anchor="end">2.0%</text>
+<line x1="90" y1="85.0" x2="800" y2="85.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="89.0" font-size="10" fill="#5a6a8a" text-anchor="end">2.5%</text>
+<line x1="90" y1="50.0" x2="800" y2="50.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="80" y="54.0" font-size="10" fill="#5a6a8a" text-anchor="end">3.0%</text>
+<line x1="90" y1="120.0" x2="800" y2="120.0" stroke="#166534" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="798" y="114.0" font-size="10" font-weight="600" fill="#166534" text-anchor="end">BOJ 2% target</text>
+<rect x="160" y="78.0" width="120" height="182.0" rx="3" fill="#3730a3"/>
+<text x="220" y="70.0" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.6%</text>
+<text x="220" y="276" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">BOJ FY2027 core CPI</text>
+<text x="220" y="290" font-size="9.5" fill="#5a6a8a" text-anchor="middle">forecast, excl. tax cut</text>
+<rect x="380" y="78.0" width="120" height="91.0" rx="3" fill="#b91c1c"/>
+<text x="440" y="70.0" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">-1.3pt</text>
+<text x="440" y="276" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Estimated tax-cut effect</text>
+<text x="440" y="290" font-size="9.5" fill="#5a6a8a" text-anchor="middle">BOJ Outlook, Oct 30</text>
+<rect x="600" y="169.0" width="120" height="91.0" rx="3" fill="#b45309"/>
+<text x="660" y="161.0" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">~1.3%</text>
+<text x="660" y="276" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Mechanical FY2027 core</text>
+<text x="660" y="290" font-size="9.5" fill="#5a6a8a" text-anchor="middle">if the bill passes</text>
+</svg>
+      <div class="chart-note">Sources: BOJ Outlook Report (Oct 30, 2026); Jiji Press via Nippon.com (Oct 30-31). The mechanical figure subtracts the BOJ's estimate from its forecast.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">衆議院<span class="annotation-card-en">House of Representatives</span></div>
+        <div class="annotation-card-body">LDP targets committee and plenary votes Friday.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">特別委員会<span class="annotation-card-en">special committee</span></div>
+        <div class="annotation-card-body">Upper house panel forms Wednesday, 20-20 split.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">消費税<span class="annotation-card-en">consumption tax</span></div>
+        <div class="annotation-card-body">8% to 1% from April 2027; no cost figure published.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #156 · NOVEMBER 2, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
