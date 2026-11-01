@@ -1,5 +1,116 @@
 [
   {
+    "issue": 167,
+    "date": "2026-11-02",
+    "title": "DeepSeek's Always-On Coding Agent, Wujie's ¥1B JD Robot Pact, Regulators Meet on Stock Support",
+    "summary": "DeepSeek open-sourced a Super-agent prototype that watches GitHub and Feishu chats and starts fixing bugs without a prompt, arguing human attention is the limit on agent work. Wujie Dynamics signed a ¥1 billion ($150 million) robot target with JD.com, with K15 robots running two unstaffed 7Fresh Coffee stores in Beijing. Regulators meet banks and brokers on November 2 to widen stock-support tools after the STAR 50 fell 24% in October, while only about 29% of the ¥800 billion ($120 billion) tool pool has been used for buybacks.",
+    "viz_url": "china-brief-visualized-2026-11-02.html",
+    "sections": [
+      {
+        "icon": "🧑‍💻",
+        "title": "DeepSeek Open-Sources a \"Super-agent\" Prototype That Watches GitHub and Feishu Chats and Starts Fixing Bugs Without Being Asked",
+        "tag": "ai",
+        "source": "DeepSeek Harness WeChat post and GitHub repository (Oct 31) · Sina Finance (Oct 31, Nov 1) · Bloomberg (Nov 1) · SCMP (Nov 1) · AI & Tech · Coding agents · Oct 31, 2026 (about 1.5 days old)",
+        "body": "深度求索 (Shēndù Qiúsuǒ, DeepSeek) published a design note on the evening of Saturday, October 31, describing a \"Super-agent\", a 编程智能体 (biānchéng zhìnéngtǐ, coding agent) that runs continuously instead of waiting for a prompt. Its Harness team released the prototype code on GitHub under an MIT licence, and the repository had about 3,300 stars and 293 forks by Sunday. The agent attaches to one GitHub repository and can also listen to 飞书 (Fēishū, Feishu) group chats. When engineers mention a bug in a chat, even without tagging it, the agent reproduces the problem and tries a fix in the background, then lists the items that need a human decision on a web panel. A Router runs at all times, takes in messages from chats, GitHub and email, and hands tasks to Workers that each keep their own context, run in parallel and can call subagents. An external watchdog monitors the whole system. The README calls it a research prototype \"for reference only, not an official DeepSeek product.\"\n\nThe design starts from a limit on people. The post says one engineer can usually follow only three to five active sessions at a time, so single-task performance depends on the model while multitask performance depends on human 注意力 (zhùyìlì, attention). Claude Code and OpenAI's Codex mostly act when told to. DeepSeek's 主动式智能体 (zhǔdòngshì zhìnéngtǐ, proactive agent) decides for itself what to pick up. DeepSeek says it already uses the system internally to reproduce and fix bugs, answer code review and improve Harness. It published no benchmark results, error rates or cost data with the post. The release follows the V4.1-Flash-1017 checkpoint on October 17 and comes as DeepSeek closes a pre-IPO round that Chinese outlets put at ¥105.5 billion ($15.9 billion) at a ¥615.5 billion ($92.5 billion) valuation, ahead of a planned STAR Market listing.\n\nAn always-on agent consumes far more tokens than a chat window, so the design feeds the API business behind DeepSeek's reported $1 billion revenue run rate. Releasing it as 开源 (kāiyuán, open source) code also lets other Chinese labs and enterprise teams copy the workflow, which moves competition in coding tools toward orchestration, where US tools have no structural lead. The adoption limits are concrete. An agent that reads team chats needs broad data access, and DeepSeek is still under a Cyberspace Administration data-security probe opened in September and was ordered off US federal civilian systems in October, so uptake outside China will be thin. The prototype plugs into Feishu, ByteDance's workplace app, and not DingTalk or WeCom. An agent that opens unrequested fixes also needs a low false-positive rate, or engineers will switch it off. Two things would show commercial intent: a priced Super-agent tier inside Harness, and adoption on repositories outside DeepSeek's own.",
+        "takeaway": "DeepSeek's always-on coding agent design feeds API token demand, but chat-reading access runs into the open CAC data probe and the US federal ban, so a priced Harness tier and adoption outside DeepSeek's own repos are the tests.",
+        "vocab": [
+          {
+            "zh": "深度求索",
+            "en": "DeepSeek"
+          },
+          {
+            "zh": "编程智能体",
+            "en": "coding agent"
+          },
+          {
+            "zh": "主动式智能体",
+            "en": "proactive agent"
+          },
+          {
+            "zh": "注意力",
+            "en": "attention"
+          },
+          {
+            "zh": "飞书",
+            "en": "Feishu (ByteDance workplace app)"
+          },
+          {
+            "zh": "开源",
+            "en": "open source"
+          }
+        ]
+      },
+      {
+        "icon": "🤖",
+        "title": "Wujie Dynamics Signs a ¥1 Billion Robot Pact With JD.com, Starting With Two Unstaffed Beijing Coffee Counters",
+        "tag": "robotics",
+        "source": "IT之家 IT Home (Oct 31) · Jiemian (Oct 31) · JRJ 金融界 (Nov 1) · Beijing Daily and ifeng (Jun 26, funding background) · AI & Tech · Embodied AI · Oct 31, 2026 (about 1.5 days old)",
+        "body": "无界动力 (Wújiè Dònglì, Wujie Dynamics), a Beijing embodied-AI startup founded in March 2025, signed a 战略合作 (zhànlüè hézuò, strategic cooperation) agreement with 京东 (Jīngdōng, JD.com) on October 31 that targets ¥1 billion ($150 million) of robot-product business. The first project is already running. Wujie's K15 robots work with an automated line in two 七鲜咖啡 (Qīxiān Kāfēi, 7Fresh Coffee) stores in Beijing, at Xichenli and Changying Tianjie, and handle each order from intake to finished drink without staff. The companies plan to copy the setup across more than 1,000 7Fresh stores, and the agreement also covers JD MALL, JD's RoboBase and overseas sales. Wujie says its first robots have already reached third-party customers through JD's platform.\n\nThe K15 is a second-generation, two-armed 轮式 (lúnshì, wheeled) semi-humanoid in batch production. It runs on an in-house domestic compute platform rated at 1,200 TOPS (INT8), has a 30mm wrist flip radius and works in spaces 800mm wide, which fits a coffee counter. Founder and chief executive 张玉峰 (Zhāng Yùfēng) worked at Sony and ARM before joining 地平线 (Dìpíngxiàn, Horizon Robotics) in 2017, where he became vice president, head of the smart-car business and a director. In June, Wujie reported an angel round of more than $200 million, with a JD-linked fund, Hony Capital and HongShan among the investors, said a Pre-A of nearly $200 million was close to completion and claimed nearly $100 million of orders from Envision, ZF LIFETEC and Aumovio.\n\nThe deal gives Wujie a sales channel and a site type it can repeat. A coffee counter is a fixed, narrow task with measurable throughput, which makes it a more realistic first market for 具身智能 (jùshēn zhìnéng, embodied AI) than general household work. JD gets an automation option as 7Fresh Coffee chases its stated target of 10,000 stores in three years. The ¥1 billion ($150 million) figure is a target and not a purchase order, and neither company disclosed unit prices, unit counts or a timetable. Two live stores against 1,000 planned leaves most of the rollout unproven, and the payback depends on a robot costing less than the counter staff it replaces, a number nobody has published. Listed robotics stocks such as Unitree have roughly halved since August, so Wujie's Pre-A close will show whether private investors still pay up for the retail case. 7Fresh store-count disclosures are the other number to track.",
+        "takeaway": "Wujie's ¥1 billion ($150 million) JD target gives it a repeatable retail site and a sales channel, but it is a non-binding target with 2 of 1,000+ planned stores live and no unit prices disclosed.",
+        "vocab": [
+          {
+            "zh": "无界动力",
+            "en": "Wujie Dynamics"
+          },
+          {
+            "zh": "京东",
+            "en": "JD.com"
+          },
+          {
+            "zh": "战略合作",
+            "en": "strategic cooperation"
+          },
+          {
+            "zh": "七鲜咖啡",
+            "en": "7Fresh Coffee (JD)"
+          },
+          {
+            "zh": "轮式",
+            "en": "wheeled (robot base)"
+          },
+          {
+            "zh": "张玉峰",
+            "en": "Wujie founder and CEO"
+          }
+        ]
+      },
+      {
+        "icon": "📉",
+        "title": "Regulators Call In Banks and Brokers Today to Widen Stock-Support Tools After the STAR 50 Fell 24% in October",
+        "tag": "market",
+        "source": "21st Century Business Herald and Beike Caijing (Nov 1) · Cailian (Nov 1, unconfirmed quota report) · Reuters (Nov 1) · Securities Daily via Shanghai finance office (Oct 19, usage data) · Finance & Macro · Market support · Reported Nov 1, 2026 (about 1 day old); meetings Nov 2",
+        "body": "The 中国人民银行 (Zhōngguó Rénmín Yínháng, PBOC) and the 证监会 (Zhèngjiānhuì, CSRC) meet brokers and fund companies today, November 2, to study wider use of the tools that support the stock market, the 21st Century Business Herald reported on Sunday. A second meeting brings the PBOC, the 国家金融监督管理总局 (Guójiā Jīnróng Jiāndū Guǎnlǐ Zǒngjú, NFRA) and the CSRC together with banks to revise the 回购增持再贷款 (huígòu zēngchí zàidàikuǎn, relending facility for share buybacks and shareholding increases). No figures have been announced. Cailian, citing unnamed channels, reported that a large state-owned bank plans new buyback loan quotas for the state capital operators 中国国新 (Zhōngguó Guóxīn, China Reform Holdings) and 中国诚通 (Zhōngguó Chéngtōng, China Chengtong) that could each reach ¥100 billion ($15.0 billion). That report is unconfirmed. The CSRC's party committee had pledged on October 30 to 稳市场 (wěn shìchǎng, stabilize the market) and expectations \"with full effort.\"\n\nThe meetings follow a heavy October. On Friday, October 30, the 科创50 (Kēchuàng 50, STAR 50) fell 5.48% to 1,160.84 and ChiNext fell 4.13%, more than 4,600 stocks declined, and the Shanghai Composite closed at 3,599.02, its first close below 3,600 this year. Over the month the STAR 50 lost 24.13%, ChiNext 23.02%, the Shenzhen Component 15.94% and the Shanghai Composite 6.33%. Reuters put the value erased at about ¥10 trillion ($1.50 trillion), and the CSI 300 posted a record 12th straight weekly loss. Take-up of the existing tools has been weak. The ¥500 billion ($75.1 billion) 互换便利 (hùhuàn biànlì, swap facility) for brokers, funds and insurers and the ¥300 billion ($45.1 billion) buyback relending line, both launched in October 2024, were merged into one ¥800 billion ($120 billion) pool in May 2025 at a 1.5% rate. After two years, buyback loans carried combined caps of ¥233.28 billion ($35.0 billion), about 29% of that pool, and second-year signings of ¥81.65 billion ($12.3 billion) were about 46% below the first year.\n\nThe low take-up shows the binding constraint is companies' willingness to borrow for buybacks while prices fall, so wider eligibility, a lower rate or easier collateral terms would matter more than a larger quota. Routing ¥100 billion-scale loans through Guoxin and Chengtong would put buying power in state holding companies that act on instruction, which makes support more predictable and also enlarges state stakes in listed tech firms. Earnings did not drive the selloff. STAR Market companies earned ¥87.57 billion ($13.2 billion) in the third quarter, up 455%, and Friday's slide followed a 7.2% drop in the Philadelphia semiconductor index the night before, so the fall reflects a valuation reset in AI hardware. The PBOC's overnight reverse repo also becomes its main policy rate today at 1.25%. Investors should look for official readouts with numbers on rates, eligibility or quotas. A readout without terms would amount to verbal support, and the NPC Standing Committee session running November 2 to 6 is the next venue for any fiscal signal.",
+        "takeaway": "Take-up of the ¥800 billion ($120 billion) support pool is about 29% after two years, so changes to rates, eligibility or collateral in today's readouts would matter more than a bigger quota.",
+        "vocab": [
+          {
+            "zh": "回购增持再贷款",
+            "en": "buyback and shareholding relending"
+          },
+          {
+            "zh": "互换便利",
+            "en": "swap facility (SFISF)"
+          },
+          {
+            "zh": "中国国新",
+            "en": "China Reform Holdings"
+          },
+          {
+            "zh": "中国诚通",
+            "en": "China Chengtong"
+          },
+          {
+            "zh": "稳市场",
+            "en": "stabilize the market"
+          },
+          {
+            "zh": "科创50",
+            "en": "STAR 50 index"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 166,
     "date": "2026-11-01",
     "title": "Meta's Fourier-Built Humanoid, Kling Closes Its ¥19.8B Round, October PMI Falls to 49.3",

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #167 · November 2, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #167 · November 2, 2026</div>
+    <div class="masthead-sub">DeepSeek's Always-On Coding Agent · Wujie's ¥1B JD Robot Pact · Regulators Meet on Stock Support</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · AGENTS</div>
+      <div class="card-num">3–5<span class="card-num-unit">sessions</span></div>
+      <div class="card-label">Active sessions one engineer can follow, per DeepSeek; its Super-agent prototype works without a prompt</div>
+      <div class="card-delta delta-amber">Prototype only, no benchmarks</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">¥1B<span class="card-num-unit">$150M</span></div>
+      <div class="card-label">Wujie Dynamics and JD.com target; K15 robots live in 2 of a planned 1,000+ 7Fresh Coffee stores</div>
+      <div class="card-delta delta-amber">Target, not a purchase order</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MARKETS</div>
+      <div class="card-num">−24.1%<span class="card-num-unit">STAR 50</span></div>
+      <div class="card-label">October fall; regulators meet banks and brokers on Nov 2 to widen support tools</div>
+      <div class="card-delta delta-red">Only 29% of ¥800B ($120B) tool pool used</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CODING AGENTS</div>
+    <div class="story-headline">DeepSeek Open-Sources a "Super-agent" Prototype That Watches GitHub and Feishu Chats and Starts Fixing Bugs Without Being Asked</div>
+    <div class="story-insight">
+      <p>DeepSeek's Harness team posted the design on October 31 and put the code on GitHub under MIT (about 3,300 stars by Sunday). A Router watches GitHub, Feishu chats and email and dispatches parallel Workers that reproduce bugs and try fixes, with a web panel for items that need a person.</p>
+      <br>
+      <p>DeepSeek argues one engineer can follow only three to five sessions, so the bottleneck is human attention. It calls the code a research prototype, not a product, and published no benchmarks or cost data. The release lands as its pre-IPO round reportedly reaches ¥105.5 billion ($15.9 billion).</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> An always-on agent burns far more tokens than chat, which feeds DeepSeek's API revenue, but a tool that reads team chats runs into the open CAC data probe and the US federal ban, so expect adoption mainly inside China and watch for a priced Harness tier.</div>
+    <div class="chart-box">
+      <div class="chart-title">From Waiting for Prompts to Watching the Channels</div>
+      <svg viewBox="0 0 820 400" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">SUPER-AGENT ARCHITECTURE (DEEPSEEK DESIGN NOTE, OCT 31)</text><rect x="30" y="40" width="130" height="30" rx="4" fill="#fff" stroke="#9a8a7a"/><text x="95" y="60" font-size="11" text-anchor="middle" fill="#1a1a2e">Feishu group chats</text><rect x="30" y="80" width="130" height="30" rx="4" fill="#fff" stroke="#9a8a7a"/><text x="95" y="100" font-size="11" text-anchor="middle" fill="#1a1a2e">GitHub repo</text><rect x="30" y="120" width="130" height="30" rx="4" fill="#fff" stroke="#9a8a7a"/><text x="95" y="140" font-size="11" text-anchor="middle" fill="#1a1a2e">Email</text><line x1="160" y1="55" x2="250" y2="95" stroke="#9a8a7a"/><line x1="160" y1="95" x2="250" y2="95" stroke="#9a8a7a"/><line x1="160" y1="135" x2="250" y2="95" stroke="#9a8a7a"/><rect x="250" y="70" width="140" height="50" rx="4" fill="#1a1a2e"/><text x="320" y="92" font-size="12" font-weight="700" text-anchor="middle" fill="#e8d5b0">Router</text><text x="320" y="108" font-size="10" text-anchor="middle" fill="#8a9bb5">always on, dispatches</text><line x1="390" y1="95" x2="460" y2="55" stroke="#c0392b"/><line x1="390" y1="95" x2="460" y2="95" stroke="#c0392b"/><line x1="390" y1="95" x2="460" y2="135" stroke="#c0392b"/><rect x="460" y="40" width="140" height="30" rx="4" fill="#fee2e2" stroke="#c0392b"/><text x="530" y="60" font-size="11" text-anchor="middle" fill="#c0392b">Worker: reproduce bug</text><rect x="460" y="80" width="140" height="30" rx="4" fill="#fee2e2" stroke="#c0392b"/><text x="530" y="100" font-size="11" text-anchor="middle" fill="#c0392b">Worker: code review</text><rect x="460" y="120" width="140" height="30" rx="4" fill="#fee2e2" stroke="#c0392b"/><text x="530" y="140" font-size="11" text-anchor="middle" fill="#c0392b">Worker: build feature</text><line x1="600" y1="95" x2="660" y2="95" stroke="#166534"/><rect x="660" y="70" width="130" height="50" rx="4" fill="#dcfce7" stroke="#166534"/><text x="725" y="92" font-size="11" font-weight="700" text-anchor="middle" fill="#166534">Web panel</text><text x="725" y="108" font-size="10" text-anchor="middle" fill="#166534">human decides</text><text x="320" y="170" font-size="10" text-anchor="middle" fill="#5a6a8a">External watchdog monitors the system · Workers keep own context, can call subagents</text><text x="725" y="140" font-size="10" text-anchor="middle" fill="#b45309">Human limit: 3–5</text><text x="725" y="153" font-size="10" text-anchor="middle" fill="#b45309">active sessions</text><text x="30" y="215" font-size="11" font-weight="700" fill="#5a6a8a">DEEPSEEK PRE-IPO ROUND AS REPORTED, ¥ BILLION</text><line x1="240" y1="225" x2="240" y2="345" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="248" font-size="12" fill="#1a1a2e">Opening target</text><rect x="240" y="235" width="200" height="18" fill="#9a8a7a"/><text x="448" y="248" font-size="11" font-weight="700" fill="#9a8a7a">50 ($7.5B)</text><text x="30" y="276" font-size="12" fill="#1a1a2e">Bloomberg, Oct 6</text><rect x="240" y="263" width="320" height="18" fill="#5a6a8a"/><text x="568" y="276" font-size="11" font-weight="700" fill="#5a6a8a">80+ ($12.0B)</text><text x="30" y="304" font-size="12" fill="#1a1a2e">Bloomberg/Reuters, Oct 22</text><rect x="240" y="291" width="400" height="18" fill="#b45309"/><text x="648" y="304" font-size="11" font-weight="700" fill="#b45309">~100 ($15.0B)</text><text x="30" y="332" font-size="12" font-weight="700" fill="#1a1a2e">Chinese reports, Oct 30</text><rect x="240" y="319" width="422" height="18" fill="#c0392b"/><text x="670" y="332" font-size="11" font-weight="700" fill="#c0392b">105.5 ($15.9B)</text><text x="30" y="375" font-size="11" fill="#5a4a3a">Oct 30 reports put the valuation at ¥615.5B ($92.5B). DeepSeek has not confirmed round terms. GitHub: MIT licence, ~3,300 stars, 293 forks.</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: DeepSeek Harness WeChat post and GitHub deepseek-ai/dsh-superagent-prototype (Oct 31, 2026); Sina Finance (Oct 31, Nov 1); Bloomberg (Oct 6, Oct 22, Nov 1); Chinese media (Oct 30) for ¥105.5B. Bars 4px per ¥1B. USD at ¥6.66/$ (onshore close, Oct 30, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TOKEN DEMAND</div>
+        <div class="annotation-card-zh">主动式智能体<span class="annotation-card-en">zhǔdòngshì zhìnéngtǐ · proactive agent</span></div>
+        <div class="annotation-card-body">Always-on agents consume far more API tokens than chat.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PRODUCT</div>
+        <div class="annotation-card-zh">编程智能体<span class="annotation-card-en">biānchéng zhìnéngtǐ · coding agent</span></div>
+        <div class="annotation-card-body">A priced Super-agent tier inside Harness.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DATA ACCESS</div>
+        <div class="annotation-card-zh">飞书<span class="annotation-card-en">Fēishū · Feishu</span></div>
+        <div class="annotation-card-body">Reading team chats meets an open CAC data probe.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · EMBODIED AI</div>
+    <div class="story-headline">Wujie Dynamics Signs a ¥1 Billion Robot Pact With JD.com, Starting With Two Unstaffed Beijing Coffee Counters</div>
+    <div class="story-insight">
+      <p>Wujie Dynamics and JD.com signed an agreement on October 31 targeting ¥1 billion ($150 million) of robot business. K15 wheeled, two-armed robots already run two 7Fresh Coffee stores in Beijing without staff, with more than 1,000 stores planned.</p>
+      <br>
+      <p>The K15 has a 1,200 TOPS domestic compute platform and fits 800mm spaces. Founder Zhang Yufeng came from Horizon Robotics. Wujie raised more than $200 million in an angel round in June and claims nearly $100 million of orders.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A coffee counter is a narrow, repeatable task with measurable throughput, a realistic first market for embodied AI, but the ¥1 billion ($150 million) is a target without unit prices or a timetable, and the rollout stands at 2 of 1,000+ stores.</div>
+    <div class="chart-box">
+      <div class="chart-title">Funding Runs Ahead of Deployment</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">WUJIE DYNAMICS DISCLOSED FIGURES, US$ MILLION</text><line x1="240" y1="30" x2="240" y2="150" stroke="#c9bfb3" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">Angel round (Jun)</text><rect x="240" y="36" width="400" height="18" fill="#5a6a8a"/><text x="648" y="49" font-size="11" font-weight="700" fill="#5a6a8a">&gt;200</text><text x="30" y="77" font-size="12" fill="#1a1a2e">Pre-A (near close, Jun)</text><rect x="240" y="64" width="400" height="18" fill="none" stroke="#5a6a8a" stroke-width="1.5" stroke-dasharray="4,3"/><text x="648" y="77" font-size="11" font-weight="700" fill="#5a6a8a">~200</text><text x="30" y="105" font-size="12" font-weight="700" fill="#1a1a2e">JD pact target (Oct 31)</text><rect x="240" y="92" width="300" height="18" fill="#c0392b"/><text x="548" y="105" font-size="11" font-weight="700" fill="#c0392b">150 (¥1B)</text><text x="30" y="133" font-size="12" fill="#1a1a2e">Orders claimed</text><rect x="240" y="120" width="200" height="18" fill="#b45309"/><text x="448" y="133" font-size="11" font-weight="700" fill="#b45309">~100</text><text x="30" y="190" font-size="11" font-weight="700" fill="#5a6a8a">7FRESH COFFEE ROLLOUT: STORES WITH K15 ROBOTS</text><text x="30" y="219" font-size="12" font-weight="700" fill="#1a1a2e">Live (Oct)</text><rect x="240" y="206" width="2" height="18" fill="#166534"/><text x="250" y="219" font-size="11" font-weight="700" fill="#166534">2 (Xichenli, Changying Tianjie)</text><text x="30" y="247" font-size="12" fill="#1a1a2e">Planned</text><rect x="240" y="234" width="500" height="18" fill="#c9bfb3"/><text x="732" y="247" font-size="11" font-weight="700" text-anchor="end" fill="#1a1a2e">1,000+</text><text x="30" y="285" font-size="11" fill="#5a4a3a">K15: two-armed wheeled semi-humanoid · 1,200 TOPS (INT8) domestic compute · 30mm wrist flip radius · fits 800mm spaces</text><text x="30" y="305" font-size="11" fill="#5a4a3a">7Fresh Coffee's stated goal: 10,000 stores in three years. No unit prices, unit counts or timetable disclosed.</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: IT之家 (Oct 31, 2026), Jiemian (Oct 31), JRJ (Nov 1); Beijing Daily and ifeng (Jun 26) for funding and orders. Funding bars 2px per $1M; store bars 0.5px per store (minimum 2px). USD at ¥6.66/$ (onshore close, Oct 30, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CHANNEL</div>
+        <div class="annotation-card-zh">京东<span class="annotation-card-en">Jīngdōng · JD.com</span></div>
+        <div class="annotation-card-body">Distribution through JD MALL and RoboBase.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ROLLOUT</div>
+        <div class="annotation-card-zh">七鲜咖啡<span class="annotation-card-en">Qīxiān Kāfēi · 7Fresh Coffee</span></div>
+        <div class="annotation-card-body">Store count beyond the first two.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NON-BINDING</div>
+        <div class="annotation-card-zh">战略合作<span class="annotation-card-en">zhànlüè hézuò · strategic cooperation</span></div>
+        <div class="annotation-card-body">¥1B ($150M) is a target, not an order.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · MARKET SUPPORT</div>
+    <div class="story-headline">Regulators Call In Banks and Brokers Today to Widen Stock-Support Tools After the STAR 50 Fell 24% in October</div>
+    <div class="story-insight">
+      <p>The PBOC and CSRC meet brokers and fund companies on November 2, and the PBOC, NFRA and CSRC meet banks on the buyback relending facility. Cailian reported, unconfirmed, that a big state bank may give China Reform Holdings and China Chengtong up to ¥100 billion ($15.0 billion) each in buyback loans.</p>
+      <br>
+      <p>The STAR 50 fell 24.13% in October and ChiNext 23.02%; Reuters put the loss at about ¥10 trillion ($1.50 trillion). The existing ¥800 billion ($120 billion) tool pool is only about 29% used for buybacks after two years.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Weak take-up shows companies are reluctant to borrow for buybacks while prices fall, so changes to rates, eligibility or collateral would matter more than a bigger quota; a readout without terms would amount to verbal support.</div>
+    <div class="chart-box">
+      <div class="chart-title">A Month of Losses, a Tool Pool Mostly Unused</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">OCTOBER 2026 INDEX CHANGE, %</text><line x1="240" y1="30" x2="240" y2="150" stroke="#1a1a2e" stroke-width="1.5"/><text x="30" y="49" font-size="12" fill="#1a1a2e">Shanghai Composite</text><rect x="240" y="36" width="95" height="18" fill="#b45309"/><text x="343" y="49" font-size="11" font-weight="700" fill="#b45309">−6.33</text><text x="30" y="77" font-size="12" fill="#1a1a2e">Shenzhen Component</text><rect x="240" y="64" width="239" height="18" fill="#c0392b" opacity="0.7"/><text x="487" y="77" font-size="11" font-weight="700" fill="#c0392b">−15.94</text><text x="30" y="105" font-size="12" fill="#1a1a2e">ChiNext</text><rect x="240" y="92" width="345" height="18" fill="#c0392b" opacity="0.85"/><text x="593" y="105" font-size="11" font-weight="700" fill="#c0392b">−23.02</text><text x="30" y="133" font-size="12" font-weight="700" fill="#1a1a2e">STAR 50 (科创50)</text><rect x="240" y="120" width="362" height="18" fill="#c0392b"/><text x="610" y="133" font-size="11" font-weight="700" fill="#c0392b">−24.13</text><text x="30" y="200" font-size="11" font-weight="700" fill="#5a6a8a">¥800B ($120B) PBOC CAPITAL-MARKET TOOL POOL: BUYBACK LOANS SIGNED AFTER TWO YEARS</text><rect x="30" y="215" width="760" height="28" fill="#e8e0d4"/><rect x="30" y="215" width="222" height="28" fill="#166534"/><text x="40" y="234" font-size="11" font-weight="700" fill="#fff">¥233.28B ($35.0B) · 29%</text><text x="780" y="234" font-size="11" text-anchor="end" fill="#5a4a3a">unused / swap facility use not disclosed for 2026</text><text x="30" y="270" font-size="11" fill="#5a4a3a">Year 1 vs Year 2 buyback-loan signings: year 2 = ¥81.65B ($12.3B), about 46% lower by amount and 51% lower by count</text><text x="30" y="295" font-size="11" fill="#5a4a3a">Oct 30 close: STAR 50 1,160.84 (−5.48%) · Shanghai 3,599.02, first close below 3,600 in 2026 · CSI 300: record 12 straight weekly losses</text><text x="30" y="320" font-size="11" fill="#c0392b">Unconfirmed (Cailian): new quotas up to ¥100B ($15.0B) each for China Reform Holdings and China Chengtong</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: 21st Century Business Herald (Nov 1, 2026); Cailian (Nov 1); Sohu and Sina market data (Oct 30); Reuters (Nov 1); Securities Daily via Shanghai finance office (Oct 19) for tool usage. Index bars 15px per percentage point; pool bar 0.95px per ¥1B. USD at ¥6.66/$ (onshore close, Oct 30, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STATE BUYING</div>
+        <div class="annotation-card-zh">中国国新<span class="annotation-card-en">Zhōngguó Guóxīn · China Reform Holdings</span></div>
+        <div class="annotation-card-body">State capital operators as conduits for support.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TERMS</div>
+        <div class="annotation-card-zh">回购增持再贷款<span class="annotation-card-en">huígòu zēngchí zàidàikuǎn · buyback relending</span></div>
+        <div class="annotation-card-body">Rate, eligibility or collateral changes in the readout.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VALUATIONS</div>
+        <div class="annotation-card-zh">科创50<span class="annotation-card-en">Kēchuàng 50 · STAR 50</span></div>
+        <div class="annotation-card-body">Reset tied to global chip stocks, not earnings.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #167 · NOVEMBER 2, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
