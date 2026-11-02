@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #157 · November 3, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #157 · November 3, 2026</div>
+    <div class="masthead-sub">Gennai Drafts Diet Answers · Screen Falls 19% on a Kept Guide · Katayama Cites the US Statement</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · GENAI</div>
+      <div class="card-num">180,000<span class="card-num-unit">officials</span></div>
+      <div class="card-label">Can use the Diet-answer drafting prototype</div>
+      <div class="card-delta delta-amber">102 testers from 16 ministries</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · SCREEN</div>
+      <div class="card-num">-19%<span class="card-num-unit"></span></div>
+      <div class="card-label">Share fall on Nov 2 after a profit miss</div>
+      <div class="card-delta delta-red">Q2 OP +82% to ¥40.2bn; guide kept</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · YEN</div>
+      <div class="card-num">¥157.9<span class="card-num-unit">/ $</span></div>
+      <div class="card-label">Dollar on Nov 2, ending a three-day yen rally</div>
+      <div class="card-delta delta-amber">Joint statement "still in force"</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">The Digital Agency Opens an AI Drafting Tool for Diet Answers to 180,000 Officials, With Full Use Planned From January</div>
+    <div class="story-insight">
+      <p>デジタル庁 (Dejitaru-chō, Digital Agency) began offering a trial app on November 2 that helps officials draft 国会答弁 (kokkai tōben, answers to questions in the Diet), Jiji Press reported. The app runs on 源内 (Gennai, the government AI platform), which is open to about 180,000 government workers. Given a lawmaker's question, the app explains the likely intent behind it and produces several draft answers within minutes, built from past government answers and the minutes of Diet debates. Users can pick a "policy explanation" mode or a "political judgment" mode for the writing style.</p>
+      <br>
+      <p>The agency chose 102 experienced officials from 16 ministries and agencies through an open call to test the prototype during the current extraordinary Diet session. It plans to fix what they find and move to full-scale use in the 通常国会 (tsūjō kokkai, ordinary Diet session) that opens in January. Its release names hallucinations as a risk and says AI output will not be used as written. Officials must check every draft, and decisions stay with people. The agency has not said which models run the app or what it costs.</p>
+      <br>
+      <p>Answer drafting is one of the heaviest workloads in Kasumigaseki. Questions often arrive the evening before a session, and officials stay up writing and clearing answers overnight. Because the tool targets that specific bottleneck, it has a better chance of daily use than a general chatbot does. The launch also keeps Gennai on the schedule the agency set in May, when it said the platform would pass 100,000 users and add automatic drafting of Diet answers within fiscal 2026. A week earlier, on October 26, the agency added an AI agent function to the platform.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The Japanese government is becoming a repeat buyer of generative AI, and a drafting tool used across 16 ministries needs dependable Japanese-language output inside a closed government network. That requirement favors domestic integrators that already run government systems, such as NEC and Fujitsu, over vendors that can only offer access through a public cloud. The fiscal 2027 budget request is where a Gennai spending line would show up, and the agency may name the underlying models before the January rollout.</div>
+    <div class="chart-box">
+      <div class="chart-title">Gennai, From Rollout to Diet Answers</div>
+<svg viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+<line x1="110" y1="120" x2="750" y2="120" stroke="#c7cbe0" stroke-width="3"/>
+<line x1="110.0" y1="120" x2="110.0" y2="82" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="110.0" cy="120" r="8" fill="#c7cbe0"/>
+<text x="110.0" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">May 2026</text>
+<text x="110.0" y="55" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Gennai rollout</text>
+<text x="110.0" y="69" font-size="9.5" fill="#5a6a8a" text-anchor="middle">100,000 users by May 29</text>
+<line x1="238.0" y1="120" x2="238.0" y2="144" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="238.0" cy="120" r="8" fill="#c7cbe0"/>
+<text x="238.0" y="170" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Sept 1</text>
+<text x="238.0" y="185" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Guidelines v2.0</text>
+<text x="238.0" y="199" font-size="9.5" fill="#5a6a8a" text-anchor="middle">Chief AI Officers required</text>
+<line x1="366.0" y1="120" x2="366.0" y2="82" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="366.0" cy="120" r="8" fill="#3730a3"/>
+<text x="366.0" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 26</text>
+<text x="366.0" y="55" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">AI agent added</text>
+<text x="366.0" y="69" font-size="9.5" fill="#5a6a8a" text-anchor="middle">agent function on Gennai</text>
+<line x1="494.0" y1="120" x2="494.0" y2="144" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="494.0" cy="120" r="8" fill="#b45309"/>
+<text x="494.0" y="170" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Nov 2</text>
+<text x="494.0" y="185" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Diet-answer trial</text>
+<text x="494.0" y="199" font-size="9.5" fill="#5a6a8a" text-anchor="middle">102 testers, 16 ministries</text>
+<line x1="622.0" y1="120" x2="622.0" y2="82" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="622.0" cy="120" r="8" fill="#166534"/>
+<text x="622.0" y="40" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Jan 2027</text>
+<text x="622.0" y="55" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">Full-scale use</text>
+<text x="622.0" y="69" font-size="9.5" fill="#5a6a8a" text-anchor="middle">ordinary Diet session</text>
+<line x1="750.0" y1="120" x2="750.0" y2="144" stroke="#e8eaf2" stroke-width="1.5"/>
+<circle cx="750.0" cy="120" r="8" fill="#166534"/>
+<text x="750.0" y="170" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">FY2027</text>
+<text x="750.0" y="185" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">All ~180,000 officials</text>
+<text x="750.0" y="199" font-size="9.5" fill="#5a6a8a" text-anchor="middle">full deployment target</text>
+</svg>
+      <div class="chart-note">Sources: Digital Agency; Jiji Press via Nippon.com (Nov 2); BigGo Finance (May 28); Japan Times (Oct 26). January and FY2027 dates are agency targets.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">国会答弁<span class="annotation-card-en">Diet answers</span></div>
+        <div class="annotation-card-body">Drafting tool open to 180,000 officials.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">通常国会<span class="annotation-card-en">ordinary Diet session</span></div>
+        <div class="annotation-card-body">Full-scale use planned from January.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">ハルシネーション<span class="annotation-card-en">hallucination</span></div>
+        <div class="annotation-card-body">Models and cost not disclosed.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Screen Holdings Falls 19% After an 82% Profit Gain Misses Forecasts and Its Full-Year Guide Stays Put</div>
+    <div class="story-insight">
+      <p>SCREENホールディングス (Sukurīn Hōrudingusu, Screen Holdings) fell ¥2,157, or 19%, to ¥9,218 on November 2, the first trading day after it reported July-September results late last week. Operating profit rose 82.0% from a year earlier to ¥40.2 billion, below a 市場予想 (shijō yosō, consensus forecast) of about ¥42 billion. The company kept its full-year operating profit forecast at ¥156.5 billion, up 27.7%, when some investors had expected an increase.</p>
+      <br>
+      <p>Screen is the largest maker of wafer 洗浄装置 (senjō sōchi, cleaning equipment), which removes particles and residue between the hundreds of steps in front-end chipmaking, so its sales follow memory and foundry capex closely. The company raised its view of wafer fab equipment spending into next fiscal year, and SEMI's mid-year forecast already put 2026 WFE at $143.9 billion, up 23.1%, with DRAM equipment up 39%. Pairing a higher market outlook with an unchanged company forecast implies that Screen expects to lose some share this year, or that it is holding back a raise for later results.</p>
+      <br>
+      <p>The same session sorted Japan's chip stocks by guidance. 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron) rose 5.2% to ¥10,005 after setting a ¥1.169 trillion operating profit guide and a ¥150 billion buyback that started on November 1. Lasertec rose 8.0% on its raised order range. Kioxia fell 15.8% to ¥11,345 after guiding October-December profit flat at about ¥2 trillion against a consensus near ¥2.3 trillion. Share prices had already assumed upgrades, so companies that held their forecasts were sold even after large quarterly growth.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Japanese chip equipment stocks are trading on guidance revisions, and growth rates alone no longer support the price. Screen's 19% drop removes a large part of its premium after a quarter in which profit still grew 82%. If memory makers raise their 2027 capex budgets, Screen's cleaning tools sit directly in the path of that spending and the unchanged guide becomes a source of upside. If those budgets hold flat, the guide looks accurate and the lower multiple stays. October-December order intake, reported with third-quarter results, will settle which case applies.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo Chip-Related Stocks on November 2, 2026 (% change, closing price)</div>
+<svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+<line x1="240" y1="20" x2="240" y2="265" stroke="#e8eaf2" stroke-width="1"/>
+<text x="240" y="284" font-size="10" fill="#5a6a8a" text-anchor="middle">-20%</text>
+<line x1="310" y1="20" x2="310" y2="265" stroke="#e8eaf2" stroke-width="1"/>
+<text x="310" y="284" font-size="10" fill="#5a6a8a" text-anchor="middle">-15%</text>
+<line x1="380" y1="20" x2="380" y2="265" stroke="#e8eaf2" stroke-width="1"/>
+<text x="380" y="284" font-size="10" fill="#5a6a8a" text-anchor="middle">-10%</text>
+<line x1="450" y1="20" x2="450" y2="265" stroke="#e8eaf2" stroke-width="1"/>
+<text x="450" y="284" font-size="10" fill="#5a6a8a" text-anchor="middle">-5%</text>
+<line x1="520" y1="20" x2="520" y2="265" stroke="#c7cbe0" stroke-width="1.5"/>
+<text x="520" y="284" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="590" y1="20" x2="590" y2="265" stroke="#e8eaf2" stroke-width="1"/>
+<text x="590" y="284" font-size="10" fill="#5a6a8a" text-anchor="middle">+5%</text>
+<line x1="660" y1="20" x2="660" y2="265" stroke="#e8eaf2" stroke-width="1"/>
+<text x="660" y="284" font-size="10" fill="#5a6a8a" text-anchor="middle">+10%</text>
+<rect x="520" y="32" width="112.0" height="26" rx="3" fill="#166534"/>
+<text x="640.0" y="49" font-size="11" font-weight="700" fill="#1a1a2e">+8.0%  ¥40,720</text>
+<text x="512" y="49" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Lasertec</text>
+<rect x="520" y="78" width="72.8" height="26" rx="3" fill="#166534"/>
+<text x="600.8" y="95" font-size="11" font-weight="700" fill="#1a1a2e">+5.2%  ¥10,005</text>
+<text x="512" y="95" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Tokyo Electron</text>
+<rect x="366.0" y="124" width="154.0" height="26" rx="3" fill="#c7cbe0"/>
+<text x="528" y="141" font-size="10.5" font-weight="600" fill="#1a1a2e">Alps Alpine</text>
+<text x="358.0" y="141" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-11.0%  ¥1,856.5</text>
+<rect x="298.8" y="170" width="221.2" height="26" rx="3" fill="#c7cbe0"/>
+<text x="528" y="187" font-size="10.5" font-weight="600" fill="#1a1a2e">Kioxia</text>
+<text x="290.8" y="187" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-15.8%  ¥11,345</text>
+<rect x="254.0" y="216" width="266.0" height="26" rx="3" fill="#be185d"/>
+<text x="528" y="233" font-size="10.5" font-weight="600" fill="#1a1a2e">Screen Holdings</text>
+<text x="246.0" y="233" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-19.0%  ¥9,218</text>
+</svg>
+      <div class="chart-note">Source: BigGo Finance (Nov 2). Percentages computed from the reported yen moves and closing prices.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">洗浄装置<span class="annotation-card-en">cleaning equipment</span></div>
+        <div class="annotation-card-body">WFE outlook raised into next fiscal year.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">市場予想<span class="annotation-card-en">consensus forecast</span></div>
+        <div class="annotation-card-body">Q2 profit ¥40.2bn vs about ¥42bn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">据え置き<span class="annotation-card-en">left unchanged</span></div>
+        <div class="annotation-card-body">¥156.5bn guide kept; shares down 19%.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Katayama Says the US-Japan Currency Statement Still Stands as the Yen Slips Back Toward ¥158 Before Culture Day</div>
+    <div class="story-insight">
+      <p>財務大臣 (zaimu daijin, Finance Minister) 片山さつき (Katayama Satsuki, Satsuki Katayama) said on November 2 that Japan is ready to act if currency moves become excessive or disorderly, and that the 共同声明 (kyōdō seimei, joint statement) on currencies agreed with the US Treasury in September 2025 is still in force. The dollar rose about 0.2% to ¥157.9 the same day, ending a three-day yen rally. Tokyo markets are closed on November 3 for 文化の日 (Bunka no Hi, Culture Day), and September wage data is due later in the week.</p>
+      <br>
+      <p>The joint statement gives Tokyo political cover to act alongside Washington. The Finance Ministry cited it when Japan and the US bought yen together on July 31 with the dollar near ¥164, the first coordinated yen-buying operation since 1998. Japan spent ¥15.39 trillion on 為替介入 (kawase kainyū, currency intervention) between July 30 and August 26, after ¥11.73 trillion in April and May. The July action pushed the dollar down to ¥155.20, and it was back above ¥160 by late August.</p>
+      <br>
+      <p>The interest rate gap keeps pulling the yen back down. The BOJ held its policy rate at 1.25% on October 30 on an 8-1 vote, with Takata Hajime voting for 1.5%, and the 10-year JGB yields 2.77% against about 4.9% on the 10-year Treasury. By pointing to the US statement, Katayama reminds traders that a second joint operation is available, which slows the push toward ¥160. Verbal warnings have held the yen for only a few weeks at a time this year, so the durable fix has to come from BOJ hikes.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A dollar near ¥158 keeps exporters' yen earnings high going into second-half results, and the threat of joint intervention caps that tailwind near ¥160. The September wage figures come next. A real wage gain would strengthen the case for a December hike and narrow the gap that intervention cannot close by itself. If the dollar breaks ¥160 before the December BOJ meeting, Tokyo will have to decide whether to use the statement or keep citing it.</div>
+    <div class="chart-box">
+      <div class="chart-title">USD/JPY at Selected Points in 2026 (yen per dollar)</div>
+<svg viewBox="0 0 860 290" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="223.8" x2="820" y2="223.8" stroke="#e8eaf2" stroke-width="1"/>
+<text x="62" y="226.8" font-size="10" fill="#5a6a8a" text-anchor="end">¥154</text>
+<line x1="70" y1="191.5" x2="820" y2="191.5" stroke="#e8eaf2" stroke-width="1"/>
+<text x="62" y="194.5" font-size="10" fill="#5a6a8a" text-anchor="end">¥156</text>
+<line x1="70" y1="159.2" x2="820" y2="159.2" stroke="#e8eaf2" stroke-width="1"/>
+<text x="62" y="162.2" font-size="10" fill="#5a6a8a" text-anchor="end">¥158</text>
+<line x1="70" y1="126.9" x2="820" y2="126.9" stroke="#e8eaf2" stroke-width="1"/>
+<text x="62" y="129.9" font-size="10" fill="#5a6a8a" text-anchor="end">¥160</text>
+<line x1="70" y1="94.6" x2="820" y2="94.6" stroke="#e8eaf2" stroke-width="1"/>
+<text x="62" y="97.6" font-size="10" fill="#5a6a8a" text-anchor="end">¥162</text>
+<line x1="70" y1="62.3" x2="820" y2="62.3" stroke="#e8eaf2" stroke-width="1"/>
+<text x="62" y="65.3" font-size="10" fill="#5a6a8a" text-anchor="end">¥164</text>
+<line x1="70" y1="30.0" x2="820" y2="30.0" stroke="#e8eaf2" stroke-width="1"/>
+<text x="62" y="33.0" font-size="10" fill="#5a6a8a" text-anchor="end">¥166</text>
+<line x1="70" y1="126.9" x2="820" y2="126.9" stroke="#b91c1c" stroke-width="1.2" stroke-dasharray="5,4"/>
+<text x="820" y="121.9" font-size="9.5" font-weight="600" fill="#b91c1c" text-anchor="end">¥160 line</text>
+<path d="M90.0,81.0 L208.3,62.3 L326.7,204.5 L445.0,124.3 L563.3,152.8 L681.7,185.6 L800.0,160.4" fill="none" stroke="#3730a3" stroke-width="2.5"/>
+<circle cx="90.0" cy="81.0" r="5.5" fill="#3730a3"/>
+<text x="90.0" y="69.0" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">162.84</text>
+<text x="90.0" y="262" font-size="10.5" font-weight="600" fill="#3730a3" text-anchor="middle">Jun 30</text>
+<text x="90.0" y="277" font-size="9" fill="#5a6a8a" text-anchor="middle">40-year low</text>
+<circle cx="208.3" cy="62.3" r="5.5" fill="#b45309"/>
+<text x="208.3" y="50.3" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">164.00</text>
+<text x="208.3" y="262" font-size="10.5" font-weight="600" fill="#3730a3" text-anchor="middle">Jul 31</text>
+<text x="208.3" y="277" font-size="9" fill="#5a6a8a" text-anchor="middle">joint intervention</text>
+<circle cx="326.7" cy="204.5" r="5.5" fill="#3730a3"/>
+<text x="326.7" y="224.5" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">155.20</text>
+<text x="326.7" y="262" font-size="10.5" font-weight="600" fill="#3730a3" text-anchor="middle">Early Aug</text>
+<text x="326.7" y="277" font-size="9" fill="#5a6a8a" text-anchor="middle">post-intervention</text>
+<circle cx="445.0" cy="124.3" r="5.5" fill="#3730a3"/>
+<text x="445.0" y="112.3" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">160.16</text>
+<text x="445.0" y="262" font-size="10.5" font-weight="600" fill="#3730a3" text-anchor="middle">Aug 28</text>
+<text x="445.0" y="277" font-size="9" fill="#5a6a8a" text-anchor="middle">back above 160</text>
+<circle cx="563.3" cy="152.8" r="5.5" fill="#3730a3"/>
+<text x="563.3" y="140.8" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">158.40</text>
+<text x="563.3" y="262" font-size="10.5" font-weight="600" fill="#3730a3" text-anchor="middle">Oct 12</text>
+<circle cx="681.7" cy="185.6" r="5.5" fill="#3730a3"/>
+<text x="681.7" y="205.6" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">156.37</text>
+<text x="681.7" y="262" font-size="10.5" font-weight="600" fill="#3730a3" text-anchor="middle">Oct 26</text>
+<text x="681.7" y="277" font-size="9" fill="#5a6a8a" text-anchor="middle">yen high</text>
+<circle cx="800.0" cy="160.4" r="5.5" fill="#166534"/>
+<text x="800.0" y="148.4" font-size="10.5" font-weight="700" fill="#1a1a2e" text-anchor="middle">157.93</text>
+<text x="800.0" y="262" font-size="10.5" font-weight="600" fill="#3730a3" text-anchor="middle">Nov 2</text>
+<text x="800.0" y="277" font-size="9" fill="#5a6a8a" text-anchor="middle">Katayama warning</text>
+</svg>
+      <div class="chart-note">Sources: Reuters, Wikipedia, Trading Economics, Japan Brief #73, #92, #136, #149. Selected data points joined for readability, not a continuous daily series; the Jul 31 point is the approximate pre-intervention level.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">共同声明<span class="annotation-card-en">joint statement</span></div>
+        <div class="annotation-card-body">Katayama says the 2025 statement still applies.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">実質賃金<span class="annotation-card-en">real wages</span></div>
+        <div class="annotation-card-body">September wage data due this week.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">為替介入<span class="annotation-card-en">currency intervention</span></div>
+        <div class="annotation-card-body">¥27tn spent this year; gains faded within weeks.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #157 · NOVEMBER 3, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
