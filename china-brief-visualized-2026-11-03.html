@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #168 · November 3, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #168 · November 3, 2026</div>
+    <div class="masthead-sub">Empyrean Buys Control of Qijie · CCID's 175 Trillion Daily Tokens · PBOC Cuts Buyback Relending to 1%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIP DESIGN</div>
+      <div class="card-num">¥220M<span class="card-num-unit">$33.0M</span></div>
+      <div class="card-label">Empyrean's maximum price for 51% of Qijie, a digital logic-optimization EDA tool maker</div>
+      <div class="card-delta delta-amber">~13.5x Qijie's 2025 revenue</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · INFERENCE</div>
+      <div class="card-num">175T<span class="card-num-unit">tokens/day</span></div>
+      <div class="card-label">China's daily token calls as of June 2026, per CCID; inference data now exceeds training data</div>
+      <div class="card-delta delta-green">1,000x+ since early 2024</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MARKET SUPPORT</div>
+      <div class="card-num">1.00%<span class="card-num-unit">relending</span></div>
+      <div class="card-label">Buyback relending rate, cut from 1.25% on Nov 2 and made permanent</div>
+      <div class="card-delta delta-amber">No new quota announced</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIP DESIGN SOFTWARE</div>
+    <div class="story-headline">Empyrean Pays Up to ¥220 Million for Control of Qijie, a Loss-Making Maker of Digital Logic-Optimization Tools</div>
+    <div class="story-insight">
+      <p>Empyrean (华大九天) said on November 1 it will buy 50.3762% of Shenzhen-based Qijie Technology from founder Wei Xing for about ¥219 million ($32.9 million), taking its stake to 73.8651%. Qijie sells logic-optimization tools for digital chips to nearly 100 design houses and lost ¥5.91 million ($887,000) on ¥27.42 million ($4.12 million) of revenue in the first nine months.</p>
+      <br>
+      <p>Empyrean's base is analog and display design tools; digital implementation is where Synopsys and Cadence still dominate in China. The deal values Qijie at about ¥435 million ($65.3 million), a small sum against Empyrean's ¥47.21 billion ($7.09 billion) market value.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Domestic EDA vendors are assembling digital flows by buying point-tool startups, which is faster than building them; the risk sits in integration, goodwill and staff retention, so watch for the signed purchase agreement and Qijie's optimizer inside Empyrean's 2027 releases.</div>
+    <div class="chart-box">
+      <div class="chart-title">A Small Price for a Missing Piece of the Digital Flow</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">EMPYREAN STAKE IN QIJIE TECHNOLOGY, %</text><rect x="30" y="32" width="141" height="26" fill="#5a6a8a"/><text x="40" y="50" font-size="11" font-weight="700" fill="#fff">Held 23.49</text><rect x="171" y="32" width="302" height="26" fill="#c0392b"/><text x="181" y="50" font-size="11" font-weight="700" fill="#fff">Buying 50.38 for ~¥219M ($32.9M)</text><rect x="473" y="32" width="157" height="26" fill="#e8e0d4"/><text x="482" y="50" font-size="11" fill="#5a4a3a">Others 26.13</text><text x="30" y="76" font-size="10" fill="#5a6a8a">0</text><text x="630" y="76" font-size="10" text-anchor="end" fill="#5a6a8a">100</text><text x="645" y="50" font-size="11" font-weight="700" fill="#1a1a2e">→ 73.87% after</text><text x="30" y="112" font-size="11" font-weight="700" fill="#5a6a8a">QIJIE FINANCIALS, ¥ MILLION (LOSSES LEFT OF ZERO)</text><line x1="340" y1="122" x2="340" y2="240" stroke="#1a1a2e" stroke-width="1.5"/><text x="30" y="141" font-size="12" fill="#1a1a2e">2025 revenue</text><rect x="340" y="128" width="258" height="18" fill="#166534"/><text x="606" y="141" font-size="11" font-weight="700" fill="#166534">32.25 ($4.84M)</text><text x="30" y="169" font-size="12" fill="#1a1a2e">2025 net loss</text><rect x="185" y="156" width="155" height="18" fill="#c0392b"/><text x="177" y="169" font-size="11" font-weight="700" text-anchor="end" fill="#c0392b">−19.39 ($2.91M)</text><text x="30" y="197" font-size="12" font-weight="700" fill="#1a1a2e">9M 2026 revenue</text><rect x="340" y="184" width="219" height="18" fill="#166534"/><text x="567" y="197" font-size="11" font-weight="700" fill="#166534">27.42 ($4.12M)</text><text x="30" y="225" font-size="12" font-weight="700" fill="#1a1a2e">9M 2026 net loss</text><rect x="293" y="212" width="47" height="18" fill="#c0392b"/><text x="285" y="225" font-size="11" font-weight="700" text-anchor="end" fill="#c0392b">−5.91 ($0.89M)</text><text x="30" y="275" font-size="11" fill="#5a4a3a">Implied 100% value: ~¥435M ($65.3M), about 13.5x 2025 revenue · Empyrean market value ¥47.21B ($7.09B) at Oct 30 close</text><text x="30" y="297" font-size="11" fill="#5a4a3a">Empyrean 9M 2026: revenue ¥960M ($144M), +19.3% · Q3 attributable profit ¥72.0M ($10.8M) vs ¥26.93M ($4.04M) for 9M</text><text x="30" y="319" font-size="11" fill="#5a4a3a">China EDA market 2025: ~¥18.49B ($2.78B), China Semiconductor Industry Association estimate</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Empyrean filing (Nov 1, 2026) via 21st Century Business Herald (Nov 1, Nov 2) and China Fund News (Nov 2); SCMP (Nov 2). Stake bar 6px per percentage point; financial bars 8px per ¥1M. USD at ¥6.66/$ (Reuters onshore estimate, Nov 2, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TOOL COVERAGE</div>
+        <div class="annotation-card-zh">逻辑优化<span class="annotation-card-en">luójí yōuhuà · logic optimization</span></div>
+        <div class="annotation-card-body">Fills a gap in Empyrean's digital design flow.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · HUAWEI LINK</div>
+        <div class="annotation-card-zh">韬定律<span class="annotation-card-en">Tāo dìnglǜ · Tau scaling law</span></div>
+        <div class="annotation-card-body">Filing ties Qijie's tools to Huawei's design-led roadmap.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · INTEGRATION</div>
+        <div class="annotation-card-zh">商誉减值<span class="annotation-card-en">shāngyù jiǎnzhí · goodwill impairment</span></div>
+        <div class="annotation-card-body">Qijie is still loss-making; the filing flags write-down risk.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · INFERENCE DEMAND</div>
+    <div class="story-headline">CCID Says Chinese AI Now Uses More Data for Inference Than for Training, With Daily Token Calls Above 175 Trillion</div>
+    <div class="story-insight">
+      <p>CCID, the MIIT-affiliated think tank, says daily token calls passed 175 trillion in June 2026, more than 1,000 times early 2024, and that inference data has overtaken training data. The National Data Administration's survey shows 2025 inference data at 101.34 EB of a 199.48 EB total.</p>
+      <br>
+      <p>Guancha puts daily calls at 100 billion in early 2024 and 140 trillion in March 2026, so June implies about 25% growth in one quarter. Prices fell from $30 to $0.07 per million input tokens, and Chinese models took about 65% of OpenRouter calls in September but only about 30% of spending.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Inference favors cheap, efficient domestic accelerators and usage-based cloud revenue, but falling prices mean token growth overstates revenue growth, and CCID has not published its method; Alibaba's and Baidu's November results are the next check.</div>
+    <div class="chart-box">
+      <div class="chart-title">Volume Up a Thousandfold, Price Down Four Hundredfold</div>
+      <svg viewBox="0 0 820 380" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CHINA DAILY TOKEN CALLS, TRILLION (LOG SCALE)</text><line x1="240" y1="30" x2="240" y2="150" stroke="#c9bfb3" stroke-width="1.5"/><line x1="340" y1="30" x2="340" y2="150" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="440" y1="30" x2="440" y2="150" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="540" y1="30" x2="540" y2="150" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="640" y1="30" x2="640" y2="150" stroke="#e0d8d0" stroke-dasharray="3,3"/><text x="340" y="164" font-size="9" text-anchor="middle" fill="#9a8a7a">0.1</text><text x="440" y="164" font-size="9" text-anchor="middle" fill="#9a8a7a">1</text><text x="540" y="164" font-size="9" text-anchor="middle" fill="#9a8a7a">10</text><text x="640" y="164" font-size="9" text-anchor="middle" fill="#9a8a7a">100</text><text x="30" y="49" font-size="12" fill="#1a1a2e">Early 2024</text><rect x="240" y="36" width="100" height="18" fill="#9a8a7a"/><text x="348" y="49" font-size="11" font-weight="700" fill="#9a8a7a">0.1</text><text x="30" y="77" font-size="12" fill="#1a1a2e">March 2026</text><rect x="240" y="64" width="415" height="18" fill="#5a6a8a"/><text x="663" y="77" font-size="11" font-weight="700" fill="#5a6a8a">140</text><text x="30" y="105" font-size="12" font-weight="700" fill="#1a1a2e">June 2026 (CCID)</text><rect x="240" y="92" width="424" height="18" fill="#c0392b"/><text x="672" y="105" font-size="11" font-weight="700" fill="#c0392b">175</text><text x="30" y="133" font-size="12" fill="#1a1a2e">Broad estimate (unsourced)</text><rect x="240" y="120" width="470" height="18" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3"/><text x="718" y="133" font-size="11" font-weight="700" fill="#b45309">500</text><text x="30" y="200" font-size="11" font-weight="700" fill="#5a6a8a">CHINA AI DATA VOLUME 2025: 199.48 EB (+42.86%)</text><rect x="30" y="212" width="374" height="28" fill="#5a6a8a"/><text x="40" y="231" font-size="11" font-weight="700" fill="#fff">Training 98.14 EB · 49.2%</text><rect x="404" y="212" width="386" height="28" fill="#166534"/><text x="414" y="231" font-size="11" font-weight="700" fill="#fff">Inference 101.34 EB · 50.8%</text><text x="30" y="280" font-size="11" font-weight="700" fill="#5a6a8a">CHINESE MODELS ON OPENROUTER, SEPTEMBER 2026, % SHARE</text><text x="30" y="303" font-size="12" fill="#1a1a2e">Share of calls</text><rect x="240" y="290" width="390" height="18" fill="#166534"/><text x="638" y="303" font-size="11" font-weight="700" fill="#166534">~65</text><text x="30" y="331" font-size="12" font-weight="700" fill="#1a1a2e">Share of spending</text><rect x="240" y="318" width="180" height="18" fill="#c0392b"/><text x="428" y="331" font-size="11" font-weight="700" fill="#c0392b">~30</text><text x="30" y="365" font-size="11" fill="#5a4a3a">Representative input price: $30 per million tokens (spring 2023) → $0.07 (mid-2026)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: CCID ten-trends report via Sohu (Nov 1, 2026); SCMP (Nov 2); Guancha via Sina Finance (Nov 2) for 2024 and March 2026 levels, the 500T estimate, prices and OpenRouter shares; National Data Administration resource survey (2025 data). Log bars 100px per decade from 0.01T; data bar 3.8px per percentage point; share bars 6px per point. USD figures as reported; USD at ¥6.66/$ (Reuters onshore estimate, Nov 2, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DEMAND MIX</div>
+        <div class="annotation-card-zh">推理<span class="annotation-card-en">tuīlǐ · inference</span></div>
+        <div class="annotation-card-body">Usage now outweighs training, which suits domestic chips.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CLOUD REVENUE</div>
+        <div class="annotation-card-zh">调用量<span class="annotation-card-en">diàoyòngliàng · call volume</span></div>
+        <div class="annotation-card-body">Alibaba and Baidu November results against token growth.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MEASUREMENT</div>
+        <div class="annotation-card-zh">中国电子信息产业发展研究院<span class="annotation-card-en">Zhōngguó Diànzǐ Xìnxī Chǎnyè Fāzhǎn Yánjiūyuàn · CCID</span></div>
+        <div class="annotation-card-body">No published method behind the 175T figure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · MARKET SUPPORT</div>
+    <div class="story-headline">PBOC Cuts the Buyback Relending Rate to 1% and Makes the Tool Permanent as 31 Firms Bid Over ¥100 Billion for Swap Funds</div>
+    <div class="story-insight">
+      <p>The PBOC, NFRA and CSRC met brokers, funds, insurers and major banks on November 2. Buyback relending drops from 1.25% to 1% and becomes a permanent arrangement; signed loans total about ¥440 billion ($66.1 billion), with more than ¥280 billion ($42.0 billion) paid out.</p>
+      <br>
+      <p>The swap facility's third tender runs November 3, with 31 firms applying for more than ¥100 billion ($15.0 billion) against a current balance of ¥105 billion ($15.8 billion). No new quota was announced, and the reported ¥100 billion ($15.0 billion) lines for state capital operators did not appear in the readouts.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Regulators cut the price and removed the expiry because companies lacked appetite, not quota; the tools do not change earnings or the AI hardware valuation reset, so watch today's tender result, buyback announcements citing relending, and the STAR 50's 1,160.84 October 30 close.</div>
+    <div class="chart-box">
+      <div class="chart-title">Cheaper and Permanent, but Not Bigger</div>
+      <svg viewBox="0 0 820 390" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">BUYBACK RELENDING RATE, %</text><line x1="80" y1="150" x2="790" y2="150" stroke="#c9bfb3"/><text x="70" y="64" font-size="10" text-anchor="end" fill="#9a8a7a">1.75</text><text x="70" y="94" font-size="10" text-anchor="end" fill="#9a8a7a">1.50</text><text x="70" y="124" font-size="10" text-anchor="end" fill="#9a8a7a">1.25</text><text x="70" y="154" font-size="10" text-anchor="end" fill="#9a8a7a">1.00</text><path d="M100,60 H280 V90 H500 V120 H720 V150 H790" fill="none" stroke="#c0392b" stroke-width="3"/><circle cx="100" cy="60" r="4" fill="#5a6a8a"/><circle cx="280" cy="90" r="4" fill="#5a6a8a"/><circle cx="500" cy="120" r="4" fill="#5a6a8a"/><circle cx="720" cy="150" r="5" fill="#c0392b"/><text x="100" y="50" font-size="10" text-anchor="middle" fill="#5a6a8a">Launch Oct 2024</text><text x="280" y="80" font-size="10" text-anchor="middle" fill="#5a6a8a">May 2025</text><text x="500" y="110" font-size="10" text-anchor="middle" fill="#5a6a8a">Jan 2026</text><text x="720" y="140" font-size="11" font-weight="700" text-anchor="middle" fill="#c0392b">Nov 2, 2026 · 1.00%</text><text x="30" y="200" font-size="11" font-weight="700" fill="#5a6a8a">SWAP FACILITY OPERATIONS, ¥ BILLION</text><text x="30" y="225" font-size="12" fill="#1a1a2e">1st op, Oct 2024 (20bp)</text><rect x="240" y="212" width="150" height="18" fill="#5a6a8a"/><text x="398" y="225" font-size="11" font-weight="700" fill="#5a6a8a">50 ($7.5B)</text><text x="30" y="253" font-size="12" fill="#1a1a2e">2nd op, Jan 2025 (10bp)</text><rect x="240" y="240" width="165" height="18" fill="#5a6a8a"/><text x="413" y="253" font-size="11" font-weight="700" fill="#5a6a8a">55 ($8.3B)</text><text x="30" y="281" font-size="12" font-weight="700" fill="#1a1a2e">3rd op bids, Nov 3, 2026</text><rect x="240" y="268" width="300" height="18" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-dasharray="4,3"/><text x="548" y="281" font-size="11" font-weight="700" fill="#c0392b">&gt;100 ($15.0B) · 31 firms</text><text x="30" y="320" font-size="11" font-weight="700" fill="#5a6a8a">BUYBACK RELENDING USE, ¥ BILLION</text><text x="30" y="343" font-size="12" fill="#1a1a2e">Loans signed</text><rect x="240" y="330" width="352" height="18" fill="#b45309"/><text x="600" y="343" font-size="11" font-weight="700" fill="#b45309">~440 ($66.1B)</text><text x="30" y="371" font-size="12" fill="#1a1a2e">Disbursed</text><rect x="240" y="358" width="224" height="18" fill="#166534"/><text x="472" y="371" font-size="11" font-weight="700" fill="#166534">&gt;280 ($42.0B)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: CCTV News via CNR and 21st Century Business Herald (Nov 2, 2026); 21st Century Business Herald (Nov 3) for rate history, tender applications and prior operations; Reuters via China Money Network (Nov 2). Rate chart 120px per percentage point; swap bars 3px per ¥1B; relending bars 0.8px per ¥1B. USD at ¥6.66/$ (Reuters onshore estimate, Nov 2, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PERMANENCE</div>
+        <div class="annotation-card-zh">长期制度性安排<span class="annotation-card-en">chángqī zhìdùxìng ānpái · long-term institutional arrangement</span></div>
+        <div class="annotation-card-body">Boards can plan multi-year buybacks without expiry risk.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TENDER</div>
+        <div class="annotation-card-zh">招标<span class="annotation-card-en">zhāobiāo · tender</span></div>
+        <div class="annotation-card-body">Size and fee of today's swap operation.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · APPETITE</div>
+        <div class="annotation-card-zh">再贷款利率<span class="annotation-card-en">zàidàikuǎn lìlǜ · relending rate</span></div>
+        <div class="annotation-card-body">A cheaper rate may still not move reluctant borrowers.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #168 · NOVEMBER 3, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
