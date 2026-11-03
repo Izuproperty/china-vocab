@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #169 · November 4, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #169 · November 4, 2026</div>
+    <div class="masthead-sub">NDRC Speeds Up an AI Law · GGII Cuts Its Humanoid Forecast · PBOC Lifts the FX Reserve Ratio to 6%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · GOVERNANCE</div>
+      <div class="card-num">0<span class="card-num-unit">draft dates</span></div>
+      <div class="card-label">NDRC says it will speed up a national AI law with incident and vulnerability disclosure, but named no timetable</div>
+      <div class="card-delta delta-amber">Enforcer not yet named</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · HUMANOIDS</div>
+      <div class="card-num">50K+<span class="card-num-unit">units</span></div>
+      <div class="card-label">GGII's new 2026 forecast for Chinese humanoid shipments, cut from 60,000-plus on Nov 3</div>
+      <div class="card-delta delta-red">MIIT output figure: 100,000+</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · CURRENCY</div>
+      <div class="card-num">6%<span class="card-num-unit">FX RRR</span></div>
+      <div class="card-label">Foreign-exchange deposit reserve ratio from Nov 15, up from 4%; first hike since 2021</div>
+      <div class="card-delta delta-amber">~$24B of dollar liquidity drained</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · AI GOVERNANCE</div>
+    <div class="story-headline">NDRC Says It Will Speed Up a National AI Law Covering Data, Compute and Algorithms, With Mandatory Incident Disclosure</div>
+    <div class="story-insight">
+      <p>NDRC official Wang Ruomeng said in Beijing on November 3 that China will accelerate a comprehensive AI law (人工智能法) covering data, computing power and algorithms, with life-cycle safety standards and duties to disclose safety risks, incidents and vulnerabilities. Sector sandboxes and transition periods would phase it in. DeepSeek, Moonshot AI and Alibaba fall within scope. No draft date was given.</p>
+      <br>
+      <p>China has regulated AI through targeted rules so far: 2023 generative AI measures, 2025 labeling rules and the October 16 draft export catalogue that adds 23 AI technologies. The same day, NFRA vice head Xiao Yuanqi warned in Hong Kong that capital flooding into AI is raising leverage and crowding out traditional industry.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Statutory incident and vulnerability disclosure would add cost and legal exposure for fast-shipping model labs, with open-weight releases the hardest case; the draft text and the agency it names as enforcer will decide how much.</div>
+    <div class="chart-box">
+      <div class="chart-title">From Targeted Rules to a Framework Law</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CHINA'S AI RULEBOOK, KEY STEPS</text><line x1="60" y1="60" x2="780" y2="60" stroke="#c9bfb3" stroke-width="2"/><circle cx="80" cy="60" r="6" fill="#5a6a8a"/><circle cx="250" cy="60" r="6" fill="#5a6a8a"/><circle cx="420" cy="60" r="6" fill="#b45309"/><circle cx="590" cy="60" r="8" fill="#c0392b"/><circle cx="760" cy="60" r="7" fill="#fff" stroke="#c0392b" stroke-width="2" stroke-dasharray="3,2"/><text x="80" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#5a6a8a">Aug 2023</text><text x="250" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#5a6a8a">Sep 2025</text><text x="420" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#b45309">Oct 16, 2026</text><text x="590" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Nov 3, 2026</text><text x="760" y="44" font-size="10" font-weight="700" text-anchor="end" fill="#c0392b">Draft law: ?</text><text x="80" y="84" font-size="10" text-anchor="middle" fill="#1a1a2e">Generative AI</text><text x="80" y="97" font-size="10" text-anchor="middle" fill="#1a1a2e">interim measures</text><text x="250" y="84" font-size="10" text-anchor="middle" fill="#1a1a2e">AI content labeling</text><text x="250" y="97" font-size="10" text-anchor="middle" fill="#1a1a2e">rules take effect</text><text x="420" y="84" font-size="10" text-anchor="middle" fill="#1a1a2e">MOFCOM/MOST No. 48</text><text x="420" y="97" font-size="10" text-anchor="middle" fill="#1a1a2e">export catalogue draft</text><text x="590" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">NDRC: accelerate</text><text x="590" y="97" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">comprehensive AI law</text><text x="760" y="84" font-size="10" text-anchor="end" fill="#5a6a8a">No date or</text><text x="760" y="97" font-size="10" text-anchor="end" fill="#5a6a8a">enforcer named</text><text x="30" y="140" font-size="11" font-weight="700" fill="#5a6a8a">ANNOUNCEMENT NO. 48: 40 TECHNOLOGIES PROPOSED FOR EXPORT CONTROL</text><rect x="30" y="150" width="414" height="26" fill="#c0392b"/><text x="40" y="168" font-size="11" font-weight="700" fill="#fff">AI technologies · 23</text><rect x="444" y="150" width="306" height="26" fill="#9a8a7a"/><text x="454" y="168" font-size="11" font-weight="700" fill="#fff">Biomedicine and solar · 17</text><rect x="30" y="184" width="252" height="26" fill="#1a1a2e"/><text x="40" y="202" font-size="11" font-weight="700" fill="#fff">Prohibited · 14</text><rect x="282" y="184" width="468" height="26" fill="#b45309"/><text x="292" y="202" font-size="11" font-weight="700" fill="#fff">Restricted (licence needed) · 26</text><text x="30" y="246" font-size="11" font-weight="700" fill="#5a6a8a">WHAT THE NDRC SAID THE LAW WOULD DO</text><text x="30" y="268" font-size="11" fill="#1a1a2e">Scope: data, computing power, algorithms and key application scenarios; full-life-cycle safety and ethics standards</text><text x="30" y="290" font-size="11" fill="#1a1a2e">Duties: developers and operators disclose safety risks and report incidents and vulnerabilities</text><text x="30" y="312" font-size="11" fill="#1a1a2e">Phase-in: sector-specific sandboxes and transition periods; jobs monitoring and wider safety nets</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: NDRC briefing via Bloomberg and The Edge (Nov 3, 2026); AI Weekly (Nov 3); MOFCOM/MOST Announcement No. 48 and Sina Tech coverage (Oct 16, 2026) for the 40/23/14/26 split. Bars 18px per technology. No renminbi figures in this chart; USD at ¥6.67/$ (onshore spot, Nov 3, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · LEGAL BASIS</div>
+        <div class="annotation-card-zh">人工智能法<span class="annotation-card-en">réngōng zhìnéng fǎ · AI law</span></div>
+        <div class="annotation-card-body">A statute would give incident reporting a firmer legal footing than today's measures.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PHASE-IN</div>
+        <div class="annotation-card-zh">监管沙盒<span class="annotation-card-en">jiānguǎn shāhé · regulatory sandbox</span></div>
+        <div class="annotation-card-body">Sector sandboxes and transition periods; check the State Council's 2027 legislative plan.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DISCLOSURE</div>
+        <div class="annotation-card-zh">安全漏洞<span class="annotation-card-en">ānquán lòudòng · security vulnerability</span></div>
+        <div class="annotation-card-body">Mandatory reporting adds liability, hardest for open-weight releases.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · HUMANOID ROBOTICS</div>
+    <div class="story-headline">GGII Cuts Its 2026 China Humanoid Shipment Forecast to Just Over 50,000 Units From 60,000-Plus, Half of MIIT's Output Figure</div>
+    <div class="story-insight">
+      <p>GGII told its annual humanoid conference on November 3 that Chinese humanoid shipments will exceed 50,000 units in 2026, down from an earlier forecast above 60,000. It sized the China market above ¥10 billion ($1.50 billion), put global shipments near 60,000 units and about $2 billion, and expects more than 15% of makers to exit within three years.</p>
+      <br>
+      <p>MIIT said on October 20 that output passed 40,000 in the first half and will top 100,000 for the year, double GGII's shipment figure. In Counterpoint's first-half data, AgiBot and Unitree took about 74% of global units, and shows and education accounted for over 60% of use.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A late-year forecast cut and a wide output-versus-shipment gap point to slower orders and a stock build; valuations priced for steep 2027 growth need factory and logistics deployment to outgrow demo sales.</div>
+    <div class="chart-box">
+      <div class="chart-title">Made Versus Shipped: The Forecast Gap</div>
+      <svg viewBox="0 0 820 370" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">HUMANOID ROBOT VOLUMES, THOUSAND UNITS</text><text x="30" y="49" font-size="12" fill="#1a1a2e">China shipments 2025 (GGII)</text><rect x="280" y="36" width="72" height="18" fill="#9a8a7a"/><text x="360" y="49" font-size="11" font-weight="700" fill="#9a8a7a">~18</text><text x="30" y="77" font-size="12" fill="#1a1a2e">Global shipments H1 2026 (Counterpoint)</text><rect x="280" y="64" width="88" height="18" fill="#9a8a7a"/><text x="376" y="77" font-size="11" font-weight="700" fill="#9a8a7a">22+</text><text x="30" y="105" font-size="12" fill="#1a1a2e">China output H1 2026 (MIIT)</text><rect x="280" y="92" width="160" height="18" fill="#5a6a8a"/><text x="448" y="105" font-size="11" font-weight="700" fill="#5a6a8a">40+</text><text x="30" y="133" font-size="12" fill="#1a1a2e">China shipments 2026, earlier (GGII)</text><rect x="280" y="120" width="250" height="18" fill="none" stroke="#b45309" stroke-width="1.5" stroke-dasharray="4,3"/><text x="538" y="133" font-size="11" font-weight="700" fill="#b45309">60+ (62.5 cited)</text><text x="30" y="161" font-size="12" font-weight="700" fill="#1a1a2e">China shipments 2026, Nov 3 (GGII)</text><rect x="280" y="148" width="200" height="18" fill="#c0392b"/><text x="488" y="161" font-size="11" font-weight="700" fill="#c0392b">50+</text><text x="30" y="189" font-size="12" fill="#1a1a2e">China output 2026 (MIIT)</text><rect x="280" y="176" width="400" height="18" fill="none" stroke="#166534" stroke-width="1.5" stroke-dasharray="4,3"/><text x="688" y="189" font-size="11" font-weight="700" fill="#166534">100+</text><text x="30" y="232" font-size="11" font-weight="700" fill="#5a6a8a">H1 2026 GLOBAL HUMANOID SHIPMENT SHARE, % (COUNTERPOINT)</text><rect x="30" y="244" width="326.8" height="28" fill="#c0392b"/><text x="40" y="263" font-size="11" font-weight="700" fill="#fff">AgiBot 43</text><rect x="356.8" y="244" width="235.6" height="28" fill="#5a6a8a"/><text x="366" y="263" font-size="11" font-weight="700" fill="#fff">Unitree 31</text><rect x="592.4" y="244" width="38" height="28" fill="#b45309"/><rect x="630.4" y="244" width="33.4" height="28" fill="#166534"/><rect x="663.8" y="244" width="22" height="28" fill="#9a8a7a"/><rect x="685.8" y="244" width="104.2" height="28" fill="#e8e0d4"/><text x="695" y="263" font-size="11" fill="#5a4a3a">Others 13.7</text><text x="592" y="290" font-size="10" fill="#5a4a3a">Galbot 5 · UBTech 4.4 · Leju 2.9</text><text x="30" y="325" font-size="11" fill="#5a4a3a">GGII, Nov 3: China 2026 market above ¥10B ($1.50B) · global ~60K units, ~$2B · 15%+ of makers out within three years</text><text x="30" y="347" font-size="11" fill="#5a4a3a">Songyan Power: just over 5,000 Xiaobumi delivered, 2026 target 10,000+ · RoboScience A2 round, Nov 2</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: GGII annual humanoid conference via Yicai and Sina robotics digest (Nov 3, 2026); GGII 2025 shipments (Jan 2026); TrendForce citing GGII's earlier 62,500 (May 2026); MIIT via Sina (Oct 20, 2026); Counterpoint H1 2026 (Aug 20, 2026). Volume bars 4px per thousand units; share bar 7.6px per point. USD at ¥6.67/$ (onshore spot, Nov 3, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STILL GROWING</div>
+        <div class="annotation-card-zh">出货量<span class="annotation-card-en">chūhuòliàng · shipments</span></div>
+        <div class="annotation-card-body">Even the cut forecast implies volume nearly tripling from 2025.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · INVENTORY</div>
+        <div class="annotation-card-zh">产量<span class="annotation-card-en">chǎnliàng · output</span></div>
+        <div class="annotation-card-body">MIIT's 100,000 output figure versus 50,000 shipped; watch for a restatement.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SHAKEOUT</div>
+        <div class="annotation-card-zh">洗牌<span class="annotation-card-en">xǐpái · shakeout</span></div>
+        <div class="annotation-card-body">Two firms hold ~74% of units; GGII sees 15%+ of makers exiting.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · CURRENCY POLICY</div>
+    <div class="story-headline">PBOC Raises the FX Deposit Reserve Ratio to 6% From 4% to Slow the Yuan After It Hit a Four-Year High</div>
+    <div class="story-insight">
+      <p>The PBOC will lift the FX deposit reserve ratio (外汇存款准备金率) to 6% from 4% on November 15, removing about $24 billion of dollar liquidity on nearly $1.2 trillion of FX deposits. It is the first hike since late 2021 and reverses the September 2023 cut.</p>
+      <br>
+      <p>The yuan closed at 6.6458 on November 2, its strongest in over four years. The November 3 fixing came in at 6.7150, 692 pips weaker than that close, and the onshore rate eased to about 6.67. MUFG's Marco Sun said the PBOC wants to stop one-way appreciation bets.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The liquidity drain is small, about 2% of FX deposits, so the effect works through signalling: weak fixings plus a reserve hike tell the market the PBOC will resist a fast run toward 6.5.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Same Tool, Turned Back the Other Way</div>
+      <svg viewBox="0 0 820 390" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">FX DEPOSIT RESERVE REQUIREMENT RATIO, %</text><line x1="90" y1="50" x2="790" y2="50" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="90" y1="70" x2="790" y2="70" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="90" y1="90" x2="790" y2="90" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="90" y1="110" x2="790" y2="110" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="90" y1="130" x2="790" y2="130" stroke="#e0d8d0" stroke-dasharray="3,3"/><line x1="90" y1="150" x2="790" y2="150" stroke="#c9bfb3"/><text x="80" y="54" font-size="10" text-anchor="end" fill="#9a8a7a">9</text><text x="80" y="74" font-size="10" text-anchor="end" fill="#9a8a7a">8</text><text x="80" y="94" font-size="10" text-anchor="end" fill="#9a8a7a">7</text><text x="80" y="114" font-size="10" text-anchor="end" fill="#9a8a7a">6</text><text x="80" y="134" font-size="10" text-anchor="end" fill="#9a8a7a">5</text><text x="80" y="154" font-size="10" text-anchor="end" fill="#9a8a7a">4</text><path d="M100,130 H150 V90 H205 V50 H251 V70 H287 V110 H397 V150 H746 V110 H780" fill="none" stroke="#5a6a8a" stroke-width="3"/><path d="M746,150 V110 H780" fill="none" stroke="#c0392b" stroke-width="3.5"/><circle cx="746" cy="110" r="5" fill="#c0392b"/><text x="155" y="84" font-size="10" fill="#5a6a8a">7 (Jun 2021)</text><text x="210" y="44" font-size="10" fill="#5a6a8a">9 (Dec 2021)</text><text x="292" y="104" font-size="10" fill="#5a6a8a">6 (Sep 2022)</text><text x="402" y="144" font-size="10" fill="#5a6a8a">4 (Sep 2023)</text><text x="738" y="102" font-size="11" font-weight="700" text-anchor="end" fill="#c0392b">6 from Nov 15, 2026</text><text x="100" y="172" font-size="10" text-anchor="middle" fill="#9a8a7a">2021</text><text x="210" y="172" font-size="10" text-anchor="middle" fill="#9a8a7a">2022</text><text x="320" y="172" font-size="10" text-anchor="middle" fill="#9a8a7a">2023</text><text x="430" y="172" font-size="10" text-anchor="middle" fill="#9a8a7a">2024</text><text x="540" y="172" font-size="10" text-anchor="middle" fill="#9a8a7a">2025</text><text x="650" y="172" font-size="10" text-anchor="middle" fill="#9a8a7a">2026</text><text x="30" y="212" font-size="11" font-weight="700" fill="#5a6a8a">USD/CNY, YUAN PER DOLLAR (SHORTER BAR = STRONGER YUAN; AXIS STARTS AT 6.60)</text><text x="30" y="239" font-size="12" fill="#1a1a2e">Onshore close, Nov 2</text><rect x="240" y="226" width="137" height="18" fill="#166534"/><text x="385" y="239" font-size="11" font-weight="700" fill="#166534">6.6458 · four-year high</text><text x="30" y="267" font-size="12" fill="#1a1a2e">Onshore, Nov 3 morning</text><rect x="240" y="254" width="210" height="18" fill="#5a6a8a"/><text x="458" y="267" font-size="11" font-weight="700" fill="#5a6a8a">~6.67</text><text x="30" y="295" font-size="12" font-weight="700" fill="#1a1a2e">PBOC fixing, Nov 3</text><rect x="240" y="282" width="345" height="18" fill="#c0392b"/><text x="593" y="295" font-size="11" font-weight="700" fill="#c0392b">6.7150 · 692 pips weaker</text><text x="30" y="340" font-size="11" fill="#5a4a3a">Liquidity drained: ~$24B (Reuters est.) on ~$1.2T of FX deposits, about 2% · Yuan YTD: +4.5% (Caixin) to +5% (Reuters)</text><text x="30" y="362" font-size="11" fill="#5a4a3a">Fixing-to-spot gap: ~100 pips on average over the prior four months, now ~500 (Caixin)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: PBOC statement (Nov 3, 2026) via Reuters (Lufkin Daily News) and Caixin Global (Nov 3); prior FX RRR changes from PBOC announcements (effective Jun 15 and Dec 15, 2021; May 15 and Sep 15, 2022; Sep 15, 2023). Step chart 20px per point, 110px per year; yuan bars 30px per 0.01. USD at ¥6.67/$ (onshore spot, Nov 3, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLICY STANCE</div>
+        <div class="annotation-card-zh">外汇存款准备金率<span class="annotation-card-en">wàihuì cúnkuǎn zhǔnbèijīn lǜ · FX deposit reserve ratio</span></div>
+        <div class="annotation-card-body">First hike since 2021 tells the market Beijing wants a slower climb.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FIXING</div>
+        <div class="annotation-card-zh">中间价<span class="annotation-card-en">zhōngjiānjià · central parity fixing</span></div>
+        <div class="annotation-card-body">Whether daily fixings keep printing well weaker than spot.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MOMENTUM</div>
+        <div class="annotation-card-zh">单边预期<span class="annotation-card-en">dānbiān yùqī · one-way expectations</span></div>
+        <div class="annotation-card-body">The 2021 hikes slowed the yuan without reversing it; exporter dollar sales could overwhelm $24B.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #169 · NOVEMBER 4, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
