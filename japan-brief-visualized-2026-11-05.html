@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #159 · November 5, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #159 · November 5, 2026</div>
+    <div class="masthead-sub">NTT Lifts Its Guide · AI Hardware Hit by US Midterms · Japan Post Bank Buys Into Matsui</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · NTT</div>
+      <div class="card-num">¥994bn<span class="card-num-unit"></span></div>
+      <div class="card-label">Full-year net profit guide, up ¥14bn</div>
+      <div class="card-delta delta-green">H1 net profit -16% to ¥500.2bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · TOKYO</div>
+      <div class="card-num">-4.8%<span class="card-num-unit"></span></div>
+      <div class="card-label">Nikkei intraday low on Nov 4</div>
+      <div class="card-delta delta-red">Closed -1.42% at 62,188.63</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MATSUI</div>
+      <div class="card-num">19.99%<span class="card-num-unit">votes</span></div>
+      <div class="card-label">Japan Post Bank stake from Dec 28</div>
+      <div class="card-delta delta-amber">Family falls to 17.56%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">NTT Raises Its Profit Guide to ¥994 Billion on Docomo, While NTT Data's Data Center Revenue Jumps 54% and Its Operating Profit Falls</div>
+    <div class="story-insight">
+      <p>NTT株式会社 (NTT Kabushiki Gaisha, NTT Inc.) reported on November 4 that April-September operating revenue rose 8.7% to a record ¥7.362 trillion. Operating profit fell 12.2% to ¥830.1 billion and net profit fell 16% to ¥500.2 billion. The decline is a 反動減 (handōgen, reversal after a one-off gain): a year earlier, NTT Data booked a ¥129.5 billion gain when it moved data centers into the Singapore-listed NTT DC REIT. 島田明 (Shimada Akira, Akira Shimada), the CEO, said profit grew once that gain is stripped out. NTT raised its full-year operating profit forecast by ¥20 billion to ¥1.73 trillion and its net profit forecast by ¥14 billion to ¥994 billion, because the Docomo MAX plan is lifting revenue per mobile user. The shares extended their losses in the afternoon session on a day when the whole market fell.</p>
+      <br>
+      <p>The AI exposure sits inside NTTデータ (NTT Dēta, NTT Data), which reported the same day. Data center revenue rose 54.3% to ¥216.6 billion, EBITDA rose 6.0% to ¥79.4 billion and operating profit fell 9.5% to ¥19.1 billion. Capacity reached about 1,755MW in September, up 125MW since March, and the company targets about 2,040MW by March 2027 across Phoenix, Dallas, Virginia and a new Amsterdam site. The Japan segment grew orders 29.1% to ¥1.321 trillion and operating profit 22.7% to ¥98.8 billion. CEO Kazuhiko Nakayama declined to comment on reports that NTT Data will build an Osaka campus for Anthropic, but said demand for large data centers in Japan is rising and comes mostly from US companies.</p>
+      <br>
+      <p>Data center profit trails revenue because depreciation, power and staffing on new halls start before tenants fill them, so every new megawatt dilutes the margin for a year or more. NTT Data recovers that investment by selling stabilized sites into its REIT, and the plan for this fiscal year includes another ¥70 billion transfer gain that has not been booked. Nakayama wants to announce it early in the second half. That gain equals about 15% of NTT Data's ¥470 billion operating profit guide, so the reported profit of the AI business depends on when the sale closes. The group also disclosed 12 customer data leak cases across NTT companies and contractors, and said cyberattack detections in October ran at seven times the year-earlier level.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> NTT's raised guide comes from Docomo pricing, and the AI build adds revenue faster than profit. The data center unit grew sales by half and earned less, which is what a business adding about 410MW between March 2026 and March 2027 looks like before the halls fill. The ¥70 billion REIT sale and any signed contract for the Osaka site are the next checkpoints. Until the sale is announced, NTT Data's second-half profit carries a timing risk, because its full-year guide already counts the gain.</div>
+    <div class="chart-box">
+      <div class="chart-title">NTT Data, April-September: Data Center Sales Outrun Profit (YoY %)</div>
+<svg viewBox="0 0 860 214" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="14" x2="250.0" y2="174" stroke="#e8eaf2" stroke-width="1"/><text x="250.0" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">-40%</text>
+<line x1="360.0" y1="14" x2="360.0" y2="174" stroke="#e8eaf2" stroke-width="1"/><text x="360.0" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">-16%</text>
+<line x1="470.0" y1="14" x2="470.0" y2="174" stroke="#e8eaf2" stroke-width="1"/><text x="470.0" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">+8%</text>
+<line x1="580.0" y1="14" x2="580.0" y2="174" stroke="#e8eaf2" stroke-width="1"/><text x="580.0" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">+32%</text>
+<line x1="690.0" y1="14" x2="690.0" y2="174" stroke="#e8eaf2" stroke-width="1"/><text x="690.0" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">+56%</text>
+<line x1="800.0" y1="14" x2="800.0" y2="174" stroke="#e8eaf2" stroke-width="1"/><text x="800.0" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">+80%</text>
+<rect x="433.3" y="20" width="248.9" height="16" rx="2" fill="#3730a3"/>
+<text x="688.2" y="32" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">+54.3% to ¥216.6bn</text>
+<text x="230" y="32" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Data center revenue</text>
+<rect x="433.3" y="56" width="27.5" height="16" rx="2" fill="#3730a3"/>
+<text x="466.8" y="68" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">+6.0% to ¥79.4bn</text>
+<text x="230" y="68" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Data center EBITDA</text>
+<rect x="389.8" y="92" width="43.5" height="16" rx="2" fill="#b91c1c"/>
+<text x="383.8" y="104" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-9.5% to ¥19.1bn</text>
+<text x="230" y="104" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Data center operating profit</text>
+<rect x="433.3" y="128" width="133.4" height="16" rx="2" fill="#166534"/>
+<text x="572.7" y="140" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">+29.1% to ¥1.321tn</text>
+<text x="230" y="140" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Japan segment orders</text>
+</svg>
+      <div class="chart-note">Source: NTT Data Group H1 FY2026 results via Impress Cloud Watch (Nov 5). Capacity about 1,755MW in September, target about 2,040MW by March 2027.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">通期予想<span class="annotation-card-en">full-year guide</span></div>
+        <div class="annotation-card-body">Net profit guide up ¥14bn to ¥994bn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">譲渡益<span class="annotation-card-en">transfer gain</span></div>
+        <div class="annotation-card-body">¥70bn REIT sale due early in H2.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">情報漏えい<span class="annotation-card-en">data leak</span></div>
+        <div class="annotation-card-body">12 cases; attacks 7x a year ago.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Kioxia, Advantest and Fujikura Lead a 4.8% Intraday Nikkei Drop as Democrats Win Congress and US Towns Vote to Limit Data Centers</div>
+    <div class="story-insight">
+      <p>Tokyo reopened after the Culture Day holiday on November 4 into the US 中間選挙 (chūkan senkyo, midterm election) count, which gave Democrats control of the House and the Senate. The Nikkei 225 fell as much as 4.8% intraday to a five-month low before closing 1.42% lower at 62,188.63, a third straight loss on turnover above ¥10 trillion. AI hardware led the fall. In morning trade キオクシア (Kiokushia, Kioxia) dropped 10% and more than 13% at its low, Advantest lost 6.4%, Tokyo Electron 5% and SoftBank Group about 7%. フジクラ (Fujikura, Fujikura) and Furukawa Electric, which make 光ファイバー (hikari faibā, optical fiber) and connectors for data center links, fell 8.2% and 9%. Most names pared their losses by the close: Advantest ended down 3.35%, Tokyo Electron 3.42%, Fujikura 5.64% and Taiyo Yuden about 9%.</p>
+      <br>
+      <p>The trigger was data center politics at the local level. Voters in at least 33 US communities backed restrictions on data centers on Tuesday, 56% of respondents in an NBC News exit poll called AI and data centers a major factor in their congressional vote, and Texas elected Gina Hinojosa as governor after she promised a moratorium on new data centers. Takamasa Ikeda of GCI Asset Management said the Democratic wins "fuelled caution for stricter regulations on AI infrastructure investment." Nasdaq 100 futures erased a drop of as much as 2.4% after President Trump said he would accept the results, and that rebound pulled Tokyo off its lows in the afternoon.</p>
+      <br>
+      <p>Japan fell harder than Seoul or Taipei because its AI names sell directly into US hyperscaler 設備投資 (setsubi tōshi, capital spending): NAND for AI servers from Kioxia, accelerator testers from Advantest, and fiber from Fujikura and Furukawa for the links inside and between data center campuses. Kioxia was already weak after it fell 15.8% on November 2 on a flat December-quarter guide, although its CFO says next year's output is sold out. Strategists quoted by 24/7 Wall St. called a nationwide moratorium unlikely under any outcome, so the risk the market priced is slower permits in specific states, which would push back shipment dates without cancelling orders.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The selloff repriced US siting risk while order books stayed unchanged. Fiber and connector makers carry the most exposure, because their sales follow the construction schedule of individual US campuses, while Advantest and Tokyo Electron sell into chip capacity that is booked a year ahead. Hyperscaler capex commentary in the coming weeks and any state-level moratorium bill in Texas or Virginia will show whether the discount sticks. Japanese sites such as the NTT Data and SBI projects could gain from a slower US permit queue, but that takes years to show up in orders.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo AI Hardware on November 4: Worst Point vs. Close (%)</div>
+<svg viewBox="0 0 860 418" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="14" x2="250.0" y2="378" stroke="#e8eaf2" stroke-width="1"/><text x="250.0" y="394" font-size="10" fill="#5a6a8a" text-anchor="middle">-15%</text>
+<line x1="360.0" y1="14" x2="360.0" y2="378" stroke="#e8eaf2" stroke-width="1"/><text x="360.0" y="394" font-size="10" fill="#5a6a8a" text-anchor="middle">-12%</text>
+<line x1="470.0" y1="14" x2="470.0" y2="378" stroke="#e8eaf2" stroke-width="1"/><text x="470.0" y="394" font-size="10" fill="#5a6a8a" text-anchor="middle">-9%</text>
+<line x1="580.0" y1="14" x2="580.0" y2="378" stroke="#e8eaf2" stroke-width="1"/><text x="580.0" y="394" font-size="10" fill="#5a6a8a" text-anchor="middle">-6%</text>
+<line x1="690.0" y1="14" x2="690.0" y2="378" stroke="#e8eaf2" stroke-width="1"/><text x="690.0" y="394" font-size="10" fill="#5a6a8a" text-anchor="middle">-3%</text>
+<line x1="800.0" y1="14" x2="800.0" y2="378" stroke="#c7cbe0" stroke-width="1.5"/><text x="800.0" y="394" font-size="10" fill="#5a6a8a" text-anchor="middle">+0%</text>
+<rect x="624.0" y="20" width="176.0" height="16" rx="2" fill="#c7cbe0"/>
+<text x="618.0" y="32" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-4.8%</text>
+<rect x="747.9" y="42" width="52.1" height="16" rx="2" fill="#b91c1c"/>
+<text x="741.9" y="54" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-1.42%</text>
+<text x="230" y="43" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Nikkei 225</text>
+<rect x="323.3" y="78" width="476.7" height="16" rx="2" fill="#c7cbe0"/>
+<text x="317.3" y="90" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-13.0%</text>
+<rect x="602.0" y="100" width="198.0" height="16" rx="2" fill="#b91c1c"/>
+<text x="596.0" y="112" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-5.40%</text>
+<text x="230" y="101" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Kioxia</text>
+<rect x="470.0" y="136" width="330.0" height="16" rx="2" fill="#c7cbe0"/>
+<text x="464.0" y="148" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-9.0%</text>
+<rect x="682.7" y="158" width="117.3" height="16" rx="2" fill="#b91c1c"/>
+<text x="676.7" y="170" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-3.20%</text>
+<text x="230" y="159" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">SoftBank Group</text>
+<rect x="488.3" y="194" width="311.7" height="16" rx="2" fill="#c7cbe0"/>
+<text x="482.3" y="206" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-8.5%</text>
+<rect x="593.2" y="216" width="206.8" height="16" rx="2" fill="#b91c1c"/>
+<text x="587.2" y="228" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-5.64%</text>
+<text x="230" y="217" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Fujikura</text>
+<rect x="514.0" y="252" width="286.0" height="16" rx="2" fill="#c7cbe0"/>
+<text x="508.0" y="264" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-7.8%</text>
+<rect x="677.2" y="274" width="122.8" height="16" rx="2" fill="#b91c1c"/>
+<text x="671.2" y="286" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-3.35%</text>
+<text x="230" y="275" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Advantest</text>
+<rect x="616.7" y="310" width="183.3" height="16" rx="2" fill="#c7cbe0"/>
+<text x="610.7" y="322" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-5.0%</text>
+<rect x="674.6" y="332" width="125.4" height="16" rx="2" fill="#b91c1c"/>
+<text x="668.6" y="344" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="end">-3.42%</text>
+<text x="230" y="333" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Tokyo Electron</text>
+<rect x="560" y="6" width="12" height="10" fill="#c7cbe0"/><text x="577" y="15" font-size="10" fill="#5a6a8a">Reported intraday low</text><rect x="716" y="6" width="12" height="10" fill="#b91c1c"/><text x="733" y="15" font-size="10" fill="#5a6a8a">Close</text>
+</svg>
+      <div class="chart-note">Sources: Bloomberg via Capacity, Reuters, 24/7 Wall St. (intraday); ToMO market wrap and Trading Economics (close). Intraday lows are the deepest reported figures; Kioxia's low and close are approximate.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">受注<span class="annotation-card-en">orders</span></div>
+        <div class="annotation-card-body">Kioxia says 2027 output is sold out.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">中間選挙<span class="annotation-card-en">midterm election</span></div>
+        <div class="annotation-card-body">State moratorium bills in Texas, Virginia.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">光ファイバー<span class="annotation-card-en">optical fiber</span></div>
+        <div class="annotation-card-body">Fiber sales track US site timing.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE</div>
+    <div class="story-headline">Japan Post Bank Will Buy 19.99% of Matsui Securities From Its Founding Family and Become the Largest Shareholder</div>
+    <div class="story-insight">
+      <p>ゆうちょ銀行 (Yūcho Ginkō, Japan Post Bank) agreed on November 4 to buy 51,489,700 shares of 松井証券 (Matsui Shōken, Matsui Securities) from an asset-management company owned by the Matsui founding family. The block is 19.86% of issued shares and 19.99% of 議決権 (giketsuken, voting rights), which makes the bank the 筆頭株主 (hittō kabunushi, largest shareholder) and turns Matsui into an equity-method affiliate. The family company's voting share falls from 37.55% to 17.56%, and it becomes the second-largest holder. The transfer and the business alliance both take effect on December 28. Neither disclosure we reviewed gave a price, and Matsui said the effect on its results for the year to March 2027 is minor.</p>
+      <br>
+      <p>The alliance terms set out how the bank will use the stake. Japan Post Bank has about 120 million accounts, and the two companies will refer customers to each other, run joint campaigns, sell the bank group's investment funds through Matsui and pass IPO deals to securities firms. The bank agreed to respect Matsui's listing and independence "to the greatest extent." While it holds 15% or more of the votes it may nominate one non-executive director, and Matsui needs its consent before certain share issues or disposals. Matsui said the family had asked it to find a buyer and that it picked a partner that would keep its management policy and strategy in place.</p>
+      <br>
+      <p>Matsui, founded in 1918, has lost ground in ネット証券 (netto shōken, online brokerage) since SBI and Rakuten cut domestic stock commissions to zero in 2023, and the expanded NISA tax-free accounts that started in 2024 sent most new investors to those two firms. Japan Post Bank's customers keep most of their money in deposits, and Tokyo's policy goal of moving household cash into investments gives it a reason to offer brokerage without building one. The deal copies the pairings already in place between SMBC and SBI and between Mizuho and Rakuten Securities. Matsui had stayed independent while its larger online rivals tied up with banks or telecom groups.</p>
+    </div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The sale clears part of a 37.55% founding-family block that had limited Matsui's float and its strategic options, though the family still holds 17.56%. For Matsui the value lies in referrals from 120 million accounts, which it could not buy at the zero-commission price its rivals charge. For Japan Post Bank, brokerage fees help diversify an income base that still relies on deposit spreads. After the December 28 closing, watch whether the bank lifts its stake later, as Mizuho did with Rakuten Securities after starting just under 20%.</div>
+    <div class="chart-box">
+      <div class="chart-title">Matsui Securities Voting Rights Before and After the Transfer</div>
+<svg viewBox="0 0 860 186" xmlns="http://www.w3.org/2000/svg">
+<line x1="250.0" y1="14" x2="250.0" y2="146" stroke="#e8eaf2" stroke-width="1"/><text x="250.0" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="360.0" y1="14" x2="360.0" y2="146" stroke="#e8eaf2" stroke-width="1"/><text x="360.0" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">10%</text>
+<line x1="470.0" y1="14" x2="470.0" y2="146" stroke="#e8eaf2" stroke-width="1"/><text x="470.0" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">20%</text>
+<line x1="580.0" y1="14" x2="580.0" y2="146" stroke="#e8eaf2" stroke-width="1"/><text x="580.0" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">30%</text>
+<line x1="690.0" y1="14" x2="690.0" y2="146" stroke="#e8eaf2" stroke-width="1"/><text x="690.0" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">40%</text>
+<line x1="800.0" y1="14" x2="800.0" y2="146" stroke="#e8eaf2" stroke-width="1"/><text x="800.0" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">50%</text>
+<rect x="250.0" y="20" width="413.0" height="16" rx="2" fill="#c7cbe0"/>
+<text x="669.0" y="32" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">37.55% now</text>
+<rect x="250.0" y="42" width="193.2" height="16" rx="2" fill="#b45309"/>
+<text x="449.2" y="54" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">17.56% after Dec 28</text>
+<text x="230" y="43" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Founding family company</text>
+<rect x="250.0" y="78" width="1.5" height="16" rx="2" fill="#c7cbe0"/>
+<text x="256.0" y="90" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">0% now</text>
+<rect x="250.0" y="100" width="219.9" height="16" rx="2" fill="#3730a3"/>
+<text x="475.9" y="112" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">19.99% after Dec 28</text>
+<text x="230" y="101" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Japan Post Bank</text>
+</svg>
+      <div class="chart-note">Source: Matsui Securities disclosure via Media-IR (Nov 4). The block is 19.86% of issued shares; no price was disclosed in the materials reviewed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">筆頭株主<span class="annotation-card-en">largest shareholder</span></div>
+        <div class="annotation-card-body">Japan Post Bank at 19.99% of votes.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">送客<span class="annotation-card-en">customer referrals</span></div>
+        <div class="annotation-card-body">120 million accounts as a channel.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">手数料ゼロ<span class="annotation-card-en">zero commissions</span></div>
+        <div class="annotation-card-body">SBI and Rakuten set the price.</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #159 · NOVEMBER 5, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
