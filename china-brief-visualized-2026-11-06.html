@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #171 · November 6, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #171 · November 6, 2026</div>
+    <div class="masthead-sub">China Blocks SoftBank's ABB Robotics Deal · Nexperia's $2B Claim on Wingtech · Zhuhai Pledges ¥110B ($16B) for Huafa</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">$5.4B<span class="card-num-unit">blocked</span></div>
+      <div class="card-label">SoftBank's purchase of ABB Robotics, prohibited in China by the NDRC-based security review office</div>
+      <div class="card-delta delta-red">China ≈ 30% of the unit</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">$2B<span class="card-num-unit">claim</span></div>
+      <div class="card-label">Nexperia B.V. damages claim against Wingtech, Zhang Xuezheng and two China units in Amsterdam</div>
+      <div class="card-delta delta-amber">Not yet formally served</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · LOCAL SOE CREDIT</div>
+      <div class="card-num">¥413B<span class="card-num-unit">debt</span></div>
+      <div class="card-label">Huafa Group interest-bearing debt ($61B); Zhuhai pledges ¥40B delivered plus ¥70B more ($16B total)</div>
+      <div class="card-delta delta-red">Cash covers 0.34× short-term debt</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · ROBOTICS / CROSS-BORDER M&amp;A</div>
+    <div class="story-headline">Beijing Blocks SoftBank's $5.4 Billion Purchase of ABB Robotics in China, Reportedly Over Fears That Chinese Robot Data Could Train OpenAI's Models</div>
+    <div class="story-insight">
+      <p>SoftBank told ABB that China's foreign investment security review office (外商投资安全审查), housed at the NDRC, has prohibited the acquisition of ABB Robotics' China business. The FT reported the decision on November 4 and ABB confirmed it on November 5. The deal, announced in October 2025 at a $5.375 billion enterprise value, was due to close in mid-to-late 2026.</p>
+      <br>
+      <p>No official reason has been given. The FT's sources cited concern that robotics data from China could help train models at OpenAI, which SoftBank backs heavily. China is ABB Robotics' largest market, roughly 30% of the business, and about 90% of robots sold there are built locally.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing has used its security review to stop a deal between a Swiss seller and a Japanese buyer because China-generated robot data could reach a US AI lab, which widens the review's reach to any automation asset with a US-linked owner.</div>
+    <div class="chart-box">
+      <div class="chart-title">A Third of the Business Sits Behind the Veto</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">ABB ROBOTICS DEAL TIMELINE</text><line x1="60" y1="60" x2="780" y2="60" stroke="#c9bfb3" stroke-width="2"/><circle cx="90" cy="60" r="6" fill="#5a6a8a"/><circle cx="330" cy="60" r="6" fill="#9a8a7a"/><circle cx="560" cy="60" r="7" fill="#fff" stroke="#9a8a7a" stroke-width="2" stroke-dasharray="3,2"/><circle cx="740" cy="60" r="8" fill="#c0392b"/><text x="90" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#5a6a8a">Oct 8, 2025</text><text x="330" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#9a8a7a">Apr 2026</text><text x="560" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#9a8a7a">Mid-to-late 2026</text><text x="740" y="44" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Nov 4–5, 2026</text><text x="90" y="84" font-size="10" text-anchor="middle" fill="#1a1a2e">SoftBank deal</text><text x="90" y="97" font-size="10" text-anchor="middle" fill="#1a1a2e">announced</text><text x="330" y="84" font-size="10" text-anchor="middle" fill="#1a1a2e">NDRC unwinds</text><text x="330" y="97" font-size="10" text-anchor="middle" fill="#1a1a2e">Meta–Manus deal</text><text x="560" y="84" font-size="10" text-anchor="middle" fill="#5a6a8a">Planned close</text><text x="560" y="97" font-size="10" text-anchor="middle" fill="#5a6a8a">(missed)</text><text x="740" y="84" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">China review</text><text x="740" y="97" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">prohibits deal</text><text x="30" y="145" font-size="11" font-weight="700" fill="#5a6a8a">DEAL AND DIVISION, US$ BILLION</text><text x="30" y="178" font-size="12" font-weight="700" fill="#1a1a2e">Enterprise value</text><rect x="230" y="165" width="537" height="20" fill="#c0392b"/><text x="757" y="180" font-size="11" font-weight="700" text-anchor="end" fill="#fff">$5.375B</text><text x="30" y="210" font-size="12" fill="#1a1a2e">2024 revenue</text><rect x="230" y="197" width="230" height="20" fill="#1a1a2e"/><text x="468" y="212" font-size="11" font-weight="700" fill="#1a1a2e">$2.3B</text><text x="30" y="242" font-size="12" fill="#1a1a2e">China share (~30%)</text><rect x="230" y="229" width="69" height="20" fill="#b45309"/><text x="307" y="244" font-size="11" font-weight="700" fill="#b45309">≈ $0.69B of revenue</text><text x="30" y="288" font-size="11" fill="#5a4a3a">About 7,000 staff · ~90% of robots sold to Chinese customers are made in China · China is ABB Robotics' largest market</text><text x="30" y="310" font-size="11" font-weight="700" fill="#c0392b">Reported concern: China robot data reaching OpenAI models via SoftBank · no official reason published</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Financial Times via Investing.com and 24/7 Wall St (Nov 4–5, 2026); ABB statement via Robotics 24/7 (Nov 5, 2026); ABB deal release (Oct 8, 2025). China revenue share is an estimate from the reported ~30% figure. Bars 100px per $1 billion. No renminbi figures in this chart; USD at ¥6.72/$ (PBOC central parity, Nov 5, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · REACH</div>
+        <div class="annotation-card-zh">外商投资安全审查<span class="annotation-card-en">wàishāng tóuzī ānquán shěnchá · foreign investment security review</span></div>
+        <div class="annotation-card-body">The review now covers foreign-to-foreign deals with Chinese operations.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REFILING</div>
+        <div class="annotation-card-zh">数据出境<span class="annotation-card-en">shùjù chūjìng · cross-border data transfer</span></div>
+        <div class="annotation-card-body">Whether SoftBank refiles with data-localization commitments or ABB carves out China.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DEAL FLOW</div>
+        <div class="annotation-card-zh">工业机器人<span class="annotation-card-en">gōngyè jīqìrén · industrial robot</span></div>
+        <div class="annotation-card-body">Automation, logistics and auto deals with US-linked buyers face the same test.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · CHIPS</div>
+    <div class="story-headline">Nexperia's Dutch Arm Seeks $2 Billion From Wingtech and Its Founder in Amsterdam, as Wingtech Rejects a Plan That Would Leave It a Minority Holder Outside China</div>
+    <div class="story-insight">
+      <p>Nexperia B.V. (安世半导体) has filed a $2 billion damages claim in Amsterdam against Wingtech (闻泰科技), founder Zhang Xuezheng and two China units, alleging they built a rival China supply chain. Wingtech rejects the claim, says it has not been served, and turned down an administrator's plan that would leave it with the China business and only a minority of the rest.</p>
+      <br>
+      <p>A Dongguan court has barred any sale or dilution of Nexperia shares, with fines of ¥100,000 ($15,000) a day, on top of a ¥2.14 billion ($320 million) asset freeze. Wingtech's January–September revenue fell 93% to ¥2.05 billion ($310 million) and its shares carry a delisting warning.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Both sides' legal moves now assume two separate Nexperias, and a $2 billion claim exceeds Wingtech's cash several times over, though enforcing a Dutch judgment in China would be difficult.</div>
+    <div class="chart-box">
+      <div class="chart-title">The Claim Against the Balance Sheet</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">US$ MILLION (RENMINBI FIGURES CONVERTED AT ¥6.72/$)</text><text x="30" y="58" font-size="12" font-weight="700" fill="#1a1a2e">Nexperia B.V. claim</text><rect x="280" y="45" width="480" height="22" fill="#c0392b"/><text x="750" y="61" font-size="11" font-weight="700" text-anchor="end" fill="#fff">$2,000</text><text x="30" y="94" font-size="12" fill="#1a1a2e">Nexperia 2024 revenue</text><rect x="280" y="81" width="494" height="22" fill="#5a6a8a"/><text x="764" y="97" font-size="11" font-weight="700" text-anchor="end" fill="#fff">$2,060</text><text x="30" y="130" font-size="12" fill="#1a1a2e">Wingtech convertible bonds</text><rect x="280" y="117" width="255" height="22" fill="#1a1a2e"/><text x="543" y="133" font-size="11" font-weight="700" fill="#1a1a2e">¥7.15B ($1,060)</text><text x="30" y="166" font-size="12" fill="#1a1a2e">Wingtech cash + trading assets</text><rect x="280" y="153" width="129" height="22" fill="#b45309"/><text x="417" y="169" font-size="11" font-weight="700" fill="#b45309">¥3.6B ($540)</text><text x="30" y="202" font-size="12" fill="#1a1a2e">China asset freeze</text><rect x="280" y="189" width="77" height="22" fill="#166534"/><text x="365" y="205" font-size="11" font-weight="700" fill="#166534">¥2.14B ($320)</text><text x="30" y="238" font-size="12" fill="#1a1a2e">Wingtech Jan–Sep revenue</text><rect x="280" y="225" width="74" height="22" fill="#9a8a7a"/><text x="362" y="241" font-size="11" font-weight="700" fill="#9a8a7a">¥2.05B ($310), −93%</text><text x="30" y="282" font-size="11" fill="#5a4a3a">Wingtech paid ¥33.8B ($5.0B) for Nexperia in 2018–2020 · Jan–Sep net loss ¥623M ($93M) · shares ~70% below 2026 high</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Wingtech Shanghai exchange filing via Global Times and BigGo Finance (Nov 4, 2026); Caixin Global (Nov 5, 2026); Reuters via The Standard (Nov 3, 2026); Wingtech Q3 2026 report. Bars 0.24px per $1 million. USD at ¥6.72/$ (PBOC central parity, Nov 5, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CHINA ORDER</div>
+        <div class="annotation-card-zh">财产保全<span class="annotation-card-en">cáichǎn bǎoquán · asset preservation</span></div>
+        <div class="annotation-card-body">Dongguan court blocks any sale or dilution of Nexperia shares.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · AMSTERDAM</div>
+        <div class="annotation-card-zh">企业法庭<span class="annotation-card-en">Qǐyè Fǎtíng · Enterprise Chamber</span></div>
+        <div class="annotation-card-body">Ruling on new measures after the Oct 30 hearing, and formal service of the claim.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · BALANCE SHEET</div>
+        <div class="annotation-card-zh">退市风险警示<span class="annotation-card-en">tuìshì fēngxiǎn jǐngshì · delisting risk warning</span></div>
+        <div class="annotation-card-body">The claim is nearly 4× Wingtech's cash; the stock already trades as *ST.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · LOCAL SOE CREDIT</div>
+    <div class="story-headline">Zhuhai Pledges ¥110 Billion ($16 Billion) of Funding Support for Huafa Group as the State Developer's ¥413 Billion Debt Pile Shakes China's Credit Market</div>
+    <div class="story-insight">
+      <p>Zhuhai's state-asset regulator (国资委) said on November 5 it has delivered more than ¥40 billion ($6.0 billion) to Huafa Group and will coordinate ¥70 billion ($10 billion) more. Huafa's 2029 onshore bond rebounded 17% to about 85, after missed trust payments and rating watches from Fitch and China Lianhe.</p>
+      <br>
+      <p>Huafa carries ¥413 billion ($61 billion) of interest-bearing debt (有息负债). At end-September its ¥52.2 billion ($7.8 billion) of cash covered 0.34× its short-term debt, and Zhuhai's land-sale revenue fell 94% between 2020 and 2025.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The pledge leans on coordinated bank and state-firm money from a city whose land income has collapsed, so it eases near-term default fears without changing the cash shortfall that drove the sell-off.</div>
+    <div class="chart-box">
+      <div class="chart-title">Debt, Cash and a Shrinking Backstop</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">HUAFA GROUP, ¥ BILLION</text><text x="30" y="53" font-size="12" font-weight="700" fill="#1a1a2e">Interest-bearing debt (Mar)</text><rect x="260" y="40" width="496" height="20" fill="#c0392b"/><text x="746" y="55" font-size="11" font-weight="700" text-anchor="end" fill="#fff">413 ($61B)</text><text x="30" y="85" font-size="12" fill="#1a1a2e">Short-term debt (Sep)</text><rect x="260" y="72" width="185" height="20" fill="#1a1a2e"/><text x="453" y="87" font-size="11" font-weight="700" fill="#1a1a2e">154 ($23B)</text><text x="30" y="117" font-size="12" fill="#1a1a2e">Zhuhai support pledge</text><rect x="260" y="104" width="48" height="20" fill="#166534"/><rect x="308" y="104" width="84" height="20" fill="#166534" fill-opacity="0.45"/><text x="400" y="119" font-size="11" font-weight="700" fill="#166534">40 delivered + 70 planned ($16B)</text><text x="30" y="149" font-size="12" fill="#1a1a2e">Cash (Sep)</text><rect x="260" y="136" width="63" height="20" fill="#b45309"/><text x="331" y="151" font-size="11" font-weight="700" fill="#b45309">52.2 ($7.8B) · 0.34× short-term debt</text><text x="30" y="200" font-size="11" font-weight="700" fill="#5a6a8a">ZHUHAI LAND-SALE REVENUE, ¥ BILLION</text><text x="30" y="233" font-size="12" fill="#1a1a2e">2020</text><rect x="260" y="220" width="450" height="20" fill="#5a6a8a"/><text x="718" y="235" font-size="11" font-weight="700" fill="#5a6a8a">56.3 ($8.4B)</text><text x="30" y="265" font-size="12" font-weight="700" fill="#1a1a2e">2025</text><rect x="260" y="252" width="26" height="20" fill="#c0392b"/><text x="294" y="267" font-size="11" font-weight="700" fill="#c0392b">3.3 ($490M), −94%</text><text x="30" y="306" font-size="11" fill="#5a4a3a">2025 net loss ¥16.86B ($2.5B), first ever · Jan–Sep 2026 operating cash flow −¥1.5B ($220M) vs +¥27B ($4.0B) a year earlier</text><text x="30" y="326" font-size="11" fill="#5a4a3a">Oct 30: bond ETF outflows ¥11.6B ($1.7B), credit bond ETF index −0.5% · 2029 onshore bond back to ~85 on Nov 5</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Reuters via The Standard (Nov 5, 2026); Bloomberg via The Star (Nov 4, 2026); Korea Economic Daily via Bloomingbit (Nov 5, 2026); BigGo Finance (Nov 2, 2026). Debt figure end-March 2026; cash and short-term debt end-September 2026. Bars 1.2px per ¥1 billion (land bars 8px per ¥1 billion). USD at ¥6.72/$ (PBOC central parity, Nov 5, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · BACKSTOP</div>
+        <div class="annotation-card-zh">国资委<span class="annotation-card-en">Guózīwěi · state-asset regulator</span></div>
+        <div class="annotation-card-body">Zhuhai's 93.48% owner commits ¥110B ($16B) of support.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MATURITIES</div>
+        <div class="annotation-card-zh">信用债<span class="annotation-card-en">xìnyòng zhài · credit bonds</span></div>
+        <div class="annotation-card-body">December offshore note of ¥1.4B ($210M) and a ~¥46B ($6.9B) 2027 wall.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONTAGION</div>
+        <div class="annotation-card-zh">土地出让收入<span class="annotation-card-en">tǔdì chūràng shōurù · land-sale revenue</span></div>
+        <div class="annotation-card-body">Other local state developers rely on cities with similarly shrunken land income.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #171 · NOVEMBER 6, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
