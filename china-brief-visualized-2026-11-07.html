@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #172 · November 7, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #172 · November 7, 2026</div>
+    <div class="masthead-sub">Hua Hong's Profit Jumps 147% · CNPC Takes 60% of a Unitree Robot Venture · 10-Year Yield Hits a Record 1.58%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">$987M<span class="card-num-unit">Q3 revenue</span></div>
+      <div class="card-label">Hua Hong Semiconductor, a record, up 19.9% y/y; net profit +147.1% to $123.4M</div>
+      <div class="card-delta delta-green">Gross margin 24.6%, +7.6 pts</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">60%<span class="card-num-unit">CNPC side</span></div>
+      <div class="card-label">Kunlun Manufacturing and Kunlun Capital's share of the oilfield robot venture; Unitree and Fanjie 20% each</div>
+      <div class="card-delta delta-amber">Comment period ends Nov 13</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · RATES</div>
+      <div class="card-num">1.58%<span class="card-num-unit">10Y</span></div>
+      <div class="card-label">China 10-year government bond yield, record intraday low on Nov 6 (Bloomberg data)</div>
+      <div class="card-delta delta-red">LPR unchanged for 17 months</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS / MATURE-NODE FOUNDRY</div>
+    <div class="story-headline">Hua Hong's Q3 Profit Rises 147% on Record $987 Million Revenue, as Price Increases on AI-Adjacent MCU and Flash Chips Lift Margins at China's Second Foundry</div>
+    <div class="story-insight">
+      <p>Hua Hong Semiconductor (华虹半导体) reported Q3 revenue of $987.1 million on November 5, up 19.9% y/y, with net profit up 147.1% to $123.4 million and gross margin at 24.6%. Excluding the newly consolidated Huali Microelectronics (华力微电子), revenue and margin both beat guidance. Q4 guidance is $1.08 to $1.09 billion at a 25% to 26% margin.</p>
+      <br>
+      <p>The biggest price increases came in MCUs (微控制器), then flash and power management. Peng Bai (白鹏) said more than half of products now go into AI-related applications and expects ASPs to rise 10% to 15% in 2027. North America revenue grew 75.1% and Europe roughly doubled, from small bases.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> AI server demand is raising prices for the mature-node chips around the accelerators, so Hua Hong's margin path depends on those prices holding as Wuxi's Fab 9 adds capacity and Huali's roughly 40% margin flows through.</div>
+    <div class="chart-box">
+      <div class="chart-title">Memory and MCU Lines Led the Quarter</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">Q3 2026 REVENUE BY PLATFORM, US$ MILLION (Y/Y CHANGE)</text><text x="30" y="55" font-size="12" font-weight="700" fill="#1a1a2e">Embedded NVM (MCU)</text><rect x="240" y="42" width="455" height="20" fill="#c0392b"/><text x="703" y="57" font-size="11" font-weight="700" fill="#c0392b">252.5 (+42.5%)</text><text x="30" y="87" font-size="12" fill="#1a1a2e">Power discrete</text><rect x="240" y="74" width="364" height="20" fill="#1a1a2e"/><text x="612" y="89" font-size="11" font-weight="700" fill="#1a1a2e">202.0 (+19.5%)</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Analog &amp; power mgmt IC</text><rect x="240" y="106" width="360" height="20" fill="#1a1a2e"/><text x="608" y="121" font-size="11" font-weight="700" fill="#1a1a2e">199.9 (+13.5%)</text><text x="30" y="151" font-size="12" fill="#1a1a2e">Logic &amp; RF</text><rect x="240" y="138" width="333" height="20" fill="#9a8a7a"/><text x="581" y="153" font-size="11" font-weight="700" fill="#9a8a7a">185.2 (flat)</text><text x="30" y="183" font-size="12" fill="#1a1a2e">Stand-alone NVM (flash)</text><rect x="240" y="170" width="266" height="20" fill="#b45309"/><text x="514" y="185" font-size="11" font-weight="700" fill="#b45309">147.6 (+28.2%)</text><text x="30" y="232" font-size="11" font-weight="700" fill="#5a6a8a">GROSS MARGIN</text><text x="30" y="262" font-size="12" fill="#1a1a2e">Q3 2025</text><rect x="240" y="249" width="204" height="20" fill="#9a8a7a"/><text x="452" y="264" font-size="11" font-weight="700" fill="#9a8a7a">17.0%</text><text x="30" y="294" font-size="12" font-weight="700" fill="#1a1a2e">Q3 2026</text><rect x="240" y="281" width="295" height="20" fill="#166534"/><text x="543" y="296" font-size="11" font-weight="700" fill="#166534">24.6% (ex-Huali 19.9%)</text><text x="30" y="326" font-size="12" fill="#1a1a2e">Q4 2026 guide</text><rect x="240" y="313" width="300" height="20" fill="#166534" fill-opacity="0.45"/><rect x="540" y="313" width="12" height="20" fill="#166534" fill-opacity="0.25"/><text x="560" y="328" font-size="11" font-weight="700" fill="#166534">25–26%</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Hua Hong Q3 2026 results and earnings call via GuruFocus/Investing.com (Nov 5–6, 2026); The Standard (Nov 5, 2026); TipRanks (Nov 5, 2026). Q3 2025 margin derived from the reported +7.6-point change. Revenue bars 1.8px per $1 million; margin bars 12px per point. No renminbi figures in this chart; USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICING</div>
+        <div class="annotation-card-zh">微控制器<span class="annotation-card-en">wēikòngzhìqì · microcontroller</span></div>
+        <div class="annotation-card-body">MCU led Q3 price increases; ASPs guided up 10% to 15% in 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CAPACITY</div>
+        <div class="annotation-card-zh">华力微电子<span class="annotation-card-en">Huálì Wēidiànzǐ · Huali Microelectronics</span></div>
+        <div class="annotation-card-body">Whether Huali's ~40% margin adds the promised 3 to 4 points as Fab 9 ramps.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LEGACY-CHIP RULES</div>
+        <div class="annotation-card-zh">成熟制程<span class="annotation-card-en">chéngshú zhìchéng · mature process node</span></div>
+        <div class="annotation-card-body">US or EU origin rules could hit the overseas growth; ROE is still only 6.8%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · ROBOTICS / EMBODIED AI</div>
+    <div class="story-headline">A CNPC Unit Takes 60% of an Oilfield Robotics Venture With Unitree, Giving the Robot Maker a State Energy Customer for Its Explosion-Proof Quadrupeds</div>
+    <div class="story-insight">
+      <p>Unitree (宇树科技) will form a venture with CNPC's Kunlun Manufacturing (昆仑制造) and AI developer Beijing Fanjie for inspection (巡检) and emergency response at oilfields, refineries, depots and gas stations, per a Beijing market regulator filing reported November 6. The CNPC side holds 60%; Unitree and Fanjie hold 20% each.</p>
+      <br>
+      <p>The product is the B2-Ex explosion-proof (防爆) quadruped. Kunlun Capital already took about 2.2% of Unitree's ¥6.1 billion ($910 million) IPO. Unitree's Q3 revenue rose 69.9% to ¥665 million ($100 million) while profit fell 17.4%, and only about 9% of humanoid revenue has come from industry.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> CNPC's majority stake gives Unitree a state industrial channel for its quadrupeds, but most service margin stays with the state side and the tie adds to Unitree's exposure to US restrictions.</div>
+    <div class="chart-box">
+      <div class="chart-title">Who Owns the Venture, and What Unitree Brings</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">JOINT VENTURE EQUITY</text><rect x="30" y="35" width="456" height="36" fill="#1a1a2e"/><rect x="486" y="35" width="152" height="36" fill="#c0392b"/><rect x="638" y="35" width="152" height="36" fill="#b45309"/><text x="258" y="58" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">Kunlun Manufacturing + Kunlun Capital 60%</text><text x="562" y="58" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">Unitree 20%</text><text x="714" y="58" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">Fanjie 20%</text><text x="258" y="90" font-size="10" text-anchor="middle" fill="#5a6a8a">CNPC energy equipment · customer and operator</text><text x="562" y="90" font-size="10" text-anchor="middle" fill="#5a6a8a">B2-Ex quadruped hardware</text><text x="714" y="90" font-size="10" text-anchor="middle" fill="#5a6a8a">AI model</text><text x="30" y="135" font-size="11" font-weight="700" fill="#5a6a8a">UNITREE Q3 2026, Y/Y CHANGE</text><line x1="400" y1="148" x2="400" y2="222" stroke="#c9bfb3" stroke-width="1"/><text x="30" y="168" font-size="12" font-weight="700" fill="#1a1a2e">Revenue ¥665M ($100M)</text><rect x="400" y="155" width="280" height="20" fill="#166534"/><text x="688" y="170" font-size="11" font-weight="700" fill="#166534">+69.9%</text><text x="30" y="207" font-size="12" font-weight="700" fill="#1a1a2e">Net profit attributable</text><rect x="330" y="194" width="70" height="20" fill="#c0392b"/><text x="322" y="209" font-size="11" font-weight="700" text-anchor="end" fill="#c0392b">−17.4%</text><text x="30" y="258" font-size="11" font-weight="700" fill="#5a6a8a">B2-Ex EXPLOSION-PROOF QUADRUPED</text><text x="30" y="282" font-size="12" fill="#1a1a2e">60Ah battery · 70 kg payload · 45° slopes · 25 cm steps · IP66</text><text x="30" y="306" font-size="11" fill="#5a4a3a">Uses: oil and gas inspection, refining, storage and transport, gas stations, charging and swap stations, overseas sites</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Global Times (Nov 6, 2026); Beijing Municipal Market Supervision Administration filing via Huo Xing Finance (Nov 6, 2026); Unitree Q3 2026 results via Reuters and Caixin (Oct 28, 2026). Equity bar 7.6px per percentage point; growth bars 4px per point. USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · INDUSTRIAL DEMAND</div>
+        <div class="annotation-card-zh">巡检<span class="annotation-card-en">xúnjiǎn · routine inspection</span></div>
+        <div class="annotation-card-body">A state energy group writes robots into hazardous-site inspection.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CLEARANCE</div>
+        <div class="annotation-card-zh">经营者集中<span class="annotation-card-en">jīngyíngzhě jízhōng · merger review</span></div>
+        <div class="annotation-card-body">Comment period ends Nov 13; then first order volumes and B2-Ex pricing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · US RESTRICTIONS</div>
+        <div class="annotation-card-zh">中国石油天然气集团<span class="annotation-card-en">Zhōngguó Shíyóu Tiānránqì Jítuán · CNPC</span></div>
+        <div class="annotation-card-body">An operating tie to China's largest oil group adds to Pentagon and FCC listings.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · RATES / BOND MARKET</div>
+    <div class="story-headline">China's 10-Year Yield Touches a Record 1.58% as the PBOC's New 1.25% Overnight Rate and a Tech Sell-Off Push Money Into Government Bonds</div>
+    <div class="story-insight">
+      <p>The 10-year government bond (十年期国债) yield hit 1.58% intraday on November 6, a record low per Bloomberg, down from about 1.64% before the PBOC's October 30 announcement. Equities fell the same day: the Shanghai Composite lost 1.10% and the CSI 300 1.44%, with Zhongji Innolight (中际旭创) down 9.19%.</p>
+      <br>
+      <p>Since November 2 the PBOC has run daily overnight reverse repos (隔夜逆回购) at 1.25%, below the 1.40% seven-day rate (七天逆回购) it is retiring as the policy rate, and injected ¥541 billion ($81 billion) on the first day. Huafa's credit scare has added safe-haven demand.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The 1.25% overnight rate has pulled long yields to a record without an LPR cut, which cheapens year-end government issuance but squeezes bank margins until loan pricing follows.</div>
+    <div class="chart-box">
+      <div class="chart-title">Long Yields Follow the New Overnight Anchor Down</div>
+      <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CHINA 10-YEAR GOVERNMENT BOND YIELD, %</text><line x1="80" y1="60" x2="780" y2="60" stroke="#e0d8d0"/><line x1="80" y1="130" x2="780" y2="130" stroke="#e0d8d0"/><line x1="80" y1="200" x2="780" y2="200" stroke="#c9bfb3"/><text x="72" y="64" font-size="10" text-anchor="end" fill="#9a8a7a">1.66</text><text x="72" y="134" font-size="10" text-anchor="end" fill="#9a8a7a">1.61</text><text x="72" y="204" font-size="10" text-anchor="end" fill="#9a8a7a">1.56</text><polyline points="140,123 280,88 420,144 560,158 700,172" fill="none" stroke="#1a1a2e" stroke-width="2.5"/><circle cx="140" cy="123" r="5" fill="#1a1a2e"/><circle cx="280" cy="88" r="5" fill="#1a1a2e"/><circle cx="420" cy="144" r="5" fill="#1a1a2e"/><circle cx="560" cy="158" r="5" fill="#1a1a2e"/><circle cx="700" cy="172" r="7" fill="#c0392b"/><text x="140" y="111" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a2e">1.615</text><text x="280" y="76" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a2e">~1.64</text><text x="420" y="132" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a2e">~1.60</text><text x="560" y="146" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a2e">1.59</text><text x="700" y="160" font-size="11" font-weight="700" text-anchor="middle" fill="#c0392b">1.58</text><text x="140" y="220" font-size="10" text-anchor="middle" fill="#5a6a8a">Oct 28 close</text><text x="280" y="220" font-size="10" text-anchor="middle" fill="#5a6a8a">Oct 30 pre-move</text><text x="420" y="220" font-size="10" text-anchor="middle" fill="#5a6a8a">Nov 2</text><text x="560" y="220" font-size="10" text-anchor="middle" fill="#5a6a8a">Nov 5 close</text><text x="700" y="220" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Nov 6 intraday</text><text x="30" y="262" font-size="11" font-weight="700" fill="#5a6a8a">PBOC OPERATING RATES, %</text><text x="30" y="292" font-size="12" fill="#1a1a2e">7-day reverse repo (old anchor)</text><rect x="300" y="279" width="420" height="20" fill="#9a8a7a"/><text x="728" y="294" font-size="11" font-weight="700" fill="#9a8a7a">1.40</text><text x="30" y="324" font-size="12" font-weight="700" fill="#1a1a2e">Overnight reverse repo (from Nov 2)</text><rect x="300" y="311" width="375" height="20" fill="#c0392b"/><text x="683" y="326" font-size="11" font-weight="700" fill="#c0392b">1.25</text><text x="30" y="352" font-size="11" fill="#5a4a3a">Nov 6: 30Y ~2.03% · 5Y ~1.37% · ¥541B ($81B) overnight injection on Nov 2 · LPR 3.0% / 3.5% unchanged</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Bloomberg via NewsBytes and Lapaas Voice (Nov 6, 2026); Trading Economics yield data (Nov 2–6, 2026); Briefs.co and Universal Asset Owners (Oct 30–Nov 2, 2026); Oct 28 close from Bloomberg (Issue #163). Points mix closing and intraday readings as labeled. Yield axis 14px per basis point; rate bars 300px per percentage point. USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · NEW ANCHOR</div>
+        <div class="annotation-card-zh">隔夜逆回购<span class="annotation-card-en">géyè nìhuígòu · overnight reverse repo</span></div>
+        <div class="annotation-card-body">A fixed 1.25% daily rate replaces the 1.40% seven-day signal.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DATA</div>
+        <div class="annotation-card-zh">十年期国债<span class="annotation-card-en">shí nián qī guózhài · 10-year bond</span></div>
+        <div class="annotation-card-body">October trade data on Nov 10 and credit data test the move toward 1.50%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · BANK MARGINS</div>
+        <div class="annotation-card-zh">政策利率<span class="annotation-card-en">zhèngcè lìlǜ · policy rate</span></div>
+        <div class="annotation-card-body">Lower yields without an LPR cut squeeze lenders' net interest margins.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #172 · NOVEMBER 7, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
