@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan Brief Visualized · Issue #161 · November 7, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #161 · November 7, 2026</div>
+    <div class="masthead-sub">Cyber Package With a METI AI Team · MHI Lifts Its Guide and Buys Back Stock · Nikkei Enters a Bear Market</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CYBER</div>
+      <div class="card-num">¥10bn<span class="card-num-unit"></span></div>
+      <div class="card-label">Emergency cyber package (AP estimate)</div>
+      <div class="card-delta delta-red">Docomo: up to 300k records stolen</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-robotics">INDUSTRIAL · MHI</div>
+      <div class="card-num">¥440bn<span class="card-num-unit"></span></div>
+      <div class="card-label">Net profit guide, from ¥380bn</div>
+      <div class="card-delta delta-green">¥300bn buyback, all cancelled</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · NIKKEI</div>
+      <div class="card-num">-21<span class="card-num-unit">%</span></div>
+      <div class="card-label">Below the June 22 record of 72,832</div>
+      <div class="card-delta delta-red">Friday close 57,435, down 5.96%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &AMP; TECH</div>
+    <div class="story-headline">Takaichi Adopts an Emergency Cyber Package Built Around a METI AI Team, as Docomo Says Up to 300,000 Customer Records Were Stolen</div>
+    <div class="story-insight"><p>高市早苗 (Takaichi Sanae, Prime Minister Sanae Takaichi)'s government adopted an emergency cybersecurity package at a meeting of ministers on November 6, eleven days after she ordered it. AP put its cost at ¥10 billion. Its core is an expert team that 経済産業省 (Keizai Sangyō-shō, METI) will set up by the end of November to find weaknesses in network systems and counter attackers with AI, working with technology companies and what the government called advanced AI developers of friendly nations. A public-private cyber rescue squad will handle first response at companies that are hit, and a second team will help weaker firms harden their systems. Officials from the Defense Ministry, the National Police Agency and the National Cybersecurity Office will deploy when an attack touches national security. The package also speeds up talks on forcibly blocking websites that post stolen personal data, and it concedes that basic security was inadequate at many of the breached companies.</p>
+      <br>
+      <p>The package landed on the day NTTドコモ (Enu Tī Tī Dokomo, NTT Docomo) president 前田義晃 (Maeda Yoshiaki, Yoshiaki Maeda) said hackers took up to about 300,000 sets of customer data, including names, addresses, identity document numbers and bank account numbers. Docomo detected the intrusion on November 4 and suspended online services the next morning. No card data was taken. MM Research Institute counted 454 data leaks from サイバー攻撃 (saibā kōgeki, cyberattacks) in January-September, up 49% from a year earlier, and 195 of them hit firms with 300 or fewer employees. Takaichi asked Digital Transformation Minister Toshiharu Furukawa to consider revising the law behind 能動的サイバー防御 (nōdōteki saibā bōgyo, active cyber defense), which has let police and the Self-Defense Forces access and neutralize attackers' servers since October 1. NHK reported that the main question is whether the state may collect communications that stay inside Japan, which the current law does not allow.</p>
+      <br>
+      <p>¥10 billion is small against the damage, so the package will move markets through changes in law and procurement. A METI team built on AI vulnerability hunting needs access to frontier models. Nikkei reported on October 30 that Tokyo had asked Anthropic and OpenAI for wider access to their bug-finding models, and the package's reference to friendly-nation developers keeps that route open without naming either lab. When the government tells companies their basic controls failed, the follow-on work in incident response, penetration testing and managed security goes to domestic integrators such as NEC, Fujitsu and GMO Cybersecurity by Ierae. For NTT, the breach adds response costs and likely regulatory scrutiny in the same week it raised its profit guide on Docomo.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The spending is modest. The METI AI team and a possible law change on domestic communications data would shift security demand more than the budget does. Domestic security integrators benefit when the state says breached firms failed at basics. Watch whether the end-November team gets named access to US vulnerability models, and whether the communications ministry issues an administrative order to Docomo.</div>
+    <div class="chart-box">
+      <div class="chart-title">Data Leaks From Cyberattacks in Japan (number of incidents)</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="230.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="360.0" y1="10" x2="360.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="360.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">125</text>
+<line x1="490.0" y1="10" x2="490.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="490.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">250</text>
+<line x1="620.0" y1="10" x2="620.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="620.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">375</text>
+<line x1="750.0" y1="10" x2="750.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="750.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">500</text>
+<text x="220" y="29" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Jan-Sep 2025</text>
+<rect x="230" y="16" width="316.2" height="18" rx="2" fill="#c7cbe0"/>
+<text x="552.2" y="29" font-size="10" font-weight="700" fill="#1a1a2e">304</text>
+<text x="220" y="59" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Full year 2025</text>
+<rect x="230" y="46" width="449.3" height="18" rx="2" fill="#c7cbe0"/>
+<text x="685.3" y="59" font-size="10" font-weight="700" fill="#1a1a2e">432</text>
+<text x="220" y="89" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Jan-Sep 2026</text>
+<rect x="230" y="76" width="472.2" height="18" rx="2" fill="#3730a3"/>
+<text x="708.2" y="89" font-size="10" font-weight="700" fill="#1a1a2e">454</text>
+<text x="220" y="119" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Jan 1-Oct 13 2026</text>
+<rect x="230" y="106" width="504.4" height="18" rx="2" fill="#3730a3"/>
+<text x="740.4" y="119" font-size="10" font-weight="700" fill="#1a1a2e">485</text>
+<text x="220" y="149" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Jan-Sep 2026, firms ≤300 staff</text>
+<rect x="230" y="136" width="202.8" height="18" rx="2" fill="#3730a3"/>
+<text x="438.8" y="149" font-size="10" font-weight="700" fill="#1a1a2e">195</text>
+</svg>
+      <div class="chart-note">Indigo: 2026. Grey: 2025. Source: MM Research Institute via nippon.com (Nov 4). January-September leaks up 49% year on year.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">能動的サイバー防御<span class="annotation-card-en">active cyber defense</span></div>
+        <div class="annotation-card-body">Law review may allow domestic data collection.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">経産省チーム<span class="annotation-card-en">METI team</span></div>
+        <div class="annotation-card-body">AI expert team due by end-November.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">情報流出<span class="annotation-card-en">data leak</span></div>
+        <div class="annotation-card-body">Docomo: up to 300,000 records taken.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · INDUSTRIAL</div>
+    <div class="story-headline">Mitsubishi Heavy Raises Its Net Profit Guide 16% to ¥440 Billion on Gas Turbines and Will Buy Back and Cancel Up to ¥300 Billion of Stock</div>
+    <div class="story-insight"><p>三菱重工業 (Mitsubishi Jūkōgyō, Mitsubishi Heavy Industries) reported on November 6 that April-September revenue rose 19.4% to ¥2.523 trillion and 事業利益 (jigyō rieki, business profit) rose 45.3% to ¥249.3 billion. Net profit rose 76.9% to ¥203.2 billion, a first-half record, helped by currency and financial income. Orders rose 9% to ¥3.613 trillion and the 受注残高 (juchū zandaka, order backlog) reached ¥14.23 trillion. Energy did most of the work: segment business profit rose 80% to ¥145.1 billion on gas turbine combined-cycle plants and nuclear. The half also carried a ¥67.5 billion warranty provision for replacement parts at two coal-gasification plants delivered in 2021 at Nakoso and Hirono.</p>
+      <br>
+      <p>MHI raised every line of its full-year guide. Orders rose to ¥8 trillion from ¥7 trillion, revenue to ¥6 trillion from ¥5.4 trillion, business profit to ¥600 billion from ¥540 billion and net profit to ¥440 billion from ¥380 billion. Free cash flow guidance rose to ¥800 billion from ¥600 billion and the ROE target to 14% from 12%. The company will buy up to ¥300 billion of its own stock, or up to 120 million shares (3.6% excluding treasury stock), between November 9 and November 8, 2027, and will cancel every share it buys. The 自社株買い (jishakabu-gai, share buyback) comes on top of an unchanged ¥29 dividend. Reuters reported that MHI plans about ¥500 billion of investment, mostly to expand capacity for replacement parts.</p>
+      <br>
+      <p>CEO 伊藤栄作 (Itō Eisaku, Eisaku Ito) took on the worry that hit AI power stocks this week. He said the US midterm result would have a limited effect on ガスタービン (gasu tābin, gas turbine) demand, that individual data-center plans could change while the long-term shift to AI and digitalization would not, and that MHI's larger share of utility customers protects it if data-center orders slow. Demand is strongest in North America and Asia. Defense and space revenue rose to ¥489.6 billion from ¥419.3 billion, while orders fell to ¥153.8 billion from ¥427.6 billion because last year included large contracts. Boeing 787 component deliveries rose to 43 shipsets from 35.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The new ¥440 billion net profit guide matches the ¥440.4 billion IBES consensus, so investors had already priced the earnings raise. The buyback and the ¥200 billion lift in free cash flow guidance are new, and they show turbine cash coming in faster than MHI can spend it on capacity. A utility-heavy customer base leaves MHI less exposed to a US data-center pullback than pure AI-power names. Lumpy defense orders and further IGCC warranty costs could dent the second half.</div>
+    <div class="chart-box">
+      <div class="chart-title">MHI First Half FY2026 vs a Year Earlier (% change)</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="230.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="360.0" y1="10" x2="360.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="360.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">25%</text>
+<line x1="490.0" y1="10" x2="490.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="490.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">50%</text>
+<line x1="620.0" y1="10" x2="620.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="620.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">75%</text>
+<line x1="750.0" y1="10" x2="750.0" y2="164" stroke="#e8eaf2" stroke-width="1"/><text x="750.0" y="178" font-size="10" fill="#5a6a8a" text-anchor="middle">100%</text>
+<text x="220" y="29" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Orders</text>
+<rect x="230" y="16" width="46.8" height="18" rx="2" fill="#c7cbe0"/>
+<text x="282.8" y="29" font-size="10" font-weight="700" fill="#1a1a2e">+9.0%</text>
+<text x="220" y="59" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Revenue</text>
+<rect x="230" y="46" width="100.9" height="18" rx="2" fill="#c7cbe0"/>
+<text x="336.9" y="59" font-size="10" font-weight="700" fill="#1a1a2e">+19.4%</text>
+<text x="220" y="89" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Business profit</text>
+<rect x="230" y="76" width="235.6" height="18" rx="2" fill="#3730a3"/>
+<text x="471.6" y="89" font-size="10" font-weight="700" fill="#1a1a2e">+45.3%</text>
+<text x="220" y="119" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Net profit</text>
+<rect x="230" y="106" width="399.9" height="18" rx="2" fill="#3730a3"/>
+<text x="635.9" y="119" font-size="10" font-weight="700" fill="#1a1a2e">+76.9%</text>
+<text x="220" y="149" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Energy business profit</text>
+<rect x="230" y="136" width="416.0" height="18" rx="2" fill="#3730a3"/>
+<text x="652.0" y="149" font-size="10" font-weight="700" fill="#1a1a2e">+80.0%</text>
+</svg>
+      <div class="chart-note">Source: MHI H1 FY2026 results via Media-IR and Reuters (Nov 6). Full-year net profit guide raised to ¥440bn from ¥380bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">自社株買い<span class="annotation-card-en">share buyback</span></div>
+        <div class="annotation-card-body">Up to ¥300bn, all shares cancelled.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">防衛受注<span class="annotation-card-en">defense orders</span></div>
+        <div class="annotation-card-body">H1 orders fell to ¥153.8bn on timing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">保証引当金<span class="annotation-card-en">warranty provision</span></div>
+        <div class="annotation-card-body">¥67.5bn for IGCC replacement parts.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The Nikkei Falls 6% to 57,435 and Closes 21% Below Its June Record, a Bear Market, as Bonds Rally and the Yen Barely Moves</div>
+    <div class="story-insight"><p>The 日経平均株価 (Nikkei Heikin Kabuka, Nikkei Stock Average) fell 3,643 points, or 5.96%, to 57,435 on November 6, its fifth straight loss, after touching 56,746 during the day. The close is about 21% below the June 22 record of 72,831.73, which puts the index in a 弱気相場 (yowaki sōba, bear market) under the usual 20% definition. It is also 11% below the October 29 close of 64,659. TOPIX fell 5.90% to 3,707.99. All 33 sector indexes fell, and only 21 Prime Market stocks rose against 1,523 that fell, on turnover of about ¥12.5 trillion. Advantest fell about 12%, SoftBank Group and Kioxia about 11%, and Tokyo Electron nearly 9%.</p>
+      <br>
+      <p>New York set off the move. On November 5 the Nasdaq 100 fell 6.4%, its worst day since March 2020, and the Philadelphia Semiconductor Index fell 12.2%. The Democratic sweep of the midterms raised the odds of tighter rules on data-center construction, and high borrowing costs weighed on AI build-out plans. Seoul's Kospi fell more than 8% and tripped a circuit breaker. In Tokyo money went into bonds, and the 10-year JGB yield, the benchmark 長期金利 (chōki kinri, long-term interest rate), fell 0.12 point to about 2.635%. The yen firmed at first on safe-haven buying and ended near ¥157.95 to the dollar, only slightly stronger than Thursday. Prime Minister Takaichi said the government was watching markets closely and would keep its investment and economic-security agenda.</p>
+      <br>
+      <p>The fall complicates the 日本銀行 (Nippon Ginkō, Bank of Japan)'s path because markets had priced a possible December hike from 1.25%, and a long equity slide would make the board more cautious. Data released the same day point the other way: labor ministry figures showed September monthly cash earnings up 4.6% from a year earlier at ¥311,409. US stocks steadied after Tokyo closed, with the Nasdaq up 1.1% and Lam Research up 8.2%, which gives Monday's open a firmer start. TOPIX fell almost as much as the Nikkei, so the selling spread well beyond AI hardware, consistent with reports of margin-call liquidation.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Bonds rallied and the yen barely moved, so the selling came from equity positions unwinding, with no sign yet of wider funding stress. A December hike now needs the selloff to stop, since Deputy Governor Uchida promised in August 2024 not to raise rates while markets were unstable. Strong wage data keeps the hike case alive. Watch Monday&#x27;s response to the US rebound, weekly margin-debt figures and the October Summary of Opinions due next week.</div>
+    <div class="chart-box">
+      <div class="chart-title">Nikkei 225 Closing Levels, June Record to November 6, 2026</div>
+<svg viewBox="0 0 860 245" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="201.0" x2="830" y2="201.0" stroke="#e8eaf2" stroke-width="1"/><text x="52" y="204.0" font-size="10" fill="#5a6a8a" text-anchor="end">55,000</text>
+<line x1="60" y1="155.7" x2="830" y2="155.7" stroke="#e8eaf2" stroke-width="1"/><text x="52" y="158.7" font-size="10" fill="#5a6a8a" text-anchor="end">60,000</text>
+<line x1="60" y1="110.5" x2="830" y2="110.5" stroke="#e8eaf2" stroke-width="1"/><text x="52" y="113.5" font-size="10" fill="#5a6a8a" text-anchor="end">65,000</text>
+<line x1="60" y1="65.2" x2="830" y2="65.2" stroke="#e8eaf2" stroke-width="1"/><text x="52" y="68.2" font-size="10" fill="#5a6a8a" text-anchor="end">70,000</text>
+<line x1="60" y1="20.0" x2="830" y2="20.0" stroke="#e8eaf2" stroke-width="1"/><text x="52" y="23.0" font-size="10" fill="#5a6a8a" text-anchor="end">75,000</text>
+<line x1="60" y1="171.4" x2="830" y2="171.4" stroke="#b91c1c" stroke-width="1.2" stroke-dasharray="5,4"/><text x="70" y="185.4" font-size="9.5" fill="#b91c1c" text-anchor="start">Bear threshold 58,265 (-20%)</text>
+<polyline fill="none" stroke="#3730a3" stroke-width="2.5" points="90,39.6 420,113.6 640,146.0 780,178.9"/>
+<circle cx="90" cy="39.6" r="4.5" fill="#3730a3"/><text x="90" y="29.6" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">72,832</text><text x="90" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">Jun 22</text>
+<circle cx="420" cy="113.6" r="4.5" fill="#3730a3"/><text x="420" y="103.6" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">64,659</text><text x="420" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct 29</text>
+<circle cx="640" cy="146.0" r="4.5" fill="#3730a3"/><text x="640" y="136.0" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">61,078</text><text x="640" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">Nov 5</text>
+<circle cx="780" cy="178.9" r="4.5" fill="#3730a3"/><text x="780" y="168.9" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="middle">57,435</text><text x="780" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">Nov 6</text>
+</svg>
+      <div class="chart-note">Points are closes on selected dates, not a continuous series. Source: AP, NewsOnJapan, time.news (Nov 6). Friday's close is 21.1% below the June 22 record.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">賃金<span class="annotation-card-en">wages</span></div>
+        <div class="annotation-card-body">September cash earnings up 4.6%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">信用取引<span class="annotation-card-en">margin trading</span></div>
+        <div class="annotation-card-body">Forced selling spread across TOPIX.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">利上げ見送り<span class="annotation-card-en">hike postponed</span></div>
+        <div class="annotation-card-body">A long slide could delay a December move.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #161 · NOVEMBER 7, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
