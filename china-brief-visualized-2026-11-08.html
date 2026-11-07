@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #173 · November 8, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #173 · November 8, 2026</div>
+    <div class="masthead-sub">600,000 H200s Stranded in Hong Kong · Moonshot Hunts Blackwell Clusters in Europe · PBOC's Biggest Gold Month in the Streak</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">~600K<span class="card-num-unit">H200s</span></div>
+      <div class="card-label">Nvidia H200s held in Hong Kong awaiting Beijing's import approval (Reuters, Nov 5)</div>
+      <div class="card-delta delta-red">Total approvals may stay under 200K</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">61%<span class="card-num-unit">Kimi</span></div>
+      <div class="card-label">Moonshot's share of US enterprise open-source model spending (Menlo Ventures, Nov 3)</div>
+      <div class="card-delta delta-amber">Sought 8,000+ Blackwell GPUs in Europe</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · RESERVES</div>
+      <div class="card-num">830K<span class="card-num-unit">oz</span></div>
+      <div class="card-label">PBOC gold added in October, the 24th straight month; holdings 78.3M oz</div>
+      <div class="card-delta delta-green">FX reserves +$4.9B to $3.405T</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS / COMPUTE SUPPLY</div>
+    <div class="story-headline">About 600,000 Nvidia H200s Sit in Hong Kong as Beijing Withholds Import Approval, Pushing China's Big AI Buyers Toward Domestic Inference Chips</div>
+    <div class="story-insight">
+      <p>About 600,000 Nvidia (英伟达) H200s are held in Hong Kong because Beijing has not approved large-scale imports, Reuters reported on November 5. Several big internet firms got about 10,000 each, and total approvals could stay under 200,000. Beijing wants Alibaba, ByteDance, Tencent and DeepSeek to run more inference (推理) on Chinese chips.</p>
+      <br>
+      <p>An eight-GPU H200 server cost more than ¥6 million ($900,000) in China at end-October, about triple a year earlier; Blackwell servers topped ¥20 million ($3.0 million). Nvidia says H200 China sales are under 1% of data center revenue and took a $400 million inventory charge.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing's import approval (进口审批) now rations foreign chips on top of US controls, which supports domestic chip order books and raises compute costs for Chinese labs, while domestic HBM shortages limit how fast Ascend can fill the gap.</div>
+    <div class="chart-box">
+      <div class="chart-title">Chips Held Back, Prices Pushed Up</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">NVIDIA H200 UNITS (REUTERS ESTIMATES)</text><text x="30" y="55" font-size="12" font-weight="700" fill="#1a1a2e">Held in Hong Kong</text><rect x="240" y="42" width="540" height="20" fill="#c0392b"/><text x="772" y="57" font-size="11" font-weight="700" text-anchor="end" fill="#fff">~600,000</text><text x="30" y="87" font-size="12" fill="#1a1a2e">Possible total approvals</text><rect x="240" y="74" width="180" height="20" fill="#1a1a2e"/><text x="428" y="89" font-size="11" font-weight="700" fill="#1a1a2e">&lt;200,000</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Received per large firm</text><rect x="240" y="106" width="9" height="20" fill="#9a8a7a"/><text x="257" y="121" font-size="11" font-weight="700" fill="#9a8a7a">~10,000</text><text x="30" y="170" font-size="11" font-weight="700" fill="#5a6a8a">SERVER ASKING PRICES IN CHINA, ¥ MILLION ($)</text><text x="30" y="205" font-size="12" fill="#1a1a2e">8×H200, a year earlier</text><rect x="240" y="192" width="50" height="20" fill="#9a8a7a"/><text x="298" y="207" font-size="11" font-weight="700" fill="#9a8a7a">~2 ($300K), implied</text><text x="30" y="237" font-size="12" font-weight="700" fill="#1a1a2e">8×H200, end-Oct 2026</text><rect x="240" y="224" width="150" height="20" fill="#b45309"/><text x="398" y="239" font-size="11" font-weight="700" fill="#b45309">6+ ($900K)</text><text x="30" y="269" font-size="12" font-weight="700" fill="#1a1a2e">Blackwell server</text><rect x="240" y="256" width="500" height="20" fill="#c0392b"/><text x="732" y="271" font-size="11" font-weight="700" text-anchor="end" fill="#fff">20+ ($3.0M)</text><text x="30" y="312" font-size="11" fill="#5a4a3a">Nvidia: H200 China sales &lt;1% of data center revenue · $400M H200 inventory charge · 3M+ RTX Pro cards (&gt;$35B) ordered by ByteDance, Alibaba, Tencent</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Reuters exclusive (Nov 5, 2026) via The Next Web (Nov 6) and N Globe (Nov 5); RTX Pro orders per Reuters (Oct 2026). Year-earlier server price implied from the reported "about three times" increase. Unit bars 0.9px per 1,000 chips; price bars 25px per ¥1 million. USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DOMESTIC DEMAND</div>
+        <div class="annotation-card-zh">国产芯片<span class="annotation-card-en">guóchǎn xīnpiàn · domestic chips</span></div>
+        <div class="annotation-card-body">Rationed H200s steer inference work to Ascend, Cambricon and new GPU listings.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · ALLOCATIONS</div>
+        <div class="annotation-card-zh">工业和信息化部<span class="annotation-card-en">Gōngyè hé Xìnxīhuà Bù · MIIT</span></div>
+        <div class="annotation-card-body">A second allocation round, or further Nvidia H200 write-downs next quarter.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LEAKAGE AND HBM</div>
+        <div class="annotation-card-zh">囤积<span class="annotation-card-en">túnjī · stockpile</span></div>
+        <div class="annotation-card-body">Intermediaries already move small lots; Huawei's 960DT faces a domestic HBM shortage.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · FOUNDATION MODELS / COMPUTE ACCESS</div>
+    <div class="story-headline">Moonshot AI Sought European Clusters of 8,000-Plus Nvidia Blackwell GPUs at a 30% to 50% Premium, as Kimi Takes 61% of US Enterprise Open-Model Spending</div>
+    <div class="story-insight">
+      <p>Moonshot AI (月之暗面) held talks to rent Blackwell capacity from European neocloud (新兴云服务商) operators, CNBC reported November 5, with one source citing clusters of 8,000-plus GPUs and proposals at a 30% to 50% premium (溢价) over non-Chinese customers. No signed lease was reported. US rules do not cover remote access (远程访问), and the bill to close that gap awaits the Senate.</p>
+      <br>
+      <p>Demand explains the effort: Menlo Ventures found Chinese models took 89% of US enterprise open-source spending, with Kimi at 61%. Microsoft listed Kimi K3.1 Pro on Foundry on November 5.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Kimi's US enterprise growth leans on offshore compute that one US bill could cut off, and the premium Moonshot is willing to pay squeezes inference margins ahead of a Hong Kong listing reported at up to $5 billion.</div>
+    <div class="chart-box">
+      <div class="chart-title">Chinese Models Dominate US Open-Model Spending</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">SHARE OF US ENTERPRISE OPEN-SOURCE MODEL SPENDING, SEP 2025–SEP 2026, %</text><text x="30" y="55" font-size="12" font-weight="700" fill="#1a1a2e">Moonshot Kimi</text><rect x="200" y="42" width="488" height="20" fill="#c0392b"/><text x="696" y="57" font-size="11" font-weight="700" fill="#c0392b">61</text><text x="30" y="87" font-size="12" fill="#1a1a2e">DeepSeek</text><rect x="200" y="74" width="120" height="20" fill="#1a1a2e"/><text x="328" y="89" font-size="11" font-weight="700" fill="#1a1a2e">15</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Zhipu GLM</text><rect x="200" y="106" width="88" height="20" fill="#1a1a2e"/><text x="296" y="121" font-size="11" font-weight="700" fill="#1a1a2e">11</text><text x="30" y="151" font-size="12" fill="#1a1a2e">Meta Llama (US)</text><rect x="200" y="138" width="56" height="20" fill="#9a8a7a"/><text x="264" y="153" font-size="11" font-weight="700" fill="#9a8a7a">7</text><text x="30" y="183" font-size="12" fill="#1a1a2e">Alibaba Qwen</text><rect x="200" y="170" width="24" height="20" fill="#1a1a2e"/><text x="232" y="185" font-size="11" font-weight="700" fill="#1a1a2e">3</text><text x="30" y="232" font-size="11" font-weight="700" fill="#5a6a8a">THE EUROPEAN BLACKWELL TALKS (CNBC)</text><rect x="30" y="246" width="240" height="56" rx="4" fill="#fff" stroke="#e0d8d0"/><text x="150" y="272" font-size="20" font-weight="700" text-anchor="middle" fill="#c0392b">8,000+</text><text x="150" y="292" font-size="10" text-anchor="middle" fill="#5a6a8a">Blackwell GPUs per cluster discussed</text><rect x="290" y="246" width="240" height="56" rx="4" fill="#fff" stroke="#e0d8d0"/><text x="410" y="272" font-size="20" font-weight="700" text-anchor="middle" fill="#b45309">30–50%</text><text x="410" y="292" font-size="10" text-anchor="middle" fill="#5a6a8a">upfront premium over non-Chinese clients</text><rect x="550" y="246" width="240" height="56" rx="4" fill="#fff" stroke="#e0d8d0"/><text x="670" y="272" font-size="20" font-weight="700" text-anchor="middle" fill="#1a1a2e">≥51%</text><text x="670" y="292" font-size="10" text-anchor="middle" fill="#5a6a8a">capacity Nvidia wants kept for non-China users</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Menlo Ventures 2026 State of Enterprise AI (Nov 3, 2026) via BigGo Finance (Nov 6); CNBC (Nov 5, 2026) via Investing.com, Dealroom and Briefs; Nvidia 51% guidance per FT. Chinese models together 89%. Share bars 8px per percentage point. No renminbi figures in this chart; USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ENTERPRISE DEMAND</div>
+        <div class="annotation-card-zh">开源模型<span class="annotation-card-en">kāiyuán móxíng · open-source model</span></div>
+        <div class="annotation-card-body">Kimi holds 61% of US open-model spend; now on Microsoft Foundry.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SENATE</div>
+        <div class="annotation-card-zh">远程访问<span class="annotation-card-en">yuǎnchéng fǎngwèn · remote access</span></div>
+        <div class="annotation-card-body">Remote Access Security Act passed the House; Senate action would shut the route.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · IPO DISCLOSURE</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · compute</span></div>
+        <div class="annotation-card-body">Offshore compute and Beijing's draft export licensing both reach the prospectus.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · RESERVES / GOLD</div>
+    <div class="story-headline">The PBOC Adds 830,000 Ounces of Gold in October, the Largest Purchase of Its 24-Month Streak, as FX Reserves Edge Up to $3.405 Trillion</div>
+    <div class="story-insight">
+      <p>The PBOC (中国人民银行) lifted gold reserves (黄金储备) by 830,000 ounces to 78.3 million in October, its 24th straight monthly purchase and the largest since November 2024, according to data released November 7. SAFE (国家外汇管理局) put FX reserves (外汇储备) at $3.4052 trillion, up $4.93 billion after September's $38.1 billion drop.</p>
+      <br>
+      <p>The buying sped up while spot gold fell about 6.8% in October to below $4,000 an ounce. The World Gold Council (世界黄金协会) counted 321 tonnes of net central bank buying in Q3, with the PBOC's roughly 63 tonnes the largest disclosed.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The PBOC increased (增持) its gold purchases into a price fall, which gives gold a steady official buyer on dips; at about $310 billion against $3.4 trillion of FX, the shift away from dollar assets stays gradual.</div>
+    <div class="chart-box">
+      <div class="chart-title">Monthly Gold Additions Rise Into the Sell-Off</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">PBOC MONTHLY GOLD ADDITIONS, THOUSAND OUNCES</text><line x1="60" y1="230" x2="440" y2="230" stroke="#c9bfb3"/><rect x="90" y="100" width="80" height="130" fill="#9a8a7a"/><rect x="210" y="82" width="80" height="148" fill="#1a1a2e"/><rect x="330" y="64" width="80" height="166" fill="#c0392b"/><text x="130" y="92" font-size="12" font-weight="700" text-anchor="middle" fill="#9a8a7a">650</text><text x="250" y="74" font-size="12" font-weight="700" text-anchor="middle" fill="#1a1a2e">740</text><text x="370" y="56" font-size="12" font-weight="700" text-anchor="middle" fill="#c0392b">830</text><text x="130" y="248" font-size="10" text-anchor="middle" fill="#5a6a8a">Aug</text><text x="250" y="248" font-size="10" text-anchor="middle" fill="#5a6a8a">Sep</text><text x="370" y="248" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Oct</text><text x="250" y="276" font-size="11" text-anchor="middle" fill="#5a4a3a">Holdings: 77.47M oz (Sep) → 78.30M oz (Oct)</text><text x="480" y="20" font-size="11" font-weight="700" fill="#5a6a8a">FX RESERVES, MONTHLY CHANGE, $ BILLION</text><line x1="640" y1="40" x2="640" y2="150" stroke="#c9bfb3"/><text x="480" y="72" font-size="12" fill="#1a1a2e">September</text><rect x="564" y="58" width="76" height="22" fill="#c0392b"/><text x="556" y="94" font-size="11" font-weight="700" fill="#c0392b">−38.1</text><text x="480" y="128" font-size="12" font-weight="700" fill="#1a1a2e">October</text><rect x="640" y="114" width="10" height="22" fill="#166534"/><text x="658" y="130" font-size="11" font-weight="700" fill="#166534">+4.93</text><text x="480" y="180" font-size="11" fill="#5a4a3a">Level: $3.4003T (Sep) → $3.4052T (Oct)</text><text x="480" y="220" font-size="11" font-weight="700" fill="#5a6a8a">GOLD MARKET, OCTOBER</text><text x="480" y="244" font-size="12" fill="#1a1a2e">Spot price: −6.8%, below $4,000/oz</text><text x="480" y="266" font-size="12" fill="#1a1a2e">Steepest October drop since 2008</text><text x="30" y="318" font-size="11" fill="#5a4a3a">Q3 2026: central banks net +321 t (+42% y/y, WGC) · PBOC ~63 t in Q3, ~129 t Jan–Oct · Oct addition ≈ 25.8 t</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: PBOC and SAFE data (Nov 7, 2026) via Seoul Economic Daily, BigGo Finance and MarketForces (Nov 7); September data from SAFE (Oct 7, 2026, Issue #142); World Gold Council Q3 2026 Gold Demand Trends. Gold bars 0.2px per 1,000 oz; FX bars 2px per $1 billion. No renminbi figures in this chart; USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DIP BUYER</div>
+        <div class="annotation-card-zh">增持<span class="annotation-card-en">zēngchí · increase holdings</span></div>
+        <div class="annotation-card-body">Purchases rose for three months as gold fell 6.8% in October.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · WEEK AHEAD</div>
+        <div class="annotation-card-zh">外汇储备<span class="annotation-card-en">wàihuì chǔbèi · FX reserves</span></div>
+        <div class="annotation-card-body">October trade data Nov 10; FX deposit reserve ratio to 6% on Nov 15.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VALUATION</div>
+        <div class="annotation-card-zh">黄金储备<span class="annotation-card-en">huángjīn chǔbèi · gold reserves</span></div>
+        <div class="annotation-card-body">Further price falls cut the gold stock's value even as ounces rise.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #173 · NOVEMBER 8, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
