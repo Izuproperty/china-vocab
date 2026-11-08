@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #163 · November 9, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #163 · November 9, 2026</div>
+    <div class="masthead-sub">NTT Data Orders 900MW of Fuel Cells · Ibiden Raises Cell 6 to ¥370 Billion · Ueda Explains the Surplus</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · NTT DATA</div>
+      <div class="card-num">900<span class="card-num-unit">MW</span></div>
+      <div class="card-label">Bloom fuel cells ordered by NTT Data</div>
+      <div class="card-delta delta-green">Shipments from 2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · IBIDEN</div>
+      <div class="card-num">¥370<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Gama Cell 6 investment, up ¥150bn</div>
+      <div class="card-delta delta-red">Shares -15.2% after results</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">¥3.35<span class="card-num-unit">tn</span></div>
+      <div class="card-label">Sept current account forecast, due Tue</div>
+      <div class="card-delta delta-amber">Aug: ¥4.06tn</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &AMP; TECH</div>
+    <div class="story-headline">NTT Data Orders 900 Megawatts of Bloom Fuel Cells to Power Data Centers Before the Grid Arrives</div>
+    <div class="story-insight"><p>NTTデータ (Enu Tī Tī Dēta, NTT Data) said on November 5 that its NTT Global Data Centers unit will deploy 900 megawatts of solid oxide 燃料電池 (nenryō denchi, fuel cells) from US maker Bloom Energy as 自家発電 (jika hatsuden, on-site power generation) at multiple data center projects worldwide. First shipments are due in 2027, and both companies said the arrangement could reach gigawatt scale across NTT Data's portfolio. They named no countries or sites and disclosed no price or contract structure. Bloom called it its largest international project. Doug Adams, chief executive of NTT Global Data Centers, said power availability "has become one of the defining factors" in delivering capacity.</p>
+      <br>
+      <p>NTT Data has already described the power problem in Japan. Nikkei reported in October that it is in final talks to build an Osaka data center of up to 500 megawatts for Anthropic, and that the plan starts with on-site generation and fuel cells because a grid connection of that size would take years. Grid approvals at Inzai in Chiba, its main cluster near Tokyo, take eight to ten years. NTT Data ran about 1,755 megawatts of capacity in September and targets about 2,040 megawatts by March 2027, so the Bloom order equals about half its current fleet. First-half data center revenue rose 54% while operating profit fell 9.5% as new halls ramped. Bloom's other large orders include up to 2.8 gigawatts with Oracle and a 702-megawatt plant for AEP, and Rystad Energy puts its annual factory output near 1.8 gigawatts, so NTT Data has reserved about half a year of production. Bloom shares fell 17.5% on November 5 in the US AI hardware selloff.</p>
+      <br>
+      <p>On-site power lets a hall open and collect rent before the 電力系統 (denryoku keitō, power grid) connection comes through, which raises returns on buildings NTT Data is already paying for. Fuel becomes the new cost. Bloom units run on natural gas, biogas or hydrogen, and Japan imports almost all its gas as LNG, so a Japanese site on fuel cells ties operating cost to LNG prices and adds emissions that tenants with carbon targets will count. Hitachi signed its own partnership with Bloom in September to install fuel cells at Japanese data centers and factories. NTT Data has not said whether the first tranche includes a Japanese site, or whether the Anthropic Osaka contract, which the parties aim to sign by the end of March 2027, will use Bloom units.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> NTT Data is buying time. Fuel cells let it fill halls years before utility connections arrive, which brings revenue forward on capacity already under construction. The trade-off is an operating cost linked to LNG and higher emissions. Watch for a named Japanese site and for the Anthropic Osaka contract by March 2027.</div>
+    <div class="chart-box">
+      <div class="chart-title">NTT Data Power and Capacity Figures (megawatts)</div>
+<svg viewBox="0 0 860 186" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="156" stroke="#e8eaf2"/><text x="230.0" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="351.5" y1="10" x2="351.5" y2="156" stroke="#e8eaf2"/><text x="351.5" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">500</text>
+<line x1="473.0" y1="10" x2="473.0" y2="156" stroke="#e8eaf2"/><text x="473.0" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">1,000</text>
+<line x1="594.5" y1="10" x2="594.5" y2="156" stroke="#e8eaf2"/><text x="594.5" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">1,500</text>
+<line x1="715.9" y1="10" x2="715.9" y2="156" stroke="#e8eaf2"/><text x="715.9" y="172" font-size="10" fill="#5a6a8a" text-anchor="middle">2,000</text>
+<text x="220" y="36" font-size="11" fill="#5a6a8a" text-anchor="end">Capacity, Sept 2026</text><rect x="230" y="22" width="426.4" height="20" rx="2" fill="#5a6a8a"/><text x="664.4" y="36" font-size="11" font-weight="700" fill="#1a1a2e">1,755</text>
+<text x="220" y="70" font-size="11" fill="#5a6a8a" text-anchor="end">Target, March 2027</text><rect x="230" y="56" width="495.7" height="20" rx="2" fill="#5a6a8a"/><text x="733.7" y="70" font-size="11" font-weight="700" fill="#1a1a2e">2,040</text>
+<text x="220" y="104" font-size="11" fill="#5a6a8a" text-anchor="end">Bloom fuel cell order</text><rect x="230" y="90" width="218.7" height="20" rx="2" fill="#3730a3"/><text x="456.7" y="104" font-size="11" font-weight="700" fill="#1a1a2e">900</text>
+<text x="220" y="138" font-size="11" fill="#5a6a8a" text-anchor="end">Anthropic Osaka plan (max)</text><rect x="230" y="124" width="121.5" height="20" rx="2" fill="#818cf8"/><text x="359.5" y="138" font-size="11" font-weight="700" fill="#1a1a2e">500</text>
+</svg>
+      <div class="chart-note">Capacity figures from NTT Data's H1 results (Nov 4). Osaka figure is Nikkei's reported maximum (Oct 13); no contract signed. Bloom sites not disclosed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">燃料電池<span class="annotation-card-en">fuel cells</span></div>
+        <div class="annotation-card-body">900MW, potentially gigawatt scale.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">大阪<span class="annotation-card-en">Osaka</span></div>
+        <div class="annotation-card-body">Anthropic site contract targeted by March 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">液化天然ガス<span class="annotation-card-en">LNG</span></div>
+        <div class="annotation-card-body">Fuel cost and emissions tied to imported gas.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Ibiden Posts Record Profit and Raises an AI Substrate Line to ¥370 Billion, Then Falls 15% and Hits Limit Down</div>
+    <div class="story-insight"><p>イビデン (Ibiden, Ibiden) reported on October 30 that April-September revenue rose 34% to ¥262.5 billion and operating profit rose 85% to ¥60.1 billion, lifting the margin to 22.9% from 13.3%. Net profit rose 75% to ¥38.6 billion. President Koji Kawashima said both figures were the highest in the company's history. The full-year guide calls for revenue of ¥565 billion, up 36%, operating profit of ¥133 billion and net profit of ¥89 billion, which implies second-half operating profit of ¥72.9 billion at a 24.1% margin. The FY2027 operating profit target rose by ¥15 billion to ¥165 billion with revenue unchanged at ¥650 billion. Earnings per share missed consensus by about 3%.</p>
+      <br>
+      <p>Ibiden makes FC-BGA ICパッケージ基板 (IC pakkēji kiban, IC package substrates), the layered boards that connect AI accelerators and server CPUs to the rest of the system. It added ¥150 billion to Cell 6 at its Gama plant in Gifu, taking that line to ¥370 billion, with output for AI ASIC substrates from FY2029. Cell 8 at Ono, a ¥280 billion line for GPU substrates, starts in FY2027, and Cells 7 and 9 are under negotiation with customers. 設備投資 (setsubi tōshi, capital expenditure) is set at ¥210 billion this year, ¥350 billion next year and more than ¥400 billion in FY2028. Shinji Miyazaki, head of corporate planning, said the focus is capacity rather than price and set a target of about 35% operating margin in electronics around 2030. The company expects GPU and ASIC units that use such substrates to grow from about 5 million in 2024 to about 30 million in 2030.</p>
+      <br>
+      <p>The shares fell 15.2% to ¥8,359 after the results. On November 5 they hit ストップ安 (sutoppu yasu, limit down), falling 16.3% as Murata Manufacturing and Furukawa Electric dropped by similar amounts in the AI hardware selloff. Investors sold because spending rises faster than the guide. Management assumes conservative substrate pricing through FY2030 and called yields on Intel's EMIB-T packaging "pretty challenging," so more than ¥400 billion a year of capex has to be funded before the new lines earn. Customer prepayments or capacity reservations for Cells 7 and 9 would move part of that funding risk to the chip designers, and an announcement of either would support the stock most directly.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Ibiden's profit is at a record, and the selloff prices the cost of the next cycle: capex climbing past ¥400 billion a year by FY2028 under cautious pricing assumptions. Prepayment or reservation deals for Cells 7 and 9 would cut the funding risk. A cut to electronics guidance would confirm the market's concern.</div>
+    <div class="chart-box">
+      <div class="chart-title">Ibiden Capital Expenditure Plan (¥ billion, fiscal years)</div>
+<svg viewBox="0 0 860 240" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="210.0" x2="820" y2="210.0" stroke="#e8eaf2"/><text x="62" y="214.0" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+<line x1="70" y1="172.0" x2="820" y2="172.0" stroke="#e8eaf2"/><text x="62" y="176.0" font-size="10" fill="#5a6a8a" text-anchor="end">100</text>
+<line x1="70" y1="134.0" x2="820" y2="134.0" stroke="#e8eaf2"/><text x="62" y="138.0" font-size="10" fill="#5a6a8a" text-anchor="end">200</text>
+<line x1="70" y1="96.0" x2="820" y2="96.0" stroke="#e8eaf2"/><text x="62" y="100.0" font-size="10" fill="#5a6a8a" text-anchor="end">300</text>
+<line x1="70" y1="58.0" x2="820" y2="58.0" stroke="#e8eaf2"/><text x="62" y="62.0" font-size="10" fill="#5a6a8a" text-anchor="end">400</text>
+<line x1="70" y1="20.0" x2="820" y2="20.0" stroke="#e8eaf2"/><text x="62" y="24.0" font-size="10" fill="#5a6a8a" text-anchor="end">500</text>
+<rect x="135.0" y="130.2" width="120" height="79.8" rx="3" fill="#be185d"/><text x="195.0" y="122.2" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥210bn</text><text x="195.0" y="228" font-size="11" fill="#5a6a8a" text-anchor="middle">FY2026</text>
+<rect x="385.0" y="77.0" width="120" height="133.0" rx="3" fill="#be185d"/><text x="445.0" y="69.0" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥350bn</text><text x="445.0" y="228" font-size="11" fill="#5a6a8a" text-anchor="middle">FY2027</text>
+<rect x="635.0" y="58.0" width="120" height="152.0" rx="3" fill="#f472b6"/><text x="695.0" y="50.0" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥400+bn</text><text x="695.0" y="228" font-size="11" fill="#5a6a8a" text-anchor="middle">FY2028</text>
+</svg>
+      <div class="chart-note">FY2028 shown at ¥400bn; company guides 'over ¥400bn'. H1 operating profit ¥60.1bn (+85%); implied H2 ¥72.9bn. Source: Ibiden results call, Oct 30, 2026.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">過去最高<span class="annotation-card-en">record high</span></div>
+        <div class="annotation-card-body">H1 OP +85% to ¥60.1bn, 22.9% margin.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">前払い<span class="annotation-card-en">prepayment</span></div>
+        <div class="annotation-card-body">Customer deals for Cells 7 and 9.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">設備投資<span class="annotation-card-en">capex</span></div>
+        <div class="annotation-card-body">Over ¥400bn a year by FY2028.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Ueda Tells the IMF That Companies, Not Households, Built Japan's Surplus, Before Tuesday's Current Account Data</div>
+    <div class="story-insight"><p>植田和男 (Ueda Kazuo, Kazuo Ueda), governor of the 日本銀行 (Nippon Ginkō, Bank of Japan), gave the 2026 Michel Camdessus Central Banking Lecture at the IMF on November 6 and said Japan's 経常収支 (keijō shūshi, current account) surplus has lasted because companies became chronic net savers from the late 1990s. Households behaved as life-cycle models predict, with net saving falling since the mid-1990s, while government deficits grew. Firms first repaired their balance sheets after the bubble by cutting domestic investment and repaying debt. From 2012 they moved retained earnings into 対外直接投資 (taigai chokusetsu tōshi, outward direct investment), which returned more than 8% for much of the period. Ueda said Japan has evolved "from a workshop of the world into a financier to the world." Demographics mattered by lowering expected returns at home, he argued, because the output gap was negative almost continuously from 1993 to 2012 and labor was not yet scarce.</p>
+      <br>
+      <p>He then pointed to a change. In a BOJ survey more than 70% of firms said they invested more at home in 2023-24, most often because of labor shortages, business investment has passed its early-1990s peak, and bank lending is growing above 5%. Ueda called it an open question whether a domestic-demand-led adjustment is under way and said 第一次所得収支 (dai-ichiji shotoku shūshi, primary income) would remain a lasting pillar of the external accounts. He said nothing about the 1.25% policy rate or the timing of the next hike.</p>
+      <br>
+      <p>The argument matters for the yen. A surplus built on income from overseas subsidiaries, much of it reinvested where it is earned, generates few yen purchases, which helps explain a large surplus alongside a dollar near ¥158. If firms keep shifting spending home, corporate saving falls and capex rises, which supports domestic demand and the case for higher rates. The Ministry of Finance releases the September current account on Tuesday morning, with forecasts near ¥3.35 trillion after ¥4.06 trillion in August. The BOJ publishes the Summary of Opinions from its October 29-30 meeting the same morning, and a 30-year JGB auction follows. The next policy meeting is December 17-18.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Ueda gave no rate signal, but his account of the surplus explains why it does little for the yen: the income is earned and largely kept abroad. Read Tuesday's current account and the Summary of Opinions together. A narrower surplus alongside hawkish opinions would strengthen the case for a December hike.</div>
+    <div class="chart-box">
+      <div class="chart-title">Ueda's Account of Japan's Corporate Saving Surplus</div>
+<svg viewBox="0 0 860 160" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="70" x2="800" y2="70" stroke="#3730a3" stroke-width="2"/>
+<circle cx="60.0" cy="70" r="7" fill="#3730a3"/><text x="60.0" y="50" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">Mid-1990s</text>
+<text x="60.0" y="98" font-size="10" fill="#5a6a8a" text-anchor="start">Household net</text>
+<text x="60.0" y="112" font-size="10" fill="#5a6a8a" text-anchor="start">saving starts to</text>
+<text x="60.0" y="126" font-size="10" fill="#5a6a8a" text-anchor="start">fall</text>
+<circle cx="245.0" cy="70" r="7" fill="#3730a3"/><text x="245.0" y="50" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Late 1990s</text>
+<text x="245.0" y="98" font-size="10" fill="#5a6a8a" text-anchor="middle">Firms repair</text>
+<text x="245.0" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">balance sheets,</text>
+<text x="245.0" y="126" font-size="10" fill="#5a6a8a" text-anchor="middle">become net savers</text>
+<circle cx="430.0" cy="70" r="7" fill="#3730a3"/><text x="430.0" y="50" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2012 on</text>
+<text x="430.0" y="98" font-size="10" fill="#5a6a8a" text-anchor="middle">Savings shift to</text>
+<text x="430.0" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">outward FDI,</text>
+<text x="430.0" y="126" font-size="10" fill="#5a6a8a" text-anchor="middle">returns above 8%</text>
+<circle cx="615.0" cy="70" r="7" fill="#3730a3"/><text x="615.0" y="50" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2023-24</text>
+<text x="615.0" y="98" font-size="10" fill="#5a6a8a" text-anchor="middle">Over 70% of firms</text>
+<text x="615.0" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">invest more at</text>
+<text x="615.0" y="126" font-size="10" fill="#5a6a8a" text-anchor="middle">home</text>
+<circle cx="800.0" cy="70" r="7" fill="#b45309"/><text x="800.0" y="50" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">Nov 10</text>
+<text x="800.0" y="98" font-size="10" fill="#5a6a8a" text-anchor="end">Sept current</text>
+<text x="800.0" y="112" font-size="10" fill="#5a6a8a" text-anchor="end">account and BOJ</text>
+<text x="800.0" y="126" font-size="10" fill="#5a6a8a" text-anchor="end">opinions</text>
+</svg>
+      <div class="chart-note">Source: Ueda, 'Japan's Current Account Surplus and Corporate Adjustment', IMF, Nov 6, 2026. Nov 10 release times per market calendar.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">国内投資<span class="annotation-card-en">domestic investment</span></div>
+        <div class="annotation-card-body">Over 70% of firms invest more at home.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">主な意見<span class="annotation-card-en">Summary of Opinions</span></div>
+        <div class="annotation-card-body">October meeting, due Nov 10.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">円安<span class="annotation-card-en">weak yen</span></div>
+        <div class="annotation-card-body">Income kept abroad does little for the yen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #163 · NOVEMBER 9, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
