@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #174 · November 9, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #174 · November 9, 2026</div>
+    <div class="masthead-sub">Qiyuan's 10,000th Personal Robot · Alibaba's Stealth Qoduck Ahead of Qwen4 · CPI/PPI Today, Trade Tuesday</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">10,000<span class="card-num-unit">units</span></div>
+      <div class="card-label">Qiyuan personal robots off the line by Nov 8; the 5,000th came on Oct 25</div>
+      <div class="card-delta delta-amber">Production, not deliveries</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">1M<span class="card-num-unit">tokens</span></div>
+      <div class="card-label">Reported context window of Qoduck, Alibaba's unnamed model on Qoder since Nov 7</div>
+      <div class="card-delta delta-red">Qwen4 not yet launched</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · PRICES</div>
+      <div class="card-num">5.0%<span class="card-num-unit">PPI</span></div>
+      <div class="card-label">September PPI vs CPI of 0.9%; October forecasts near 5.2% and 0.8%</div>
+      <div class="card-delta delta-amber">Trade data Tue Nov 10</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · ROBOTICS / CONSUMER EMBODIED AI</div>
+    <div class="story-headline">Swancor's Qiyuan Rolls Its 10,000th Personal Robot Off the Line, 14 Days After the 5,000th, and Reports a 98% Monthly Active Rate</div>
+    <div class="story-insight">
+      <p>Qiyuan Robotics (启元机器人), the consumer brand of Swancor (上纬新材, 688585), said its 10,000th personal robot (个人机器人) came off the line on November 8, 14 days after the 5,000th. Mass production (量产) started in October, with daily capacity ramping to 240. Co-president Liu Dongfang reported a monthly active rate (月活率) above 98% and three hours of daily use.</p>
+      <br>
+      <p>The Q1 humanoid and T1 transformer start at ¥19,999 ($3,000). At base price 10,000 units come to about ¥200 million ($30 million), close to the ¥210 million ($31 million) of robot prepayments Swancor reported at mid-year.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Qiyuan has a disclosed consumer volume that most humanoid makers lack, but the counts are production, not deliveries, and the implied 357 units a day exceeds the 240-unit capacity cited, so Q4 revenue recognition is the check.</div>
+    <div class="chart-box">
+      <div class="chart-title">Cumulative Output and the Pace Gap</div>
+      <svg viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CUMULATIVE QIYUAN UNITS OFF THE LINE</text><line x1="60" y1="230" x2="440" y2="230" stroke="#c9bfb3"/><line x1="60" y1="50" x2="60" y2="230" stroke="#c9bfb3"/><polyline points="80,230 290,140 410,50" fill="none" stroke="#c0392b" stroke-width="3"/><circle cx="80" cy="230" r="5" fill="#9a8a7a"/><circle cx="290" cy="140" r="5" fill="#1a1a2e"/><circle cx="410" cy="50" r="6" fill="#c0392b"/><text x="80" y="250" font-size="10" text-anchor="middle" fill="#5a6a8a">Oct 1</text><text x="290" y="250" font-size="10" text-anchor="middle" fill="#5a6a8a">Oct 25</text><text x="410" y="250" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Nov 8</text><text x="96" y="222" font-size="11" fill="#9a8a7a">Shipping starts</text><text x="300" y="136" font-size="12" font-weight="700" fill="#1a1a2e">5,000</text><text x="372" y="44" font-size="12" font-weight="700" text-anchor="end" fill="#c0392b">10,000</text><text x="480" y="20" font-size="11" font-weight="700" fill="#5a6a8a">UNITS PER DAY</text><text x="480" y="55" font-size="12" font-weight="700" fill="#1a1a2e">Implied, Oct 25–Nov 8</text><rect x="480" y="64" width="286" height="20" fill="#c0392b"/><text x="758" y="79" font-size="11" font-weight="700" text-anchor="end" fill="#fff">~357</text><text x="480" y="110" font-size="12" fill="#1a1a2e">Capacity cited for ramp</text><rect x="480" y="119" width="192" height="20" fill="#1a1a2e"/><text x="680" y="134" font-size="11" font-weight="700" fill="#1a1a2e">240</text><text x="480" y="165" font-size="12" fill="#1a1a2e">Capacity at 5,000th unit</text><rect x="480" y="174" width="160" height="20" fill="#9a8a7a"/><text x="648" y="189" font-size="11" font-weight="700" fill="#9a8a7a">200+</text><text x="30" y="290" font-size="11" fill="#5a4a3a">Swancor H1 2026: revenue ¥803M ($120M) · net loss ¥167M ($25M) · robot prepayments ¥210M ($31M) · 10,000 × ¥19,999 ≈ ¥200M ($30M)</text><text x="30" y="312" font-size="11" fill="#5a4a3a">Usage (company-reported): monthly active &gt;98% · daily online peak &gt;40% · 3 hrs online/day · 100+ interactions per user/day</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: The Paper and 21st Century Business Herald (Nov 8, 2026); Sina robotics digest (Nov 8); Issue #160 (Oct 25 milestone, 200+/day); Huxiu (Sep 22, 2026) for prices and H1 financials. Implied pace is our arithmetic (5,000 units / 14 days). Pace bars 0.8px per unit. USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · VOLUME</div>
+        <div class="annotation-card-zh">量产<span class="annotation-card-en">liàngchǎn · mass production</span></div>
+        <div class="annotation-card-body">10,000 consumer units in about five weeks of factory output.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DELIVERIES</div>
+        <div class="annotation-card-zh">月活率<span class="annotation-card-en">yuèhuó lǜ · monthly active rate</span></div>
+        <div class="annotation-card-body">Q4 revenue recognition and any shipped-unit disclosure from Swancor.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · DISCLOSURE</div>
+        <div class="annotation-card-zh">上纬新材<span class="annotation-card-en">Shàngwěi Xīncái · Swancor</span></div>
+        <div class="annotation-card-body">Pace exceeds cited capacity; usage data unaudited; AgiBot related-party ties.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · FOUNDATION MODELS</div>
+    <div class="story-headline">Alibaba Puts an Unnamed "Stealth" Model, Qoduck, Into Its Qoder Coding Tool for Free a Day After Teasing Qwen4, as the Launch Itself Slips Past Its Hinted Week</div>
+    <div class="story-insight">
+      <p>Alibaba (阿里巴巴) added Qoduck, a stealth model (隐身模型) of undisclosed origin, to its Qoder coding assistant (编程助手) on November 7. Individual plans get a free daily allowance and half-price overage. Users report a 1 million-token context window (上下文窗口) and a Qwen-family tokenizer.</p>
+      <br>
+      <p>A November 6 Qwen (通义千问) teaser left a blank readers filled with 鲲 (kūn). The launch hinted for the week after October 29 has not happened. Leaked, unconfirmed scores put a Qwen4-Flash ahead of Claude Opus 5.5 on one test at about a sixth of the cost per task.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Alibaba is gathering paid developer usage before publishing a model card or licence; whether Qwen4 ships with open weights above MOFCOM's draft 2-trillion-parameter threshold is the open question for the launch.</div>
+    <div class="chart-box">
+      <div class="chart-title">Qwen's Scale Path and the Leaked Cost Gap</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">FLAGSHIP PARAMETERS, TRILLIONS</text><text x="30" y="55" font-size="12" fill="#1a1a2e">Qwen3.8-Max (Aug 2026)</text><rect x="230" y="42" width="120" height="20" fill="#1a1a2e"/><text x="358" y="57" font-size="11" font-weight="700" fill="#1a1a2e">2.4</text><text x="30" y="87" font-size="12" font-weight="700" fill="#1a1a2e">Qwen4 flagship (ZOL est.)</text><rect x="230" y="74" width="150" height="20" fill="#c0392b"/><text x="388" y="89" font-size="11" font-weight="700" fill="#c0392b">&gt;3</text><text x="30" y="119" font-size="12" fill="#1a1a2e">Qwen4.5 / Qwen5 target</text><rect x="230" y="106" width="250" height="20" fill="#9a8a7a" opacity="0.5"/><rect x="230" y="106" width="500" height="20" fill="none" stroke="#9a8a7a" stroke-dasharray="4 3"/><text x="738" y="121" font-size="11" font-weight="700" fill="#9a8a7a">5–10</text><line x1="330" y1="36" x2="330" y2="132" stroke="#b45309" stroke-dasharray="3 3"/><text x="334" y="146" font-size="10" fill="#b45309">2T: MOFCOM draft export threshold</text><text x="30" y="184" font-size="11" font-weight="700" fill="#5a6a8a">LEAKED GAMEFEEL BENCH, COST PER TASK, $ (UNCONFIRMED)</text><text x="30" y="215" font-size="12" fill="#1a1a2e">Claude Opus 5.5 xHigh · 47.2</text><rect x="260" y="202" width="520" height="20" fill="#9a8a7a"/><text x="772" y="217" font-size="11" font-weight="700" text-anchor="end" fill="#fff">$2.60</text><text x="30" y="247" font-size="12" font-weight="700" fill="#1a1a2e">Qwen4-Flash · 49.9</text><rect x="260" y="234" width="80" height="20" fill="#c0392b"/><text x="348" y="249" font-size="11" font-weight="700" fill="#c0392b">$0.40</text><text x="30" y="279" font-size="12" fill="#1a1a2e">Qwen4-27B · 44.6</text><rect x="260" y="266" width="32" height="20" fill="#1a1a2e"/><text x="300" y="281" font-size="11" font-weight="700" fill="#1a1a2e">$0.16</text><text x="30" y="310" font-size="11" fill="#5a4a3a">Qoduck on Qoder (Nov 7): free daily allowance for individual plans · overage at 0.5x · Team/Enterprise excluded · no end date</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Startup Fortune (Nov 8, 2026), 53AI and Qoder on X (Nov 7); ZOL (Nov 7) for lineup and parameter estimate; 快科技 via 17173 (Nov 8) for leaked scores, not confirmed by Alibaba; Alibaba Apsara (Sep 22) for Qwen4.5/5 targets; MOFCOM draft (Oct 16). Parameter bars 50px per trillion; cost bars 200px per $1. No renminbi figures in this chart; USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICING</div>
+        <div class="annotation-card-zh">编程助手<span class="annotation-card-en">biānchéng zhùshǒu · coding assistant</span></div>
+        <div class="annotation-card-body">Free allowance and half-price overage undercut rival coding tools.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LAUNCH</div>
+        <div class="annotation-card-zh">鲲<span class="annotation-card-en">kūn · Kun, giant fish</span></div>
+        <div class="annotation-card-body">Model card, licence and price list; staged rollout expected into December.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · EXPORT RULES</div>
+        <div class="annotation-card-zh">开放权重<span class="annotation-card-en">kāifàng quánzhòng · open weights</span></div>
+        <div class="annotation-card-body">A flagship above 2T parameters falls under MOFCOM's draft controls.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · WEEK-AHEAD PREVIEW</div>
+    <div class="story-headline">Week Ahead: October CPI and PPI Land Today With Forecasts Near 0.8% and 5.2%, and Brokers See Exports Up 38% in Tuesday's Trade Data</div>
+    <div class="story-insight">
+      <p>NBS (国家统计局) releases October CPI (居民消费价格指数) and PPI (工业生产者出厂价格指数) at 09:30 Beijing today. September CPI was 0.9% and PPI 5.0%, the fastest since June 2022. Brokers expect CPI of 0.7% to 0.9% and PPI of 5.1% to 5.4%, with pork prices pulling CPI down and crude holding PPI up.</p>
+      <br>
+      <p>Trade data follow Tuesday: Nomura sees exports up 38% and a $126.1 billion surplus, Citi a $112.8 billion surplus. MOF sells up to ¥4 billion ($600 million) of green sovereign bonds (绿色主权债券) in Canada, and October credit data are due around November 13.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A scissors gap (剪刀差) above four points shows energy costs hitting producers without reaching households, which squeezes downstream margins; a PPI above 5.4% would make the PBOC likelier to hold its 1.25% overnight rate.</div>
+    <div class="chart-box">
+      <div class="chart-title">Two-Speed Inflation and the Export Bar</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CPI AND PPI, % Y/Y</text><line x1="60" y1="230" x2="440" y2="230" stroke="#c9bfb3"/><rect x="90" y="212" width="60" height="18" fill="#1a1a2e"/><rect x="160" y="130" width="60" height="100" fill="#c0392b"/><text x="120" y="206" font-size="12" font-weight="700" text-anchor="middle" fill="#1a1a2e">0.9</text><text x="190" y="124" font-size="12" font-weight="700" text-anchor="middle" fill="#c0392b">5.0</text><text x="155" y="250" font-size="10" text-anchor="middle" fill="#5a6a8a">Sep actual</text><rect x="270" y="212" width="60" height="18" fill="#1a1a2e" opacity="0.35"/><rect x="270" y="214" width="60" height="16" fill="none" stroke="#1a1a2e" stroke-dasharray="3 2"/><rect x="340" y="126" width="60" height="104" fill="#c0392b" opacity="0.35"/><rect x="340" y="122" width="60" height="6" fill="#c0392b" opacity="0.6"/><text x="300" y="206" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a2e">0.7–0.9</text><text x="370" y="114" font-size="11" font-weight="700" text-anchor="middle" fill="#c0392b">5.1–5.4</text><text x="335" y="250" font-size="10" font-weight="700" text-anchor="middle" fill="#b45309">Oct forecasts</text><text x="60" y="276" font-size="10" fill="#5a4a3a">■ CPI (dark) · ■ PPI (red) · bars 20px per point</text><text x="480" y="20" font-size="11" font-weight="700" fill="#5a6a8a">EXPORTS % Y/Y · SURPLUS $ BILLION</text><text x="480" y="55" font-size="12" fill="#1a1a2e">Sep exports</text><rect x="600" y="42" width="145" height="20" fill="#1a1a2e"/><text x="753" y="57" font-size="11" font-weight="700" fill="#1a1a2e">36.3%</text><text x="480" y="87" font-size="12" font-weight="700" fill="#1a1a2e">Oct (Nomura, Citi)</text><rect x="600" y="74" width="152" height="20" fill="#c0392b"/><text x="760" y="89" font-size="11" font-weight="700" fill="#c0392b">38%</text><text x="480" y="135" font-size="12" fill="#1a1a2e">Sep surplus</text><rect x="600" y="122" width="134" height="20" fill="#1a1a2e"/><text x="742" y="137" font-size="11" font-weight="700" fill="#1a1a2e">133.5</text><text x="480" y="167" font-size="12" fill="#1a1a2e">Oct, Nomura</text><rect x="600" y="154" width="126" height="20" fill="#b45309"/><text x="734" y="169" font-size="11" font-weight="700" fill="#b45309">126.1</text><text x="480" y="199" font-size="12" fill="#1a1a2e">Oct, Citi</text><rect x="600" y="186" width="113" height="20" fill="#b45309" opacity="0.7"/><text x="721" y="201" font-size="11" font-weight="700" fill="#b45309">112.8</text><text x="480" y="236" font-size="11" fill="#5a4a3a">Oct PMI: new export orders 48.7 · input prices 56.8 vs output 51.7</text><text x="30" y="306" font-size="11" fill="#5a4a3a">This week: CPI/PPI Nov 9 · trade Nov 10 · CIIE closes Nov 10 · MOF green bond in Canada up to ¥4B ($600M) · credit data ~Nov 13 (new loans ~−¥200B / −$30B; TSF ~¥1.6T / $240B)</text><text x="30" y="326" font-size="11" fill="#5a4a3a">Restricted-share unlocks this week: more than ¥44B ($6.6B)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: NBS September CPI/PPI release (Oct 14, 2026); October forecasts from CICC, China Merchants, Zheshang, Huachuang and Minsheng via The Paper (Nov 6); Nomura and Citi via Commercial Times (Nov 8); GACC September trade (Oct 14); MOF statement (Nov 5); Lundgreen's Investor Insights for credit forecasts. Export bars 4px per point; surplus bars 1px per $1 billion. USD at ¥6.67/$ (onshore spot close, Nov 6, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EXPORT MOMENTUM</div>
+        <div class="annotation-card-zh">海关总署<span class="annotation-card-en">Hǎiguān Zǒngshǔ · Customs</span></div>
+        <div class="annotation-card-body">Brokers expect October exports to beat September's 36.3% gain.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · CREDIT</div>
+        <div class="annotation-card-zh">社会融资规模<span class="annotation-card-en">shèhuì róngzī guīmó · total social financing</span></div>
+        <div class="annotation-card-body">A net fall in new loans would strengthen the fiscal case.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGINS</div>
+        <div class="annotation-card-zh">剪刀差<span class="annotation-card-en">jiǎndāochā · scissors gap</span></div>
+        <div class="annotation-card-body">Input costs outrun output prices; PMI export orders at 48.7.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #174 · NOVEMBER 9, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
