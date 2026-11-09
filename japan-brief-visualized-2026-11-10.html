@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #164 · November 10, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #164 · November 10, 2026</div>
+    <div class="masthead-sub">SoftBank Corp Hedges on US Neocloud · Furukawa Lifts Fiber Guide · MoF Discloses Record Intervention</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SOFTBANK CORP</div>
+      <div class="card-num">¥610<span class="card-num-unit">bn</span></div>
+      <div class="card-label">FY net profit guide, up from ¥560bn</div>
+      <div class="card-delta delta-amber">Q2 margin 17.1% vs 19.4%</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · FURUKAWA</div>
+      <div class="card-num">¥53<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Optical segment profit guide, up from ¥43bn</div>
+      <div class="card-delta delta-green">FY OP guide ¥136bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · MOF</div>
+      <div class="card-num">¥7.98<span class="card-num-unit">tn</span></div>
+      <div class="card-label">Dollars sold on July 30, a one-day record</div>
+      <div class="card-delta delta-red">USD/JPY ~158 on Nov 9</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &AMP; TECH</div>
+    <div class="story-headline">SoftBank Corp Raises Its Profit Guide to ¥610 Billion, and Its CEO Says the US Neocloud May Launch in Other Countries First</div>
+    <div class="story-insight"><p>ソフトバンク (Sofutobanku, SoftBank Corp), the listed telecom arm of SoftBank Group, reported on November 9 that April-September revenue rose 11.7% to ¥3.80 trillion, operating profit rose 2.1% to ¥642.1 billion and net profit rose 4.5% to ¥364.5 billion, all records for a first half. Second-quarter net profit grew 5.4% to ¥214.4 billion, but the quarterly operating margin fell to 17.1% from 19.4%. The company raised its full-year net profit guide to ¥610 billion from ¥560 billion and its revenue guide to ¥7.9 trillion from ¥7.5 trillion, and kept operating profit at ¥1.16 trillion. Part of the net increase comes from a gain on selling preferred equity in SB Energy, so the core earnings guide moved less than the headline.</p>
+      <br>
+      <p>The enterprise segment is where the AI business sits. Its half-year sales rose 12% to ¥538.9 billion and segment profit rose 20% to ¥124.8 billion, with cloud and AI revenue up about 37%. The company plan takes cloud and AI revenue from ¥255.8 billion to ¥330 billion and then ¥430 billion over successive fiscal years. A security service built on OpenAI technology has more than 7,000 corporate customers. The results also disclosed that a ランサムウェア (ransamuwea, ransomware) attack on data center subsidiary IDC Frontier on October 7 affected 495 corporate and local government customers.</p>
+      <br>
+      <p>Chief executive 宮川潤一 (Miyakawa Jun'ichi, Junichi Miyakawa) told Bloomberg he is assessing how the Democratic sweep of Congress and local opposition to data centers affect plans for SB Neo, the ネオクラウド (neo kuraudo, neocloud) that SoftBank Corp owns 51% and SoftBank Group 49%, which targets up to 10 gigawatts of US capacity and is due to start in the year to March 2028. He said the venture "may launch in other countries first" and that global demand for AI data centers remains strong. A move outside the US would change where SoftBank spends its capex and which power and permitting regimes it depends on. SoftBank Group reports at 3:30 p.m. today, and investors will look for whether it repeats the subsidiary's caution on US sites.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> SoftBank Corp's raised guide rests partly on a one-off SB Energy gain, and its quarterly operating margin fell. The bigger change is Miyakawa's openness to starting SB Neo outside the US, which ties the group's largest infrastructure plan to US permitting politics. SoftBank Group's results this afternoon will show whether the parent shares that view.</div>
+    <div class="chart-box">
+      <div class="chart-title">SoftBank Corp Net Profit (¥ billion, year to March 2027)</div>
+<svg viewBox="0 0 860 176" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="146" stroke="#e8eaf2"/><text x="230.0" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="392.9" y1="10" x2="392.9" y2="146" stroke="#e8eaf2"/><text x="392.9" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">200</text>
+<line x1="555.7" y1="10" x2="555.7" y2="146" stroke="#e8eaf2"/><text x="555.7" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">400</text>
+<line x1="718.6" y1="10" x2="718.6" y2="146" stroke="#e8eaf2"/><text x="718.6" y="162" font-size="10" fill="#5a6a8a" text-anchor="middle">600</text>
+<text x="220" y="36" font-size="11" fill="#5a6a8a" text-anchor="end">FY3/26 actual</text><rect x="230" y="22" width="448.4" height="20" rx="2" fill="#5a6a8a"/><text x="686.4" y="36" font-size="11" font-weight="700" fill="#1a1a2e">¥550.7bn</text>
+<text x="220" y="70" font-size="11" fill="#5a6a8a" text-anchor="end">Previous FY3/27 guide</text><rect x="230" y="56" width="456.0" height="20" rx="2" fill="#818cf8"/><text x="694.0" y="70" font-size="11" font-weight="700" fill="#1a1a2e">¥560bn</text>
+<text x="220" y="104" font-size="11" fill="#5a6a8a" text-anchor="end">New FY3/27 guide</text><rect x="230" y="90" width="496.7" height="20" rx="2" fill="#3730a3"/><text x="734.7" y="104" font-size="11" font-weight="700" fill="#1a1a2e">¥610bn</text>
+<text x="220" y="138" font-size="11" fill="#5a6a8a" text-anchor="end">H1 FY3/27 actual</text><rect x="230" y="124" width="296.8" height="20" rx="2" fill="#a5b4fc"/><text x="534.8" y="138" font-size="11" font-weight="700" fill="#1a1a2e">¥364.5bn</text>
+</svg>
+      <div class="chart-note">Source: SoftBank Corp H1 results, Nov 9, 2026. Part of the raise reflects a gain on selling SB Energy preferred equity. Operating profit guide kept at ¥1.16tn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">クラウド・AI<span class="annotation-card-en">cloud & AI</span></div>
+        <div class="annotation-card-body">Revenue up about 37% in the half.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">SB Neo<span class="annotation-card-en">neocloud</span></div>
+        <div class="annotation-card-body">Launch site outside the US.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">利益率<span class="annotation-card-en">margin</span></div>
+        <div class="annotation-card-body">Q2 operating margin down to 17.1%.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Furukawa Electric Raises Its Fiber Profit Guide 23% and Says Data Center Orders Have Not Slowed After the US Midterms</div>
+    <div class="story-insight"><p>古河電気工業 (Furukawa Denki Kōgyō, Furukawa Electric) reported on November 9 that April-September sales rose 20.8% to ¥737.7 billion and operating profit tripled to ¥57.6 billion, both the highest for a first half since at least 2001. Net profit rose 4.6 times to ¥58.8 billion, helped by a ¥21.7 billion gain on selling shares in aluminum maker UACJ in September. The second-quarter operating margin reached 8.6%, up from 3.4% a year earlier. The company raised its full-year guide for the year to March 2027: operating profit to ¥136 billion from ¥123 billion, ordinary profit to ¥155 billion from ¥143 billion, and net profit to ¥118 billion from ¥105 billion. The dividend forecast stays at ¥22 a share after the 10-for-1 split this summer.</p>
+      <br>
+      <p>Optical Solutions drove the upgrade. 光ファイバ (hikari faiba, optical fiber) and cable sales rose 43.9% in the half to ¥130.9 billion and segment profit reached ¥23.6 billion, almost all of it new compared with a year ago, and the full-year segment profit guide rose to ¥53 billion from ¥43 billion. Hyperscalers are buying high-count ribbon cable to link GPUs inside and between data center buildings. Furukawa announced a ¥100 billion plan in August to roughly double Rollable Ribbon Cable capacity at its Lightera plants in the US, Brazil and Japan and an Indian joint venture, with mass production from the second half of FY2028. It also expects to double supply of 銅箔 (dōhaku, copper foil) for AI server boards by the end of FY2029.</p>
+      <br>
+      <p>President Hideya Moridaira said he sees no negative signs in customer orders after the US midterms, that enquiries remain strong, and that he will not cut investment. He said the ¥170 billion operating profit target for FY2028 could arrive a year early. The stock needed that message. Furukawa fell about a third between October 23 and November 6 as US election results raised fears of slower data center permitting, and it closed down 8.6% on November 6 alone. The shares rose with the market on November 9 and extended gains after the 2 p.m. release. A similar 上方修正 (jōhō shūsei, upward revision) from peers Fujikura or Sumitomo Electric at their next results would confirm that fiber orders are holding up across the industry.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Furukawa's upgrade comes from fiber volumes, and the ¥13 billion operating profit raise excludes the one-off UACJ gain that inflated the net line. Management sees no order slowdown, which answers the specific fear behind the late-October selloff. Moridaira's view that the ¥170 billion target could come a year early is the next claim for investors to test.</div>
+    <div class="chart-box">
+      <div class="chart-title">Furukawa Electric FY3/27 Guide: Previous vs New (¥ billion)</div>
+<svg viewBox="0 0 860 244" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="214" stroke="#e8eaf2"/><text x="230.0" y="230" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="372.5" y1="10" x2="372.5" y2="214" stroke="#e8eaf2"/><text x="372.5" y="230" font-size="10" fill="#5a6a8a" text-anchor="middle">40</text>
+<line x1="515.0" y1="10" x2="515.0" y2="214" stroke="#e8eaf2"/><text x="515.0" y="230" font-size="10" fill="#5a6a8a" text-anchor="middle">80</text>
+<line x1="657.5" y1="10" x2="657.5" y2="214" stroke="#e8eaf2"/><text x="657.5" y="230" font-size="10" fill="#5a6a8a" text-anchor="middle">120</text>
+<line x1="800.0" y1="10" x2="800.0" y2="214" stroke="#e8eaf2"/><text x="800.0" y="230" font-size="10" fill="#5a6a8a" text-anchor="middle">160</text>
+<text x="220" y="36" font-size="11" fill="#5a6a8a" text-anchor="end">Operating profit, previous</text><rect x="230" y="22" width="438.2" height="20" rx="2" fill="#f9a8d4"/><text x="676.2" y="36" font-size="11" font-weight="700" fill="#1a1a2e">¥123bn</text>
+<text x="220" y="70" font-size="11" fill="#5a6a8a" text-anchor="end">Operating profit, new</text><rect x="230" y="56" width="484.5" height="20" rx="2" fill="#be185d"/><text x="722.5" y="70" font-size="11" font-weight="700" fill="#1a1a2e">¥136bn</text>
+<text x="220" y="104" font-size="11" fill="#5a6a8a" text-anchor="end">Net profit, previous</text><rect x="230" y="90" width="374.1" height="20" rx="2" fill="#f9a8d4"/><text x="612.1" y="104" font-size="11" font-weight="700" fill="#1a1a2e">¥105bn</text>
+<text x="220" y="138" font-size="11" fill="#5a6a8a" text-anchor="end">Net profit, new</text><rect x="230" y="124" width="420.4" height="20" rx="2" fill="#be185d"/><text x="658.4" y="138" font-size="11" font-weight="700" fill="#1a1a2e">¥118bn</text>
+<text x="220" y="172" font-size="11" fill="#5a6a8a" text-anchor="end">Optical segment, previous</text><rect x="230" y="158" width="153.2" height="20" rx="2" fill="#f9a8d4"/><text x="391.2" y="172" font-size="11" font-weight="700" fill="#1a1a2e">¥43bn</text>
+<text x="220" y="206" font-size="11" fill="#5a6a8a" text-anchor="end">Optical segment, new</text><rect x="230" y="192" width="188.8" height="20" rx="2" fill="#be185d"/><text x="426.8" y="206" font-size="11" font-weight="700" fill="#1a1a2e">¥53bn</text>
+</svg>
+      <div class="chart-note">Source: Furukawa Electric H1 results, Nov 9, 2026. H1 net includes a ¥21.7bn gain on UACJ shares. Ordinary profit guide raised to ¥155bn from ¥143bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">光ファイバ<span class="annotation-card-en">optical fiber</span></div>
+        <div class="annotation-card-body">H1 segment sales +43.9%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">フジクラ<span class="annotation-card-en">Fujikura</span></div>
+        <div class="annotation-card-body">Peer guidance at next results.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">許認可<span class="annotation-card-en">permitting</span></div>
+        <div class="annotation-card-body">Slower US data center approvals.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The Finance Ministry Discloses a Record ¥7.98 Trillion Intervention on July 30, and the Yen Has Given Back Most of the Gain</div>
+    <div class="story-insight"><p>The 財務省 (Zaimushō, Ministry of Finance) published daily 為替介入 (kawase kainyū, currency intervention) data for July through September on November 9. It sold dollars for ¥7.98 trillion, about $50 billion, on July 30, the largest single day since records began in 1991, as USD/JPY fell from 163.74 to 157.97. It sold another ¥5.55 trillion on July 31 in a joint operation with the US Treasury, after the dollar bounced to 160.88, and ¥1.87 trillion on August 3. The three days total ¥15.40 trillion. The previous one-day record was ¥6.28 trillion on April 30 of this year.</p>
+      <br>
+      <p>Japan has now intervened on six days in 2026 for ¥27.13 trillion, the largest annual total in the series. The ministry did not intervene between August 27 and October 28. 外貨準備高 (gaika junbi-daka, foreign reserves) stood at $1.179 trillion at the end of October, about $230 billion below end-February. The ministry funds yen purchases by selling dollar assets, mostly US Treasuries and deposits, so another ¥7.98 trillion day would use about $50 billion of them.</p>
+      <br>
+      <p>The dollar traded near ¥158 on November 9, roughly where it settled after the July 31 協調介入 (kyōchō kainyū, coordinated intervention). Interest rate differentials have not narrowed enough to hold the yen up: the BOJ kept its rate at 1.25% on October 30, and futures priced about a 65% chance of a December hike on November 6, down from about 80% a day earlier as the Nikkei fell. Finance Minister Satsuki Katayama said on November 2 that the September 2025 currency statement with Washington remains in force. Tokyo has shown it will spend at record scale near ¥160 to ¥164, and the BOJ's Summary of Opinions, released this morning, will show whether board members see enough inflation pressure to support the yen with a December move.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The July operation bought about six yen for ¥7.98 trillion, and three months later the dollar is near ¥158 again. The ministry still holds $1.18 trillion of reserves and has shown its threshold sits around ¥160 to ¥164. A lasting yen recovery depends on a BOJ hike, so today's Summary of Opinions is the next release that can move the currency.</div>
+    <div class="chart-box">
+      <div class="chart-title">Largest Yen-Buying Intervention Days of 2026 (¥ trillion)</div>
+<svg viewBox="0 0 860 240" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="210.0" x2="820" y2="210.0" stroke="#e8eaf2"/><text x="62" y="214.0" font-size="10" fill="#5a6a8a" text-anchor="end">0</text>
+<line x1="70" y1="146.7" x2="820" y2="146.7" stroke="#e8eaf2"/><text x="62" y="150.7" font-size="10" fill="#5a6a8a" text-anchor="end">3</text>
+<line x1="70" y1="83.3" x2="820" y2="83.3" stroke="#e8eaf2"/><text x="62" y="87.3" font-size="10" fill="#5a6a8a" text-anchor="end">6</text>
+<line x1="70" y1="20.0" x2="820" y2="20.0" stroke="#e8eaf2"/><text x="62" y="24.0" font-size="10" fill="#5a6a8a" text-anchor="end">9</text>
+<rect x="108.8" y="77.4" width="110" height="132.6" rx="3" fill="#fbbf24"/><text x="163.8" y="69.4" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥6.28tn</text><text x="163.8" y="228" font-size="11" fill="#5a6a8a" text-anchor="middle">Apr 30</text>
+<rect x="296.2" y="41.6" width="110" height="168.4" rx="3" fill="#b45309"/><text x="351.2" y="33.6" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥7.98tn</text><text x="351.2" y="228" font-size="11" fill="#5a6a8a" text-anchor="middle">Jul 30</text>
+<rect x="483.8" y="92.8" width="110" height="117.2" rx="3" fill="#d97706"/><text x="538.8" y="84.8" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥5.55tn</text><text x="538.8" y="228" font-size="11" fill="#5a6a8a" text-anchor="middle">Jul 31 (joint, US)</text>
+<rect x="671.2" y="170.5" width="110" height="39.5" rx="3" fill="#fbbf24"/><text x="726.2" y="162.5" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">¥1.87tn</text><text x="726.2" y="228" font-size="11" fill="#5a6a8a" text-anchor="middle">Aug 3</text>
+</svg>
+      <div class="chart-note">Source: Ministry of Finance daily intervention data, released Nov 9, 2026. Six intervention days in 2026 total ¥27.13tn; two smaller days not shown. Jul 30 USD/JPY range 163.74 to 157.97.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">過去最大<span class="annotation-card-en">record</span></div>
+        <div class="annotation-card-body">¥27.13tn in six days in 2026.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">主な意見<span class="annotation-card-en">Summary of Opinions</span></div>
+        <div class="annotation-card-body">December hike support, out today.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">外貨準備高<span class="annotation-card-en">reserves</span></div>
+        <div class="annotation-card-body">$1.179tn, down $230bn since Feb.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #164 · NOVEMBER 10, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
