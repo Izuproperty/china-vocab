@@ -1,5 +1,116 @@
 [
   {
+    "issue": 176,
+    "date": "2026-11-11",
+    "title": "UBTech Passes Unitree in Q3 Humanoid Shipments, Meituan's LongCat-2.5 Trained on Domestic Chips, October Exports +35.2% and a $1 Trillion Surplus",
+    "summary": "SAG estimates 16,500 humanoids shipped worldwide in Q3, with AgiBot first at 30% and UBTech overtaking Unitree as full-size industrial robots gained share. Meituan open-sourced LongCat-2.5, a 1.6-trillion-parameter agent model it says was trained entirely on domestic chips. October exports rose 35.2% and imports 41.6% on chips, gold and crude, taking the ten-month surplus to $1.04 trillion.",
+    "viz_url": "china-brief-visualized-2026-11-11.html",
+    "sections": [
+      {
+        "icon": "🤖",
+        "title": "SAG Counts 16,500 Humanoids Shipped Worldwide in Q3, With AgiBot First at 30% and UBTech Passing Unitree for Second as Full-Size Robots Gain Share",
+        "tag": "robotics",
+        "source": "Smart Analytics Global, Robotics 360 (Nov 8, published Nov 9) · Forbes (Nov 10, Web Summit) · Euronews (Nov 9) · AI & Tech · Robotics / humanoids · Nov 8–9, 2026 (about 2 days old)",
+        "body": "Smart Analytics Global (SAG), a US research firm, estimates that global 人形机器人 (rénxíng jīqìrén, humanoid robot) shipments reached 16,500 units in the third quarter, up 347% from a year earlier. 智元机器人 (Zhìyuán Jīqìrén, AgiBot) led with 4,900 units and a 30% share. 优必选 (Yōubìxuǎn, UBTech, 9880.HK) shipped 4,500, up 1,603% year on year, and its share rose to 27% from 7%. 宇树科技 (Yǔshù Kējì, Unitree) shipped about 4,400 and fell to third, with its share down to 27% from 37%. 乐聚 (Lèjù, Leju) and 银河通用 (Yínhé Tōngyòng, Galbot) took about 3% each. Chinese vendors made 97% of global 出货量 (chūhuòliàng, shipments), and buyers in China took 87%.\n\nThe ranking changed because the product mix changed. 全尺寸 (quán chǐcùn, full-size) 双足 (shuāngzú, bipedal) robots rose to 47% of shipments from 38% a year earlier, and half-size bipeds fell to 36% from 49%. AgiBot and UBTech sell mostly full-size machines to factories, warehouses and commercial sites, and those professional uses made up about 65% of the quarter. Unitree's G1 is the standard robot in university labs, and 科研教育 (kēyán jiàoyù, research and education) buyers took 31% of units, so Unitree grew more slowly because its core customer group grew more slowly. At Web Summit in Lisbon on November 9, AgiBot's European representative William Shi said more than 1,000 of its robots now work in Chinese factories. Consumer robots were 4% of the quarter.\n\nSAG expects 54,000 units in 2026 and 86,000 in 2027, with revenue of $1.9 billion and $2.8 billion. It cut its shipment forecast and raised its revenue outlook, citing US import restrictions. The 2026 number sits close to GGII's estimate of just over 50,000 for China. These are analyst estimates built partly on vendor claims, and they do not show how many robots stay in paid, ongoing use. AgiBot's lead has narrowed from the 44% share SAG gave it for the first half. Unitree listed on the STAR Market in August at more than 200 times earnings, so losing share in the fastest-growing segment bears directly on that valuation. SAG expects Tesla, Figure and Agility to ramp from the fourth quarter, which will test whether Chinese vendors keep 97% of the market once US volume arrives.",
+        "takeaway": "Growth in humanoid shipments has moved to full-size industrial robots, which favours AgiBot and UBTech over Unitree, but these are analyst estimates and US vendors begin ramping in the fourth quarter.",
+        "vocab": [
+          {
+            "zh": "出货量",
+            "en": "shipments"
+          },
+          {
+            "zh": "全尺寸",
+            "en": "full-size"
+          },
+          {
+            "zh": "双足",
+            "en": "bipedal"
+          },
+          {
+            "zh": "科研教育",
+            "en": "research and education"
+          },
+          {
+            "zh": "市场份额",
+            "en": "market share"
+          },
+          {
+            "zh": "智元机器人",
+            "en": "AgiBot"
+          }
+        ]
+      },
+      {
+        "icon": "🧠",
+        "title": "Meituan Open-Sources LongCat-2.5, a 1.6-Trillion-Parameter Agent Model It Says Was Trained Entirely on Domestic Chips, Under an MIT License",
+        "tag": "ai",
+        "source": "Hugging Face model cards, LongCat-2.5 and LongCat-2.5-W4A4 (Nov 9) · LongCat blog (Nov 9) · ytdu AI event log (Nov 9) · Issue #49 for LongCat-2.0 · AI & Tech · Foundation models / chips · Nov 9, 2026 (about 2 days old)",
+        "body": "美团 (Měituán, Meituan) published the weights of LongCat-2.5 on Hugging Face on November 9 under the MIT license. It is a natively multimodal 混合专家模型 (hùnhé zhuānjiā móxíng, mixture-of-experts model) with 1.6 trillion total parameters and about 48 billion 激活参数 (jīhuó cānshù, active parameters) per token, aimed at long-running 智能体 (zhìnéngtǐ, agent) tasks. Meituan's blog says training ran entirely on 国产芯片 (guóchǎn xīnpiàn, domestic chips). A separate W4A4 release applies 4-bit 量化 (liànghuà, quantization) to expert weights and activations so the model runs native INT4 math on domestic accelerators, and Meituan reports prefill and decode throughput about 43% above its 8-bit baseline.\n\nOn Meituan's own table, LongCat-2.5 scores 91.9 on BrowseComp, ahead of Moonshot's Kimi K3 at 91.2 and Claude Opus 5 at 90.8, and 88.4 on Terminal Bench 2.1 against 89.1 for Opus 5 and 90.6 for DeepSeek V4.1 Flash. The gap is wider on harder coding tests: 38.5 on Terminal Bench 4.0 against Opus 5's 53.9, and 60.5 on NL2Repo against 75.3. The step up from LongCat-2.0, released in July, is large, with Terminal Bench 2.1 rising from 70.8 and Humanity's Last Exam with tools from 37.5 to 63.1. LongCat-2.0 was trained on roughly 50,000 domestic accelerators. A second trillion-parameter release in four months on non-Nvidia hardware suggests at least one Chinese lab can train at this scale on a regular schedule without imported GPUs, which fits Beijing's decision to hold back import approval for the roughly 600,000 H200s sitting in Hong Kong (Issue #173).\n\nMeituan has not named the chip or disclosed device count, training tokens or API pricing, so the domestic-chip claim cannot yet be checked against cost. Most benchmark numbers are in-house runs, and the Hugging Face metadata lists 1.8 trillion parameters while the model card text says 1.6 trillion. The MIT license lets any company use and modify the weights commercially, which helps adoption but earns Meituan nothing directly; its return comes through its own delivery and local-services agents and its 开源 (kāiyuán, open source) standing with developers. Independent evaluations over the next two weeks, and whether domestic clouds offer the W4A4 version on Ascend-class hardware, will show how much of the claim holds.",
+        "takeaway": "A second trillion-parameter model in four months trained on domestic chips supports Beijing's hold on H200 imports, though Meituan has not disclosed the chip, device count or cost and most scores are self-reported.",
+        "vocab": [
+          {
+            "zh": "美团",
+            "en": "Meituan"
+          },
+          {
+            "zh": "混合专家模型",
+            "en": "mixture-of-experts model"
+          },
+          {
+            "zh": "激活参数",
+            "en": "active parameters"
+          },
+          {
+            "zh": "量化",
+            "en": "quantization"
+          },
+          {
+            "zh": "国产芯片",
+            "en": "domestic chips"
+          },
+          {
+            "zh": "智能体",
+            "en": "AI agent"
+          }
+        ]
+      },
+      {
+        "icon": "📊",
+        "title": "October Exports Rise 35.2% and Imports 41.6% on Chips, Pushing China's 10-Month Surplus Past $1 Trillion as the Monthly Gap Falls Short of Forecasts",
+        "tag": "trade",
+        "source": "General Administration of Customs via Euronews/AFP (Nov 10) · SupplyChainBrain citing NYT (Nov 10) · BigGo Finance (Nov 10) · Finance & Macro · Trade · Nov 10, 2026 (about 1 day old)",
+        "body": "The 海关总署 (Hǎiguān Zǒngshǔ, General Administration of Customs) said on November 10 that October exports rose 35.2% year on year in dollar terms to $412.3 billion, above a 33.5% consensus. Imports rose 41.6% to $307.1 billion, the fastest growth in about five and a half years and far above the 33.9% forecast. The monthly 贸易顺差 (màoyì shùnchā, trade surplus) fell to $105.3 billion from $133.5 billion in September and missed the $125.8 billion estimate. The January to October surplus reached $1.04 trillion, crossing $1 trillion a month earlier than in 2025. In yuan terms, exports rose 28.7% and imports 34.7%, and ten-month exports totalled ¥25.99 trillion ($3.90 trillion).\n\n集成电路 (jíchéng diànlù, integrated circuit) exports reached $39.6 billion, up 137.1%, and chips and computer components account for about 40% of this year's export growth. Auto exports rose 37.6% to $19.7 billion. Imports surged for three reasons that have little to do with household spending: chips, which 王青 (Wáng Qīng) of Golden Credit Rating puts at about 20% of total imports; gold; and 原油 (yuányóu, crude oil), with purchases at their highest since the Middle East war began. Higher crude volumes at higher prices widened the import bill and cut the monthly surplus. Monday's 0.8% core CPI points the same way, with domestic demand still soft. Exports to the US rose 32.9% in October, and the ten-month surplus with the EU widened to $310.7 billion from $241.6 billion.\n\nA surplus above $1 trillion for a second year gives the EU and Washington more grounds for trade measures, and it comes a week before Xi Jinping and Donald Trump are expected to meet at APEC in Shenzhen on November 18–19, with the trade truce already extended by two months. Wang Qing expects November exports to grow about 26% and imports to stay near 30% through year-end. Both forecasts depend on global data-centre spending, since chips now drive both sides of the ledger, and a capex slowdown would cut export and import growth at the same time. October credit data around November 13 and activity data in mid-November will show whether any of this strength reaches domestic investment and retail sales.",
+        "takeaway": "Chips now drive both China's exports and imports, so a slowdown in global data-centre spending would cut both at once, and the $1 trillion surplus arrives a week before the expected Xi-Trump meeting at APEC.",
+        "vocab": [
+          {
+            "zh": "海关总署",
+            "en": "General Administration of Customs"
+          },
+          {
+            "zh": "贸易顺差",
+            "en": "trade surplus"
+          },
+          {
+            "zh": "集成电路",
+            "en": "integrated circuit"
+          },
+          {
+            "zh": "原油",
+            "en": "crude oil"
+          },
+          {
+            "zh": "进口增速",
+            "en": "import growth rate"
+          },
+          {
+            "zh": "东盟",
+            "en": "ASEAN"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "issue": 175,
     "date": "2026-11-10",
     "title": "China Telecom Signs UBTech for a 100,000-Humanoid Push, Apple Intelligence Cleared for iPad and Mac on Qwen, October PPI Hits 5.7%",

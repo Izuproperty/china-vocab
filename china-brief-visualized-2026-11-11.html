@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #176 · November 11, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #176 · November 11, 2026</div>
+    <div class="masthead-sub">Q3 Humanoid Shipments: UBTech Passes Unitree · Meituan's LongCat-2.5 on Domestic Chips · October Exports +35.2%, Imports +41.6%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">16,500<span class="card-num-unit">units</span></div>
+      <div class="card-label">Global humanoid shipments in Q3 2026 (SAG), up 347%; AgiBot 30%, UBTech 27%, Unitree 27%</div>
+      <div class="card-delta delta-amber">UBTech share 7% → 27%</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">1.6T<span class="card-num-unit">params</span></div>
+      <div class="card-label">Meituan LongCat-2.5, MIT-licensed MoE with ~48B active, trained on domestic chips per Meituan</div>
+      <div class="card-delta delta-green">Open weights, Nov 9</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · TRADE</div>
+      <div class="card-num">$1.04T<span class="card-num-unit">surplus</span></div>
+      <div class="card-label">January to October trade surplus; October exports +35.2%, imports +41.6%</div>
+      <div class="card-delta delta-red">Oct surplus $105B vs $126B est.</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · ROBOTICS / HUMANOIDS</div>
+    <div class="story-headline">SAG Counts 16,500 Humanoids Shipped Worldwide in Q3, With AgiBot First at 30% and UBTech Passing Unitree for Second as Full-Size Robots Gain Share</div>
+    <div class="story-insight">
+      <p>SAG estimates global humanoid shipments of 16,500 in Q3. AgiBot (智元机器人) shipped 4,900, UBTech (优必选) 4,500 and Unitree (宇树科技) about 4,400, with Unitree's share falling to 27% from 37% a year earlier. Chinese vendors made 97% of shipments.</p>
+      <br>
+      <p>Full-size bipeds (全尺寸双足) rose to 47% of units from 38%, and professional uses reached about 65%. AgiBot and UBTech sell full-size robots to factories and sites; Unitree's base is university labs, and research and education (科研教育) took 31% of units.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Growth has moved to full-size industrial robots, which favours AgiBot and UBTech over Unitree; these are analyst estimates, and US vendors start ramping in Q4.</div>
+    <div class="chart-box">
+      <div class="chart-title">Q3 2026 Humanoid Shipments and the Mix Shift</div>
+      <svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">Q3 2026 UNITS BY VENDOR (0.1PX PER UNIT)</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">AgiBot</text><rect x="160" y="39" width="490" height="20" fill="#c0392b"/><text x="658" y="54" font-size="11" font-weight="700" fill="#c0392b">4,900 · 30%</text><text x="30" y="84" font-size="12" fill="#1a1a2e">UBTech</text><rect x="160" y="71" width="450" height="20" fill="#1a1a2e"/><text x="618" y="86" font-size="11" font-weight="700" fill="#1a1a2e">4,500 · 27%</text><text x="30" y="116" font-size="12" fill="#1a1a2e">Unitree</text><rect x="160" y="103" width="440" height="20" fill="#9a8a7a"/><text x="608" y="118" font-size="11" font-weight="700" fill="#9a8a7a">~4,400 · 27%</text><text x="30" y="148" font-size="12" fill="#1a1a2e">Leju</text><rect x="160" y="135" width="50" height="20" fill="#b45309"/><text x="218" y="150" font-size="11" font-weight="700" fill="#b45309">~3%</text><text x="30" y="180" font-size="12" fill="#1a1a2e">Galbot</text><rect x="160" y="167" width="50" height="20" fill="#b45309"/><text x="218" y="182" font-size="11" font-weight="700" fill="#b45309">~3%</text><text x="30" y="222" font-size="11" font-weight="700" fill="#5a6a8a">SHARE OF UNITS, Q3 2025 → Q3 2026 (5PX PER POINT)</text><text x="30" y="250" font-size="12" fill="#1a1a2e">UBTech share</text><rect x="200" y="238" width="35" height="16" fill="#1a1a2e" opacity="0.35"/><rect x="200" y="256" width="135" height="6" fill="#1a1a2e"/><text x="343" y="262" font-size="11" font-weight="700" fill="#1a1a2e">7% → 27%</text><text x="30" y="282" font-size="12" fill="#1a1a2e">Unitree share</text><rect x="200" y="270" width="185" height="16" fill="#9a8a7a" opacity="0.35"/><rect x="200" y="288" width="135" height="6" fill="#9a8a7a"/><text x="393" y="294" font-size="11" font-weight="700" fill="#9a8a7a">37% → 27%</text><text x="450" y="222" font-size="11" font-weight="700" fill="#5a6a8a">FORM FACTOR SHARE (4PX PER POINT)</text><text x="450" y="250" font-size="12" fill="#1a1a2e">Full-size bipeds</text><rect x="570" y="238" width="152" height="16" fill="#c0392b" opacity="0.35"/><rect x="570" y="256" width="188" height="6" fill="#c0392b"/><text x="766" y="262" font-size="11" font-weight="700" fill="#c0392b">38 → 47%</text><text x="450" y="282" font-size="12" fill="#1a1a2e">Half-size bipeds</text><rect x="570" y="270" width="196" height="16" fill="#b45309" opacity="0.35"/><rect x="570" y="288" width="144" height="6" fill="#b45309"/><text x="722" y="294" font-size="11" font-weight="700" fill="#b45309">49 → 36%</text><text x="30" y="332" font-size="10" fill="#5a4a3a">Faded bar = Q3 2025, solid line = Q3 2026 · SAG forecast: 54,000 units in 2026, 86,000 in 2027; revenue $1.9B and $2.8B</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Smart Analytics Global, Robotics 360 (Nov 8, 2026); Forbes and Euronews Web Summit coverage (Nov 9–10, 2026). Leju and Galbot widths are approximate from ~3% shares. No renminbi figures in this chart; USD at ¥6.66/$ (spot, Nov 10, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · INDUSTRIAL MIX</div>
+        <div class="annotation-card-zh">全尺寸<span class="annotation-card-en">quán chǐcùn · full-size</span></div>
+        <div class="annotation-card-body">Full-size bipeds 47% of units; professional uses about 65%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · US RAMP</div>
+        <div class="annotation-card-zh">出货量<span class="annotation-card-en">chūhuòliàng · shipments</span></div>
+        <div class="annotation-card-body">Tesla, Figure and Agility volumes from Q4 test China's 97% share.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VALUATION</div>
+        <div class="annotation-card-zh">宇树科技<span class="annotation-card-en">Yǔshù Kējì · Unitree</span></div>
+        <div class="annotation-card-body">Share down 10 points while trading at 200x-plus earnings.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · FOUNDATION MODELS / CHIPS</div>
+    <div class="story-headline">Meituan Open-Sources LongCat-2.5, a 1.6-Trillion-Parameter Agent Model It Says Was Trained Entirely on Domestic Chips, Under an MIT License</div>
+    <div class="story-insight">
+      <p>Meituan (美团) released LongCat-2.5 weights on November 9: a multimodal mixture-of-experts model (混合专家模型) with 1.6 trillion parameters, about 48 billion active, trained on domestic chips (国产芯片) according to Meituan. A 4-bit quantized (量化) version runs INT4 on domestic accelerators.</p>
+      <br>
+      <p>In-house scores put it level with Claude Opus 5 on BrowseComp and Terminal Bench 2.1, but well behind on Terminal Bench 4.0 and NL2Repo. It follows LongCat-2.0 by four months, also trained on non-Nvidia hardware.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A second trillion-parameter model in four months on domestic chips supports Beijing's stance on H200 imports, but the chip, device count and cost are undisclosed and most scores are self-reported.</div>
+    <div class="chart-box">
+      <div class="chart-title">LongCat-2.5 vs LongCat-2.0 and Claude Opus 5</div>
+      <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">BENCHMARK SCORE (5PX PER POINT) · ■ LONGCAT-2.0 ■ LONGCAT-2.5 ■ OPUS 5</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">BrowseComp</text><rect x="200" y="38" width="400" height="12" fill="#9a8a7a"/><text x="606" y="48" font-size="10" fill="#9a8a7a">79.9</text><rect x="200" y="51" width="460" height="12" fill="#c0392b"/><text x="666" y="61" font-size="10" font-weight="700" fill="#c0392b">91.9</text><rect x="200" y="64" width="454" height="12" fill="#1a1a2e"/><text x="660" y="74" font-size="10" fill="#1a1a2e">90.8</text><text x="30" y="115" font-size="12" font-weight="700" fill="#1a1a2e">Terminal Bench 2.1</text><rect x="200" y="101" width="354" height="12" fill="#9a8a7a"/><text x="560" y="111" font-size="10" fill="#9a8a7a">70.8</text><rect x="200" y="114" width="442" height="12" fill="#c0392b"/><text x="648" y="124" font-size="10" font-weight="700" fill="#c0392b">88.4</text><rect x="200" y="127" width="446" height="12" fill="#1a1a2e"/><text x="652" y="137" font-size="10" fill="#1a1a2e">89.1</text><text x="30" y="178" font-size="12" font-weight="700" fill="#1a1a2e">HLE (with tools)</text><rect x="200" y="164" width="188" height="12" fill="#9a8a7a"/><text x="394" y="174" font-size="10" fill="#9a8a7a">37.5</text><rect x="200" y="177" width="316" height="12" fill="#c0392b"/><text x="522" y="187" font-size="10" font-weight="700" fill="#c0392b">63.1</text><rect x="200" y="190" width="324" height="12" fill="#1a1a2e"/><text x="530" y="200" font-size="10" fill="#1a1a2e">64.7</text><text x="30" y="236" font-size="12" font-weight="700" fill="#1a1a2e">NL2Repo</text><rect x="200" y="227" width="303" height="12" fill="#c0392b"/><text x="509" y="237" font-size="10" font-weight="700" fill="#c0392b">60.5</text><rect x="200" y="240" width="377" height="12" fill="#1a1a2e"/><text x="583" y="250" font-size="10" fill="#1a1a2e">75.3</text><text x="30" y="286" font-size="12" font-weight="700" fill="#1a1a2e">Terminal Bench 4.0</text><rect x="200" y="277" width="193" height="12" fill="#c0392b"/><text x="399" y="287" font-size="10" font-weight="700" fill="#c0392b">38.5</text><rect x="200" y="290" width="270" height="12" fill="#1a1a2e"/><text x="476" y="300" font-size="10" fill="#1a1a2e">53.9</text><text x="30" y="332" font-size="11" fill="#5a4a3a">1.6T total / ~48B active · MIT license · W4A4 INT4 version: prefill +43%, decode +43% vs W8A8 · LongCat-2.0 (Jul 2026): ~50,000 domestic accelerators</text><text x="30" y="352" font-size="11" fill="#5a4a3a">Undisclosed: chip model, device count, training tokens, API pricing · HF metadata says 1.8T vs 1.6T in card text</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Meituan LongCat-2.5 and LongCat-2.5-W4A4 model cards on Hugging Face (Nov 9, 2026); LongCat blog description (Nov 9); Issue #49 for LongCat-2.0 training. LongCat scores are Meituan's in-house runs; rival scores as cited by Meituan. LongCat-2.0 not reported on NL2Repo or Terminal Bench 4.0. No renminbi figures in this chart; USD at ¥6.66/$ (spot, Nov 10, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TRAINING STACK</div>
+        <div class="annotation-card-zh">国产芯片<span class="annotation-card-en">guóchǎn xīnpiàn · domestic chips</span></div>
+        <div class="annotation-card-body">Two trillion-parameter releases in four months without Nvidia GPUs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DEPLOYMENT</div>
+        <div class="annotation-card-zh">量化<span class="annotation-card-en">liànghuà · quantization</span></div>
+        <div class="annotation-card-body">Whether domestic clouds host the INT4 version on Ascend-class chips.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VERIFICATION</div>
+        <div class="annotation-card-zh">美团<span class="annotation-card-en">Měituán · Meituan</span></div>
+        <div class="annotation-card-body">Self-reported scores; chip, cost and token count not disclosed.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · TRADE</div>
+    <div class="story-headline">October Exports Rise 35.2% and Imports 41.6% on Chips, Pushing China's 10-Month Surplus Past $1 Trillion as the Monthly Gap Falls Short of Forecasts</div>
+    <div class="story-insight">
+      <p>Customs (海关总署) said October exports rose 35.2% to $412.3 billion and imports 41.6% to $307.1 billion, both above forecasts. The monthly surplus (贸易顺差) fell to $105.3 billion against a $125.8 billion estimate, and the ten-month total reached $1.04 trillion.</p>
+      <br>
+      <p>Integrated circuit (集成电路) exports rose 137.1% to $39.6 billion. Imports were driven by chips, gold and crude oil (原油) at its highest since the Middle East war began, which narrowed the surplus without signalling stronger household demand.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Chips now drive both exports and imports, so a slowdown in global data-centre spending would hit both sides at once; the $1 trillion surplus lands a week before the expected Xi-Trump meeting at APEC in Shenzhen.</div>
+    <div class="chart-box">
+      <div class="chart-title">October Trade: Growth, Surplus and the Chip Effect</div>
+      <svg viewBox="0 0 820 360" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">OCTOBER, % Y/Y IN USD (8PX PER POINT)</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">Exports</text><rect x="130" y="38" width="268" height="12" fill="#9a8a7a"/><text x="404" y="48" font-size="10" fill="#9a8a7a">33.5 consensus</text><rect x="130" y="51" width="282" height="12" fill="#1a1a2e"/><text x="418" y="61" font-size="10" font-weight="700" fill="#1a1a2e">35.2 actual</text><text x="30" y="96" font-size="12" font-weight="700" fill="#1a1a2e">Imports</text><rect x="130" y="82" width="271" height="12" fill="#9a8a7a"/><text x="407" y="92" font-size="10" fill="#9a8a7a">33.9 consensus</text><rect x="130" y="95" width="333" height="12" fill="#c0392b"/><text x="469" y="105" font-size="10" font-weight="700" fill="#c0392b">41.6 actual</text><text x="560" y="20" font-size="11" font-weight="700" fill="#5a6a8a">MONTHLY SURPLUS, $BN</text><line x1="560" y1="130" x2="800" y2="130" stroke="#c9bfb3"/><rect x="580" y="63" width="50" height="67" fill="#1a1a2e" opacity="0.5"/><text x="605" y="57" font-size="11" font-weight="700" text-anchor="middle" fill="#1a1a2e">133.5</text><text x="605" y="146" font-size="10" text-anchor="middle" fill="#5a6a8a">Sep</text><rect x="655" y="67" width="50" height="63" fill="#9a8a7a"/><text x="680" y="61" font-size="11" font-weight="700" text-anchor="middle" fill="#9a8a7a">125.8</text><text x="680" y="146" font-size="10" text-anchor="middle" fill="#5a6a8a">Oct est.</text><rect x="730" y="77" width="50" height="53" fill="#c0392b"/><text x="755" y="71" font-size="11" font-weight="700" text-anchor="middle" fill="#c0392b">105.3</text><text x="755" y="146" font-size="10" font-weight="700" text-anchor="middle" fill="#c0392b">Oct</text><text x="30" y="180" font-size="11" font-weight="700" fill="#5a6a8a">OCTOBER EXPORTS BY PRODUCT, % Y/Y (3PX PER POINT)</text><text x="30" y="210" font-size="12" font-weight="700" fill="#1a1a2e">Integrated circuits</text><rect x="200" y="197" width="411" height="18" fill="#c0392b"/><text x="603" y="211" font-size="11" font-weight="700" text-anchor="end" fill="#fff">+137.1% · $39.6B</text><text x="30" y="240" font-size="12" fill="#1a1a2e">Autos</text><rect x="200" y="227" width="113" height="18" fill="#1a1a2e"/><text x="321" y="241" font-size="11" font-weight="700" fill="#1a1a2e">+37.6% · $19.7B</text><text x="30" y="270" font-size="12" fill="#1a1a2e">Mobile phones</text><rect x="200" y="257" width="40" height="18" fill="#9a8a7a"/><text x="248" y="271" font-size="11" font-weight="700" fill="#9a8a7a">+13.2% · $17.6B</text><text x="30" y="306" font-size="11" fill="#5a4a3a">Jan–Oct surplus $1.04T (2025: passed $1T in November) · EU surplus $310.7B vs $241.6B · exports to US +32.9% in October</text><text x="30" y="326" font-size="11" fill="#5a4a3a">Yuan terms: exports +28.7%, imports +34.7% · Jan–Oct exports ¥25.99T ($3.90T), imports ¥18.82T ($2.83T)</text><text x="30" y="346" font-size="11" fill="#5a4a3a">Chips ~20% of imports (Wang Qing, Golden Credit) · Next: credit ~Nov 13, activity mid-Nov · APEC Shenzhen Nov 18–19</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: General Administration of Customs via Euronews/AFP (Nov 10, 2026); SupplyChainBrain citing The New York Times (Nov 10); BigGo Finance (Nov 10) for consensus, product and yuan figures. Surplus bars 0.5px per $1bn. USD at ¥6.66/$ (spot, Nov 10, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · AI HARDWARE</div>
+        <div class="annotation-card-zh">集成电路<span class="annotation-card-en">jíchéng diànlù · integrated circuit</span></div>
+        <div class="annotation-card-body">Chip exports up 137%; about 40% of this year's export growth.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · APEC</div>
+        <div class="annotation-card-zh">贸易顺差<span class="annotation-card-en">màoyì shùnchā · trade surplus</span></div>
+        <div class="annotation-card-body">A $1T surplus a week before the expected Xi-Trump meeting.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CAPEX CYCLE</div>
+        <div class="annotation-card-zh">原油<span class="annotation-card-en">yuányóu · crude oil</span></div>
+        <div class="annotation-card-body">Imports driven by chips, gold and crude, not household demand.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #176 · NOVEMBER 11, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
