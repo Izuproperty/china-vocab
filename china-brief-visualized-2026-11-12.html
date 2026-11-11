@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #177 · November 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #177 · November 12, 2026</div>
+    <div class="masthead-sub">AgiBot Open-Sources LIFE Robot Memory · Blacklisted University Buys H200s via Reseller · Double 11 Pre-Sales +4.0%, Trade-In Categories +3.4%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">65.8<span class="card-num-unit">%</span></div>
+      <div class="card-label">FindingDory success with AgiBot's LIFE framework, up from 37.5% (self-reported); RoboBeats weights 0.8B–4B open-sourced</div>
+      <div class="card-delta delta-green">+28.3 points</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">¥874,700<span class="card-num-unit">($131K)</span></div>
+      <div class="card-label">Paid by Entity-Listed Northwestern Polytechnical University for two Nvidia H200s via a local reseller (Reuters)</div>
+      <div class="card-delta delta-red">26 records found in 2026</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · CONSUMPTION</div>
+      <div class="card-num">+4.0<span class="card-num-unit">%</span></div>
+      <div class="card-label">Double 11 pre-period online sales, ¥1.136 trillion ($171 billion); services +12.1%, physical goods +2.5%</div>
+      <div class="card-delta delta-amber">Trade-in categories +3.4%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · ROBOTICS / EMBODIED AI</div>
+    <div class="story-headline">AgiBot Open-Sources LIFE, a Lifelong-Memory Framework That Keeps Robots Watching Between Tasks, With RoboBeats Models From 0.8B to 4B Parameters</div>
+    <div class="story-insight">
+      <p>AgiBot (智元机器人) open-sourced LIFE on November 11: RoboBeats decides when a robot should react or remember, Plastic Memory stores frames and structured records, and Explore–Distill–Mount turns solved problems into reusable skills (能力复用). Weights ship at 0.8B, 2B and 4B parameters.</p>
+      <br>
+      <p>AgiBot reports FindingDory success rising from 37.5% to 65.8% and a 24-hour test on the A3 Ultra answered in 80.6 seconds versus 554.7 for a Codex baseline. All results are self-reported, and the 24-hour memory was built offline from recorded video.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> AgiBot is moving its competition with UBTech and Unitree onto software that makes installed robots more useful, but the memory gains are self-reported and were measured on recorded video, not live multi-day deployments.</div>
+    <div class="chart-box">
+      <div class="chart-title">LIFE: Memory Benchmarks and Answer Speed</div>
+      <svg viewBox="0 0 820 304" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">BASELINE → WITH LIFE (5PX PER POINT) · ■ BASELINE ■ LIFE</text><text x="30" y="56" font-size="12" font-weight="700" fill="#1a1a2e">FindingDory success %</text><rect x="230" y="40" width="187.5" height="12" fill="#9a8a7a"/><text x="423.5" y="50" font-size="10" fill="#9a8a7a">37.5</text><rect x="230" y="53" width="329.0" height="12" fill="#c0392b"/><text x="565.0" y="63" font-size="10" font-weight="700" fill="#c0392b">65.8</text><text x="30" y="96" font-size="12" font-weight="700" fill="#1a1a2e">StreamingBench PO acc. %</text><rect x="230" y="80" width="106.0" height="12" fill="#9a8a7a"/><text x="342.0" y="90" font-size="10" fill="#9a8a7a">21.2</text><rect x="230" y="93" width="320.0" height="12" fill="#c0392b"/><text x="556.0" y="103" font-size="10" font-weight="700" fill="#c0392b">64.0</text><text x="30" y="136" font-size="12" font-weight="700" fill="#1a1a2e">SSS-Bench memory QA %</text><rect x="230" y="120" width="204.5" height="12" fill="#9a8a7a"/><text x="440.5" y="130" font-size="10" fill="#9a8a7a">40.9</text><rect x="230" y="133" width="302.5" height="12" fill="#c0392b"/><text x="538.5" y="143" font-size="10" font-weight="700" fill="#c0392b">60.5</text><text x="30" y="176" font-size="12" font-weight="700" fill="#1a1a2e">SPOT-Bench boundary F1</text><rect x="230" y="160" width="132.0" height="12" fill="#9a8a7a"/><text x="368.0" y="170" font-size="10" fill="#9a8a7a">26.4</text><rect x="230" y="173" width="229.0" height="12" fill="#c0392b"/><text x="465.0" y="183" font-size="10" font-weight="700" fill="#c0392b">45.8</text><text x="30" y="214" font-size="11" font-weight="700" fill="#5a6a8a">24-HOUR REAL-ROBOT TEST, AVG SECONDS PER ANSWER (0.6PX PER SECOND)</text><text x="30" y="240" font-size="12" fill="#1a1a2e">Codex baseline · 28.5/30</text><rect x="230" y="226" width="332.8" height="16" fill="#1a1a2e"/><text x="568.8199999999999" y="239" font-size="11" font-weight="700" fill="#1a1a2e">554.7 s</text><text x="30" y="264" font-size="12" font-weight="700" fill="#c0392b">LIFE · 29.5/30</text><rect x="230" y="250" width="48.4" height="16" fill="#c0392b"/><text x="284.36" y="263" font-size="11" font-weight="700" fill="#c0392b">80.6 s</text><text x="30" y="292" font-size="10.5" fill="#5a4a3a">RoboBeats weights: 0.8B / 2B / 4B · RoboBeats-2B ~75 ms per frame on one RTX 5090 (77 ms with 16 conditions) · A3 Ultra, memory built offline</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: AgiBot LIFE paper as reported by Pedaily (投资界), Jiemian (界面新闻) and Time Weekly (时代周报), Nov 11, 2026. All scores are AgiBot's own; SPOT-Bench is F1 out of 100. No renminbi figures in this chart; USD at ¥6.66/$ (onshore spot, Nov 10, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SOFTWARE MOAT</div>
+        <div class="annotation-card-zh">长期记忆<span class="annotation-card-en">chángqī jìyì · long-term memory</span></div>
+        <div class="annotation-card-body">Robots keep context across tasks instead of resetting after each command.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REPLICATION</div>
+        <div class="annotation-card-zh">持续感知<span class="annotation-card-en">chíxù gǎnzhī · continuous perception</span></div>
+        <div class="annotation-card-body">Third-party tests and live multi-day runs with JD Logistics or others.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LAB RESULTS</div>
+        <div class="annotation-card-zh">智元机器人<span class="annotation-card-en">Zhìyuán Jīqìrén · AgiBot</span></div>
+        <div class="annotation-card-body">Self-reported scores; Q3 share already down to 30% from 44%.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · CHIPS / EXPORT CONTROLS</div>
+    <div class="story-headline">Blacklisted Northwestern Polytechnical University Bought Two Nvidia H200s for ¥874,700 ($131,000) Through a Local Reseller, One of 26 Records Reuters Found of Restricted Chips Reaching Chinese Institutions</div>
+    <div class="story-insight">
+      <p>Northwestern Polytechnical University (西北工业大学), on the Entity List (实体清单) since 2001, bought two H200s for ¥874,700 ($131,000) from local reseller Shaanxi Bosuan in October, and rents eight-H200 servers for training.</p>
+      <br>
+      <p>Reuters found 26 records of restricted Nvidia chips reaching Chinese universities and public bodies in 2026. The volumes are small, but the report lands as Congress drafts chip-tracking bills and seeks a briefing from Jensen Huang.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The leak is small in units but arrives as Congress drafts chip-tracking and rental rules, so the near-term risk is tighter US controls that cut Nvidia's residual China sales and lift demand for Huawei Ascend.</div>
+    <div class="chart-box">
+      <div class="chart-title">Restricted Nvidia Chip Purchases by Chinese Institutions, 2026</div>
+      <svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">CONTRACT VALUE, ¥ (0.3PX PER ¥1,000) · RED = NORTHWESTERN POLYTECHNICAL</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">NPU · 2× H200 (Oct)</text><rect x="300" y="38" width="262.4" height="18" fill="#c0392b"/><text x="568.41" y="52" font-size="11" font-weight="700" fill="#c0392b">¥874,700 ($131,000)</text><text x="30" y="82" font-size="12" fill="#1a1a2e">Shenzhen Univ · 3× H100 (Sep)</text><rect x="300" y="68" width="230.9" height="18" fill="#1a1a2e"/><text x="536.9399999999999" y="82" font-size="11" font-weight="700" fill="#1a1a2e">¥769,800 ($116,000)</text><text x="30" y="112" font-size="12" fill="#1a1a2e">Beihang · 4× A800 (Apr)</text><rect x="300" y="98" width="146.7" height="18" fill="#1a1a2e"/><text x="452.7" y="112" font-size="11" font-weight="700" fill="#1a1a2e">¥489,000 ($73,400)</text><text x="30" y="142" font-size="12" font-weight="700" fill="#1a1a2e">NPU · 8×H200 server, 7-mo rental</text><rect x="300" y="128" width="132.5" height="18" fill="#c0392b"/><text x="438.51" y="142" font-size="11" font-weight="700" fill="#c0392b">¥441,700 ($66,300)</text><text x="30" y="172" font-size="12" font-weight="700" fill="#1a1a2e">NPU · 8×H200 server, 7-mo rental</text><rect x="300" y="158" width="132.3" height="18" fill="#c0392b"/><text x="438.29999999999995" y="172" font-size="11" font-weight="700" fill="#c0392b">¥441,000 ($66,200)</text><text x="30" y="202" font-size="12" fill="#1a1a2e">Wuhan Univ of Tech · H100 server (Jun)</text><rect x="300" y="188" width="106.5" height="18" fill="#9a8a7a"/><text x="412.5" y="202" font-size="11" font-weight="700" fill="#9a8a7a">¥355,000 ($53,300)</text><text x="30" y="228" font-size="10.5" fill="#5a4a3a">Implied H200 price paid by NPU: ¥437,350 ($65,700) per chip · 26 procurement and corporate records reviewed by Reuters for 2026</text><text x="30" y="248" font-size="10.5" fill="#5a4a3a">Context: ~600,000 H200s held in Hong Kong awaiting Beijing approval (Issue #173) · Huang briefing sought Nov 18 · APEC Shenzhen Nov 18–19</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Reuters exclusive (Nov 11, 2026) via BNN Bloomberg and Taipei Times (Nov 12); Al Jazeera (Nov 10–11). Yuan values from procurement records cited by Reuters; dollar figures converted at one rate. USD at ¥6.66/$ (onshore spot, Nov 10, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DOMESTIC CHIPS</div>
+        <div class="annotation-card-zh">国产芯片<span class="annotation-card-en">guóchǎn xīnpiàn · domestic chips</span></div>
+        <div class="annotation-card-body">Tighter US rules would push more buyers toward Huawei Ascend.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · BIS RESPONSE</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Any action before the Xi-Trump APEC meeting on Nov 18–19.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · NVIDIA CHINA</div>
+        <div class="annotation-card-zh">实体清单<span class="annotation-card-en">Shítǐ Qīngdān · Entity List</span></div>
+        <div class="annotation-card-body">Leaks via resellers strengthen the case for chip tracking.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · CONSUMPTION / SUBSIDIES</div>
+    <div class="story-headline">Double 11 Online Sales Grow 4.0% to ¥1.14 Trillion ($171 Billion) in the Pre-Period as Trade-In Categories Slow to 3.4% and Services Rise 12.1%</div>
+    <div class="story-insight">
+      <p>Inspur Zhuoshu (浪潮卓数) put Double 11 (双十一) pre-period online sales at ¥1.136 trillion ($171 billion), up 4.0%. Physical goods rose 2.5% and non-physical online retail (非实物网络零售) 12.1%.</p>
+      <br>
+      <p>Categories on the national trade-in (以旧换新) list grew just 3.4% combined, even as gaming laptops, smartwatches and smart glasses grew fast, so larger appliances lagged. Tmall listed LLM tokens (词元) as a category for the first time.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Trade-in subsidies are losing their pull on goods spending while services keep growing, which points next year's consumption support toward services and keeps pressure on appliance and electronics makers that relied on the subsidy boost.</div>
+    <div class="chart-box">
+      <div class="chart-title">Double 11 2026: Services Outgrow Subsidised Goods</div>
+      <svg viewBox="0 0 820 338" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">DOUBLE 11 PRE-PERIOD (OCT 12–NOV 2), % Y/Y (20PX PER POINT)</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">Total online retail</text><rect x="250" y="38" width="80.0" height="18" fill="#1a1a2e"/><text x="336.0" y="52" font-size="11" font-weight="700" fill="#1a1a2e">+4.0% · ¥1.136T ($171B)</text><text x="30" y="80" font-size="12" font-weight="700" fill="#1a1a2e">Physical goods</text><rect x="250" y="66" width="50.0" height="18" fill="#9a8a7a"/><text x="306.0" y="80" font-size="11" font-weight="700" fill="#9a8a7a">+2.5% · ¥948.3B ($142B)</text><text x="30" y="108" font-size="12" font-weight="700" fill="#1a1a2e">Non-physical (services)</text><rect x="250" y="94" width="242.0" height="18" fill="#166534"/><text x="498.0" y="108" font-size="11" font-weight="700" fill="#166534">+12.1% · ¥187.3B ($28.1B)</text><text x="30" y="136" font-size="12" font-weight="700" fill="#1a1a2e">Instant retail platforms</text><rect x="250" y="122" width="164.0" height="18" fill="#b45309"/><text x="420.0" y="136" font-size="11" font-weight="700" fill="#b45309">+8.2%</text><text x="30" y="164" font-size="12" font-weight="700" fill="#1a1a2e">Trade-in subsidy categories</text><rect x="250" y="150" width="68.0" height="18" fill="#c0392b"/><text x="324.0" y="164" font-size="11" font-weight="700" fill="#c0392b">+3.4% · 6 appliance + 4 digital</text><text x="30" y="194" font-size="11" font-weight="700" fill="#5a6a8a">INSIDE THE TRADE-IN LIST, % Y/Y (2PX PER POINT; SMART GLASSES BAR TRUNCATED)</text><text x="30" y="222" font-size="12" fill="#1a1a2e">Smart glasses</text><rect x="250" y="208" width="460" height="18" fill="#c0392b"/><line x1="680" y1="206" x2="672" y2="228" stroke="#fff" stroke-width="4"/><text x="716" y="222" font-size="11" font-weight="700" fill="#c0392b">+331.8%</text><text x="30" y="248" font-size="12" fill="#1a1a2e">Smartwatches</text><rect x="250" y="234" width="129.6" height="18" fill="#1a1a2e"/><text x="385.6" y="248" font-size="11" font-weight="700" fill="#1a1a2e">+64.8%</text><text x="30" y="274" font-size="12" fill="#1a1a2e">Gaming laptops</text><rect x="250" y="260" width="79.2" height="18" fill="#1a1a2e"/><text x="335.2" y="274" font-size="11" font-weight="700" fill="#1a1a2e">+39.6%</text><text x="30" y="300" font-size="12" fill="#1a1a2e">Student tablets</text><rect x="250" y="286" width="59.6" height="18" fill="#1a1a2e"/><text x="315.6" y="300" font-size="11" font-weight="700" fill="#1a1a2e">+29.8%</text><text x="30" y="326" font-size="10.5" fill="#5a4a3a">Syntun: comprehensive e-commerce Oct 7–31 ¥1.03T ($154B), no y/y given · Caixin survey: October new loans ¥89.7B ($13.5B) expected</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Inspur Zhuoshu data via China News Economic Weekly and 21st Century Business Herald (Nov 11, 2026); Syntun first-round report (Nov 2); Caixin credit survey (Nov 9). Third-party estimates; windows differ. USD at ¥6.66/$ (onshore spot, Nov 10, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SERVICES</div>
+        <div class="annotation-card-zh">非实物网络零售<span class="annotation-card-en">fēi shíwù wǎngluò língshòu · non-physical online retail</span></div>
+        <div class="annotation-card-body">Services up 12.1%, three times the headline growth.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DATA WEEK</div>
+        <div class="annotation-card-zh">国家统计局<span class="annotation-card-en">Guójiā Tǒngjìjú · National Bureau of Statistics</span></div>
+        <div class="annotation-card-body">October credit and retail sales test the soft goods read.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUBSIDY FATIGUE</div>
+        <div class="annotation-card-zh">以旧换新<span class="annotation-card-en">yǐ jiù huàn xīn · trade-in</span></div>
+        <div class="annotation-card-body">Subsidised categories +3.4%; appliance makers lose the boost.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #177 · NOVEMBER 12, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
