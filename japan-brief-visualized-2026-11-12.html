@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #166 · November 12, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #166 · November 12, 2026</div>
+    <div class="masthead-sub">Sakana AI Prepares a 2027 IPO · SUMCO Swings to Profit · Reuters Tankan at a Five-Year High</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SAKANA AI</div>
+      <div class="card-num">2027</div>
+      <div class="card-label">IPO target, autumn</div>
+      <div class="card-delta delta-amber">Weighing Tokyo and US listings</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · SUMCO</div>
+      <div class="card-num">¥5.4<span class="card-num-unit">bn</span></div>
+      <div class="card-label">Q3 net profit, July-September</div>
+      <div class="card-delta delta-green">Q4 OP guide ¥1.0bn vs -¥0.9bn consensus</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · REUTERS TANKAN</div>
+      <div class="card-num">+27</div>
+      <div class="card-label">Manufacturers' index, November</div>
+      <div class="card-delta delta-green">Highest since August 2021</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Sakana AI Begins Preparing an Autumn 2027 IPO and Weighs Listing in Both Tokyo and the US</div>
+    <div class="story-insight"><p>サカナAI (Sakana Ē-Ai, Sakana AI), the Tokyo lab founded in 2023 by former Google researchers David Ha and Llion Jones, has begun preparing for a 新規株式公開 (shinki kabushiki kōkai, initial public offering) in autumn 2027, Jiji Press reported on November 10, citing people familiar with the plan. The company is considering listings in both Japan and the United States. Jiji gave no offering size, valuation or exchange, and said the deal would likely rank among the largest startup listings in Japan. Sakana became a unicorn about a year after its founding and has raised about ¥66 billion, including a ¥32 billion Series B in November 2025 at about ¥432 billion post-money from backers including MUFG, Khosla Ventures, Lux Capital, Mitsubishi Electric, Google and In-Q-Tel.</p>
+      <br>
+      <p>The listing would arrive just as Sakana's spending rises. On October 26 the company said it will pretrain its own Japanese 基盤モデル (kiban moderu, foundation model), Sawara, from random weights instead of building on other labs' models. Development starts this month, a smaller model is due in spring 2027, and a larger one aimed at hundreds of billions of parameters follows. Sakana has not disclosed the compute budget, and ¥66 billion of total funding is small against the cost of a large training run. Jiji also reported that Sakana's technology is a candidate for the domestic AI model the government plans to put into 自衛隊 (Jieitai, Self-Defense Forces) systems. That would add to its Ministry of Defense analysis contract and its lending and advisory work for MUFG, SMBC and Daiwa.</p>
+      <br>
+      <p>Defense work complicates a US tranche. Under the 外為法 (Gaitame-hō, Foreign Exchange and Foreign Trade Act), foreign investors need prior approval to take 1% or more of a listed company in designated sectors such as defense, so a dual listing would need a share structure that keeps government contracts safe. The 2027 window will also be priced off Anthropic, which filed for a US IPO on October 26 and is targeting a fully diluted value of about $1.4 trillion. Listed Japanese exposure to AI models now runs mostly through investors and suppliers such as SoftBank Group and Advantest, so a Sakana listing would give domestic funds a direct model developer to own. Competition from METI-backed Noetra for sovereign-AI budgets is the main threat to the government revenue the equity story depends on.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Sakana needs far more capital to pretrain Sawara at scale than the ¥66 billion it has raised, and an autumn 2027 listing would fund the large model after the small one ships in spring. A premium valuation would rest on defense and megabank contracts, so the government's choice for the Self-Defense Forces model and the foreign-ownership rules on a US tranche will set how much of the deal US investors can buy.</div>
+    <div class="chart-box">
+      <div class="chart-title">Sakana AI: From Founding to a 2027 Listing</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="95" x2="800" y2="95" stroke="#c7cbe0" stroke-width="2"/>
+<line x1="60" y1="80" x2="60" y2="95" stroke="#e8eaf2"/>
+<circle cx="60" cy="95" r="7" fill="#3730a3"/>
+<text x="60" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jun 2023</text>
+<text x="60" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">Founded in Tokyo</text>
+<line x1="183" y1="95" x2="183" y2="110" stroke="#e8eaf2"/>
+<circle cx="183" cy="95" r="7" fill="#3730a3"/>
+<text x="183" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2024</text>
+<text x="183" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Unicorn status</text>
+<line x1="307" y1="80" x2="307" y2="95" stroke="#e8eaf2"/>
+<circle cx="307" cy="95" r="7" fill="#3730a3"/>
+<text x="307" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nov 2025</text>
+<text x="307" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">Series B ¥32bn, ~¥432bn</text>
+<line x1="430" y1="95" x2="430" y2="110" stroke="#e8eaf2"/>
+<circle cx="430" cy="95" r="7" fill="#3730a3"/>
+<text x="430" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 26, 2026</text>
+<text x="430" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Sawara pretraining plan</text>
+<line x1="553" y1="80" x2="553" y2="95" stroke="#e8eaf2"/>
+<circle cx="553" cy="95" r="7" fill="#3730a3"/>
+<text x="553" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nov 2026</text>
+<text x="553" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">Sawara development starts</text>
+<line x1="677" y1="95" x2="677" y2="110" stroke="#e8eaf2"/>
+<circle cx="677" cy="95" r="7" fill="#a5b4fc"/>
+<text x="677" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Spring 2027</text>
+<text x="677" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Small Sawara model</text>
+<line x1="800" y1="80" x2="800" y2="95" stroke="#e8eaf2"/>
+<circle cx="800" cy="95" r="7" fill="#b45309"/>
+<text x="800" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Autumn 2027</text>
+<text x="800" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">IPO target (Tokyo/US)</text>
+<text x="60" y="180" font-size="10" fill="#5a6a8a">● completed</text><text x="160" y="180" font-size="10" fill="#818cf8">● planned</text><text x="250" y="180" font-size="10" fill="#b45309">● IPO window</text>
+</svg>
+      <div class="chart-note">Source: Jiji Press (Nov 10, 2026); Sakana AI announcements. Series B ¥32bn at ~¥432bn post-money (Nov 2025); ~¥66bn raised in total. IPO size and valuation not disclosed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">自衛隊<span class="annotation-card-en">SDF model</span></div>
+        <div class="annotation-card-body">Candidate for the government's domestic SDF AI model.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">基盤モデル<span class="annotation-card-en">Sawara</span></div>
+        <div class="annotation-card-body">Small model due spring 2027; compute undisclosed.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">外為法<span class="annotation-card-en">FEFTA</span></div>
+        <div class="annotation-card-body">Foreign-ownership screening on a US tranche.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">SUMCO Swings to a ¥5.4 Billion Profit on 300mm Wafer Shipments and Guides Fourth-Quarter Profit Above a Consensus Loss</div>
+    <div class="story-insight"><p>SUMCO (Samuko, TSE: 3436), the world's second-largest maker of シリコンウエハー (shirikon uehā, silicon wafers), reported on November 11 a net profit of ¥5.4 billion for July-September, after a ¥8.4 billion net loss in January-March. Net sales rose 18.6% from a year earlier to ¥117.5 billion, in line with analyst estimates, and the operating margin was 1.7% against a 0.5% consensus. The EBITDA margin of 29.8% was 1.2 points above the company's own guidance. Shipments of 300mm wafers rose sharply on demand from leading-edge logic and memory chipmakers, and the company said customer inventories kept falling, with the recovery spreading beyond leading-edge logic. It described memory inventories as less clear.</p>
+      <br>
+      <p>For October-December SUMCO guided net sales of ¥107 billion, down 9% from the third quarter, and net profit of ¥4 billion. The revenue drop is an accounting effect. SUMCO cut its stake in Taiwan's Formosa Sumco Technology (FST) to about 38% and in August moved it from a 連結子会社 (renketsu kogaisha, consolidated subsidiary) to an equity-method affiliate. Excluding FST, sales rise by ¥6-7 billion from the third quarter. Operating profit guidance of ¥1.0 billion compares with a consensus loss of ¥0.9 billion. Interest-bearing debt stood at ¥250.8 billion after the deconsolidation, and net debt to equity was 0.23 times.</p>
+      <br>
+      <p>減価償却費 (genka shōkyaku-hi, depreciation) on new 300mm capacity keeps the margin thin. Guidance for 2026 is ¥131.4 billion, about ¥117 billion excluding FST, and the company said the charge will fall by several tens of billions of yen next year. Every yen that rolls off adds directly to operating profit, so 2027 earnings depend heavily on that schedule. Price is the second lever. Management said it is not rushing 長期契約 (chōki keiyaku, long-term agreements) and is negotiating customer by customer, after its president said in August that 5-10% price increases would not cover costs and a September broker estimate put the rise needed to fund new capacity at 40-50%. Staying off long contracts lets SUMCO reprice as HBM and GPU demand tightens wafer supply, though it leaves less 2027 revenue locked in.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> SUMCO beat on margin and guided fourth-quarter operating profit to ¥1.0 billion against a consensus loss, and the reported revenue decline reflects FST leaving the consolidation. Depreciation falling by tens of billions of yen in 2027 lifts profit even at flat prices. If memory customers' inventories stop falling, the volume recovery would narrow back to leading-edge logic and delay price increases.</div>
+    <div class="chart-box">
+      <div class="chart-title">SUMCO Quarterly Net Sales (¥ billion)</div>
+<svg viewBox="0 0 860 176" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="148" stroke="#e8eaf2"/><text x="230.0" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="372.5" y1="10" x2="372.5" y2="148" stroke="#e8eaf2"/><text x="372.5" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">35</text>
+<line x1="515.0" y1="10" x2="515.0" y2="148" stroke="#e8eaf2"/><text x="515.0" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">70</text>
+<line x1="657.5" y1="10" x2="657.5" y2="148" stroke="#e8eaf2"/><text x="657.5" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">105</text>
+<line x1="800.0" y1="10" x2="800.0" y2="148" stroke="#e8eaf2"/><text x="800.0" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">140</text>
+<text x="220" y="36" font-size="11" fill="#5a6a8a" text-anchor="end">Q3 2025 (derived)</text><rect x="230" y="22" width="403.5" height="20" rx="2" fill="#f9a8d4"/><text x="641.5" y="36" font-size="11" font-weight="700" fill="#1a1a2e">¥99.1bn</text>
+<text x="220" y="70" font-size="11" fill="#5a6a8a" text-anchor="end">Q1 2026</text><rect x="230" y="56" width="412.8" height="20" rx="2" fill="#f9a8d4"/><text x="650.8" y="70" font-size="11" font-weight="700" fill="#1a1a2e">¥101.4bn</text>
+<text x="220" y="104" font-size="11" fill="#5a6a8a" text-anchor="end">Q3 2026</text><rect x="230" y="90" width="478.4" height="20" rx="2" fill="#be185d"/><text x="716.4" y="104" font-size="11" font-weight="700" fill="#1a1a2e">¥117.5bn</text>
+<text x="220" y="138" font-size="11" fill="#5a6a8a" text-anchor="end">Q4 2026 guide (ex-FST)</text><rect x="230" y="124" width="435.6" height="20" rx="2" fill="#831843"/><text x="673.6" y="138" font-size="11" font-weight="700" fill="#1a1a2e">¥107.0bn</text>
+</svg>
+      <div class="chart-note">Source: SUMCO results, May 12 and Nov 11, 2026. Q3 2025 derived from the reported 18.6% growth. Q4 guide excludes Formosa Sumco Technology after deconsolidation; like-for-like sales rise ¥6-7bn q/q.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">300mm<span class="annotation-card-en">shipments</span></div>
+        <div class="annotation-card-body">Up sharply on leading-edge logic and memory.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">減価償却費<span class="annotation-card-en">depreciation</span></div>
+        <div class="annotation-card-body">Falls by tens of billions of yen in 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">メモリ<span class="annotation-card-en">memory</span></div>
+        <div class="annotation-card-body">Memory customer inventories less clear.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The Reuters Tankan Puts Manufacturers at +27, the Highest Since 2021, and Non-Manufacturers at an Eight-Year High Before the BOJ's December Meeting</div>
+    <div class="story-insight"><p>Japanese manufacturers' mood rose to +27 in November from +22 in October in the ロイター短観 (Roitā Tankan, Reuters Tankan), the highest reading since August 2021, Reuters reported on November 11. The index subtracts the share of firms calling conditions poor from the share calling them good. The 非製造業 (hi-seizōgyō, non-manufacturers) index rose 12 points to +35, its highest since June 2018. The poll of 508 large and midsize companies ran from October 27 to November 6, and 214 replied. Electronics rose to +39 from +25, chemicals to +33 from +27 and precision machinery to +42 from +38. Among non-manufacturers, information and communications jumped to +29 from +8, and services and others to +43 from +19.</p>
+      <br>
+      <p>Firms said rising prices and higher interest rates weighed on both sectors, and some said they cannot pass costs on to customers. They expect the manufacturers' index to hold at +28 in February, while non-manufacturers expect a fall to +29. Households look weaker than companies. The Cabinet Office's 景気ウォッチャー調査 (Keiki Wotchā Chōsa, Economy Watchers Survey), released on November 10, fell to 46.1 in October from 47.0, below a 46.8 forecast. Its household component dropped 0.9 points to 45.5 while the corporate component rose to 47.6.</p>
+      <br>
+      <p>The Reuters poll is an early read on the Bank of Japan's own quarterly 短観 (Tankan, Tankan survey), due in mid-December before the board's last meeting of the year. The BOJ held at 1.25% in October with Takata voting for a hike, and minutes from September showed a member wanted to discuss larger increases. Rates moved the same day. US core consumer prices rose 0.3% in October, above forecasts for a third month, two-year Treasury yields jumped 17 basis points to 4.73%, and the 10-year JGB yield rose about 7-8 basis points to 2.755%. The dollar climbed to about ¥158.9 after the Finance Ministry spent ¥27.13 trillion defending the yen this year. Company sentiment at a five-year high and a yen near ¥159 both support a December hike, and the weaker household data is the main argument for waiting.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The BOJ's hawks now have corporate sentiment at a five-year high and non-manufacturing at an eight-year high to cite in December. The Economy Watchers drop shows households are not sharing in it, so the BOJ Tankan in mid-December and October wage data will carry the decision. A hike would lift JGB yields further from 2.755% and could slow the yen's slide toward ¥160.</div>
+    <div class="chart-box">
+      <div class="chart-title">Reuters Tankan by Sector, October vs November</div>
+<svg viewBox="0 0 860 362" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="334" stroke="#e8eaf2"/><text x="230.0" y="350" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="344.0" y1="10" x2="344.0" y2="334" stroke="#e8eaf2"/><text x="344.0" y="350" font-size="10" fill="#5a6a8a" text-anchor="middle">10</text>
+<line x1="458.0" y1="10" x2="458.0" y2="334" stroke="#e8eaf2"/><text x="458.0" y="350" font-size="10" fill="#5a6a8a" text-anchor="middle">20</text>
+<line x1="572.0" y1="10" x2="572.0" y2="334" stroke="#e8eaf2"/><text x="572.0" y="350" font-size="10" fill="#5a6a8a" text-anchor="middle">30</text>
+<line x1="686.0" y1="10" x2="686.0" y2="334" stroke="#e8eaf2"/><text x="686.0" y="350" font-size="10" fill="#5a6a8a" text-anchor="middle">40</text>
+<line x1="800.0" y1="10" x2="800.0" y2="334" stroke="#e8eaf2"/><text x="800.0" y="350" font-size="10" fill="#5a6a8a" text-anchor="middle">50</text>
+<text x="220" y="36" font-size="11" fill="#5a6a8a" text-anchor="end">Manufacturers</text>
+<rect x="230" y="16" width="250.8" height="16" rx="2" fill="#fbbf24"/><text x="486.8" y="28" font-size="10.5" font-weight="700" fill="#1a1a2e">+22 <tspan font-weight="400" fill="#5a6a8a">Oct</tspan></text>
+<rect x="230" y="35" width="307.8" height="16" rx="2" fill="#b45309"/><text x="543.8" y="47" font-size="10.5" font-weight="700" fill="#1a1a2e">+27 <tspan font-weight="400" fill="#5a6a8a">Nov</tspan></text>
+<text x="220" y="82" font-size="11" fill="#5a6a8a" text-anchor="end">Non-manufacturers</text>
+<rect x="230" y="62" width="262.2" height="16" rx="2" fill="#fbbf24"/><text x="498.2" y="74" font-size="10.5" font-weight="700" fill="#1a1a2e">+23 <tspan font-weight="400" fill="#5a6a8a">Oct</tspan></text>
+<rect x="230" y="81" width="399.0" height="16" rx="2" fill="#b45309"/><text x="635.0" y="93" font-size="10.5" font-weight="700" fill="#1a1a2e">+35 <tspan font-weight="400" fill="#5a6a8a">Nov</tspan></text>
+<text x="220" y="128" font-size="11" fill="#5a6a8a" text-anchor="end">Electronics</text>
+<rect x="230" y="108" width="285.0" height="16" rx="2" fill="#fbbf24"/><text x="521.0" y="120" font-size="10.5" font-weight="700" fill="#1a1a2e">+25 <tspan font-weight="400" fill="#5a6a8a">Oct</tspan></text>
+<rect x="230" y="127" width="444.6" height="16" rx="2" fill="#b45309"/><text x="680.6" y="139" font-size="10.5" font-weight="700" fill="#1a1a2e">+39 <tspan font-weight="400" fill="#5a6a8a">Nov</tspan></text>
+<text x="220" y="174" font-size="11" fill="#5a6a8a" text-anchor="end">Precision machinery</text>
+<rect x="230" y="154" width="433.2" height="16" rx="2" fill="#fbbf24"/><text x="669.2" y="166" font-size="10.5" font-weight="700" fill="#1a1a2e">+38 <tspan font-weight="400" fill="#5a6a8a">Oct</tspan></text>
+<rect x="230" y="173" width="478.8" height="16" rx="2" fill="#b45309"/><text x="714.8" y="185" font-size="10.5" font-weight="700" fill="#1a1a2e">+42 <tspan font-weight="400" fill="#5a6a8a">Nov</tspan></text>
+<text x="220" y="220" font-size="11" fill="#5a6a8a" text-anchor="end">Chemicals</text>
+<rect x="230" y="200" width="307.8" height="16" rx="2" fill="#fbbf24"/><text x="543.8" y="212" font-size="10.5" font-weight="700" fill="#1a1a2e">+27 <tspan font-weight="400" fill="#5a6a8a">Oct</tspan></text>
+<rect x="230" y="219" width="376.2" height="16" rx="2" fill="#b45309"/><text x="612.2" y="231" font-size="10.5" font-weight="700" fill="#1a1a2e">+33 <tspan font-weight="400" fill="#5a6a8a">Nov</tspan></text>
+<text x="220" y="266" font-size="11" fill="#5a6a8a" text-anchor="end">Info &amp; comms</text>
+<rect x="230" y="246" width="91.2" height="16" rx="2" fill="#fbbf24"/><text x="327.2" y="258" font-size="10.5" font-weight="700" fill="#1a1a2e">+8 <tspan font-weight="400" fill="#5a6a8a">Oct</tspan></text>
+<rect x="230" y="265" width="330.6" height="16" rx="2" fill="#b45309"/><text x="566.6" y="277" font-size="10.5" font-weight="700" fill="#1a1a2e">+29 <tspan font-weight="400" fill="#5a6a8a">Nov</tspan></text>
+<text x="220" y="312" font-size="11" fill="#5a6a8a" text-anchor="end">Services &amp; others</text>
+<rect x="230" y="292" width="216.6" height="16" rx="2" fill="#fbbf24"/><text x="452.6" y="304" font-size="10.5" font-weight="700" fill="#1a1a2e">+19 <tspan font-weight="400" fill="#5a6a8a">Oct</tspan></text>
+<rect x="230" y="311" width="490.2" height="16" rx="2" fill="#b45309"/><text x="726.2" y="323" font-size="10.5" font-weight="700" fill="#1a1a2e">+43 <tspan font-weight="400" fill="#5a6a8a">Nov</tspan></text>
+</svg>
+      <div class="chart-note">Source: Reuters Tankan, survey Oct 27-Nov 6, 2026 (214 of 508 firms replied). Index = % optimistic minus % pessimistic.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">非製造業<span class="annotation-card-en">non-mfg</span></div>
+        <div class="annotation-card-body">+35, highest since June 2018.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">短観<span class="annotation-card-en">BOJ Tankan</span></div>
+        <div class="annotation-card-body">Mid-December, before the BOJ meeting.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">家計<span class="annotation-card-en">households</span></div>
+        <div class="annotation-card-body">Economy Watchers household index 45.5.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #166 · NOVEMBER 12, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
