@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #178 · November 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #178 · November 13, 2026</div>
+    <div class="masthead-sub">Alibaba Files to Spin Off T-Head in Hong Kong · Nexperia China Claims a Fully Local 12-Inch Platform · Offshore-Trust Tax Lifts October PIT Nearly 90%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">$25–86<span class="card-num-unit">B</span></div>
+      <div class="card-label">Analyst valuation range for T-Head after Alibaba's Nov 10 HKEX spin-off filing; reported raise $2–3 billion</div>
+      <div class="card-delta delta-amber">No size, price or date filed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SUPPLY CHAIN</div>
+      <div class="card-num">4–6<span class="card-num-unit">weeks</span></div>
+      <div class="card-label">Nexperia China's stated lead time for some parts on its domestic 12-inch platform, down from 12–16 weeks</div>
+      <div class="card-delta delta-red">$2B Dutch damages claim pending</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · FISCAL</div>
+      <div class="card-num">¥160B<span class="card-num-unit">($24B)</span></div>
+      <div class="card-label">Personal income tax declared on offshore trusts; more than ¥120 billion ($18 billion) collected in October</div>
+      <div class="card-delta delta-green">October PIT up nearly 90%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · CHIPS / CAPITAL MARKETS</div>
+    <div class="story-headline">Alibaba Files to Spin Off T-Head in Hong Kong, With Analysts Valuing the Zhenwu Chip Designer Anywhere From $25 Billion to $86 Billion</div>
+    <div class="story-insight">
+      <p>Alibaba (阿里巴巴) filed with HKEX (港交所) on November 10 to spin off T-Head (平头哥) as a separately listed subsidiary through an H-share offer. The filing set no size, valuation or date; SCMP reports a $2–3 billion raise and Caixin cites a $25–86 billion valuation range.</p>
+      <br>
+      <p>T-Head designs the Zhenwu (真武) AI accelerators used inside Alibaba Cloud and has reported annualised revenue above ¥10 billion ($1.5 billion). Its dependence on the parent for sales will decide where in that range the deal prices.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A Hong Kong listing gives offshore investors a direct way to own a Chinese AI chip designer, but the price depends on how much revenue the prospectus shows coming from outside Alibaba.</div>
+    <div class="chart-box">
+      <div class="chart-title">T-Head: What the Market Is Being Asked to Price</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">US$ BILLIONS (5PX PER $1B)</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">Valuation, high estimate</text><rect x="250" y="38" width="430" height="18" fill="#c0392b"/><text x="686" y="52" font-size="11" font-weight="700" fill="#c0392b">$86B</text><text x="30" y="82" font-size="12" font-weight="700" fill="#1a1a2e">Valuation, low estimate</text><rect x="250" y="68" width="125" height="18" fill="#9a8a7a"/><text x="381" y="82" font-size="11" font-weight="700" fill="#9a8a7a">$25B</text><text x="30" y="112" font-size="12" font-weight="700" fill="#1a1a2e">Reported raise (SCMP)</text><rect x="250" y="98" width="10" height="18" fill="#1a1a2e"/><rect x="260" y="98" width="5" height="18" fill="#1a1a2e" opacity="0.4"/><text x="271" y="112" font-size="11" font-weight="700" fill="#1a1a2e">$2–3B</text><text x="30" y="142" font-size="12" font-weight="700" fill="#1a1a2e">Annualised revenue (earlier)</text><rect x="250" y="128" width="7.5" height="18" fill="#b45309"/><text x="263" y="142" font-size="11" font-weight="700" fill="#b45309">¥10B+ ($1.5B)</text><text x="30" y="178" font-size="11" font-weight="700" fill="#5a6a8a">TIMELINE</text><line x1="60" y1="204" x2="760" y2="204" stroke="#c9bfb3" stroke-width="2"/><circle cx="90" cy="204" r="6" fill="#9a8a7a"/><text x="60" y="228" font-size="10.5" fill="#1a1a2e">2018 · founded</text><circle cx="380" cy="204" r="6" fill="#1a1a2e"/><text x="330" y="228" font-size="10.5" fill="#1a1a2e">Sep 11, 2026 · confidential filing</text><circle cx="600" cy="204" r="7" fill="#c0392b"/><text x="560" y="228" font-size="10.5" font-weight="700" fill="#c0392b">Nov 10 · HKEX announcement</text><text x="30" y="246" font-size="10.5" fill="#5a4a3a">Zhenwu 810E: 560,000+ units to 400+ outside customers (company, earlier) · Approvals, stake size and timetable still open</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Alibaba HKEX announcement (Nov 10) via TechNode and Digitimes (Nov 11, 2026); Caixin Global (Nov 11); SCMP (Nov 11); earlier T-Head disclosures for revenue and shipments. USD at ¥6.67/$ (onshore, Nov 11, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DOMESTIC AI CHIPS</div>
+        <div class="annotation-card-zh">分拆上市<span class="annotation-card-en">fēnchāi shàngshì · spin-off listing</span></div>
+        <div class="annotation-card-body">Offshore funds get a listed route into Alibaba's chip arm.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PROSPECTUS</div>
+        <div class="annotation-card-zh">关联交易<span class="annotation-card-en">guānlián jiāoyì · related-party transactions</span></div>
+        <div class="annotation-card-body">Share of revenue from outside Alibaba and on what terms.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · FOUNDRY ACCESS</div>
+        <div class="annotation-card-zh">平头哥<span class="annotation-card-en">Píngtóu Gē · T-Head</span></div>
+        <div class="annotation-card-body">A design house that depends on capacity US rules restrict.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · CHIPS / SUPPLY CHAIN</div>
+    <div class="story-headline">Nexperia's China Unit Says Its 12-Inch Wafer Platform Now Covers Every Product Category and Lead Times Have Fallen to Four to Six Weeks, Deepening the Split From Its Dutch Parent</div>
+    <div class="story-insight">
+      <p>At the China International Semiconductor Expo in Beijing, Nexperia China (安世半导体) said its domestic 12-inch wafer (十二英寸晶圆) platform now covers every product category and some lead times (交货周期) have fallen to four to six weeks.</p>
+      <br>
+      <p>No wafer supplier was named and product lines are still migrating. The claim also feeds the Dutch parent's $2 billion damages case against Wingtech (闻泰科技), which accuses the China side of building a rival chain.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Nexperia China is turning its forced break from the Dutch parent into a sales pitch on speed and price, which lowers auto-chip supply risk inside China but strengthens the legal case against Wingtech in Amsterdam.</div>
+    <div class="chart-box">
+      <div class="chart-title">Nexperia China: Before and After the Wafer Cut-Off</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">LEAD TIME, WEEKS (25PX PER WEEK; SHADED = RANGE)</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">Before (overseas wafers)</text><rect x="250" y="38" width="300" height="18" fill="#9a8a7a"/><rect x="550" y="38" width="100" height="18" fill="#9a8a7a" opacity="0.45"/><text x="656" y="52" font-size="11" font-weight="700" fill="#9a8a7a">12–16 weeks</text><text x="30" y="82" font-size="12" font-weight="700" fill="#c0392b">Now (domestic 12-inch)</text><rect x="250" y="68" width="100" height="18" fill="#c0392b"/><rect x="350" y="68" width="50" height="18" fill="#c0392b" opacity="0.45"/><text x="406" y="82" font-size="11" font-weight="700" fill="#c0392b">4–6 weeks</text><text x="30" y="118" font-size="11" font-weight="700" fill="#5a6a8a">POWER-DEVICE LOCALISATION, % (4PX PER POINT · COMPANY, AUG 2026)</text><text x="30" y="146" font-size="12" fill="#1a1a2e">Before Sep 2025</text><rect x="250" y="132" width="80" height="18" fill="#9a8a7a"/><text x="336" y="146" font-size="11" font-weight="700" fill="#9a8a7a">&lt;20%</text><text x="30" y="172" font-size="12" font-weight="700" fill="#1a1a2e">Aug 2026</text><rect x="250" y="158" width="396" height="18" fill="#166534"/><text x="652" y="172" font-size="11" font-weight="700" fill="#166534">~100%</text><text x="30" y="208" font-size="11" font-weight="700" fill="#5a6a8a">LOGIC PART NUMBERS ON 12-INCH 0.15µM (0.12PX PER PART)</text><rect x="250" y="218" width="156" height="18" fill="#1a1a2e"/><rect x="406" y="218" width="108" height="18" fill="#b45309"/><rect x="514" y="218" width="204" height="18" fill="#b45309" opacity="0.5"/><text x="254" y="231" font-size="10" font-weight="700" fill="#fff">1,300 live</text><text x="410" y="231" font-size="10" font-weight="700" fill="#fff">+900 Q3</text><text x="518" y="231" font-size="10" font-weight="700" fill="#1a1a2e">+1,700 Q4 planned</text><text x="30" y="231" font-size="12" fill="#1a1a2e">Cumulative 3,900 target</text><text x="30" y="268" font-size="10.5" fill="#5a4a3a">Litigation: Nexperia B.V. claims ~$2B from Wingtech in Amsterdam · Wingtech claims ¥8B ($1.2B) from Nexperia in Dongguan</text><text x="30" y="288" font-size="10.5" fill="#5a4a3a">Dutch state intervention and wafer cut-off: Sep 30, 2025 · Expo claim: Nov 12, 2026 · Wafer suppliers not named</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: SCMP and EFE (Nov 12, 2026); Nexperia China briefing (Aug 22–23, 2026) via BigGo Finance and SMCC; Issue #171. All operating figures are company claims. USD at ¥6.67/$ (onshore, Nov 11, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · LOCAL SUPPLY</div>
+        <div class="annotation-card-zh">国产替代<span class="annotation-card-en">guóchǎn tìdài · domestic substitution</span></div>
+        <div class="annotation-card-body">Shorter lead times cut shortage risk for Chinese carmakers.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · QUALIFICATION</div>
+        <div class="annotation-card-zh">功率器件<span class="annotation-card-en">gōnglǜ qìjiàn · power devices</span></div>
+        <div class="annotation-card-body">Whether foreign automakers qualify parts from the China line.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · LITIGATION</div>
+        <div class="annotation-card-zh">闻泰科技<span class="annotation-card-en">Wéntài Kējì · Wingtech</span></div>
+        <div class="annotation-card-body">Independence claims support the $2B rival-chain damages suit.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE &amp; MACRO · FISCAL / TAX POLICY</div>
+    <div class="story-headline">China Collected More Than ¥120 Billion ($18 Billion) of Offshore-Trust Tax in October as Declarations Pass ¥160 Billion ($24 Billion) and Personal Income Tax Jumps Nearly 90%</div>
+    <div class="story-insight">
+      <p>The State Taxation Administration (国家税务总局) said personal income tax (个人所得税) declared on offshore trusts (离岸信托) passed ¥160 billion ($24 billion), with more than ¥120 billion ($18 billion) paid in October after the Oct 22 deadline.</p>
+      <br>
+      <p>October PIT receipts rose nearly 90% and the ten-month total already tops all of 2025. Most of the money is back tax under a three-year lookback, so it gives the budget a one-off lift in a weak land-sale year.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Beijing has turned offshore trusts into a visible, taxed structure, which raises one-off revenue now and reduces the tax reason for wealthy families to keep assets offshore.</div>
+    <div class="chart-box">
+      <div class="chart-title">Offshore-Trust Tax: Revenue and Timeline</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">¥ BILLIONS (2.5PX PER ¥1B)</text><text x="30" y="52" font-size="12" font-weight="700" fill="#1a1a2e">Declared to date</text><rect x="250" y="38" width="400" height="18" fill="#1a1a2e"/><text x="656" y="52" font-size="11" font-weight="700" fill="#1a1a2e">¥160B+ ($24B)</text><text x="30" y="82" font-size="12" font-weight="700" fill="#c0392b">Collected in October</text><rect x="250" y="68" width="300" height="18" fill="#c0392b"/><text x="556" y="82" font-size="11" font-weight="700" fill="#c0392b">¥120B+ ($18B)</text><text x="30" y="118" font-size="11" font-weight="700" fill="#5a6a8a">OCTOBER PERSONAL INCOME TAX, Y/Y</text><rect x="250" y="126" width="360" height="18" fill="#166534"/><text x="30" y="140" font-size="12" font-weight="700" fill="#1a1a2e">October PIT receipts</text><text x="616" y="140" font-size="11" font-weight="700" fill="#166534">~+90%</text><text x="30" y="176" font-size="11" font-weight="700" fill="#5a6a8a">TIMELINE</text><line x1="60" y1="204" x2="760" y2="204" stroke="#c9bfb3" stroke-width="2"/><circle cx="110" cy="204" r="6" fill="#1a1a2e"/><text x="64" y="228" font-size="10.5" fill="#1a1a2e">Jul 24 · 20% rules</text><circle cx="420" cy="204" r="6" fill="#b45309"/><text x="364" y="228" font-size="10.5" fill="#b45309">Oct 22 · transition ends</text><circle cx="560" cy="204" r="5" fill="#9a8a7a"/><text x="500" y="196" font-size="10" fill="#5a4a3a">Huairou: 21 notices</text><circle cx="680" cy="204" r="7" fill="#c0392b"/><text x="620" y="228" font-size="10.5" font-weight="700" fill="#c0392b">Nov 11 · STA disclosure</text><text x="30" y="246" font-size="10.5" fill="#5a4a3a">Lookback: transfers into 2023–2025 trusts taxed three years back; trust income to end-2025 with no time limit</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: State Taxation Administration (Nov 11, 2026) via Caixin Global and SCMP (Nov 12); Ministry of Finance and STA rules (Jul 24, 2026). USD at ¥6.67/$ (onshore, Nov 11, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · FISCAL ROOM</div>
+        <div class="annotation-card-zh">个人所得税<span class="annotation-card-en">gèrén suǒdéshuì · personal income tax</span></div>
+        <div class="annotation-card-body">A one-off lift to Q4 revenue while land sales stay weak.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · MOF DATA</div>
+        <div class="annotation-card-zh">过渡期<span class="annotation-card-en">guòdùqī · transition period</span></div>
+        <div class="annotation-card-body">Jan–Oct fiscal release and follow-up penalty cases.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · WEALTH FLOWS</div>
+        <div class="annotation-card-zh">离岸信托<span class="annotation-card-en">lí'àn xìntuō · offshore trust</span></div>
+        <div class="annotation-card-body">Slower new business for Hong Kong and Singapore private banks.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #178 · NOVEMBER 13, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
