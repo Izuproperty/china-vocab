@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #167 · November 13, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #167 · November 13, 2026</div>
+    <div class="masthead-sub">Penalties for High-Risk AI · Rapidus Weighs a One-Year Slip · Producer Prices +7.1%</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · AI RULES</div>
+      <div class="card-num">2026<span class="card-num-unit">year-end</span></div>
+      <div class="card-label">Outline of AI law amendment due</div>
+      <div class="card-delta delta-amber">Binding orders, penalties for defiance</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · RAPIDUS</div>
+      <div class="card-num">FY2028</div>
+      <div class="card-label">Possible new 2nm volume start</div>
+      <div class="card-delta delta-red">Original target 2H FY2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · CGPI</div>
+      <div class="card-num">+7.1%</div>
+      <div class="card-label">October producer prices, y/y</div>
+      <div class="card-delta delta-red">Import prices +24.8% in yen</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &AMP; TECH</div>
+    <div class="story-headline">Tokyo Weighs Binding Orders and Penalties for High-Risk AI, With Anthropic, OpenAI Japan and NTT at the Table</div>
+    <div class="story-insight"><p>The government is considering making 安全対策 (anzen taisaku, safety measures) mandatory for AI businesses and adding 罰則 (bassoku, penalties) for companies that ignore its orders, the Mainichi Shimbun and Kyodo News reported on November 12. Officials confirmed the plan at a closed-door working-level meeting on AI legal frameworks on November 11, where Anthropic, OpenAI Japan and 日本電信電話 (Nippon Denshin Denwa, NTT) briefed them on their own safeguards. The government wants an outline of the overhaul, including an amendment to the law, by the end of the year. No fine amounts have been reported.</p>
+      <br>
+      <p>The amendment would change the AI推進法 (Ē-Ai Suishin-hō, AI Promotion Act), passed in May 2025. That law lets the government investigate AI businesses when citizens' rights are harmed and ask them to fix problems, but it carries no penalties. Under the proposal the state could issue a binding 是正命令 (zesei meirei, correction order) to an operator that refuses to cooperate after an incident, and punish a company that defies the order. Officials gave two cases that would justify an order: a 高性能AI (kōseinō Ē-Ai, high-performance AI) system slipping out of its developer's control, and a model used for cyberattacks. Penalties would apply only to high-performance AI with significant risk, and general-purpose AI would stay under existing laws and guidelines. The government has not decided which layer of the business carries the duty, from foundation-model developers to companies selling services built on them, or how far it reaches into US labs serving Japanese users.</p>
+      <br>
+      <p>Two weeks of cyber pressure pushed the change. Tokyo asked Anthropic and OpenAI in late October for wider access to their vulnerability-finding models, and on November 6 Prime Minister Takaichi adopted an emergency cyber package in the same week NTT Docomo disclosed that up to 300,000 customer records had been stolen. Binding orders give the government leverage it lacked when it could only ask for help. Because a penalty follows only a defied order, a company that cooperates after an incident faces no fine, and domestic developers such as NTT, SoftBank Group and Sakana AI see new obligations only if their models reach the high-performance tier. Foreign labs carry more risk: if Japan asserts jurisdiction over models served from abroad, Anthropic and OpenAI would need compliance and reporting staff in Japan who can answer an order quickly.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Japan is moving from voluntary guidelines to enforceable orders for its most capable models, but the trigger is an incident followed by a refusal to cooperate. The year-end outline will decide whether US labs fall under the rules. If they do, Anthropic and OpenAI need Japan-facing compliance teams, while domestic developers below the high-performance threshold see little change in cost.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japan's AI Rules: From Guidelines to Penalties</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="95" x2="800" y2="95" stroke="#c7cbe0" stroke-width="2"/>
+<line x1="60" y1="80" x2="60" y2="95" stroke="#e8eaf2"/>
+<circle cx="60" cy="95" r="7" fill="#3730a3"/>
+<text x="60" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">May 2025</text>
+<text x="60" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">AI Promotion Act passed</text>
+<line x1="208" y1="95" x2="208" y2="110" stroke="#e8eaf2"/>
+<circle cx="208" cy="95" r="7" fill="#3730a3"/>
+<text x="208" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 1, 2026</text>
+<text x="208" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Year-end AI action plan ordered</text>
+<line x1="356" y1="80" x2="356" y2="95" stroke="#e8eaf2"/>
+<circle cx="356" cy="95" r="7" fill="#3730a3"/>
+<text x="356" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Late Oct 2026</text>
+<text x="356" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">Cyber-model access request</text>
+<line x1="504" y1="95" x2="504" y2="110" stroke="#e8eaf2"/>
+<circle cx="504" cy="95" r="7" fill="#3730a3"/>
+<text x="504" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nov 6, 2026</text>
+<text x="504" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Emergency cyber package</text>
+<line x1="652" y1="80" x2="652" y2="95" stroke="#e8eaf2"/>
+<circle cx="652" cy="95" r="7" fill="#3730a3"/>
+<text x="652" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Nov 11, 2026</text>
+<text x="652" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">Task force backs penalties</text>
+<line x1="800" y1="95" x2="800" y2="110" stroke="#e8eaf2"/>
+<circle cx="800" cy="95" r="7" fill="#b45309"/>
+<text x="800" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">End-2026</text>
+<text x="800" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Reform outline due</text>
+<text x="60" y="180" font-size="10" fill="#5a6a8a">● completed</text><text x="160" y="180" font-size="10" fill="#b45309">● planned</text>
+</svg>
+      <div class="chart-note">Source: Mainichi Shimbun and Kyodo (Nov 12, 2026); Japan Brief issues #125, #156, #161. No fine amounts or regulated-entity list disclosed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">是正命令<span class="annotation-card-en">correction order</span></div>
+        <div class="annotation-card-body">Binding orders for operators that refuse to cooperate.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">年末<span class="annotation-card-en">year-end</span></div>
+        <div class="annotation-card-body">Outline sets scope, including US labs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">罰則<span class="annotation-card-en">penalties</span></div>
+        <div class="annotation-card-body">Fine sizes and tiers still undisclosed.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Rapidus Has Not Made a Working 2nm SRAM Cell and Is Weighing a One-Year Delay to Mass Production</div>
+    <div class="story-insight"><p>ラピダス (Rapidasu, Rapidus) has not yet produced a working SRAM cell on its 2nm process, a milestone it had set for this summer, and is at least several months behind schedule, Bloomberg reported on November 10, citing people familiar with the matter. Jiji Press reported a day later that the company is weighing pushing 量産 (ryōsan, mass production) from the second half of fiscal 2027 (October 2027 to March 2028) into fiscal 2028. Jiji's sources said Rapidus is struggling with the technology that wires transistors together and integrates them with other components, and that 歩留まり (budomari, yield) is improving slowly. SRAM is the on-chip memory block in every processor and one of the first structures a new gate-all-around process has to get right.</p>
+      <br>
+      <p>Rapidus said it will do its utmost to start mass production in the second half of fiscal 2027 and pointed to a September report by an outside expert panel, submitted to the government, that found development continues to progress. Chairman Tetsuro Higashi said in October the project was almost on schedule. The company still has no named volume customer. Its October 5 Rapidus CORE program signed 17 design partners, including Synopsys and Infosys, to steer prospective clients to the Chitose fab in Hokkaido. Management has not agreed on what counts as success: independent director Yoshimitsu Kobayashi has defined mass production as yield of at least 80%, and CEO Atsuyoshi Koike and representative director Atsuo Shimizu have signaled they do not share that definition.</p>
+      <br>
+      <p>The financing plan is built on the fiscal 2027 date. Government 補助金 (hojokin, subsidies) and equity are planned to exceed ¥3 trillion through fiscal 2027, and in October METI asked for another ¥400 billion of equity over FY2027-29 to lift Rapidus's capital to the level banks require before they lend about ¥2 trillion, starting with roughly ¥400 billion in FY2027. A one-year slip pushes back that first drawdown and the FY2029 target for positive operating cash flow, and it hands the Fiscal System Council, which already asked for yearly reviews, a reason to tie each tranche to milestones. METI minister Ryosei Akazawa said last month the government will keep supporting Rapidus until it can stand on its own. The delay also erodes Rapidus's position at home. METI certified TSMC's switch of its second Kumamoto fab to 3nm on October 16, with production due by December 2028, so a fiscal 2028 start at Chitose would land within months of TSMC making leading-edge chips in Kyushu.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Rapidus still cites fiscal 2027 and has not set a new date, so the first concrete test is whether the FY2027 equity request and the first bank tranche are re-timed when the cabinet finalizes the budget in late December. Consortium backers such as Toyota, Sony, NTT and SoftBank Group hold small stakes, so the larger exposure sits with equipment and materials suppliers whose Chitose revenue moves right by a year if the slip is confirmed.</div>
+    <div class="chart-box">
+      <div class="chart-title">Rapidus 2nm: Plan vs Reported Slip</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="95" x2="800" y2="95" stroke="#c7cbe0" stroke-width="2"/>
+<line x1="60" y1="80" x2="60" y2="95" stroke="#e8eaf2"/>
+<circle cx="60" cy="95" r="7" fill="#3730a3"/>
+<text x="60" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Jul 2025</text>
+<text x="60" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">First 2nm GAA prototype</text>
+<line x1="208" y1="95" x2="208" y2="110" stroke="#e8eaf2"/>
+<circle cx="208" cy="95" r="7" fill="#b91c1c"/>
+<text x="208" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Summer 2026</text>
+<text x="208" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">SRAM milestone (missed)</text>
+<line x1="356" y1="80" x2="356" y2="95" stroke="#e8eaf2"/>
+<circle cx="356" cy="95" r="7" fill="#a5b4fc"/>
+<text x="356" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Oct 2027-Mar 2028</text>
+<text x="356" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">Original volume target</text>
+<line x1="504" y1="95" x2="504" y2="110" stroke="#e8eaf2"/>
+<circle cx="504" cy="95" r="7" fill="#b45309"/>
+<text x="504" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">FY2028</text>
+<text x="504" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Possible new start</text>
+<line x1="652" y1="80" x2="652" y2="95" stroke="#e8eaf2"/>
+<circle cx="652" cy="95" r="7" fill="#be185d"/>
+<text x="652" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Dec 2028</text>
+<text x="652" y="72" font-size="10" fill="#5a6a8a" text-anchor="middle">TSMC Kumamoto 2 (3nm) due</text>
+<line x1="800" y1="95" x2="800" y2="110" stroke="#e8eaf2"/>
+<circle cx="800" cy="95" r="7" fill="#a5b4fc"/>
+<text x="800" y="125" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">~FY2031</text>
+<text x="800" y="142" font-size="10" fill="#5a6a8a" text-anchor="middle">Planned IPO</text>
+<text x="60" y="180" font-size="10" fill="#5a6a8a">● done</text><text x="125" y="180" font-size="10" fill="#b91c1c">● missed</text><text x="200" y="180" font-size="10" fill="#818cf8">● plan</text><text x="260" y="180" font-size="10" fill="#b45309">● reported slip</text><text x="370" y="180" font-size="10" fill="#be185d">● TSMC</text>
+</svg>
+      <div class="chart-note">Source: Bloomberg (Nov 10, 2026); Jiji Press (Nov 11); METI certification of TSMC Kumamoto 2 (Oct 16). Rapidus says it still targets 2H FY2027.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">専門家<span class="annotation-card-en">expert panel</span></div>
+        <div class="annotation-card-body">September review found progress continuing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">予算<span class="annotation-card-en">budget</span></div>
+        <div class="annotation-card-body">Late-December FY2027 budget and loan timing.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">歩留まり<span class="annotation-card-en">yield</span></div>
+        <div class="annotation-card-body">SRAM and integration lag; no volume customer.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Producer Prices Rise 7.1% in October as Yen-Based Import Prices Jump 24.8%, Five Weeks Before the BOJ Meets</div>
+    <div class="story-insight"><p>Japan's 企業物価指数 (kigyō bukka shisū, Corporate Goods Price Index) rose 7.1% in October from a year earlier, faster than September's revised 6.8% and above forecasts, the Bank of Japan said on November 12. Prices rose 0.7% from September after a 0.2% fall. Energy and chemicals drove the increase. Petroleum and coal products rose 15.9% year on year, up from 11.5% in September, chemicals rose 15.5%, and electric power, gas and water rose 15.8%, up from 10.5%. Those groups contributed 0.5 percentage points of the 0.7% monthly rise. Nonferrous metals were still up 31.7% but slowed from 40.3%, and agricultural products fell 25.0% as rice prices dropped.</p>
+      <br>
+      <p>The 輸入物価指数 (yunyū bukka shisū, Import Price Index) rose 24.8% in yen terms and 19.2% in contract currencies. The gap of about five points comes from the 円安 (en'yasu, weak yen): the BOJ's October average was ¥158.0 per dollar, 1% weaker than in September. Petroleum, coal and natural gas accounted for 1.62 points of the 2.3% monthly rise in contract-currency import prices. Export prices rose 16.7% in yen terms, so exporters are collecting a currency gain while domestic buyers of fuel and feedstock pay more.</p>
+      <br>
+      <p>The data feed directly into the 利上げ (neage, rate hike) debate. The BOJ held at 1.25% in October with board member Takata voting for 1.5%, and the Japan Times reported on November 12 that a slump in AI-linked shares is not expected to change the bank's plan to keep raising rates. Upstream inflation at 7% strengthens the hawks' case, and a hike would also support the yen, which is the part of import inflation the BOJ can influence. Firms in this week's Reuters Tankan said they cannot fully pass higher costs on to customers, so wholesale inflation at this pace squeezes domestic margins before it shows up in consumer prices. The next CGPI report is due December 10, a week before the December 17-18 policy meeting.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Producer inflation accelerated for a second month, and about five points of the 24.8% rise in yen import prices come from the currency alone. That gives the BOJ a cost-pass-through reason and a currency reason to hike on December 18. Domestic chemical, utility and food processors with weak pricing power carry the most margin risk until oil or the yen turns.</div>
+    <div class="chart-box">
+      <div class="chart-title">October 2026 Price Indexes, Year on Year</div>
+<svg viewBox="0 0 860 320" xmlns="http://www.w3.org/2000/svg">
+<line x1="260.0" y1="10" x2="260.0" y2="292" stroke="#e8eaf2"/><text x="260.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">-30%</text>
+<line x1="340.0" y1="10" x2="340.0" y2="292" stroke="#e8eaf2"/><text x="340.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">-20%</text>
+<line x1="420.0" y1="10" x2="420.0" y2="292" stroke="#e8eaf2"/><text x="420.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">-10%</text>
+<line x1="500.0" y1="10" x2="500.0" y2="292" stroke="#5a6a8a"/><text x="500.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="580.0" y1="10" x2="580.0" y2="292" stroke="#e8eaf2"/><text x="580.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">+10%</text>
+<line x1="660.0" y1="10" x2="660.0" y2="292" stroke="#e8eaf2"/><text x="660.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">+20%</text>
+<line x1="740.0" y1="10" x2="740.0" y2="292" stroke="#e8eaf2"/><text x="740.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">+30%</text>
+<line x1="820.0" y1="10" x2="820.0" y2="292" stroke="#e8eaf2"/><text x="820.0" y="308" font-size="10" fill="#5a6a8a" text-anchor="middle">+40%</text>
+<text x="250" y="30" font-size="11" fill="#5a6a8a" text-anchor="end">Import prices (yen)</text>
+<rect x="500.0" y="16" width="198.4" height="20" rx="2" fill="#b45309"/>
+<text x="704.4" y="30" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+24.8%</text>
+<text x="250" y="60" font-size="11" fill="#5a6a8a" text-anchor="end">Import prices (contract ccy)</text>
+<rect x="500.0" y="46" width="153.6" height="20" rx="2" fill="#fbbf24"/>
+<text x="659.6" y="60" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+19.2%</text>
+<text x="250" y="90" font-size="11" fill="#5a6a8a" text-anchor="end">Nonferrous metals</text>
+<rect x="500.0" y="76" width="253.6" height="20" rx="2" fill="#fbbf24"/>
+<text x="759.6" y="90" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+31.7%</text>
+<text x="250" y="120" font-size="11" fill="#5a6a8a" text-anchor="end">Petroleum &amp; coal</text>
+<rect x="500.0" y="106" width="127.2" height="20" rx="2" fill="#fbbf24"/>
+<text x="633.2" y="120" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+15.9%</text>
+<text x="250" y="150" font-size="11" fill="#5a6a8a" text-anchor="end">Power, gas &amp; water</text>
+<rect x="500.0" y="136" width="126.4" height="20" rx="2" fill="#fbbf24"/>
+<text x="632.4" y="150" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+15.8%</text>
+<text x="250" y="180" font-size="11" fill="#5a6a8a" text-anchor="end">Chemicals</text>
+<rect x="500.0" y="166" width="124.0" height="20" rx="2" fill="#fbbf24"/>
+<text x="630.0" y="180" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+15.5%</text>
+<text x="250" y="210" font-size="11" fill="#5a6a8a" text-anchor="end">CGPI overall</text>
+<rect x="500.0" y="196" width="56.8" height="20" rx="2" fill="#b45309"/>
+<text x="562.8" y="210" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+7.1%</text>
+<text x="250" y="240" font-size="11" fill="#5a6a8a" text-anchor="end">Beverages &amp; foods</text>
+<rect x="500.0" y="226" width="38.4" height="20" rx="2" fill="#fbbf24"/>
+<text x="544.4" y="240" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+4.8%</text>
+<text x="250" y="270" font-size="11" fill="#5a6a8a" text-anchor="end">Agriculture &amp; fishery</text>
+<rect x="300.0" y="256" width="200.0" height="20" rx="2" fill="#94a3b8"/>
+<text x="294.0" y="270" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-25.0%</text>
+</svg>
+      <div class="chart-note">Source: Bank of Japan CGPI release, Nov 12, 2026 (preliminary). CGPI component rates are year on year; import prices shown in yen and contract-currency terms.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">利上げ<span class="annotation-card-en">rate hike</span></div>
+        <div class="annotation-card-body">7.1% upstream inflation backs a December hike.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">12月10日<span class="annotation-card-en">Dec 10</span></div>
+        <div class="annotation-card-body">Next CGPI, a week before the BOJ meets.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">円安<span class="annotation-card-en">weak yen</span></div>
+        <div class="annotation-card-body">About 5 points of import inflation from the yen.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #167 · NOVEMBER 13, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
