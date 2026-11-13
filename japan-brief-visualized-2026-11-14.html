@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #168 · November 14, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #168 · November 14, 2026</div>
+    <div class="masthead-sub">Cohere Sets Up in Japan · Tokyo Splits Its Nvidia Exposure · The Yen Crosses 160</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · COHERE</div>
+      <div class="card-num">C$35.7bn</div>
+      <div class="card-label">Cohere valuation in Series E</div>
+      <div class="card-delta delta-green">Japan entity, in-country inference</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · NOV 13</div>
+      <div class="card-num">-5.11%</div>
+      <div class="card-label">SoftBank Group close, ¥3,547</div>
+      <div class="card-delta delta-amber">Advantest +2.08%, TEL +1.5%</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · USD/JPY</div>
+      <div class="card-num">160.30</div>
+      <div class="card-label">Dollar high vs yen, Nov 12 NY</div>
+      <div class="card-delta delta-red">First move past 160 since Sept</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Cohere Will Set Up a Japanese Company and Keep Inference in Japan, With Fujitsu&#x27;s Takane Already in the Digital Agency&#x27;s Trial</div>
+    <div class="story-insight"><p>Cohere, the Toronto-based developer of enterprise AI models, said on November 13 that it will establish a 日本法人 (nihon hōjin, Japanese legal entity) and expand its ソブリンAI (soburin Ē-Ai, sovereign AI) investment in Japan. Its models and North agent platform already run in private, high-security environments at Japanese public-sector and advanced-manufacturing customers. A new service called Model Vault runs 推論 (suiron, inference) on local compute clusters, so prompts and responses stay in the country. Country manager Hyonju Cho leads the local team, and Cohere is adding a training and certification program for Japanese partners. The company called Japan one of its fastest-growing markets.</p>
+      <br>
+      <p>Its route to Japanese buyers runs through 富士通 (Fujitsū, Fujitsu). The two companies co-develop Takane, a large language model tuned for Japanese, and Takane is one of the 国産LLM (kokusan LLM, domestic LLMs) the デジタル庁 (Dejitaru-chō, Digital Agency) selected for evaluation in GENAI, the generative AI environment it is opening to about 180,000 officials. Ministries and defense-adjacent buyers want models they can run on their own premises under Japanese law, and Fujitsu supplies the systems integration and the customer relationships. Cohere also cited a Series E round targeting up to C$7 billion at a C$35.7 billion valuation, and its purchase of AISLE, which becomes a unit called Cohere Cyber.</p>
+      <br>
+      <p>Fujitsu needs the revenue. Its adjusted operating profit fell 6.1% in the first half, and it must earn about ¥311 billion in the second half to reach its ¥425 billion guide. Takane licences and AI projects under its Uvance business are part of how it closes that gap. A Japanese entity also lets Cohere contract with ministries directly, which could eventually put it in competition with its own integrator. Data residency matters more after this week: Tokyo is drafting binding orders for operators of high-risk AI, and a vendor whose model runs entirely in Japan is easier to supervise and to order than one served from abroad.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Cohere is betting that Japanese public-sector buyers will pay for models that never leave the country, and Fujitsu is its sales channel. A paid ministry contract for Takane after the GENAI evaluation would show sovereign AI turning into revenue for Fujitsu before its full-year results in April.</div>
+    <div class="chart-box">
+      <div class="chart-title">Cohere&#x27;s Japan Stack</div>
+<svg viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="50" width="170" height="70" rx="6" fill="#fff" stroke="#3730a3" stroke-width="2"/>
+<text x="115" y="80" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Cohere models</text>
+<text x="115" y="100" font-size="10" fill="#5a6a8a" text-anchor="middle">Command · North agents</text>
+<rect x="240" y="50" width="170" height="70" rx="6" fill="#fff" stroke="#3730a3" stroke-width="2"/>
+<text x="325" y="80" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Model Vault</text>
+<text x="325" y="100" font-size="10" fill="#5a6a8a" text-anchor="middle">in-Japan inference</text>
+<rect x="450" y="50" width="170" height="70" rx="6" fill="#fff" stroke="#be185d" stroke-width="2"/>
+<text x="535" y="80" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Fujitsu Takane</text>
+<text x="535" y="100" font-size="10" fill="#5a6a8a" text-anchor="middle">Japanese-tuned LLM</text>
+<rect x="660" y="50" width="170" height="70" rx="6" fill="#fff" stroke="#b45309" stroke-width="2"/>
+<text x="745" y="80" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Digital Agency</text>
+<text x="745" y="100" font-size="10" fill="#5a6a8a" text-anchor="middle">GENAI evaluation</text>
+<line x1="200" y1="85" x2="236" y2="85" stroke="#5a6a8a" stroke-width="2"/><polygon points="236,80 240,85 236,90" fill="#5a6a8a"/>
+<line x1="410" y1="85" x2="446" y2="85" stroke="#5a6a8a" stroke-width="2"/><polygon points="446,80 450,85 446,90" fill="#5a6a8a"/>
+<line x1="620" y1="85" x2="656" y2="85" stroke="#5a6a8a" stroke-width="2"/><polygon points="656,80 660,85 656,90" fill="#5a6a8a"/>
+<text x="115" y="30" font-size="10" fill="#5a6a8a" text-anchor="middle">Toronto · Series E up to C$7bn</text>
+<text x="325" y="30" font-size="10" fill="#5a6a8a" text-anchor="middle">local compute clusters</text>
+<text x="535" y="30" font-size="10" fill="#5a6a8a" text-anchor="middle">co-developed with Cohere</text>
+<text x="745" y="30" font-size="10" fill="#5a6a8a" text-anchor="middle">~180,000 officials</text>
+<rect x="30" y="145" width="800" height="34" rx="4" fill="#e0e7ff"/>
+<text x="430" y="167" font-size="11" font-weight="600" fill="#3730a3" text-anchor="middle">New Japanese legal entity · partner certification program · country manager Hyonju Cho</text>
+</svg>
+      <div class="chart-note">Source: Cohere release via PR Newswire, Nov 13, 2026. Contract values and customer names not disclosed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">日本法人<span class="annotation-card-en">Japan entity</span></div>
+        <div class="annotation-card-body">Cohere can contract with ministries directly.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">GENAI<span class="annotation-card-en">trial</span></div>
+        <div class="annotation-card-body">Takane evaluation by the Digital Agency.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">競合<span class="annotation-card-en">competition</span></div>
+        <div class="annotation-card-body">Cohere may later compete with Fujitsu.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Advantest Leads the Nikkei Higher a Day After Huang Quits Nvidia, While SoftBank Group Falls 5.1%</div>
+    <div class="story-insight"><p>Nvidia chief executive Jensen Huang stepped down on November 12, US time, after reports about his personal relationships and a US inquiry into a suspected leak of information to China, which he has denied. Chief financial officer Colette Kress is interim CEO while the board searches for a successor. Tokyo traded the news before it was confirmed. On November 12, with the board reported to be meeting, Nvidia suppliers アドバンテスト (Adobantesuto, Advantest) and イビデン (Ibiden, Ibiden) fell 2.89% and 6.11% in morning trade, and the Nikkei closed down 0.70% at 60,819.36. Nvidia shares fell as much as 14% in New York on Thursday and closed down 4.3%.</p>
+      <br>
+      <p>On November 13 Tokyo split its Nvidia exposure in two. Advantest rose 2.08%. At the morning high it added about 370 points to the Nikkei, which touched 61,902.50, and its 寄与度 (kiyodo, index contribution) fell to about 135 points by the close. 東京エレクトロン (Tokyo Erekutoron, Tokyo Electron) rose 1.5%. Kioxia fell 2.5%, and ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) fell 5.11% to ¥3,547, taking about 155 points off the index. The Nikkei closed up 0.53% at 61,142.35.</p>
+      <br>
+      <p>The two groups carry different risks. Advantest raised its operating profit guide to ¥967 billion on October 28 and says tester capacity is sold out into 2027. Its testers check GPUs whoever runs Nvidia, so a change of CEO does not cut its 受注残 (juchūzan, order backlog). SoftBank Group's value rests on its roughly 13% stake in OpenAI and on borrowing to fund US data centers, and both depend on investors staying willing to finance AI. Leadership turmoil at the largest AI chip supplier raises the cost of that financing. GuruFocus put SoftBank Group's shares 13.9% above its fair-value estimate even after the fall. Nvidia reports results on November 17, the first numbers under Kress.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Tokyo priced Huang's exit as a funding risk, so SoftBank Group fell while the tool and tester makers with booked orders rose. Nvidia's November 17 results and any change to its 2027 production plans are what could cut Advantest's tester volumes. Until then, the equipment names trade on their order books and SoftBank Group trades on AI financing sentiment.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo Close, November 13, 2026 (Day After Huang Stepped Down)</div>
+<svg viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg">
+<line x1="260.0" y1="8" x2="260.0" y2="182" stroke="#e8eaf2"/><text x="260.0" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">-6%</text>
+<line x1="322.2" y1="8" x2="322.2" y2="182" stroke="#e8eaf2"/><text x="322.2" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">-5%</text>
+<line x1="384.4" y1="8" x2="384.4" y2="182" stroke="#e8eaf2"/><text x="384.4" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">-4%</text>
+<line x1="446.7" y1="8" x2="446.7" y2="182" stroke="#e8eaf2"/><text x="446.7" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">-3%</text>
+<line x1="508.9" y1="8" x2="508.9" y2="182" stroke="#e8eaf2"/><text x="508.9" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">-2%</text>
+<line x1="571.1" y1="8" x2="571.1" y2="182" stroke="#e8eaf2"/><text x="571.1" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">-1%</text>
+<line x1="633.3" y1="8" x2="633.3" y2="182" stroke="#5a6a8a"/><text x="633.3" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="695.6" y1="8" x2="695.6" y2="182" stroke="#e8eaf2"/><text x="695.6" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">+1%</text>
+<line x1="757.8" y1="8" x2="757.8" y2="182" stroke="#e8eaf2"/><text x="757.8" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">+2%</text>
+<line x1="820.0" y1="8" x2="820.0" y2="182" stroke="#e8eaf2"/><text x="820.0" y="198" font-size="10" fill="#5a6a8a" text-anchor="middle">+3%</text>
+<text x="250" y="28" font-size="11" fill="#5a6a8a" text-anchor="end">Advantest</text>
+<rect x="633.3" y="14" width="129.4" height="20" rx="2" fill="#166534"/>
+<text x="768.8" y="28" font-size="11" font-weight="700" fill="#1a1a2e">+2.08%</text>
+<text x="250" y="62" font-size="11" fill="#5a6a8a" text-anchor="end">Tokyo Electron</text>
+<rect x="633.3" y="48" width="93.3" height="20" rx="2" fill="#166534"/>
+<text x="732.7" y="62" font-size="11" font-weight="700" fill="#1a1a2e">+1.5%</text>
+<text x="250" y="96" font-size="11" fill="#5a6a8a" text-anchor="end">Nikkei 225</text>
+<rect x="633.3" y="82" width="33.0" height="20" rx="2" fill="#3730a3"/>
+<text x="672.3" y="96" font-size="11" font-weight="700" fill="#1a1a2e">+0.53%</text>
+<text x="250" y="130" font-size="11" fill="#5a6a8a" text-anchor="end">Kioxia</text>
+<rect x="477.8" y="116" width="155.6" height="20" rx="2" fill="#b91c1c"/>
+<text x="471.8" y="130" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-2.5%</text>
+<text x="250" y="164" font-size="11" fill="#5a6a8a" text-anchor="end">SoftBank Group</text>
+<rect x="315.4" y="150" width="318.0" height="20" rx="2" fill="#b91c1c"/>
+<text x="309.4" y="164" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-5.11%</text>
+</svg>
+      <div class="chart-note">Source: News On Japan; GuruFocus via Yahoo Finance (Nov 13, 2026). Nikkei close 61,142.35.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">受注残<span class="annotation-card-en">backlog</span></div>
+        <div class="annotation-card-body">Tester capacity sold into 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">11月17日<span class="annotation-card-en">Nov 17</span></div>
+        <div class="annotation-card-body">Nvidia results under interim CEO Kress.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">資金調達<span class="annotation-card-en">financing</span></div>
+        <div class="annotation-card-body">AI funding costs weigh on SoftBank Group.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The Yen Crosses 160 for the First Time Since September, and New York Fed Data Show Washington Bought ¥79.4 Billion in July</div>
+    <div class="story-insight"><p>The dollar rose to ¥160.30 in New York trading on Thursday, November 12, the first time it has crossed 160 since early September, and held near ¥159.9 in Tokyo on Friday. 財務大臣 (zaimu daijin, Finance Minister) Satsuki Katayama said on November 13 that the market had seen sharp, 一方的 (ippōteki, one-sided) moves, that Japan would respond appropriately, and that she would stay in close contact with the US Treasury. Vice finance minister Atsushi Mimura said on Thursday it was too early to forget the summer 為替介入 (kawase kainyū, currency intervention). The government also brought forward winter utility subsidies, paid from reserve funds, to offset the higher yen cost of energy.</p>
+      <br>
+      <p>The same day, the New York Fed's quarterly report gave the US side of the July operation. The Treasury bought ¥79.4 billion (about $497 million) on July 31 by selling euros from the Exchange Stabilization Fund, the first US purchase of yen since 1998. The Fed did not act for its own account. Japan's Ministry of Finance sold ¥5.55 trillion of dollars that day and ¥15.4 trillion from July 30 to August 3, so the US put in about 0.5% of the total. The joint label carried the weight: USD/JPY fell from about 164 to 155 in four days.</p>
+      <br>
+      <p>US rates are driving the yen down. Before Thursday's US producer price data, futures priced an 86% chance of a quarter-point Fed hike in December, and the US 10-year yield was near 5.05%. Japan's 10-year yield closed at 2.854% on November 13, so the gap still favors the dollar. Japan has spent ¥27.13 trillion on intervention this year, and its 外貨準備 (gaika junbi, foreign reserves) stood at $1.179 trillion at the end of October. Preliminary July-September GDP is due at 8:50 a.m. on Monday, November 16, and the Bank of Japan meets on December 17-18 with its policy rate at 1.25%.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The Finance Ministry has now defended 160 twice this year, and the New York Fed data show the US put in about 0.5% of the July money and lent the operation its name. A third operation is likely if USD/JPY rises quickly through 160, but with US yields near 5% intervention only buys time. A BOJ hike on December 18 would narrow the rate gap that is pushing the yen down.</div>
+    <div class="chart-box">
+      <div class="chart-title">July-August 2026 Yen-Buying Intervention by Day</div>
+<svg viewBox="0 0 860 176" xmlns="http://www.w3.org/2000/svg">
+<line x1="260.0" y1="8" x2="260.0" y2="148" stroke="#5a6a8a"/><text x="260.0" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥0tn</text>
+<line x1="322.2" y1="8" x2="322.2" y2="148" stroke="#e8eaf2"/><text x="322.2" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥1tn</text>
+<line x1="384.4" y1="8" x2="384.4" y2="148" stroke="#e8eaf2"/><text x="384.4" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥2tn</text>
+<line x1="446.7" y1="8" x2="446.7" y2="148" stroke="#e8eaf2"/><text x="446.7" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥3tn</text>
+<line x1="508.9" y1="8" x2="508.9" y2="148" stroke="#e8eaf2"/><text x="508.9" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥4tn</text>
+<line x1="571.1" y1="8" x2="571.1" y2="148" stroke="#e8eaf2"/><text x="571.1" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥5tn</text>
+<line x1="633.3" y1="8" x2="633.3" y2="148" stroke="#e8eaf2"/><text x="633.3" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥6tn</text>
+<line x1="695.6" y1="8" x2="695.6" y2="148" stroke="#e8eaf2"/><text x="695.6" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥7tn</text>
+<line x1="757.8" y1="8" x2="757.8" y2="148" stroke="#e8eaf2"/><text x="757.8" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥8tn</text>
+<line x1="820.0" y1="8" x2="820.0" y2="148" stroke="#e8eaf2"/><text x="820.0" y="164" font-size="10" fill="#5a6a8a" text-anchor="middle">¥9tn</text>
+<text x="250" y="28" font-size="11" fill="#5a6a8a" text-anchor="end">Jul 30 · MoF</text>
+<rect x="260.0" y="14" width="496.3" height="20" rx="2" fill="#b45309"/>
+<text x="762.3" y="28" font-size="11" font-weight="700" fill="#1a1a2e">¥7.98tn</text>
+<text x="250" y="62" font-size="11" fill="#5a6a8a" text-anchor="end">Jul 31 · MoF</text>
+<rect x="260.0" y="48" width="345.5" height="20" rx="2" fill="#b45309"/>
+<text x="611.5" y="62" font-size="11" font-weight="700" fill="#1a1a2e">¥5.55tn</text>
+<text x="250" y="96" font-size="11" fill="#5a6a8a" text-anchor="end">Jul 31 · US Treasury</text>
+<rect x="260.0" y="82" width="4.9" height="20" rx="2" fill="#3730a3"/>
+<text x="270.9" y="96" font-size="11" font-weight="700" fill="#1a1a2e">¥0.08tn (¥79.4bn)</text>
+<text x="250" y="130" font-size="11" fill="#5a6a8a" text-anchor="end">Aug 3 · MoF</text>
+<rect x="260.0" y="116" width="116.4" height="20" rx="2" fill="#b45309"/>
+<text x="382.4" y="130" font-size="11" font-weight="700" fill="#1a1a2e">¥1.87tn</text>
+</svg>
+      <div class="chart-note">Source: MoF daily intervention data (Nov 9); New York Fed quarterly FX report (Nov 12). US amount sold euros via the Exchange Stabilization Fund.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">日米協調<span class="annotation-card-en">US-Japan joint</span></div>
+        <div class="annotation-card-body">US bought ¥79.4bn on July 31.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">11月16日<span class="annotation-card-en">Nov 16</span></div>
+        <div class="annotation-card-body">Preliminary Q3 GDP at 8:50 a.m.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">金利差<span class="annotation-card-en">rate gap</span></div>
+        <div class="annotation-card-body">US 10-year near 5% vs JGB 2.85%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #168 · NOVEMBER 14, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
