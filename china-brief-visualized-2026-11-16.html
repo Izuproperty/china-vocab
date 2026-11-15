@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #181 · November 16, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #181 · November 16, 2026</div>
+    <div class="masthead-sub">Noetix's ¥9,998 ($1,500) Bumi Tops JD's Humanoid Charts · Bona's AI-Made Film Takes ~$270K in Three Weeks · CSRC Derivatives Rules Take Effect</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">+700<span class="card-num-unit">%</span></div>
+      <div class="card-label">JD humanoid robot sales growth over Singles' Day; Noetix's ¥9,998 ($1,500) Bumi ranked first by units and value</div>
+      <div class="card-delta delta-amber">Only ~8% of H1 shipments went to production work</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · GENERATIVE AI</div>
+      <div class="card-num">~$270<span class="card-num-unit">K</span></div>
+      <div class="card-label">Three-week box office for Bona's fully AI-generated "Sanxingdui: Future Past," against a ~$1.5M budget</div>
+      <div class="card-delta delta-red">~18% of budget recovered</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MARKET REGULATION</div>
+      <div class="card-num">¥500<span class="card-num-unit">M ($75M)</span></div>
+      <div class="card-label">Minimum net capital for brokers and futures firms dealing swaps and OTC options under CSRC rules effective today</div>
+      <div class="card-delta delta-amber">Non-compliant firms stop new business</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · ROBOTICS</div>
+    <div class="story-headline">Noetix Says Its ¥9,998 ($1,500) Bumi Topped JD's Humanoid Charts Over Singles' Day, While Only About 8% of China's Humanoids Go Into Production Work</div>
+    <div class="story-insight">
+      <p>Noetix Robotics (松延动力) says Bumi (小布米) ranked first on JD.com (京东) by units and value from Oct 9 to Nov 11. JD says humanoid (人形机器人) sales rose 700% year on year. Most buyers are hobbyists, developers and creators, and consumer-grade (消费级) buyers were about 60% to 65% of sales at 618.</p>
+      <br>
+      <p>Margins are thin. Founder Jiang Zheyuan (姜哲源) calls Bumi's gross margin (毛利率) low and expects break-even in 2027. Swancor made 10,000 Qiyuan robots but posted a nine-month net loss of ¥422 million ($63 million).</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Sub-¥30,000 ($4,500) humanoids sell in volume as hobby kits, but each unit brings little revenue, and only about 8% of shipments do production work.</div>
+    <div class="chart-box">
+      <div class="chart-title">Consumer Humanoid Price Ladder and H1 2026 End Use</div>
+      <svg viewBox="0 0 820 270" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">LIST PRICE, ¥ THOUSANDS (4.5PX PER ¥1,000)</text><text x="30" y="52" font-size="12" font-weight="700" fill="#c0392b">Noetix Bumi Lite</text><rect x="230" y="38" width="45" height="18" fill="#c0392b"/><text x="281" y="52" font-size="11" font-weight="700" fill="#c0392b">¥9,998 ($1,500) · #1 on JD</text><text x="30" y="80" font-size="12" fill="#1a1a2e">Swancor Qiyuan Q1 / T1</text><rect x="230" y="66" width="90" height="18" fill="#b45309"/><text x="326" y="80" font-size="11" font-weight="700" fill="#b45309">¥19,999 ($3,000)</text><text x="30" y="108" font-size="12" fill="#1a1a2e">Unitree R1 Air</text><rect x="230" y="94" width="135" height="18" fill="#9a8a7a"/><text x="371" y="108" font-size="11" font-weight="700" fill="#9a8a7a">¥29,900 ($4,480)</text><text x="30" y="136" font-size="12" fill="#1a1a2e">AgiBot Lingxi X2 youth</text><rect x="230" y="122" width="441" height="18" fill="#1a1a2e"/><text x="677" y="136" font-size="11" font-weight="700" fill="#1a1a2e">¥98,000 ($14,700)</text><text x="30" y="176" font-size="11" font-weight="700" fill="#5a6a8a">CHINA H1 2026 HUMANOID SHIPMENTS (~22,000 UNITS) BY END USE</text><rect x="30" y="188" width="45" height="22" fill="#166534"/><rect x="75" y="188" width="336" height="22" fill="#b45309"/><rect x="411" y="188" width="179" height="22" fill="#c9bfb3"/><text x="34" y="203" font-size="10" font-weight="700" fill="#fff">8%</text><text x="83" y="203" font-size="10" font-weight="700" fill="#fff">60%+ performances, research, teaching</text><text x="419" y="203" font-size="10" font-weight="700" fill="#1a1a2e">Other / consumer</text><text x="30" y="230" font-size="10.5" fill="#166534">8% to factories and warehouses</text><text x="30" y="254" font-size="10.5" fill="#5a4a3a">Swancor 9M 2026: revenue ¥1.21B ($181M), -5.51% · net loss ¥422M ($63M) · R&amp;D ¥384M ($58M), ~12x · 10,000 Qiyuan units by Nov 8</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Guancha via Sina Finance (Nov 15, 2026); STAR Market Daily via Sina Finance (Nov 13, 2026); JD.com; CAICT via Xinhua Finance. "Other" is the residual of reported shares. USD at ¥6.67/$ (onshore spot, Nov 12, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · PRICE POINT</div>
+        <div class="annotation-card-zh">消费级<span class="annotation-card-en">xiāofèijí · consumer-grade</span></div>
+        <div class="annotation-card-body">A sub-¥10,000 ($1,500) biped found buyers at scale.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RETURNS</div>
+        <div class="annotation-card-zh">退货率<span class="annotation-card-en">tuìhuòlǜ · return rate</span></div>
+        <div class="annotation-card-body">Return data once holiday orders finish delivering.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARGINS</div>
+        <div class="annotation-card-zh">毛利率<span class="annotation-card-en">máolìlǜ · gross margin</span></div>
+        <div class="annotation-card-body">Low margins and heavy R&amp;D keep makers loss-making.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · GENERATIVE AI / MEDIA</div>
+    <div class="story-headline">Bona's Fully AI-Generated Feature "Sanxingdui: Future Past" Takes About $270,000 in Three Weeks Against a $1.5 Million Budget, as AI Micro-Drama Stocks Rise 25%</div>
+    <div class="story-insight">
+      <p>Bona Film Group (博纳影业) spent about $1.5 million on a feature set at the Sanxingdui (三星堆) site and made fully with AI. Its box office (票房) reached about $181,000 in the opening days and about $270,000 after three weeks.</p>
+      <br>
+      <p>AI micro-dramas (短剧) are selling well. More than 95% of Q1 titles were AI-generated, and AI micro-drama stocks rose over 25% in early November.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Viewers accept cheap generative AI (生成式人工智能) in phone-length episodes but would not pay cinema prices for it.</div>
+    <div class="chart-box">
+      <div class="chart-title">Sanxingdui: Budget vs Box Office, US$</div>
+      <svg viewBox="0 0 820 240" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">US$ THOUSANDS (0.27PX PER $1,000)</text><text x="30" y="52" font-size="12" fill="#1a1a2e">Production budget (AFP)</text><rect x="250" y="38" width="400" height="18" fill="#1a1a2e"/><text x="656" y="52" font-size="11" font-weight="700" fill="#1a1a2e">~$1.5M</text><text x="30" y="80" font-size="12" fill="#1a1a2e">Opening days (Maoyan)</text><rect x="250" y="66" width="48" height="18" fill="#b45309"/><text x="304" y="80" font-size="11" font-weight="700" fill="#b45309">~$181K · 10,000+ screenings</text><text x="30" y="108" font-size="12" font-weight="700" fill="#c0392b">After three weeks (SCMP)</text><rect x="250" y="94" width="72" height="18" fill="#c0392b"/><text x="328" y="108" font-size="11" font-weight="700" fill="#c0392b">~$270K · ~18% of budget</text><text x="30" y="150" font-size="11" font-weight="700" fill="#5a6a8a">SHORT-FORM AI VIDEO</text><text x="30" y="174" font-size="12" fill="#1a1a2e">Q1 2026 micro-dramas AI-generated</text><rect x="290" y="160" width="380" height="18" fill="#e0d8d0"/><rect x="290" y="160" width="361" height="18" fill="#166534"/><text x="676" y="174" font-size="11" font-weight="700" fill="#166534">95%+ of 120,000+</text><text x="30" y="202" font-size="12" fill="#1a1a2e">AI micro-drama stock index, Nov 1 to 14</text><rect x="290" y="188" width="95" height="18" fill="#166534"/><text x="391" y="202" font-size="11" font-weight="700" fill="#166534">+25%+</text><text x="30" y="230" font-size="10.5" fill="#5a4a3a">Nearly 100 staff over two years · AFP counted four viewers at one screening · AI content labels required since Sept 2025</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: SCMP (Nov 15, 2026); Fortune (Oct 27, 2026); BGR citing AFP (Oct 29, 2026); Caixin via Fortune; China Fund News via Sina (Nov 15, 2026). Box office figures as reported in US dollars.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SHORT FORM</div>
+        <div class="annotation-card-zh">短剧<span class="annotation-card-en">duǎnjù · micro-drama</span></div>
+        <div class="annotation-card-body">AI cuts costs where viewers pay per episode.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · NEXT FEATURES</div>
+        <div class="annotation-card-zh">票房<span class="annotation-card-en">piàofáng · box office</span></div>
+        <div class="annotation-card-body">Whether studios keep their AI feature slates.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · VALUATIONS</div>
+        <div class="annotation-card-zh">内容标识<span class="annotation-card-en">nèiróng biāoshí · content label</span></div>
+        <div class="annotation-card-body">The rally assumes cost savings carry over to every format.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE · MARKET REGULATION / WEEK AHEAD</div>
+    <div class="story-headline">CSRC's Derivatives Rules Take Effect Today, Requiring ¥500 Million ($75 Million) of Net Capital to Deal Swaps and OTC Options, as October Activity Data Lands With Retail Sales Seen at 0.8%</div>
+    <div class="story-insight">
+      <p>The CSRC's derivatives (衍生品) measures take effect today. Only securities and futures firms with at least ¥500 million ($75 million) of net capital (净资本) can deal OTC options (场外期权) and total return swaps (收益互换). Insiders can no longer trade derivatives on their own company's shares.</p>
+      <br>
+      <p>October activity data also lands today, and consensus sees retail sales slowing to 0.8%. The loan prime rate (贷款市场报价利率) fixes on Friday, with no change expected.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> New dealing moves to larger brokers and insiders lose a private hedging route, so more stake sales may come through disclosed block trades.</div>
+    <div class="chart-box">
+      <div class="chart-title">October Activity Data: Consensus vs September, % y/y</div>
+      <svg viewBox="0 0 820 270" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">% YEAR ON YEAR (30PX PER POINT) · GREY = SEPTEMBER, COLOUR = OCTOBER CONSENSUS</text><line x1="430" y1="32" x2="430" y2="180" stroke="#9a8a7a" stroke-width="1"/><text x="30" y="52" font-size="12" fill="#1a1a2e">Industrial output</text><rect x="430" y="40" width="165" height="12" fill="#c9bfb3"/><rect x="430" y="54" width="159" height="12" fill="#1a1a2e"/><text x="601" y="51" font-size="10" fill="#9a8a7a">5.5%</text><text x="595" y="65" font-size="11" font-weight="700" fill="#1a1a2e">5.3%</text><text x="30" y="102" font-size="12" fill="#1a1a2e">Retail sales</text><rect x="430" y="90" width="33" height="12" fill="#c9bfb3"/><rect x="430" y="104" width="24" height="12" fill="#c0392b"/><text x="469" y="101" font-size="10" fill="#9a8a7a">1.1%</text><text x="460" y="115" font-size="11" font-weight="700" fill="#c0392b">0.8%</text><text x="30" y="152" font-size="12" fill="#1a1a2e">Fixed-asset inv. (YTD)</text><rect x="214" y="140" width="216" height="12" fill="#c9bfb3"/><rect x="220" y="154" width="210" height="12" fill="#b45309"/><text x="436" y="151" font-size="10" fill="#9a8a7a">-7.2%</text><text x="436" y="165" font-size="11" font-weight="700" fill="#b45309">~-7.0%</text><text x="30" y="204" font-size="11" font-weight="700" fill="#5a6a8a">CSRC DERIVATIVES MEASURES · EFFECTIVE NOV 16</text><text x="30" y="226" font-size="10.5" fill="#1a1a2e">Dealers: securities and futures firms only · net capital ≥ ¥500M ($75M) for six months · futures risk-management units excluded</text><text x="30" y="248" font-size="10.5" fill="#5a4a3a">Insider ban on own-company equity derivatives · non-compliant firms: no new trades, existing positions run off · LPR Fri: 3.00% / 3.50%</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Newsquawk and Lundgreen's Investor Insights calendars (Nov 13, 2026); CSRC measures via JunHe/Conventus Law (May 28, 2026) and Simmons &amp; Simmons (May 26, 2026); Caixin (Nov 14, 2026). USD at ¥6.67/$ (onshore spot, Nov 12, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CLEANER BOOKS</div>
+        <div class="annotation-card-zh">衍生品<span class="annotation-card-en">yǎnshēngpǐn · derivatives</span></div>
+        <div class="annotation-card-body">OTC equity derivatives move under one licensing regime.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RETAIL PRINT</div>
+        <div class="annotation-card-zh">社会消费品零售总额<span class="annotation-card-en">shèhuì xiāofèipǐn língshòu zǒng'é · retail sales</span></div>
+        <div class="annotation-card-body">A print below 0.8% would confirm trade-in fatigue.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SMALL BROKERS</div>
+        <div class="annotation-card-zh">净资本<span class="annotation-card-en">jìng zīběn · net capital</span></div>
+        <div class="annotation-card-body">Firms below ¥500M ($75M) lose new swap and option flow.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #181 · NOVEMBER 16, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
