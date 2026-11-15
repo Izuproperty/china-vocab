@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #170 · November 16, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #170 · November 16, 2026</div>
+    <div class="masthead-sub">Defense AI Vision Due End-November · Mitsui Chemicals Buys JSR · Retail JGBs at a Record</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · DEFENSE</div>
+      <div class="card-num">End-Nov</div>
+      <div class="card-label">Defense AI Vision due, replacing the July 2024 policy</div>
+      <div class="card-delta delta-amber">Cloud rules for classified data pending</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · M&amp;A</div>
+      <div class="card-num">¥1.84tn</div>
+      <div class="card-label">Mitsui Chemicals and DBJ buy JSR, including debt</div>
+      <div class="card-delta delta-green">vs ¥904bn JIC paid in 2023-24</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · RETAIL JGB</div>
+      <div class="card-num">¥8.19tn</div>
+      <div class="card-label">FY2026 retail JGB sales through November</div>
+      <div class="card-delta delta-red">Record; banks warn on deposits</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Koizumi Says a Defense AI Vision Will Replace the 2024 Policy by the End of November, With Cloud Rules for Classified Data Still Unwritten</div>
+    <div class="story-insight"><p>防衛大臣 (Bōei Daijin, Defense Minister) 小泉進次郎 (Koizumi Shinjirō, Shinjiro Koizumi) said on November 15 that the 防衛省 (Bōei-shō, Ministry of Defense) will publish a 防衛AIビジョン (Bōei Ē-Ai Bijon, Defense AI Vision) around the end of November. It replaces the ministry&#x27;s first AI policy, a 基本方針 (kihon hōshin, basic policy) issued in July 2024. Koizumi spoke at the Ground Self-Defense Force&#x27;s Kurihama camp in Yokosuka, Kanagawa Prefecture, and said a policy written two years ago needs revising because the technology has moved fast. He named three principles for the new document: people make the decisions and carry the responsibility, data is used to strengthen defense, and rapid adoption is weighed against safety.</p>
+      <br>
+      <p>The 2024 policy set seven priority areas, from target detection and intelligence analysis to command and control, logistics, unmanned systems, cybersecurity and office work. Koizumi&#x27;s remarks on the cloud carry the most weight for suppliers. He said security has to match the 機密性 (kimitsusei, confidentiality) of the data, and that moving highly classified information into a cloud requires preparation and standards first. No cloud service has been approved for that work. Until those standards exist, classified AI workloads stay on systems the government runs itself, which keeps the business with integrators that build on-premise systems. FNN reported that he also raised the threat of state-backed hackers targeting critical infrastructure.</p>
+      <br>
+      <p>The vision arrives while Tokyo revises its three national security documents before year-end and the ministry defends a record ¥8.9 trillion FY2027 budget request built around AI, drones and standoff missiles. Jiji reported on November 10 that Sakana AI&#x27;s technology is a candidate for the domestic model the government plans to put into 自衛隊 (Jieitai, Self-Defense Forces) command systems. A document that fixes where human sign-off is mandatory and how classified data may sit in a cloud becomes the procurement rulebook for NEC, Fujitsu, Mitsubishi Electric and the model developers bidding for that work.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Read the vision for two items: a certification path for classified data in the cloud, and the list of functions where AI may act without a person approving each step. A concrete cloud standard would open defense AI budgets to domestic clouds already certified for government work, such as Sakura Internet&#x27;s. A vague one keeps the spending with on-premise integrators, chiefly NEC and Fujitsu.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japan&#x27;s Defense AI Policy Timeline</div>
+<svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="110" x2="820" y2="110" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="60" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="60" y1="100" x2="60" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="60" y="38" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Jul 2024</text>
+<text x="60" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">First AI basic policy</text>
+<text x="60" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">7 priority areas</text>
+<circle cx="180" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="180" y1="120" x2="180" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="180" y="158" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Aug 31, 2026</text>
+<text x="180" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">¥8.9tn FY2027 request</text>
+<text x="180" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">AI, drones, missiles</text>
+<circle cx="300" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="300" y1="100" x2="300" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="300" y="38" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Nov 6</text>
+<text x="300" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Cyber package</text>
+<text x="300" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">METI AI team</text>
+<circle cx="420" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="420" y1="120" x2="420" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="420" y="158" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Nov 10</text>
+<text x="420" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Sakana candidate</text>
+<text x="420" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">SDF domestic model</text>
+<circle cx="540" cy="110" r="7" fill="#3730a3" stroke="#3730a3" stroke-width="3"/>
+<line x1="540" y1="100" x2="540" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="540" y="38" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Nov 15</text>
+<text x="540" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Koizumi announces</text>
+<text x="540" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Kurihama camp</text>
+<circle cx="660" cy="110" r="9" fill="#fff" stroke="#3730a3" stroke-width="3"/>
+<line x1="660" y1="120" x2="660" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="660" y="158" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">End-Nov</text>
+<text x="660" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Defense AI Vision</text>
+<text x="660" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">due</text>
+<circle cx="780" cy="110" r="7" fill="#b45309" stroke="#b45309" stroke-width="3"/>
+<line x1="780" y1="100" x2="780" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="780" y="38" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Year-end</text>
+<text x="780" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Security documents</text>
+<text x="780" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">revision</text>
+</svg>
+      <div class="chart-note">Source: CASRAI citing Jiji, TBS, FNN (Nov 15); MoD FY2027 request (Aug 31); Jiji (Nov 10). Year-end revision of the three national security documents is the government&#x27;s stated schedule.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">人間の判断<span class="annotation-card-en">human judgment</span></div>
+        <div class="annotation-card-body">People decide and carry responsibility.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">11月末<span class="annotation-card-en">end-November</span></div>
+        <div class="annotation-card-body">Vision text and cloud standards.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">機密性<span class="annotation-card-en">confidentiality</span></div>
+        <div class="annotation-card-body">No cloud approved for classified data.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Mitsui Chemicals and DBJ Agree to Buy JSR From the State Fund for ¥1.84 Trillion, Two and a Half Years Into a Planned Five-to-Seven-Year Hold</div>
+    <div class="story-insight"><p>三井化学 (Mitsui Kagaku, Mitsui Chemicals) agreed on November 9 to buy JSR, the フォトレジスト (fotorejisuto, photoresist) maker, from funds run by the state-backed 産業革新投資機構 (Sangyō Kakushin Tōshi Kikō, Japan Investment Corporation, JIC) for ¥1.84 trillion including debt. The price splits into ¥1.392 trillion of equity and ¥447.9 billion of interest-bearing debt and other items. The 日本政策投資銀行 (Nihon Seisaku Tōshi Ginkō, Development Bank of Japan, DBJ) invests ¥200 billion and will end up with non-voting preferred shares, so Mitsui holds every vote. Mitsui also buys JSR&#x27;s class A and class B preferred shares from Mizuho Bank and DBJ for cash. Closing needs competition and 外資規制 (gaishi kisei, foreign investment screening) approvals in Japan and abroad, and is targeted for October 2027 to March 2028.</p>
+      <br>
+      <p>JIC paid about ¥904 billion, or ¥4,350 a share, to take JSR private under a tender offer announced in June 2023. Its filing said JSR would buy other 半導体材料 (handōtai zairyō, semiconductor materials) makers and lead an industry 再編 (saihen, consolidation). JSR made one purchase, Yamanaka Hutech for ¥12 billion, and sold nine businesses. Nikkei reported that JIC had planned to hold for five to seven years. Semiconductor materials sales grew to ¥196.0 billion from ¥157.9 billion during the hold, and JSR booked revenue of ¥440.7 billion in the year to March 2026. Its US unit Inpria makes metal-oxide resists for EUV lithography; Inpria&#x27;s sales more than doubled to $60.1 million in FY2025 while its operating loss grew to $42.3 million. Mitsui ranks JSR second in photoresists worldwide and says it is the only supplier selling both chemically amplified and metal-oxide EUV resists.</p>
+      <br>
+      <p>Mitsui is paying with borrowed money. A ¥1.64 trillion つなぎ融資 (tsunagi yūshi, bridge loan) from its main banks plus DBJ&#x27;s ¥200 billion funds the deal, and net debt will temporarily exceed four times EBITDA. Mitsui plans to refinance within a year of closing through loans, bonds and equity to keep its A rating, and filed a shelf registration for up to ¥150 billion of new shares that takes effect November 17. It will sell JSR&#x27;s resists alongside its own EUV pellicles and packaging resists, targets about ¥40 billion a year of added profit by FY2035, and plans about ¥350 billion of asset sales, starting with JSR&#x27;s life sciences unit. Mitsui&#x27;s Satoshi Ichimura said further large acquisitions are frozen. JIC chief Shogo Ikeuchi said he expects Mitsui to lead the next round of consolidation and that JIC may invest alongside it.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The sale keeps the world&#x27;s second-largest photoresist supplier in Japanese hands with a state bank in the capital structure, and moves the consolidation JIC promised onto a listed company&#x27;s balance sheet. Mitsui shareholders carry the cost: up to ¥150 billion of new shares and leverage above 4x until the refinancing is done. Tokyo Ohka Kogyo and Shin-Etsu now compete with a resist supplier whose parent can bundle pellicles and packaging materials into the same EUV order.</div>
+    <div class="chart-box">
+      <div class="chart-title">JSR: What JIC Paid vs What Mitsui Pays, and How It Is Funded, ¥ Billion</div>
+<svg viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+<line x1="230.0" y1="10" x2="230.0" y2="215" stroke="#e8eaf2"/>
+<text x="230.0" y="232" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥0bn</text>
+<line x1="370.0" y1="10" x2="370.0" y2="215" stroke="#e8eaf2"/>
+<text x="370.0" y="232" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥500bn</text>
+<line x1="510.0" y1="10" x2="510.0" y2="215" stroke="#e8eaf2"/>
+<text x="510.0" y="232" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥1,000bn</text>
+<line x1="650.0" y1="10" x2="650.0" y2="215" stroke="#e8eaf2"/>
+<text x="650.0" y="232" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥1,500bn</text>
+<line x1="790.0" y1="10" x2="790.0" y2="215" stroke="#e8eaf2"/>
+<text x="790.0" y="232" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">¥2,000bn</text>
+<text x="220" y="37" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">JIC take-private (2023-24)</text>
+<rect x="230" y="22" width="253.1" height="22" rx="3" fill="#5a6a8a"/>
+<text x="491.12" y="38" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="start">¥904bn</text>
+<text x="220" y="77" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Mitsui equity value</text>
+<rect x="230" y="62" width="389.8" height="22" rx="3" fill="#be185d"/>
+<text x="627.76" y="78" font-size="12" font-weight="700" fill="#be185d" text-anchor="start">¥1,392bn</text>
+<text x="220" y="117" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Mitsui deal incl. debt</text>
+<rect x="230" y="102" width="515.2" height="22" rx="3" fill="#be185d"/>
+<text x="753.2" y="118" font-size="12" font-weight="700" fill="#be185d" text-anchor="start">¥1,840bn</text>
+<line x1="20" y1="130" x2="840" y2="130" stroke="#dde0ec" stroke-dasharray="4 4"/>
+<text x="840" y="126" font-size="10" font-weight="700" fill="#3730a3" text-anchor="end">Financing</text>
+<text x="220" y="157" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Bridge loan</text>
+<rect x="230" y="142" width="459.2" height="22" rx="3" fill="#3730a3"/>
+<text x="697.2" y="158" font-size="12" font-weight="700" fill="#3730a3" text-anchor="start">¥1,640bn</text>
+<text x="220" y="197" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">DBJ investment</text>
+<rect x="230" y="182" width="56.0" height="22" rx="3" fill="#3730a3"/>
+<text x="294.0" y="198" font-size="12" font-weight="700" fill="#3730a3" text-anchor="start">¥200bn</text>
+</svg>
+      <div class="chart-note">Source: Mitsui Chemicals filing via TechNode and Chemical Engineering (Nov 9); JIC 2023 tender offer at ¥4,350 a share. Final consideration subject to closing adjustments.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">国内保持<span class="annotation-card-en">kept domestic</span></div>
+        <div class="annotation-card-body">No.2 resist maker stays Japanese.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">11月17日<span class="annotation-card-en">Nov 17</span></div>
+        <div class="annotation-card-body">¥150bn share shelf takes effect.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">レバレッジ<span class="annotation-card-en">leverage</span></div>
+        <div class="annotation-card-body">Net debt above 4x EBITDA for now.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Retail JGB Sales Pass ¥8.19 Trillion This Fiscal Year, Beating the 2005 Record, as the Five-Year Fixed Bond Pays 2.17% and Banks Watch Their Deposits</div>
+    <div class="story-insight"><p>Sales of 個人向け国債 (kojin muke kokusai, retail Japanese government bonds) reached ¥8.1896 trillion in FY2026 through the November offering, Jiji Press reported on November 10. That passes the previous full-year record of ¥7.2712 trillion set in FY2005, with four monthly offerings still to come before the fiscal year ends in March. The November 固定5年 (kotei gonen, fixed five-year) bond pays 2.17% a year, against about 1% on a five-year time deposit at the megabanks and under 2% at most online banks. The bonds sell from ¥10,000, carry a state guarantee, and can be redeemed after one year at the cost of two coupons, so savers buy them as a higher-paying deposit. Applications for the November issue close on November 30.</p>
+      <br>
+      <p>The Ministry of Finance is pushing sales because the 日本銀行 (Nihon Ginkō, Bank of Japan) is shrinking its bond purchases and the government needs other buyers. MoF is studying a 20-year retail product and a lower minimum, the FY2027 tax requests ask for preferential treatment, and some lawmakers want JGBs made eligible for NISA accounts. MUFG&#x27;s currency strategists note that households keep 47.2% of their financial assets in cash and deposits, so the pool is large. Every yen that moves into bonds is a yen of cheap 預金 (yokin, deposit) funding a bank must replace. 全国銀行協会 (Zenkoku Ginkō Kyōkai, Japanese Bankers Association) chairman Katsuhiko Kato warned that heavy shifts out of deposits could squeeze lending for growth.</p>
+      <br>
+      <p>Retail buyers are domestic and usually hold to maturity, which steadies demand for government debt while the yen trades near 160 to the dollar and the BOJ is expected to lift its 1.25% policy rate at its December 17-18 meeting. Banks gain on loan margins when rates rise, but a government paying 2.17% for five-year money forces them to raise deposit rates sooner than they would like. Regional lenders with small loan books and large deposit bases have the least room to absorb that cost.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Retail demand gives MoF a buyer that does not dump bonds when yields rise, which eases pressure on auctions as the BOJ steps back. The bill goes to banks. If retail sales keep growing at this pace into 2027, megabanks and regional lenders will have to raise time-deposit rates to keep funding, and that eats into the margin gains investors are pricing in for a December hike.</div>
+    <div class="chart-box">
+      <div class="chart-title">Retail JGBs: a Record Year and a Yield Above Bank Deposits</div>
+<svg viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+<text x="200" y="18" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Retail JGB sales by fiscal year, ¥tn</text>
+<text x="640" y="18" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Five-year yields offered to savers, %</text>
+<rect x="110" y="88.8" width="80" height="121.2" rx="3" fill="#5a6a8a"/>
+<text x="150" y="80.81333333333332" font-size="13" font-weight="700" fill="#5a6a8a" text-anchor="middle">¥7.27tn</text>
+<text x="150" y="228" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">FY2005 record</text>
+<rect x="260" y="73.5" width="80" height="136.5" rx="3" fill="#b45309"/>
+<text x="300" y="65.50666666666666" font-size="13" font-weight="700" fill="#b45309" text-anchor="middle">¥8.19tn</text>
+<text x="300" y="228" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">FY2026 to Nov</text>
+<line x1="80" y1="210" x2="380" y2="210" stroke="#c7cbe0"/>
+<text x="300" y="240" font-size="10" font-weight="400" fill="#b45309" text-anchor="middle">4 monthly offerings still to come</text>
+<line x1="560.0" y1="35" x2="560.0" y2="195" stroke="#e8eaf2"/>
+<text x="560.0" y="212" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="656.0" y1="35" x2="656.0" y2="195" stroke="#e8eaf2"/>
+<text x="656.0" y="212" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">1%</text>
+<line x1="752.0" y1="35" x2="752.0" y2="195" stroke="#e8eaf2"/>
+<text x="752.0" y="212" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">2%</text>
+<text x="552" y="68" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Retail JGB fixed 5-yr</text>
+<rect x="560" y="54" width="208.3" height="22" rx="3" fill="#b45309"/>
+<text x="774.3199999999999" y="70" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">2.17%</text>
+<text x="552" y="116" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Online banks, 5-yr deposit</text>
+<rect x="560" y="102" width="187.2" height="22" rx="3" fill="#8a9bb5"/>
+<text x="753.2" y="118" font-size="11" font-weight="700" fill="#8a9bb5" text-anchor="start">under 2%</text>
+<text x="552" y="164" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Megabanks, 5-yr deposit</text>
+<rect x="560" y="150" width="96.0" height="22" rx="3" fill="#5a6a8a"/>
+<text x="662.0" y="166" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="start">about 1%</text>
+</svg>
+      <div class="chart-note">Source: Jiji Press via 8and (Nov 10). Online-bank bar drawn at 1.95% to represent &#x27;under 2%&#x27;. FY2026 total includes the November offering.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">過去最高<span class="annotation-card-en">record</span></div>
+        <div class="annotation-card-body">¥8.19tn beats FY2005&#x27;s ¥7.27tn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">11月30日<span class="annotation-card-en">Nov 30</span></div>
+        <div class="annotation-card-body">November applications close.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">預金流出<span class="annotation-card-en">deposit outflow</span></div>
+        <div class="annotation-card-body">Banks pay up to keep funding.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #170 · NOVEMBER 16, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
