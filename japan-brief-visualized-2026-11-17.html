@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #171 · November 17, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #171 · November 17, 2026</div>
+    <div class="masthead-sub">Google Cyber AI for Japan · Advantest Falls 11% Before Nvidia · Q3 GDP Shrinks 0.1%</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CYBER</div>
+      <div class="card-num">Nov 16</div>
+      <div class="card-label">Google extends frontier cyber AI access to Japanese agencies and infrastructure</div>
+      <div class="card-delta delta-amber">Model and terms undisclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · MARKETS</div>
+      <div class="card-num">-11.1%</div>
+      <div class="card-label">Advantest on Nov 16; Nikkei -1,480 points to 59,662</div>
+      <div class="card-delta delta-red">Nvidia reports Nov 18 Tokyo time</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · GDP</div>
+      <div class="card-num">-0.1%</div>
+      <div class="card-label">Jul-Sep real GDP, annualized; first fall in four quarters</div>
+      <div class="card-delta delta-red">Consensus +0.3%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Google Opens Its Restricted Cyber AI Program to Japanese Agencies and Critical Infrastructure Operators, Ten Days After Tokyo&#x27;s Emergency Cyber Package</div>
+    <div class="story-insight"><p>Google Cloud chief executive Thomas Kurian said on November 16, during a visit to Japan, that Google will extend early access to its frontier AI models for cybersecurity to Japanese 政府機関 (seifu kikan, government agencies) and 重要インフラ (jūyō infura, critical infrastructure) operators, The Cryptonomist reported. The report describes this as an expansion of an early-access program Google opened in September, which matches Fairwind. Google launched Fairwind on September 2 for governments, critical infrastructure operators and vetted partners, pairing its Gemini 3.8 Flash Cyber model with the CodeMender tool that finds, verifies and patches flaws. On September 30 it released Gemini 4 Argon through the same channel, without the cyber guardrails the public version carries. Fairwind members must limit use to in-house security, incident response and penetration-testing staff. Neither the model Japanese users will receive nor any commercial terms were disclosed.</p>
+      <br>
+      <p>Tokyo now has frontier cyber access from two US labs. In June, Anthropic included the Japanese government and several domestic financial institutions when it widened access to Claude Mythos, and OpenAI has said it will offer Japan a comparable model. Google already works with the 情報通信研究機構 (Jōhō Tsūshin Kenkyū Kikō, NICT) on an agent that hunts for 脆弱性 (zeijakusei, vulnerabilities) in automotive, medical-device and IoT software, and with the デジタル庁 (Dejitaru-chō, Digital Agency) on supply-chain checks in the Government Cloud used by 13 ministries and about 1,700 local governments. The emergency package ministers adopted on November 6, about ¥10 billion according to AP, ordered METI to form an AI team by the end of November that works with advanced AI developers of friendly nations. Reported cyber incidents in January through September already exceeded the 2025 total.</p>
+      <br>
+      <p>Google&#x27;s offer gives that METI team a second source of models built to find and fix flaws, and it reaches utilities, telecoms and hospitals directly. The cost is dependence. Japan&#x27;s defensive tooling now runs on models whose access, guardrails and pricing are set in California, while the government funds domestic models such as Sakana AI&#x27;s for defense and Fujitsu&#x27;s Takane for administration. For listed security vendors, flaw discovery becomes something the labs hand to critical operators at no stated charge, which leaves patch deployment, monitoring and incident-response staffing as the billable work.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Watch the METI AI team due at the end of November: its partner list will show which labs the state wires into incident response. Integrators that run security operations for operators (NEC, NTT Data, Fujitsu) gain from more flaws found and more patches to deploy. Vendors that sell vulnerability scanning, including Trend Micro, face a free substitute inside the largest critical-infrastructure accounts.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japan&#x27;s Frontier Cyber AI Access, 2026</div>
+<svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="110" x2="820" y2="110" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="70" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="70" y1="100" x2="70" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="70" y="38" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Jun 2</text>
+<text x="70" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Anthropic Mythos</text>
+<text x="70" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Japan gov&#x27;t, banks in</text>
+<circle cx="214" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="214" y1="120" x2="214" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="214" y="158" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Sep 2</text>
+<text x="214" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Google Fairwind</text>
+<text x="214" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Gemini 3.8 Flash Cyber</text>
+<circle cx="358" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="358" y1="100" x2="358" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="358" y="38" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Sep 30</text>
+<text x="358" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Gemini 4 Argon</text>
+<text x="358" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">vetted defenders</text>
+<circle cx="502" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="502" y1="120" x2="502" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="502" y="158" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Nov 6</text>
+<text x="502" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Cyber package</text>
+<text x="502" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">~¥10bn, METI AI team</text>
+<circle cx="646" cy="110" r="7" fill="#3730a3" stroke="#3730a3" stroke-width="3"/>
+<line x1="646" y1="100" x2="646" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="646" y="38" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Nov 16</text>
+<text x="646" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Kurian in Japan</text>
+<text x="646" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">agencies, infra added</text>
+<circle cx="790" cy="110" r="9" fill="#fff" stroke="#3730a3" stroke-width="3"/>
+<line x1="790" y1="120" x2="790" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="790" y="158" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">End-Nov</text>
+<text x="790" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">METI AI team</text>
+<text x="790" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">partner labs named</text>
+</svg>
+      <div class="chart-note">Source: The Cryptonomist (Nov 16); Google Fairwind blog (Sep 2); SecurityWeek (Oct 1); AsiaNews Network (Jun 5); AP via earlier reporting (Nov 6). The report did not name the model Japanese users receive.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">先行利用<span class="annotation-card-en">early access</span></div>
+        <div class="annotation-card-body">Agencies and operators join Fairwind.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">11月末<span class="annotation-card-en">end-November</span></div>
+        <div class="annotation-card-body">METI AI team and its partners.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">依存<span class="annotation-card-en">dependence</span></div>
+        <div class="annotation-card-body">Access and terms set abroad.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Advantest Falls 11.1% and Tokyo Electron 7.1% as the Nikkei Drops 1,480 Points Below 60,000, Two Days Before Nvidia&#x27;s First Report Without Huang</div>
+    <div class="story-insight"><p>The 日経平均株価 (Nikkei Heikin Kabuka, Nikkei Stock Average) fell 1,480.33 points, or 2.42%, to 59,662.02 on November 16, its first close below 60,000 since November 9. アドバンテスト (Adobantesuto, Advantest) fell 11.1% and 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron) 7.1%, and Startup Fortune put their combined 寄与度 (kiyodo, index contribution) at about 1,072 points, close to three quarters of the day&#x27;s loss. Lasertec fell between 10% and 12% depending on the source, Ibiden 8.2% and SoftBank Group 3.7%. TOPIX fell 1.02% to 3,901.37, its first decline in six sessions, with 857 Prime stocks down and 655 up. Retail was the best of the 33 sectors as Nitori rose on results and Credit Saison hit its daily limit.</p>
+      <br>
+      <p>The selling came from the US and spread across Asia. The Philadelphia Semiconductor Index fell 3.4% on Friday, November 13, and Nvidia lost 2.0% to $162.85. Taiwan&#x27;s benchmark fell about 6% on Monday with TSMC down 5.7%, and Korea&#x27;s KOSPI fell 3.59%. Nvidia reports fiscal third-quarter results after the US close on November 17, early on November 18 in Tokyo, the first since Jensen Huang stepped down as chief executive and CFO Colette Kress became interim CEO. Consensus revenue is $109.3 billion against company guidance of about $108 billion. Nomura&#x27;s Maki Sawada said wariness about AI was building even though no new bad news had arrived over the weekend.</p>
+      <br>
+      <p>The Nikkei fell more than twice as far as the broad Japanese market because of how it is built. The index is price-weighted, so a handful of high-priced chip names move it far more than they move TOPIX, which explains a 2.42% drop against 1.02%. Advantest sells testers per GPU, so its revenue tracks Nvidia&#x27;s unit shipments more closely than any other Japanese stock, and it swung from a 2.08% gain on November 13, when Huang left, to an 11.1% loss two sessions later with no change in its own outlook. Tokyo Electron raised its full-year operating profit guide to ¥1.169 trillion on October 30 and is buying back up to ¥150 billion of stock through March, which gives its shares a buyer on weak days.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Monday&#x27;s move was positioning before one event. If Nvidia reports above its $108 billion guide and holds its order commentary under an interim CEO, Advantest and Tokyo Electron should recover much of the drop, with Tokyo Electron&#x27;s buyback adding support. A cautious guide hits Advantest first because its sales follow GPU volumes. The Nikkei-TOPIX gap means broad Japan exposure lost far less than the headline index suggests.</div>
+    <div class="chart-box">
+      <div class="chart-title">Monday&#x27;s Chip Selloff: Tokyo vs Asia, % Change</div>
+<svg viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg">
+<line x1="298.6" y1="8" x2="298.6" y2="352" stroke="#e8eaf2"/>
+<text x="298.6" y="368" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">-12%</text>
+<line x1="414.3" y1="8" x2="414.3" y2="352" stroke="#e8eaf2"/>
+<text x="414.3" y="368" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">-9%</text>
+<line x1="530.0" y1="8" x2="530.0" y2="352" stroke="#e8eaf2"/>
+<text x="530.0" y="368" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">-6%</text>
+<line x1="645.7" y1="8" x2="645.7" y2="352" stroke="#e8eaf2"/>
+<text x="645.7" y="368" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">-3%</text>
+<line x1="761.4" y1="8" x2="761.4" y2="352" stroke="#e8eaf2"/>
+<text x="761.4" y="368" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="761.4" y1="8" x2="761.4" y2="352" stroke="#c7cbe0" stroke-width="1.5"/>
+<text x="250" y="30" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Advantest</text>
+<rect x="333.3" y="14" width="428.1" height="22" rx="3" fill="#be185d"/>
+<text x="327.3" y="30" font-size="12" font-weight="700" fill="#be185d" text-anchor="end">-11.1%</text>
+<text x="250" y="64" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Lasertec (intraday)</text>
+<rect x="348.7" y="48" width="412.7" height="22" rx="3" fill="#be185d"/>
+<text x="342.7" y="64" font-size="12" font-weight="700" fill="#be185d" text-anchor="end">-10.7%</text>
+<text x="250" y="98" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Ibiden</text>
+<rect x="445.1" y="82" width="316.3" height="22" rx="3" fill="#be185d"/>
+<text x="439.1" y="98" font-size="12" font-weight="700" fill="#be185d" text-anchor="end">-8.2%</text>
+<text x="250" y="132" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Tokyo Electron</text>
+<rect x="487.6" y="116" width="273.9" height="22" rx="3" fill="#be185d"/>
+<text x="481.6" y="132" font-size="12" font-weight="700" fill="#be185d" text-anchor="end">-7.1%</text>
+<text x="250" y="166" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">SoftBank Group</text>
+<rect x="618.7" y="150" width="142.7" height="22" rx="3" fill="#be185d"/>
+<text x="612.7" y="166" font-size="12" font-weight="700" fill="#be185d" text-anchor="end">-3.7%</text>
+<text x="250" y="200" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Nikkei 225</text>
+<rect x="668.1" y="184" width="93.3" height="22" rx="3" fill="#3730a3"/>
+<text x="662.1" y="200" font-size="12" font-weight="700" fill="#3730a3" text-anchor="end">-2.42%</text>
+<text x="250" y="234" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">TOPIX</text>
+<rect x="722.1" y="218" width="39.3" height="22" rx="3" fill="#3730a3"/>
+<text x="716.1" y="234" font-size="12" font-weight="700" fill="#3730a3" text-anchor="end">-1.02%</text>
+<text x="250" y="268" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">TSMC (Taiwan)</text>
+<rect x="541.6" y="252" width="219.9" height="22" rx="3" fill="#5a6a8a"/>
+<text x="535.6" y="268" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="end">-5.7%</text>
+<text x="250" y="302" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">KOSPI (Korea)</text>
+<rect x="623.0" y="286" width="138.5" height="22" rx="3" fill="#5a6a8a"/>
+<text x="617.0" y="302" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="end">-3.59%</text>
+<text x="250" y="336" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">SOX (US, Nov 13)</text>
+<rect x="630.3" y="320" width="131.1" height="22" rx="3" fill="#5a6a8a"/>
+<text x="624.3" y="336" font-size="12" font-weight="700" fill="#5a6a8a" text-anchor="end">-3.4%</text>
+</svg>
+      <div class="chart-note">Source: Startup Fortune, BigGo Finance, GlobeTV (Nov 16). Closing moves except Lasertec, shown at its morning low; sources put its close between -10% and -12%.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">自社株買い<span class="annotation-card-en">buyback</span></div>
+        <div class="annotation-card-body">TEL buying up to ¥150bn by March.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">11月18日<span class="annotation-card-en">Nov 18 (Tokyo)</span></div>
+        <div class="annotation-card-body">Nvidia results and guide.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">値がさ株<span class="annotation-card-en">high-priced stocks</span></div>
+        <div class="annotation-card-body">Price weighting amplifies chip swings.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Japan&#x27;s Economy Shrinks 0.1% Annualized in July-September, Its First Contraction in Four Quarters, as Consumption Falls Again and Forecasters Expected Growth</div>
+    <div class="story-insight"><p>Real 国内総生産 (kokunai sōseisan, gross domestic product) fell 0.02% from the previous quarter in July-September, or 0.1% at an 年率換算 (nenritsu kansan, annualized rate), according to the Cabinet Office&#x27;s first 速報値 (sokuhōchi, preliminary estimate) on November 16. It is the first contraction in four quarters, after 1.4% annualized growth in April-June. The Reuters median of private forecasters was +0.1% on the quarter and +0.3% annualized. 個人消費 (kojin shōhi, Private consumption), more than half of the economy, fell 0.3% for a second straight quarter. Spending dropped on air conditioners, toothbrushes, rice, confectionery, seafood and clothing, which the reports put down to high prices and weeks of heavy rain.</p>
+      <br>
+      <p>Business spending held the quarter close to flat. 設備投資 (setsubi tōshi, Capital expenditure) rose 1.6% on the quarter, 6.8% annualized and the first gain in three quarters, led by computers and semiconductor manufacturing equipment. Trade pulled the other way. Exports fell 0.2%, the first drop in four quarters, on weaker sales of research services, while imports rose 2.5% on crude oil and aluminum, and net exports cut 0.6 percentage points from growth. The import bill comes from the same source as the consumption squeeze: October producer prices rose 7.1% from a year earlier, the yen traded near 159.5 per dollar on Monday, and the 10-year JGB yield stood at 2.880%.</p>
+      <br>
+      <p>The 日本銀行 (Nihon Ginkō, Bank of Japan) holds its policy rate at 1.25% and meets on December 17-18. Before the data, 54 of 78 economists in a Reuters poll expected a rise to 1.50%. A negative quarter weakens the demand-side case for that hike. The cause of the contraction pushes the other way, because households are spending less as imported costs rise, and a weaker yen adds to those costs. The board has to decide which of those effects to weigh more, with the revised GDP estimate in early December, which adds Ministry of Finance survey data on corporate investment, still to come.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The contraction is a price shock on households, offset by AI-related capex, and it does not show broad weakness in demand. That leaves a December hike live: a move to 1.50% would support the yen and ease import costs, and real wages have risen for nine straight months through September. Watch the capex line in the early-December revision. If chip-equipment investment is marked down, the quarter looks weaker and the hike case thins.</div>
+    <div class="chart-box">
+      <div class="chart-title">Q3 GDP: Consumption and Trade Down, Capex Up</div>
+<svg viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+<text x="200" y="18" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Real GDP, annualized %</text>
+<text x="640" y="18" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Jul-Sep components, % q/q</text>
+<line x1="60" y1="150" x2="360" y2="150" stroke="#c7cbe0"/>
+<rect x="80" y="66.0" width="70" height="84.0" rx="3" fill="#5a6a8a"/>
+<text x="115" y="58.0" font-size="13" font-weight="700" fill="#5a6a8a" text-anchor="middle">+1.4%</text>
+<text x="115" y="240" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Apr-Jun</text>
+<rect x="175" y="132.0" width="70" height="18.0" rx="3" fill="#8a9bb5"/>
+<text x="210" y="124.0" font-size="13" font-weight="700" fill="#8a9bb5" text-anchor="middle">+0.3%</text>
+<text x="210" y="240" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Jul-Sep consensus</text>
+<rect x="270" y="150.0" width="70" height="6.0" rx="3" fill="#b45309"/>
+<text x="305" y="172.0" font-size="13" font-weight="700" fill="#b45309" text-anchor="middle">-0.1%</text>
+<text x="305" y="240" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Jul-Sep actual</text>
+<line x1="596.4" y1="35" x2="596.4" y2="215" stroke="#c7cbe0" stroke-width="1.5"/>
+<text x="552" y="56" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Private consumption</text>
+<rect x="574.5" y="40" width="21.8" height="22" rx="3" fill="#b45309"/>
+<text x="602.4" y="56" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">-0.3%</text>
+<text x="552" y="90" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Capex</text>
+<rect x="596.4" y="74" width="116.4" height="22" rx="3" fill="#3730a3"/>
+<text x="718.7" y="90" font-size="11" font-weight="700" fill="#3730a3" text-anchor="start">+1.6%</text>
+<text x="552" y="124" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Exports</text>
+<rect x="581.8" y="108" width="14.5" height="22" rx="3" fill="#b45309"/>
+<text x="602.4" y="124" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">-0.2%</text>
+<text x="552" y="158" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Imports</text>
+<rect x="596.4" y="142" width="181.8" height="22" rx="3" fill="#8a9bb5"/>
+<text x="784.2" y="158" font-size="11" font-weight="700" fill="#8a9bb5" text-anchor="start">+2.5%</text>
+<text x="552" y="192" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Real GDP</text>
+<rect x="594.9" y="176" width="2.0" height="22" rx="3" fill="#b45309"/>
+<text x="602.4" y="192" font-size="11" font-weight="700" fill="#b45309" text-anchor="start">-0.02%</text>
+<text x="680" y="240" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Rising imports subtract from GDP; net exports cut 0.6pt</text>
+</svg>
+      <div class="chart-note">Source: Cabinet Office preliminary estimate via BigGo Finance, Xinhua, Brownstone Worldwide (Nov 16); consensus is the Reuters median. Apr-Jun figure is the pre-release reading.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">設備投資<span class="annotation-card-en">capex</span></div>
+        <div class="annotation-card-body">+1.6% q/q on chip tools and computers.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">12月17-18日<span class="annotation-card-en">Dec 17-18</span></div>
+        <div class="annotation-card-body">BOJ meeting; 1.50% expected.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">個人消費<span class="annotation-card-en">consumption</span></div>
+        <div class="annotation-card-body">Second straight quarterly fall.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #171 · NOVEMBER 17, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
