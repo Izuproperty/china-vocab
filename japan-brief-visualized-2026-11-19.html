@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #173 · November 19, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #173 · November 19, 2026</div>
+    <div class="masthead-sub">Japan-ASEAN AI Safety Pact · Advantest Rides Nvidia · Record Exports, Oil Deficit</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · POLICY</div>
+      <div class="card-num">90k+</div>
+      <div class="card-label">Applications to Japan&#x27;s AI training course, about 15k from ASEAN</div>
+      <div class="card-delta delta-amber">No budget disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · MARKETS</div>
+      <div class="card-num">+4.56%</div>
+      <div class="card-label">Advantest on Nov 18; Topix -0.42%, 71% of Prime stocks fell</div>
+      <div class="card-delta delta-green">Nvidia Q4 guide $130bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · TRADE</div>
+      <div class="card-num">+20.5%</div>
+      <div class="card-label">October exports to a record ¥11.77tn; chips +49.7%</div>
+      <div class="card-delta delta-red">¥476.5bn deficit</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Takaichi Launches a Japan-ASEAN AI Safety Partnership in Manila That Shares Testing Methods but Names No Budget</div>
+    <div class="story-insight"><p>Prime Minister 高市早苗 (Takaichi Sanae) launched the Japan-ASEAN AI Safety and Security Partnership at the 29th ASEAN-Japan Summit in Manila on November 17, held alongside the 49th ASEAN Summit. The joint statement calls the arrangement voluntary and non-binding. It covers model testing, technical expertise and the ability of governments to run their own 安全性評価 (anzensei hyōka, safety evaluation) of AI systems. Japan proposed sharing safety-testing methods and guardrails, running seminars, training and study tours, holding AI security workshops through the ASEAN-Japan Cybersecurity Capacity Building Centre, and advising the agencies that evaluate AI for each government. The statement names cyberattacks and the loss of human control over AI as the risks it is meant to address.</p>
+      <br>
+      <p>Most of the technical work falls to Japan&#x27;s AIセーフティ・インスティテュート (AI Sēfuti Insutitūto, AI Safety Institute, J-AISI), set up in February 2024 inside the Information-technology Promotion Agency. J-AISI has already exchanged views with Vietnam, run benchmark work with Malaysia and joined Singapore&#x27;s 2026 red-teaming challenge. The partnership will plug into the ASEAN Working Group on AI Governance and the ASEAN AI Safety Network. In her opening remarks Takaichi placed it under the ASEAN-Japan Comprehensive Strategic Plan, beside AI co-creation and infrastructure support. Japan&#x27;s AI co-creation program began in October 2025, and a related training course drew more than 90,000 applications, about 15,000 of them from ASEAN. Neither the statement nor Takaichi&#x27;s remarks gave a budget, a staffing number or a timetable.</p>
+      <br>
+      <p>Japan is exporting a testing method before it has fixed its own enforcement rules. Last week the government began weighing binding orders and penalties for high-risk AI at home (Issue #167), yet the regional offer asks nothing binding of anyone. The practical effect comes through procurement. If ASEAN regulators adopt J-AISI test procedures, Japanese vendors selling AI systems to those governments will already know the checks, which helps NTT Data, Fujitsu and NEC against US and Chinese bidders. The Philippines alone has set a $34 billion AI infrastructure target through 2033. J-AISI is a small unit, and the statement gives it work across eleven member states with no new money, so the first measurable sign will be whether a Japanese budget assigns money to it.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Look for a budget line funding J-AISI&#x27;s ASEAN work; without one, the partnership will produce workshops and no shared test standards. If ASEAN agencies adopt Japanese test procedures, Japanese IT services firms bidding for government AI contracts in the region gain a compliance head start over US and Chinese rivals. Domestic penalty rules for high-risk AI, still under discussion, will decide whether Japan&#x27;s method carries any enforcement weight.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japan&#x27;s AI Safety Track, 2024-2026</div>
+<svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="110" x2="820" y2="110" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="70" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="70" y1="100" x2="70" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="70" y="38" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Feb 2024</text>
+<text x="70" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">J-AISI set up</text>
+<text x="70" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">inside IPA</text>
+<circle cx="214" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="214" y1="120" x2="214" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="214" y="158" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Oct 2025</text>
+<text x="214" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">AI co-creation</text>
+<text x="214" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">ASEAN program</text>
+<circle cx="358" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="358" y1="100" x2="358" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="358" y="38" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">2026</text>
+<text x="358" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Red-teaming</text>
+<text x="358" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Singapore challenge</text>
+<circle cx="502" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="502" y1="120" x2="502" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="502" y="158" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Nov 12-13</text>
+<text x="502" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Penalties weighed</text>
+<text x="502" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">high-risk AI (#167)</text>
+<circle cx="646" cy="110" r="9" fill="#3730a3" stroke="#3730a3" stroke-width="3"/>
+<line x1="646" y1="100" x2="646" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="646" y="38" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Nov 17</text>
+<text x="646" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Partnership</text>
+<text x="646" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">launched in Manila</text>
+<circle cx="790" cy="110" r="9" fill="#fff" stroke="#3730a3" stroke-width="3"/>
+<line x1="790" y1="120" x2="790" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="790" y="158" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Next</text>
+<text x="790" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Budget line?</text>
+<text x="790" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">none disclosed</text>
+</svg>
+      <div class="chart-note">Source: GMA News (Nov 17); MediaNama (Nov 18); earlier Japan Brief reporting. Partnership is voluntary and non-binding; no budget or timetable was published.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">評価手法<span class="annotation-card-en">test methods</span></div>
+        <div class="annotation-card-body">J-AISI methods offered to ASEAN.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">予算措置<span class="annotation-card-en">budget allocation</span></div>
+        <div class="annotation-card-body">Any money for J-AISI&#x27;s ASEAN work.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">非拘束<span class="annotation-card-en">non-binding</span></div>
+        <div class="annotation-card-body">No duties, no money, no timetable.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Advantest Rises 4.6% After Nvidia&#x27;s First Report Without Huang, While Seven in Ten Prime Stocks Fall</div>
+    <div class="story-insight"><p>アドバンテスト (Adobantesuto, Advantest) rose 4.56% on November 18 and added more points to the Nikkei 225 than any other stock. The index closed up 0.28% at 59,024.28 after falling almost 1% in early trade. Nvidia had reported after the US close on November 17, its first results since Jensen Huang resigned as chief executive on November 12. Revenue for the quarter rose 103% to $115.8 billion, data-center revenue reached $107.6 billion, and the company guided fourth-quarter revenue to $130 billion, plus or minus 3%, excluding data-center compute sales to China. Its shares rose nearly 5% after hours. Interim chief executive Colette Kress delivered the results, and the board chair said there is no plan to bring Huang back.</p>
+      <br>
+      <p>The gain stayed in a few large stocks. 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron) rose 0.49% after recovering early losses, and Fujikura rose 0.58%. キオクシア (Kiokushia, Kioxia) topped Kabutan&#x27;s pre-open list of 買い気配 (kai kehai, indicated bids), traded below its prior close during the morning and finished up only 0.74%. The Topix fell 0.42% to 3,824, and of more than 1,500 Prime-section stocks 71% fell and 25% rose. MUFG and SMFG each lost more than 1%, and Rakuten Group fell 5.67% after its brokerage unit said customer data may have leaked. Kazuaki Shimada of IwaiCosmo Securities said the Nvidia outlook lifted Tokyo but that investors still worry about Huang&#x27;s fate and a slowdown in US data-center building. Huang has agreed to testify before House committees on December 1.</p>
+      <br>
+      <p>Advantest&#x27;s 指数寄与度 (shisū kiyodo, index contribution) follows Nvidia&#x27;s unit volumes, because each GPU must pass an SoC tester and Advantest holds most of that market. Nvidia&#x27;s guide implies about 12% sequential revenue growth, which supports Advantest&#x27;s ¥967 billion operating profit forecast for the fiscal year. Kioxia sells NAND flash, and its price depends on contract prices for memory, which Nvidia&#x27;s beat does not set. The company guided October-December revenue to ¥2.5 trillion against a consensus near ¥2.87 trillion, and the shares closed at ¥8,467 on November 16, about 77% below the split-adjusted June peak of ¥37,567. Buyers sold the early bounce because the result did not change that guide.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The Nikkei rose while the Topix fell, so index-level moves now overstate how much of the market is participating; positioning through Nikkei futures concentrates exposure in Advantest, Tokyo Electron and SoftBank Group. Advantest&#x27;s next test is whether Nvidia&#x27;s $130 billion guide holds through Huang&#x27;s December 1 testimony. Kioxia needs evidence that NAND contract prices are still rising, and the January-March guide in late January is the next data point.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo Moves on November 18 After Nvidia Results</div>
+<svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
+<line x1="372" y1="14" x2="372" y2="236" stroke="#e8eaf2" stroke-width="1"/>
+<text x="372" y="254" font-size="11" fill="#5a6a8a" text-anchor="middle">-6%</text>
+<line x1="484" y1="14" x2="484" y2="236" stroke="#e8eaf2" stroke-width="1"/>
+<text x="484" y="254" font-size="11" fill="#5a6a8a" text-anchor="middle">-3%</text>
+<line x1="596" y1="14" x2="596" y2="236" stroke="#e8eaf2" stroke-width="1"/>
+<text x="596" y="254" font-size="11" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="708" y1="14" x2="708" y2="236" stroke="#e8eaf2" stroke-width="1"/>
+<text x="708" y="254" font-size="11" fill="#5a6a8a" text-anchor="middle">+3%</text>
+<line x1="820" y1="14" x2="820" y2="236" stroke="#e8eaf2" stroke-width="1"/>
+<text x="820" y="254" font-size="11" fill="#5a6a8a" text-anchor="middle">+6%</text>
+<line x1="596" y1="14" x2="596" y2="236" stroke="#5a6a8a" stroke-width="1"/>
+<text x="250" y="35" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Advantest</text>
+<rect x="596.0" y="23" width="170.2" height="18" rx="2" fill="#16a34a"/>
+<text x="772" y="36" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+4.56%</text>
+<text x="250" y="65" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Kioxia</text>
+<rect x="596.0" y="53" width="27.6" height="18" rx="2" fill="#16a34a"/>
+<text x="630" y="66" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+0.74%</text>
+<text x="250" y="95" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Fujikura</text>
+<rect x="596.0" y="83" width="21.7" height="18" rx="2" fill="#16a34a"/>
+<text x="624" y="96" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+0.58%</text>
+<text x="250" y="125" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Tokyo Electron</text>
+<rect x="596.0" y="113" width="18.3" height="18" rx="2" fill="#16a34a"/>
+<text x="620" y="126" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+0.49%</text>
+<text x="250" y="155" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Nikkei 225</text>
+<rect x="596.0" y="143" width="10.5" height="18" rx="2" fill="#3730a3"/>
+<text x="612" y="156" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+0.28%</text>
+<text x="250" y="185" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Topix</text>
+<rect x="580.3" y="173" width="15.7" height="18" rx="2" fill="#b45309"/>
+<text x="574" y="186" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-0.42%</text>
+<text x="250" y="215" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Rakuten Group</text>
+<rect x="384.3" y="203" width="211.7" height="18" rx="2" fill="#dc2626"/>
+<text x="378" y="216" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-5.67%</text>
+</svg>
+      <div class="chart-note">Source: Reuters via Arab News (Nov 18). Nikkei closed at 59,024.28 and Topix at 3,824; 71% of Prime stocks fell. Nvidia FQ3 revenue $115.8bn (+103%), Q4 guide $130bn ±3% ex-China.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">売上見通し<span class="annotation-card-en">revenue guide</span></div>
+        <div class="annotation-card-body">Nvidia Q4 $130bn, about +12% q/q.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">12月1日<span class="annotation-card-en">Dec 1</span></div>
+        <div class="annotation-card-body">Huang testifies to House committees.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">騰落<span class="annotation-card-en">breadth</span></div>
+        <div class="annotation-card-body">71% of Prime stocks fell.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO · TRADE</div>
+    <div class="story-headline">Exports Rise 20.5% to a Record ¥11.77 Trillion in October on a 49.7% Jump in Chips, but Oil Keeps Japan in a ¥476.5 Billion Deficit</div>
+    <div class="story-insight"><p>The 財務省 (Zaimushō, Ministry of Finance) said in its preliminary 貿易統計 (bōeki tōkei, trade statistics) on November 18 that exports rose 20.5% from a year earlier to about ¥11.77 trillion in October, a record for any month. Forecasters had expected about 20%, and September&#x27;s growth was revised to 16.5%. Exports of 半導体等電子部品 (handōtai tō denshi buhin, semiconductors and other electronic components) rose 49.7% to ¥929.6 billion, electrical machinery rose 33.6% to ¥2.23 trillion and general machinery rose 21.2% to ¥2.05 trillion. Car exports rose 19.9% to ¥1.96 trillion. Imports rose 21.6% to about ¥12.25 trillion, below a forecast of 25.8%, leaving a 貿易赤字 (bōeki akaji, trade deficit) of ¥476.5 billion.</p>
+      <br>
+      <p>Shipments to the United States rose 23.9% to ¥2.17 trillion, and the bilateral surplus reached ¥690.6 billion. Exports to Asia rose 22.0% to ¥6.41 trillion and to the EU 22.1%, while exports to China rose a slower 13.3% to ¥1.94 trillion, leaving a ¥905.3 billion deficit with China. The energy bill produced most of the overall gap. Petroleum imports rose 60.5% to ¥1.27 trillion, mineral fuel imports rose 36.5% to ¥2.52 trillion, and the deficit with the Middle East reached ¥846.1 billion as exports there fell 15.0%. Tokyo has been moving crude purchases away from Middle Eastern suppliers and toward the United States.</p>
+      <br>
+      <p>These are yen values, and the yen was weaker against the dollar than in October 2025, so part of the export jump is currency translation. Producer data showed yen-based import prices up 24.8% in October, which explains why imports grew faster than exports despite record chip shipments. The chip line carries the volume story. Demand from AI data centers is lifting Japanese wafers, memory and components regardless of the yen, and that supports the fourth-quarter rebound forecasters need after July-September GDP shrank 0.1% annualized. A stronger yen after a December BOJ hike would cut the oil bill faster than it would cut chip demand.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Chip-related exports at +49.7% back the order books of Tokyo Electron, Advantest and Kioxia even as their shares swing on Nvidia headlines. The ¥690.6 billion surplus with the US is the number Washington watches under the $550 billion investment pledge, and US-bound exports grew faster than total exports. The oil deficit is the part a BOJ hike on December 17-18 could shrink, because a firmer yen cuts the yen cost of crude directly.</div>
+    <div class="chart-box">
+      <div class="chart-title">October Exports, Year-on-Year Change by Item and Destination</div>
+<svg viewBox="0 0 860 346" xmlns="http://www.w3.org/2000/svg">
+<line x1="260" y1="14" x2="260" y2="312" stroke="#e8eaf2" stroke-width="1"/>
+<text x="260" y="330" font-size="11" fill="#5a6a8a" text-anchor="middle">-20%</text>
+<line x1="400" y1="14" x2="400" y2="312" stroke="#e8eaf2" stroke-width="1"/>
+<text x="400" y="330" font-size="11" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="540" y1="14" x2="540" y2="312" stroke="#e8eaf2" stroke-width="1"/>
+<text x="540" y="330" font-size="11" fill="#5a6a8a" text-anchor="middle">+20%</text>
+<line x1="680" y1="14" x2="680" y2="312" stroke="#e8eaf2" stroke-width="1"/>
+<text x="680" y="330" font-size="11" fill="#5a6a8a" text-anchor="middle">+40%</text>
+<line x1="400" y1="14" x2="400" y2="312" stroke="#5a6a8a" stroke-width="1"/>
+<text x="250" y="35" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Chips &amp; electronic parts</text>
+<rect x="400.0" y="23" width="347.9" height="18" rx="2" fill="#3730a3"/>
+<text x="754" y="36" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+49.7%</text>
+<text x="250" y="65" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Electrical machinery</text>
+<rect x="400.0" y="53" width="235.2" height="18" rx="2" fill="#3730a3"/>
+<text x="641" y="66" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+33.6%</text>
+<text x="250" y="95" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">General machinery</text>
+<rect x="400.0" y="83" width="148.4" height="18" rx="2" fill="#3730a3"/>
+<text x="554" y="96" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+21.2%</text>
+<text x="250" y="125" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">Motor vehicles</text>
+<rect x="400.0" y="113" width="139.3" height="18" rx="2" fill="#3730a3"/>
+<text x="545" y="126" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+19.9%</text>
+<line x1="40" y1="144" x2="820" y2="144" stroke="#c7cbe0" stroke-dasharray="4 3"/>
+<text x="250" y="171" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">To US</text>
+<rect x="400.0" y="159" width="167.3" height="18" rx="2" fill="#16a34a"/>
+<text x="573" y="172" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+23.9%</text>
+<text x="250" y="201" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">To EU</text>
+<rect x="400.0" y="189" width="154.7" height="18" rx="2" fill="#16a34a"/>
+<text x="561" y="202" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+22.1%</text>
+<text x="250" y="231" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">To Asia</text>
+<rect x="400.0" y="219" width="154.0" height="18" rx="2" fill="#16a34a"/>
+<text x="560" y="232" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+22.0%</text>
+<text x="250" y="261" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">To China</text>
+<rect x="400.0" y="249" width="93.1" height="18" rx="2" fill="#b45309"/>
+<text x="499" y="262" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="start">+13.3%</text>
+<text x="250" y="291" font-size="11.5" font-weight="600" fill="#1a1a2e" text-anchor="end">To Middle East</text>
+<rect x="295.0" y="279" width="105.0" height="18" rx="2" fill="#dc2626"/>
+<text x="289" y="292" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="end">-15.0%</text>
+</svg>
+      <div class="chart-note">Source: Ministry of Finance preliminary trade statistics (Nov 18) via IndexBox. Total exports +20.5% to ¥11.77tn; imports +21.6% to ¥12.25tn; deficit ¥476.5bn. Yen-value basis.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">半導体輸出<span class="annotation-card-en">chip exports</span></div>
+        <div class="annotation-card-body">+49.7% to ¥929.6bn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">対米黒字<span class="annotation-card-en">US surplus</span></div>
+        <div class="annotation-card-body">¥690.6bn under the $550bn pledge.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">原油輸入<span class="annotation-card-en">oil imports</span></div>
+        <div class="annotation-card-body">Petroleum +60.5%; Mideast gap ¥846bn.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #173 · NOVEMBER 19, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
