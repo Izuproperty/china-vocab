@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #174 · November 20, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #174 · November 20, 2026</div>
+    <div class="masthead-sub">Son on Anthropic · Rapidus Fab Tax Waiver · Ueda on Rates and JGBs</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CAPITAL</div>
+      <div class="card-num">$1.5tn</div>
+      <div class="card-label">Anthropic&#x27;s fully diluted IPO valuation at $83 a share; proceeds $81.31bn</div>
+      <div class="card-delta delta-red">OpenAI now asks $1.25tn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · POLICY</div>
+      <div class="card-num">¥54bn</div>
+      <div class="card-label">Maximum tax METI wants waived on the two-step transfer of Rapidus&#x27;s Chitose fab</div>
+      <div class="card-delta delta-amber">Transfer due Oct 2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">86%</div>
+      <div class="card-label">Economists expecting a hike to 1.50% on Dec 17-18 (Reuters, Nov 18)</div>
+      <div class="card-delta delta-amber">October CPI due 8:30 JST</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Masayoshi Son Calls Passing on Anthropic in 2023 One of His Mistakes, the Day Anthropic Prices a Record IPO at About $1.5 Trillion</div>
+    <div class="story-insight"><p>ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) founder 孫正義 (Son Masayoshi) told an audience in Tokyo on November 18 that declining to invest in Anthropic in 2023 was one of his mistakes, the Financial Times reported. SoftBank met Anthropic that year but had already started putting money into OpenAI, and Son said he did not want to back two horses in the same race, which in Japanese business slang is 二股 (futamata, backing both sides). He said Anthropic chief executive Dario Amodei had impressed him. The same day, Anthropic priced its IPO at $83 a share, above its $70-78 range, after enlarging the offering from 825 million to 980 million shares. Reuters put the proceeds at $81.31 billion, the largest stock market debut on record, and the fully diluted valuation at about $1.5 trillion. Anthropic also raised $26 billion in a private placement.</p>
+      <br>
+      <p>SoftBank holds the other horse. The group has put about $64.6 billion into OpenAI for roughly 13%, funded in large part with bonds at coupons up to 9.75% and loans secured on Arm shares. OpenAI cut its fundraising target by $10 billion last month and now seeks $20 billion at a 評価額 (hyōkagaku, valuation) of $1.25 trillion, down from the $1.4 trillion it sought in September, and it has pushed its own listing to 2027 at the earliest. SoftBank Group shares rose 3.1% on Wednesday but sit about 60% below their June level, and Arm, its largest listed holding, has fallen about as much since June.</p>
+      <br>
+      <p>Son&#x27;s admission comes with a balance-sheet cost. Until this week no frontier AI lab had a public share price, so SoftBank&#x27;s net asset value rested on the terms of OpenAI&#x27;s private rounds. Anthropic&#x27;s IPO priced its closest rival above the valuation OpenAI is asking, which gives lenders and rating agencies a market reference for SoftBank&#x27;s largest asset. SoftBank reported a loan-to-value ratio of 15.9% at September 30 against a 25% ceiling, and its NAV had already fallen to ¥44.7 trillion at November 9 prices from ¥59.8 trillion. Any further cut to OpenAI&#x27;s asking price lowers that NAV and pushes the ratio up. The 2023 投資判断 (tōshi handan, investment decision) left SoftBank with a concentrated position in the lab that the public market has just priced second.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> SoftBank Group&#x27;s NAV now hinges on where OpenAI&#x27;s $20 billion round closes relative to Anthropic&#x27;s public valuation of about $1.5 trillion. Each cut to OpenAI&#x27;s asking price lowers NAV and raises the loan-to-value ratio, which stood at 15.9% against a 25% ceiling on September 30. Watch the round&#x27;s final terms and SoftBank&#x27;s five-year CDS, which reached 466bp on November 6.</div>
+    <div class="chart-box">
+      <div class="chart-title">Frontier AI Lab Valuations, 2026 ($ trillion)</div>
+<svg viewBox="0 0 860 242" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="222" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="238" font-size="10" fill="#5a6a8a" text-anchor="middle">$0.0tn</text>
+<line x1="388" y1="20" x2="388" y2="222" stroke="#e8eaf2" stroke-width="1"/>
+<text x="388" y="238" font-size="10" fill="#5a6a8a" text-anchor="middle">$0.4tn</text>
+<line x1="525" y1="20" x2="525" y2="222" stroke="#e8eaf2" stroke-width="1"/>
+<text x="525" y="238" font-size="10" fill="#5a6a8a" text-anchor="middle">$0.8tn</text>
+<line x1="662" y1="20" x2="662" y2="222" stroke="#e8eaf2" stroke-width="1"/>
+<text x="662" y="238" font-size="10" fill="#5a6a8a" text-anchor="middle">$1.2tn</text>
+<line x1="800" y1="20" x2="800" y2="222" stroke="#e8eaf2" stroke-width="1"/>
+<text x="800" y="238" font-size="10" fill="#5a6a8a" text-anchor="middle">$1.6tn</text>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">OpenAI, March round</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">post-money</text>
+<rect x="250" y="34" width="293" height="24" rx="3" fill="#c7cbe0"/>
+<text x="551" y="51" font-size="12" font-weight="700" fill="#1a1a2e">$0.85tn</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">OpenAI, September</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">target pre-money</text>
+<rect x="250" y="82" width="481" height="24" rx="3" fill="#a5b4fc"/>
+<text x="739" y="99" font-size="12" font-weight="700" fill="#1a1a2e">$1.40tn</text>
+<text x="238" y="140" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">OpenAI, now</text>
+<text x="238" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">target for $20bn round</text>
+<rect x="250" y="130" width="430" height="24" rx="3" fill="#818cf8"/>
+<text x="688" y="147" font-size="12" font-weight="700" fill="#1a1a2e">$1.25tn</text>
+<text x="238" y="188" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Anthropic IPO</text>
+<text x="238" y="203" font-size="10" fill="#5a6a8a" text-anchor="end">fully diluted, $83/share</text>
+<rect x="250" y="178" width="516" height="24" rx="3" fill="#3730a3"/>
+<text x="774" y="195" font-size="12" font-weight="700" fill="#1a1a2e">$1.50tn</text>
+</svg>
+      <div class="chart-note">Source: Business Standard citing Reuters and the FT (Nov 19); earlier Japan Brief reporting for OpenAI&#x27;s March and September figures. SoftBank Group holds about 13% of OpenAI at a cost of about $64.6bn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">公開価格<span class="annotation-card-en">IPO price</span></div>
+        <div class="annotation-card-body">$83, above the $70-78 range.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">資金調達<span class="annotation-card-en">fundraising</span></div>
+        <div class="annotation-card-body">OpenAI&#x27;s $20bn round at $1.25tn.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">純資産価値<span class="annotation-card-en">NAV</span></div>
+        <div class="annotation-card-body">¥44.7tn at Nov 9; LTV 15.9%.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">METI Weighs Waiving Up to ¥54 Billion in Taxes So Rapidus Can Take Ownership of Its Chitose Fab in October 2027</div>
+    <div class="story-insight"><p>経済産業省 (Keizai Sangyōshō, METI) is considering a full waiver of the 不動産取得税 (fudōsan shutokuzei, real estate acquisition tax) and the 登録免許税 (tōroku menkyozei, registration and license tax) on the transfer of the IIM-1 fab in Chitose, Hokkaido, to ラピダス (Rapidasu, Rapidus), Jiji Press reported on November 19. The plant belongs to NEDO, the state research-funding agency under METI, and that ownership restricts commercial mass production there. Under the plan, a government-backed investment agency would receive the plant from NEDO at no cost in October 2027, and Rapidus would then take ownership by issuing shares to that agency.</p>
+      <br>
+      <p>Because the property changes hands twice, each tax falls due twice. Jiji put the maximum at about ¥18 billion of acquisition tax and about ¥9 billion of registration tax at each stage, or up to about ¥54 billion in total. The ministry says a full exemption is needed to support mass production of next-generation chips in Japan. The government and the two ruling parties, the Liberal Democratic Party and 日本維新の会 (Nippon Ishin no Kai, Japan Innovation Party), will settle the details later this year in the FY2027 税制改正 (zeisei kaisei, tax reform) talks. Rapidus targets commercial 2nm production at the site in the second half of FY2027, which runs from October 2027 to March 2028.</p>
+      <br>
+      <p>The swap of shares for the plant is a 現物出資 (genbutsu shusshi, in-kind capital contribution). The state raises its equity in Rapidus without new cash, and Rapidus gains a fab on its own balance sheet that banks can lend against. That supports the ¥2 trillion of bank loans Rapidus plans to draw from FY2027, on top of the ¥400 billion of cash equity METI is requesting for FY2027-29 (Issue #144). Acquisition tax is a prefectural levy, so part of the waiver comes out of Hokkaido&#x27;s revenue. The schedule is tight. Bloomberg reported on November 10 that Rapidus has not yet made a working 2nm SRAM cell and is weighing a one-year delay to FY2028 (Issue #167). A delay would leave the state transferring a tax-free fab to a company with no named volume customer.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Rapidus is collecting state support in a new form, tax relief tied to an ownership transfer, before it has shown working 2nm yields. Look for the waiver in the FY2027 tax reform outline in December, and for any Rapidus statement that confirms or drops the second-half FY2027 start. Equipment and materials suppliers with Chitose exposure, such as Tokyo Electron and Shin-Etsu Chemical, benefit only if volume production starts on that schedule.</div>
+    <div class="chart-box">
+      <div class="chart-title">Rapidus Chitose Fab: Support and Ownership Timeline</div>
+<svg viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+<line x1="40" y1="110" x2="820" y2="110" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="70" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="70" y1="100" x2="70" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="70" y="38" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Oct 19, 2026</text>
+<text x="70" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">¥400bn equity ask</text>
+<text x="70" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">METI, FY2027-29 (#144)</text>
+<circle cx="214" cy="110" r="7" fill="#5a6a8a" stroke="#5a6a8a" stroke-width="3"/>
+<line x1="214" y1="120" x2="214" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="214" y="158" font-size="11" font-weight="700" fill="#5a6a8a" text-anchor="middle">Nov 10</text>
+<text x="214" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">SRAM milestone missed</text>
+<text x="214" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">FY2028 slip weighed (#167)</text>
+<circle cx="358" cy="110" r="9" fill="#3730a3" stroke="#3730a3" stroke-width="3"/>
+<line x1="358" y1="100" x2="358" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="358" y="38" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Nov 19</text>
+<text x="358" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Tax waiver weighed</text>
+<text x="358" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">up to ¥54bn</text>
+<circle cx="502" cy="110" r="9" fill="#fff" stroke="#3730a3" stroke-width="3"/>
+<line x1="502" y1="120" x2="502" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="502" y="158" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Dec 2026</text>
+<text x="502" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">FY2027 tax reform</text>
+<text x="502" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">ruling parties decide</text>
+<circle cx="646" cy="110" r="9" fill="#fff" stroke="#3730a3" stroke-width="3"/>
+<line x1="646" y1="100" x2="646" y2="72" stroke="#e8eaf2" stroke-width="2"/>
+<text x="646" y="38" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 2027</text>
+<text x="646" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Fab transfer</text>
+<text x="646" y="66" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">NEDO → agency → Rapidus</text>
+<circle cx="790" cy="110" r="9" fill="#fff" stroke="#3730a3" stroke-width="3"/>
+<line x1="790" y1="120" x2="790" y2="138" stroke="#e8eaf2" stroke-width="2"/>
+<text x="790" y="158" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">2H FY2027</text>
+<text x="790" y="172" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">2nm volume target</text>
+<text x="790" y="186" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Oct 2027 - Mar 2028</text>
+</svg>
+      <div class="chart-note">Source: Jiji Press via Nation Thailand (Nov 19); Bloomberg and Jiji (Nov 10-11); METI (Oct 19). Tax figures are maximums: about ¥18bn acquisition tax plus ¥9bn registration tax at each of two stages.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">現物出資<span class="annotation-card-en">in-kind equity</span></div>
+        <div class="annotation-card-body">State adds equity without new cash.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">税制改正<span class="annotation-card-en">tax reform</span></div>
+        <div class="annotation-card-body">Waiver decided in December.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">量産延期<span class="annotation-card-en">production delay</span></div>
+        <div class="annotation-card-body">FY2028 slip still under review.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO · BOJ</div>
+    <div class="story-headline">Ueda Tells Parliament Rates Must Keep Rising and Warns That Buying JGBs to Hold Down Yields Could Make Them More Volatile</div>
+    <div class="story-insight"><p>日本銀行 (Nihon Ginkō, Bank of Japan) Governor 植田和男 (Ueda Kazuo) told parliament on November 18 that the bank should keep raising its policy rate because financial conditions remain accommodative. He gave no date. He said the government&#x27;s planned 消費税減税 (shōhizei genzei, consumption tax cut) on food should lift households&#x27; real purchasing power, and that the BOJ will judge its effect on underlying inflation once the design is final. On November 19 he added that the economy is recovering moderately with some weakness, that consumption is resilient, and that the larger risk to underlying inflation is now an overshoot of the 2% target.</p>
+      <br>
+      <p>Ueda also drew a line on bond buying. He separated emergency purchases to fix serious market dysfunction from purchases meant to hold down long-term yields. Holding yields down could backfire, he said, if investors read it as the central bank paying for government borrowing, the risk known as 財政ファイナンス (zaisei fainansu, debt monetization), and 長期金利 (chōki kinri, long-term interest rates) could then become more volatile. The 10-year JGB yield stood near 2.88% on November 17, and the Takaichi government is preparing a second supplementary budget for disaster recovery while it designs the food tax cut.</p>
+      <br>
+      <p>A Reuters poll published November 18 found 86% of economists expect a 25 basis-point hike to 1.50% at the December 17-18 meeting, which would be the BOJ&#x27;s third increase this year, and nearly 60% expect another move to 1.75% by the end of March. In the previous poll, taken before third-quarter GDP, 54 of 78 economists expected a December hike. The 0.1% annualized contraction in July-September did not change that view, because Ueda and board member Takata have both pointed to a yen near 160 and rising import costs. October national CPI is due at 8:30 a.m. Tokyo time today, and a firm core reading would remove the main reason to wait. Ueda&#x27;s bond comments mean a hike will not come with extra JGB buying to cushion long yields.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Economists now treat a December hike to 1.50% as close to certain, so the yen and long JGB yields will move on Ueda&#x27;s guidance about the pace after December. Because he has ruled out capping long yields, fiscal news such as the food consumption tax cut and the supplementary budget will feed into 10-year and 30-year yields directly. Banks with large deposit bases gain from higher short rates, while life insurers holding long JGBs take mark-to-market losses if yields jump.</div>
+    <div class="chart-box">
+      <div class="chart-title">Economists Expecting BOJ Hikes (% of Reuters poll respondents)</div>
+<svg viewBox="0 0 860 194" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="174" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="388" y1="20" x2="388" y2="174" stroke="#e8eaf2" stroke-width="1"/>
+<text x="388" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">25%</text>
+<line x1="525" y1="20" x2="525" y2="174" stroke="#e8eaf2" stroke-width="1"/>
+<text x="525" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">50%</text>
+<line x1="662" y1="20" x2="662" y2="174" stroke="#e8eaf2" stroke-width="1"/>
+<text x="662" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">75%</text>
+<line x1="800" y1="20" x2="800" y2="174" stroke="#e8eaf2" stroke-width="1"/>
+<text x="800" y="190" font-size="10" fill="#5a6a8a" text-anchor="middle">100%</text>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Hike to 1.50% in Dec</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">previous poll, pre-GDP (54/78)</text>
+<rect x="250" y="34" width="381" height="24" rx="3" fill="#c7cbe0"/>
+<text x="639" y="51" font-size="12" font-weight="700" fill="#1a1a2e">69%</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Hike to 1.50% in Dec</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">Reuters poll, Nov 18</text>
+<rect x="250" y="82" width="473" height="24" rx="3" fill="#3730a3"/>
+<text x="731" y="99" font-size="12" font-weight="700" fill="#1a1a2e">86%</text>
+<text x="238" y="140" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">1.75% by end-March</text>
+<text x="238" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">Reuters poll, Nov 18</text>
+<rect x="250" y="130" width="330" height="24" rx="3" fill="#818cf8"/>
+<text x="588" y="147" font-size="12" font-weight="700" fill="#1a1a2e">~60%</text>
+</svg>
+      <div class="chart-note">Source: Reuters poll published Nov 18 via investingLive; previous Reuters poll before Q3 GDP. Policy rate 1.25% since Sept 18.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">利上げ継続<span class="annotation-card-en">more hikes</span></div>
+        <div class="annotation-card-body">Ueda: conditions still accommodative.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">全国CPI<span class="annotation-card-en">national CPI</span></div>
+        <div class="annotation-card-body">October data at 8:30 JST today.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">長期金利<span class="annotation-card-en">long yields</span></div>
+        <div class="annotation-card-body">No BOJ cap; 10-year near 2.88%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #174 · NOVEMBER 20, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
