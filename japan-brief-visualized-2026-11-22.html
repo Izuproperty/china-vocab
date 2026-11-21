@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #176 · November 22, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #176 · November 22, 2026</div>
+    <div class="masthead-sub">Noetra Cost Overrun · SK hynix Passes Toshiba at Kioxia · Fiscal Council Warning</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · NOETRA</div>
+      <div class="card-num">~1.8<span class="card-num-unit">¥tn</span></div>
+      <div class="card-label">Noetra&#x27;s expected five-year cost, up from about ¥1tn</div>
+      <div class="card-delta delta-red">+~¥800bn</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · KIOXIA</div>
+      <div class="card-num">~14.1<span class="card-num-unit">%</span></div>
+      <div class="card-label">SK hynix&#x27;s indirect Kioxia stake after the bond conversion</div>
+      <div class="card-delta delta-amber">Toshiba 10.46%</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BUDGET</div>
+      <div class="card-num">143.07<span class="card-num-unit">¥tn</span></div>
+      <div class="card-label">Record FY2027 budget requests behind the council&#x27;s warning</div>
+      <div class="card-delta delta-red">Debt service ¥36.64tn</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Noetra&#x27;s Sovereign AI Budget Is Seen Rising by About ¥800 Billion to ¥1.8 Trillion as GPU Prices Climb and the Yen Weakens</div>
+    <div class="story-insight"><p>日本経済新聞 (Nihon Keizai Shimbun, Nikkei) reported this week that the five-year cost of the government-backed 国産AI (kokusan AI, domestically developed AI) project run by ノエトラ (Noetora, Noetra) is now expected to reach about ¥1.8 trillion, up from about ¥1 trillion. The increase of roughly ¥800 billion, or about $5 billion, comes from higher prices for AI 半導体 (handōtai, semiconductors) and a weak yen that raises the cost of imported GPUs. Nikkei&#x27;s headline said the extra cost weighs heavily on the state. Nikkei Asia ran the story in English. Neither 経済産業省 (Keizai Sangyōshō, METI) nor Noetra has published a revised budget, and the split of the extra cost between public and private money has not been disclosed.</p>
+      <br>
+      <p>Noetra was incorporated in January as Japan AI Foundation Model Development and took its current name on June 1. METI and NEDO chose it in June to build a multimodal physical AI foundation model, and 44 companies have invested, including SoftBank Group, NEC, Sony Group, Honda and Preferred Networks. Confirmed government funding for fiscal 2026 is ¥387.3 billion from the energy special account. NEDO&#x27;s contracts cover only fiscal 2026 and 2027, and money after that depends on an annual ステージゲート審査 (sutēji gēto shinsa, stage-gate review). The compute plan calls for about 27,500 Nvidia Rubin GPUs, with construction from April 2027 and operation from June 2028. Nvidia prices those chips in dollars, so with the dollar near ¥159 every move in the yen changes the hardware bill directly.</p>
+      <br>
+      <p>Inside AI, citing unnamed sources it could not fully verify, reported on November 21 that the consortium may scale back early infrastructure targets or ask for more government funding, which would need Diet approval, with a revised plan expected around early 2027. More money would collide with the fiscal backdrop in Story Three, where FY2027 budget requests already total a record ¥143 trillion. A smaller GPU order would cut revenue for the server suppliers and data center hosts lined up for the build, and it would leave Noetra training on less compute than it planned. The first stage-gate review falls before any model ships, so reviewers will have to judge the higher cost without product results to weigh against it.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The overrun comes from dollar-priced GPUs, so the yen rate and Nvidia&#x27;s pricing now drive Noetra&#x27;s budget. Either the GPU order shrinks or the Diet is asked for more money, and both outcomes land in the FY2027 budget cycle. Watch the late-December budget draft for a Noetra allocation above fiscal 2026&#x27;s ¥387.3 billion.</div>
+    <div class="chart-box">
+      <div class="chart-title">Noetra cost estimate vs confirmed funding (¥ trillion)</div>
+<svg viewBox="0 0 860 244" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">¥0.0tn</text>
+<line x1="388" y1="20" x2="388" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="388" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">¥0.5tn</text>
+<line x1="525" y1="20" x2="525" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="525" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">¥1.0tn</text>
+<line x1="662" y1="20" x2="662" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="662" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">¥1.5tn</text>
+<line x1="800" y1="20" x2="800" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="800" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">¥2.0tn</text>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Revised estimate</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">Nikkei, Nov 2026</text>
+<rect x="250" y="34" width="495" height="24" rx="3" fill="#3730a3"/>
+<text x="753" y="51" font-size="12" font-weight="700" fill="#1a1a2e">~¥1.8tn</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Original plan</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">up to five years</text>
+<rect x="250" y="82" width="275" height="24" rx="3" fill="#818cf8"/>
+<text x="533" y="99" font-size="12" font-weight="700" fill="#1a1a2e">~¥1.0tn</text>
+<text x="238" y="140" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Increase</text>
+<text x="238" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">GPU prices + weak yen</text>
+<rect x="250" y="130" width="220" height="24" rx="3" fill="#be185d"/>
+<text x="478" y="147" font-size="12" font-weight="700" fill="#1a1a2e">~¥0.8tn (~$5bn)</text>
+<text x="238" y="188" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Confirmed FY2026</text>
+<text x="238" y="203" font-size="10" fill="#5a6a8a" text-anchor="end">METI energy special account</text>
+<rect x="250" y="178" width="107" height="24" rx="3" fill="#c7cbe0"/>
+<text x="365" y="195" font-size="12" font-weight="700" fill="#1a1a2e">¥0.387tn</text>
+</svg>
+      <div class="chart-note">Source: Nikkei / Nikkei Asia (week of Nov 16); METI FY2026 allocation. Split of the extra cost between public and private money not disclosed. Plan: ~27,500 Nvidia Rubin GPUs, operation from June 2028.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">政府支援<span class="annotation-card-en">government support</span></div>
+        <div class="annotation-card-body">¥387.3bn confirmed for FY2026.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">予算案<span class="annotation-card-en">draft budget</span></div>
+        <div class="annotation-card-body">Late-December FY2027 draft.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">費用膨張<span class="annotation-card-en">cost overrun</span></div>
+        <div class="annotation-card-body">~¥1tn plan now ~¥1.8tn.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">SK hynix Converts ¥129 Billion of Bonds Into the Bain Vehicle That Holds Kioxia, Passing Toshiba as Its Largest Indirect Shareholder</div>
+    <div class="story-insight"><p>SKハイニックス (Esukei Hainikkusu, SK hynix) said on November 20 that it will convert ¥129 billion, about $810 million, of 転換社債 (tenkan shasai, convertible bonds) into 129,000 common shares of BCPE Pangea Cayman2, the Bain Capital-led vehicle through which it invested in キオクシア (Kiokushia, Kioxia). It will also buy 1,001 more shares of the vehicle from Bain for ¥100 million. SK hynix called the step a restructuring after the liquidation of an equity fund it held, and the conversion is expected to close in December.</p>
+      <br>
+      <p>The Bain vehicle was Kioxia&#x27;s top holder at 14.19% in Kioxia&#x27;s August filing. After the conversion SK hynix&#x27;s indirect stake comes to about 14.1%, above the 10.46% held by 東芝 (Tōshiba, Toshiba) as of early November. A cap limits SK hynix&#x27;s 議決権 (giketsuken, voting rights) to 15% until 2028 unless Kioxia agrees otherwise. SK hynix says it has no plan to expand its role in management, buy more shares or sell, and Kioxia says it remains independent. Korean media described SK hynix as Kioxia&#x27;s de facto largest shareholder in August; the November 20 filing turns its debt claim into equity.</p>
+      <br>
+      <p>The conversion takes place inside the Bain vehicle and creates no new Kioxia shares, so existing holders are not diluted. SK hynix is taking equity risk on a stock that closed at ¥8,467 on November 16, about 77% below its split-adjusted June peak, after an October-December guide that implies flat NAND prices (Issue #175). SK hynix also competes with Kioxia in NAND through its Solidigm unit, while Kioxia runs its fabs jointly with Sandisk. Any move toward board influence after 2028 would likely face screening under the 外為法 (Gaitame-hō, Foreign Exchange and Foreign Trade Act), because memory chips count as a core sector. Tuesday, November 24, is Kioxia&#x27;s first trading day after the filing.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The filing creates no new Kioxia shares and adds no seller, so its near-term effect on the stock is limited. The 15% voting cap and SK hynix&#x27;s stated no-control stance keep governance unchanged until 2028. Toshiba&#x27;s 10.46% stake is the larger potential supply of shares; watch for any Toshiba sale and for FEFTA filings if SK hynix moves toward the cap.</div>
+    <div class="chart-box">
+      <div class="chart-title">Largest holders of Kioxia, November 2026 (%)</div>
+<svg viewBox="0 0 860 148" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="128" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="144" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="388" y1="20" x2="388" y2="128" stroke="#e8eaf2" stroke-width="1"/>
+<text x="388" y="144" font-size="10" fill="#5a6a8a" text-anchor="middle">4%</text>
+<line x1="525" y1="20" x2="525" y2="128" stroke="#e8eaf2" stroke-width="1"/>
+<text x="525" y="144" font-size="10" fill="#5a6a8a" text-anchor="middle">8%</text>
+<line x1="662" y1="20" x2="662" y2="128" stroke="#e8eaf2" stroke-width="1"/>
+<text x="662" y="144" font-size="10" fill="#5a6a8a" text-anchor="middle">12%</text>
+<line x1="800" y1="20" x2="800" y2="128" stroke="#e8eaf2" stroke-width="1"/>
+<text x="800" y="144" font-size="10" fill="#5a6a8a" text-anchor="middle">16%</text>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">SK hynix (indirect)</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">via BCPE Pangea Cayman2</text>
+<rect x="250" y="34" width="485" height="24" rx="3" fill="#be185d"/>
+<text x="743" y="51" font-size="12" font-weight="700" fill="#1a1a2e">~14.1%</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Toshiba</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">as of early November</text>
+<rect x="250" y="82" width="360" height="24" rx="3" fill="#f472b6"/>
+<text x="618" y="99" font-size="12" font-weight="700" fill="#1a1a2e">10.46%</text>
+<line x1="766" y1="20" x2="766" y2="128" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="772" y="28" font-size="10" fill="#b45309">15% voting cap to 2028</text>
+</svg>
+      <div class="chart-note">Source: SK hynix filing via Yonhap (Nov 20); 24/7 Wall St (Nov 21). Bain vehicle held 14.19% in Kioxia&#x27;s August filing. ¥129bn of bonds convert into 129,000 vehicle shares; closing expected in December.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">希薄化なし<span class="annotation-card-en">no dilution</span></div>
+        <div class="annotation-card-body">No new Kioxia shares issued.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">東芝持分<span class="annotation-card-en">Toshiba stake</span></div>
+        <div class="annotation-card-body">10.46% is the bigger overhang.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">競合関係<span class="annotation-card-en">rivalry</span></div>
+        <div class="annotation-card-body">SK hynix also sells NAND.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Finance Ministry Advisers Tell the Government That Market Confidence Matters &#x27;More Than Ever&#x27; as FY2027 Budget Requests Hit a Record ¥143 Trillion</div>
+    <div class="story-insight"><p>The 財政制度等審議会 (Zaisei Seido-tō Shingikai, Fiscal System Council), the advisory panel to 財務省 (Zaimushō, Ministry of Finance), handed Finance Minister Satsuki Katayama its 建議 (kengi, formal recommendation) for the fiscal 2027 budget on November 20, Jiji Press reported. Chairman Masakazu Tokura delivered the document. It says Japan has entered a new phase in which rising prices and interest rates could significantly affect daily life, and it notes that the Bank of Japan has declared its 2% target achieved and that long-term JGB yields have reached their highest levels in about 30 years. The council wrote that securing market confidence "is more important for Japan now than ever before," and asked the government to keep that confidence while it carries out Prime Minister Takaichi&#x27;s 責任ある積極財政 (sekinin aru sekkyoku zaisei, responsible and proactive fiscal policy).</p>
+      <br>
+      <p>The numbers behind the warning come from the ministry&#x27;s own tally. Budget requests for fiscal 2027 total a record ¥143.07 trillion, about 16.8% above last year&#x27;s requests. Requests for 国債費 (kokusaihi, debt-servicing costs) reach a record ¥36.64 trillion, because the ministry now assumes a 3.8% interest rate, up from 3.0% and the highest assumption since fiscal 1998. Higher yields raise that line every time low-coupon bonds mature and are refinanced. Other claims are queued as well: the food consumption tax cut from 8% to 1% for two years from April 2027 has no published funding source (Issue #156), and Story One shows Noetra&#x27;s costs rising. A year ago, after an ¥18.3 trillion extra budget, the council softened its language on primary-balance goals.</p>
+      <br>
+      <p>Bond markets were calm on Friday. The 10-year JGB yield fell for a fourth session to about 2.78% on haven demand during the AI equity selloff, and the 30-year yield was near 3.97%. The dollar slipped to about ¥158.7. Tokyo is closed on Monday for Labor Thanksgiving Day. November flash PMIs come on Tuesday, a JGB auction on Wednesday, a speech by BOJ board member Naoki Tamura on Thursday according to market calendars, and Tokyo&#x27;s November CPI at 8:30 a.m. on Friday, November 27, after core inflation of 2.6% in October. The council&#x27;s recommendation does not bind the cabinet. The cabinet&#x27;s late-December draft, which follows the BOJ&#x27;s December 17-18 meeting, will show how much new JGB issuance the government accepts.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The council has no veto, but its language gives the Finance Ministry cover to resist additions to the December draft. A 3.8% assumed rate in the debt-service request shows higher yields are already in the budget. Watch Tokyo CPI on November 27 for the BOJ path, and the late-December draft for the size of new JGB issuance.</div>
+    <div class="chart-box">
+      <div class="chart-title">Rates behind the FY2027 budget (%)</div>
+<svg viewBox="0 0 860 244" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">0.0%</text>
+<line x1="372" y1="20" x2="372" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="372" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">1.0%</text>
+<line x1="494" y1="20" x2="494" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="494" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">2.0%</text>
+<line x1="617" y1="20" x2="617" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="617" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">3.0%</text>
+<line x1="739" y1="20" x2="739" y2="224" stroke="#e8eaf2" stroke-width="1"/>
+<text x="739" y="240" font-size="10" fill="#5a6a8a" text-anchor="middle">4.0%</text>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">30-year JGB</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">Nov 20 close</text>
+<rect x="250" y="34" width="485" height="24" rx="3" fill="#b45309"/>
+<text x="743" y="51" font-size="12" font-weight="700" fill="#1a1a2e">~3.97%</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">FY2027 assumed rate</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">debt-service request</text>
+<rect x="250" y="82" width="464" height="24" rx="3" fill="#3730a3"/>
+<text x="722" y="99" font-size="12" font-weight="700" fill="#1a1a2e">3.8%</text>
+<text x="238" y="140" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">FY2026 assumed rate</text>
+<text x="238" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">prior budget</text>
+<rect x="250" y="130" width="367" height="24" rx="3" fill="#818cf8"/>
+<text x="625" y="147" font-size="12" font-weight="700" fill="#1a1a2e">3.0%</text>
+<text x="238" y="188" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">10-year JGB</text>
+<text x="238" y="203" font-size="10" fill="#5a6a8a" text-anchor="end">Nov 20, 4th daily fall</text>
+<rect x="250" y="178" width="340" height="24" rx="3" fill="#c7cbe0"/>
+<text x="598" y="195" font-size="12" font-weight="700" fill="#1a1a2e">~2.78%</text>
+</svg>
+      <div class="chart-note">Source: Jiji Press (Nov 20); MoF budget request tally (Sep); market data via Trading Economics (Nov 20). FY2027 requests ¥143.07tn; debt service ¥36.64tn.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">市場の信認<span class="annotation-card-en">market confidence</span></div>
+        <div class="annotation-card-body">Council&#x27;s central warning.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">東京都区部CPI<span class="annotation-card-en">Tokyo CPI</span></div>
+        <div class="annotation-card-body">November data due Nov 27.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">利払い増<span class="annotation-card-en">rising interest bill</span></div>
+        <div class="annotation-card-body">3.8% rate assumed for FY2027.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #176 · NOVEMBER 22, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
