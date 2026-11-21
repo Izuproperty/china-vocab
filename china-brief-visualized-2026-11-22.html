@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #187 · November 22, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #187 · November 22, 2026</div>
+    <div class="masthead-sub">DeepSeek's Filing Names 31 Backers for a ¥105.5B ($15.8B) Round · Ex-Qwen Lead's Pragmatik Labs Raises at $5B · Goldman Upgrades H-Shares After a 5.2% Hang Seng Week</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CAPITAL</div>
+      <div class="card-num">¥105.5<span class="card-num-unit">B</span></div>
+      <div class="card-label">DeepSeek second round ($15.8B), 31 new backers, all mainland</div>
+      <div class="card-delta delta-amber">Implied value ~¥610B ($91B)</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · AGENTS</div>
+      <div class="card-num">2.5<span class="card-num-unit">x</span></div>
+      <div class="card-label">Pragmatik Labs valuation step-up, $2B (Aug) to $5B (Nov 20)</div>
+      <div class="card-delta delta-red">No product or revenue disclosed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · EQUITIES</div>
+      <div class="card-num">9.8<span class="card-num-unit">x</span></div>
+      <div class="card-label">MSCI China forward P/E as Goldman moves H-shares to overweight</div>
+      <div class="card-delta delta-red">Hang Seng -5.2% in the week to Nov 20</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · FOUNDATION MODELS / CAPITAL</div>
+    <div class="story-headline">DeepSeek's Registration Filing Names 31 New Backers for a ¥105.5 Billion ($15.8 Billion) Round, With Tencent, CATL, China Mobile and CITIC Securities on Top</div>
+    <div class="story-insight">
+      <p>A business registration change (工商变更) completed Nov 17 shows a new limited partnership (有限合伙) holding ~17.3% of DeepSeek (深度求索). Registered capital (注册资本) rose 21% to ¥19.92 million ($3.0 million).</p>
+      <br>
+      <p>Tencent- and CATL-linked funds hold 9.57% of the vehicle each, China Mobile and CITIC Securities (中信证券) 7.65% each. One investor dropped out after its list of underlying investors was not approved.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The cap table is all-mainland and screened down to the investors behind each fund, but new capital does not fix the compute shortage that forced DeepSeek to limit service on Nov 15.</div>
+    <div class="chart-box">
+      <div class="chart-title">Who Owns DeepSeek's New Investor Vehicle</div>
+      <svg viewBox="0 0 820 290" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">% OF HANGZHOU CHENGYAN PARTNERSHIP (~17.3% OF DEEPSEEK) · 40PX PER 1%</text><text x="30" y="50" font-size="12" font-weight="700" fill="#c0392b">Tencent-linked</text><rect x="250" y="36" width="383" height="18" fill="#c0392b"/><text x="639" y="50" font-size="11" font-weight="700" fill="#c0392b">9.57%</text><text x="30" y="78" font-size="12" font-weight="700" fill="#c0392b">CATL funds</text><rect x="250" y="64" width="383" height="18" fill="#c0392b"/><text x="639" y="78" font-size="11" font-weight="700" fill="#c0392b">9.57%</text><text x="30" y="106" font-size="12" fill="#1a1a2e">China Mobile</text><rect x="250" y="92" width="306" height="18" fill="#1a1a2e"/><text x="562" y="106" font-size="11" font-weight="700" fill="#1a1a2e">7.65% (state carrier)</text><text x="30" y="134" font-size="12" fill="#1a1a2e">CITIC Securities</text><rect x="250" y="120" width="306" height="18" fill="#1a1a2e"/><text x="562" y="134" font-size="11" font-weight="700" fill="#1a1a2e">7.65% (IPO sponsor)</text><text x="30" y="162" font-size="12" fill="#1a1a2e">Monolith fund</text><rect x="250" y="148" width="287" height="18" fill="#b45309"/><text x="543" y="162" font-size="11" font-weight="700" fill="#b45309">7.17% · ¥7.5B ($1.1B)</text><text x="30" y="190" font-size="12" fill="#1a1a2e">China Life-linked</text><rect x="250" y="176" width="191" height="18" fill="#9a8a7a"/><text x="447" y="190" font-size="11" font-weight="700" fill="#9a8a7a">4.78%</text><text x="30" y="218" font-size="12" fill="#1a1a2e">IDG-linked</text><rect x="250" y="204" width="133" height="18" fill="#9a8a7a"/><text x="389" y="218" font-size="11" font-weight="700" fill="#9a8a7a">3.32%</text><text x="30" y="246" font-size="12" fill="#1a1a2e">Meituan (others similar)</text><rect x="250" y="232" width="115" height="18" fill="#9a8a7a"/><text x="371" y="246" font-size="11" font-weight="700" fill="#9a8a7a">2.87% · also China Telecom, vivo, Midea</text><text x="30" y="278" font-size="10.5" fill="#5a4a3a">Round 1 (Jun): ~¥51B ($7.6B) at ¥350B ($52.5B) post · Round 2 (Nov 17 filing): ~¥105.5B ($15.8B), implied ~¥610B ($91B) post · National AI Fund direct stake 0.4%</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: business registration records via BigGo Finance (Nov 19, 2026); Caixin Global (Nov 20, 2026), which puts the round at ~¥100B ($15.0B). Implied valuation is the brief's calculation from the 17.3% stake. USD at ¥6.67/$ (onshore spot, Nov 20, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CLOSED CAP TABLE</div>
+        <div class="annotation-card-zh">有限合伙<span class="annotation-card-en">yǒuxiàn héhuǒ · limited partnership</span></div>
+        <div class="annotation-card-body">31 mainland backers; Liang Wenfeng controls the GP.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · PROSPECTUS</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàngbǎn · STAR Market</span></div>
+        <div class="annotation-card-body">CITIC filing should show compute costs and API margin.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COMPUTE</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></div>
+        <div class="annotation-card-body">Service limits on Nov 15 while H200 supply is halted.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · FOUNDATION MODELS / AGENTS</div>
+    <div class="story-headline">Former Qwen Lead Lin Junyang's Pragmatik Labs Raises at a $5 Billion Valuation, 2.5 Times Its August Price, With No Product Yet Released</div>
+    <div class="story-insight">
+      <p>Lin Junyang (林俊旸) left Alibaba's Qwen team in March and launched Pragmatik in August. Bloomberg says a round of tens of millions of dollars on Nov 20 valued it at $5 billion (估值).</p>
+      <br>
+      <p>New backers are HyT Capital, CDH Investments (鼎晖投资) and Geely (吉利). Gaorong Ventures (高榕创投) and HSG co-led the August round at $2 billion. The company builds AI agents (智能体) for digital and physical settings.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Private marks for talent-led labs are still climbing while listed model makers fall, so the price needs a product and paying users in H1 2027.</div>
+    <div class="chart-box">
+      <div class="chart-title">Pragmatik Labs: Valuation and Timeline</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">POST-MONEY VALUATION, US$ BILLION (100PX PER $1BN)</text><text x="30" y="50" font-size="12" fill="#1a1a2e">Aug 2026 round</text><rect x="250" y="36" width="200" height="18" fill="#9a8a7a"/><text x="456" y="50" font-size="11" font-weight="700" fill="#9a8a7a">$2B · raised several hundred million</text><text x="30" y="78" font-size="12" font-weight="700" fill="#c0392b">Nov 20, 2026 round</text><rect x="250" y="64" width="500" height="18" fill="#c0392b"/><text x="742" y="78" font-size="11" font-weight="700" fill="#fff" text-anchor="end">$5B · tens of millions</text><line x1="60" y1="130" x2="770" y2="130" stroke="#9a8a7a" stroke-width="2"/><circle cx="80" cy="130" r="6" fill="#1a1a2e"/><text x="80" y="115" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">Mar 3</text><text x="80" y="152" font-size="10.5" fill="#5a4a3a" text-anchor="middle">Lin leaves Alibaba</text><circle cx="420" cy="130" r="6" fill="#b45309"/><text x="420" y="115" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Aug 11</text><text x="420" y="152" font-size="10.5" fill="#5a4a3a" text-anchor="middle">Launch, $2B round</text><circle cx="740" cy="130" r="6" fill="#c0392b"/><text x="740" y="115" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Nov 20</text><text x="740" y="152" font-size="10.5" fill="#5a4a3a" text-anchor="middle">$5B round</text><text x="30" y="188" font-size="10.5" fill="#5a4a3a">Investors: Gaorong, HSG, Tencent, Shanghai Engine Fund (Aug) · HyT Capital, CDH, Geely (Nov) · no product, model or revenue disclosed</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Bloomberg via TechNode and PYMNTS (Nov 20, 2026); 36Kr (Aug 11, 2026). Terms from unnamed sources; company did not comment. No renminbi figures.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · TALENT PREMIUM</div>
+        <div class="annotation-card-zh">林俊旸<span class="annotation-card-en">Lín Jùnyáng · Junyang Lin</span></div>
+        <div class="annotation-card-body">Mark up 2.5x in three months on team alone.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · FIRST PRODUCT</div>
+        <div class="annotation-card-zh">智能体<span class="annotation-card-en">zhìnéngtǐ · AI agent</span></div>
+        <div class="annotation-card-body">An agent with paying users in H1 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · MARKDOWN</div>
+        <div class="annotation-card-zh">估值<span class="annotation-card-en">gūzhí · valuation</span></div>
+        <div class="annotation-card-body">Listed MiniMax and Z.ai fell 30%+ and 18% last week.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE · EQUITY STRATEGY</div>
+    <div class="story-headline">Goldman Upgrades Hong Kong-Listed Chinese Stocks to Overweight After a Week That Took the Hang Seng Down 5.2% and the STAR Composite Down 11%</div>
+    <div class="story-insight">
+      <p>Goldman moved H-shares (H股) to overweight (超配) and A-shares to marketweight (标配) on Nov 21. It sees 15% earnings growth in 2027 and a 23% gain for MSCI China, now at 9.8x forward P/E (市盈率).</p>
+      <br>
+      <p>On Nov 20 the Hang Seng Tech Index (恒生科技指数) fell 3.8% and MiniMax 10.8% to a record low, after the Nasdaq's worst week in six years.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The upgrade is a valuation call within China, and it needs Q4 earnings revisions to turn up before Fed hikes and $58 billion of Q1 lock-up expiries (解禁) weigh.</div>
+    <div class="chart-box">
+      <div class="chart-title">Friday, November 20: Chinese Equity Moves</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">ONE-DAY % CHANGE (30PX PER 1 POINT) · WEEKLY MOVE IN BRACKETS WHERE REPORTED</text><line x1="560" y1="30" x2="560" y2="272" stroke="#5a6a8a" stroke-width="1"/><text x="30" y="50" font-size="12" fill="#1a1a2e">CSI 300</text><rect x="536" y="36" width="24" height="18" fill="#9a8a7a"/><text x="530" y="50" font-size="11" font-weight="700" fill="#9a8a7a" text-anchor="end">-0.8%</text><text x="30" y="78" font-size="12" fill="#1a1a2e">Shanghai Composite</text><rect x="524" y="64" width="36" height="18" fill="#9a8a7a"/><text x="518" y="78" font-size="11" font-weight="700" fill="#9a8a7a" text-anchor="end">-1.2% (wk -2.8%)</text><text x="30" y="106" font-size="12" fill="#1a1a2e">Hang Seng</text><rect x="503" y="92" width="57" height="18" fill="#b45309"/><text x="497" y="106" font-size="11" font-weight="700" fill="#b45309" text-anchor="end">-1.9% (wk -5.2%)</text><text x="30" y="134" font-size="12" fill="#1a1a2e">STAR 50</text><rect x="467" y="120" width="93" height="18" fill="#b45309"/><text x="461" y="134" font-size="11" font-weight="700" fill="#b45309" text-anchor="end">-3.1%</text><text x="30" y="162" font-size="12" fill="#1a1a2e">Hang Seng Tech</text><rect x="446" y="148" width="114" height="18" fill="#b45309"/><text x="440" y="162" font-size="11" font-weight="700" fill="#b45309" text-anchor="end">-3.8%</text><text x="30" y="190" font-size="12" font-weight="700" fill="#c0392b">Z.ai</text><rect x="344" y="176" width="216" height="18" fill="#c0392b"/><text x="338" y="190" font-size="11" font-weight="700" fill="#c0392b" text-anchor="end">-7.2% (wk -18.2%)</text><text x="30" y="218" font-size="12" font-weight="700" fill="#c0392b">MiniMax</text><rect x="236" y="204" width="324" height="18" fill="#c0392b"/><text x="552" y="218" font-size="11" font-weight="700" fill="#fff" text-anchor="end">-10.8% (wk &gt;-30%)</text><text x="30" y="246" font-size="12" font-weight="700" fill="#c0392b">Moore Threads</text><rect x="230" y="232" width="330" height="18" fill="#c0392b"/><text x="552" y="246" font-size="11" font-weight="700" fill="#fff" text-anchor="end">-11%</text><text x="30" y="274" font-size="12" fill="#1a1a2e">Alibaba</text><rect x="560" y="260" width="105" height="18" fill="#166534"/><text x="671" y="274" font-size="11" font-weight="700" fill="#166534">+3.5% after results</text><text x="30" y="296" font-size="10.5" fill="#5a4a3a">Goldman: MSCI China 9.8x fwd P/E → 11.5x target end-2027 · CSI 300 target 4,500 · subsidy losses ¥190B ($28.5B) since Q3 2025</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Reuters via Business Recorder (Nov 21, 2026); City News Service (Nov 21, 2026); Goldman Sachs note via Investing.com (Nov 21, 2026). STAR composite fell 11% over the week. USD at ¥6.67/$ (onshore spot, Nov 20, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · VALUATION</div>
+        <div class="annotation-card-zh">超配<span class="annotation-card-en">chāopèi · overweight</span></div>
+        <div class="annotation-card-body">H-shares at 9.8x after a ~20% derating this year.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DATA</div>
+        <div class="annotation-card-zh">市盈率<span class="annotation-card-en">shìyínglǜ · price-earnings ratio</span></div>
+        <div class="annotation-card-body">Industrial profits Nov 27, official PMI Nov 30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SUPPLY</div>
+        <div class="annotation-card-zh">解禁<span class="annotation-card-en">jiějìn · lock-up expiry</span></div>
+        <div class="annotation-card-body">$58B+ of HK IPO shares unlock in Q1.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #187 · NOVEMBER 22, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
