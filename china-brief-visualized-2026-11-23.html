@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #188 · November 23, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #188 · November 23, 2026</div>
+    <div class="masthead-sub">Data Regulator to Standardise AI Token Billing · WSJ Names Li Ming Behind Megaspeed's $12B of Nvidia Orders · October Brings China's First Monthly Budget Surplus in a Year</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · GOVERNANCE</div>
+      <div class="card-num">500<span class="card-num-unit">trillion</span></div>
+      <div class="card-label">Daily AI tokens used in China by June 2026, up from 140 trillion in March</div>
+      <div class="card-delta delta-amber">Metering standards: no date given</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · CHIPS</div>
+      <div class="card-num">$12<span class="card-num-unit">B</span></div>
+      <div class="card-label">Nvidia orders Megaspeed arranged for Chinese buyers, Mar 2024 to Jun 2025 (WSJ)</div>
+      <div class="card-delta delta-red">Bessent's deadline for Nvidia board ~Nov 25</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · FISCAL</div>
+      <div class="card-num">¥265.7<span class="card-num-unit">B</span></div>
+      <div class="card-label">October broad budget surplus ($39.8B), first monthly surplus in a year</div>
+      <div class="card-delta delta-red">FAI est. -17% y/y in October</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · AI GOVERNANCE / COMPUTE</div>
+    <div class="story-headline">China's Data Regulator Will Write National Standards for Metering and Billing AI Tokens, With Daily Use Past 500 Trillion</div>
+    <div class="story-insight">
+      <p>The National Data Administration (国家数据局) said on Nov 21 it will set standards for metering (计量), billing (计费) and quality-testing AI tokens (词元). Director Liu Liehong (刘烈宏) also wants to curb "low-quality duplication" among token factories (词元工厂).</p>
+      <br>
+      <p>Carriers sell token packages, Inner Mongolia runs a token exchange, and Beijing's 2026-2028 plan rates factories on throughput and efficiency. Common rules would make tokens from different sellers comparable on price and quality.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Standards framed around curbing duplication could squeeze small resellers of rented compute and lift floor prices, which would narrow the cost gap that draws foreign developers to Chinese models.</div>
+    <div class="chart-box">
+      <div class="chart-title">China's Daily AI Token Use</div>
+      <svg viewBox="0 0 820 200" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">TRILLION TOKENS PER DAY (1PX PER TRILLION)</text><text x="30" y="52" font-size="12" fill="#1a1a2e">Early 2024</text><rect x="200" y="38" width="2" height="20" fill="#9a8a7a"/><text x="210" y="53" font-size="11" font-weight="700" fill="#9a8a7a">~0.1 trillion</text><text x="30" y="88" font-size="12" fill="#1a1a2e">March 2026</text><rect x="200" y="74" width="140" height="20" fill="#b45309"/><text x="348" y="89" font-size="11" font-weight="700" fill="#b45309">140 trillion+ (1,000x early 2024)</text><text x="30" y="124" font-size="12" font-weight="700" fill="#c0392b">June 2026</text><rect x="200" y="110" width="500" height="20" fill="#c0392b"/><text x="692" y="125" font-size="11" font-weight="700" fill="#fff" text-anchor="end">500 trillion+</text><text x="30" y="160" font-size="12" fill="#1a1a2e">Beijing E-Town factory</text><rect x="200" y="146" width="2" height="20" fill="#1a1a2e"/><text x="210" y="161" font-size="11" font-weight="700" fill="#1a1a2e">up to 1.4 trillion/day capacity (phase one)</text><text x="30" y="192" font-size="10.5" fill="#5a4a3a">Timeline: 词元 adopted as official term (Mar) · carrier token packages, Inner Mongolia exchange (May) · Beijing action plan (Sep) · NDA standards plan (Nov 21)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: National Data Administration via Bloomberg and The Next Web (Nov 21, 2026); Xinhua via Beijing Review (Oct 13, 2026). No renminbi figures in chart.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · UNIT OF ACCOUNT</div>
+        <div class="annotation-card-zh">词元<span class="annotation-card-en">cíyuán · AI token</span></div>
+        <div class="annotation-card-body">The state wants one countable measure of AI output.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DRAFT TEXT</div>
+        <div class="annotation-card-zh">计费<span class="annotation-card-en">jìfèi · billing</span></div>
+        <div class="annotation-card-body">Whether rules reach models served to foreign users.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CONSOLIDATION</div>
+        <div class="annotation-card-zh">词元工厂<span class="annotation-card-en">cíyuán gōngchǎng · token factory</span></div>
+        <div class="annotation-card-body">Small compute resellers may not meet the quality bar.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · CHIPS / EXPORT CONTROLS</div>
+    <div class="story-headline">WSJ Names 52-Year-Old Chinese National Li Ming as the Operator of Megaspeed, a Singapore Reseller That Arranged Nearly $12 Billion of Nvidia Orders for Chinese Buyers</div>
+    <div class="story-insight">
+      <p>The WSJ says Li Ming ran Megaspeed and Alice Huang was its public face. Li is on bail in Singapore (新加坡) on fraud charges over servers that went to Malaysia (马来西亚).</p>
+      <br>
+      <p>A successor, Novagate Cloud, received at least $300 million of Nvidia (英伟达) hardware in Malaysia in Jan-May 2026. Bessent said Nvidia has not explained who ran export-control (出口管制) compliance under Jensen Huang (黄仁勋).</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Southeast Asian data centres were a main route to Nvidia hardware for Chinese buyers; the Nov 19 remote-access rule targets that route, which pushes more Chinese training onto domestic chips.</div>
+    <div class="chart-box">
+      <div class="chart-title">Megaspeed Network: Reported Dollar Figures</div>
+      <svg viewBox="0 0 820 210" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">US$ BILLION (45PX PER $1BN) · DIFFERENT MEASURES, NOT ADDITIVE</text><text x="30" y="52" font-size="12" font-weight="700" fill="#c0392b">Orders arranged (WSJ)</text><rect x="250" y="38" width="540" height="20" fill="#c0392b"/><text x="782" y="53" font-size="11" font-weight="700" fill="#fff" text-anchor="end">~$12B · Mar 2024-Jun 2025</text><text x="30" y="88" font-size="12" fill="#1a1a2e">Linked imports (customs)</text><rect x="250" y="74" width="207" height="20" fill="#b45309"/><text x="465" y="89" font-size="11" font-weight="700" fill="#b45309">$4.6B+ · 136,000+ GPUs (Bloomberg)</text><text x="30" y="124" font-size="12" fill="#1a1a2e">Singapore fraud case</text><rect x="250" y="110" width="18" height="20" fill="#1a1a2e"/><text x="276" y="125" font-size="11" font-weight="700" fill="#1a1a2e">~$0.39B alleged transaction value</text><text x="30" y="160" font-size="12" fill="#1a1a2e">Novagate Cloud (successor)</text><rect x="250" y="146" width="14" height="20" fill="#9a8a7a"/><text x="272" y="161" font-size="11" font-weight="700" fill="#9a8a7a">$0.3B+ · Jan-May 2026, Malaysia</text><text x="30" y="196" font-size="10.5" fill="#5a4a3a">2023 Nvidia cloud partner · mid-2025 internal do-not-sell list · Aug 2025 Huang leaves · Feb 2025 Li charged · Nov 19, 2026 US remote-access rule in force</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: The Wall Street Journal via Seeking Alpha and AI Weekly (Nov 21-22, 2026); BigGo Finance citing Bloomberg customs analysis and Singapore prosecutors (Nov 22, 2026). WSJ figure counts orders, not confirmed deliveries. No renminbi figures in chart.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · DOMESTIC SHIFT</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></div>
+        <div class="annotation-card-body">Rented Hopper capacity abroad gets scarcer and dearer.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · NOV 25</div>
+        <div class="annotation-card-zh">出口管制<span class="annotation-card-en">chūkǒu guǎnzhì · export controls</span></div>
+        <div class="annotation-card-body">Nvidia board's answer to Treasury on compliance.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · ENFORCEMENT</div>
+        <div class="annotation-card-zh">走私<span class="annotation-card-en">zǒusī · smuggling</span></div>
+        <div class="annotation-card-body">Wider probes could hit Chinese buyers of diverted chips.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE · FISCAL POLICY</div>
+    <div class="story-headline">China Ran Its First Monthly Budget Surplus in a Year in October, ¥265.7 Billion ($39.8 Billion), as Income Tax Jumped and Investment Kept Falling</div>
+    <div class="story-insight">
+      <p>Fiscal revenue (财政收入) rose 4.9% to ¥19.57 trillion ($2.93 trillion) in Jan-Oct; spending rose 1% to ¥22.8 trillion ($3.42 trillion). Personal income tax (个人所得税) rose 22.9%.</p>
+      <br>
+      <p>October income tax of ¥296 billion ($44.4 billion) included over ¥120 billion ($18.0 billion) from the offshore-trust tax. The broad budget ran a surplus (财政盈余) while investment fell an estimated 17%.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A monthly surplus during a double-digit investment slump is fiscal tightening; the December Central Economic Work Conference (中央经济工作会议) sets whether the Ministry spends its remaining room.</div>
+    <div class="chart-box">
+      <div class="chart-title">January-October 2026: Budget Lines, % Change Year on Year</div>
+      <svg viewBox="0 0 820 320" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">% CHANGE Y/Y (15PX PER POINT) · GENERAL PUBLIC BUDGET UNLESS NOTED</text><line x1="300" y1="30" x2="300" y2="292" stroke="#5a6a8a" stroke-width="1"/><text x="30" y="50" font-size="12" font-weight="700" fill="#c0392b">Personal income tax</text><rect x="300" y="36" width="344" height="18" fill="#c0392b"/><text x="650" y="50" font-size="11" font-weight="700" fill="#c0392b">+22.9%</text><text x="30" y="78" font-size="12" fill="#1a1a2e">Health spending</text><rect x="300" y="64" width="117" height="18" fill="#b45309"/><text x="423" y="78" font-size="11" font-weight="700" fill="#b45309">+7.8% (childcare subsidy)</text><text x="30" y="106" font-size="12" fill="#1a1a2e">Tax revenue</text><rect x="300" y="92" width="90" height="18" fill="#1a1a2e"/><text x="396" y="106" font-size="11" font-weight="700" fill="#1a1a2e">+6.0% · ¥16.26T ($2.44T)</text><text x="30" y="134" font-size="12" fill="#1a1a2e">Corporate income tax</text><rect x="300" y="120" width="89" height="18" fill="#9a8a7a"/><text x="395" y="134" font-size="11" font-weight="700" fill="#9a8a7a">+5.9%</text><text x="30" y="162" font-size="12" fill="#1a1a2e">Domestic VAT</text><rect x="300" y="148" width="80" height="18" fill="#9a8a7a"/><text x="386" y="162" font-size="11" font-weight="700" fill="#9a8a7a">+5.3%</text><text x="30" y="190" font-size="12" fill="#1a1a2e">Total revenue</text><rect x="300" y="176" width="74" height="18" fill="#1a1a2e"/><text x="380" y="190" font-size="11" font-weight="700" fill="#1a1a2e">+4.9% · ¥19.57T ($2.93T)</text><text x="30" y="218" font-size="12" fill="#1a1a2e">Total spending</text><rect x="300" y="204" width="15" height="18" fill="#b45309"/><text x="321" y="218" font-size="11" font-weight="700" fill="#b45309">+1.0% · ¥22.8T ($3.42T)</text><text x="30" y="246" font-size="12" fill="#1a1a2e">Non-tax revenue</text><rect x="297" y="232" width="3" height="18" fill="#9a8a7a"/><text x="306" y="246" font-size="11" font-weight="700" fill="#9a8a7a">-0.2%</text><text x="30" y="274" font-size="12" font-weight="700" fill="#c0392b">Broad spending (incl. funds)</text><rect x="257" y="260" width="43" height="18" fill="#c0392b"/><text x="306" y="274" font-size="11" font-weight="700" fill="#c0392b">-2.9% (Oct alone +4.7%)</text><text x="30" y="310" font-size="10.5" fill="#5a4a3a">October broad surplus ¥265.7B ($39.8B) · Oct PIT ¥296B ($44.4B), of which offshore trusts ¥120B+ ($18.0B) · land sales -27.9% Jan-Sep</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Ministry of Finance via Xinhua (Nov 20, 2026); Bloomberg calculation via Briefs (Nov 20, 2026); Reuters via IBTimes (Oct 24, 2026). USD at ¥6.67/$ (onshore spot, Nov 20, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · REVENUE</div>
+        <div class="annotation-card-zh">个人所得税<span class="annotation-card-en">gèrén suǒdéshuì · personal income tax</span></div>
+        <div class="annotation-card-body">Offshore-trust tax lifted October collections ~90%.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · DECEMBER</div>
+        <div class="annotation-card-zh">中央经济工作会议<span class="annotation-card-en">Zhōngyāng Jīngjì Gōngzuò Huìyì · Central Economic Work Conference</span></div>
+        <div class="annotation-card-body">2027 deficit target and bond quota pull-forward.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · TIGHTENING</div>
+        <div class="annotation-card-zh">财政盈余<span class="annotation-card-en">cáizhèng yíngyú · fiscal surplus</span></div>
+        <div class="annotation-card-body">Surplus while investment falls an estimated 17%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #188 · NOVEMBER 23, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
