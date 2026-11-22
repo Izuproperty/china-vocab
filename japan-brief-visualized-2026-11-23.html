@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #177 · November 23, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #177 · November 23, 2026</div>
+    <div class="masthead-sub">Shachihata Video Watermarks · Advantest EXA Scale QX · 40-Year JGB Auction Week</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · SHACHIHATA</div>
+      <div class="card-num">6.58<span class="card-num-unit">%</span></div>
+      <div class="card-label">Shachihata&#x27;s stake in Evixar, bought for ¥110.55m</div>
+      <div class="card-delta delta-amber">Unlisted</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · ADVANTEST</div>
+      <div class="card-num">36<span class="card-num-unit">slots</span></div>
+      <div class="card-label">Instrument slots in the new four-cage EXA Scale QX</div>
+      <div class="card-delta delta-green">Sales Apr-Jun 2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · JGBS</div>
+      <div class="card-num">4.125<span class="card-num-unit">%</span></div>
+      <div class="card-label">Highest yield at the last 40-year auction (Sep 29)</div>
+      <div class="card-delta delta-red">Next sale Nov 25</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Shachihata, the Nagoya Stamp Maker, Puts an Inaudible Audio Watermark on Video to Catch Fakes Spreading on X</div>
+    <div class="story-insight"><p>Nikkei Asia reported on November 22 that シヤチハタ (Shachihata), the Nagoya company best known for self-inking stamps, is using sound to prove the 真正性 (shinseisei, authenticity) of videos that circulate on X. Its service, Shachihata Media Tag, embeds an 音響透かし (onkyō sukashi, audio watermark) that people cannot hear into a video&#x27;s soundtrack and stores a fingerprint of the audio in a database. When a suspicious clip spreads, it is downloaded and checked against both. A clip that carries the watermark or matches a registered master is traced back to the original, with the edited seconds marked. A clip with neither is treated as likely AI-generated or altered. The technology comes from エヴィクサー (Evikusā, Evixar), a Tokyo audio-recognition company.</p>
+      <br>
+      <p>Shachihata announced the service in July 2025, opened a beta that September and planned a full launch in January 2026. In March 2026 it paid ¥110.55 million for 6.58% of Evixar, becoming its third-largest shareholder, and the two began issuing a provenance certificate called SIGNED SOUND that follows the C2PA standard for 来歴 (raireki, provenance) data. Evixar&#x27;s trials include Kyoto Prefecture, which watermarked seven livestreamed press conferences in late 2025, and tests with the radio streaming service radiko. Shachihata has not published prices or customer counts. Its 電子印鑑 (denshi in&#x27;kan, electronic seal) cloud service has passed 1.1 million adoptions, and the company plans to sell video tagging to those corporate clients.</p>
+      <br>
+      <p>Shachihata is unlisted, with standalone revenue of ¥17.6 billion in the year to June 2024, so the service gives investors no direct stock to own. It does test whether Japanese organizations will pay to certify their own video before a fake appears. The method only protects content registered in advance: an untagged clip fails the check whether it is fake or was simply never registered, so its usefulness grows with each publisher that signs up. Broadcasters, local governments and listed companies that post executive video are the natural first buyers, because a fabricated statement can spread on X faster than a correction. Shachihata is extending the logic of its seal business: a company that already stamps contracts with an electronic seal can now stamp its video the same way.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Shachihata is private, so this matters for demand signals, not for a ticker. Provenance only works for video tagged in advance, which makes publisher adoption the number to track. Watch for broadcasters or listed companies to announce SIGNED SOUND on official video, and for any pricing disclosure.</div>
+    <div class="chart-box">
+      <div class="chart-title">How Shachihata Media Tag checks a clip</div>
+<svg viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg">
+<rect x="20" y="30" width="175" height="80" rx="6" fill="#fff" stroke="#818cf8" stroke-width="2"/>
+<text x="107" y="60" font-size="13" font-weight="700" fill="#818cf8" text-anchor="middle">Register</text>
+<text x="107" y="80" font-size="10" fill="#3a4a6a" text-anchor="middle">Upload master video</text>
+<text x="107" y="94" font-size="10" fill="#3a4a6a" text-anchor="middle"></text>
+<rect x="235" y="30" width="175" height="80" rx="6" fill="#fff" stroke="#3730a3" stroke-width="2"/>
+<text x="322" y="60" font-size="13" font-weight="700" fill="#3730a3" text-anchor="middle">Tag</text>
+<text x="322" y="80" font-size="10" fill="#3a4a6a" text-anchor="middle">Inaudible watermark +</text>
+<text x="322" y="94" font-size="10" fill="#3a4a6a" text-anchor="middle">audio fingerprint</text>
+<rect x="450" y="30" width="175" height="80" rx="6" fill="#fff" stroke="#be185d" stroke-width="2"/>
+<text x="537" y="60" font-size="13" font-weight="700" fill="#be185d" text-anchor="middle">Check</text>
+<text x="537" y="80" font-size="10" fill="#3a4a6a" text-anchor="middle">Suspect clip from</text>
+<text x="537" y="94" font-size="10" fill="#3a4a6a" text-anchor="middle">X downloaded</text>
+<rect x="665" y="30" width="175" height="80" rx="6" fill="#fff" stroke="#b45309" stroke-width="2"/>
+<text x="752" y="60" font-size="13" font-weight="700" fill="#b45309" text-anchor="middle">Verdict</text>
+<text x="752" y="80" font-size="10" fill="#3a4a6a" text-anchor="middle">Match = traced;</text>
+<text x="752" y="94" font-size="10" fill="#3a4a6a" text-anchor="middle">none = likely fake</text>
+<line x1="197" y1="70" x2="231" y2="70" stroke="#5a6a8a" stroke-width="1.5"/><polygon points="233,70 226,66 226,74" fill="#5a6a8a"/>
+<line x1="412" y1="70" x2="446" y2="70" stroke="#5a6a8a" stroke-width="1.5"/><polygon points="448,70 441,66 441,74" fill="#5a6a8a"/>
+<line x1="627" y1="70" x2="661" y2="70" stroke="#5a6a8a" stroke-width="1.5"/><polygon points="663,70 656,66 656,74" fill="#5a6a8a"/>
+<text x="430" y="138" font-size="10" fill="#5a6a8a" text-anchor="middle">Evixar audio watermark and fingerprint matching; SIGNED SOUND certificate follows C2PA</text>
+</svg>
+      <div class="chart-note">Source: Nikkei Asia (Nov 22); Shachihata release (Jul 31, 2025); Evixar release (Mar 13, 2026). Pricing and customer counts not disclosed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">電子印鑑<span class="annotation-card-en">electronic seal</span></div>
+        <div class="annotation-card-body">1.1m adoptions to sell into.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">導入企業<span class="annotation-card-en">adopters</span></div>
+        <div class="annotation-card-body">Publisher sign-ups decide reach.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">未登録<span class="annotation-card-en">unregistered</span></div>
+        <div class="annotation-card-body">Untagged clips cannot be verified.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Advantest Adds a Four-Cage, 36-Slot EXA Scale QX Test Head for AI Chips, With Sales From April-June 2027</div>
+    <div class="story-insight"><p>アドバンテスト (Adobantesuto, Advantest) announced on November 17 the EXA Scale QX, a new テストヘッド (tesuto heddo, test head) for its V93000 SoC tester. The QX holds four card cages and 36 instrument slots, the largest configuration in a family that runs from the one-cage CX through the two-cage SX and three-cage LX. Its dimensions are nearly identical to the LX, so it fits the same wafer probers, final-test handlers and die-level probers. Advantest pairs it with the XHC32 power card and XHD pogo blocks, which it says double the channels and current per pogo block, and it moves key power components into an external rack. Sales start in the first quarter of fiscal 2027, April to June 2027, and the head goes on show at SEMICON Japan in Tokyo on December 9-11.</p>
+      <br>
+      <p>AI accelerators draw more current, carry more pins and use larger reticles and 先端パッケージング (sentan pakkējingu, advanced packaging) with stacked memory. Each of those raises the number of instruments a tester needs per device, and a head with more slots lets a customer test bigger chips or more sites at once without replacing its handling equipment. Ralf Stoffels, who runs the V93000 product unit, said the QX gives customers &quot;infrastructure headroom&quot; as power and pin counts rise. Advantest gave no price or throughput figures.</p>
+      <br>
+      <p>The launch landed in a selloff. Advantest fell 10.32% on November 20 as the Nikkei dropped 5.06% to 56,436.65 (Issue #175). Orders tell a different story: in October the company raised its fiscal 2026 guide to ¥1.863 trillion of revenue and ¥967 billion of operating profit, said annual SoC tester capacity had passed 5,000 systems, pulled forward its 10,000-system target and said it expects 2027 to stay 供給制約 (kyōkyū seiyaku, supply-constrained). A larger head holds more instruments per system, so the QX should lift revenue per tester once shipments start. Because it reuses the V93000 installed base and existing handlers, it also makes switching to a rival 半導体試験装置 (handōtai shiken sōchi, semiconductor test equipment) platform harder as accelerators grow. Tokyo reopens on Tuesday.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The QX raises instrument content per tester from fiscal 2027 and keeps upgrades inside the V93000 installed base, which supports pricing while capacity is sold out. The share price is trading on US AI sentiment, not on this product cycle. Watch SEMICON Japan on December 9-11 for named customers and the January results for QX orders in the backlog.</div>
+    <div class="chart-box">
+      <div class="chart-title">V93000 EXA Scale test heads by card cages</div>
+<svg viewBox="0 0 860 236" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="360" y1="20" x2="360" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="360" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">1</text>
+<line x1="470" y1="20" x2="470" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="470" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">2</text>
+<line x1="580" y1="20" x2="580" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="580" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">3</text>
+<line x1="690" y1="20" x2="690" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="690" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">4</text>
+<line x1="800" y1="20" x2="800" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="800" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">5</text>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">CX</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">one cage</text>
+<rect x="250" y="34" width="110" height="24" rx="3" fill="#f9a8d4"/>
+<text x="368" y="51" font-size="12" font-weight="700" fill="#1a1a2e">1 cage</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">SX</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">two cages</text>
+<rect x="250" y="82" width="220" height="24" rx="3" fill="#f472b6"/>
+<text x="478" y="99" font-size="12" font-weight="700" fill="#1a1a2e">2 cages</text>
+<text x="238" y="140" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">LX</text>
+<text x="238" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">three cages</text>
+<rect x="250" y="130" width="330" height="24" rx="3" fill="#db2777"/>
+<text x="588" y="147" font-size="12" font-weight="700" fill="#1a1a2e">3 cages</text>
+<text x="238" y="188" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">QX (new)</text>
+<text x="238" y="203" font-size="10" fill="#5a6a8a" text-anchor="end">36 instrument slots</text>
+<rect x="250" y="178" width="440" height="24" rx="3" fill="#be185d"/>
+<text x="698" y="195" font-size="12" font-weight="700" fill="#1a1a2e">4 cages · 36 slots</text>
+</svg>
+      <div class="chart-note">Source: Advantest release (Nov 17, 2026). QX dimensions nearly identical to LX; sales from Q1 FY2027 (Apr-Jun 2027); shown at SEMICON Japan Dec 9-11.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">供給制約<span class="annotation-card-en">supply constraint</span></div>
+        <div class="annotation-card-body">2027 seen sold out.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">SEMICON Japan<span class="annotation-card-en">trade show</span></div>
+        <div class="annotation-card-body">Dec 9-11, Tokyo Big Sight.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">株価変動<span class="annotation-card-en">share volatility</span></div>
+        <div class="annotation-card-body">-10.32% on Nov 20.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Week Ahead: Wednesday&#x27;s 40-Year JGB Auction Tests Super-Long Demand After September Cleared at 4.125%, and Tokyo CPI Follows on Friday</div>
+    <div class="story-insight"><p>Tokyo markets are closed today for 勤労感謝の日 (Kinrō Kansha no Hi, Labor Thanksgiving Day), and the bond market&#x27;s first test of the week comes on Wednesday, November 25, when the 財務省 (Zaimushō, Ministry of Finance) holds a 40-year JGB 入札 (nyūsatsu, auction). The last 40-year sale, on September 29, accepted ¥299.7 billion of competitive bids at a highest yield of 4.125%, against bids of ¥928.0 billion, about 3.1 times the amount sold. Super-long auctions since then have gone smoothly. The 30-year sale on November 10 cleared at a highest yield of 3.871% with bids about 3.4 times the amount sold, and the 20-year sale on November 18 cleared at 3.782% with cover of about 3.6 times and a gap of about 2.6 basis points between the average and highest accepted yields.</p>
+      <br>
+      <p>超長期国債 (chōchōki kokusai, super-long JGBs) now feed directly into the budget. The ministry assumes a 3.8% rate in its FY2027 debt-service request (Issue #176), so each sale near 4% confirms that the assumption is realistic. Demand at the 40-year point comes mostly from 生命保険会社 (seimei hoken gaisha, life insurers) matching long-dated liabilities. A weak result, with low cover or a wide gap between average and highest yields, would push the 30-year back above 4% after it eased to about 3.97% on November 20 during the equity selloff. It would also add pressure on the ministry to shift issuance toward shorter maturities when it sets the FY2027 issuance plan in late December. A firm result would show buyers still take duration at these yields.</p>
+      <br>
+      <p>Friday brings Tokyo&#x27;s November CPI, the last regional price print before the BOJ meets on December 17-18. Tokyo core CPI rose 2.6% in October, and the nationwide core rate slowed to 2.2% (Issue #175). A Reuters poll on November 18 found 86% of economists expect a hike from 1.25% to 1.50% in December, so a soft Tokyo reading would put that consensus under pressure and a firm one would lock it in. Services producer prices are due on Wednesday, and Governor Ueda speaks on November 30. The dollar was near ¥159.7 on November 19 and about ¥158.7 after Friday&#x27;s haven buying.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Wednesday&#x27;s 40-year auction shows whether the 3.8% budget assumption holds at the long end. Low cover or a wide tail would lift super-long yields and strengthen the case for shorter issuance in the December plan. Friday&#x27;s Tokyo CPI then tests a December hike that 86% of economists already expect.</div>
+    <div class="chart-box">
+      <div class="chart-title">Highest accepted yields at recent super-long JGB auctions (%)</div>
+<svg viewBox="0 0 860 236" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">0.0%</text>
+<line x1="372" y1="20" x2="372" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="372" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">1.0%</text>
+<line x1="494" y1="20" x2="494" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="494" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">2.0%</text>
+<line x1="617" y1="20" x2="617" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="617" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">3.0%</text>
+<line x1="739" y1="20" x2="739" y2="216" stroke="#e8eaf2" stroke-width="1"/>
+<text x="739" y="232" font-size="10" fill="#5a6a8a" text-anchor="middle">4.0%</text>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">40-year</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">Sep 29 · cover ~3.1x</text>
+<rect x="250" y="34" width="504" height="24" rx="3" fill="#b45309"/>
+<text x="762" y="51" font-size="12" font-weight="700" fill="#1a1a2e">4.125%</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">30-year</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">Nov 10 · cover ~3.4x</text>
+<rect x="250" y="82" width="473" height="24" rx="3" fill="#d97706"/>
+<text x="731" y="99" font-size="12" font-weight="700" fill="#1a1a2e">3.871%</text>
+<text x="238" y="140" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">20-year</text>
+<text x="238" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">Nov 18 · cover ~3.6x</text>
+<rect x="250" y="130" width="462" height="24" rx="3" fill="#f59e0b"/>
+<text x="720" y="147" font-size="12" font-weight="700" fill="#1a1a2e">3.782%</text>
+<text x="238" y="188" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">30-year market</text>
+<text x="238" y="203" font-size="10" fill="#5a6a8a" text-anchor="end">Nov 20 close</text>
+<rect x="250" y="178" width="485" height="24" rx="3" fill="#c7cbe0"/>
+<text x="743" y="195" font-size="12" font-weight="700" fill="#1a1a2e">~3.97%</text>
+<line x1="714" y1="20" x2="714" y2="216" stroke="#b45309" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="708" y="28" font-size="10" fill="#b45309" text-anchor="end">3.8% FY2027 budget assumption</text>
+</svg>
+      <div class="chart-note">Source: MoF auction results; cover ratios computed from bids and amounts accepted. Next 40-year auction Wed Nov 25; Tokyo CPI Fri Nov 27.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">応札倍率<span class="annotation-card-en">bid-to-cover</span></div>
+        <div class="annotation-card-body">20y and 30y cleared above 3x.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">東京都区部CPI<span class="annotation-card-en">Tokyo CPI</span></div>
+        <div class="annotation-card-body">November data due Nov 27.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">超長期金利<span class="annotation-card-en">super-long yields</span></div>
+        <div class="annotation-card-body">40y last cleared at 4.125%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #177 · NOVEMBER 23, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
