@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #178 · November 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #178 · November 24, 2026</div>
+    <div class="masthead-sub">JERA Weighs an IPO · Tokyo Chips Reopen After Huang Returns · Yen Back Toward 159</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · JERA</div>
+      <div class="card-num">¥5<span class="card-num-unit">tn</span></div>
+      <div class="card-label">JERA investment plan to 2035, before AI data-center demand</div>
+      <div class="card-delta delta-amber">IPO under study</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · NVIDIA</div>
+      <div class="card-num">+31<span class="card-num-unit">%</span></div>
+      <div class="card-label">Nvidia on Huang&#x27;s return; Tokyo was closed</div>
+      <div class="card-delta delta-green">Tokyo reopens 9:00</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · YEN</div>
+      <div class="card-num">158.99<span class="card-num-unit">¥/$</span></div>
+      <div class="card-label">USD/JPY on Nov 23, from 158.55</div>
+      <div class="card-delta delta-red">160 = intervention line</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">JERA&#x27;s Chairman Says AI Power Demand Means &#x27;We Require a Lot of Cash&#x27; and Opens the Door to an IPO of Japan&#x27;s Largest Generator</div>
+    <div class="story-insight"><p>JERA (ジェラ), the 50-50 joint venture of 東京電力 (Tōkyō Denryoku, TEPCO) and 中部電力 (Chūbu Denryoku, Chubu Electric) that generates roughly a third of Japan&#x27;s electricity, is weighing a 新規株式公開 (shinki kabushiki kōkai, IPO) to pay for growth that AI is driving. In a Tokyo interview published by Bloomberg on November 20 and carried by the Japan Times on November 23, Global CEO and Chairman 可児行夫 (Kani Yukio) said &quot;We require a lot of cash&quot; and named the uses: new power stations and stronger terminals along the 液化天然ガス (ekika tennen gasu, LNG) chain. He gave no size, timing or venue, and said only that JERA is talking with its shareholders about how to maximize value. The company has considered a listing since at least April 2024 and has never announced one.</p>
+      <br>
+      <p>The demand behind the remark is specific. In October JERA signed with Dell Technologies and UK developer RHAELM, with Apollo providing financing, to build a 400 MW AI data center beside its Chiba 火力発電所 (karyoku hatsudensho, thermal power plant), with total investment of about $15 billion, first operations in 2028 and full capacity in 2029 (Issue #126). JERA supplies the land and the power for 15 to 25 years and does not own the servers. Its existing plan, announced in May 2024, already commits ¥5 trillion through 2035 to LNG, renewables, hydrogen and ammonia. Data-center contracts add spending on top of that plan, because a generator that promises 400 MW to one campus for two decades has to build or keep that much gas-fired capacity running.</p>
+      <br>
+      <p>The listed exposure today runs through TEPCO Holdings (TSE: 9501) and Chubu Electric (TSE: 9502). An IPO would put a market price on each parent&#x27;s 50% stake, and a partial sale would raise cash for parents with heavy commitments of their own, TEPCO above all because of Fukushima decommissioning and compensation. It would also give Tokyo its first listed company whose growth rests mainly on 電力需要 (denryoku juyō, power demand) from AI; both parents also carry regulated retail power businesses. Three things stand in the way. Both parents have to agree, and TEPCO&#x27;s majority holder is a state-backed fund. The Chiba project has not named an end tenant. And JERA buys LNG in dollars, so a weak yen raises its fuel bill faster than its contracts reprice.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> JERA gave no timetable, so nothing trades on this yet. A listing would put a price on the 50% stakes held by TEPCO (9501) and Chubu Electric (9502) and give Tokyo a direct listed play on AI power demand. Watch for a named tenant at Chiba and for any statement from the two parents on the stake.</div>
+    <div class="chart-box">
+      <div class="chart-title">JERA: from IPO idea to AI data center</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="50" y1="90" x2="810" y2="90" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="50" cy="90" r="8" fill="#818cf8"/>
+<text x="50" y="60" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">Apr 2024</text>
+<text x="50" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">IPO first</text>
+<text x="50" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">reported</text>
+<circle cx="202" cy="90" r="8" fill="#818cf8"/>
+<text x="202" y="125" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">May 2024</text>
+<text x="202" y="145" font-size="10" fill="#3a4a6a" text-anchor="middle">¥5tn plan</text>
+<text x="202" y="158" font-size="10" fill="#3a4a6a" text-anchor="middle">to 2035</text>
+<circle cx="354" cy="90" r="8" fill="#3730a3"/>
+<text x="354" y="60" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Oct 2026</text>
+<text x="354" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">Chiba 400 MW</text>
+<text x="354" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">AI DC, ~$15bn</text>
+<circle cx="506" cy="90" r="8" fill="#be185d"/>
+<text x="506" y="125" font-size="12" font-weight="700" fill="#be185d" text-anchor="middle">Nov 20, 2026</text>
+<text x="506" y="145" font-size="10" fill="#3a4a6a" text-anchor="middle">Kani: &quot;a lot</text>
+<text x="506" y="158" font-size="10" fill="#3a4a6a" text-anchor="middle">of cash&quot;</text>
+<circle cx="658" cy="90" r="8" fill="#b45309"/>
+<text x="658" y="60" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">2028</text>
+<text x="658" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">Chiba first</text>
+<text x="658" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">operations</text>
+<circle cx="810" cy="90" r="8" fill="#b45309"/>
+<text x="810" y="125" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">2029</text>
+<text x="810" y="145" font-size="10" fill="#3a4a6a" text-anchor="middle">Full 400 MW</text>
+<text x="810" y="158" font-size="10" fill="#3a4a6a" text-anchor="middle">capacity</text>
+</svg>
+      <div class="chart-note">Source: Bloomberg (Nov 20, 2026); JERA, Dell and RHAELM MOU (Oct 2026, Issue #126). No IPO size, timing or venue disclosed.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">電力需要<span class="annotation-card-en">power demand</span></div>
+        <div class="annotation-card-body">AI lifts JERA&#x27;s capex needs.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">親会社<span class="annotation-card-en">parent companies</span></div>
+        <div class="annotation-card-body">TEPCO and Chubu must agree.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">円安<span class="annotation-card-en">weak yen</span></div>
+        <div class="annotation-card-body">Dollar LNG costs rise.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Nvidia Reinstates Huang and Its Shares Jump 31%, So Tokyo&#x27;s Chip Stocks Reopen Today Still Priced at Friday&#x27;s Rout</div>
+    <div class="story-insight"><p>Nvidia&#x27;s board reinstated Jensen Huang as chief executive on Monday, November 23, eleven days after he resigned (Issue #168). The board said it was satisfied with his candor and, after input from senior US officials, saw no national security risk. Nvidia shares rose about 31%, the Nasdaq Composite gained 6.6% and the S&amp;P 500 rose 4.8%, ending seven straight days of losses. Tokyo saw none of it. The exchange was closed for Labor Thanksgiving Day, so the last prices for Japan&#x27;s chip stocks date from 3:30 p.m. on Friday, before the Philadelphia Semiconductor Index (SOX) fell 10.73% to 8,408.59 in New York that night.</p>
+      <br>
+      <p>Those Friday closes were already deep in the selloff. 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron) ended at ¥8,309, down 7.06%. アドバンテスト (Adobantesuto, Advantest) fell 10.32% to ¥24,255, キオクシア (Kiokushia, Kioxia) 11.66% to ¥7,307 and ソフトバンクグループ (Sofutobanku Gurūpu, SoftBank Group) 14.48% to ¥3,025. Lasertec lost 9.21% and Disco 8.31%. After Tokyo shut, Nvidia fell 14.01% and Micron 13.89%. Monday&#x27;s jump took Nvidia back above its Thursday level, so the cash open at 9:00 a.m. today has to absorb a steep fall and a larger 反発 (hanpatsu, rebound) at once. Japan Exchange Group CEO 山道裕己 (Yamaji Hiromi) said on November 23 he does not expect the AI selloff to hit Japan especially hard, noting that the Topix fell 2.9% last week while the SOX fell 13%.</p>
+      <br>
+      <p>Huang&#x27;s 復帰 (fukki, return) removes a leadership question; it does not change the order books. Nvidia guided fourth-quarter revenue to $130 billion, plus or minus 3%, under interim CEO Colette Kress (Issue #173), and Advantest&#x27;s tester sales follow GPU volumes, which that guide already set. The equipment makers should therefore reprice toward Monday&#x27;s US level. Kioxia and SoftBank Group carry their own risks: memory prices and SK hynix&#x27;s growing stake for Kioxia, and OpenAI&#x27;s valuation for SoftBank Group, whose NAV gets no help from Anthropic, which slipped 1.7% on Monday. Nomura strategist Charlie McElligott called Monday&#x27;s US move a &quot;mechanical bounce&quot;, which makes the afternoon session, after the opening gap, the better read on whether foreign investors are adding risk or selling into strength.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Tokyo opens at 9:00 a.m. with two US sessions to absorb, and Advantest and Tokyo Electron should reprice toward Monday&#x27;s Nvidia level. Whether the gains hold into the afternoon shows if foreign investors are buying or using the bounce to cut. Kioxia and SoftBank Group trade on memory prices and OpenAI&#x27;s valuation, so they may lag the equipment names.</div>
+    <div class="chart-box">
+      <div class="chart-title">Two sessions Tokyo missed: Friday closes vs US moves (%)</div>
+<svg viewBox="0 0 860 396" xmlns="http://www.w3.org/2000/svg">
+<line x1="250" y1="20" x2="250" y2="376" stroke="#e8eaf2" stroke-width="1"/>
+<text x="250" y="392" font-size="10" fill="#5a6a8a" text-anchor="middle">-20%</text>
+<line x1="350" y1="20" x2="350" y2="376" stroke="#e8eaf2" stroke-width="1"/>
+<text x="350" y="392" font-size="10" fill="#5a6a8a" text-anchor="middle">-10%</text>
+<line x1="450" y1="20" x2="450" y2="376" stroke="#e8eaf2" stroke-width="1"/>
+<text x="450" y="392" font-size="10" fill="#5a6a8a" text-anchor="middle">0</text>
+<line x1="550" y1="20" x2="550" y2="376" stroke="#e8eaf2" stroke-width="1"/>
+<text x="550" y="392" font-size="10" fill="#5a6a8a" text-anchor="middle">+10%</text>
+<line x1="650" y1="20" x2="650" y2="376" stroke="#e8eaf2" stroke-width="1"/>
+<text x="650" y="392" font-size="10" fill="#5a6a8a" text-anchor="middle">+20%</text>
+<line x1="750" y1="20" x2="750" y2="376" stroke="#e8eaf2" stroke-width="1"/>
+<text x="750" y="392" font-size="10" fill="#5a6a8a" text-anchor="middle">+30%</text>
+<line x1="450" y1="20" x2="450" y2="376" stroke="#5a6a8a" stroke-width="1"/>
+<text x="238" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">SoftBank Group</text>
+<text x="238" y="59" font-size="10" fill="#5a6a8a" text-anchor="end">TSE · Fri Nov 20</text>
+<rect x="305" y="34" width="145" height="24" rx="3" fill="#be185d"/>
+<text x="297" y="51" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-14.48%</text>
+<text x="238" y="92" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Kioxia</text>
+<text x="238" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">TSE · Fri Nov 20</text>
+<rect x="333" y="82" width="117" height="24" rx="3" fill="#be185d"/>
+<text x="325" y="99" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-11.66%</text>
+<text x="238" y="140" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Advantest</text>
+<text x="238" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">TSE · Fri Nov 20</text>
+<rect x="347" y="130" width="103" height="24" rx="3" fill="#be185d"/>
+<text x="339" y="147" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-10.32%</text>
+<text x="238" y="188" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Tokyo Electron</text>
+<text x="238" y="203" font-size="10" fill="#5a6a8a" text-anchor="end">TSE · Fri Nov 20</text>
+<rect x="379" y="178" width="71" height="24" rx="3" fill="#be185d"/>
+<text x="371" y="195" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-7.06%</text>
+<text x="238" y="236" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">SOX</text>
+<text x="238" y="251" font-size="10" fill="#5a6a8a" text-anchor="end">US · Fri Nov 20</text>
+<rect x="343" y="226" width="107" height="24" rx="3" fill="#c7cbe0"/>
+<text x="335" y="243" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-10.73%</text>
+<text x="238" y="284" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Nvidia</text>
+<text x="238" y="299" font-size="10" fill="#5a6a8a" text-anchor="end">US · Fri Nov 20</text>
+<rect x="310" y="274" width="140" height="24" rx="3" fill="#c7cbe0"/>
+<text x="302" y="291" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-14.01%</text>
+<text x="238" y="332" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Nvidia</text>
+<text x="238" y="347" font-size="10" fill="#5a6a8a" text-anchor="end">US · Mon Nov 23 (Huang back)</text>
+<rect x="450" y="322" width="310" height="24" rx="3" fill="#3730a3"/>
+<text x="768" y="339" font-size="12" font-weight="700" fill="#1a1a2e">+31%</text>
+</svg>
+      <div class="chart-note">Source: TSE closes (Nov 20); Reuters, Yahoo Finance (Nov 23). Tokyo closed Nov 23 for Labor Thanksgiving Day; cash market reopens 9:00 a.m. JST Nov 24.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">復帰<span class="annotation-card-en">return</span></div>
+        <div class="annotation-card-body">Huang back; Q4 guide unchanged.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">後場<span class="annotation-card-en">afternoon session</span></div>
+        <div class="annotation-card-body">Does the gap hold?</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">反発<span class="annotation-card-en">rebound</span></div>
+        <div class="annotation-card-body">A &quot;mechanical bounce&quot; can fade.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The Yen Slips Back Toward 159 as Friday&#x27;s Haven Bid Fades, With the 10-Year JGB at 2.79% and November PMIs Due at 9:30</div>
+    <div class="story-insight"><p>The dollar rose to about ¥158.99 on Monday, November 23, from ¥158.55, as thin holiday trading and the US equity rebound removed the 安全資産 (anzen shisan, safe-haven) demand that had lifted the yen on Friday. Tokyo&#x27;s bond market was closed, and over-the-counter quotes put the 10-year JGB yield at about 2.785%, down from 2.870% on November 19 after four straight declines during the AI selloff. The rest of the curve stood at 1.82% for two years, 2.18% for five years, 3.68% for 20 years, 3.97% for 30 years and 4.15% for 40 years. Stocks and bonds reopen today.</p>
+      <br>
+      <p>Friday&#x27;s yen gain rested on a firm October CPI, with the headline rate at 2.3%, and on risk aversion. The rally in US stocks removed the second support, which leaves the currency leaning on the 日本銀行 (Nihon Ginkō, BOJ) meeting on December 17-18, where 86% of economists in a Reuters poll expect a hike from 1.25% to 1.50%. The yen crossed 160 on November 13 for the first time since September, and 財務大臣 (zaimu daijin, Finance Minister) 片山さつき (Katayama Satsuki) said on November 19 that officials would work with US counterparts and act against excessive moves. The ministry spent a record ¥7.98 trillion on July 30 (Issue #164), so traders treat 160 as the 為替介入 (kawase kainyū, intervention) line.</p>
+      <br>
+      <p>The first data point arrives at 9:30 a.m. today with the au Jibun Bank flash 購買担当者景気指数 (kōbai tantōsha keiki shisū, PMI) for November. Economists expect manufacturing at 53.5 after 53.3; services stood at 51.7 in October. A firm reading would support the BOJ&#x27;s view that the 0.1% annualized contraction in July-September was a pause, and would make a December hike easier to deliver. The week then runs through Wednesday&#x27;s 40-year JGB auction, a speech by board member 田村直樹 (Tamura Naoki) on Thursday and Tokyo CPI on Friday. The gap between US and Japanese 10-year yields is about 2.15 percentage points (4.94% against 2.79%), and it widened as JGB yields fell in the selloff, which keeps carry trades funded in yen attractive until the BOJ moves.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The yen lost its haven support as soon as US stocks rallied, which leaves the December hike and the 160 intervention line as its main defenses. A manufacturing PMI above 53.5 this morning and a firm Tokyo CPI on Friday would make the hike easier to deliver. With the US-Japan 10-year gap near 2.15 points, a December hold would likely send the dollar back through 160.</div>
+    <div class="chart-box">
+      <div class="chart-title">JGB yield curve, Nov 23 OTC quotes (%)</div>
+<svg viewBox="0 0 860 236" xmlns="http://www.w3.org/2000/svg">
+<line x1="80" y1="200" x2="820" y2="200" stroke="#e8eaf2" stroke-width="1"/>
+<text x="70" y="204" font-size="10" fill="#5a6a8a" text-anchor="end">1.0%</text>
+<line x1="80" y1="151" x2="820" y2="151" stroke="#e8eaf2" stroke-width="1"/>
+<text x="70" y="155" font-size="10" fill="#5a6a8a" text-anchor="end">2.0%</text>
+<line x1="80" y1="103" x2="820" y2="103" stroke="#e8eaf2" stroke-width="1"/>
+<text x="70" y="107" font-size="10" fill="#5a6a8a" text-anchor="end">3.0%</text>
+<line x1="80" y1="54" x2="820" y2="54" stroke="#e8eaf2" stroke-width="1"/>
+<text x="70" y="58" font-size="10" fill="#5a6a8a" text-anchor="end">4.0%</text>
+<line x1="80" y1="188" x2="820" y2="188" stroke="#3730a3" stroke-width="1.5" stroke-dasharray="5,4"/>
+<text x="820" y="182" font-size="10" fill="#3730a3" text-anchor="end">BOJ policy rate 1.25% (hike to 1.50% expected Dec 18)</text>
+<path d="M80,160 L306,143 L478,113 L649,70 L749,56 L820,47" fill="none" stroke="#b45309" stroke-width="2.5"/>
+<circle cx="80" cy="160" r="5" fill="#b45309"/>
+<text x="80" y="148" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">1.82%</text>
+<text x="80" y="226" font-size="10" fill="#5a6a8a" text-anchor="middle">2Y</text>
+<circle cx="306" cy="143" r="5" fill="#b45309"/>
+<text x="306" y="131" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.18%</text>
+<text x="306" y="226" font-size="10" fill="#5a6a8a" text-anchor="middle">5Y</text>
+<circle cx="478" cy="113" r="5" fill="#b45309"/>
+<text x="478" y="101" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.79%</text>
+<text x="478" y="226" font-size="10" fill="#5a6a8a" text-anchor="middle">10Y</text>
+<circle cx="649" cy="70" r="5" fill="#b45309"/>
+<text x="649" y="58" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">3.68%</text>
+<text x="649" y="226" font-size="10" fill="#5a6a8a" text-anchor="middle">20Y</text>
+<circle cx="749" cy="56" r="5" fill="#b45309"/>
+<text x="749" y="44" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">3.97%</text>
+<text x="749" y="226" font-size="10" fill="#5a6a8a" text-anchor="middle">30Y</text>
+<circle cx="820" cy="47" r="5" fill="#b45309"/>
+<text x="820" y="35" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">4.15%</text>
+<text x="820" y="226" font-size="10" fill="#5a6a8a" text-anchor="middle">40Y</text>
+</svg>
+      <div class="chart-note">Source: Trading Economics OTC quotes (Nov 23, 2026). USD/JPY ~158.99 (from 158.55). Flash PMI 9:30 a.m. Nov 24; 40-year auction Nov 25; Tokyo CPI Nov 27.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">利上げ<span class="annotation-card-en">rate hike</span></div>
+        <div class="annotation-card-body">86% expect 1.50% Dec 18.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">購買担当者景気指数<span class="annotation-card-en">PMI</span></div>
+        <div class="annotation-card-body">Mfg consensus 53.5.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">為替介入<span class="annotation-card-en">intervention</span></div>
+        <div class="annotation-card-body">160 is the line.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #178 · NOVEMBER 24, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
