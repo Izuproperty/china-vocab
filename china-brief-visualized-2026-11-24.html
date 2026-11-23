@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #189 · November 24, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #189 · November 24, 2026</div>
+    <div class="masthead-sub">Zhipu Ships GLM-5.4 to Subscribers First · Four Ministries Back Elderly-Care Robots · Exchanges Cut the Margin Deposit Floor to 80%</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · MODELS</div>
+      <div class="card-num">+50<span class="card-num-unit">%</span></div>
+      <div class="card-label">GLM-5.4 weekly Coding Plan quota versus GLM-5.3; 1M-token context, image input</div>
+      <div class="card-delta delta-amber">API and weights wait on safety review</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">¥100<span class="card-num-unit">B+</span></div>
+      <div class="card-label">Estimated 2026 elderly-care robot market ($15.0B), per an MIIT-affiliated centre</div>
+      <div class="card-delta delta-green">ChiNext +3.08% on Nov 23</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MARKETS</div>
+      <div class="card-num">80<span class="card-num-unit">%</span></div>
+      <div class="card-label">New minimum margin deposit ratio, down from 100%; leverage cap 1x to 1.25x</div>
+      <div class="card-delta delta-amber">Effective Nov 30</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · FOUNDATION MODELS</div>
+    <div class="story-headline">Zhipu Puts GLM-5.4, Its First Loop-Architecture Flagship, on Its Coding Plan and Holds Back the API and Open Weights for a Safety Review</div>
+    <div class="story-insight">
+      <p>Zhipu (智谱) released GLM-5.4 on Nov 23 to Coding Plan subscribers ($18, $80 and $168 a month) with a 50% larger weekly quota. It runs weight-shared layers in a loop (循环架构) and Zhipu claims "2-3T-level" capability; 快科技 reported about 700 billion parameters.</p>
+      <br>
+      <p>API access waits on a safety evaluation (安全评估), and open weights (权重) have no date. One private coding test placed it at 33.2, against 33.6 for GPT-6.2 Astra and 34.7 for Opus 5.5, while finding it reasons on over 99% of steps.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Zhipu is selling to subscribers before releasing weights, as Alibaba did with Qwen4-Max, which helps revenue and slows open-weight adoption; independent benchmarks and per-task cost will decide whether the loop design pays off.</div>
+    <div class="chart-box">
+      <div class="chart-title">GLM-5.4 in One Private Coding Test, and Its Reasoning Overhead</div>
+      <svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">AICODEKING PRIVATE EVAL SCORE (15PX PER POINT, AXIS FROM ZERO)</text><text x="30" y="52" font-size="12" fill="#1a1a2e">Anthropic Opus 5.5</text><rect x="230" y="38" width="520" height="20" fill="#1a1a2e"/><text x="742" y="53" font-size="11" font-weight="700" fill="#fff" text-anchor="end">34.7</text><text x="30" y="84" font-size="12" fill="#1a1a2e">OpenAI GPT-6.2 Astra</text><rect x="230" y="70" width="504" height="20" fill="#9a8a7a"/><text x="726" y="85" font-size="11" font-weight="700" fill="#fff" text-anchor="end">33.6</text><text x="30" y="116" font-size="12" font-weight="700" fill="#c0392b">Zhipu GLM-5.4</text><rect x="230" y="102" width="498" height="20" fill="#c0392b"/><text x="720" y="117" font-size="11" font-weight="700" fill="#fff" text-anchor="end">33.2</text><text x="30" y="156" font-size="11" font-weight="700" fill="#5a6a8a">SHARE OF STEPS WITH REASONING (5PX PER %)</text><text x="30" y="188" font-size="12" font-weight="700" fill="#c0392b">GLM-5.4</text><rect x="230" y="174" width="495" height="20" fill="#c0392b"/><text x="717" y="189" font-size="11" font-weight="700" fill="#fff" text-anchor="end">&gt;99%</text><text x="30" y="220" font-size="12" fill="#1a1a2e">GPT models (range)</text><rect x="230" y="206" width="195" height="20" fill="#e0d8d0"/><rect x="300" y="206" width="125" height="20" fill="#b45309"/><text x="433" y="221" font-size="11" font-weight="700" fill="#b45309">14% to 39%</text><text x="30" y="252" font-size="10.5" fill="#5a4a3a">One reviewer's private test set, not a standard benchmark · Zhipu has published no official scores · higher reasoning share means more tokens per task</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: 快科技 via Sina Tech citing @AICodeKing (Nov 23, 2026); Beijing News via Sina (Nov 23, 2026); Zixuan Li on X via explainx (Nov 23, 2026). No renminbi figures in chart.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · CHIP FIT</div>
+        <div class="annotation-card-zh">循环架构<span class="annotation-card-en">xúnhuán jiàgòu · loop architecture</span></div>
+        <div class="annotation-card-body">More depth per parameter eases memory limits on Ascend chips.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RELEASE</div>
+        <div class="annotation-card-zh">权重<span class="annotation-card-en">quánzhòng · model weights</span></div>
+        <div class="annotation-card-body">No date yet for open weights or public API.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COST</div>
+        <div class="annotation-card-zh">推理<span class="annotation-card-en">tuīlǐ · reasoning, inference</span></div>
+        <div class="annotation-card-body">Reasoning on 99% of steps raises tokens per task.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · PHYSICAL AI / ROBOTICS</div>
+    <div class="story-headline">Four Ministries Tell Care Homes to Pilot Service Robots and Exoskeletons, and Humanoid Stocks Lead a 3.1% ChiNext Rally</div>
+    <div class="story-insight">
+      <p>The NDRC (发改委), Ministry of Civil Affairs (民政部), NHC and Ministry of Education issued the State Council-approved 一老一小 plan on Nov 23. It encourages AI agents, service robots, wearables and exoskeletons (外骨骼) in care settings and sets 2030 targets of 73% nursing beds and 70% community facility coverage.</p>
+      <br>
+      <p>The plan has no budget. Demand rests on a caregiver shortage of over 5 million and a 60-plus population heading toward 400 million. Humanoid stocks led Monday's ChiNext gain of 3.08%, on the same day as the margin rule change.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Elderly-care robots (养老机器人) now sit in national policy without funding; exoskeletons and care devices are closer to revenue than humanoids, so provincial tenders and silver-economy (银发经济) subsidies are the evidence to wait for.</div>
+    <div class="chart-box">
+      <div class="chart-title">China's Older Population and the Care Gap (Millions of People)</div>
+      <svg viewBox="0 0 820 270" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">MILLIONS (1.4PX PER MILLION)</text><text x="30" y="52" font-size="12" fill="#1a1a2e">Aged 60+ in ~5 years (proj.)</text><rect x="230" y="38" width="560" height="20" fill="#9a8a7a"/><text x="782" y="53" font-size="11" font-weight="700" fill="#fff" text-anchor="end">~400</text><text x="30" y="84" font-size="12" font-weight="700" fill="#c0392b">Aged 60+ (end-2025)</text><rect x="230" y="70" width="453" height="20" fill="#c0392b"/><text x="675" y="85" font-size="11" font-weight="700" fill="#fff" text-anchor="end">323.38 (23.0%)</text><text x="30" y="116" font-size="12" fill="#1a1a2e">Aged 65+ (end-2025)</text><rect x="230" y="102" width="313" height="20" fill="#1a1a2e"/><text x="535" y="117" font-size="11" font-weight="700" fill="#fff" text-anchor="end">223.65 (15.9%)</text><text x="30" y="148" font-size="12" fill="#1a1a2e">Living alone or empty-nest</text><rect x="230" y="134" width="182" height="20" fill="#b45309"/><text x="420" y="149" font-size="11" font-weight="700" fill="#b45309">130+</text><text x="30" y="180" font-size="12" fill="#1a1a2e">Needing care (proj.)</text><rect x="230" y="166" width="56" height="20" fill="#b45309"/><text x="294" y="181" font-size="11" font-weight="700" fill="#b45309">40+</text><text x="30" y="212" font-size="12" font-weight="700" fill="#c0392b">Caregiver shortage</text><rect x="230" y="198" width="7" height="20" fill="#c0392b"/><text x="245" y="213" font-size="11" font-weight="700" fill="#c0392b">5+ (85-95% in home and community care)</text><text x="30" y="248" font-size="10.5" fill="#5a4a3a">2030 targets: nursing beds 73% of institution beds · community facility coverage 70% · 2026 elderly-care robot market est. ¥100B+ ($15.0B)</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: 21st Century Business Herald via Sina citing the 2025 national ageing report, a 2025 nursing-workforce survey and an MIIT Software and IC Promotion Center report (Nov 23, 2026). USD at ¥6.67/$ (onshore spot, Nov 23, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLICY</div>
+        <div class="annotation-card-zh">养老机器人<span class="annotation-card-en">yǎnglǎo jīqìrén · elderly-care robot</span></div>
+        <div class="annotation-card-body">Named in a State Council-approved plan.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · SUBSIDIES</div>
+        <div class="annotation-card-zh">银发经济<span class="annotation-card-en">yínfà jīngjì · silver economy</span></div>
+        <div class="annotation-card-body">Whether provincial subsidies cover robots by name.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · READINESS</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+        <div class="annotation-card-body">Lifting and bathing exceed current humanoid autonomy and cost.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE · MARKETS / CSRC POLICY</div>
+    <div class="story-headline">Exchanges Cut the Margin Deposit Floor to 80% From 100%, Reversing January's Tightening, With Margin Debt at ¥2.2 Trillion ($330 Billion), Down From ¥3 Trillion ($450 Billion) in June</div>
+    <div class="story-insight">
+      <p>With CSRC (证监会) approval, the three exchanges cut the margin deposit ratio (融资保证金比例) to 80% from Nov 30, reversing January's rise to 100%. Margin loans (融资融券) are about ¥2.2 trillion ($330 billion), down more than 20% from a ¥3 trillion ($450 billion) late-June peak.</p>
+      <br>
+      <p>State media estimate up to ¥400 billion ($60.0 billion) of extra borrowing capacity. Shenzhen also drafted ChiNext market-maker (做市商) rules, and fee cuts total about ¥2.76 billion ($414 million).</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Margin debt fell because investors cut risk, so extra capacity may go unused; a sustained rise in the daily balance after Nov 30 would show retail leverage (杠杆) returning, and a flat one leaves support to the PBOC and the national team.</div>
+    <div class="chart-box">
+      <div class="chart-title">Margin Loan Balance and the Capacity the Cut Could Add</div>
+      <svg viewBox="0 0 820 230" xmlns="http://www.w3.org/2000/svg"><text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">¥ TRILLION (180PX PER TRILLION)</text><text x="30" y="52" font-size="12" fill="#1a1a2e">Peak, late June 2026</text><rect x="230" y="38" width="540" height="20" fill="#9a8a7a"/><text x="762" y="53" font-size="11" font-weight="700" fill="#fff" text-anchor="end">~¥3.0T ($450B)</text><text x="30" y="84" font-size="12" font-weight="700" fill="#c0392b">Now (Nov 2026)</text><rect x="230" y="70" width="396" height="20" fill="#c0392b"/><text x="618" y="85" font-size="11" font-weight="700" fill="#fff" text-anchor="end">~¥2.2T ($330B)</text><text x="30" y="116" font-size="12" fill="#1a1a2e">Now + est. new capacity</text><rect x="230" y="102" width="396" height="20" fill="#e0d8d0"/><rect x="626" y="102" width="18" height="20" fill="#166534"/><rect x="644" y="102" width="54" height="20" fill="#b45309"/><text x="706" y="117" font-size="11" font-weight="700" fill="#1a1a2e">+¥0.4T ($60.0B)</text><text x="230" y="140" font-size="10.5" fill="#166534">■ new positions ~¥100B ($15.0B)</text><text x="430" y="140" font-size="10.5" fill="#b45309">■ re-margined existing contracts ~¥300B ($45.0B)</text><text x="30" y="176" font-size="11" font-weight="700" fill="#5a6a8a">MINIMUM DEPOSIT RATIO</text><text x="30" y="198" font-size="12" fill="#1a1a2e">Aug 2023: cut to 80% → Jan 14, 2026: raised to 100% → Nov 30, 2026: back to 80% (max leverage 1.25x)</text><text x="30" y="222" font-size="10.5" fill="#5a4a3a">Nov 23 reaction: ChiNext +3.08% · Hang Seng -0.12% · southbound net sales HK$9.6B · STAR and ChiNext still 40%+ below June peaks</text></svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Exchange notices via Reuters/BusinessDay, The Paper and 21st Century Business Herald (Nov 22-23, 2026); investingLive (Nov 22, 2026); Sina market wrap (Nov 23, 2026). Capacity estimates cite a regulatory source and are theoretical. USD at ¥6.67/$ (onshore spot, Nov 23, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · EASING</div>
+        <div class="annotation-card-zh">融资保证金比例<span class="annotation-card-en">róngzī bǎozhèngjīn bǐlì · margin deposit ratio</span></div>
+        <div class="annotation-card-body">Floor back to 80%, reversing January.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · AFTER NOV 30</div>
+        <div class="annotation-card-zh">融资融券<span class="annotation-card-en">róngzī róngquàn · margin trading</span></div>
+        <div class="annotation-card-body">Daily margin balance shows whether borrowers return.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · FORCED SELLING</div>
+        <div class="annotation-card-zh">杠杆<span class="annotation-card-en">gànggǎn · leverage</span></div>
+        <div class="annotation-card-body">More leverage deepens margin calls if prices fall.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #189 · NOVEMBER 24, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
