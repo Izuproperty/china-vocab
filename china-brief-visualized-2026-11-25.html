@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #190 · November 25, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #190 · November 25, 2026</div>
+    <div class="masthead-sub">Xiaomi's EV and AI Unit Swings to a ¥3.4B Loss · MIIT Builds a BCI Standards Group · PBOC Drains ¥200B via MLF</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · AUTOS</div>
+      <div class="card-num">-¥3.4<span class="card-num-unit">B</span></div>
+      <div class="card-label">Q3 operating loss at Xiaomi's EV and AI segment ($507M), from a ¥0.7B ($104M) profit a year earlier</div>
+      <div class="card-delta delta-red">Deliveries -7.2% y/y to 100,975</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · BCI</div>
+      <div class="card-num">40<span class="card-num-unit">+</span></div>
+      <div class="card-label">BCI technical standards China targets by 2028, rising to 80+ by 2030; nine already approved for drafting</div>
+      <div class="card-delta delta-amber">Market ¥6.14B ($915M) by 2028</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · PBOC</div>
+      <div class="card-num">-¥200<span class="card-num-unit">B</span></div>
+      <div class="card-label">Net MLF withdrawal ($29.8B): ¥800B ($119B) rolled against ¥1T ($149B) maturing</div>
+      <div class="card-delta delta-amber">Second straight monthly drain</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · AUTOS / DEVICES</div>
+    <div class="story-headline">Xiaomi's EV and AI Unit Swings to a ¥3.4 Billion ($507 Million) Quarterly Loss as Deliveries Fall 7% and Memory Costs Squeeze Phone Margins</div>
+    <div class="story-insight">
+      <p>Xiaomi (小米) reported Q3 revenue of ¥107.24 billion ($16.0 billion), down 5.2%, and adjusted net profit of ¥4.88 billion ($728 million), down 56.8%. Car revenue fell 19.9% to ¥22.7 billion ($3.38 billion) on 100,975 deliveries (交付量), so revenue per car dropped about 14%.</p>
+      <br>
+      <p>Segment gross margin (毛利率) fell to 19.2% from 25.5% and phone margin to 9.2% from 11.1%, with memory prices cited. Lei Jun's (雷军) 550,000 target needs about 106,700 deliveries a month in November and December, roughly three times the Q3 pace.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Cars and phones lost margin in the same quarter, which removes the idea that phones fund the EV and AI build-out; a segment margin back above 20% and falling inventory would mark Q3 as the low.</div>
+    <div class="chart-box">
+      <div class="chart-title">Xiaomi EV and AI Segment: Quarterly Operating Result and Margins</div>
+      <svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">OPERATING RESULT, ¥ BILLION (40PX PER ¥1B, ZERO LINE AT Y=110)</text>
+        <line x1="60" y1="110" x2="520" y2="110" stroke="#1a1a2e" stroke-width="1"/>
+        <rect x="90" y="82" width="70" height="28" fill="#166534"/>
+        <text x="125" y="76" font-size="11" font-weight="700" fill="#166534" text-anchor="middle">+0.7 ($104M)</text>
+        <text x="125" y="250" font-size="11" fill="#1a1a2e" text-anchor="middle">Q3 2025</text>
+        <rect x="200" y="110" width="70" height="124" fill="#9a8a7a"/>
+        <text x="235" y="228" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">-3.1</text>
+        <text x="235" y="250" font-size="11" fill="#1a1a2e" text-anchor="middle">Q1 2026</text>
+        <rect x="310" y="110" width="70" height="104" fill="#9a8a7a"/>
+        <text x="345" y="208" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">-2.6</text>
+        <text x="345" y="250" font-size="11" fill="#1a1a2e" text-anchor="middle">Q2 2026</text>
+        <rect x="420" y="110" width="70" height="136" fill="#c0392b"/>
+        <text x="455" y="240" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">-3.4</text>
+        <text x="455" y="264" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Q3 2026 ($507M)</text>
+        <text x="560" y="40" font-size="11" font-weight="700" fill="#5a6a8a">GROSS MARGIN, Q3 2025 → Q3 2026</text>
+        <text x="560" y="70" font-size="12" fill="#1a1a2e">EV and AI segment</text>
+        <rect x="560" y="78" width="204" height="14" fill="#e0d8d0"/><text x="770" y="90" font-size="11" fill="#5a6a8a">25.5%</text>
+        <rect x="560" y="96" width="154" height="14" fill="#c0392b"/><text x="720" y="108" font-size="11" font-weight="700" fill="#c0392b">19.2%</text>
+        <text x="560" y="140" font-size="12" fill="#1a1a2e">Smartphones</text>
+        <rect x="560" y="148" width="89" height="14" fill="#e0d8d0"/><text x="655" y="160" font-size="11" fill="#5a6a8a">11.1%</text>
+        <rect x="560" y="166" width="74" height="14" fill="#c0392b"/><text x="640" y="178" font-size="11" font-weight="700" fill="#c0392b">9.2%</text>
+        <text x="560" y="210" font-size="11" fill="#1a1a2e">Revenue per car: ~¥260K ($38.7K)</text>
+        <text x="560" y="228" font-size="11" fill="#c0392b" font-weight="700">→ ~¥225K ($33.5K)</text>
+        <text x="30" y="292" font-size="10.5" fill="#5a4a3a">Q4 2025 not shown · 9-month 2026 segment loss ~¥9.1B ($1.36B) · segment inventory ¥10.27B ($1.53B) vs ¥6.23B ($928M) at end-2025</text>
+      </svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Xiaomi HKEX filing via Global China EV (Nov 24, 2026); PANews via Phemex (Nov 24, 2026). Revenue per car derived from car revenue and deliveries. USD at ¥6.71/$ (rate used in Xinhua's PBOC report, Nov 24, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · ORDERS</div>
+        <div class="annotation-card-zh">增程式<span class="annotation-card-en">zēngchéngshì · extended-range</span></div>
+        <div class="annotation-card-body">70,000+ locked SUV orders in the first month.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · TARGET</div>
+        <div class="annotation-card-zh">交付量<span class="annotation-card-en">jiāofùliàng · deliveries</span></div>
+        <div class="annotation-card-body">550,000 needs ~106,700 a month in Nov-Dec.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · COSTS</div>
+        <div class="annotation-card-zh">存储芯片<span class="annotation-card-en">cúnchǔ xīnpiàn · memory chips</span></div>
+        <div class="annotation-card-body">Memory prices keep phone margin under 10%.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · FRONTIER TECH / STANDARDS</div>
+    <div class="story-headline">MIIT Forms a Brain-Computer Interface Standards Working Group as Wuhan Opens BCI Standards Week, With 40+ Standards Targeted by 2028</div>
+    <div class="story-insight">
+      <p>MIIT (工信部) set up a new working group under its brain-computer interface (脑机接口) standards committee on Nov 23, ahead of BCI Standards Week in Wuhan on Nov 25-26. Nine industry standards are already approved for drafting; the targets are 40+ by 2028 and 80+ by 2030.</p>
+      <br>
+      <p>CAICT (中国信通院) counts 250+ Chinese BCI firms and forecasts a ¥6.14 billion ($915 million) market by 2028. The Beinao-1 (北脑一号) implant has reached 40+ patients and seeks device registration next year.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Standards are arriving before revenue, as with humanoids; device registration and insurance billing will decide demand, and 250 firms chasing a ¥6 billion ($900 million) market points to consolidation.</div>
+    <div class="chart-box">
+      <div class="chart-title">China's BCI Standards Pipeline and Industry Size</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">BCI TECHNICAL STANDARDS (6PX PER STANDARD)</text>
+        <text x="30" y="52" font-size="12" fill="#1a1a2e">Approved for drafting (Nov 2026)</text>
+        <rect x="270" y="38" width="54" height="20" fill="#166534"/><text x="332" y="53" font-size="11" font-weight="700" fill="#166534">9</text>
+        <text x="30" y="84" font-size="12" fill="#1a1a2e">Target by 2028</text>
+        <rect x="270" y="70" width="240" height="20" fill="#b45309"/><text x="518" y="85" font-size="11" font-weight="700" fill="#b45309">40+</text>
+        <text x="30" y="116" font-size="12" font-weight="700" fill="#c0392b">Target by 2030</text>
+        <rect x="270" y="102" width="480" height="20" fill="#c0392b"/><text x="742" y="117" font-size="11" font-weight="700" fill="#fff" text-anchor="end">80+</text>
+        <text x="30" y="156" font-size="11" font-weight="700" fill="#5a6a8a">BCI COMPANIES (0.4PX PER COMPANY)</text>
+        <text x="30" y="188" font-size="12" fill="#1a1a2e">Global, 2025 → 2026</text>
+        <rect x="270" y="174" width="320" height="20" fill="#e0d8d0"/><rect x="590" y="174" width="150" height="20" fill="#9a8a7a"/><text x="582" y="189" font-size="11" fill="#5a6a8a" text-anchor="end">~800</text><text x="748" y="189" font-size="11" font-weight="700" fill="#1a1a2e">1,175</text>
+        <text x="30" y="220" font-size="12" font-weight="700" fill="#c0392b">China</text>
+        <rect x="270" y="206" width="100" height="20" fill="#c0392b"/><text x="378" y="221" font-size="11" font-weight="700" fill="#c0392b">250+ (77.4% in 3 clusters)</text>
+        <text x="30" y="244" font-size="10.5" fill="#5a4a3a">China BCI market forecast ¥6.14B ($915M) by 2028, ~17.7% a year · Beinao-1 implanted in 40+ patients</text>
+      </svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: SCMP (Nov 23, 2026); Kantan News citing CAICT (Nov 23, 2026); DigitalToday (Nov 24, 2026); CASRAI (Nov 23, 2026). USD at ¥6.71/$ (rate used in Xinhua's PBOC report, Nov 24, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · RULE-SETTING</div>
+        <div class="annotation-card-zh">标准化<span class="annotation-card-en">biāozhǔnhuà · standardisation</span></div>
+        <div class="annotation-card-body">China holds the ISO/IEC BCI secretariat.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · REGISTRATION</div>
+        <div class="annotation-card-zh">北脑一号<span class="annotation-card-en">Běinǎo Yīhào · Beinao-1</span></div>
+        <div class="annotation-card-body">First implant device registration expected to be filed in 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · SHAKE-OUT</div>
+        <div class="annotation-card-zh">脑机接口<span class="annotation-card-en">nǎojī jiēkǒu · brain-computer interface</span></div>
+        <div class="annotation-card-body">CAICT flags weak business models and staff shortages.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE · MONETARY POLICY / LIQUIDITY</div>
+    <div class="story-headline">PBOC Rolls Over Only ¥800 Billion ($119 Billion) of ¥1 Trillion ($149 Billion) in Maturing MLF, Its Second Straight Monthly Net Drain</div>
+    <div class="story-insight">
+      <p>The PBOC (中国人民银行) runs an ¥800 billion ($119 billion) one-year MLF (中期借贷便利) today against ¥1 trillion ($149 billion) maturing, a ¥200 billion ($29.8 billion) net withdrawal (净回笼), the fourth this year. A ¥500 billion ($74.5 billion) seven-day reverse repo (逆回购) runs alongside.</p>
+      <br>
+      <p>With the ¥300 billion ($44.7 billion) outright repo drain earlier in November, about ¥500 billion ($74.5 billion) of medium-term funds leave the system this month. October loans contracted and loan growth hit a record-low 4.7%.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> A strong yuan gives the PBOC room to ease, and it is draining instead while exchanges loosen margin rules; stable interbank rates into month-end would show the drain is removing idle cash, and a weak PMI would test the stance.</div>
+    <div class="chart-box">
+      <div class="chart-title">November Medium-Term Liquidity: MLF Rollover and Net Drains</div>
+      <svg viewBox="0 0 820 250" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">¥ BILLION (0.5PX PER ¥1B)</text>
+        <text x="30" y="52" font-size="12" fill="#1a1a2e">MLF maturing in November</text>
+        <rect x="270" y="38" width="500" height="20" fill="#9a8a7a"/><text x="762" y="53" font-size="11" font-weight="700" fill="#fff" text-anchor="end">¥1,000B ($149B)</text>
+        <text x="30" y="84" font-size="12" font-weight="700" fill="#c0392b">MLF issued Nov 25</text>
+        <rect x="270" y="70" width="400" height="20" fill="#c0392b"/><text x="662" y="85" font-size="11" font-weight="700" fill="#fff" text-anchor="end">¥800B ($119B)</text>
+        <text x="30" y="124" font-size="11" font-weight="700" fill="#5a6a8a">NET MEDIUM-TERM WITHDRAWAL IN NOVEMBER</text>
+        <text x="30" y="156" font-size="12" fill="#1a1a2e">MLF net</text>
+        <rect x="270" y="142" width="100" height="20" fill="#b45309"/><text x="378" y="157" font-size="11" font-weight="700" fill="#b45309">-¥200B ($29.8B)</text>
+        <text x="30" y="188" font-size="12" fill="#1a1a2e">Outright reverse repo net</text>
+        <rect x="270" y="174" width="150" height="20" fill="#b45309"/><text x="428" y="189" font-size="11" font-weight="700" fill="#b45309">-¥300B ($44.7B)</text>
+        <text x="30" y="220" font-size="12" font-weight="700" fill="#c0392b">Combined</text>
+        <rect x="270" y="206" width="250" height="20" fill="#c0392b"/><text x="528" y="221" font-size="11" font-weight="700" fill="#c0392b">≈ -¥500B ($74.5B)</text>
+        <text x="30" y="246" font-size="10.5" fill="#5a4a3a">Same day: ¥500B ($74.5B) 7-day reverse repo · Oct new loans ≈ -¥100B (-$14.9B) · loan growth 4.7%, record low</text>
+      </svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: PBOC statement via Xinhua (Nov 24, 2026); AASTOCKS (Nov 24, 2026); outright repo and loan data from Issues #183 and prior PBOC releases. USD at ¥6.71/$ (rate used in Xinhua's PBOC report, Nov 24, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · STANCE</div>
+        <div class="annotation-card-zh">净回笼<span class="annotation-card-en">jìng huílóng · net withdrawal</span></div>
+        <div class="annotation-card-body">Second monthly MLF drain cools year-end easing bets.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · RATES</div>
+        <div class="annotation-card-zh">流动性<span class="annotation-card-en">liúdòngxìng · liquidity</span></div>
+        <div class="annotation-card-body">Interbank rates into month-end; PMI on Nov 30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · CREDIT</div>
+        <div class="annotation-card-zh">中期借贷便利<span class="annotation-card-en">zhōngqī jièdài biànlì · MLF</span></div>
+        <div class="annotation-card-body">Draining while loans contract risks a policy lag.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #190 · NOVEMBER 25, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
