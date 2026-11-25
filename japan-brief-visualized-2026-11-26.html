@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #180 · November 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #180 · November 26, 2026</div>
+    <div class="masthead-sub">Third AI Power Goal · Chip Rally Reverses · 40-Year JGB Demand Slips</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · POLICY</div>
+      <div class="card-num">3rd<span class="card-num-unit">place</span></div>
+      <div class="card-label">AI goal behind the US and China in the security outline</div>
+      <div class="card-delta delta-amber">Revision due within 2026</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · NIKKEI</div>
+      <div class="card-num">-2.78<span class="card-num-unit">%</span></div>
+      <div class="card-label">Nikkei 225 to 57,011.62; Topix only -0.5%</div>
+      <div class="card-delta delta-red">TEL, Advantest down 12%+</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · JGB</div>
+      <div class="card-num">2.63<span class="card-num-unit">x</span></div>
+      <div class="card-label">40-year bid-to-cover vs 2.75 12-month average</div>
+      <div class="card-delta delta-red">Weakest in nearly a year</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Tokyo Writes a Goal of Ranking Behind Only the US and China in AI Into the Security Documents It Will Revise This Year</div>
+    <div class="story-insight"><p>On Wednesday, November 25, the government showed the 自由民主党 (Jiyū Minshutō, Liberal Democratic Party) the outline of an 経済安全保障 (keizai anzen hoshō, economic security) chapter for the 安保3文書 (anpo san bunsho, three security documents), led by the 国家安全保障戦略 (Kokka Anzen Hoshō Senryaku, National Security Strategy). A joint meeting of the party&#x27;s national defense division and its research commission on security broadly approved it. The outline sets a goal of establishing Japan&#x27;s position in AI behind only the United States and China, and the government intends to finish revising the documents within the year. Its premise is that economic and technological strength decides diplomatic and defense strength.</p>
+      <br>
+      <p>The outline says where the money goes. Foundation models for 自動運転 (jidō unten, autonomous driving) and robots, grouped as フィジカルAI (fijikaru AI, physical AI), get concentrated investment, together with a system to protect sensitive personal data. It calls for AI主権 (AI shuken, AI sovereignty) to curb excessive dependence on other countries, and for Japan to take the lead in building a &quot;trusted&quot; AI framework with Indo-Pacific partners. The wider aim is 不可欠性 (fukaketsusei, indispensability), meaning technology other countries cannot do without. The government will also review risks to energy, power, food and medical supplies, and support production where it is not commercially viable.</p>
+      <br>
+      <p>A line in the security strategy makes AI spending harder to cut, because it ties model and robotics budgets to national defense planning instead of annual industrial subsidies. The sovereign model program run by Noetra is already expected to cost about ¥1.8 trillion (Issue #176), and NTT has signed a physical AI pact with SOMPO for nursing care (Issue #169). The same day, the government proposed defense spending in the low ¥50 trillion range for the five years from FY2027, the period covered by the 防衛力整備計画 (Bōeiryoku Seibi Keikaku, Defense Buildup Program). LDP defense division chief Honda asked whether that figure was really enough, and other members said the funding, from corporate tax or JGBs, has to be settled at the same time. If AI programs are counted inside that five-year envelope, they compete with ships and missiles for the same yen.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A security-strategy mandate gives sovereign and physical AI budgets a five-year anchor, which helps domestic model builders and the robot makers that sell to the state. The outline has no figures, so the final documents and the December budget set the size. Watch whether AI programs are booked inside the defense envelope, where they would share the low-¥50 trillion total.</div>
+    <div class="chart-box">
+      <div class="chart-title">Japan&#x27;s security documents: from 2022 to the FY2027-31 plan</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="90" x2="800" y2="90" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="60" cy="90" r="8" fill="#818cf8"/>
+<text x="60" y="60" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">Dec 2022</text>
+<text x="60" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">Three documents</text>
+<text x="60" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">first adopted</text>
+<circle cx="300" cy="90" r="8" fill="#3730a3"/>
+<text x="300" y="125" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Nov 25, 2026</text>
+<text x="300" y="145" font-size="10" fill="#3a4a6a" text-anchor="middle">Economic security</text>
+<text x="300" y="158" font-size="10" fill="#3a4a6a" text-anchor="middle">outline to LDP</text>
+<circle cx="540" cy="90" r="8" fill="#be185d"/>
+<text x="540" y="60" font-size="12" font-weight="700" fill="#be185d" text-anchor="middle">By end-2026</text>
+<text x="540" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">Revised documents</text>
+<text x="540" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">adopted</text>
+<circle cx="800" cy="90" r="8" fill="#b45309"/>
+<text x="800" y="125" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">FY2027-31</text>
+<text x="800" y="145" font-size="10" fill="#3a4a6a" text-anchor="middle">Defense spending</text>
+<text x="800" y="158" font-size="10" fill="#3a4a6a" text-anchor="middle">low ¥50tn range</text>
+</svg>
+      <div class="chart-note">Source: Jiji Press via Nippon.com; ANN (Nov 25, 2026). The 2022 documents were adopted in December 2022.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">不可欠性<span class="annotation-card-en">indispensability</span></div>
+        <div class="annotation-card-body">Tech others cannot do without.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">年内改定<span class="annotation-card-en">revision this year</span></div>
+        <div class="annotation-card-body">Final text by year-end.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">防衛費<span class="annotation-card-en">defense spending</span></div>
+        <div class="annotation-card-body">AI shares a capped envelope.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Tokyo Electron and Advantest Fall More Than 12% and Kioxia More Than 14% as the Nikkei Gives Back Most of Tuesday&#x27;s Rebound</div>
+    <div class="story-insight"><p>Tuesday&#x27;s rebound lasted one session. On Wednesday, November 25, the Nikkei 225 fell 2.78% to 57,011.62, a 反落 (hanraku, fall after a rise) that erased about 1,630 of the 2,208 points it gained on Tuesday. 東京エレクトロン (Tōkyō Erekutoron, Tokyo Electron) and Advantest each fell more than 12%, and キオクシア (Kiokushia, Kioxia) and SoftBank Group each lost more than 14%. Reuters put the midday drops at 13.1% for Tokyo Electron, 14.3% for Advantest and 15% for both Kioxia and SoftBank Group. Overnight the Nasdaq had fallen 1.5% as US tech shares gave back Monday&#x27;s rally on Jensen Huang&#x27;s reinstatement at Nvidia, and a market participant told Reuters it was hard to buy AI shares after that.</p>
+      <br>
+      <p>The broad market held up far better. The Topix fell only 0.5% to 3,746.2, and more Prime stocks rose than fell. The gap comes from the Nikkei&#x27;s price weighting, which gives a few 値がさ株 (negasa kabu, high-priced shares) such as Tokyo Electron and Advantest an outsized pull on the index. Investors moved into ディフェンシブ銘柄 (difensibu meigara, defensive stocks). Otsuka and Astellas rose more than 6%, Terumo gained 6.24%, Toyota rose about 2.5% and Sony gained between 3% and 4%. The selling was worse elsewhere in Asia. Korea&#x27;s Kospi fell 6.2% with Samsung Electronics down 9.9% and SK hynix down 11.1%, and Taiwan&#x27;s Taiex closed 4.8% lower after falling more than 8% during the day. Al Jazeera linked the moves to doubts about how long AI capital spending can last and to expectations of tighter AI rules after Democratic gains in the US midterms.</p>
+      <br>
+      <p>None of the companies changed its numbers this week. Tokyo Electron&#x27;s October 30 guidance for ¥1.169 trillion of operating profit this fiscal year, up 87%, and its ¥150 billion buyback still stand, and Kioxia&#x27;s weak October-December guide was already known. The selloff came without new company guidance, and two double-digit swings in the same names on unchanged estimates mean positioning around the AI capex cycle is setting prices. US markets are closed for Thanksgiving on Thursday, so Tokyo&#x27;s Thursday session has no overnight lead from Wall Street, and Asian peers and the yen set the tone.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The chip leaders round-tripped in two sessions while their guidance stayed put, so price action reflects doubt over how long AI capex lasts. Tokyo Electron&#x27;s buyback gives some support on weak days. With the Topix down only 0.5%, the damage is concentrated in a handful of high-priced index names, and Thursday&#x27;s session has no Wall Street lead.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo and Asia, Nov 25 (% change)</div>
+<svg viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg">
+<line x1="230" y1="20" x2="230" y2="390" stroke="#e8eaf2" stroke-width="1"/>
+<text x="230" y="408" font-size="10" fill="#5a6a8a" text-anchor="middle">-15%</text>
+<line x1="340" y1="20" x2="340" y2="390" stroke="#e8eaf2" stroke-width="1"/>
+<text x="340" y="408" font-size="10" fill="#5a6a8a" text-anchor="middle">-10%</text>
+<line x1="450" y1="20" x2="450" y2="390" stroke="#e8eaf2" stroke-width="1"/>
+<text x="450" y="408" font-size="10" fill="#5a6a8a" text-anchor="middle">-5%</text>
+<line x1="560" y1="20" x2="560" y2="390" stroke="#e8eaf2" stroke-width="1"/>
+<text x="560" y="408" font-size="10" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="670" y1="20" x2="670" y2="390" stroke="#e8eaf2" stroke-width="1"/>
+<text x="670" y="408" font-size="10" fill="#5a6a8a" text-anchor="middle">+5%</text>
+<text x="200" y="44" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Kioxia</text>
+<text x="200" y="58" font-size="10" fill="#5a6a8a" text-anchor="end">Reuters midday</text>
+<rect x="230" y="30" width="330" height="24" rx="3" fill="#be185d"/>
+<text x="238" y="47" font-size="12" font-weight="700" fill="#fff" text-anchor="start">-15.0%</text>
+<text x="200" y="89" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">SoftBank Group</text>
+<text x="200" y="103" font-size="10" fill="#5a6a8a" text-anchor="end">Reuters midday</text>
+<rect x="230" y="75" width="330" height="24" rx="3" fill="#be185d"/>
+<text x="238" y="92" font-size="12" font-weight="700" fill="#fff" text-anchor="start">-15.0%</text>
+<text x="200" y="134" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Advantest</text>
+<text x="200" y="148" font-size="10" fill="#5a6a8a" text-anchor="end">Reuters midday</text>
+<rect x="245" y="120" width="315" height="24" rx="3" fill="#be185d"/>
+<text x="253" y="137" font-size="12" font-weight="700" fill="#fff" text-anchor="start">-14.3%</text>
+<text x="200" y="179" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Tokyo Electron</text>
+<text x="200" y="193" font-size="10" fill="#5a6a8a" text-anchor="end">Reuters midday</text>
+<rect x="272" y="165" width="288" height="24" rx="3" fill="#be185d"/>
+<text x="280" y="182" font-size="12" font-weight="700" fill="#fff" text-anchor="start">-13.1%</text>
+<text x="200" y="224" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Kospi</text>
+<text x="200" y="238" font-size="10" fill="#5a6a8a" text-anchor="end">Korea</text>
+<rect x="424" y="210" width="136" height="24" rx="3" fill="#c7cbe0"/>
+<text x="416" y="227" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-6.2%</text>
+<text x="200" y="269" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Nikkei 225</text>
+<text x="200" y="283" font-size="10" fill="#5a6a8a" text-anchor="end">57,011.62</text>
+<rect x="499" y="255" width="61" height="24" rx="3" fill="#3730a3"/>
+<text x="491" y="272" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-2.78%</text>
+<text x="200" y="314" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Topix</text>
+<text x="200" y="328" font-size="10" fill="#5a6a8a" text-anchor="end">3,746.2</text>
+<rect x="549" y="300" width="11" height="24" rx="3" fill="#3730a3"/>
+<text x="541" y="317" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="end">-0.5%</text>
+<text x="200" y="359" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="end">Terumo</text>
+<text x="200" y="373" font-size="10" fill="#5a6a8a" text-anchor="end">defensive</text>
+<rect x="560" y="345" width="137" height="24" rx="3" fill="#166534"/>
+<text x="705" y="362" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="start">+6.24%</text>
+</svg>
+      <div class="chart-note">Source: Reuters (midday figures for single stocks), IndexBox close for Nikkei and Topix, Al Jazeera for Kospi. Closing drops: Tokyo Electron and Advantest more than 12%, Kioxia and SoftBank Group more than 14%.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">ディフェンシブ銘柄<span class="annotation-card-en">defensive stocks</span></div>
+        <div class="annotation-card-body">Pharma and autos bid.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">自社株買い<span class="annotation-card-en">share buyback</span></div>
+        <div class="annotation-card-body">TEL&#x27;s ¥150bn program.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">値がさ株<span class="annotation-card-en">high-priced shares</span></div>
+        <div class="annotation-card-body">A few names move the Nikkei.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">The 40-Year JGB Auction Draws a 2.63 Bid-to-Cover, Below Its 12-Month Average, as Investors Shift Toward Shorter Bonds</div>
+    <div class="story-insight"><p>The Ministry of Finance (MoF) sold ¥300 billion of 40-year JGBs on Wednesday, November 25, and demand fell to its weakest in nearly a year. The 応札倍率 (ōsatsu bairitsu, bid-to-cover ratio) was 2.63 times, down from 3.10 in September and below the 12-month average of 2.75. The 最高落札利回り (saikō rakusatsu rimawari, highest accepted yield) was 4.090%, lower than September&#x27;s 4.125% and slightly above pre-sale forecasts. Bloomberg strategist Mark Cranfield called it an underwhelming auction. The 40-year yield last traded at 4.145%, below its record 4.355% from May.</p>
+      <br>
+      <p>Global markets did most of the damage. JGB yields rose alongside a selloff in US Treasuries as traders priced more Federal Reserve tightening, and the swings in AI stocks added to the volatility. Ryutaro Kimura of BNP Paribas Asset Management cited リスクオフ (risuku ofu, risk-off) sentiment and an unwind of curve-flattening positions, and said investors prefer shorter maturities. Newsquawk read the lower clearing yield and weaker bidding as a sign that yields had already risen before the sale to make room for it. 生命保険会社 (seimei hoken gaisha, Life insurers) usually dominate this sector, and September&#x27;s sale had drawn the strongest demand in six years, so Wednesday&#x27;s drop was sharp by comparison.</p>
+      <br>
+      <p>Supply is the next question. MoF meets JGB primary dealers today and investors on Friday to discuss the FY2027 国債発行計画 (kokusai hakkō keikaku, JGB issuance plan), and MUFG research cites a guideline of about ¥40 trillion in new issuance, roughly ¥10 trillion more than in FY2026. The government is also proposing defense spending in the low ¥50 trillion range over five years and still has to fund the consumption-tax cut. There are no more super-long sales until the 30-year auction on December 8. The rate outlook adds to the pressure. The 日本銀行 (Nihon Ginkō, BOJ) reported the same day that its 企業向けサービス価格指数 (kigyō muke sābisu kakaku shisū, services producer price index) rose 4.2% from a year earlier in October, the fastest since 1990, against a 3.6% forecast, on ocean freight, leasing and hotel charges. Markets price about an 85% chance that the BOJ raises its 1.25% policy rate at the December 17-18 meeting.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Life insurers bid less for 40-year paper even at a yield near 4.1%, so the dealer and investor meetings this week decide how much super-long supply MoF can place in FY2027. Cutting 20- to 40-year issuance would ease pressure on the long end. If defense and tax-cut funding push new issuance up, the December 8 30-year auction meets the same thin demand.</div>
+    <div class="chart-box">
+      <div class="chart-title">40-year JGB auction, Nov 25: demand and yields</div>
+<svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="220" x2="400" y2="220" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="224" font-size="10" fill="#5a6a8a" text-anchor="end">0.0x</text>
+<line x1="60" y1="169" x2="400" y2="169" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="173" font-size="10" fill="#5a6a8a" text-anchor="end">1.0x</text>
+<line x1="60" y1="117" x2="400" y2="117" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="121" font-size="10" fill="#5a6a8a" text-anchor="end">2.0x</text>
+<line x1="60" y1="66" x2="400" y2="66" stroke="#e8eaf2" stroke-width="1"/>
+<text x="50" y="70" font-size="10" fill="#5a6a8a" text-anchor="end">3.0x</text>
+<rect x="90" y="61" width="60" height="159" rx="3" fill="#c7cbe0"/>
+<text x="120" y="55" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">3.10x</text>
+<text x="120" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Sep 2026</text>
+<rect x="195" y="79" width="60" height="141" rx="3" fill="#c7cbe0"/>
+<text x="225" y="73" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.75x</text>
+<text x="225" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">12-mo avg</text>
+<rect x="300" y="85" width="60" height="135" rx="3" fill="#b45309"/>
+<text x="330" y="79" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.63x</text>
+<text x="330" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Nov 25</text>
+<text x="230" y="258" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="middle">Bid-to-cover</text>
+<line x1="500" y1="220" x2="830" y2="220" stroke="#e8eaf2" stroke-width="1"/>
+<text x="490" y="224" font-size="10" fill="#5a6a8a" text-anchor="end">4.0%</text>
+<line x1="500" y1="175" x2="830" y2="175" stroke="#e8eaf2" stroke-width="1"/>
+<text x="490" y="179" font-size="10" fill="#5a6a8a" text-anchor="end">4.1%</text>
+<line x1="500" y1="130" x2="830" y2="130" stroke="#e8eaf2" stroke-width="1"/>
+<text x="490" y="134" font-size="10" fill="#5a6a8a" text-anchor="end">4.2%</text>
+<line x1="500" y1="85" x2="830" y2="85" stroke="#e8eaf2" stroke-width="1"/>
+<text x="490" y="89" font-size="10" fill="#5a6a8a" text-anchor="end">4.3%</text>
+<line x1="500" y1="40" x2="830" y2="40" stroke="#e8eaf2" stroke-width="1"/>
+<text x="490" y="44" font-size="10" fill="#5a6a8a" text-anchor="end">4.4%</text>
+<rect x="520" y="60" width="50" height="160" rx="3" fill="#c7cbe0"/>
+<text x="545" y="54" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">4.355%</text>
+<text x="545" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Record, May</text>
+<rect x="598" y="164" width="50" height="56" rx="3" fill="#c7cbe0"/>
+<text x="623" y="158" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">4.125%</text>
+<text x="623" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Sep auction</text>
+<rect x="676" y="180" width="50" height="40" rx="3" fill="#3730a3"/>
+<text x="701" y="174" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">4.090%</text>
+<text x="701" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Nov auction</text>
+<rect x="754" y="155" width="50" height="65" rx="3" fill="#b45309"/>
+<text x="779" y="149" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">4.145%</text>
+<text x="779" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Last trade</text>
+<text x="665" y="258" font-size="12" font-weight="600" fill="#1a1a2e" text-anchor="middle">40-year yield (axis starts at 4.0%)</text>
+</svg>
+      <div class="chart-note">Source: Bloomberg via Briefs.co; Newsquawk (Nov 25, 2026). ¥300 billion sold; price at highest accepted yield 94.35.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">最高落札利回り<span class="annotation-card-en">highest accepted yield</span></div>
+        <div class="annotation-card-body">4.090%, below September.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">発行計画<span class="annotation-card-en">issuance plan</span></div>
+        <div class="annotation-card-body">Dealer talks today.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">応札倍率<span class="annotation-card-en">bid-to-cover</span></div>
+        <div class="annotation-card-body">2.63, under the 2.75 average.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #180 · NOVEMBER 26, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
