@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>China Brief Visualized · Issue #191 · November 26, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f4f1ec; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #c0392b; padding:40px 24px 36px; margin-bottom:48px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#c0392b; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#5a6a8a; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#c0392b; color:#c0392b; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai    { background:#fee2e2; color:#c0392b; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .tag-special { background:#1a1a2e; color:#e8d5b0; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red   { background:#fee2e2; color:#c0392b; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0392b; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #e0d8d0; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#c0392b; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a3a3a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f4ee; border-left:3px solid #c0392b; border-radius:0 4px 4px 0; font-size:12px; color:#5a4a3a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#c0392b; margin-bottom:14px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f4ee; border:1px solid #e0d8d0; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; }
+  .label-amber { color:#b45309; }
+  .label-red   { color:#c0392b; }
+  .annotation-card-zh   { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en   { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #e0d8d0; }
+  .footer-text { font-size:10px; color:#7a6a5a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr !important; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#c0392b;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x6731;&#x53CB; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#c0392b;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">中国简报 · China Brief Visualized</div>
+    <div class="masthead-title">Issue #191 · November 26, 2026</div>
+    <div class="masthead-sub">XPeng Puts Cars and IRON on One Stack · Maybank Splits China AI Into Owners and Renters · STAR 50 -5.1%, CATL Below ¥1T</div>
+    <div class="nav-row">
+      <a class="nav-btn" href="brief.html">← BRIEF</a>
+      <a class="nav-btn" href="china-snapshot.html">SNAPSHOT</a>
+      <a class="nav-btn" href="china-ai-landscape-viz.html">LANDSCAPE</a>
+    </div>
+  </div>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · ROBOTICS</div>
+      <div class="card-num">2,250<span class="card-num-unit">TOPS</span></div>
+      <div class="card-label">On-board compute from three Turing chips in XPeng's IRON humanoid, shared with its cars</div>
+      <div class="card-delta delta-amber">Public release targeted Q2 2027</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · COMPUTE</div>
+      <div class="card-num">&lt;4<span class="card-num-unit">%</span></div>
+      <div class="card-label">Huawei's estimated 2026 AI chip output (880K H100-equivalents) against Nvidia's 23M</div>
+      <div class="card-delta delta-red">Moonshot, MiniMax most exposed</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">FINANCE · MARKETS</div>
+      <div class="card-num">-5.12<span class="card-num-unit">%</span></div>
+      <div class="card-label">STAR 50 on Nov 25; ChiNext -4.19%, Shanghai Composite -2.03% to 3,476.47</div>
+      <div class="card-delta delta-red">CATL below ¥1T ($149B)</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH · HUMANOID ROBOTICS / AUTONOMOUS DRIVING</div>
+    <div class="story-headline">XPeng Puts Its Car and Robot Brains on One "Turing" Stack at AI Day and Sets a Q2 2027 Public Release for the IRON Humanoid</div>
+    <div class="story-insight">
+      <p>XPeng (小鹏汽车) used its Nov 25 AI Day in Guangzhou to put cars and the IRON humanoid (人形机器人) on one Turing chip and VLA (视觉语言动作模型) stack. IRON has 76 degrees of freedom, 1,500+ tactile sensors (触觉传感器) and 2,250 TOPS of on-board compute; showroom training starts in Q1 2027 and public release is targeted for Q2.</p>
+      <br>
+      <p>On cars, XPeng reports a 13.93% fall in accident claims since VLA 2.0 and a 12.4% range gain in congestion, with the first OTA in December. Its robotics unit raised $900 million+ in August at a $6.3 billion+ valuation. He Xiaopeng (何小鹏) calls it embodied AI (具身智能) that learns through a body.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> Sharing one chip and model stack spreads R&amp;D cost across a car business with volume and a robot business with no revenue; the December OTA and a priced Q2 2027 IRON launch are the checkpoints, and the safety and claims data are XPeng's own.</div>
+    <div class="chart-box">
+      <div class="chart-title">XPeng Physical AI: Roadmap and Reported Results</div>
+      <svg viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">XPENG PHYSICAL AI ROADMAP (EVENT AND COMPANY TARGETS)</text>
+        <line x1="60" y1="70" x2="790" y2="70" stroke="#1a1a2e" stroke-width="1.5"/>
+        <circle cx="80" cy="70" r="7" fill="#9a8a7a"/>
+        <text x="80" y="52" font-size="11" font-weight="700" fill="#9a8a7a" text-anchor="middle">Aug 2026</text>
+        <text x="80" y="96" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">$900M+ raise</text>
+        <text x="80" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">$6.3B+ valuation</text>
+        <circle cx="193" cy="70" r="7" fill="#9a8a7a"/>
+        <text x="193" y="52" font-size="11" font-weight="700" fill="#9a8a7a" text-anchor="middle">Sep 2026</text>
+        <text x="193" y="96" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">IRON line opens</text>
+        <text x="193" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">Guangzhou</text>
+        <circle cx="306" cy="70" r="7" fill="#c0392b"/>
+        <text x="306" y="52" font-size="11" font-weight="700" fill="#c0392b" text-anchor="middle">Nov 25</text>
+        <text x="306" y="96" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">AI Day</text>
+        <text x="306" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">Turing stack</text>
+        <circle cx="419" cy="70" r="7" fill="#b45309"/>
+        <text x="419" y="52" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Dec 2026</text>
+        <text x="419" y="96" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">First car OTA</text>
+        <text x="419" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">adaptive decel.</text>
+        <circle cx="532" cy="70" r="7" fill="#b45309"/>
+        <text x="532" y="52" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Q1 2027</text>
+        <text x="532" y="96" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">IRON store pilot</text>
+        <text x="532" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">XPeng showrooms</text>
+        <circle cx="645" cy="70" r="7" fill="#b45309"/>
+        <text x="645" y="52" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">H1 2027</text>
+        <text x="645" y="96" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">NGP overseas</text>
+        <text x="645" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">DE · NL · FR</text>
+        <circle cx="758" cy="70" r="7" fill="#b45309"/>
+        <text x="758" y="52" font-size="11" font-weight="700" fill="#b45309" text-anchor="middle">Q2 2027</text>
+        <text x="758" y="96" font-size="10.5" font-weight="600" fill="#1a1a2e" text-anchor="middle">IRON release</text>
+        <text x="758" y="112" font-size="10" fill="#5a6a8a" text-anchor="middle">no price yet</text>
+        <text x="30" y="150" font-size="11" font-weight="700" fill="#5a6a8a">COMPANY-REPORTED RESULTS AND SPECS (PERCENT, 20PX PER 1%)</text>
+        <text x="30" y="177" font-size="12" font-weight="400" fill="#1a1a2e">Accident claims after VLA 2.0</text>
+        <rect x="270" y="162" width="279" height="20" fill="#166534"/>
+        <text x="557" y="177" font-size="11" font-weight="700" fill="#166534">-13.93%</text>
+        <text x="30" y="209" font-size="12" font-weight="400" fill="#1a1a2e">Usable range in congestion</text>
+        <rect x="270" y="194" width="248" height="20" fill="#166534"/>
+        <text x="526" y="209" font-size="11" font-weight="700" fill="#166534">+12.4%</text>
+        <text x="30" y="246" font-size="10.5" fill="#5a4a3a">IRON: ~170 cm · 76 degrees of freedom · 1,500+ tactile sensors · 3 Turing chips, 2,250 TOPS combined · robotaxi L4 demo licence in Guangzhou</text>
+      </svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: XPeng press release (Nov 25, 2026); GlobeNewswire (Nov 19, 2026); Techzine (Nov 25, 2026). Results are company-reported and unaudited. No RMB figures converted. USD at ¥6.71/$ (PBOC central parity 6.7088, Nov 25, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · SHARED STACK</div>
+        <div class="annotation-card-zh">具身智能<span class="annotation-card-en">jùshēn zhìnéng · embodied AI</span></div>
+        <div class="annotation-card-body">Same Turing chips and VLA run cars and IRON.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LAUNCH</div>
+        <div class="annotation-card-zh">人形机器人<span class="annotation-card-en">rénxíng jīqìrén · humanoid robot</span></div>
+        <div class="annotation-card-body">Store training Q1 2027, public release Q2 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · UNVERIFIED</div>
+        <div class="annotation-card-zh">触觉传感器<span class="annotation-card-en">chùjué chuángǎnqì · tactile sensor</span></div>
+        <div class="annotation-card-body">Stage unit may differ from production robot; no price.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 2 · AI &amp; TECH · FOUNDATION MODELS / COMPUTE</div>
+    <div class="story-headline">Maybank Says the US Remote-Access Rule Splits China's AI Labs Into Chip Owners and Renters, With Moonshot and MiniMax Most Exposed</div>
+    <div class="story-insight">
+      <p>A Maybank Investment Bank note (Nov 24) ranks Chinese AI labs by exposure to the US rule on remote access (远程访问) to advanced chips, effective Nov 19. Moonshot (月之暗面) and MiniMax (稀宇科技) top the list because they lack in-house chips; Moonshot's 2.8-trillion-parameter Kimi exceeds an eight-card H200 server.</p>
+      <br>
+      <p>Chip owners hold up better: Alibaba has shipped 560,000+ Zhenwu accelerators, Baidu's accelerator subscriptions rose 128% in Q3 and Z.AI runs on 100,000+ domestic chips. Huawei's 2026 output is estimated at 880,000 H100-equivalents, under 4% of Nvidia's 23 million, with a ~73x HBM (高带宽内存) gap.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> The rule closes the offshore rented-compute (租用算力) route, which raises capital needs for independent labs weighing IPOs and favours platforms that own their compute (算力); Southeast Asian data-centre licences or a large domestic chip allocation to an independent would change this.</div>
+    <div class="chart-box">
+      <div class="chart-title">Compute Owners vs Renters: Chip Supply in Chinese AI</div>
+      <svg viewBox="0 0 820 315" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">2026 AI CHIP OUTPUT, H100-EQUIVALENTS (20PX PER 1 MILLION)</text>
+        <text x="30" y="49" font-size="12" font-weight="400" fill="#1a1a2e">Nvidia</text>
+        <rect x="270" y="34" width="460" height="20" fill="#9a8a7a"/>
+        <text x="738" y="49" font-size="11" font-weight="700" fill="#9a8a7a">23.0M</text>
+        <text x="30" y="81" font-size="12" font-weight="700" fill="#c0392b">Huawei</text>
+        <rect x="270" y="66" width="18" height="20" fill="#c0392b"/>
+        <text x="296" y="81" font-size="11" font-weight="700" fill="#c0392b">0.88M (under 4%)</text>
+        <text x="30" y="122" font-size="11" font-weight="700" fill="#5a6a8a">DOMESTIC ACCELERATORS IN HAND OR ON ORDER, THOUSANDS (0.8PX PER 1,000)</text>
+        <text x="30" y="151" font-size="12" font-weight="400" fill="#1a1a2e">Alibaba Zhenwu shipped</text>
+        <rect x="270" y="136" width="448" height="20" fill="#166534"/>
+        <text x="726" y="151" font-size="11" font-weight="700" fill="#166534">560K+</text>
+        <text x="30" y="183" font-size="12" font-weight="400" fill="#1a1a2e">DeepSeek Ascend order (1yr+ wait)</text>
+        <rect x="270" y="168" width="128" height="20" fill="#b45309"/>
+        <text x="406" y="183" font-size="11" font-weight="700" fill="#b45309">160K</text>
+        <text x="30" y="215" font-size="12" font-weight="400" fill="#1a1a2e">Z.AI inference fleet</text>
+        <rect x="270" y="200" width="80" height="20" fill="#166534"/>
+        <text x="358" y="215" font-size="11" font-weight="700" fill="#166534">100K+</text>
+        <text x="30" y="247" font-size="12" font-weight="700" fill="#c0392b">Moonshot in-house</text>
+        <rect x="270" y="232" width="2" height="20" fill="#c0392b"/>
+        <text x="280" y="247" font-size="11" font-weight="700" fill="#c0392b">none</text>
+        <text x="30" y="279" font-size="12" font-weight="700" fill="#c0392b">MiniMax in-house</text>
+        <rect x="270" y="264" width="2" height="20" fill="#c0392b"/>
+        <text x="280" y="279" font-size="11" font-weight="700" fill="#c0392b">none</text>
+        <text x="30" y="306" font-size="10.5" fill="#5a4a3a">Usable HBM shortfall ~73x in 2026 · SMIC utilisation 98% in Q3 · MiniMax H1 R&amp;D +139% to $297M</text>
+      </svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Maybank Investment Bank Research (Nov 24, 2026) via TNGlobal (Nov 25, 2026), citing Epoch AI estimates; BIS interim final rule, Federal Register (Nov 19, 2026). Figures are broker estimates. USD at ¥6.71/$ (PBOC central parity 6.7088, Nov 25, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · OWNERS</div>
+        <div class="annotation-card-zh">算力<span class="annotation-card-en">suànlì · computing power</span></div>
+        <div class="annotation-card-body">Alibaba, Baidu and Z.AI run on their own or domestic chips.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · LICENCES</div>
+        <div class="annotation-card-zh">远程访问<span class="annotation-card-en">yuǎnchéng fǎngwèn · remote access</span></div>
+        <div class="annotation-card-body">Comments due Jan 19; case-by-case licences possible.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · RENTERS</div>
+        <div class="annotation-card-zh">租用算力<span class="annotation-card-en">zūyòng suànlì · rented compute</span></div>
+        <div class="annotation-card-body">Moonshot and MiniMax lose offshore GPU leasing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 3 · FINANCE · EQUITY MARKETS</div>
+    <div class="story-headline">STAR 50 Falls 5.1% and CATL Drops Below ¥1 Trillion ($149 Billion) in Value as a Chip-Led Rout Hits A-Shares</div>
+    <div class="story-insight">
+      <p>On Nov 25 the STAR 50 (科创板) fell 5.12%, ChiNext (创业板) 4.19% and the Shanghai Composite 2.03% to 3,476.47, with turnover (成交额) down to ¥1.38 trillion ($206 billion). Semiconductor (半导体) names led: Hua Hong lost 13%+ and NAURA 9.55%.</p>
+      <br>
+      <p>CATL (宁德时代) fell 8.33% to ¥208.42 ($31.06), taking its market value (市值) below ¥1 trillion ($149 billion). The selling was regional, with the KOSPI down 6.16%, and a pending US excess-capacity probe and a Jan 10 truce expiry added China-specific trade risk.</p>
+    </div>
+    <div class="story-takeaway"><strong>Key signal:</strong> This month's margin and fee relief lowers the cost of leverage but does not address AI hardware earnings; thin turnover, the Nov 30 PMI and the US capacity findings will show whether this is a crowded-trade correction or a wider de-rating.</div>
+    <div class="chart-box">
+      <div class="chart-title">A-Share Rout on November 25: Indices and Leading Decliners</div>
+      <svg viewBox="0 0 820 480" xmlns="http://www.w3.org/2000/svg">
+        <text x="30" y="20" font-size="11" font-weight="700" fill="#5a6a8a">INDEX MOVES ON NOV 25, 2026, % (60PX PER 1%)</text>
+        <text x="30" y="47" font-size="12" font-weight="400" fill="#1a1a2e">KOSPI (Korea)</text>
+        <rect x="270" y="32" width="370" height="18" fill="#9a8a7a"/>
+        <text x="648" y="47" font-size="11" font-weight="700" fill="#9a8a7a">-6.16%</text>
+        <text x="30" y="75" font-size="12" font-weight="700" fill="#c0392b">STAR 50</text>
+        <rect x="270" y="60" width="307" height="18" fill="#c0392b"/>
+        <text x="585" y="75" font-size="11" font-weight="700" fill="#c0392b">-5.12%</text>
+        <text x="30" y="103" font-size="12" font-weight="700" fill="#c0392b">ChiNext</text>
+        <rect x="270" y="88" width="251" height="18" fill="#c0392b"/>
+        <text x="529" y="103" font-size="11" font-weight="700" fill="#c0392b">-4.19%</text>
+        <text x="30" y="131" font-size="12" font-weight="400" fill="#1a1a2e">Shenzhen Component</text>
+        <rect x="270" y="116" width="194" height="18" fill="#c0392b"/>
+        <text x="472" y="131" font-size="11" font-weight="700" fill="#c0392b">-3.24%</text>
+        <text x="30" y="159" font-size="12" font-weight="400" fill="#1a1a2e">Nikkei 225</text>
+        <rect x="270" y="144" width="167" height="18" fill="#9a8a7a"/>
+        <text x="445" y="159" font-size="11" font-weight="700" fill="#9a8a7a">-2.78%</text>
+        <text x="30" y="187" font-size="12" font-weight="400" fill="#1a1a2e">Hang Seng Tech</text>
+        <rect x="270" y="172" width="154" height="18" fill="#b45309"/>
+        <text x="432" y="187" font-size="11" font-weight="700" fill="#b45309">-2.56%</text>
+        <text x="30" y="215" font-size="12" font-weight="400" fill="#1a1a2e">Shanghai Composite</text>
+        <rect x="270" y="200" width="122" height="18" fill="#c0392b"/>
+        <text x="400" y="215" font-size="11" font-weight="700" fill="#c0392b">-2.03%</text>
+        <text x="30" y="243" font-size="12" font-weight="400" fill="#1a1a2e">CSI 300</text>
+        <rect x="270" y="228" width="99" height="18" fill="#c0392b"/>
+        <text x="377" y="243" font-size="11" font-weight="700" fill="#c0392b">-1.65%</text>
+        <text x="30" y="271" font-size="12" font-weight="400" fill="#1a1a2e">Hang Seng</text>
+        <rect x="270" y="256" width="68" height="18" fill="#b45309"/>
+        <text x="346" y="271" font-size="11" font-weight="700" fill="#b45309">-1.14%</text>
+        <text x="30" y="300" font-size="11" font-weight="700" fill="#5a6a8a">STOCK MOVES, % (25PX PER 1%)</text>
+        <text x="30" y="327" font-size="12" font-weight="400" fill="#1a1a2e">Hua Hong Semiconductor</text>
+        <rect x="270" y="312" width="325" height="18" fill="#c0392b"/>
+        <text x="603" y="327" font-size="11" font-weight="700" fill="#c0392b">-13%+</text>
+        <text x="30" y="355" font-size="12" font-weight="400" fill="#1a1a2e">NAURA</text>
+        <rect x="270" y="340" width="239" height="18" fill="#c0392b"/>
+        <text x="517" y="355" font-size="11" font-weight="700" fill="#c0392b">-9.55%</text>
+        <text x="30" y="383" font-size="12" font-weight="700" fill="#c0392b">CATL (below ¥1T, $149B)</text>
+        <rect x="270" y="368" width="208" height="18" fill="#c0392b"/>
+        <text x="486" y="383" font-size="11" font-weight="700" fill="#c0392b">-8.33%</text>
+        <text x="30" y="411" font-size="12" font-weight="400" fill="#1a1a2e">Cambricon</text>
+        <rect x="270" y="396" width="160" height="18" fill="#c0392b"/>
+        <text x="438" y="411" font-size="11" font-weight="700" fill="#c0392b">-6.40%</text>
+        <text x="30" y="439" font-size="12" font-weight="400" fill="#1a1a2e">SMIC</text>
+        <rect x="270" y="424" width="89" height="18" fill="#c0392b"/>
+        <text x="367" y="439" font-size="11" font-weight="700" fill="#c0392b">-3.56%</text>
+        <text x="30" y="468" font-size="10.5" fill="#5a4a3a">A-share turnover ¥1.38T ($206B), down ¥272B ($40.5B) · 4,900+ stocks fell · CATL ¥208.42 ($31.06), 19-month low</text>
+      </svg>
+      <div style="font-size:10px;color:#5a6a8a;margin-top:8px;">Sources: Finet HK via Longbridge (Nov 25, 2026); Reuters via Business Recorder (Nov 25, 2026); Zhitong via Longbridge (Nov 25, 2026); Sina Finance via S Ziņas (Nov 25, 2026); Rio Times market snapshot (Nov 25, 2026). USD at ¥6.71/$ (PBOC central parity 6.7088, Nov 25, 2026).</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL · POLICY</div>
+        <div class="annotation-card-zh">科创板<span class="annotation-card-en">Kēchuàngbǎn · STAR Market</span></div>
+        <div class="annotation-card-body">Margin floor cut to 80% takes effect Nov 30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH · VOLUME</div>
+        <div class="annotation-card-zh">成交额<span class="annotation-card-en">chéngjiāo'é · turnover</span></div>
+        <div class="annotation-card-body">¥1.38T ($206B); a second session below ¥1.4T ($209B).</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK · TRADE</div>
+        <div class="annotation-card-zh">市值<span class="annotation-card-en">shìzhí · market capitalisation</span></div>
+        <div class="annotation-card-body">US capacity probe and Jan 10 truce expiry.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">CHINA BRIEF · ISSUE #191 · NOVEMBER 26, 2026 · NOT INVESTMENT ADVICE · DATA FROM PUBLIC REPORTING</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
