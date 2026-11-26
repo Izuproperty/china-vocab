@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #181 · November 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #181 · November 27, 2026</div>
+    <div class="masthead-sub">PFN Bundles Physical AI · Chip Buyers Face Procurement Plans · Tokyo CPI Seen at 3.0%</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · PFN</div>
+      <div class="card-num">3<span class="card-num-unit">layers</span></div>
+      <div class="card-label">Chips, models and robots in one factory offer</div>
+      <div class="card-delta delta-green">Know-how shared with Noetra</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · POLICY</div>
+      <div class="card-num">2027<span class="card-num-unit">bill</span></div>
+      <div class="card-label">Amendment making chip buyers file procurement plans</div>
+      <div class="card-delta delta-amber">Coverage still undecided</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">3.0<span class="card-num-unit">%</span></div>
+      <div class="card-label">Tokyo core CPI consensus for November, from 2.6%</div>
+      <div class="card-delta delta-red">86% see Dec hike to 1.50%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">Preferred Networks Offers Manufacturers Its Robots, Software and Chips as One Package and Will Share Its Know-How With Noetra</div>
+    <div class="story-insight"><p>プリファードネットワークス (Purifādo Nettowākusu, Preferred Networks, PFN), one of Japan&#x27;s most valuable AI startups, is widening what it sells to manufacturers so that one contract can cover robots, software and its own chips, Nikkei reported on November 25. The company groups the offer under フィジカルAI (fijikaru AI, physical AI), meaning models that see and act on factory floors and in warehouses. It will also share its know-how with the 企業連合 (kigyō rengō, corporate consortium) behind Noetra, the state-backed foundation model company. PFN&#x27;s transport 自律移動ロボット (jiritsu idō robotto, autonomous mobile robots) are reported to hold a leading share of Japan&#x27;s market for such machines, but the reports give no share figure, customer names or contract values.</p>
+      <br>
+      <p>PFN already builds every layer it is now bundling. It designs the MN-Core accelerators, and on November 17 it picked SEMIFIVE and Samsung Foundry to build the MN-Core L2000 inference chip with DRAM stacked on the logic die, aiming for tape-out in early 2027 and a product in 2028 (Issue #172). It trains the PLaMo Japanese language models from scratch, and the Digital Agency has been testing PLaMo 2.0 Prime against Claude and Amazon Nova inside its GENAI platform for government staff. Mitsubishi Heavy Industries put ¥10 billion into PFN in September. A bundle lets a factory buy chip, model and robot from one vendor, and it gives PFN hardware and integration revenue that does not depend on beating US labs on general-purpose models.</p>
+      <br>
+      <p>The timing matches the policy money. The economic security outline the government showed the LDP on November 25 names physical AI as a target for concentrated investment (Issue #180), and Noetra&#x27;s budget is already seen near ¥1.8 trillion (Issue #176). The arrangement carries a conflict: if the consortium uses PFN&#x27;s methods to build its own physical AI stack, PFN ends up training a state-funded competitor. PFN is private and has pointed to a listing in 2028-2030, so listed exposure runs through partners such as MHI, Toyota and Fanuc. PFN has to name manufacturing customers and order sizes before anyone can check the market-share claim or value the business.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> PFN is packaging its chips, models and robots for factories, which gives it hardware and integration revenue that does not rest on beating US labs on general models. The reports name no customers or contract sizes, so the leading-share claim in transport robots cannot be checked yet. Listed exposure runs through MHI, Toyota and Fanuc until a PFN IPO, which the company has targeted for 2028-2030.</div>
+    <div class="chart-box">
+      <div class="chart-title">PFN&#x27;s bundled physical AI stack and where it goes</div>
+<svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5a6a8a"/></marker></defs>
+<rect x="40" y="30" width="300" height="56" rx="6" fill="#e0e7ff" stroke="#3730a3" stroke-width="1.5"/><text x="190.0" y="54.0" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Robots + factory software</text><text x="190.0" y="71.0" font-size="10" fill="#3a4a6a" text-anchor="middle">Transport AMRs; leading domestic share (no figure)</text>
+<rect x="40" y="112" width="300" height="56" rx="6" fill="#e0e7ff" stroke="#3730a3" stroke-width="1.5"/><text x="190.0" y="136.0" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Models: PLaMo</text><text x="190.0" y="153.0" font-size="10" fill="#3a4a6a" text-anchor="middle">Trained from scratch; tested in GENAI</text>
+<rect x="40" y="194" width="300" height="56" rx="6" fill="#fce7f3" stroke="#be185d" stroke-width="1.5"/><text x="190.0" y="218.0" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Chips: MN-Core</text><text x="190.0" y="235.0" font-size="10" fill="#3a4a6a" text-anchor="middle">L2000 via SEMIFIVE + Samsung; product 2028</text>
+<text x="190" y="282" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">PFN: one vendor, three layers</text>
+<line x1="340" y1="140" x2="500" y2="90" stroke="#5a6a8a" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="340" y1="140" x2="500" y2="210" stroke="#5a6a8a" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#ar)"/>
+<rect x="505" y="55" width="320" height="64" rx="6" fill="#fff" stroke="#3730a3" stroke-width="1.5"/><text x="665.0" y="83.0" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Manufacturers</text><text x="665.0" y="100.0" font-size="10" fill="#3a4a6a" text-anchor="middle">Bundle: chip + model + robot in one contract</text>
+<rect x="505" y="180" width="320" height="64" rx="6" fill="#fff" stroke="#b45309" stroke-width="1.5"/><text x="665.0" y="208.0" font-size="13" font-weight="700" fill="#b45309" text-anchor="middle">Noetra consortium</text><text x="665.0" y="225.0" font-size="10" fill="#3a4a6a" text-anchor="middle">Receives PFN know-how; state budget ~¥1.8tn</text>
+<text x="420" y="102" font-size="10" fill="#5a6a8a" text-anchor="middle">sells</text>
+<text x="380" y="215" font-size="10" fill="#5a6a8a" text-anchor="middle">shares know-how</text>
+</svg>
+      <div class="chart-note">Source: Nikkei Asia (Nov 25, 2026); PFN chip plan from Issue #172; Noetra budget from Issue #176. Dashed line: know-how sharing, no financial terms reported.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">フィジカルAI<span class="annotation-card-en">physical AI</span></div>
+        <div class="annotation-card-body">Chip, model and robot sold together.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">顧客開示<span class="annotation-card-en">customer disclosure</span></div>
+        <div class="annotation-card-body">Named factory customers and order sizes.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">企業連合<span class="annotation-card-en">consortium</span></div>
+        <div class="annotation-card-body">Know-how could feed a state-funded rival.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Tokyo Plans to Make Chip Buyers, Not Just Chip Makers, File Stable Procurement Plans Under a 2027 Change to the Economic Security Law</div>
+    <div class="story-insight"><p>The government is considering a rule that would require companies using semiconductors and advanced electronic components to draw up 安定調達 (antei chōtatsu, stable procurement) plans, Nikkei reported on November 26. The goal is to cut reliance on particular countries and on low-cost suppliers. The rule would come through an amendment to the 経済安全保障推進法 (Keizai Anzen Hoshō Suishin Hō, Economic Security Promotion Act) submitted to the 通常国会 (tsūjō kokkai, ordinary Diet session) in 2027, and the obligations would be phased in after it passes. 経済産業省 (Keizai Sangyō-shō, METI) and other ministries would decide which companies are covered after consulting industry. Kei Takagi, METI&#x27;s parliamentary vice-minister, set out the direction at an expert meeting.</p>
+      <br>
+      <p>The 2022 law works on the supply side. It designates 特定重要物資 (tokutei jūyō busshi, specified critical materials), including semiconductors, critical minerals, natural gas and fertilizer, and supports them mainly through subsidies to producers. The new rule puts a duty on buyers such as automakers and electronics makers. To offset the cost, the state would subsidize the performance tests and trial production a buyer needs before switching to a new supplier, and where only one supplier exists it could fund facilities through an independent administrative agency. Which companies are covered, what a plan must contain and whether penalties apply have not been decided.</p>
+      <br>
+      <p>China&#x27;s export curbs on permanent magnets and critical minerals are behind the plan. METI said in October that global yttrium supply had stalled (Issue #148). A mandate makes buyers pay for a second source, which raises input costs for automakers and electronics firms and gives domestic makers of mature-node chips, components and materials a customer base backed by law. The reports name no beneficiaries. The bill reaches the Diet in 2027, so any shift in orders lands in FY2027-28 at the earliest, and the size of the switching subsidies will set how quickly buyers move.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The rule moves the cost of supply security onto chip buyers: automakers and electronics firms pay for second sources, and domestic component and materials suppliers gain demand backed by law. Coverage, plan content and penalties are undecided, and the bill reaches the Diet in 2027, so orders shift in FY2027-28 at the earliest. Watch the size of the switching subsidies.</div>
+    <div class="chart-box">
+      <div class="chart-title">Economic Security Promotion Act: from supplier subsidies to buyer duties</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="90" x2="790" y2="90" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="60" cy="90" r="8" fill="#818cf8"/>
+<text x="60" y="64" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">May 2022</text>
+<text x="60" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">Economic Security</text>
+<text x="60" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">Promotion Act enacted</text>
+<circle cx="240" cy="90" r="8" fill="#818cf8"/>
+<text x="240" y="122" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">Dec 2022</text>
+<text x="240" y="142" font-size="10" fill="#3a4a6a" text-anchor="middle">First critical</text>
+<text x="240" y="155" font-size="10" fill="#3a4a6a" text-anchor="middle">materials designated</text>
+<circle cx="420" cy="90" r="8" fill="#818cf8"/>
+<text x="420" y="64" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">Feb 2024</text>
+<text x="420" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">Advanced electronic</text>
+<text x="420" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">components added</text>
+<circle cx="600" cy="90" r="8" fill="#be185d"/>
+<text x="600" y="122" font-size="12" font-weight="700" fill="#be185d" text-anchor="middle">Nov 26, 2026</text>
+<text x="600" y="142" font-size="10" fill="#3a4a6a" text-anchor="middle">Buyer procurement</text>
+<text x="600" y="155" font-size="10" fill="#3a4a6a" text-anchor="middle">plans reported</text>
+<circle cx="790" cy="90" r="8" fill="#b45309"/>
+<text x="790" y="64" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">2027</text>
+<text x="790" y="30" font-size="10" fill="#3a4a6a" text-anchor="middle">Amendment to the</text>
+<text x="790" y="43" font-size="10" fill="#3a4a6a" text-anchor="middle">ordinary Diet session</text>
+<text x="430" y="182" font-size="10" fill="#5a6a8a" text-anchor="middle">Supply-side subsidies (2022-2026) → duties on buyers (from 2027 bill)</text>
+</svg>
+      <div class="chart-note">Source: Nikkei via Financial News (Seoul), ROIC News (Nov 25-26, 2026). Coverage, plan contents and penalties not yet decided.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">安定調達<span class="annotation-card-en">stable procurement</span></div>
+        <div class="annotation-card-body">Duty moves to chip buyers.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">通常国会<span class="annotation-card-en">ordinary Diet session</span></div>
+        <div class="annotation-card-body">Amendment bill in 2027.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">調達コスト<span class="annotation-card-en">procurement cost</span></div>
+        <div class="annotation-card-body">Second sources raise input costs.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Tokyo CPI Is Due at 8:30 With Core Seen at 3.0%, a Day After BOJ Board Member Tamura Said Rates Should Reach Neutral &#x27;As Quickly As Practicable&#x27;</div>
+    <div class="story-insight"><p>The November 東京都区部消費者物価指数 (Tōkyō-to kubu shōhisha bukka shisū, Tokyo-area consumer price index) is released at 8:30 a.m. today. Forecasters expect core inflation, which excludes fresh food, to rise to 3.0% from 2.6% in October, and the measure that also strips out energy to rise to 3.0% from 2.4%. Headline Tokyo CPI was 2.8% in October. Scotiabank strategists said strong Tokyo prices, together with producer prices, wages and the end of government エネルギー補助金 (enerugī hojokin, energy subsidies), point to higher national inflation. Nationwide core CPI was 2.2% in October (Issue #175).</p>
+      <br>
+      <p>On Thursday, November 26, BOJ board member 田村直樹 (Tamura Naoki, Naoki Tamura) said in a speech in Kofu that rates should move toward the 中立金利 (chūritsu kinri, neutral rate) &quot;as quickly as practicable.&quot; He said the 1.25% policy rate is below neutral, described 0.25-point hikes every few months as his baseline, and warned that a faster pace or a higher end point may be needed. He cited upside risks from the Middle East war, the weak yen and AI-related demand. A Reuters poll found 86% of economists expect a 利上げ (riage, rate hike) to 1.50% at the December 17-18 meeting, and markets price roughly 75-80%. The yen traded around 159.1-159.3 per dollar and the 10-year JGB yielded about 2.635%.</p>
+      <br>
+      <p>A 3.0% Tokyo core reading would follow the 4.2% services PPI reported on November 25 (Issue #180) and give the board a second sign that price gains are spreading. Part of the jump is mechanical because utility subsidies are lapsing, and the BOJ discounts energy swings, so the figure excluding energy will carry more weight in the vote. The nationwide November CPI comes out on December 17, the first day of the meeting. A print at or above 3.0% supports a December hike and strengthens Tamura&#x27;s case for a faster path in 2027. A print near October&#x27;s 2.6% would probably leave the December move intact but weaken the argument for speed. USD/JPY is near 160, where the Finance Ministry has stepped in before, so a firmer BOJ also eases pressure for intervention.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> A Tokyo core print at or above 3.0% adds to the 4.2% services PPI and supports a December hike to 1.50%, with Tamura already arguing for a faster path after that. Expiring utility subsidies inflate the headline, so the reading excluding energy carries more weight with the board. Front-end JGB yields and the yen near 159 are the most direct exposures.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo CPI: October actual vs November consensus (% y/y)</div>
+<svg viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="220" x2="830" y2="220" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="224" font-size="10" fill="#5a6a8a" text-anchor="end">0.0%</text>
+<line x1="70" y1="170" x2="830" y2="170" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="174" font-size="10" fill="#5a6a8a" text-anchor="end">1.0%</text>
+<line x1="70" y1="120" x2="830" y2="120" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="124" font-size="10" fill="#5a6a8a" text-anchor="end">2.0%</text>
+<line x1="70" y1="70" x2="830" y2="70" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="74" font-size="10" fill="#5a6a8a" text-anchor="end">3.0%</text>
+<line x1="70" y1="20" x2="830" y2="20" stroke="#e8eaf2" stroke-width="1"/>
+<text x="60" y="24" font-size="10" fill="#5a6a8a" text-anchor="end">4.0%</text>
+<line x1="70" y1="120" x2="830" y2="120" stroke="#3730a3" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="76" y="114" font-size="10" fill="#3730a3" text-anchor="start">BOJ 2% target</text>
+<rect x="130" y="90.0" width="60" height="130.0" rx="3" fill="#c7cbe0"/>
+<text x="160" y="84.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.6%</text>
+<text x="160" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct</text>
+<rect x="210" y="70.0" width="60" height="150.0" rx="3" fill="#b45309"/>
+<text x="240" y="64.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">3.0%</text>
+<text x="240" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Nov f'cast</text>
+<text x="200.0" y="256" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Tokyo core (ex fresh food)</text>
+<rect x="400" y="100.0" width="60" height="120.0" rx="3" fill="#c7cbe0"/>
+<text x="430" y="94.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.4%</text>
+<text x="430" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct</text>
+<rect x="480" y="70.0" width="60" height="150.0" rx="3" fill="#b45309"/>
+<text x="510" y="64.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">3.0%</text>
+<text x="510" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Nov f'cast</text>
+<text x="470.0" y="256" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Tokyo core-core (ex fresh food, energy)</text>
+<rect x="640" y="80.0" width="60" height="140.0" rx="3" fill="#c7cbe0"/>
+<text x="670" y="74.0" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.8%</text>
+<text x="670" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct</text>
+<text x="670.0" y="256" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Tokyo headline</text>
+<rect x="760" y="109.99999999999999" width="60" height="110.00000000000001" rx="3" fill="#3730a3"/>
+<text x="790" y="103.99999999999999" font-size="11" font-weight="700" fill="#1a1a2e" text-anchor="middle">2.2%</text>
+<text x="790" y="236" font-size="10" fill="#5a6a8a" text-anchor="middle">Oct</text>
+<text x="790.0" y="256" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="middle">Nationwide core</text>
+</svg>
+      <div class="chart-note">Source: investingLive, FinScans (Nov 26, 2026); nationwide figure from Issue #175. No consensus published for Tokyo headline. Release 8:30 a.m. JST Nov 27.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">中立金利<span class="annotation-card-en">neutral rate</span></div>
+        <div class="annotation-card-body">Tamura: reach it as fast as practicable.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">全国CPI<span class="annotation-card-en">national CPI</span></div>
+        <div class="annotation-card-body">Due Dec 17, first meeting day.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">エネルギー補助金<span class="annotation-card-en">energy subsidies</span></div>
+        <div class="annotation-card-body">Expiry inflates the headline.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #181 · NOVEMBER 27, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
