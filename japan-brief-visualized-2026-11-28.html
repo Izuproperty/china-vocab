@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本速報 Japan Brief Visualized · Issue #182 · Saturday, November 28, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#f2f4f7; font-family:'Inter',sans-serif; color:#1a1a2e; line-height:1.6; }
+  .page { max-width:900px; margin:0 auto; padding:0 24px 40px; }
+  .masthead-band { background:#1a1a2e; border-bottom:4px solid #3730a3; padding:40px 24px 36px; }
+  .masthead { text-align:center; max-width:900px; margin:0 auto; }
+  .masthead-eyebrow { font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:#818cf8; margin-bottom:12px; }
+  .masthead-title { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:#fff; line-height:1.2; }
+  .masthead-sub { font-size:13px; color:#8a9bb5; margin-top:10px; }
+  .nav-row { display:flex; justify-content:center; gap:16px; margin-top:16px; margin-bottom:40px; flex-wrap:wrap; }
+  .nav-btn { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:3px; text-decoration:none; border:1px solid #2a2a4e; color:#8a9bb5; }
+  .nav-btn:hover { border-color:#818cf8; color:#818cf8; }
+  .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:32px; }
+  .card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:24px; }
+  .card-tag { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 8px; border-radius:2px; display:inline-block; margin-bottom:12px; }
+  .tag-ai { background:#e0e7ff; color:#3730a3; }
+  .tag-semi { background:#fce7f3; color:#be185d; }
+  .tag-robotics { background:#e0f7fa; color:#0e7490; }
+  .tag-macro { background:#fef3e2; color:#b45309; }
+  .card-num { font-size:36px; font-weight:700; color:#1a1a2e; line-height:1; }
+  .card-num-unit { font-size:14px; font-weight:400; color:#5a6a8a; margin-left:4px; }
+  .card-label { font-size:11px; color:#5a6a8a; margin-top:6px; line-height:1.4; }
+  .card-delta { font-size:11px; font-weight:600; margin-top:8px; padding:4px 8px; border-radius:3px; display:inline-block; }
+  .delta-red { background:#fee2e2; color:#b91c1c; }
+  .delta-amber { background:#fef3e2; color:#b45309; }
+  .delta-green { background:#dcfce7; color:#166534; }
+  .section-title { font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#3730a3; margin-bottom:20px; }
+  .story-card { background:#fff; border:1px solid #dde0ec; border-radius:8px; padding:28px; margin-bottom:24px; }
+  .story-num { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#3730a3; }
+  .story-headline { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:#1a1a2e; line-height:1.3; margin:8px 0; }
+  .story-insight { font-size:13px; color:#3a4a6a; line-height:1.7; }
+  .story-takeaway { margin-top:14px; padding:10px 14px; background:#f8f9fc; border-left:3px solid #3730a3; border-radius:0 4px 4px 0; font-size:12px; color:#3a4a6a; line-height:1.6; }
+  .story-takeaway strong { color:#1a1a2e; }
+  .chart-box { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:20px; margin:16px 0; }
+  .chart-title { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#3730a3; margin-bottom:14px; }
+  .chart-note { font-size:10px; color:#5a6a8a; margin-top:8px; }
+  .annotation-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-top:16px; }
+  .annotation-card { background:#f8f9fc; border:1px solid #dde0ec; border-radius:6px; padding:14px; }
+  .annotation-card-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+  .label-green { color:#166534; } .label-amber { color:#b45309; } .label-red { color:#b91c1c; }
+  .annotation-card-ja { font-size:15px; font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .annotation-card-en { font-size:10px; font-weight:400; color:#777; display:block; margin-top:1px; }
+  .annotation-card-body { font-size:11.5px; color:#3a4a6a; line-height:1.5; }
+  .footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid #dde0ec; }
+  .footer-text { font-size:10px; color:#5a6a8a; letter-spacing:1px; }
+  svg { width:100%; height:auto; display:block; }
+  text { font-family:'Inter',sans-serif; }
+  @media (max-width:700px) { .grid-3, .annotation-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="_gate" style="position:fixed;inset:0;background:#1a1a2e;display:flex;align-items:center;justify-content:center;font-family:-apple-system,sans-serif;z-index:99999;"><div style="text-align:center;padding:48px 40px;"><div style="color:#818cf8;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;">&#x53CB;&#x9054; &middot; Private Access</div><div style="color:#e8d5b0;font-size:20px;font-weight:700;letter-spacing:2px;margin-bottom:28px;">Enter Password</div><input type="password" id="_pw" placeholder="password" style="background:#2a2a4e;border:1px solid #3a3a6e;border-radius:4px;color:#e8d5b0;font-size:15px;padding:11px 18px;width:240px;outline:none;text-align:center;letter-spacing:3px;display:block;margin:0 auto;" onkeydown="if(event.key==='Enter')_u()"><button onclick="_u()" style="display:block;margin:12px auto 0;background:#818cf8;border:none;border-radius:4px;color:#fff;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:2px;padding:10px 28px;text-transform:uppercase;">Enter &#x2192;</button><div id="_e" style="color:#e74c3c;font-size:11px;letter-spacing:1px;margin-top:12px;min-height:16px;"></div></div></div>
+<div class="masthead-band">
+  <div class="masthead">
+    <div class="masthead-eyebrow">日本速報 · Japan Brief Visualized</div>
+    <div class="masthead-title">Issue #182 · November 28, 2026</div>
+    <div class="masthead-sub">Defense AI Vision · Kioxia SSDs Extend GPU Memory · Tokyo Core CPI 2.9%</div>
+  </div>
+</div>
+<div class="nav-row">
+  <a class="nav-btn" href="japan-brief.html">BRIEF</a>
+  <a class="nav-btn" href="japan-snapshot.html">SNAPSHOT</a>
+  <a class="nav-btn" href="japan-ai-landscape-viz.html">LANDSCAPE</a>
+</div>
+<div class="page">
+  <div class="section-title">At a Glance</div>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-tag tag-ai">AI &amp; TECH · DEFENSE</div>
+      <div class="card-num">5<span class="card-num-unit">principles</span></div>
+      <div class="card-label">Defense AI Vision replaces the 2024 basic policy</div>
+      <div class="card-delta delta-amber">No budget or cloud rule yet</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-semi">SEMIS · KIOXIA</div>
+      <div class="card-num">1.1<span class="card-num-unit">PB</span></div>
+      <div class="card-label">Flash extending GPU memory in one GB200 NVL72 rack</div>
+      <div class="card-delta delta-red">1.7x forward P/E (Bloomberg)</div>
+    </div>
+    <div class="card">
+      <div class="card-tag tag-macro">MACRO · BOJ</div>
+      <div class="card-num">2.9<span class="card-num-unit">%</span></div>
+      <div class="card-label">Tokyo core CPI for November, vs 3.0% consensus</div>
+      <div class="card-delta delta-amber">Core-core slows to 2.5%</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:8px;">Story Analysis</div>
+
+  <div class="story-card">
+    <div class="story-num">STORY 1 · AI &amp; TECH</div>
+    <div class="story-headline">The Defense Ministry Publishes Its AI Vision With Five Principles, Keeping Humans Responsible and Ruling Out Fully Autonomous Lethal Weapons</div>
+    <div class="story-insight"><p>防衛省 (Bōei-shō, Ministry of Defense) released its 防衛AIビジョン (Bōei AI bijon, Defense AI Vision) on Friday, November 27, replacing the basic policy on promoting AI use that it issued in 2024. The document sets five principles for how the 自衛隊 (Jieitai, Self-Defense Forces) use AI. The first is that humans keep decision-making authority and responsibility. The others require compliance with domestic and international law, assurance of safety, reliability, transparency and accountability, avoidance of excessive reliance on specific technologies, products or businesses, and AI adoption that starts from operational needs. The ministry says it has no intention of developing 完全自律型致死兵器 (kanzen jiritsu-gata chishi heiki, fully autonomous lethal weapons) that operate beyond human control.</p>
+      <br>
+      <p>The Vision calls for AI analysis of radar tracks, satellite and aerial imagery and signals intelligence, and for physical AI that carries out missions without putting personnel at risk. With allies, the ministry wants information and analysis from different countries&#x27; systems and AI to be mutually readable in joint missions, while Japan keeps independent 指揮統制 (shiki tōsei, command and control) and control of sensitive data. Defense Minister 小泉進次郎 (Koizumi Shinjirō, Shinjiro Koizumi) said on November 15 that the Vision would come by the end of November and that standards for putting highly classified data in the cloud still needed work (Issue #170). Reports on Friday&#x27;s text give no budget, procurement schedule or cloud certification rule.</p>
+      <br>
+      <p>The principle against relying on one technology, product or business gives procurement officers a written reason to split AI contracts across suppliers and keep domestic options alive. That helps Japanese model builders such as Sakana AI, which Jiji named on November 10 as a candidate for the domestic model in SDF command systems, and Japanese defense integrators such as NEC and Fujitsu. It also caps how much of the work any single US cloud or model provider can win, and the clause on sensitive data adds to that limit. The Vision follows the November 25 security outline that targets third place in AI behind the US and China and puts FY2027-31 defense spending in the low ¥50 trillion range (Issue #180). Orders depend on the revised security documents due by year-end and on the FY2027 budget, for which the ministry requested a record ¥8.9 trillion (Issue #94).</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The rule against dependence on any single technology or vendor lets the ministry split AI contracts and keep domestic models in the running, which supports Sakana AI, NEC and Fujitsu against a single foreign platform. The Vision sets rules but moves no money yet, so contract flow waits on the year-end security documents and the FY2027 budget.</div>
+    <div class="chart-box">
+      <div class="chart-title">From the 2024 basic policy to contracts: the Defense AI timeline</div>
+<svg viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="90" x2="800" y2="90" stroke="#c7cbe0" stroke-width="3"/>
+<circle cx="60" cy="90" r="8" fill="#818cf8"/>
+<text x="60" y="64" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">Jul 2024</text>
+<text x="60" y="30" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">AI basic policy</text>
+<text x="60" y="43" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">(seven priority areas)</text>
+<circle cx="208" cy="90" r="8" fill="#818cf8"/>
+<text x="208" y="122" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">Nov 15</text>
+<text x="208" y="142" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Koizumi: Vision</text>
+<text x="208" y="155" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">by end-November</text>
+<circle cx="356" cy="90" r="8" fill="#818cf8"/>
+<text x="356" y="64" font-size="12" font-weight="700" fill="#818cf8" text-anchor="middle">Nov 25</text>
+<text x="356" y="30" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Outline: third in AI,</text>
+<text x="356" y="43" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">low ¥50tn FY27-31</text>
+<circle cx="504" cy="90" r="10" fill="#3730a3"/>
+<text x="504" y="122" font-size="12" font-weight="700" fill="#3730a3" text-anchor="middle">Nov 27</text>
+<text x="504" y="142" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Defense AI Vision</text>
+<text x="504" y="155" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">five principles</text>
+<circle cx="652" cy="90" r="8" fill="#b45309"/>
+<text x="652" y="64" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">End-2026</text>
+<text x="652" y="30" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Three security</text>
+<text x="652" y="43" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">documents revised</text>
+<circle cx="800" cy="90" r="8" fill="#b45309"/>
+<text x="800" y="122" font-size="12" font-weight="700" fill="#b45309" text-anchor="middle">FY2027</text>
+<text x="800" y="142" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">Budget: ¥8.9tn</text>
+<text x="800" y="155" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="middle">request (record)</text>
+<text x="430" y="182" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Policy and principles (2024-Nov 2026) → security documents and budget decide contracts (from end-2026)</text>
+</svg>
+      <div class="chart-note">Source: The Japan Times via wpnews (Nov 27, 2026); Koizumi remarks from Issue #170; security outline from Issue #180; budget request from Issue #94.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">人間の責任<span class="annotation-card-en">human responsibility</span></div>
+        <div class="annotation-card-body">Humans keep authority over decisions.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">安全保障三文書<span class="annotation-card-en">three security documents</span></div>
+        <div class="annotation-card-body">Revision due by year-end.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">クラウド基準<span class="annotation-card-en">cloud standards</span></div>
+        <div class="annotation-card-body">Classified-data cloud rules still unwritten.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 2 · SEMICONDUCTORS</div>
+    <div class="story-headline">Kioxia and Nvidia Show SSDs Extending GPU Memory to 1.1 Petabytes in a GB200 Rack, as Bloomberg Puts Kioxia at 1.7 Times Forward Earnings</div>
+    <div class="story-insight"><p>キオクシア (Kiokushia, Kioxia) said on November 26 that it and Nvidia had run a proof of concept in which Kioxia SSDs act as extended memory for GPUs, using Nvidia&#x27;s SCADA (Scaled Accelerated Data Access) software under its Storage-Next initiative. The test used a GB200 NVL72 rack with 18 server nodes and 144 Kioxia XD8 7.68TB E1.S drives, about 1.1 petabytes of raw flash, or eight drives and roughly 60TB of extended memory per node. The system handles 512-byte accesses and could in principle work on a database of 2 trillion vectors. The target workloads are large vector databases and graph neural networks. Both companies say they are still evaluating feasibility and performance, and no customer, price or shipment date was disclosed.</p>
+      <br>
+      <p>高帯域メモリ (kōtaiiki memori, high-bandwidth memory, HBM) is made mainly by SK hynix and Samsung and is in short supply. If flash can take over part of the memory work for AI retrieval, Kioxia gets a product aimed at AI racks, where Nikkei says its data-center sales are modest next to memory peers. Flash is much slower than HBM, so the design fits large retrieval jobs and does not replace HBM for model weights or training. Bloomberg reported Kioxia trading at 1.7 times 予想PER (yosō PER, forward price-earnings ratio), the lowest in the Nikkei 225 and below Tokyo Electric Power, after falling nearly 40% from late-October levels. Eighteen of 20 analysts rate it a buy.</p>
+      <br>
+      <p>The shares jumped about 12.6% on November 26 on speculation that dividends from subsidiaries would fund a 自社株買い (jishakabu-gai, share buyback), then rose 8.9% on Friday to ¥8,450 as the Nikkei gained 2.1% to 58,711. Kioxia said in October that it would return all excess cash to shareholders over the medium to long term. A multiple of 1.7 times implies investors expect NAND prices to fall from the levels that produced ¥1.99 trillion of July-September operating profit (Issue #155), even though 2027 capacity is sold out and the October-December guide of about ¥2 trillion already assumes flat prices. Bloomberg attributes the frequent 10% daily swings to retail investors unwinding leveraged positions, which means the stock can move on flows unrelated to the Nvidia work.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> The Nvidia test gives Kioxia a possible AI rack product beyond plain storage, but it is a feasibility demonstration with no customer or revenue attached. At 1.7 times forward earnings the stock already prices a NAND downturn, so a buyback funded by subsidiary dividends or a named hyperscaler adopting SSD-extended memory would test that pricing sooner than the demo.</div>
+    <div class="chart-box">
+      <div class="chart-title">Kioxia x Nvidia proof of concept: one GB200 NVL72 rack</div>
+<svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#5a6a8a"/></marker></defs>
+<rect x="30" y="30" width="420" height="230" rx="8" fill="#fff" stroke="#3730a3" stroke-width="1.5"/>
+<text x="240" y="52" font-size="12" font-weight="700" fill="#1a1a2e" text-anchor="middle">GB200 NVL72 rack: 18 server nodes</text>
+<rect x="48" y="66" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="53.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="59.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="65.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="71.6" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="77.8" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="84.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="90.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="96.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<text x="77" y="81" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 1</text>
+<rect x="114" y="66" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="119.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="125.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="131.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="137.6" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="143.8" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="150.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="156.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="162.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<text x="143" y="81" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 2</text>
+<rect x="180" y="66" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="185.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="191.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="197.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="203.6" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="209.8" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="216.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="222.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="228.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<text x="209" y="81" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 3</text>
+<rect x="246" y="66" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="251.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="257.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="263.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="269.6" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="275.8" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="282.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="288.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="294.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<text x="275" y="81" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 4</text>
+<rect x="312" y="66" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="317.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="323.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="329.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="335.6" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="341.8" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="348.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="354.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="360.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<text x="341" y="81" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 5</text>
+<rect x="378" y="66" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="383.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="389.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="395.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="401.6" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="407.8" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="414.0" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="420.2" y="88" width="4.5" height="18" fill="#be185d"/>
+<rect x="426.4" y="88" width="4.5" height="18" fill="#be185d"/>
+<text x="407" y="81" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 6</text>
+<rect x="48" y="124" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="53.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="59.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="65.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="71.6" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="77.8" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="84.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="90.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="96.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<text x="77" y="139" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 7</text>
+<rect x="114" y="124" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="119.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="125.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="131.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="137.6" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="143.8" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="150.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="156.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="162.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<text x="143" y="139" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 8</text>
+<rect x="180" y="124" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="185.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="191.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="197.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="203.6" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="209.8" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="216.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="222.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="228.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<text x="209" y="139" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 9</text>
+<rect x="246" y="124" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="251.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="257.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="263.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="269.6" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="275.8" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="282.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="288.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="294.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<text x="275" y="139" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 10</text>
+<rect x="312" y="124" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="317.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="323.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="329.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="335.6" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="341.8" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="348.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="354.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="360.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<text x="341" y="139" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 11</text>
+<rect x="378" y="124" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="383.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="389.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="395.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="401.6" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="407.8" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="414.0" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="420.2" y="146" width="4.5" height="18" fill="#be185d"/>
+<rect x="426.4" y="146" width="4.5" height="18" fill="#be185d"/>
+<text x="407" y="139" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 12</text>
+<rect x="48" y="182" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="53.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="59.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="65.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="71.6" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="77.8" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="84.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="90.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="96.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<text x="77" y="197" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 13</text>
+<rect x="114" y="182" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="119.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="125.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="131.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="137.6" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="143.8" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="150.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="156.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="162.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<text x="143" y="197" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 14</text>
+<rect x="180" y="182" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="185.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="191.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="197.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="203.6" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="209.8" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="216.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="222.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="228.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<text x="209" y="197" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 15</text>
+<rect x="246" y="182" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="251.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="257.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="263.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="269.6" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="275.8" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="282.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="288.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="294.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<text x="275" y="197" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 16</text>
+<rect x="312" y="182" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="317.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="323.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="329.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="335.6" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="341.8" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="348.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="354.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="360.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<text x="341" y="197" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 17</text>
+<rect x="378" y="182" width="58" height="48" rx="4" fill="#e0e7ff" stroke="#818cf8"/>
+<rect x="383.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="389.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="395.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="401.6" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="407.8" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="414.0" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="420.2" y="204" width="4.5" height="18" fill="#be185d"/>
+<rect x="426.4" y="204" width="4.5" height="18" fill="#be185d"/>
+<text x="407" y="197" font-size="9" font-weight="600" fill="#3730a3" text-anchor="middle">Node 18</text>
+<text x="240" y="250" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Each node: 8 × Kioxia XD8 7.68TB E1.S SSD</text>
+<line x1="455" y1="145" x2="525" y2="145" stroke="#5a6a8a" stroke-width="1.5" marker-end="url(#ar2)"/>
+<rect x="535" y="40" width="290" height="50" rx="6" fill="#f8f9fc" stroke="#be185d" stroke-width="1.5"/>
+<text x="555" y="71" font-size="16" font-weight="700" fill="#be185d" text-anchor="start">144 SSDs</text>
+<text x="810" y="71" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="end">× 7.68TB each</text>
+<rect x="535" y="100" width="290" height="50" rx="6" fill="#f8f9fc" stroke="#3730a3" stroke-width="1.5"/>
+<text x="555" y="131" font-size="16" font-weight="700" fill="#3730a3" text-anchor="start">≈1.1 PB</text>
+<text x="810" y="131" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="end">raw flash per rack</text>
+<rect x="535" y="160" width="290" height="50" rx="6" fill="#f8f9fc" stroke="#3730a3" stroke-width="1.5"/>
+<text x="555" y="191" font-size="16" font-weight="700" fill="#3730a3" text-anchor="start">≈60 TB</text>
+<text x="810" y="191" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="end">extended memory per node</text>
+<rect x="535" y="220" width="290" height="50" rx="6" fill="#f8f9fc" stroke="#b45309" stroke-width="1.5"/>
+<text x="555" y="251" font-size="16" font-weight="700" fill="#b45309" text-anchor="start">2 trillion</text>
+<text x="810" y="251" font-size="10" font-weight="400" fill="#3a4a6a" text-anchor="end">512-byte vectors (potential)</text>
+<text x="430" y="288" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">SCADA software lets GPUs read flash directly for vector search and graph workloads; HBM still holds weights</text>
+</svg>
+      <div class="chart-note">Source: Kioxia / Business Wire (Nov 26, 2026). Raw capacity in decimal units (1TB = 10^12 bytes). Proof-of-concept results; feasibility still under evaluation.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">拡張メモリ<span class="annotation-card-en">extended memory</span></div>
+        <div class="annotation-card-body">Flash takes on part of the GPU memory job.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">自社株買い<span class="annotation-card-en">share buyback</span></div>
+        <div class="annotation-card-body">Funded by subsidiary dividends?</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">NAND価格<span class="annotation-card-en">NAND prices</span></div>
+        <div class="annotation-card-body">1.7x P/E prices a downturn.</div>
+      </div>
+    </div>
+  </div>
+  <div class="story-card">
+    <div class="story-num">STORY 3 · MACRO</div>
+    <div class="story-headline">Tokyo Core CPI Rises to 2.9%, Just Under Forecasts, as Energy Jumps 9.5% and the Measure Excluding Energy Slows to 2.5%</div>
+    <div class="story-insight"><p>The 東京都区部消費者物価指数 (Tōkyō-to kubu shōhisha bukka shisū, Tokyo-area consumer price index) released on Friday showed core inflation, which excludes fresh food, at 2.9% in November, up from 2.6% in October and the fastest since July 2025, but below the 3.0% consensus. Headline inflation rose to 2.8% from 2.7%. Energy prices rose 9.5% after 2.2% in October, with electricity up 9.5%, city gas 13.7% and kerosene 15.5%, because government エネルギー補助金 (enerugī hojokin, energy subsidies) lapsed. ActionForex estimates energy added about 0.34 percentage points to the headline change. Services inflation slowed to 2.1% from 2.2%, and food excluding fresh items edged up to 3.1%.</p>
+      <br>
+      <p>The measure that excludes both fresh food and energy eased to 2.5% from 2.6%, and its seasonally adjusted monthly gain slowed to 0.1% from 0.3%. The acceleration therefore came from utility bills, which the BOJ treats as temporary, while 基調的インフレ (kichō-teki infure, underlying inflation) cooled. Swap pricing of a December hike slipped to 73.5% from 74.7% a day earlier and 83.5% on November 21, according to MogWatch. Stocks paid little attention: the Nikkei rose 2.1% on chip buying, and USD/JPY ended Tokyo trade near 159.36.</p>
+      <br>
+      <p>日本銀行 (Nihon Ginkō, Bank of Japan) Governor 植田和男 (Ueda Kazuo, Kazuo Ueda) speaks in Nagoya on Monday, November 30, the last scheduled set piece before the December 17-18 meeting. Ueda told parliament the risk to underlying inflation is now an overshoot of 2% (Issue #174), and board member Tamura said on Thursday that rates should reach neutral as quickly as practicable (Issue #181). Core-core at 2.5% still runs above target, so a 利上げ (riage, rate hike) to 1.50% stays the base case, with 86% of economists in the Reuters poll expecting it. The slower services and core-core readings give the board less support for Tamura&#x27;s faster path into 2027, and that is the question Ueda&#x27;s Nagoya remarks are most likely to settle.</p></div>
+    <div class="story-takeaway"><strong>Investor takeaway:</strong> Tokyo core rose to 2.9% because energy subsidies expired, while the gauge excluding energy slowed to 2.5% and services eased to 2.1%. That keeps a December hike to 1.50% likely but weakens the case for faster moves in 2027, so Ueda&#x27;s Nagoya speech on Monday is the main event for front-end JGBs and a yen near 159.</div>
+    <div class="chart-box">
+      <div class="chart-title">Tokyo CPI components, October vs November 2026 (% y/y)</div>
+<svg viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+<line x1="270" y1="30" x2="270" y2="262" stroke="#e8eaf2"/>
+<text x="270" y="278" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">0%</text>
+<line x1="374" y1="30" x2="374" y2="262" stroke="#e8eaf2"/>
+<text x="374" y="278" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">2%</text>
+<line x1="478" y1="30" x2="478" y2="262" stroke="#e8eaf2"/>
+<text x="478" y="278" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">4%</text>
+<line x1="582" y1="30" x2="582" y2="262" stroke="#e8eaf2"/>
+<text x="582" y="278" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">6%</text>
+<line x1="686" y1="30" x2="686" y2="262" stroke="#e8eaf2"/>
+<text x="686" y="278" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">8%</text>
+<line x1="790" y1="30" x2="790" y2="262" stroke="#e8eaf2"/>
+<text x="790" y="278" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">10%</text>
+<text x="260" y="52" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Core (ex fresh food)</text>
+<rect x="270" y="36" width="135.2" height="14" rx="2" fill="#c7cbe0"/>
+<text x="411.20000000000005" y="47" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">2.6%</text>
+<rect x="270" y="53" width="150.8" height="14" rx="2" fill="#3730a3"/>
+<text x="426.79999999999995" y="64" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">2.9%</text>
+<text x="260" y="98" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Headline</text>
+<rect x="270" y="82" width="140.4" height="14" rx="2" fill="#c7cbe0"/>
+<text x="416.4" y="93" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">2.7%</text>
+<rect x="270" y="99" width="145.6" height="14" rx="2" fill="#3730a3"/>
+<text x="421.6" y="110" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">2.8%</text>
+<text x="260" y="144" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Core-core (ex fresh food, energy)</text>
+<rect x="270" y="128" width="135.2" height="14" rx="2" fill="#c7cbe0"/>
+<text x="411.20000000000005" y="139" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">2.6%</text>
+<rect x="270" y="145" width="130.0" height="14" rx="2" fill="#3730a3"/>
+<text x="406.0" y="156" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">2.5%</text>
+<text x="260" y="190" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Services</text>
+<rect x="270" y="174" width="114.4" height="14" rx="2" fill="#c7cbe0"/>
+<text x="390.4" y="185" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">2.2%</text>
+<rect x="270" y="191" width="109.2" height="14" rx="2" fill="#3730a3"/>
+<text x="385.2" y="202" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">2.1%</text>
+<text x="260" y="236" font-size="11" font-weight="600" fill="#1a1a2e" text-anchor="end">Energy</text>
+<rect x="270" y="220" width="114.4" height="14" rx="2" fill="#c7cbe0"/>
+<text x="390.4" y="231" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">2.2%</text>
+<rect x="270" y="237" width="494.0" height="14" rx="2" fill="#b45309"/>
+<text x="770.0" y="248" font-size="10" font-weight="700" fill="#1a1a2e" text-anchor="start">9.5%</text>
+<rect x="640" y="200" width="12" height="10" fill="#c7cbe0"/><text x="658" y="209" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">October</text>
+<rect x="720" y="200" width="12" height="10" fill="#3730a3"/><text x="738" y="209" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="start">November</text>
+<text x="560" y="296" font-size="10" font-weight="400" fill="#5a6a8a" text-anchor="middle">Consensus for core was 3.0%; BOJ target 2%</text>
+</svg>
+      <div class="chart-note">Source: Statistics Bureau Tokyo CPI preliminary release (Nov 27, 2026) via ActionForex and NERO. Core excludes fresh food; core-core excludes fresh food and energy.</div>
+    </div>
+    <div class="annotation-row">
+      <div class="annotation-card">
+        <div class="annotation-card-label label-green">SIGNAL</div>
+        <div class="annotation-card-ja">エネルギー補助金<span class="annotation-card-en">energy subsidies</span></div>
+        <div class="annotation-card-body">Expiry drove the jump.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-amber">WATCH</div>
+        <div class="annotation-card-ja">植田総裁講演<span class="annotation-card-en">Ueda speech</span></div>
+        <div class="annotation-card-body">Nagoya, Monday Nov 30.</div>
+      </div>
+      <div class="annotation-card">
+        <div class="annotation-card-label label-red">RISK</div>
+        <div class="annotation-card-ja">円安<span class="annotation-card-en">weak yen</span></div>
+        <div class="annotation-card-body">USD/JPY near 159.4.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">日本速報 · JAPAN BRIEF · ISSUE #182 · NOVEMBER 28, 2026 · NOT INVESTMENT ADVICE</div>
+  </div>
+</div>
+<script>(function(){var H='85f1cfe842570b704a8acf922e18161ca190a9646bcce355389bdd4242331725',K='pg_auth';var g=document.getElementById('_gate');if(g&&localStorage.getItem(K)===H){g.remove();return;}async function _h(s){var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');}window._u=async function(){var h=await _h(document.getElementById('_pw').value);if(h===H){localStorage.setItem(K,H);location.reload();}else{document.getElementById('_e').textContent='Incorrect password';}};})();</script>
+</body>
+</html>
